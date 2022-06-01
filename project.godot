@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node2D",
+"class": &"CharacterSkin",
+"language": &"GDScript",
+"path": "res://characters/_base/character_skin_base.gd"
+}]
+_global_script_class_icons={
+"CharacterSkin": ""
+}
+
 [application]
 
 config/name="Template Beat Project"
