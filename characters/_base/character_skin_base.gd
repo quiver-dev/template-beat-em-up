@@ -84,9 +84,27 @@ func _is_valid_state(anim_state: int) -> bool:
 
 
 ## Virtual function to be overriden and translate enum states into animation node names.
-func _get_anim_name(anim_state: int) -> String:
-	var value := ""
+func _get_anim_name(anim_state: int) -> StringName:
+	var value := StringName()
 	push_warning("This is a virtual function and should not be used directly, but overriden.")
 	return value
+
+
+## Helper to create getters for public condition properties.
+func _get_animation_tree_condition(path: StringName) -> bool:
+	if not is_inside_tree() or not path in _animation_tree:
+		return false
+	return _animation_tree.get(path)
+
+
+## Helper to create setters for public condition properties.
+func _set_animation_tree_condition(path: StringName, value: bool) -> void:
+	if not is_inside_tree():
+		await ready
+	
+	if not path in _animation_tree:
+		return
+	
+	_animation_tree.set(path, value)
 
 ### -----------------------------------------------------------------------------------------------

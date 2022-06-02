@@ -1,20 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh38d5sg0j8bo"]
+[gd_scene load_steps=2 format=3 uid="uid://bh38d5sg0j8bo"]
 
 [ext_resource type="Script" path="res://characters/_base/character_skin_base.gd" id="1_jxqd2"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nu7t1"]
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_eahfq"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0pp5f"]
-graph_offset = Vector2(-374, 26)
-nodes/StateMachine/node = SubResource( "AnimationNodeStateMachine_nu7t1" )
-nodes/StateMachine/position = Vector2(-120, 100)
-nodes/TimeScale/node = SubResource( "AnimationNodeTimeScale_eahfq" )
-nodes/TimeScale/position = Vector2(81, 139)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0611s"]
 
 [node name="CharacterSkinBase" type="Node2D"]
 script = ExtResource( "1_jxqd2" )
@@ -22,7 +8,4 @@ script = ExtResource( "1_jxqd2" )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( "AnimationNodeBlendTree_0pp5f" )
 anim_player = NodePath("../AnimationPlayer")
-parameters/StateMachine/playback = SubResource( "AnimationNodeStateMachinePlayback_0611s" )
-parameters/TimeScale/scale = 1.0
