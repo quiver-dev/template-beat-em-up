@@ -5,6 +5,9 @@ extends QuiverCharacterSkin
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
+signal attack_1_finished # called by attack1 animation
+signal attack_2_finished # called by attack2 animation
+
 #--- enums ----------------------------------------------------------------------------------------
 
 enum SkinStates {
