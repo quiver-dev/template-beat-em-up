@@ -10,12 +10,12 @@ config_version=5
 
 _global_script_classes=[{
 "base": "Node2D",
-"class": &"CharacterSkin",
+"class": &"QuiverCharacterSkin",
 "language": &"GDScript",
 "path": "res://characters/_base/character_skin_base.gd"
 }]
 _global_script_class_icons={
-"CharacterSkin": ""
+"QuiverCharacterSkin": ""
 }
 
 [application]

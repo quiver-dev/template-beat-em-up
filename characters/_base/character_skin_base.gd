@@ -1,4 +1,4 @@
-class_name CharacterSkin
+class_name QuiverCharacterSkin
 extends Node2D
 ## Base class for any kind of character, either playable or npc.
 ##
