@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh38d5sg0j8bo"]
+
+[ext_resource type="Script" path="res://characters/_base/character_skin_base.gd" id="1_jxqd2"]
+
+[node name="CharacterSkinBase" type="Node2D"]
+script = ExtResource( "1_jxqd2" )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+anim_player = NodePath("../AnimationPlayer")

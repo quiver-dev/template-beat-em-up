@@ -8,6 +8,22 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node2D",
+"class": &"QuiverCharacterSkin",
+"language": &"GDScript",
+"path": "res://characters/_base/character_skin_base.gd"
+}, {
+"base": "Object",
+"class": &"QuiverEditorHelper",
+"language": &"GDScript",
+"path": "res://helpers/quiver_editor_helper.gd"
+}]
+_global_script_class_icons={
+"QuiverCharacterSkin": "",
+"QuiverEditorHelper": ""
+}
+
 [application]
 
 config/name="Template Beat Project"
