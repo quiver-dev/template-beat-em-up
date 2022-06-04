@@ -1,4 +1,4 @@
-extends %BASE%
+extends _BASE_
 # Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
@@ -17,8 +17,8 @@ extends %BASE%
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready()%VOID_RETURN%:
-%TS%pass
+func _ready()_VOID_RETURN_:
+_TS_pass
 
 ### -----------------------------------------------------------------------------------------------
 

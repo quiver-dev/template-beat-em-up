@@ -1,4 +1,4 @@
-extends %BASE%
+extends _BASE_
 # Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
