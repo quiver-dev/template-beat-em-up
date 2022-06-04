@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"QuiverCharacterSkin",
 "language": &"GDScript",
-"path": "res://characters/_base/character_skin_base.gd"
+"path": "res://characters/_base/character_skin/character_skin_base.gd"
 }, {
 "base": "Object",
 "class": &"QuiverEditorHelper",

@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3ksbtfs3wluv"]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource type="PackedScene" uid="uid://bh38d5sg0j8bo" path="res://characters/_base/character_skin_base.tscn" id="1_neyaj"]
+[ext_resource type="PackedScene" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/tonya/tonya_skin.gd" id="2_gck4m"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmueen8j6cpdu" path="res://characters/playable/tonya/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://xij13apwdhco" path="res://characters/playable/tonya/resources/spriteframes_tonya.tres" id="4_l5bf7"]
