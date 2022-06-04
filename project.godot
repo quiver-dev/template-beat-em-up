@@ -17,11 +17,23 @@ _global_script_classes=[{
 "base": "Object",
 "class": &"QuiverEditorHelper",
 "language": &"GDScript",
-"path": "res://helpers/quiver_editor_helper.gd"
+"path": "res://utilities/helpers/quiver_editor_helper.gd"
+}, {
+"base": "Node",
+"class": &"QuiverState",
+"language": &"GDScript",
+"path": "res://utilities/custom_nodes/State.gd"
+}, {
+"base": "Node",
+"class": &"QuiverStateMachine",
+"language": &"GDScript",
+"path": "res://utilities/custom_nodes/StateMachine.gd"
 }]
 _global_script_class_icons={
 "QuiverCharacterSkin": "",
-"QuiverEditorHelper": ""
+"QuiverEditorHelper": "",
+"QuiverState": "",
+"QuiverStateMachine": ""
 }
 
 [application]
