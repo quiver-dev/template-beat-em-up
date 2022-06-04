@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "CharacterBody2D",
+"class": &"QuiverCharacter",
+"language": &"GDScript",
+"path": "res://characters/_base/character/base_character.gd"
+}, {
 "base": "Node2D",
 "class": &"QuiverCharacterSkin",
 "language": &"GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[{
 "path": "res://utilities/custom_nodes/StateMachine.gd"
 }]
 _global_script_class_icons={
+"QuiverCharacter": "",
 "QuiverCharacterSkin": "",
 "QuiverEditorHelper": "",
 "QuiverState": "",
