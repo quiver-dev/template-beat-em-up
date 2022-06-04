@@ -14,7 +14,7 @@ extends CharacterBody2D
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export_node_path(QuiverCharacterSkin) var _path_skin := NodePath("Skin"):
+@export_node_path(Node2D) var _path_skin := NodePath("Skin"):
 	set(value):
 		_path_skin = value
 		if is_inside_tree():
