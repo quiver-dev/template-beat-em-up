@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnq627g2c7x6s"
-path="res://.godot/imported/walk.png-759a3ffcb4d4ffc60c61e1b59846d95e.ctex"
+uid="uid://dusiulyorn64y"
+path="res://.godot/imported/jump.png-f1c221fc7192139d8f379401b0b58d45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/tonya/resources/sprites/walk.png"
-dest_files=["res://.godot/imported/walk.png-759a3ffcb4d4ffc60c61e1b59846d95e.ctex"]
+source_file="res://characters/playable/chad/resources/sprites/jump.png"
+dest_files=["res://.godot/imported/jump.png-f1c221fc7192139d8f379401b0b58d45.ctex"]
 
 [params]
 

@@ -1,0 +1,35 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3]
+
+[ext_resource type="Texture2D" path="res://characters/playable/chad/resources/sprites/idle.png" id="1_0ym6h"]
+[ext_resource type="Texture2D" path="res://characters/playable/chad/resources/sprites/jump.png" id="2_sj0ov"]
+[ext_resource type="Texture2D" path="res://characters/playable/chad/resources/sprites/attack_01.png" id="3_khyrs"]
+[ext_resource type="Texture2D" path="res://characters/playable/chad/resources/sprites/walk.png" id="4_4fchr"]
+[ext_resource type="Texture2D" path="res://characters/playable/chad/resources/sprites/attack_02.png" id="5_vsteo"]
+
+[resource]
+animations = [{
+"frames": [ExtResource( "1_0ym6h" )],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "2_sj0ov" )],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "3_khyrs" )],
+"loop": true,
+"name": &"attack_1",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "4_4fchr" )],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "5_vsteo" )],
+"loop": true,
+"name": &"attack_2",
+"speed": 5.0
+}]
