@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_gck4m"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://bmueen8j6cpdu" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bec3kxxbipmg4" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 
 [sub_resource type="Animation" id="Animation_psjea"]
@@ -60,7 +60,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_iknhp"]
 resource_name = "attack1"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -104,7 +103,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.39),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"attack_1_finished"],
@@ -158,7 +157,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.39),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"attack_2_finished"],
