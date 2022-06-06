@@ -22,6 +22,9 @@ extends CharacterBody2D
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+var is_on_air := false
+var ground_level := 0.0
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ## Must point to a valid skin node. This is a "private" exported property just as reminder that 
