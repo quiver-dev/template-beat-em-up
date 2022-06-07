@@ -149,25 +149,21 @@ func _register_incomming_connections() -> void:
 ## [method enter] method.
 func _connect_signals() -> void:
 	for dict in _incoming_connections:
-		if dict.source == null or not is_instance_valid(dict.source):
+		if not dict.thas_all(["signal", "callable", "flags", "binds"]):
 			push_error("Invalid source in dict: %s"%[dict])
 			continue
 		
-		var callable := Callable(self, dict.method_name)
-		if not dict.source.is_connected(dict.signal_name, callable):
-			dict.source.connect(dict.signal_name, callable)
+		dict["signal"].connect(dict["callable"], dict.flags).bind(dict.binds)
 
 
 ## Disconnects all signals saved in [member _incoming_connection]. Usually called in the 
 ## [method exit] method.
 func _disconnect_signals() -> void:
 	for dict in _incoming_connections:
-		if dict.source == null or not is_instance_valid(dict.source):
+		if not dict.has_all(["signal", "callable"]):
 			push_error("Invalid source in dict: %s"%[dict])
 			continue
 		
-		var callable := Callable(self, dict.method_name)
-		if dict.source.is_connected(dict.signal_name, callable):
-			dict.source.disconnect(dict.signal_name, callable)
+		dict["signal"].disconnect(dict["callable"])
 
 ### -----------------------------------------------------------------------------------------------

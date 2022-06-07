@@ -54,6 +54,9 @@ func physics_process(delta: float) -> void:
 
 
 func exit() -> void:
+	_direction = Vector2.ZERO
+	_character.velocity = Vector2.ZERO
+	
 	super()
 	get_parent().exit()
 

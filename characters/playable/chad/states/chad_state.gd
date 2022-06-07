@@ -24,6 +24,7 @@ var _skin: ChadSkin
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
+	super()
 	await owner.ready
 	
 	_character = owner as QuiverCharacter

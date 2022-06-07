@@ -53,6 +53,7 @@ func physics_process(delta: float) -> void:
 
 func exit() -> void:
 	super()
+	_move_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 

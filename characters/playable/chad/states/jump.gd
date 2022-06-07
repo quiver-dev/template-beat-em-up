@@ -44,6 +44,7 @@ func physics_process(_delta: float) -> void:
 
 
 func exit() -> void:
+	get_parent().exit()
 	super()
 
 ### -----------------------------------------------------------------------------------------------
