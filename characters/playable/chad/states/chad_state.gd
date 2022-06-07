@@ -27,7 +27,7 @@ func _ready() -> void:
 	await owner.ready
 	
 	_character = owner as QuiverCharacter
-	_skin = _character._skin
+	_skin = _character._skin as ChadSkin
 
 ### -----------------------------------------------------------------------------------------------
 

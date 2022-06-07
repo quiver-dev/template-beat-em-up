@@ -35,6 +35,7 @@ script = ExtResource( "4_vubfk" )
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource( "5_5sh7r" )
+MAX_SPEED = 350
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "6_jtgbp" )

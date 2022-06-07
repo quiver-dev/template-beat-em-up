@@ -9,9 +9,13 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 #--- constants ------------------------------------------------------------------------------------
 
+@export var MAX_SPEED = 600
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+var _direction := Vector2.ZERO
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -40,6 +44,13 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	get_parent().physics_process(delta)
+	
+	if not _direction.is_equal_approx(Vector2.ZERO):
+		_character.velocity = MAX_SPEED * _direction
+	else:
+		_character.velocity = _character.velocity.move_toward(Vector2.ZERO, MAX_SPEED)
+	
+	_character.move_and_slide()
 
 
 func exit() -> void:
