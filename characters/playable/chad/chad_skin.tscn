@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3ksbtfs3wluv"]
+[gd_scene load_steps=13 format=3 uid="uid://bl1nmnkvbhi4x"]
 
-[ext_resource type="PackedScene" uid="uid://bh38d5sg0j8bo" path="res://characters/_base/character_skin_base.tscn" id="1_neyaj"]
-[ext_resource type="Script" path="res://characters/playable/tonya/tonya_skin.gd" id="2_gck4m"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://bmueen8j6cpdu" path="res://characters/playable/tonya/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
-[ext_resource type="SpriteFrames" uid="uid://xij13apwdhco" path="res://characters/playable/tonya/resources/spriteframes_tonya.tres" id="4_l5bf7"]
+[ext_resource type="PackedScene" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
+[ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_gck4m"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bec3kxxbipmg4" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
+[ext_resource type="SpriteFrames" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 
 [sub_resource type="Animation" id="Animation_psjea"]
 resource_name = "RESET"
@@ -60,7 +60,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_iknhp"]
 resource_name = "attack1"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -104,7 +103,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.39),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"attack_1_finished"],
@@ -158,7 +157,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.39),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"attack_2_finished"],
@@ -300,7 +299,8 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_g3bel"]
 
-[node name="TonyaSkin" instance=ExtResource( "1_neyaj" )]
+[node name="ChadSkin" instance=ExtResource( "1_neyaj" )]
+position = Vector2(0, 3)
 script = ExtResource( "2_gck4m" )
 _path_playback = "parameters/state_machine/playback"
 should_combo_2 = false
@@ -318,6 +318,6 @@ parameters/state_machine/conditions/should_combo_2 = false
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
-position = Vector2(0, -205)
+position = Vector2(0, -190)
 frames = ExtResource( "4_l5bf7" )
 animation = &"idle"

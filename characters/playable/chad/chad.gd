@@ -1,4 +1,4 @@
-extends _BASE_
+extends QuiverCharacter
 
 ## Write your doc string for this file here
 
@@ -18,8 +18,10 @@ extends _BASE_
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready()_VOID_RETURN_:
-_TS_pass
+func _ready() -> void:
+	super()
+	if QuiverEditorHelper.is_standalone_run(self):
+		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
 
 ### -----------------------------------------------------------------------------------------------
 

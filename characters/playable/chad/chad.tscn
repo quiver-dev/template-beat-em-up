@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://bkjytuoedcgm4"]
+
+[ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_aj842"]
+[ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
+[ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
+[ext_resource type="Script" path="res://utilities/custom_nodes/State.gd" id="3_8x7lh"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="4_vubfk"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="5_5sh7r"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/walk.gd" id="6_jtgbp"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/idle.gd" id="7_kqgdb"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="9_cce84"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="10_ow8st"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_wf2ss"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
+radius = 20.0
+height = 204.0
+
+[node name="Chad" instance=ExtResource( "1_aj842" )]
+script = ExtResource( "2_dwyxr" )
+_path_skin = NodePath("ChadSkin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -8)
+rotation = 1.5708
+shape = SubResource( "CapsuleShape2D_4uueb" )
+
+[node name="ChadSkin" parent="." index="1" instance=ExtResource( "2_1tk2w" )]
+
+[node name="StateMachine" parent="." index="2"]
+initial_state = NodePath("Ground/Move/Idle")
+
+[node name="Ground" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( "4_vubfk" )
+
+[node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
+script = ExtResource( "5_5sh7r" )
+MAX_SPEED = 350
+
+[node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
+script = ExtResource( "6_jtgbp" )
+
+[node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="1"]
+script = ExtResource( "7_kqgdb" )
+
+[node name="Attack" type="Node" parent="StateMachine/Ground" index="1"]
+script = ExtResource( "3_8x7lh" )
+
+[node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
+script = ExtResource( "9_cce84" )
+
+[node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
+script = ExtResource( "10_ow8st" )
+
+[node name="Air" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( "3_8x7lh" )
+
+[node name="Neutral" type="Node" parent="StateMachine/Air" index="0"]
+script = ExtResource( "3_8x7lh" )
+
+[node name="Jump" type="Node" parent="StateMachine/Air/Neutral" index="0"]
+script = ExtResource( "11_wf2ss" )
+
+[node name="Attack" type="Node" parent="StateMachine/Air/Neutral" index="1"]
+script = ExtResource( "3_8x7lh" )
+
+[node name="Direction" type="Node" parent="StateMachine/Air" index="1"]
+script = ExtResource( "3_8x7lh" )
+
+[node name="Jump" type="Node" parent="StateMachine/Air/Direction" index="0"]
+script = ExtResource( "11_wf2ss" )
+
+[node name="Attack" type="Node" parent="StateMachine/Air/Direction" index="1"]
+script = ExtResource( "3_8x7lh" )
+
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]

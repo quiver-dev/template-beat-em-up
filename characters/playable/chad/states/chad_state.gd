@@ -1,4 +1,4 @@
-extends _BASE_
+extends QuiverState
 
 ## Write your doc string for this file here
 
@@ -9,17 +9,25 @@ extends _BASE_
 
 #--- constants ------------------------------------------------------------------------------------
 
+const ChadSkin = preload("res://characters/playable/chad/chad_skin.gd")
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+var _character: QuiverCharacter
+var _skin: ChadSkin
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready()_VOID_RETURN_:
-_TS_pass
+func _ready() -> void:
+	await owner.ready
+	
+	_character = owner as QuiverCharacter
+	_skin = _character._skin as ChadSkin
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -32,3 +40,4 @@ _TS_pass
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+

@@ -1,6 +1,7 @@
 @tool
 extends QuiverCharacterSkin
-# Write your doc string for this file here
+
+## Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -29,7 +30,6 @@ const ANIM_NODE_NAMES := {
 }
 
 const CONDITIONS := {
-	should_not_combo = &"parameters/state_machine/conditions/shoud_not_combo",
 	should_combo_2 = &"parameters/state_machine/conditions/should_combo_2",
 }
 
@@ -114,9 +114,14 @@ func _attack_test_routine() -> void:
 	print("Should Attack and go to idle")
 	should_combo_2 = false
 	_debug_skin_state = SkinStates.ATTACK_1
-	await get_tree().create_timer(1.5).timeout
+	await attack_1_finished
+	_debug_skin_state = SkinStates.IDLE
+	await get_tree().create_timer(0.3).timeout
 	print("Should Combo and go to idle")
 	should_combo_2 = true
 	_debug_skin_state = SkinStates.ATTACK_1
+	await attack_2_finished
+	_debug_skin_state = SkinStates.IDLE
+	print("TestFinished")
 
 ### -----------------------------------------------------------------------------------------------

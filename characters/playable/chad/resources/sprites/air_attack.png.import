@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxtw4rk86vu7i"
-path="res://.godot/imported/idle.png-636ff8ae76f46a03727a7efbdb7328f4.ctex"
+uid="uid://dkdp5y8fg30o5"
+path="res://.godot/imported/air_attack.png-4586f82164e732f3ded7797da81fdf57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/tonya/resources/sprites/idle.png"
-dest_files=["res://.godot/imported/idle.png-636ff8ae76f46a03727a7efbdb7328f4.ctex"]
+source_file="res://characters/playable/chad/resources/sprites/air_attack.png"
+dest_files=["res://.godot/imported/air_attack.png-4586f82164e732f3ded7797da81fdf57.ctex"]
 
 [params]
 

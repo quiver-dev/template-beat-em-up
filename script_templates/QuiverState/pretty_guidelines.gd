@@ -18,13 +18,29 @@ extends _BASE_
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready()_VOID_RETURN_:
-_TS_pass
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func enter(msg: = {}) -> void:
+	super(msg)
+
+
+func unhandled_input(_event: InputEvent) -> void:
+	return
+
+
+func process(_delta: float) -> void:
+	return
+
+
+func physics_process(_delta: float) -> void:
+	return
+
+
+func exit() -> void:
+	super()
 
 ### -----------------------------------------------------------------------------------------------
 

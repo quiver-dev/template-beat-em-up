@@ -1,4 +1,4 @@
-extends _BASE_
+extends "res://characters/playable/chad/states/chad_state.gd"
 
 ## Write your doc string for this file here
 
@@ -18,13 +18,29 @@ extends _BASE_
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready()_VOID_RETURN_:
-_TS_pass
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func enter(msg: = {}) -> void:
+	super(msg)
+	_character.ground_level = _character.global_position.y
+	_character.is_on_air = true
+
+
+func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		_state_machine.transition_to("Air/Neutral/Jump")
+
+
+func physics_process(_delta: float) -> void:
+	_character.ground_level = _character.global_position.y
+
+
+func exit() -> void:
+	_character.is_on_air = true
+	super()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -32,3 +48,4 @@ _TS_pass
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+

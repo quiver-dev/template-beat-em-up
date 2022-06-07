@@ -1,4 +1,4 @@
-extends _BASE_
+extends "res://characters/playable/chad/states/chad_state.gd"
 
 ## Write your doc string for this file here
 
@@ -18,13 +18,33 @@ extends _BASE_
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready()_VOID_RETURN_:
-_TS_pass
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func enter(msg: = {}) -> void:
+	super(msg)
+	get_parent().enter(msg)
+	_skin.transition_to(_skin.SkinStates.JUMP)
+	await get_tree().create_timer(0.5).timeout
+	_state_machine.transition_to("Ground/Move/Idle")
+
+
+func unhandled_input(_event: InputEvent) -> void:
+	return
+
+
+func process(_delta: float) -> void:
+	return
+
+
+func physics_process(_delta: float) -> void:
+	return
+
+
+func exit() -> void:
+	super()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -32,3 +52,4 @@ _TS_pass
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+
