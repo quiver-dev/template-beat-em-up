@@ -38,6 +38,7 @@ var ground_level := 0.0
 		update_configuration_warnings()
 
 @onready var _skin := get_node_or_null(_path_skin) as QuiverCharacterSkin
+@warning_ignore(unused_private_class_variable)
 @onready var _state_machine := $StateMachine as QuiverStateMachine
 
 ### -----------------------------------------------------------------------------------------------

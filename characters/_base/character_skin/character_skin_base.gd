@@ -41,7 +41,7 @@ extends Node2D
 ## See [member _path_animation_tree] for "private" reasoning.
 @export var _path_playback := "parameters/StateMachine/playback"
 
-@onready var _animation_tree := $AnimationTree as AnimationTree
+@onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
 @onready var _playback := _animation_tree.get(_path_playback) as AnimationNodeStateMachinePlayback
 
 ### -----------------------------------------------------------------------------------------------
@@ -77,14 +77,14 @@ func transition_to(anim_state: int) -> void:
 
 ## Virtual function to be overriden and check for valid states. The parameter is an [int] because
 ## it expected to use enums or constants for tracking animation states and for autocomplete.
-func _is_valid_state(anim_state: int) -> bool:
+func _is_valid_state(_anim_state: int) -> bool:
 	var value = false
 	push_warning("This is a virtual function and should not be used directly, but overriden.")
 	return value
 
 
 ## Virtual function to be overriden and translate enum states into animation node names.
-func _get_anim_name(anim_state: int) -> StringName:
+func _get_anim_name(_anim_state: int) -> StringName:
 	var value := StringName()
 	push_warning("This is a virtual function and should not be used directly, but overriden.")
 	return value
