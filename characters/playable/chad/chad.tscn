@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkjytuoedcgm4"]
+[gd_scene load_steps=14 format=3 uid="uid://bkjytuoedcgm4"]
 
 [ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="9_cce84"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="10_ow8st"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_wf2ss"]
+[ext_resource type="Script" path="res://utilities/custom_nodes/QuiverDebugPropertyLabel.gd" id="12_sub7a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
@@ -20,8 +21,8 @@ height = 204.0
 script = ExtResource( "2_dwyxr" )
 _path_skin = NodePath("ChadSkin")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, -8)
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource( "CapsuleShape2D_4uueb" )
 
@@ -73,6 +74,31 @@ script = ExtResource( "11_wf2ss" )
 
 [node name="Attack" type="Node" parent="StateMachine/Air/Direction" index="1"]
 script = ExtResource( "3_8x7lh" )
+
+[node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
+offset_left = -168.0
+offset_top = -442.0
+offset_right = 168.0
+offset_bottom = -392.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+metadata/_edit_use_custom_anchors = true
+
+[node name="Chad" type="Label" parent="DebugLabels" index="0"]
+offset_right = 336.0
+offset_bottom = 23.0
+script = ExtResource( "12_sub7a" )
+path_reference = NodePath("../..")
+properties = PackedStringArray("velocity")
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
+offset_top = 23.0
+offset_right = 336.0
+offset_bottom = 46.0
+script = ExtResource( "12_sub7a" )
+path_reference = NodePath("../../StateMachine")
+properties = PackedStringArray("state_name")
 
 [connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
 [connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]
