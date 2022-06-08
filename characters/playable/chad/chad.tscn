@@ -60,6 +60,7 @@ script = ExtResource( "3_8x7lh" )
 
 [node name="Jump" type="Node" parent="StateMachine/Air/Neutral" index="0"]
 script = ExtResource( "11_wf2ss" )
+JUMP_FORCE = -1100
 
 [node name="Attack" type="Node" parent="StateMachine/Air/Neutral" index="1"]
 script = ExtResource( "3_8x7lh" )

@@ -37,7 +37,9 @@ func enter(msg: = {}) -> void:
 
 
 func unhandled_input(event: InputEvent) -> void:
-	get_parent().unhandled_input(event)
+	var has_handled := false
+	if not has_handled:
+		get_parent().unhandled_input(event)
 
 
 func physics_process(delta: float) -> void:

@@ -30,6 +30,9 @@ var _direction := Vector2.ZERO
 func enter(msg: = {}) -> void:
 	super(msg)
 	get_parent().enter(msg)
+	if msg.has("velocity"):
+		_character.velocity = msg.velocity
+		_direction = Vector2(msg.velocity.x, 0).normalized()
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -37,6 +40,11 @@ func unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("attack"):
 		_state_machine.transition_to("Ground/Attack/Combo1")
+	
+	if event.is_action_pressed("jump") and _direction.is_equal_approx(Vector2.ZERO):
+		_state_machine.transition_to("Air/Neutral/Jump")
+	elif event.is_action_pressed("jump") and not _direction.is_equal_approx(Vector2.ZERO):
+		_state_machine.transition_to("Air/Direction/Jump", {velocity = _character.velocity})
 	
 	if not has_handled:
 		get_parent().unhandled_input(event)
