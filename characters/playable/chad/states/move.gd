@@ -42,9 +42,9 @@ func unhandled_input(event: InputEvent) -> void:
 		_state_machine.transition_to("Ground/Attack/Combo1")
 	
 	if event.is_action_pressed("jump") and _direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to("Air/Neutral/Jump")
+		_state_machine.transition_to("Air/Jump")
 	elif event.is_action_pressed("jump") and not _direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to("Air/Direction/Jump", {velocity = _character.velocity})
+		_state_machine.transition_to("Air/Jump", {velocity = _character.velocity})
 	
 	if not has_handled:
 		get_parent().unhandled_input(event)

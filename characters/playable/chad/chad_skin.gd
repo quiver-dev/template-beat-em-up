@@ -8,6 +8,7 @@ extends QuiverCharacterSkin
 
 signal attack_1_finished # called by attack1 animation
 signal attack_2_finished # called by attack2 animation
+signal air_attack_finished # called by air_attack animation
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -17,6 +18,7 @@ enum SkinStates {
 	ATTACK_1,
 	ATTACK_2,
 	JUMP,
+	AIR_ATTACK,
 }
 
 #--- constants ------------------------------------------------------------------------------------
@@ -27,6 +29,7 @@ const ANIM_NODE_NAMES := {
 	SkinStates.JUMP: &"jump",
 	SkinStates.ATTACK_1: &"attack1",
 	SkinStates.ATTACK_2: &"attack2",
+	SkinStates.AIR_ATTACK: &"air_attack",
 }
 
 const CONDITIONS := {

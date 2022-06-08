@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bs73pl42iha37"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
-[ext_resource type="PackedScene" uid="uid://bkjytuoedcgm4" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
+[ext_resource type="PackedScene" uid="uid://bf1cuk7310gxq" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://utilities/custom_nodes/VersionLabel.gd" id="3_lfeec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsl8r"]

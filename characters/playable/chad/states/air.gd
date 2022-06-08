@@ -9,15 +9,11 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 #--- constants ------------------------------------------------------------------------------------
 
-@export var JUMP_FORCE := -1200
-@export var path_air_attack := NodePath("../Attack")
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _air_attack_count := 0
-var _treated_air_attack_path := NodePath()
+var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -31,59 +27,29 @@ var _treated_air_attack_path := NodePath()
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
-	_skin.transition_to(_skin.SkinStates.JUMP)
-	if msg.has("velocity"):
-		_character.velocity = msg.velocity
-	
-	if msg.has("air_attack_count"):
-		_air_attack_count = msg.air_attack_count
-	else:
-		_air_attack_count = 0
-	
-	if msg.has("ignore_jump") and msg.ignore_jump:
-		return
-		
-	
-	_state_machine.set_physics_process(false)
-	await get_tree().process_frame
-	_character.velocity.y = JUMP_FORCE
-	await get_tree().process_frame
-	_state_machine.set_physics_process(true)
-
-
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and _has_air_attack():
-		_air_attack_count += 1
-		_state_machine.transition_to(_treated_air_attack_path)
+	_character._disable_collisions()
 
 
 func physics_process(delta: float) -> void:
-	get_parent().physics_process(delta)
+	_character.move_and_slide()
+	_character.velocity.y += _gravity * delta
+	if _character.global_position.y >= _character.ground_level:
+		_character.global_position.y = _character.ground_level
+		if _character.velocity.x != 0:
+			var conserved_velocity = Vector2(_character.velocity.x, 0)
+			_state_machine.transition_to("Ground/Move/Walk", {velocity = conserved_velocity})
+		else:
+			_state_machine.transition_to("Ground/Move/Idle")
 
 
 func exit() -> void:
-	_air_attack_count = 0
-	get_parent().exit()
+	_character._enable_collisions()
 	super()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _has_air_attack() -> bool:
-	var state_path_is_valid := not _treated_air_attack_path.is_empty()
-	return state_path_is_valid and _air_attack_count == 0
-
-
-func _on_owner_ready() -> void:
-	super()
-	
-	if not path_air_attack.is_empty():
-		var attack_state := get_node_or_null(path_air_attack) as QuiverState
-		if attack_state != null:
-			_treated_air_attack_path = _state_machine.get_path_to(attack_state)
 
 ### -----------------------------------------------------------------------------------------------
 
