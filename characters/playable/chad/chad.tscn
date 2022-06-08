@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkjytuoedcgm4"]
+[gd_scene load_steps=16 format=3 uid="uid://bf1cuk7310gxq"]
 
 [ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" path="res://characters/playable/chad/states/idle.gd" id="7_kqgdb"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="9_cce84"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="10_ow8st"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="11_3fo3y"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_wf2ss"]
 [ext_resource type="Script" path="res://utilities/custom_nodes/QuiverDebugPropertyLabel.gd" id="12_sub7a"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/air_attack.gd" id="13_cw2hu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
@@ -54,26 +56,13 @@ script = ExtResource( "9_cce84" )
 script = ExtResource( "10_ow8st" )
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
-script = ExtResource( "3_8x7lh" )
+script = ExtResource( "11_3fo3y" )
 
-[node name="Neutral" type="Node" parent="StateMachine/Air" index="0"]
-script = ExtResource( "3_8x7lh" )
-
-[node name="Jump" type="Node" parent="StateMachine/Air/Neutral" index="0"]
-script = ExtResource( "11_wf2ss" )
-JUMP_FORCE = -1100
-
-[node name="Attack" type="Node" parent="StateMachine/Air/Neutral" index="1"]
-script = ExtResource( "3_8x7lh" )
-
-[node name="Direction" type="Node" parent="StateMachine/Air" index="1"]
-script = ExtResource( "3_8x7lh" )
-
-[node name="Jump" type="Node" parent="StateMachine/Air/Direction" index="0"]
+[node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_wf2ss" )
 
-[node name="Attack" type="Node" parent="StateMachine/Air/Direction" index="1"]
-script = ExtResource( "3_8x7lh" )
+[node name="Attack" type="Node" parent="StateMachine/Air" index="1"]
+script = ExtResource( "13_cw2hu" )
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
 offset_left = -168.0
@@ -100,5 +89,6 @@ script = ExtResource( "12_sub7a" )
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
+[connection signal="air_attack_finished" from="ChadSkin" to="StateMachine/Air/Attack" method="_on_chad_skin_air_attack_finished"]
 [connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
 [connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]

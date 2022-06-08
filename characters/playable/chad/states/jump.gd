@@ -10,12 +10,14 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 #--- constants ------------------------------------------------------------------------------------
 
 @export var JUMP_FORCE := -1200
+@export var path_air_attack := NodePath("../Attack")
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var _air_attack_count := 0
+var _treated_air_attack_path := NodePath()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -34,6 +36,15 @@ func enter(msg: = {}) -> void:
 	if msg.has("velocity"):
 		_character.velocity = msg.velocity
 	
+	if msg.has("air_attack_count"):
+		_air_attack_count = msg.air_attack_count
+	else:
+		_air_attack_count = 0
+	
+	if msg.has("ignore_jump") and msg.ignore_jump:
+		return
+		
+	
 	_state_machine.set_physics_process(false)
 	await get_tree().process_frame
 	_character.velocity.y = JUMP_FORCE
@@ -41,8 +52,10 @@ func enter(msg: = {}) -> void:
 	_state_machine.set_physics_process(true)
 
 
-func unhandled_input(_event: InputEvent) -> void:
-	return
+func unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack") and _has_air_attack():
+		_air_attack_count += 1
+		_state_machine.transition_to(_treated_air_attack_path)
 
 
 func physics_process(delta: float) -> void:
@@ -50,6 +63,7 @@ func physics_process(delta: float) -> void:
 
 
 func exit() -> void:
+	_air_attack_count = 0
 	get_parent().exit()
 	super()
 
@@ -57,6 +71,19 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _has_air_attack() -> bool:
+	var state_path_is_valid := not _treated_air_attack_path.is_empty()
+	return state_path_is_valid and _air_attack_count == 0
+
+
+func _on_owner_ready() -> void:
+	super()
+	
+	if not path_air_attack.is_empty():
+		var attack_state := get_node_or_null(path_air_attack) as QuiverState
+		if attack_state != null:
+			_treated_air_attack_path = _state_machine.get_path_to(attack_state)
 
 ### -----------------------------------------------------------------------------------------------
 

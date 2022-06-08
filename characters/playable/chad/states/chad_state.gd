@@ -26,9 +26,7 @@ var _skin: ChadSkin
 func _ready() -> void:
 	super()
 	await owner.ready
-	
-	_character = owner as QuiverCharacter
-	_skin = _character._skin as ChadSkin
+	_on_owner_ready()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,6 +37,10 @@ func _ready() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _on_owner_ready() -> void:
+	_character = owner as QuiverCharacter
+	_skin = _character._skin as ChadSkin
 
 ### -----------------------------------------------------------------------------------------------
 
