@@ -1,19 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs73pl42iha37"]
+[gd_scene load_steps=5 format=3 uid="uid://bs73pl42iha37"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="PackedScene" uid="uid://bkjytuoedcgm4" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
+[ext_resource type="Script" path="res://utilities/custom_nodes/VersionLabel.gd" id="3_lfeec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsl8r"]
 size = Vector2(87, 2212)
 
 [node name="PrototypeMain" type="Node2D"]
 script = ExtResource( "1_wp06a" )
-
-[node name="Chad" parent="." instance=ExtResource( "2_l2dst" )]
-position = Vector2(937, 916)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -30,7 +25,34 @@ position = Vector2(940, 379)
 rotation = 1.5708
 shape = SubResource( "RectangleShape2D_dsl8r" )
 
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/Top"]
+show_behind_parent = true
+offset_left = -45.0
+offset_top = -1105.0
+offset_right = 45.0
+offset_bottom = 1105.0
+color = Color(0.254902, 0.121569, 0.0705882, 1)
+
 [node name="Bottom" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(936, 1104)
 rotation = 1.5708
 shape = SubResource( "RectangleShape2D_dsl8r" )
+
+[node name="Chad" parent="." instance=ExtResource( "2_l2dst" )]
+position = Vector2(937, 916)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="HudLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -163.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "version: %s"
+horizontal_alignment = 2
+script = ExtResource( "3_lfeec" )

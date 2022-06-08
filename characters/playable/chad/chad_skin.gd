@@ -81,6 +81,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _is_valid_state(anim_state: int) -> bool:
 	var value = anim_state in SkinStates.values()
+#	print("value: %s | anim_state: %s | Possible states: %s"%[
+#			value, anim_state, SkinStates.values()
+#	])
 	return value
 
 
@@ -111,17 +114,17 @@ func _set_debug_skin_state(value: SkinStates) -> void:
 
 
 func _attack_test_routine() -> void:
-	print("Should Attack and go to idle")
+	print_debug("Should Attack and go to idle")
 	should_combo_2 = false
 	_debug_skin_state = SkinStates.ATTACK_1
 	await attack_1_finished
 	_debug_skin_state = SkinStates.IDLE
 	await get_tree().create_timer(0.3).timeout
-	print("Should Combo and go to idle")
+	print_debug("Should Combo and go to idle")
 	should_combo_2 = true
 	_debug_skin_state = SkinStates.ATTACK_1
 	await attack_2_finished
 	_debug_skin_state = SkinStates.IDLE
-	print("TestFinished")
+	print_debug("TestFinished")
 
 ### -----------------------------------------------------------------------------------------------

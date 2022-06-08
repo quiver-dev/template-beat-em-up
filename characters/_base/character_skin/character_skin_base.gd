@@ -63,7 +63,9 @@ func _ready() -> void:
 ## You can also override this method if you need special behavior before playing
 ## any specific state.
 func transition_to(anim_state: int) -> void:
-	if not _is_valid_state(anim_state):
+	var value_returned := _is_valid_state(anim_state)
+#	print("value returned: %s"%[value_returned])
+	if not value_returned:
 		push_error("%s is not a valid animation state."%[anim_state])
 		return
 	

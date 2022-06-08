@@ -22,7 +22,7 @@ signal transitioned(state_path)
 #--- constants ------------------------------------------------------------------------------------
 
 ## Value returned by [member state_name] when [member state] is [code]null[/code].
-const INVALID_STRINGNAME = &"invalid"
+const INVALID_NODEPATH = ^"invalid"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
@@ -33,14 +33,13 @@ const INVALID_STRINGNAME = &"invalid"
 		update_configuration_warnings()
 
 ## Current state.
-var state: QuiverState = null
-## Current state name. Read-only property, mainly for easy printing or debugging.
-var state_name: StringName:
-	get:
-		var value = state.name if is_instance_valid(state) else INVALID_STRINGNAME
-		return value
-	set(_value):
-		pass
+var state: QuiverState = null:
+	set(value):
+		state = value
+		if is_inside_tree() and is_instance_valid(state):
+			state_name = get_path_to(state)
+## Current state name.
+var state_name: NodePath = INVALID_NODEPATH
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
