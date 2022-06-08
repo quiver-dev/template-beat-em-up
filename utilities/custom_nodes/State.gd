@@ -51,6 +51,7 @@ var _state_machine: QuiverStateMachine = null
 
 func _enter_tree() -> void:
 	_state_machine = _get_state_machine(self) as QuiverStateMachine
+#	print("_state_machine: %s"%[_state_machine])
 	update_configuration_warnings()
 
 
@@ -127,15 +128,19 @@ func _is_active_state() -> bool:
 	return is_active
 
 
-func _get_state_machine(node: Node) -> QuiverStateMachine:
+func _get_state_machine(node: Node) -> Node:
 	if node == null or node.get_parent() == null:
 		push_error("Couldn't find a StateMachine in this scene tree. State name: %s"%[name])
 	else:
+#		print("node: %s"%[node.name])
 		var script := node.get_script() as Script
 		if script != null and script.resource_path != PATH_STATE_MACHINE_SCRIPT:
 			node = _get_state_machine(node.get_parent())
+		else:
+#			print("STATE MACHINE FOUND")
+			pass
 		
-	return node as QuiverStateMachine
+	return node
 
 ## Registers any signals connected to this node by the editor and stores them into 
 ## [member _incoming_connection]. Then immediatly disconnects them, so that they will only be 
@@ -149,11 +154,14 @@ func _register_incomming_connections() -> void:
 ## [method enter] method.
 func _connect_signals() -> void:
 	for dict in _incoming_connections:
-		if not dict.thas_all(["signal", "callable", "flags", "binds"]):
+		if not dict.has_all(["signal", "callable", "flags", "binds"]):
 			push_error("Invalid source in dict: %s"%[dict])
 			continue
 		
-		dict["signal"].connect(dict["callable"], dict.flags).bind(dict.binds)
+		if dict["binds"].is_empty():
+			dict["signal"].connect(dict["callable"], dict.flags)
+		else:
+			dict["signal"].connect(dict["callable"].bind(dict["binds"]), dict.flags)
 
 
 ## Disconnects all signals saved in [member _incoming_connection]. Usually called in the 
