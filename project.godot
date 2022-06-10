@@ -102,6 +102,13 @@ jump={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="characters"
+2d_physics/layer_2="obstacles"
+2d_physics/layer_3="screen_limits"
+2d_physics/layer_4="ceiling_limits"
+
 [physics]
 
 2d/default_gravity=2450.0
