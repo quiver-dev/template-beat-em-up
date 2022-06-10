@@ -19,6 +19,8 @@ extends CharacterBody2D
 
 #--- constants ------------------------------------------------------------------------------------
 
+const CEILING_LIMITS_LAYER_NUMBER = 4
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var is_on_air := false
@@ -92,11 +94,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _disable_collisions() -> void:
-	_collision.set_deferred("disabled", true)
+	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, false)
 
 
 func _enable_collisions() -> void:
-	_collision.set_deferred("disabled", false)
+	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, true)
 
 ### -----------------------------------------------------------------------------------------------
 
