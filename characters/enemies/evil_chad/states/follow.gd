@@ -58,6 +58,10 @@ func physics_process(delta: float) -> void:
 	_skin.scale.x = 1 if facing_direction >=0 else -1
 	
 	var target_position := _target_node.global_position
+	if _target_node is QuiverCharacter:
+		if _target_node.is_on_air:
+			target_position.y = _target_node.ground_level
+	
 	if _character.global_position.x >= target_position.x:
 		target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
 	else:

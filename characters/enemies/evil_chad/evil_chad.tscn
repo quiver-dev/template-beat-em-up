@@ -94,7 +94,7 @@ metadata/_edit_use_custom_anchors = true
 offset_right = 336.0
 offset_bottom = 23.0
 script = ExtResource( "13_b2qfj" )
-path_reference = NodePath("../../StateMachine")
+path_reference = NodePath("../..")
 properties = PackedStringArray("velocity")
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="1"]

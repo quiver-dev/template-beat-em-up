@@ -40,7 +40,7 @@ func unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("attack"):
 		attack()
-	elif event.is_action_pressed("jump") and _direction.is_equal_approx(Vector2.ZERO):
+	elif event.is_action_pressed("jump"):
 		jump()
 	else:
 		has_handled = false

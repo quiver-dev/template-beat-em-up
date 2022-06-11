@@ -26,7 +26,7 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 func enter(msg: = {}) -> void:
 	super(msg)
 	_character.ground_level = _character.global_position.y
-	_character.is_on_air = true
+	_character.is_on_air = false
 
 
 func unhandled_input(event: InputEvent) -> void:
