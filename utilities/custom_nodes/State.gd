@@ -133,14 +133,26 @@ func _get_state_machine(node: Node) -> Node:
 		push_error("Couldn't find a StateMachine in this scene tree. State name: %s"%[name])
 	else:
 #		print("node: %s"%[node.name])
-		var script := node.get_script() as Script
-		if script != null and script.resource_path != PATH_STATE_MACHINE_SCRIPT:
+		var found_state_machine = _is_state_machine_script(node.get_script())
+		if not found_state_machine:
 			node = _get_state_machine(node.get_parent())
 		else:
 #			print("STATE MACHINE FOUND")
 			pass
 		
 	return node
+
+func _is_state_machine_script(script: Script) -> bool:
+	var value = false
+	
+	if script != null:
+		if script.resource_path == PATH_STATE_MACHINE_SCRIPT:
+			value = true
+		elif script.get_base_script() != null:
+			value = _is_state_machine_script(script.get_base_script())
+	
+	return value 
+
 
 ## Registers any signals connected to this node by the editor and stores them into 
 ## [member _incoming_connection]. Then immediatly disconnects them, so that they will only be 
