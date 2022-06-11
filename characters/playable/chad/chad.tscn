@@ -19,7 +19,7 @@
 radius = 20.0
 height = 204.0
 
-[node name="Chad" instance=ExtResource( "1_aj842" )]
+[node name="Chad" groups=["players"] instance=ExtResource( "1_aj842" )]
 script = ExtResource( "2_dwyxr" )
 _path_skin = NodePath("ChadSkin")
 
