@@ -45,8 +45,10 @@ func unhandled_input(event: InputEvent) -> void:
 func physics_process(delta: float) -> void:
 	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
-	if sign(_move_state._direction.x) != 0:
-		_skin.scale.x = 1 if sign(_move_state._direction.x) >=0 else -1
+	var facing_direction :int = sign(_move_state._direction.x)
+	if facing_direction != 0:
+		_skin.scale.x = facing_direction
+	
 	if _move_state._direction == Vector2.ZERO:
 		_state_machine.transition_to("Ground/Move/Idle")
 	
