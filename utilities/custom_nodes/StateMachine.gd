@@ -32,6 +32,8 @@ const INVALID_NODEPATH = ^"invalid"
 		initial_state = value
 		update_configuration_warnings()
 
+@export var should_process_input := true
+
 ## Current state.
 var state: QuiverState = null:
 	set(value):
@@ -61,7 +63,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	state.unhandled_input(event)
+	if should_process_input:
+		state.unhandled_input(event)
 
 
 func _process(delta: float) -> void:
