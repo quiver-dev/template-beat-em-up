@@ -53,9 +53,8 @@ func enter(msg: = {}) -> void:
 
 
 func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and _has_air_attack():
-		_air_attack_count += 1
-		_state_machine.transition_to(_treated_air_attack_path)
+	if event.is_action_pressed("attack"):
+		attack()
 
 
 func physics_process(delta: float) -> void:
@@ -66,6 +65,12 @@ func exit() -> void:
 	_air_attack_count = 0
 	get_parent().exit()
 	super()
+
+
+func attack() -> void:
+	if _has_air_attack():
+		_air_attack_count += 1
+		_state_machine.transition_to(_treated_air_attack_path)
 
 ### -----------------------------------------------------------------------------------------------
 

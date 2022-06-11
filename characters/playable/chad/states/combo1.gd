@@ -31,12 +31,16 @@ func enter(msg: = {}) -> void:
 
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
-		_skin.should_combo_2 = true
+		attack()
 
 
 func exit() -> void:
 	super()
 	get_parent().exit()
+
+
+func attack() -> void:
+	_skin.should_combo_2 = true
 
 ### -----------------------------------------------------------------------------------------------
 
