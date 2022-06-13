@@ -60,7 +60,6 @@ func process(delta: float) -> void:
 
 func physics_process(delta: float) -> void:
 	_current_state.physics_process(delta)
-	return
 
 
 func exit() -> void:
