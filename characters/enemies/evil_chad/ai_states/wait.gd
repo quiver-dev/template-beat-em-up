@@ -11,7 +11,7 @@ extends "res://characters/enemies/evil_chad/ai_states/base_ai_state.gd"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export_range(0.0, 1.0, 1.0, "or_greater") var wait_time := 5.0
+@export_range(0.0, 10.0, 0.1, "or_greater") var wait_time := 5.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
