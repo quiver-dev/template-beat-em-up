@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Resource",
+"class": &"QuiverAttributes",
+"language": &"GDScript",
+"path": "res://characters/_base/attributes.gd"
+}, {
 "base": "CharacterBody2D",
 "class": &"QuiverCharacter",
 "language": &"GDScript",
@@ -55,6 +60,7 @@ _global_script_classes=[{
 "path": "res://characters/enemies/evil_chad/ai_states/sequence_state.gd"
 }]
 _global_script_class_icons={
+"QuiverAttributes": "",
 "QuiverCharacter": "",
 "QuiverCharacterHelper": "",
 "QuiverCharacterSkin": "",
