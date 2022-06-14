@@ -26,11 +26,11 @@ func _ready() -> void:
 		return
 	
 	for child in get_children():
-		var state := child as QuiverState
-		if not is_instance_valid(state):
+		var child_state := child as QuiverState
+		if not is_instance_valid(child_state):
 			continue
 		
-		state.state_finished.connect(_decide_next_action.bind(state.name))
+		child_state.state_finished.connect(_decide_next_action.bind(child_state.name))
 
 ### -----------------------------------------------------------------------------------------------
 

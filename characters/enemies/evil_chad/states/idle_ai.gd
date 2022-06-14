@@ -32,7 +32,7 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
+	_move_state.enter(msg)
 	_skin.transition_to(_skin.SkinStates.IDLE)
 
 
@@ -41,14 +41,16 @@ func process(delta: float) -> void:
 	if is_instance_valid(player):
 		var facing_direction = sign((player.global_position - _character.global_position).x)
 		_skin.scale.x = 1 if facing_direction >=0 else -1
+	
+	_move_state.process(delta)
 
 
 func physics_process(delta: float) -> void:
-	get_parent().physics_process(delta)
+	_move_state.physics_process(delta)
 
 
 func exit() -> void:
-	get_parent().exit()
+	_move_state.exit()
 	super()
 
 ### -----------------------------------------------------------------------------------------------

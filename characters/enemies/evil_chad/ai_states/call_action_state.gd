@@ -30,6 +30,10 @@ const STATE_PATHS = {
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+# In the future, when advanced exports are working this variable will be a drop down selector
+# in the inspector, auto generated wit the paths to the current state machine's leaf states
+# for now it is unused because advanced exports are broken
+@warning_ignore(unused_private_class_variable)
 var _state_path: String = ""
 
 var _possible_states := []
@@ -47,7 +51,7 @@ var _possible_states := []
 func enter(msg: = {}) -> void:
 	super(msg)
 	_actions.transition_to(STATE_PATHS[state_to_call])
-	_actions.transitioned.connect(_on_actions_transitioned, CONNECT_ONESHOT)
+	_actions.transitioned.connect(_on_actions_transitioned)
 
 
 func exit() -> void:
@@ -59,6 +63,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_actions_transitioned(_p_state_path: NodePath) -> void:
+	_actions.transitioned.disconnect(_on_actions_transitioned)
 	state_finished.emit()
 
 

@@ -29,7 +29,7 @@ func enter(msg: = {}) -> void:
 	_character.is_on_air = false
 
 
-func unhandled_input(event: InputEvent) -> void:
+func unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
