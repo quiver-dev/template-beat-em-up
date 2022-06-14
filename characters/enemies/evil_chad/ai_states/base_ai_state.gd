@@ -1,4 +1,4 @@
-extends "res://characters/playable/chad/states/chad_state.gd"
+extends QuiverState
 
 ## Write your doc string for this file here
 
@@ -13,45 +13,32 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+var _character: QuiverCharacter = null
+var _actions: QuiverStateMachine = null
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
+
+func _ready() -> void:
+	super()
+	await owner.ready
+	_on_owner_ready()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func enter(msg: = {}) -> void:
-	super(msg)
-	get_parent().enter(msg)
-	_skin.transition_to(_skin.SkinStates.ATTACK_1)
-
-
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		attack()
-
-
-func exit() -> void:
-	super()
-	get_parent().exit()
-
-
-func attack() -> void:
-	_skin.should_combo_2 = true
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_chad_skin_attack_1_finished() -> void:
-	if _skin.should_combo_2:
-		_state_machine.transition_to("Ground/Attack/Combo2")
-	else:
-		_state_machine.transition_to("Ground/Move/Idle")
+func _on_owner_ready() -> void:
+	_character = owner
+	_actions = _character._state_machine
 
 ### -----------------------------------------------------------------------------------------------
 

@@ -1,0 +1,137 @@
+[gd_scene load_steps=20 format=3 uid="uid://dannf7veijqt0"]
+
+[ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_4jcfv"]
+[ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/states/follow.gd" id="2_py5s2"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="3_bg7yk"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="4_120xx"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/states/idle_ai.gd" id="5_y1loh"]
+[ext_resource type="Script" path="res://utilities/custom_nodes/State.gd" id="7_nk4ro"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="8_lnplq"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="9_m8mt4"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="10_xyisi"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_rp4h6"]
+[ext_resource type="Script" path="res://characters/playable/chad/states/air_attack.gd" id="12_lphyp"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/ai_state_machine.gd" id="13_4ltbo"]
+[ext_resource type="Script" path="res://utilities/custom_nodes/QuiverDebugPropertyLabel.gd" id="13_b2qfj"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/chase_closest_player.gd" id="14_5pool"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/sequence_state.gd" id="15_cerch"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/wait.gd" id="15_n3xo2"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/call_action_state.gd" id="16_d5usr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
+radius = 20.0
+height = 204.0
+
+[node name="EvilChad" groups=["enemies"] instance=ExtResource( "1_4jcfv" )]
+_path_skin = NodePath("ChadSkin")
+
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource( "CapsuleShape2D_787ts" )
+
+[node name="ChadSkin" parent="." index="1" instance=ExtResource( "2_jfeb4" )]
+modulate = Color(0.447059, 0.207843, 0.705882, 1)
+
+[node name="StateMachine" parent="." index="2"]
+initial_state = NodePath("Ground/Move/Idle")
+should_process_input = false
+
+[node name="Ground" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( "3_bg7yk" )
+
+[node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
+script = ExtResource( "4_120xx" )
+MAX_SPEED = 350
+
+[node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="0"]
+script = ExtResource( "5_y1loh" )
+
+[node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="1"]
+script = ExtResource( "2_py5s2" )
+ARRIVE_RANGE = 30
+
+[node name="Attack" type="Node" parent="StateMachine/Ground" index="1"]
+script = ExtResource( "7_nk4ro" )
+
+[node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
+script = ExtResource( "8_lnplq" )
+
+[node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
+script = ExtResource( "9_m8mt4" )
+
+[node name="Air" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( "10_xyisi" )
+
+[node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
+script = ExtResource( "11_rp4h6" )
+
+[node name="Attack" type="Node" parent="StateMachine/Air" index="1"]
+script = ExtResource( "12_lphyp" )
+
+[node name="AiStateMachine" type="Node" parent="." index="3"]
+script = ExtResource( "13_4ltbo" )
+initial_state = NodePath("ChaseClosestPlayer")
+
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine" index="0"]
+script = ExtResource( "14_5pool" )
+
+[node name="Attack" type="Node" parent="AiStateMachine" index="1"]
+script = ExtResource( "15_cerch" )
+
+[node name="Punch" type="Node" parent="AiStateMachine/Attack" index="0"]
+script = ExtResource( "16_d5usr" )
+state_to_call = 2
+
+[node name="Wait" type="Node" parent="AiStateMachine/Attack" index="1"]
+script = ExtResource( "15_n3xo2" )
+wait_time = 0.5
+
+[node name="Punch2" type="Node" parent="AiStateMachine/Attack" index="2"]
+script = ExtResource( "16_d5usr" )
+state_to_call = 2
+
+[node name="Kick" type="Node" parent="AiStateMachine/Attack" index="3"]
+script = ExtResource( "16_d5usr" )
+state_to_call = 3
+
+[node name="Wait" type="Node" parent="AiStateMachine" index="2"]
+script = ExtResource( "15_n3xo2" )
+wait_time = 3.0
+
+[node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
+offset_left = -168.0
+offset_top = -442.0
+offset_right = 168.0
+offset_bottom = -392.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+metadata/_edit_use_custom_anchors = true
+
+[node name="Chad" type="Label" parent="DebugLabels" index="0"]
+offset_right = 336.0
+offset_bottom = 23.0
+script = ExtResource( "13_b2qfj" )
+path_reference = NodePath("../..")
+properties = PackedStringArray("velocity")
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
+offset_top = 23.0
+offset_right = 336.0
+offset_bottom = 46.0
+script = ExtResource( "13_b2qfj" )
+path_reference = NodePath("../../StateMachine")
+properties = PackedStringArray("state_name")
+
+[node name="AIState" type="Label" parent="DebugLabels" index="2"]
+offset_top = 46.0
+offset_right = 336.0
+offset_bottom = 69.0
+script = ExtResource( "13_b2qfj" )
+path_reference = NodePath("../../AiStateMachine")
+properties = PackedStringArray("state_name")
+
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]

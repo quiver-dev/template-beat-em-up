@@ -29,12 +29,6 @@ signal state_finished
 
 #--- constants ------------------------------------------------------------------------------------
 
-# I don't think I should need this, as Cyclic References are supposed to be fixed in GDScript 2.0
-# but I get a Cyclic Reference when I try to use `is` to compare if a node is `QuiverStateMachine`
-# on the `_state_machine` setter. There is an open issue for this already so I'm just checking
-# the script path until it's fixed https://github.com/godotengine/godot/issues/21461
-const PATH_STATE_MACHINE_SCRIPT = "res://utilities/custom_nodes/StateMachine.gd"
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -133,14 +127,15 @@ func _get_state_machine(node: Node) -> Node:
 		push_error("Couldn't find a StateMachine in this scene tree. State name: %s"%[name])
 	else:
 #		print("node: %s"%[node.name])
-		var script := node.get_script() as Script
-		if script != null and script.resource_path != PATH_STATE_MACHINE_SCRIPT:
+		var found_state_machine = QuiverCyclicHelper.is_quiver_state_machine(node)
+		if not found_state_machine:
 			node = _get_state_machine(node.get_parent())
 		else:
 #			print("STATE MACHINE FOUND")
 			pass
 		
 	return node
+
 
 ## Registers any signals connected to this node by the editor and stores them into 
 ## [member _incoming_connection]. Then immediatly disconnects them, so that they will only be 

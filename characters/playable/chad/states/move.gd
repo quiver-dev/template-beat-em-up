@@ -36,15 +36,14 @@ func enter(msg: = {}) -> void:
 
 
 func unhandled_input(event: InputEvent) -> void:
-	var has_handled := false
+	var has_handled := true
 	
 	if event.is_action_pressed("attack"):
-		_state_machine.transition_to("Ground/Attack/Combo1")
-	
-	if event.is_action_pressed("jump") and _direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to("Air/Jump")
-	elif event.is_action_pressed("jump") and not _direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to("Air/Jump", {velocity = _character.velocity})
+		attack()
+	elif event.is_action_pressed("jump"):
+		jump()
+	else:
+		has_handled = false
 	
 	if not has_handled:
 		get_parent().unhandled_input(event)
@@ -67,6 +66,17 @@ func exit() -> void:
 	
 	super()
 	get_parent().exit()
+
+
+func attack() -> void:
+	_state_machine.transition_to("Ground/Attack/Combo1")
+
+
+func jump() -> void:
+	if _direction.is_equal_approx(Vector2.ZERO):
+		_state_machine.transition_to("Air/Jump")
+	else:
+		_state_machine.transition_to("Air/Jump", {velocity = _character.velocity})
 
 ### -----------------------------------------------------------------------------------------------
 

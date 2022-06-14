@@ -1,4 +1,5 @@
-extends "res://characters/playable/chad/states/chad_state.gd"
+@tool
+extends QuiverStateMachine
 
 ## Write your doc string for this file here
 
@@ -18,40 +19,37 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _ready() -> void:
+	super()
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
+	
+	for child in get_children():
+		var child_state := child as QuiverState
+		if not is_instance_valid(child_state):
+			continue
+		
+		child_state.state_finished.connect(_decide_next_action.bind(child_state.name))
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-func enter(msg: = {}) -> void:
-	super(msg)
-	get_parent().enter(msg)
-	_skin.transition_to(_skin.SkinStates.ATTACK_1)
-
-
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		attack()
-
-
-func exit() -> void:
-	super()
-	get_parent().exit()
-
-
-func attack() -> void:
-	_skin.should_combo_2 = true
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_chad_skin_attack_1_finished() -> void:
-	if _skin.should_combo_2:
-		_state_machine.transition_to("Ground/Attack/Combo2")
-	else:
-		_state_machine.transition_to("Ground/Move/Idle")
+func _decide_next_action(last_state: StringName) -> void:
+	match last_state:
+		&"ChaseClosestPlayer":
+			transition_to(^"Attack")
+		&"Attack":
+			transition_to(^"Wait")
+		&"Wait":
+			transition_to(^"ChaseClosestPlayer")
 
 ### -----------------------------------------------------------------------------------------------
 

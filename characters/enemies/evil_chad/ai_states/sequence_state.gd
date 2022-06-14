@@ -1,4 +1,6 @@
-extends "res://characters/playable/chad/states/chad_state.gd"
+@tool
+class_name QuiverStateSequence
+extends QuiverState
 
 ## Write your doc string for this file here
 
@@ -13,10 +15,30 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+var _current_state: QuiverState = null
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	
+	if get_child_count() == 0:
+		warnings.append(
+				"QuiverSequenceState does nothing by itself, it needs QuiverStates as children."
+		)
+	for child in get_children():
+		if not child is QuiverState:
+			warnings.append("%s is not a node of type QuiverState"%[child.name])
+	
+	return warnings
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -25,33 +47,45 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
-	_skin.transition_to(_skin.SkinStates.ATTACK_1)
+	_enter_child_state(0)
 
 
 func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		attack()
+	_current_state.unhandled_input(event)
+
+
+func process(delta: float) -> void:
+	_current_state.process(delta)
+
+
+func physics_process(delta: float) -> void:
+	_current_state.physics_process(delta)
 
 
 func exit() -> void:
 	super()
-	get_parent().exit()
-
-
-func attack() -> void:
-	_skin.should_combo_2 = true
+	_current_state = null
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_chad_skin_attack_1_finished() -> void:
-	if _skin.should_combo_2:
-		_state_machine.transition_to("Ground/Attack/Combo2")
+func _enter_child_state(index: int) -> void:
+	_current_state = get_child(index)
+	_current_state.state_finished.connect(_on_current_state_state_finished)
+	_current_state.enter()
+
+
+func _on_current_state_state_finished() -> void:
+	_current_state.exit()
+	_current_state.state_finished.disconnect(_on_current_state_state_finished)
+	
+	var next_index = _current_state.get_index() + 1
+	if next_index < get_child_count():
+		_enter_child_state(next_index)
 	else:
-		_state_machine.transition_to("Ground/Move/Idle")
+		state_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

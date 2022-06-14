@@ -1,5 +1,5 @@
 class_name QuiverEditorHelper
-extends Object
+extends RefCounted
 ## Static Helper for calling functions in the editor, usually on [code]@tool[/code] scripts
 
 

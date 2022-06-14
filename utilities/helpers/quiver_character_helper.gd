@@ -1,4 +1,5 @@
-extends "res://characters/playable/chad/states/chad_state.gd"
+class_name QuiverCharacterHelper
+extends RefCounted
 
 ## Write your doc string for this file here
 
@@ -23,35 +24,26 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func enter(msg: = {}) -> void:
-	super(msg)
-	get_parent().enter(msg)
-	_skin.transition_to(_skin.SkinStates.ATTACK_1)
-
-
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		attack()
-
-
-func exit() -> void:
-	super()
-	get_parent().exit()
-
-
-func attack() -> void:
-	_skin.should_combo_2 = true
+static func find_closest_player_to(node_2d: Node2D) -> QuiverCharacter:
+	var value: QuiverCharacter = null
+	var players: Array = node_2d.get_tree().get_nodes_in_group("players")
+	
+	if players.size() == 1:
+		value = players.front()
+	elif players.size() > 1:
+		var min_distance := INF
+		for player in players:
+			var distance = node_2d.global_position.distance_squared_to(player.global_position)
+			if distance < min_distance:
+				min_distance = distance
+				value = player
+	
+	return value
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _on_chad_skin_attack_1_finished() -> void:
-	if _skin.should_combo_2:
-		_state_machine.transition_to("Ground/Attack/Combo2")
-	else:
-		_state_machine.transition_to("Ground/Move/Idle")
 
 ### -----------------------------------------------------------------------------------------------
 

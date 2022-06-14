@@ -1,4 +1,4 @@
-extends "res://characters/playable/chad/states/chad_state.gd"
+extends "res://characters/enemies/evil_chad/ai_states/base_ai_state.gd"
 
 ## Write your doc string for this file here
 
@@ -10,6 +10,8 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
+
+@export_range(0.0, 10.0, 0.1, "or_greater") var wait_time := 5.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -25,33 +27,18 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
-	_skin.transition_to(_skin.SkinStates.ATTACK_1)
-
-
-func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		attack()
+	_actions.transition_to("Ground/Move/Idle")
+	await get_tree().create_timer(wait_time).timeout
+	state_finished.emit()
 
 
 func exit() -> void:
 	super()
-	get_parent().exit()
-
-
-func attack() -> void:
-	_skin.should_combo_2 = true
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _on_chad_skin_attack_1_finished() -> void:
-	if _skin.should_combo_2:
-		_state_machine.transition_to("Ground/Attack/Combo2")
-	else:
-		_state_machine.transition_to("Ground/Move/Idle")
 
 ### -----------------------------------------------------------------------------------------------
 

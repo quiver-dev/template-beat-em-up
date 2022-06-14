@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs73pl42iha37"]
+[gd_scene load_steps=6 format=3 uid="uid://bs73pl42iha37"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="PackedScene" uid="uid://bf1cuk7310gxq" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://utilities/custom_nodes/VersionLabel.gd" id="3_lfeec"]
+[ext_resource type="PackedScene" uid="uid://dannf7veijqt0" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsl8r"]
 size = Vector2(87, 2212)
@@ -42,8 +43,14 @@ offset_right = 45.0
 offset_bottom = 1105.0
 color = Color(0.254902, 0.121569, 0.0705882, 1)
 
-[node name="Chad" parent="." instance=ExtResource( "2_l2dst" )]
+[node name="Characters" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Chad" parent="Characters" instance=ExtResource( "2_l2dst" )]
 position = Vector2(937, 916)
+
+[node name="EvilChad" parent="Characters" groups=["player_character"] instance=ExtResource( "4_ses8m" )]
+position = Vector2(1735, 987)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
