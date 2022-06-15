@@ -1,5 +1,5 @@
 @tool
-extends "res://characters/enemies/evil_chad/ai_states/base_ai_state.gd"
+extends QuiverAiState
 
 ## Write your doc string for this file here
 
@@ -8,33 +8,17 @@ extends "res://characters/enemies/evil_chad/ai_states/base_ai_state.gd"
 
 #--- enums ----------------------------------------------------------------------------------------
 
-# DELETE-ME using this as a STUPID worka around for advanced exports not working. 
-enum PossibleStates {IDLE,FOLLOW,COMBO1,COMBO2,JUMP,AIR_ATTACK}
-
-# DELETE-ME using this as a STUPID worka around for advanced exports not working. 
-const STATE_PATHS = {
-	PossibleStates.IDLE: "Ground/Move/Idle",
-	PossibleStates.FOLLOW: "Ground/Move/Follow",
-	PossibleStates.COMBO1: "Ground/Attack/Combo1",
-	PossibleStates.COMBO2: "Ground/Attack/Combo2",
-	PossibleStates.JUMP: "Air/Jump",
-	PossibleStates.AIR_ATTACK: "Air/Attack",
-}
-
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-# DELETE-ME using this as a STUPID worka around for advanced exports not working. 
-@export var state_to_call :PossibleStates
-
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-# In the future, when advanced exports are working this variable will be a drop down selector
-# in the inspector, auto generated wit the paths to the current state machine's leaf states
-# for now it is unused because advanced exports are broken
-@warning_ignore(unused_private_class_variable)
-var _state_path: String = ""
+# Right now I have to export this variable as advanced exports are not working. But the idea is
+# for this to be a backing filed to an advanced property which uses the correct hint string
+# for the beat em up plugin to catch it and transform it into a list of paths, tailored to this 
+# scene
+@export var _state_path := NodePath()
 
 var _possible_states := []
 
@@ -50,7 +34,7 @@ var _possible_states := []
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_actions.transition_to(STATE_PATHS[state_to_call])
+	_actions.transition_to(_state_path)
 	_actions.transitioned.connect(_on_actions_transitioned)
 
 
@@ -70,35 +54,20 @@ func _on_actions_transitioned(_p_state_path: NodePath) -> void:
 func _on_owner_ready() -> void:
 	super()
 	_possible_states = _actions.get_leaf_nodes_path_list()
-	
-	CUSTOM_PROPERTIES["state_path"].hint_string = ",".join(PackedStringArray(_possible_states))
-	print(CUSTOM_PROPERTIES["state_path"].hint_string)
 
 ### -----------------------------------------------------------------------------------------------
 
-
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-### Editor Methods --------------------------------------------------------------------------------
-
-###################################################################################################
-# Custom Inspector ################################################################################
-###################################################################################################
-
-var CUSTOM_PROPERTIES = {
-	"call_state_category": {
-		"name": "Call State",
-		"type": TYPE_NIL,
-		"usage": PROPERTY_USAGE_CATEGORY,
-	},
+const CUSTOM_PROPERTIES = {
 	"state_path": {
 		backing_field = "_state_path",
-		type = TYPE_STRING,
+		type = TYPE_NODE_PATH,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = "",
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 #	"": {
 #		backing_field = "",
@@ -141,7 +110,6 @@ func _set(property: StringName, value) -> bool:
 	
 	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
 		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
-		
 		has_handled = true
 	
 	return has_handled

@@ -1,4 +1,4 @@
-extends "res://characters/enemies/evil_chad/ai_states/base_ai_state.gd"
+extends QuiverAiState
 
 ## Write your doc string for this file here
 
