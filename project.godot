@@ -9,10 +9,20 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "QuiverState",
+"class": &"QuiverAiState",
+"language": &"GDScript",
+"path": "res://characters/enemies/evil_chad/ai_states/quiver_ai_state.gd"
+}, {
 "base": "Resource",
 "class": &"QuiverAttributes",
 "language": &"GDScript",
 "path": "res://characters/_base/attributes.gd"
+}, {
+"base": "RefCounted",
+"class": &"QuiverBitwiseHelper",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_bitwise_helper.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"QuiverCharacter",
@@ -60,7 +70,9 @@ _global_script_classes=[{
 "path": "res://characters/enemies/evil_chad/ai_states/sequence_state.gd"
 }]
 _global_script_class_icons={
+"QuiverAiState": "",
 "QuiverAttributes": "",
+"QuiverBitwiseHelper": "",
 "QuiverCharacter": "",
 "QuiverCharacterHelper": "",
 "QuiverCharacterSkin": "",
@@ -88,6 +100,10 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quiver.beat_em_up/plugin.cfg")
 
 [input]
 
