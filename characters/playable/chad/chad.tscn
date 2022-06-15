@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf1cuk7310gxq"]
+[gd_scene load_steps=16 format=3 uid="uid://bp7w88o5yt6rw"]
 
-[ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_aj842"]
+[ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Script" path="res://utilities/custom_nodes/State.gd" id="3_8x7lh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state.gd" id="3_8x7lh"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/walk.gd" id="6_jtgbp"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="10_ow8st"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="11_3fo3y"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_wf2ss"]
-[ext_resource type="Script" path="res://utilities/custom_nodes/QuiverDebugPropertyLabel.gd" id="12_sub7a"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/air_attack.gd" id="13_cw2hu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
