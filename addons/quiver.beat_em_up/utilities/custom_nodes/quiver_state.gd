@@ -29,6 +29,8 @@ signal state_finished
 
 #--- constants ------------------------------------------------------------------------------------
 
+const HINT_STATE_LIST = "QuiverStateList"
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------

@@ -1,6 +1,8 @@
 class_name QuiverCyclicHelper
 extends RefCounted
 
+## Static Helper to get out of Cyclic Errors.
+##
 ## I don't think I should need this, as Cyclic References are supposed to be fixed in GDScript 2.0
 ## but I get a Cyclic Reference when I try to use `is` to compare if a node is `QuiverStateMachine`
 ## on the `_state_machine` setter. There is an open issue for this already so I'm just checking
@@ -13,8 +15,9 @@ extends RefCounted
 
 #--- constants ------------------------------------------------------------------------------------
 
-const PATH_STATE_MACHINE = "res://utilities/custom_nodes/StateMachine.gd"
-const PATH_QUIVER_STATE = "res://utilities/custom_nodes/State.gd"
+const PATH_STATE_MACHINE = \
+		"res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state_machine.gd"
+const PATH_QUIVER_STATE = "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state.gd"
 const PATH_QUIVER_STATE_SEQUENCE = "res://characters/enemies/evil_chad/ai_states/sequence_state.gd"
 
 #--- public variables - order: export > normal var > onready --------------------------------------

@@ -1,7 +1,7 @@
 class_name QuiverCharacterHelper
 extends RefCounted
 
-## Write your doc string for this file here
+## Static Helper for situations involving QuiverCharacters
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------

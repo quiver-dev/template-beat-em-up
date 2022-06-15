@@ -1,7 +1,7 @@
 class_name QuiverMathHelper
 extends RefCounted
 
-## Write your doc string for this file here
+## Static Helper for common Math situations/problems/techniques useful in games.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
