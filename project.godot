@@ -62,17 +62,17 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"QuiverState",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state.gd"
 }, {
 "base": "Node",
 "class": &"QuiverStateMachine",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state_machine.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_machine.gd"
 }, {
 "base": "QuiverState",
 "class": &"QuiverStateSequence",
 "language": &"GDScript",
-"path": "res://characters/enemies/evil_chad/ai_states/sequence_state.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd"
 }]
 _global_script_class_icons={
 "QuiverAiState": "",

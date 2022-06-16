@@ -15,10 +15,17 @@ extends RefCounted
 
 #--- constants ------------------------------------------------------------------------------------
 
-const PATH_STATE_MACHINE = \
-		"res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state_machine.gd"
-const PATH_QUIVER_STATE = "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_state.gd"
-const PATH_QUIVER_STATE_SEQUENCE = "res://characters/enemies/evil_chad/ai_states/sequence_state.gd"
+const PATH_STATE_MACHINE = (
+		"res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/"
+		+"quiver_state_machine.gd"
+)
+const PATH_QUIVER_STATE = (
+		"res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state.gd"
+)
+const PATH_QUIVER_STATE_SEQUENCE = (
+		"res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/"
+		+"quiver_state_sequence.gd"
+)
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
