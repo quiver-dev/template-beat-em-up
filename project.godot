@@ -12,7 +12,12 @@ _global_script_classes=[{
 "base": "QuiverState",
 "class": &"QuiverAiState",
 "language": &"GDScript",
-"path": "res://characters/enemies/evil_chad/ai_states/quiver_ai_state.gd"
+"path": "res://addons/quiver.beat_em_up/characters/ai/quiver_ai_state.gd"
+}, {
+"base": "QuiverStateMachine",
+"class": &"QuiverAiStateMachine",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/characters/ai/quiver_ai_state_machine.gd"
 }, {
 "base": "Resource",
 "class": &"QuiverAttributes",
@@ -27,7 +32,7 @@ _global_script_classes=[{
 "base": "CharacterBody2D",
 "class": &"QuiverCharacter",
 "language": &"GDScript",
-"path": "res://characters/_base/character/base_character.gd"
+"path": "res://characters/_base/character/quiver_base_character.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverCharacterHelper",
@@ -71,6 +76,7 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "QuiverAiState": "",
+"QuiverAiStateMachine": "",
 "QuiverAttributes": "",
 "QuiverBitwiseHelper": "",
 "QuiverCharacter": "",
@@ -88,8 +94,8 @@ _global_script_class_icons={
 
 config/name="Template Beat Project"
 run/main_scene="res://prototype_main.tscn"
-config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
+config/icon="res://icon.png"
 config/version="0.1.0"
 
 [display]
