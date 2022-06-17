@@ -1,3 +1,4 @@
+@tool
 extends "res://characters/playable/chad/states/chad_state.gd"
 
 ## Write your doc string for this file here
@@ -14,6 +15,9 @@ extends "res://characters/playable/chad/states/chad_state.gd"
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+@export var _path_jump_state := NodePath("Air/Jump")
+@export var _path_attack_state := NodePath("Ground/Combo1")
 
 var _direction := Vector2.ZERO
 
@@ -69,14 +73,15 @@ func exit() -> void:
 
 
 func attack() -> void:
-	_state_machine.transition_to("Ground/Attack/Combo1")
+	
+	_state_machine.transition_to(_path_attack_state)
 
 
 func jump() -> void:
 	if _direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to("Air/Jump")
+		_state_machine.transition_to(_path_jump_state)
 	else:
-		_state_machine.transition_to("Air/Jump", {velocity = _character.velocity})
+		_state_machine.transition_to(_path_jump_state, {velocity = _character.velocity})
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -85,3 +90,69 @@ func jump() -> void:
 
 ### -----------------------------------------------------------------------------------------------
 
+
+###################################################################################################
+# Custom Inspector ################################################################################
+###################################################################################################
+
+const CUSTOM_PROPERTIES = {
+	"path_jump_state": {
+		backing_field = "_path_jump_state",
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_attack_state": {
+		backing_field = "_path_attack_state",
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+#	"": {
+#		backing_field = "",
+#		name = "",
+#		type = TYPE_NIL,
+#		usage = PROPERTY_USAGE_DEFAULT,
+#		hint = PROPERTY_HINT_NONE,
+#		hint_string = "",
+#	},
+}
+
+### Custom Inspector built in functions -----------------------------------------------------------
+
+func _get_property_list() -> Array:
+	var properties: = []
+	
+	for key in CUSTOM_PROPERTIES:
+		var add_property := true
+		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+		if not dict.has("name"):
+			dict.name = key
+		
+		if add_property:
+			properties.append(dict)
+	
+	return properties
+
+
+func _get(property: StringName):
+	var value
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	
+	return value
+
+
+func _set(property: StringName, value) -> bool:
+	var has_handled: = false
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+		has_handled = true
+	
+	return has_handled
+
+### -----------------------------------------------------------------------------------------------
