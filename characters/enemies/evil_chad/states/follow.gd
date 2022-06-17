@@ -148,11 +148,5 @@ func _set(property: StringName, value) -> bool:
 	
 	return has_handled
 
-
-func _get_configuration_warning() -> String:
-	var msg: = ""
-
-	return msg
-
 ### -----------------------------------------------------------------------------------------------
 
