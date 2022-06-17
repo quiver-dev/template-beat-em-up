@@ -1,3 +1,4 @@
+@tool
 extends "res://characters/playable/chad/states/chad_state.gd"
 
 ## Write your doc string for this file here
@@ -14,10 +15,11 @@ const MoveState = preload("res://characters/playable/chad/states/move.gd")
 @export var OFFSET_FROM_TARGET = 230
 @export var ARRIVE_RANGE = 10
 
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+@export var _path_next_state := NodePath("Ground/Move/Idle")
 
 var _target_node: Node2D = null
 
@@ -43,7 +45,7 @@ func enter(msg: = {}) -> void:
 	_skin.transition_to(_skin.SkinStates.WALK)
 	
 	if not msg.has("target_node") or not msg.target_node is Node2D:
-		_state_machine.transition_to("Ground/Move/Idle")
+		_state_machine.transition_to(_path_next_state)
 		return
 	
 	_target_node = msg.target_node
@@ -71,7 +73,7 @@ func physics_process(delta: float) -> void:
 	var distance_to_target := _character.global_position.distance_squared_to(target_position)
 	
 	if distance_to_target <= _squared_arrive:
-		_state_machine.transition_to("Ground/Move/Idle")
+		_state_machine.transition_to(_path_next_state)
 		state_finished.emit()
 		return
 	
@@ -86,6 +88,71 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+### -----------------------------------------------------------------------------------------------
+
+###################################################################################################
+# Custom Inspector ################################################################################
+###################################################################################################
+
+const CUSTOM_PROPERTIES = {
+	"path_next_state": {
+		backing_field = "_path_next_state",
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+#	"": {
+#		backing_field = "",
+#		name = "",
+#		type = TYPE_NIL,
+#		usage = PROPERTY_USAGE_DEFAULT,
+#		hint = PROPERTY_HINT_NONE,
+#		hint_string = "",
+#	},
+}
+
+### Custom Inspector built in functions -----------------------------------------------------------
+
+func _get_property_list() -> Array:
+	var properties: = []
+	
+	for key in CUSTOM_PROPERTIES:
+		var add_property := true
+		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+		if not dict.has("name"):
+			dict.name = key
+		
+		if add_property:
+			properties.append(dict)
+	
+	return properties
+
+
+func _get(property: StringName):
+	var value
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	
+	return value
+
+
+func _set(property: StringName, value) -> bool:
+	var has_handled: = false
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+		has_handled = true
+	
+	return has_handled
+
+
+func _get_configuration_warning() -> String:
+	var msg: = ""
+
+	return msg
 
 ### -----------------------------------------------------------------------------------------------
 
