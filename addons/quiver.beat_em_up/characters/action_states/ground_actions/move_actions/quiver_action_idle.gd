@@ -10,17 +10,44 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
+const MoveState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/"
+		+"ground_actions/quiver_action_move.gd"
+)
+
+
 #--- public variables - order: export > normal var > onready --------------------------------------
+
+@export var _skin_state: int = -1
+@export var _path_walk_state := NodePath("Ground/Move/Walk")
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
-@export var _path_falling_state := NodePath("Air/Jump")
+@onready var _move_state := get_parent() as MoveState
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
+
+func _ready() -> void:
+	super()
+	update_configuration_warnings()
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	
+	if not get_parent() is MoveState:
+		warnings.append(
+				"This ActionState must be a child of Action MoveState or a state " 
+				+ "inheriting from it."
+		)
+	
+	return warnings
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -33,7 +60,18 @@ func enter(msg: = {}) -> void:
 	_skin.transition_to(_skin_state)
 
 
+func unhandled_input(event: InputEvent) -> void:
+	var has_handled := false
+	if not has_handled:
+		get_parent().unhandled_input(event)
+
+
 func physics_process(delta: float) -> void:
+	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if _move_state._direction != Vector2.ZERO:
+		_state_machine.transition_to(_path_walk_state)
+		return
+	
 	get_parent().physics_process(delta)
 
 
@@ -46,15 +84,7 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_chad_skin_air_attack_finished() -> void:
-	_state_machine.transition_to(_path_falling_state, {
-			velocity = _character.velocity, 
-			ignore_jump = true,
-			air_attack_count = 1,
-	})
-
 ### -----------------------------------------------------------------------------------------------
-
 
 ###################################################################################################
 # Custom Inspector ################################################################################
@@ -68,8 +98,8 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
 	},
-	"path_falling_state": {
-		backing_field = "_path_falling_state",
+	"path_walk_state": {
+		backing_field = "_path_walk_state",
 		type = TYPE_NODE_PATH,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

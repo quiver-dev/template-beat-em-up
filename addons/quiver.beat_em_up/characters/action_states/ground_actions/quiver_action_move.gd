@@ -10,21 +10,22 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload("res://characters/playable/chad/states/move.gd")
+const GroundState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
+)
 
-@export var OFFSET_FROM_TARGET = 230
-@export var ARRIVE_RANGE = 10
+@export var MAX_SPEED = 600
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_next_state := NodePath("Ground/Move/Idle")
+@export var _path_jump_state := NodePath("Air/Jump")
+@export var _path_attack_state := NodePath("Ground/Combo1")
 
-var _target_node: Node2D = null
+var _direction := Vector2.ZERO
 
-@onready var _move_state := get_parent() as MoveState
-@onready var _squared_arrive = pow(ARRIVE_RANGE, 2)
+@onready var _ground_state := get_parent() as GroundState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -33,6 +34,22 @@ var _target_node: Node2D = null
 
 func _ready() -> void:
 	super()
+	update_configuration_warnings()
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	
+	if not get_parent() is GroundState:
+		warnings.append(
+				"This ActionState must be a child of Action GroundState or a state " 
+				+ "inheriting from it."
+		)
+	
+	return warnings
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,48 +58,55 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_move_state.enter(msg)
-	_skin.transition_to(_skin.SkinStates.WALK)
-	
-	if not msg.has("target_node") or not msg.target_node is Node2D:
-		_state_machine.transition_to(_path_next_state)
-		return
-	
-	_target_node = msg.target_node
+	get_parent().enter(msg)
+	if msg.has("velocity"):
+		_character.velocity = msg.velocity
+		_direction = Vector2(msg.velocity.x, 0).normalized()
 
 
-func unhandled_input(_event: InputEvent) -> void:
-	pass
+func unhandled_input(event: InputEvent) -> void:
+	var has_handled := true
+	
+	if event.is_action_pressed("attack"):
+		attack()
+	elif event.is_action_pressed("jump"):
+		jump()
+	else:
+		has_handled = false
+	
+	if not has_handled:
+		get_parent().unhandled_input(event)
 
 
 func physics_process(delta: float) -> void:
-	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
-	_skin.scale.x = 1 if facing_direction >=0 else -1
+	get_parent().physics_process(delta)
 	
-	var target_position := _target_node.global_position
-	if _target_node is QuiverCharacter:
-		if _target_node.is_on_air:
-			target_position.y = _target_node.ground_level
-	
-	if _character.global_position.x >= target_position.x:
-		target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
+	if not _direction.is_equal_approx(Vector2.ZERO):
+		_character.velocity = MAX_SPEED * _direction
 	else:
-		target_position += Vector2.LEFT * OFFSET_FROM_TARGET
+		_character.velocity = _character.velocity.move_toward(Vector2.ZERO, MAX_SPEED)
 	
-	_move_state._direction = _character.global_position.direction_to(target_position)
-	var distance_to_target := _character.global_position.distance_squared_to(target_position)
-	
-	if distance_to_target <= _squared_arrive:
-		_state_machine.transition_to(_path_next_state)
-		state_finished.emit()
-		return
-	
-	_move_state.physics_process(delta)
+	_character.move_and_slide()
 
 
 func exit() -> void:
+	_direction = Vector2.ZERO
+	_character.velocity = Vector2.ZERO
+	
 	super()
-	_move_state.exit()
+	get_parent().exit()
+
+
+func attack() -> void:
+	
+	_state_machine.transition_to(_path_attack_state)
+
+
+func jump() -> void:
+	if _direction.is_equal_approx(Vector2.ZERO):
+		_state_machine.transition_to(_path_jump_state)
+	else:
+		_state_machine.transition_to(_path_jump_state, {velocity = _character.velocity})
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -91,13 +115,21 @@ func exit() -> void:
 
 ### -----------------------------------------------------------------------------------------------
 
+
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"path_next_state": {
-		backing_field = "_path_next_state",
+	"path_jump_state": {
+		backing_field = "_path_jump_state",
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_attack_state": {
+		backing_field = "_path_attack_state",
 		type = TYPE_NODE_PATH,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
@@ -149,4 +181,3 @@ func _set(property: StringName, value) -> bool:
 	return has_handled
 
 ### -----------------------------------------------------------------------------------------------
-

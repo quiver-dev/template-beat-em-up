@@ -47,7 +47,7 @@ _global_script_classes=[{
 "base": "QuiverState",
 "class": &"QuiverCharacterState",
 "language": &"GDScript",
-"path": "res://characters/playable/chad/states/quiver_character_state.gd"
+"path": "res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverCyclicHelper",

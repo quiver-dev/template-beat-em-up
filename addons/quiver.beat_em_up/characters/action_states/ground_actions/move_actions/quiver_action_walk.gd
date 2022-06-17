@@ -10,14 +10,17 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload("res://characters/playable/chad/states/move.gd")
+const MoveState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/"
+		+"ground_actions/quiver_action_move.gd"
+)
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var _skin_state: int = -1
-@export var _path_walk_state := NodePath("Ground/Move/Walk")
-
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+@export var _skin_state: int = -1
+@export var _path_idle_state := NodePath("Ground/Move/Idle")
 
 @onready var _move_state := get_parent() as MoveState
 
@@ -29,6 +32,9 @@ const MoveState = preload("res://characters/playable/chad/states/move.gd")
 func _ready() -> void:
 	super()
 	update_configuration_warnings()
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -36,11 +42,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 	
 	if not get_parent() is MoveState:
 		warnings.append(
-				"The Idle ActionState must be a child of MoveState or a state inheriting from "
-				+ "MoveState."
+				"This ActionState must be a child of Action MoveState or a state " 
+				+ "inheriting from it."
 		)
 	
 	return warnings
+
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -49,7 +56,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
+	_move_state.enter(msg)
 	_skin.transition_to(_skin_state)
 
 
@@ -61,16 +68,20 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if _move_state._direction != Vector2.ZERO:
-		_state_machine.transition_to(_path_walk_state)
-		return
 	
-	get_parent().physics_process(delta)
+	var facing_direction :int = sign(_move_state._direction.x)
+	if facing_direction != 0:
+		_skin.scale.x = facing_direction
+	
+	if _move_state._direction == Vector2.ZERO:
+		_state_machine.transition_to(_path_idle_state)
+	
+	_move_state.physics_process(delta)
 
 
 func exit() -> void:
-	get_parent().exit()
 	super()
+	_move_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -78,6 +89,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+
 
 ###################################################################################################
 # Custom Inspector ################################################################################
@@ -91,8 +103,8 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
 	},
-	"path_walk_state": {
-		backing_field = "_path_walk_state",
+	"path_idle_state": {
+		backing_field = "_path_idle_state",
 		type = TYPE_NODE_PATH,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
