@@ -1,3 +1,4 @@
+class_name QuiverCharacterState
 extends QuiverState
 
 ## Write your doc string for this file here
@@ -9,14 +10,12 @@ extends QuiverState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const ChadSkin = preload("res://characters/playable/chad/chad_skin.gd")
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _character: QuiverCharacter
-var _skin: ChadSkin
+var _skin: QuiverCharacterSkin
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -40,7 +39,7 @@ func _ready() -> void:
 
 func _on_owner_ready() -> void:
 	_character = owner as QuiverCharacter
-	_skin = _character._skin as ChadSkin
+	_skin = _character._skin as QuiverCharacterSkin
 
 ### -----------------------------------------------------------------------------------------------
 

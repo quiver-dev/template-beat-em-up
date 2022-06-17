@@ -1,4 +1,4 @@
-extends "res://characters/playable/chad/states/chad_state.gd"
+extends QuiverCharacterState
 
 ## Write your doc string for this file here
 
