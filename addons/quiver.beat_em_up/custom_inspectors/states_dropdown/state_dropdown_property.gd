@@ -5,8 +5,6 @@ extends EditorProperty
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-signal value_changed(ai_state, new_value: NodePath)
-
 #--- enums ----------------------------------------------------------------------------------------
 
 #--- constants ------------------------------------------------------------------------------------
@@ -15,7 +13,7 @@ signal value_changed(ai_state, new_value: NodePath)
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _ai_state: QuiverAiState = null
+var _state: QuiverState = null
 var _options: OptionButton = null
 
 ### -----------------------------------------------------------------------------------------------
@@ -24,7 +22,7 @@ var _options: OptionButton = null
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	_ai_state = get_edited_object() as QuiverAiState
+	_state = get_edited_object() as QuiverState
 	_add_property_scene()
 	_inititalize_property()
 
@@ -50,11 +48,12 @@ func _add_property_scene() -> void:
 
 
 func _inititalize_property() -> void:
-	var current_value := _ai_state.get(get_edited_property()) as String
+	var current_value := _state.get(get_edited_property()) as String
+	var list := _state.get_list_of_action_states()
 	var item_id := 0
 	_options.clear()
 	_options.add_item("Choose State")
-	for path in _ai_state.get_list_of_action_states():
+	for path in list:
 		item_id += 1
 		_options.add_item(path)
 		if path == current_value:
@@ -68,5 +67,3 @@ func _on_options_item_selected(index: int) -> void:
 		emit_changed(get_edited_property(), new_value)
 
 ### -----------------------------------------------------------------------------------------------
-
-

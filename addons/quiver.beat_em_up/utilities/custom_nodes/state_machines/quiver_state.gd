@@ -102,6 +102,16 @@ func physics_process(_delta: float) -> void:
 func exit() -> void:
 	_disconnect_signals()
 
+
+func get_list_of_action_states() -> Array:
+	var list := ["Node not ready yet"]
+	if _state_machine == null:
+		return list
+	
+	list = _state_machine.get_leaf_nodes_path_list()
+	return list
+
+
 ### -----------------------------------------------------------------------------------------------
 
 
