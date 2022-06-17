@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://djnje7nhbcsm1"]
+[gd_scene load_steps=18 format=3 uid="uid://djnje7nhbcsm1"]
 
 [ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="3_bg7yk"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="4_120xx"]
 [ext_resource type="Script" path="res://characters/enemies/evil_chad/states/idle_ai.gd" id="5_y1loh"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state.gd" id="7_nk4ro"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="8_lnplq"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="10_xyisi"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_rp4h6"]
@@ -51,14 +50,12 @@ script = ExtResource( "5_y1loh" )
 script = ExtResource( "2_py5s2" )
 ARRIVE_RANGE = 30
 
-[node name="Attack" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource( "7_nk4ro" )
-
-[node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
+[node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "8_lnplq" )
 _skin_state = 2
+_path_combo_state = NodePath("Ground/Combo2")
 
-[node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
+[node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource( "8_lnplq" )
 _skin_state = 3
 _can_combo = false
@@ -69,9 +66,11 @@ script = ExtResource( "10_xyisi" )
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_rp4h6" )
+_skin_state = 4
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "12_lphyp" )
+_skin_state = 5
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource( "13_vcgxt" )
@@ -85,7 +84,7 @@ script = ExtResource( "15_cerch" )
 
 [node name="Punch" type="Node" parent="AiStateMachine/Attack" index="0"]
 script = ExtResource( "16_ooocb" )
-_state_path = NodePath("Ground/Attack/Combo1")
+_state_path = NodePath("Ground/Combo1")
 
 [node name="Wait" type="Node" parent="AiStateMachine/Attack" index="1"]
 script = ExtResource( "17_v4twd" )
@@ -93,11 +92,11 @@ wait_time = 0.5
 
 [node name="Punch2" type="Node" parent="AiStateMachine/Attack" index="2"]
 script = ExtResource( "16_ooocb" )
-_state_path = NodePath("Ground/Attack/Combo1")
+_state_path = NodePath("Ground/Combo1")
 
 [node name="Kick" type="Node" parent="AiStateMachine/Attack" index="3"]
 script = ExtResource( "16_ooocb" )
-_state_path = NodePath("Ground/Attack/Combo2")
+_state_path = NodePath("Ground/Combo2")
 
 [node name="Wait" type="Node" parent="AiStateMachine" index="2"]
 script = ExtResource( "17_v4twd" )
@@ -136,5 +135,5 @@ script = ExtResource( "13_b2qfj" )
 path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name")
 
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_attack_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_attack_finished"]
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Combo1" method="_on_attack_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Combo2" method="_on_attack_finished"]

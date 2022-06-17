@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://co6ferqikn7tl"]
+[gd_scene load_steps=14 format=3 uid="uid://co6ferqikn7tl"]
 
 [ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state.gd" id="3_8x7lh"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/walk.gd" id="6_jtgbp"]
@@ -41,18 +40,18 @@ MAX_SPEED = 350
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "6_jtgbp" )
+_skin_state = 1
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource( "7_kqgdb" )
+_skin_state = 0
 
-[node name="Attack" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource( "3_8x7lh" )
-
-[node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
+[node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "9_cce84" )
 _skin_state = 2
+_path_combo_state = NodePath("Ground/Combo2")
 
-[node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
+[node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource( "9_cce84" )
 _skin_state = 3
 _can_combo = false
@@ -63,9 +62,11 @@ script = ExtResource( "11_3fo3y" )
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_wf2ss" )
+_skin_state = 4
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "13_cw2hu" )
+_skin_state = 5
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
 offset_left = -168.0
@@ -93,5 +94,5 @@ path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
 [connection signal="air_attack_finished" from="ChadSkin" to="StateMachine/Air/Attack" method="_on_chad_skin_air_attack_finished"]
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_attack_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_attack_finished"]
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Combo1" method="_on_attack_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Combo2" method="_on_attack_finished"]
