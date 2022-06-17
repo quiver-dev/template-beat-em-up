@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://djnje7nhbcsm1"]
+[gd_scene load_steps=19 format=3 uid="uid://djnje7nhbcsm1"]
 
 [ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://characters/enemies/evil_chad/states/idle_ai.gd" id="5_y1loh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state.gd" id="7_nk4ro"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="8_lnplq"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="9_m8mt4"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="10_xyisi"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_rp4h6"]
 [ext_resource type="Script" path="res://characters/playable/chad/states/air_attack.gd" id="12_lphyp"]
@@ -57,9 +56,13 @@ script = ExtResource( "7_nk4ro" )
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
 script = ExtResource( "8_lnplq" )
+_skin_state = 2
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
-script = ExtResource( "9_m8mt4" )
+script = ExtResource( "8_lnplq" )
+_skin_state = 3
+_can_combo = false
+_path_combo_state = NodePath("")
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource( "10_xyisi" )
@@ -133,5 +136,5 @@ script = ExtResource( "13_b2qfj" )
 path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name")
 
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_attack_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_attack_finished"]
