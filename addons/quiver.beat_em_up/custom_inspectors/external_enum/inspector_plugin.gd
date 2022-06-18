@@ -23,7 +23,7 @@ const ExternalEnumProperty = preload(
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _can_handle(object) -> bool:
-	return true
+	return object is Node or object is Resource
 
 
 func _parse_property(
