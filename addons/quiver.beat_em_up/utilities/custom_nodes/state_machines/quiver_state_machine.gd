@@ -55,7 +55,8 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	await owner.ready
+	if is_instance_valid(owner):
+		await owner.ready
 	
 	state = get_node(initial_state) as QuiverState
 	state.enter()

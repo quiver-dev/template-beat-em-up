@@ -24,8 +24,9 @@ var _actions: QuiverStateMachine = null
 
 func _ready() -> void:
 	super()
-	await owner.ready
-	_on_owner_ready()
+	if is_instance_valid(owner):
+		await owner.ready
+		_on_owner_ready()
 
 ### -----------------------------------------------------------------------------------------------
 
