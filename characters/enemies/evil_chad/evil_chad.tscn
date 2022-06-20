@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=18 format=3 uid="uid://bboyj1mcs6jgd"]
 
 [ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
@@ -53,13 +53,13 @@ ARRIVE_RANGE = 30
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "8_lnplq" )
 _skin_state = 2
-_path_combo_state = NodePath("Ground/Combo2")
+_path_combo_state = "Ground/Combo2"
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource( "8_lnplq" )
 _skin_state = 3
 _can_combo = false
-_path_combo_state = NodePath("")
+_path_combo_state = ""
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource( "10_xyisi" )
@@ -84,7 +84,7 @@ script = ExtResource( "15_cerch" )
 
 [node name="Punch" type="Node" parent="AiStateMachine/Attack" index="0"]
 script = ExtResource( "16_ooocb" )
-_state_path = NodePath("Ground/Combo1")
+_state_path = "Ground/Combo1"
 
 [node name="Wait" type="Node" parent="AiStateMachine/Attack" index="1"]
 script = ExtResource( "17_v4twd" )
@@ -92,11 +92,11 @@ wait_time = 0.5
 
 [node name="Punch2" type="Node" parent="AiStateMachine/Attack" index="2"]
 script = ExtResource( "16_ooocb" )
-_state_path = NodePath("Ground/Combo1")
+_state_path = "Ground/Combo1"
 
 [node name="Kick" type="Node" parent="AiStateMachine/Attack" index="3"]
 script = ExtResource( "16_ooocb" )
-_state_path = NodePath("Ground/Combo2")
+_state_path = "Ground/Combo2"
 
 [node name="Wait" type="Node" parent="AiStateMachine" index="2"]
 script = ExtResource( "17_v4twd" )

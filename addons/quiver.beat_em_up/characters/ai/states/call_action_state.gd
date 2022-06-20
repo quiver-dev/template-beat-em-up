@@ -18,7 +18,7 @@ extends QuiverAiState
 # for this to be a backing filed to an advanced property which uses the correct hint string
 # for the beat em up plugin to catch it and transform it into a list of paths, tailored to this 
 # scene
-@export var _state_path := NodePath()
+@export var _state_path := ""
 
 var _possible_states := []
 
@@ -64,7 +64,7 @@ func _on_owner_ready() -> void:
 const CUSTOM_PROPERTIES = {
 	"state_path": {
 		backing_field = "_state_path",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,

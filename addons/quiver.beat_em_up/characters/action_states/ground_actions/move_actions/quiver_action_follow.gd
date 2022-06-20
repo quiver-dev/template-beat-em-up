@@ -22,7 +22,7 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_next_state := NodePath("Ground/Move/Idle")
+@export var _path_next_state := "Ground/Move/Idle"
 
 var _target_node: Node2D = null
 
@@ -117,7 +117,7 @@ func exit() -> void:
 const CUSTOM_PROPERTIES = {
 	"path_next_state": {
 		backing_field = "_path_next_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,

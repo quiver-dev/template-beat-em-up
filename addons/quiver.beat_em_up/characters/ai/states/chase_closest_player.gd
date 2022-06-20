@@ -14,7 +14,7 @@ extends QuiverAiState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_follow_state := NodePath("Ground/Move/Follow")
+@export var _path_follow_state := "Ground/Move/Follow"
 var _target: QuiverCharacter
 
 ### -----------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ func _on_actions_transitioned(_path_state: String) -> void:
 const CUSTOM_PROPERTIES = {
 	"path_follow_state": {
 		backing_field = "_path_follow_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
