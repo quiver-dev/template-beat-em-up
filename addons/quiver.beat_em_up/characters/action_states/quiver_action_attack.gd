@@ -24,19 +24,19 @@ extends QuiverCharacterState
 			notify_property_list_changed()
 		
 		if not _can_combo:
-			_path_combo_state = NodePath("")
+			_path_combo_state = ""
 		else:
 			update_configuration_warnings()
 
-@export var _path_combo_state := NodePath("Ground/Attack/Combo2"):
+@export var _path_combo_state := "Ground/Attack/Combo2":
 	set(value):
 		if _can_combo:
 			_path_combo_state = value
 		else:
-			_path_combo_state = NodePath()
+			_path_combo_state = ""
 		update_configuration_warnings()
 	
-@export var _path_next_state := NodePath("Ground/Move/Idle")
+@export var _path_next_state := "Ground/Move/Idle"
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -126,14 +126,14 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_combo_state": {
 		backing_field = "_path_combo_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,

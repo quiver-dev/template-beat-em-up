@@ -20,7 +20,7 @@ const MoveState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _skin_state: int = -1
-@export var _path_idle_state := NodePath("Ground/Move/Idle")
+@export var _path_idle_state := "Ground/Move/Idle"
 
 @onready var _move_state := get_parent() as MoveState
 
@@ -105,7 +105,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_idle_state": {
 		backing_field = "_path_idle_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,

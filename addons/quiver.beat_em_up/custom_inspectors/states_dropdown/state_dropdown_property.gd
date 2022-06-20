@@ -63,7 +63,7 @@ func _inititalize_property() -> void:
 
 func _on_options_item_selected(index: int) -> void:
 	if index != 0:
-		var new_value := _options.get_item_text(index) as NodePath
+		var new_value := _options.get_item_text(index)
 		emit_changed(get_edited_property(), new_value)
 
 ### -----------------------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ const MoveState = preload(
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 @export var _skin_state: int = -1
-@export var _path_walk_state := NodePath("Ground/Move/Walk")
+@export var _path_walk_state := "Ground/Move/Walk"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -93,7 +93,7 @@ func exit() -> void:
 const CUSTOM_PROPERTIES = {
 	"skin_state": {
 		backing_field = "_skin_state",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'

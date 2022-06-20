@@ -20,8 +20,8 @@ const GroundState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_jump_state := NodePath("Air/Jump")
-@export var _path_attack_state := NodePath("Ground/Combo1")
+@export var _path_jump_state := "Air/Jump"
+@export var _path_attack_state := "Ground/Combo1"
 
 var _direction := Vector2.ZERO
 
@@ -123,14 +123,14 @@ func jump() -> void:
 const CUSTOM_PROPERTIES = {
 	"path_jump_state": {
 		backing_field = "_path_jump_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_attack_state": {
 		backing_field = "_path_attack_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,

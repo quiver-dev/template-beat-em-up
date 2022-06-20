@@ -19,7 +19,7 @@ const AirState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _skin_state: int = -1
-@export var _path_falling_state := NodePath("Air/Jump")
+@export var _path_falling_state := "Air/Jump"
 
 @onready var _air_state := get_parent() as AirState
 
@@ -95,7 +95,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_falling_state": {
 		backing_field = "_path_falling_state",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,

@@ -37,7 +37,11 @@ func _parse_property(
 ) -> bool:
 	var replace_built_in := false
 	
-	if QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_EDITOR, usage_flags):
+	if (
+			QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_EDITOR, usage_flags)
+			# I can't use the condition below now because advanced exports are broken
+#			and hint_type == PROPERTY_HINT_ENUM 
+	):
 		# DELETE-ME The line below is hack-fix while advanced exports aren't working
 		hint_string = _get_real_hint_string_hack(object, name, hint_string)
 		

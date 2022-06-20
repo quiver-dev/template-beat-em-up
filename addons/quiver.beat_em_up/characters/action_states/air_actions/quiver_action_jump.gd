@@ -29,16 +29,16 @@ const AirState = preload(
 			notify_property_list_changed()
 		
 		if not _can_attack:
-			_path_air_attack = NodePath("")
+			_path_air_attack = ""
 		else:
 			update_configuration_warnings()
 
-@export var _path_air_attack := NodePath("Air/Attack"):
+@export var _path_air_attack := "Air/Attack":
 	set(value):
 		if _can_attack:
 			_path_air_attack = value
 		else:
-			_path_air_attack = NodePath()
+			_path_air_attack = ""
 		update_configuration_warnings()
 
 var _air_attack_count := 0
@@ -157,7 +157,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_air_attack": {
 		backing_field = "_path_air_attack",
-		type = TYPE_NODE_PATH,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
