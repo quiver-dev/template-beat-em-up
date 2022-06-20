@@ -63,6 +63,8 @@ func _load_custom_inspector_from(folder: String) -> void:
 	if ResourceLoader.exists(full_path):
 		var custom_inspector := load(full_path).new() as EditorInspectorPlugin
 		add_inspector_plugin(custom_inspector)
+		if "undo_redo" in custom_inspector:
+			custom_inspector.undo_redo = get_undo_redo()
 		_loaded_inspectors[folder] = custom_inspector
 
 

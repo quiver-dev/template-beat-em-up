@@ -6,6 +6,8 @@ extends HBoxContainer
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
+signal add_node_to(node_to_add: Node, parent_node: Node)
+
 #--- enums ----------------------------------------------------------------------------------------
 
 #--- constants ------------------------------------------------------------------------------------
@@ -35,6 +37,7 @@ func _ready() -> void:
 	QuiverEditorHelper.disable_all_processing(self)
 	_scrap_action_names(_actions_by_folders)
 	_populate_options_from(_actions_by_folders)
+	_confirm.disabled = true
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -99,20 +102,16 @@ func _sort_categories(a: String, b: String) -> bool:
 
 func _on_option_button_item_selected(index: int) -> void:
 	if index > 0:
-		_options.set_item_disabled(0, true)
+		_confirm.disabled = false
 		_selected_script = _options.get_item_metadata(index)
 		_selected_script_name = _options.get_item_text(index).capitalize().replace(" ", "")
+	else:
+		_confirm.disabled = true
 
 
 func _on_confirm_pressed() -> void:
 	var node = load(_selected_script).new()
 	node.name = _selected_script_name
-	if is_instance_valid(selected_node):
-		selected_node.add_child(node, true)
-		
-		if is_instance_valid(selected_node.owner):
-			node.owner = selected_node.owner
-		else:
-			node.owner = selected_node
+	add_node_to.emit(node, selected_node)
 
 ### -----------------------------------------------------------------------------------------------

@@ -20,6 +20,9 @@ const SCENE_WIDGET = preload(
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+var editor_plugin: EditorPlugin = null
+var undo_redo: UndoRedo = null
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
@@ -56,7 +59,7 @@ func _can_handle(object) -> bool:
 func _parse_begin(object: Object) -> void:
 	var widget: = SCENE_WIDGET.instantiate() as CreateNewActionWidget
 	widget.selected_node = object
-	# TODO - pass the editor undo_redo to the widget and add node using it
+	widget.add_node_to.connect(_on_widget_add_node_to)
 	add_custom_control(widget)
 
 ### -----------------------------------------------------------------------------------------------
@@ -68,6 +71,25 @@ func _parse_begin(object: Object) -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _add_node_to(node_to_add: Node, parent_node: Node) -> void:
+	parent_node.add_child(node_to_add, true)
+	if is_instance_valid(parent_node.owner):
+		node_to_add.owner = parent_node.owner
+	else:
+		node_to_add.owner = parent_node
+
+
+func _remove_node_from(node_to_remove: Node, parent_node: Node) -> void:
+	parent_node.remove_child(node_to_remove)
+
+
+func _on_widget_add_node_to(node_to_add: Node, parent_node: Node) -> void:
+	undo_redo.create_action("Add %s to %s"%[node_to_add.name, parent_node.name])
+	undo_redo.add_do_reference(node_to_add)
+	undo_redo.add_do_method(self, "_add_node_to", node_to_add, parent_node)
+	undo_redo.add_undo_method(self, "_remove_node_from", node_to_add, parent_node)
+	undo_redo.commit_action()
 
 ### -----------------------------------------------------------------------------------------------
 
