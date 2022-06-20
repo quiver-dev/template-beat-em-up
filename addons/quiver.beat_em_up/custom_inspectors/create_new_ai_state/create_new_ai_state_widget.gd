@@ -12,8 +12,8 @@ signal add_node_to(node_to_add: Node, parent_node: Node)
 
 #--- constants ------------------------------------------------------------------------------------
 
-const BASE_FOLDER = "res://addons/quiver.beat_em_up/characters/action_states/"
-const DEFAULT_TEXT = "Choose Character Action"
+const BASE_FOLDER = "res://addons/quiver.beat_em_up/characters/ai/states/"
+const DEFAULT_TEXT = "Choose AI State"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
@@ -21,7 +21,7 @@ var selected_node: Node = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _actions_by_folders := {}
+var _ai_states_by_folders := {}
 var _selected_script := ""
 var _selected_script_name := ""
 
@@ -36,8 +36,8 @@ var _selected_script_name := ""
 func _ready() -> void:
 	_options.clear()
 	QuiverEditorHelper.disable_all_processing(self)
-	_scrap_action_names(_actions_by_folders)
-	_populate_options_from(_actions_by_folders)
+	_scrap_action_names(_ai_states_by_folders)
+	_populate_options_from(_ai_states_by_folders)
 	_confirm.disabled = true
 
 ### -----------------------------------------------------------------------------------------------
