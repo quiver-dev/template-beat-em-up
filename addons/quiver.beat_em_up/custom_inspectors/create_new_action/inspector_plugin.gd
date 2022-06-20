@@ -72,19 +72,21 @@ func _parse_begin(object: Object) -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _add_node_to(node_to_add: Node, parent_node: Node) -> void:
+func _add_node_to(node_to_add: QuiverCharacterState, parent_node: Node) -> void:
 	parent_node.add_child(node_to_add, true)
 	if is_instance_valid(parent_node.owner):
 		node_to_add.owner = parent_node.owner
 	else:
 		node_to_add.owner = parent_node
+	
+	node_to_add._on_owner_ready()
 
 
-func _remove_node_from(node_to_remove: Node, parent_node: Node) -> void:
+func _remove_node_from(node_to_remove: QuiverCharacterState, parent_node: Node) -> void:
 	parent_node.remove_child(node_to_remove)
 
 
-func _on_widget_add_node_to(node_to_add: Node, parent_node: Node) -> void:
+func _on_widget_add_node_to(node_to_add: QuiverCharacterState, parent_node: Node) -> void:
 	undo_redo.create_action("Add %s to %s"%[node_to_add.name, parent_node.name])
 	undo_redo.add_do_reference(node_to_add)
 	undo_redo.add_do_method(self, "_add_node_to", node_to_add, parent_node)

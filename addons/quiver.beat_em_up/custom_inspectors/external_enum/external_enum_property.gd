@@ -37,7 +37,8 @@ func _update_property() -> void:
 ### Public Methods --------------------------------------------------------------------------------
 
 func create_external_enum(object: Object, p_name: String, p_enum: String) -> void:
-	external_enum = ExternalEnum.new(object, p_name, p_enum)
+	if object.get(p_name) != null and object.get(p_name).get(p_enum) != null:
+		external_enum = ExternalEnum.new(object, p_name, p_enum)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -52,6 +53,9 @@ func _add_property_scene() -> void:
 
 
 func _inititalize_property() -> void:
+	if external_enum == null:
+		return
+	
 	var current_value := _edited.get(get_edited_property()) as int
 	var item_id := 0
 	_options.clear()
