@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bboyj1mcs6jgd"]
+[gd_scene load_steps=18 format=3 uid="uid://bib34toyvbfdv"]
 
 [ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
@@ -12,10 +12,10 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_air_attack.gd" id="12_lphyp"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="13_b2qfj"]
 [ext_resource type="Script" path="res://characters/enemies/evil_chad/evil_chad_ai.gd" id="13_vcgxt"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/chase_closest_player.gd" id="14_nuwmn"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_chase_closest_player.gd" id="14_nuwmn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="15_cerch"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/call_action_state.gd" id="16_ooocb"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/wait.gd" id="17_v4twd"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_action.gd" id="16_ooocb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="17_v4twd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
 radius = 20.0
