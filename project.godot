@@ -22,7 +22,7 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"QuiverAttributes",
 "language": &"GDScript",
-"path": "res://characters/_base/attributes.gd"
+"path": "res://addons/quiver.beat_em_up/characters/quiver_attributes.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverBitwiseHelper",
