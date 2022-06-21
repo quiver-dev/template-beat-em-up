@@ -1,19 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf1cuk7310gxq"]
+[gd_scene load_steps=15 format=3 uid="uid://b14bl7t7f5sxu"]
 
-[ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_aj842"]
+[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Script" path="res://utilities/custom_nodes/State.gd" id="3_8x7lh"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="4_vubfk"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="5_5sh7r"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/walk.gd" id="6_jtgbp"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/idle.gd" id="7_kqgdb"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="9_cce84"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="10_ow8st"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="11_3fo3y"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_wf2ss"]
-[ext_resource type="Script" path="res://utilities/custom_nodes/QuiverDebugPropertyLabel.gd" id="12_sub7a"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/air_attack.gd" id="13_cw2hu"]
+[ext_resource type="Resource" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle.gd" id="7_kqgdb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="9_cce84"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="9_o5gfu"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="11_wf2ss"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
@@ -21,6 +20,7 @@ height = 204.0
 
 [node name="Chad" groups=["players"] instance=ExtResource( "1_aj842" )]
 script = ExtResource( "2_dwyxr" )
+_attributes = ExtResource( "3_ylsip" )
 _path_skin = NodePath("ChadSkin")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
@@ -38,31 +38,36 @@ script = ExtResource( "4_vubfk" )
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource( "5_5sh7r" )
-MAX_SPEED = 350
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "6_jtgbp" )
+_skin_state = 1
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource( "7_kqgdb" )
+_skin_state = 0
 
-[node name="Attack" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource( "3_8x7lh" )
-
-[node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
+[node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "9_cce84" )
+_skin_state = 2
+_path_combo_state = "Ground/Combo2"
 
-[node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
-script = ExtResource( "10_ow8st" )
+[node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
+script = ExtResource( "9_cce84" )
+_skin_state = 3
+_can_combo = false
+_path_combo_state = ""
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
-script = ExtResource( "11_3fo3y" )
+script = ExtResource( "9_o5gfu" )
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_wf2ss" )
+_skin_state = 4
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "13_cw2hu" )
+_skin_state = 5
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
 offset_left = -168.0
@@ -90,5 +95,5 @@ path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
 [connection signal="air_attack_finished" from="ChadSkin" to="StateMachine/Air/Attack" method="_on_chad_skin_air_attack_finished"]
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Combo1" method="_on_attack_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Combo2" method="_on_attack_finished"]

@@ -1,7 +1,7 @@
-@tool
-extends QuiverCharacter
+class_name QuiverCharacterHelper
+extends RefCounted
 
-## Write your doc string for this file here
+## Static Helper for situations involving QuiverCharacters
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -19,19 +19,26 @@ extends QuiverCharacter
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+static func find_closest_player_to(node_2d: Node2D) -> QuiverCharacter:
+	var value: QuiverCharacter = null
+	var players: Array = node_2d.get_tree().get_nodes_in_group("players")
+	
+	if players.size() == 1:
+		value = players.front()
+	elif players.size() > 1:
+		var min_distance := INF
+		for player in players:
+			var distance = node_2d.global_position.distance_squared_to(player.global_position)
+			if distance < min_distance:
+				min_distance = distance
+				value = player
+	
+	return value
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,3 +46,4 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+

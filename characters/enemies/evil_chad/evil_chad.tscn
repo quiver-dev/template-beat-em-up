@@ -1,29 +1,29 @@
-[gd_scene load_steps=20 format=3 uid="uid://dannf7veijqt0"]
+[gd_scene load_steps=19 format=3 uid="uid://bib34toyvbfdv"]
 
-[ext_resource type="PackedScene" uid="uid://buvlyefwgdx7h" path="res://characters/_base/character/base_character.tscn" id="1_4jcfv"]
+[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/states/follow.gd" id="2_py5s2"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/ground.gd" id="3_bg7yk"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/move.gd" id="4_120xx"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/states/idle_ai.gd" id="5_y1loh"]
-[ext_resource type="Script" path="res://utilities/custom_nodes/State.gd" id="7_nk4ro"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/combo1.gd" id="8_lnplq"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/combo2.gd" id="9_m8mt4"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/air.gd" id="10_xyisi"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/jump.gd" id="11_rp4h6"]
-[ext_resource type="Script" path="res://characters/playable/chad/states/air_attack.gd" id="12_lphyp"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/ai_state_machine.gd" id="13_4ltbo"]
-[ext_resource type="Script" path="res://utilities/custom_nodes/QuiverDebugPropertyLabel.gd" id="13_b2qfj"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/chase_closest_player.gd" id="14_5pool"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/sequence_state.gd" id="15_cerch"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/wait.gd" id="15_n3xo2"]
-[ext_resource type="Script" path="res://characters/enemies/evil_chad/ai_states/call_action_state.gd" id="16_d5usr"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="2_py5s2"]
+[ext_resource type="Resource" uid="uid://fvhi7j4yexx8" path="res://characters/enemies/evil_chad/evil_chad_attributes.tres" id="2_qsegb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="3_bg7yk"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="4_120xx"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="5_y1loh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="8_lnplq"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="10_xyisi"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="11_rp4h6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_air_attack.gd" id="12_lphyp"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="13_b2qfj"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/evil_chad_ai.gd" id="13_vcgxt"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_chase_closest_player.gd" id="14_nuwmn"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="15_cerch"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_action.gd" id="16_ooocb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="17_v4twd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
 radius = 20.0
 height = 204.0
 
 [node name="EvilChad" groups=["enemies"] instance=ExtResource( "1_4jcfv" )]
+_attributes = ExtResource( "2_qsegb" )
 _path_skin = NodePath("ChadSkin")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
@@ -43,7 +43,6 @@ script = ExtResource( "3_bg7yk" )
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource( "4_120xx" )
-MAX_SPEED = 350
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "5_y1loh" )
@@ -52,52 +51,56 @@ script = ExtResource( "5_y1loh" )
 script = ExtResource( "2_py5s2" )
 ARRIVE_RANGE = 30
 
-[node name="Attack" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource( "7_nk4ro" )
-
-[node name="Combo1" type="Node" parent="StateMachine/Ground/Attack" index="0"]
+[node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "8_lnplq" )
+_skin_state = 2
+_path_combo_state = "Ground/Combo2"
 
-[node name="Combo2" type="Node" parent="StateMachine/Ground/Attack" index="1"]
-script = ExtResource( "9_m8mt4" )
+[node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
+script = ExtResource( "8_lnplq" )
+_skin_state = 3
+_can_combo = false
+_path_combo_state = ""
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource( "10_xyisi" )
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_rp4h6" )
+_skin_state = 4
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "12_lphyp" )
+_skin_state = 5
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]
-script = ExtResource( "13_4ltbo" )
+script = ExtResource( "13_vcgxt" )
 initial_state = NodePath("ChaseClosestPlayer")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine" index="0"]
-script = ExtResource( "14_5pool" )
+script = ExtResource( "14_nuwmn" )
 
 [node name="Attack" type="Node" parent="AiStateMachine" index="1"]
 script = ExtResource( "15_cerch" )
 
 [node name="Punch" type="Node" parent="AiStateMachine/Attack" index="0"]
-script = ExtResource( "16_d5usr" )
-state_to_call = 2
+script = ExtResource( "16_ooocb" )
+_state_path = "Ground/Combo1"
 
 [node name="Wait" type="Node" parent="AiStateMachine/Attack" index="1"]
-script = ExtResource( "15_n3xo2" )
+script = ExtResource( "17_v4twd" )
 wait_time = 0.5
 
 [node name="Punch2" type="Node" parent="AiStateMachine/Attack" index="2"]
-script = ExtResource( "16_d5usr" )
-state_to_call = 2
+script = ExtResource( "16_ooocb" )
+_state_path = "Ground/Combo1"
 
 [node name="Kick" type="Node" parent="AiStateMachine/Attack" index="3"]
-script = ExtResource( "16_d5usr" )
-state_to_call = 3
+script = ExtResource( "16_ooocb" )
+_state_path = "Ground/Combo2"
 
 [node name="Wait" type="Node" parent="AiStateMachine" index="2"]
-script = ExtResource( "15_n3xo2" )
+script = ExtResource( "17_v4twd" )
 wait_time = 3.0
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
@@ -133,5 +136,5 @@ script = ExtResource( "13_b2qfj" )
 path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name")
 
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo1" method="_on_chad_skin_attack_1_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Attack/Combo2" method="_on_chad_skin_attack_2_finished"]
+[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Combo1" method="_on_attack_finished"]
+[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Combo2" method="_on_attack_finished"]

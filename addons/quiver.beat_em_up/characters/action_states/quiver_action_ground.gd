@@ -1,5 +1,4 @@
-@tool
-extends QuiverCharacter
+extends QuiverCharacterState
 
 ## Write your doc string for this file here
 
@@ -19,19 +18,28 @@ extends QuiverCharacter
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func enter(msg: = {}) -> void:
+	super(msg)
+	_character.ground_level = _character.global_position.y
+	_character.is_on_air = false
+
+
+func unhandled_input(_event: InputEvent) -> void:
+	pass
+
+
+func physics_process(_delta: float) -> void:
+	_character.ground_level = _character.global_position.y
+
+
+func exit() -> void:
+	_character.is_on_air = true
+	super()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,3 +47,4 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+

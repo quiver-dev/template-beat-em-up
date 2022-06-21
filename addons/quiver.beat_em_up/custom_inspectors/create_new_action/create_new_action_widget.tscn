@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://co7qc6m4h7en4"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/custom_inspectors/create_new_action/create_new_action_widget.gd" id="1_g6tmv"]
+
+[node name="CreateNewActionWidget" type="HBoxContainer"]
+offset_right = 253.0
+offset_bottom = 20.0
+script = ExtResource( "1_g6tmv" )
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_right = 234.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+selected = 0
+
+[node name="Confirm" type="Button" parent="."]
+offset_left = 238.0
+offset_right = 277.0
+offset_bottom = 31.0
+disabled = true
+text = "Add"
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]

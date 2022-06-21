@@ -1,7 +1,7 @@
-@tool
-extends QuiverCharacter
+class_name QuiverMathHelper
+extends RefCounted
 
-## Write your doc string for this file here
+## Static Helper for common Math situations/problems/techniques useful in games.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -19,14 +19,15 @@ extends QuiverCharacter
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
+static func get_position_by_polar_coordinates(
+		center_position: Vector2, angle: float, radius: float
+) -> Vector2:
+	var polar_coordinate = Vector2(
+		cos(angle) * radius,
+		sin(angle) * radius
+	)
+	var value = center_position + polar_coordinate
+	return value
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,3 +40,4 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+

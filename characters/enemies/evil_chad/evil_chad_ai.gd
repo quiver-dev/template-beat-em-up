@@ -1,5 +1,5 @@
 @tool
-extends QuiverCharacter
+extends QuiverAiStateMachine
 
 ## Write your doc string for this file here
 
@@ -19,15 +19,6 @@ extends QuiverCharacter
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -38,4 +29,14 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _decide_next_action(last_state: StringName) -> void:
+	match last_state:
+		&"ChaseClosestPlayer":
+			transition_to(^"Attack")
+		&"Attack":
+			transition_to(^"Wait")
+		&"Wait":
+			transition_to(^"ChaseClosestPlayer")
+
 ### -----------------------------------------------------------------------------------------------
+

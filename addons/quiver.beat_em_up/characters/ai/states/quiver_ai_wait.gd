@@ -1,5 +1,4 @@
-@tool
-extends QuiverCharacter
+extends QuiverAiState
 
 ## Write your doc string for this file here
 
@@ -12,6 +11,8 @@ extends QuiverCharacter
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export_range(0.0, 10.0, 0.1, "or_greater") var wait_time := 5.0
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
@@ -19,19 +20,20 @@ extends QuiverCharacter
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func enter(msg: = {}) -> void:
+	super(msg)
+	_actions.transition_to("Ground/Move/Idle")
+	await get_tree().create_timer(wait_time).timeout
+	state_finished.emit()
+
+
+func exit() -> void:
+	super()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,3 +41,4 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+

@@ -33,16 +33,16 @@ const ANIM_NODE_NAMES := {
 }
 
 const CONDITIONS := {
-	should_combo_2 = &"parameters/state_machine/conditions/should_combo_2",
+	should_combo = &"parameters/state_machine/conditions/should_combo",
 }
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var should_combo_2: bool :
+@export var should_combo: bool :
 	get:
-		return _get_animation_tree_condition(CONDITIONS.should_combo_2)
+		return _get_animation_tree_condition(CONDITIONS.should_combo)
 	set(value):
-		_set_animation_tree_condition(CONDITIONS.should_combo_2, value)
+		_set_animation_tree_condition(CONDITIONS.should_combo, value)
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -118,13 +118,13 @@ func _set_debug_skin_state(value: SkinStates) -> void:
 
 func _attack_test_routine() -> void:
 	print_debug("Should Attack and go to idle")
-	should_combo_2 = false
+	should_combo = false
 	_debug_skin_state = SkinStates.ATTACK_1
 	await attack_1_finished
 	_debug_skin_state = SkinStates.IDLE
 	await get_tree().create_timer(0.3).timeout
 	print_debug("Should Combo and go to idle")
-	should_combo_2 = true
+	should_combo = true
 	_debug_skin_state = SkinStates.ATTACK_1
 	await attack_2_finished
 	_debug_skin_state = SkinStates.IDLE

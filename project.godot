@@ -9,55 +9,85 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "QuiverState",
+"class": &"QuiverAiState",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_base_state.gd"
+}, {
+"base": "QuiverStateMachine",
+"class": &"QuiverAiStateMachine",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/characters/ai/quiver_ai_state_machine.gd"
+}, {
+"base": "Resource",
+"class": &"QuiverAttributes",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/characters/quiver_attributes.gd"
+}, {
+"base": "RefCounted",
+"class": &"QuiverBitwiseHelper",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_bitwise_helper.gd"
+}, {
 "base": "CharacterBody2D",
 "class": &"QuiverCharacter",
 "language": &"GDScript",
-"path": "res://characters/_base/character/base_character.gd"
+"path": "res://characters/_base/character/quiver_base_character.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverCharacterHelper",
 "language": &"GDScript",
-"path": "res://utilities/helpers/quiver_character_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_character_helper.gd"
 }, {
 "base": "Node2D",
 "class": &"QuiverCharacterSkin",
 "language": &"GDScript",
 "path": "res://characters/_base/character_skin/character_skin_base.gd"
 }, {
+"base": "QuiverState",
+"class": &"QuiverCharacterState",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd"
+}, {
 "base": "RefCounted",
 "class": &"QuiverCyclicHelper",
 "language": &"GDScript",
-"path": "res://utilities/helpers/cyclic_error_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_cyclic_error_helper.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverEditorHelper",
 "language": &"GDScript",
-"path": "res://utilities/helpers/quiver_editor_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_editor_helper.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverMathHelper",
 "language": &"GDScript",
-"path": "res://utilities/helpers/quiver_math_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_math_helper.gd"
 }, {
 "base": "Node",
 "class": &"QuiverState",
 "language": &"GDScript",
-"path": "res://utilities/custom_nodes/State.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state.gd"
 }, {
 "base": "Node",
 "class": &"QuiverStateMachine",
 "language": &"GDScript",
-"path": "res://utilities/custom_nodes/StateMachine.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_machine.gd"
 }, {
 "base": "QuiverState",
 "class": &"QuiverStateSequence",
 "language": &"GDScript",
-"path": "res://characters/enemies/evil_chad/ai_states/sequence_state.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd"
 }]
 _global_script_class_icons={
+"QuiverAiState": "",
+"QuiverAiStateMachine": "",
+"QuiverAttributes": "",
+"QuiverBitwiseHelper": "",
 "QuiverCharacter": "",
 "QuiverCharacterHelper": "",
 "QuiverCharacterSkin": "",
+"QuiverCharacterState": "",
 "QuiverCyclicHelper": "",
 "QuiverEditorHelper": "",
 "QuiverMathHelper": "",
@@ -70,9 +100,9 @@ _global_script_class_icons={
 
 config/name="Template Beat Project"
 run/main_scene="res://prototype_main.tscn"
-config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
-config/version="0.1.0"
+config/icon="res://icon.png"
+config/version="0.1.1"
 
 [display]
 
@@ -82,6 +112,10 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quiver.beat_em_up/plugin.cfg")
 
 [input]
 

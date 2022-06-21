@@ -1,5 +1,5 @@
-@tool
-extends QuiverCharacter
+class_name QuiverCharacterState
+extends QuiverState
 
 ## Write your doc string for this file here
 
@@ -14,6 +14,10 @@ extends QuiverCharacter
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+var _character: QuiverCharacter
+var _skin: QuiverCharacterSkin
+var _attributes: QuiverAttributes
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -21,12 +25,9 @@ extends QuiverCharacter
 
 func _ready() -> void:
 	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
+	if is_instance_valid(owner):
+		await owner.ready
+		_on_owner_ready()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -38,4 +39,10 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _on_owner_ready() -> void:
+	_character = owner as QuiverCharacter
+	_skin = _character._skin as QuiverCharacterSkin
+	_attributes = _character.attributes
+
 ### -----------------------------------------------------------------------------------------------
+

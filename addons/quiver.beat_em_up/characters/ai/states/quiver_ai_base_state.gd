@@ -1,5 +1,5 @@
-@tool
-extends QuiverCharacter
+class_name QuiverAiState
+extends QuiverState
 
 ## Write your doc string for this file here
 
@@ -14,6 +14,9 @@ extends QuiverCharacter
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+var _character: QuiverCharacter = null
+var _actions: QuiverStateMachine = null
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -21,21 +24,31 @@ extends QuiverCharacter
 
 func _ready() -> void:
 	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if QuiverEditorHelper.is_standalone_run(self):
-		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
+	if is_instance_valid(owner):
+		await owner.ready
+		_on_owner_ready()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func get_list_of_action_states() -> Array:
+	var list := ["Node not ready yet"]
+	if _actions == null:
+		return list
+	
+	list = _actions.get_leaf_nodes_path_list()
+	return list
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _on_owner_ready() -> void:
+	_character = owner
+	_actions = _character._state_machine
+
 ### -----------------------------------------------------------------------------------------------
+

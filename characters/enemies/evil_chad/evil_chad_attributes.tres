@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://fvhi7j4yexx8"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_etxhr"]
+
+[resource]
+script = ExtResource( "1_etxhr" )
+health_max = 100
+speed_max = 350
+jump_force = -1200
+weight = 1
