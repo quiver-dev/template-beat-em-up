@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bib34toyvbfdv"]
+[gd_scene load_steps=19 format=3 uid="uid://bib34toyvbfdv"]
 
-[ext_resource type="PackedScene" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
+[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="2_py5s2"]
+[ext_resource type="Resource" uid="uid://fvhi7j4yexx8" path="res://characters/enemies/evil_chad/evil_chad_attributes.tres" id="2_qsegb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="3_bg7yk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="4_120xx"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="5_y1loh"]
@@ -22,6 +23,7 @@ radius = 20.0
 height = 204.0
 
 [node name="EvilChad" groups=["enemies"] instance=ExtResource( "1_4jcfv" )]
+_attributes = ExtResource( "2_qsegb" )
 _path_skin = NodePath("ChadSkin")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
@@ -41,7 +43,6 @@ script = ExtResource( "3_bg7yk" )
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource( "4_120xx" )
-MAX_SPEED = 350
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "5_y1loh" )
