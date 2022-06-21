@@ -13,6 +13,8 @@ signal add_node_to(node_to_add: Node, parent_node: Node)
 #--- constants ------------------------------------------------------------------------------------
 
 const BASE_FOLDER = "res://addons/quiver.beat_em_up/characters/ai/states/"
+const SEQUENCE_STATE = "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/" \
+		+ "quiver_state_sequence.gd"
 const DEFAULT_TEXT = "Choose AI State"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -36,7 +38,8 @@ var _selected_script_name := ""
 func _ready() -> void:
 	_options.clear()
 	QuiverEditorHelper.disable_all_processing(self)
-	_scrap_action_names(_ai_states_by_folders)
+	_scrap_ai_states_names(_ai_states_by_folders)
+	_ai_states_by_folders["quiver_sequence_state"] = SEQUENCE_STATE
 	_populate_options_from(_ai_states_by_folders)
 	_confirm.disabled = true
 
@@ -50,7 +53,7 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _scrap_action_names(target_dictionary: Dictionary, path := BASE_FOLDER) -> void:
+func _scrap_ai_states_names(target_dictionary: Dictionary, path := BASE_FOLDER) -> void:
 	var dir := Directory.new()
 	var error := dir.open(path)
 	if error == OK:
@@ -59,7 +62,7 @@ func _scrap_action_names(target_dictionary: Dictionary, path := BASE_FOLDER) -> 
 		while not file_name.is_empty():
 			if dir.current_is_dir(): 
 				target_dictionary[file_name] = {}
-				_scrap_action_names(target_dictionary[file_name], path.plus_file(file_name))
+				_scrap_ai_states_names(target_dictionary[file_name], path.plus_file(file_name))
 			elif file_name.ends_with(".gd"):
 				var key := file_name.trim_suffix(".gd")
 				target_dictionary[key] = path.plus_file(file_name)
