@@ -14,8 +14,6 @@ const AirState = preload(
 		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
 )
 
-@export var JUMP_FORCE := -1200
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -98,7 +96,7 @@ func enter(msg: = {}) -> void:
 	
 	_state_machine.set_physics_process(false)
 	await get_tree().process_frame
-	_character.velocity.y = JUMP_FORCE
+	_character.velocity.y = _attributes.jump_force
 	await get_tree().process_frame
 	_state_machine.set_physics_process(true)
 

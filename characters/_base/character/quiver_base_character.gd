@@ -23,10 +23,22 @@ const CEILING_LIMITS_LAYER_NUMBER = 4
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+var attributes: QuiverAttributes = null
+
 var is_on_air := false
 var ground_level := 0.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+## This is also here as a "hack" for the lack of advanced exports. It is private because I don't 
+## want to deal with this in code, it's just an editor field to populate the real property which
+## is the public [member character_attributes]. Once advanced exportes exist this will be converted
+## to it.
+@export var _attributes: Resource:
+	set(value):
+		attributes = value as QuiverAttributes
+	get:
+		return attributes
 
 ## Must point to a valid skin node. 
 ## [br][br]This is a "private" exported property just as reminder that this property 
@@ -111,4 +123,3 @@ func _enable_collisions() -> void:
 	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, true)
 
 ### -----------------------------------------------------------------------------------------------
-

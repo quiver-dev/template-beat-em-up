@@ -16,6 +16,7 @@ extends QuiverState
 
 var _character: QuiverCharacter
 var _skin: QuiverCharacterSkin
+var _attributes: QuiverAttributes
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,6 +42,7 @@ func _ready() -> void:
 func _on_owner_ready() -> void:
 	_character = owner as QuiverCharacter
 	_skin = _character._skin as QuiverCharacterSkin
+	_attributes = _character.attributes
 
 ### -----------------------------------------------------------------------------------------------
 
