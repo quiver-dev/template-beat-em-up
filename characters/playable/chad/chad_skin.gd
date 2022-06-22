@@ -70,6 +70,7 @@ func _ready() -> void:
 	
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
+		_animation_tree.set_deferred("active", false)
 		return
 	elif QuiverEditorHelper.is_standalone_run(self):
 		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
