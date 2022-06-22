@@ -6,6 +6,11 @@ extends QuiverCharacterSkin
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
+## called by attack animations at the point where they stop accepting input for combos
+signal attack_input_frames_finished
+## called by attack animation at their last frame. This is a workaround for [AnimationPlayer] 
+## not emitting any of it's signals when it's controlled by an [AnimationTree].
+signal attack_animation_finished
 signal attack_1_finished # called by attack1 animation
 signal attack_2_finished # called by attack2 animation
 signal air_attack_finished # called by air_attack animation
@@ -38,6 +43,7 @@ const CONDITIONS := {
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+## Property that characters 
 @export var should_combo: bool :
 	get:
 		return _get_animation_tree_condition(CONDITIONS.should_combo)
@@ -81,6 +87,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func end_of_input_frames() -> void:
+	attack_input_frames_finished.emit()
+
+
+func end_of_attack_animation() -> void:
+	attack_animation_finished.emit()
+
 
 func _is_valid_state(anim_state: int) -> bool:
 	var value = anim_state in SkinStates.values()
