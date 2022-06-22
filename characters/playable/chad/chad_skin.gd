@@ -11,6 +11,9 @@ signal attack_input_frames_finished
 ## called by attack animation at their last frame. This is a workaround for [AnimationPlayer] 
 ## not emitting any of it's signals when it's controlled by an [AnimationTree].
 signal attack_animation_finished
+signal jump_impulse_reached
+signal landing_finished
+
 signal attack_1_finished # called by attack1 animation
 signal attack_2_finished # called by attack2 animation
 signal air_attack_finished # called by air_attack animation
@@ -83,18 +86,35 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-### -----------------------------------------------------------------------------------------------
-
-
-### Private Methods -------------------------------------------------------------------------------
-
+## Use this method in your character's attack animations as a shortcut to emitting
+## [signal attack_input_frames_finished]
 func end_of_input_frames() -> void:
 	attack_input_frames_finished.emit()
 
 
+## Use this method at the end of your character's attack animations as a shortcut to emitting
+## [signal attack_animation_finished.emit()]
 func end_of_attack_animation() -> void:
 	attack_animation_finished.emit()
 
+
+## Use this method at the end of your "jumping" animation. This will emit the 
+## [signal jump_impulse_reached] and the character's state machine will handle the actual 
+## jump and transitioning to the "rising" animation state.
+func jump_impulse() -> void:
+	jump_impulse_reached.emit()
+
+
+## Use this method at the end of your "landing" animation. This will emit the 
+## [signal landing_finished] and the character's state machine will handle the actual 
+## transitioning to the "idle" animation state.
+func landed() -> void:
+	landing_finished.emit()
+
+### -----------------------------------------------------------------------------------------------
+
+
+### Private Methods -------------------------------------------------------------------------------
 
 func _is_valid_state(anim_state: int) -> bool:
 	var value = anim_state in SkinStates.values()

@@ -1,8 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://drxcnmfeqjged"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://drxcnmfeqjged"]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
-[ext_resource type="Texture2D" uid="uid://dusiulyorn64y" path="res://characters/playable/chad/resources/sprites/jump.png" id="2_sj0ov"]
 [ext_resource type="Texture2D" uid="uid://b44mkiid6nke1" path="res://characters/playable/chad/resources/sprites/idle/idle_02.png" id="3_5djqb"]
 [ext_resource type="Texture2D" uid="uid://doy7ui6dy85q5" path="res://characters/playable/chad/resources/sprites/punches/1punch_01.png" id="5_m1p1s"]
 [ext_resource type="Texture2D" uid="uid://dpvkqbbeuqrlx" path="res://characters/playable/chad/resources/sprites/punches/1punch_02.png" id="6_6r71h"]
@@ -22,6 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://dqjdbs6bjijxn" path="res://characters/playable/chad/resources/sprites/punches/2punch_04.png" id="19_y1ame"]
 [ext_resource type="Texture2D" uid="uid://ckuht4pw416lo" path="res://characters/playable/chad/resources/sprites/punches/2punch_05.png" id="20_7jacw"]
 [ext_resource type="Texture2D" uid="uid://c453g5dmv1t1t" path="res://characters/playable/chad/resources/sprites/punches/2punch_02.png" id="21_nnpkm"]
+[ext_resource type="Texture2D" uid="uid://bw7ulkf8jdiyj" path="res://characters/playable/chad/resources/sprites/jump/jump_03.png" id="22_c167v"]
+[ext_resource type="Texture2D" uid="uid://ddisqyo4a10um" path="res://characters/playable/chad/resources/sprites/jump/jump_01.png" id="23_trcrx"]
+[ext_resource type="Texture2D" uid="uid://cskwkalajq4a1" path="res://characters/playable/chad/resources/sprites/jump/jump_02.png" id="24_5taik"]
+[ext_resource type="Texture2D" uid="uid://giai7a22rqyj" path="res://characters/playable/chad/resources/sprites/jump/jump_04.png" id="25_bqngl"]
 
 [resource]
 animations = [{
@@ -29,11 +32,6 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 8.0
-}, {
-"frames": [ExtResource( "2_sj0ov" )],
-"loop": false,
-"name": &"jump",
-"speed": 5.0
 }, {
 "frames": [ExtResource( "5_m1p1s" ), ExtResource( "5_m1p1s" ), ExtResource( "5_m1p1s" ), ExtResource( "5_m1p1s" ), ExtResource( "6_6r71h" ), ExtResource( "6_6r71h" )],
 "loop": false,
@@ -54,4 +52,24 @@ animations = [{
 "loop": true,
 "name": &"air_attack",
 "speed": 5.0
+}, {
+"frames": [ExtResource( "22_c167v" )],
+"loop": false,
+"name": &"rising",
+"speed": 24.0
+}, {
+"frames": [ExtResource( "23_trcrx" ), ExtResource( "23_trcrx" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" )],
+"loop": false,
+"name": &"jump",
+"speed": 24.0
+}, {
+"frames": [ExtResource( "25_bqngl" )],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "23_trcrx" ), ExtResource( "23_trcrx" )],
+"loop": true,
+"name": &"landing",
+"speed": 24.0
 }]
