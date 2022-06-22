@@ -1,33 +1,47 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://d0r7tpqwpvr02"]
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://d0r7tpqwpvr02"]
 
-[ext_resource type="Texture2D" uid="uid://cxtw4rk86vu7i" path="res://characters/playable/chad/resources/sprites/idle.png" id="1_0ym6h"]
+[ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
+[ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
 [ext_resource type="Texture2D" uid="uid://dusiulyorn64y" path="res://characters/playable/chad/resources/sprites/jump.png" id="2_sj0ov"]
-[ext_resource type="Texture2D" uid="uid://b3o3kcp11ng3x" path="res://characters/playable/chad/resources/sprites/attack_01.png" id="3_khyrs"]
-[ext_resource type="Texture2D" uid="uid://bnq627g2c7x6s" path="res://characters/playable/chad/resources/sprites/walk.png" id="4_4fchr"]
+[ext_resource type="Texture2D" uid="uid://b44mkiid6nke1" path="res://characters/playable/chad/resources/sprites/idle/idle_02.png" id="3_5djqb"]
 [ext_resource type="Texture2D" uid="uid://dvrse86fpntux" path="res://characters/playable/chad/resources/sprites/attack_02.png" id="5_vsteo"]
+[ext_resource type="Texture2D" uid="uid://doy7ui6dy85q5" path="res://characters/playable/chad/resources/sprites/punch_1/1punch_01.png" id="5_wf8rx"]
+[ext_resource type="Texture2D" uid="uid://dpvkqbbeuqrlx" path="res://characters/playable/chad/resources/sprites/punch_1/1punch_02.png" id="6_pm4me"]
+[ext_resource type="Texture2D" uid="uid://eqnijrnpafm5" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_00.png" id="6_ra0bq"]
 [ext_resource type="Texture2D" uid="uid://dkdp5y8fg30o5" path="res://characters/playable/chad/resources/sprites/air_attack.png" id="6_rcq04"]
+[ext_resource type="Texture2D" uid="uid://djal1tttw34iv" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_01.png" id="7_n4s3j"]
+[ext_resource type="Texture2D" uid="uid://0gc258c1wb8b" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_02.png" id="8_ytmlj"]
+[ext_resource type="Texture2D" uid="uid://ddn1e7p4qwe1q" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_03.png" id="9_ur7d7"]
+[ext_resource type="Texture2D" uid="uid://cn7cs0c34hfx6" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_04.png" id="10_vyrsa"]
+[ext_resource type="Texture2D" uid="uid://b7cf6s8oe73ok" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_05.png" id="11_5p56x"]
+[ext_resource type="Texture2D" uid="uid://d4gdikrrge1fb" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_06.png" id="12_sw7jw"]
+[ext_resource type="Texture2D" uid="uid://ct8aer8uakvum" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_07.png" id="13_wlfmd"]
+[ext_resource type="Texture2D" uid="uid://xeuy0lqlnc84" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_08.png" id="14_ujcpq"]
+[ext_resource type="Texture2D" uid="uid://dlsdi7mi362ox" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_09.png" id="15_bany5"]
+[ext_resource type="Texture2D" uid="uid://xwc6l54otrc8" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_10.png" id="16_wr7m3"]
+[ext_resource type="Texture2D" uid="uid://bv5edst2ca6jb" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_11.png" id="17_j3734"]
 
 [resource]
 animations = [{
-"frames": [ExtResource( "1_0ym6h" )],
+"frames": [ExtResource( "1_wrqq6" ), ExtResource( "2_1xc7n" ), ExtResource( "3_5djqb" ), ExtResource( "2_1xc7n" )],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [ExtResource( "2_sj0ov" )],
 "loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
-"frames": [ExtResource( "3_khyrs" )],
-"loop": true,
+"frames": [ExtResource( "5_wf8rx" ), ExtResource( "5_wf8rx" ), ExtResource( "5_wf8rx" ), ExtResource( "5_wf8rx" ), ExtResource( "6_pm4me" ), ExtResource( "6_pm4me" )],
+"loop": false,
 "name": &"attack_1",
-"speed": 5.0
+"speed": 24.0
 }, {
-"frames": [ExtResource( "4_4fchr" )],
+"frames": [ExtResource( "6_ra0bq" ), ExtResource( "6_ra0bq" ), ExtResource( "7_n4s3j" ), ExtResource( "7_n4s3j" ), ExtResource( "7_n4s3j" ), ExtResource( "8_ytmlj" ), ExtResource( "8_ytmlj" ), ExtResource( "9_ur7d7" ), ExtResource( "9_ur7d7" ), ExtResource( "9_ur7d7" ), ExtResource( "10_vyrsa" ), ExtResource( "10_vyrsa" ), ExtResource( "11_5p56x" ), ExtResource( "11_5p56x" ), ExtResource( "12_sw7jw" ), ExtResource( "12_sw7jw" ), ExtResource( "12_sw7jw" ), ExtResource( "13_wlfmd" ), ExtResource( "13_wlfmd" ), ExtResource( "14_ujcpq" ), ExtResource( "14_ujcpq" ), ExtResource( "14_ujcpq" ), ExtResource( "15_bany5" ), ExtResource( "15_bany5" ), ExtResource( "16_wr7m3" ), ExtResource( "16_wr7m3" ), ExtResource( "17_j3734" ), ExtResource( "17_j3734" ), ExtResource( "17_j3734" )],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 24.0
 }, {
 "frames": [ExtResource( "5_vsteo" )],
 "loop": true,

@@ -63,12 +63,12 @@ states/jump/position = Vector2(234.226, 31)
 states/walk/node = SubResource( "AnimationNodeAnimation_inagd" )
 states/walk/position = Vector2(450.226, 31)
 transitions = ["Start", "idle", SubResource( "AnimationNodeStateMachineTransition_5huoi" ), "idle", "walk", SubResource( "AnimationNodeStateMachineTransition_2mjg0" ), "idle", "jump", SubResource( "AnimationNodeStateMachineTransition_ryyaa" ), "walk", "jump", SubResource( "AnimationNodeStateMachineTransition_n2ns8" ), "jump", "idle", SubResource( "AnimationNodeStateMachineTransition_vnd48" ), "walk", "idle", SubResource( "AnimationNodeStateMachineTransition_wc4su" ), "idle", "attack1", SubResource( "AnimationNodeStateMachineTransition_8ulbr" ), "attack1", "idle", SubResource( "AnimationNodeStateMachineTransition_2tk4x" ), "attack1", "attack2", SubResource( "AnimationNodeStateMachineTransition_hhiei" ), "attack2", "idle", SubResource( "AnimationNodeStateMachineTransition_yvwep" ), "jump", "air_attack", SubResource( "AnimationNodeStateMachineTransition_cisd7" ), "air_attack", "jump", SubResource( "AnimationNodeStateMachineTransition_603v5" )]
-graph_offset = Vector2(-286.774, 80.811)
+graph_offset = Vector2(-237.774, -87.189)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3xljo"]
 
 [resource]
-graph_offset = Vector2(-378, 109)
+graph_offset = Vector2(-429, 50)
 nodes/state_machine/node = SubResource( "AnimationNodeStateMachine_h6i7g" )
 nodes/state_machine/position = Vector2(-120, 100)
 nodes/time_scale/node = SubResource( "AnimationNodeTimeScale_3xljo" )
