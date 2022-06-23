@@ -71,7 +71,22 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_chad_skin_air_attack_finished() -> void:
+func _connect_signals() -> void:
+	super()
+	
+	if not _skin.attack_animation_finished.is_connected(_on_air_attack_finished):
+		_skin.attack_animation_finished.connect(_on_air_attack_finished)
+
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _skin != null:
+		if _skin.attack_animation_finished.is_connected(_on_air_attack_finished):
+			_skin.attack_animation_finished.disconnect(_on_air_attack_finished)
+
+
+func _on_air_attack_finished() -> void:
 	_state_machine.transition_to(_path_falling_state, {
 			velocity = _character.velocity, 
 			ignore_jump = true,

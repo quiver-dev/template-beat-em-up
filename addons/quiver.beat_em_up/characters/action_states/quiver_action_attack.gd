@@ -38,6 +38,8 @@ extends QuiverCharacterState
 	
 @export var _path_next_state := "Ground/Move/Idle"
 
+var _should_combo := false
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -67,11 +69,10 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	get_parent().enter(msg)
 	
-	if not _can_combo:
-		_state_machine.set_process_unhandled_input(false)
+	_state_machine.set_process_unhandled_input(_can_combo)
 	
 	_skin.transition_to(_skin_state)
-	_skin.should_combo = false
+	_should_combo = false
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -89,19 +90,45 @@ func exit() -> void:
 
 
 func attack() -> void:
-	_skin.should_combo = true
+	_should_combo = true
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _connect_signals() -> void:
+	super()
+	
+	if _can_combo:
+		if not _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
+			_skin.attack_input_frames_finished.connect(_on_attack_input_frames_finished)
+	
+	if not _skin.attack_animation_finished.is_connected(_on_attack_finished):
+		_skin.attack_animation_finished.connect(_on_attack_finished)
+
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _skin != null:
+		if _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
+			_skin.attack_input_frames_finished.disconnect(_on_attack_input_frames_finished)
+		
+		if _skin.attack_animation_finished.is_connected(_on_attack_finished):
+			_skin.attack_animation_finished.disconnect(_on_attack_finished)
+
+
+func _on_attack_input_frames_finished() -> void:
+	_state_machine.set_process_unhandled_input(false)
+	print("CANT COMBO")
+	if _should_combo:
+		_state_machine.transition_to(_path_combo_state)
+
+
 ## Connect the signal that marks the end of the attack to this function.
 func _on_attack_finished() -> void:
-	if _skin.should_combo:
-		_state_machine.transition_to(_path_combo_state)
-	else:
-		_state_machine.transition_to(_path_next_state)
+	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
 

@@ -6,18 +6,6 @@ extends QuiverCharacterSkin
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-## called by attack animations at the point where they stop accepting input for combos
-signal attack_input_frames_finished
-## called by attack animation at their last frame. This is a workaround for [AnimationPlayer] 
-## not emitting any of it's signals when it's controlled by an [AnimationTree].
-signal attack_animation_finished
-signal jump_impulse_reached
-signal landing_finished
-
-signal attack_1_finished # called by attack1 animation
-signal attack_2_finished # called by attack2 animation
-signal air_attack_finished # called by air_attack animation
-
 #--- enums ----------------------------------------------------------------------------------------
 
 enum SkinStates {
@@ -77,40 +65,10 @@ func _ready() -> void:
 	
 	_animation_tree.active = true
 
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_up") and QuiverEditorHelper.is_standalone_run(self):
-		_attack_test_routine()
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-## Use this method in your character's attack animations as a shortcut to emitting
-## [signal attack_input_frames_finished]
-func end_of_input_frames() -> void:
-	attack_input_frames_finished.emit()
-
-
-## Use this method at the end of your character's attack animations as a shortcut to emitting
-## [signal attack_animation_finished.emit()]
-func end_of_attack_animation() -> void:
-	attack_animation_finished.emit()
-
-
-## Use this method at the end of your "jumping" animation. This will emit the 
-## [signal jump_impulse_reached] and the character's state machine will handle the actual 
-## jump and transitioning to the "rising" animation state.
-func jump_impulse() -> void:
-	jump_impulse_reached.emit()
-
-
-## Use this method at the end of your "landing" animation. This will emit the 
-## [signal landing_finished] and the character's state machine will handle the actual 
-## transitioning to the "idle" animation state.
-func landed() -> void:
-	landing_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -149,20 +107,5 @@ func _set_debug_skin_state(value: SkinStates) -> void:
 		if not _animation_tree.active:
 			_animation_tree.active = true
 		transition_to(_debug_skin_state)
-
-
-func _attack_test_routine() -> void:
-	print_debug("Should Attack and go to idle")
-	should_combo = false
-	_debug_skin_state = SkinStates.ATTACK_1
-	await attack_1_finished
-	_debug_skin_state = SkinStates.IDLE
-	await get_tree().create_timer(0.3).timeout
-	print_debug("Should Combo and go to idle")
-	should_combo = true
-	_debug_skin_state = SkinStates.ATTACK_1
-	await attack_2_finished
-	_debug_skin_state = SkinStates.IDLE
-	print_debug("TestFinished")
 
 ### -----------------------------------------------------------------------------------------------

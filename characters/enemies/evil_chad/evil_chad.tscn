@@ -135,6 +135,3 @@ offset_bottom = 69.0
 script = ExtResource( "13_b2qfj" )
 path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name")
-
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Combo1" method="_on_attack_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Combo2" method="_on_attack_finished"]

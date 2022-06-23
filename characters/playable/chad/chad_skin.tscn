@@ -128,7 +128,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.333333),
+"times": PackedFloat32Array(0.32),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -138,7 +138,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_iknhp"]
 resource_name = "attack1"
-length = 0.25
+length = 0.375
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -147,7 +147,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.168),
+"times": PackedFloat32Array(0, 0.291667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(61, -190), Vector2(-4, -190)]
@@ -159,7 +159,7 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.168, 0.208333),
+"times": PackedFloat32Array(0, 0.291667, 0.333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0, 4, 5]
@@ -195,7 +195,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.125, 0.25),
+"times": PackedFloat32Array(0.25, 0.375),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -217,7 +217,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.333333, 0.416667),
+"times": PackedFloat32Array(0, 0.125, 0.333216, 0.41655),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(80, -190), Vector2(50, -190), Vector2(78, -190), Vector2(-4, -190)]
@@ -265,7 +265,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.291667, 0.416667),
+"times": PackedFloat32Array(0.291667, 0.45),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],

@@ -93,7 +93,3 @@ offset_bottom = 46.0
 script = ExtResource( "12_sub7a" )
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
-
-[connection signal="air_attack_finished" from="ChadSkin" to="StateMachine/Air/Attack" method="_on_chad_skin_air_attack_finished"]
-[connection signal="attack_1_finished" from="ChadSkin" to="StateMachine/Ground/Combo1" method="_on_attack_finished"]
-[connection signal="attack_2_finished" from="ChadSkin" to="StateMachine/Ground/Combo2" method="_on_attack_finished"]
