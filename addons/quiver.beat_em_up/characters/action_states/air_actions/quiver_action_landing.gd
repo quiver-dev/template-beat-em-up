@@ -19,7 +19,8 @@ const AirState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _skin_state: int = -1
-@export var _path_next_state := "Air/MidAir"
+@export var _path_idle := "Ground/Move/Idle"
+@export var _path_walk := "Ground/Move/Walk"
 
 @onready var _air_state := get_parent() as AirState
 
@@ -54,20 +55,14 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_air_state.enter(msg)
 	_skin.transition_to(_skin_state)
 	_state_machine.set_physics_process(false)
-	
-	if msg.has("velocity"):
-		_character.velocity = msg.velocity
-	
-	if msg.has("ignore_jump") and msg.ignore_jump:
-		return
 
 
 func exit() -> void:
-	_state_machine.set_process_unhandled_input(true)
 	super()
+	_state_machine.set_physics_process(true)
+	_air_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -76,21 +71,25 @@ func exit() -> void:
 
 func _connect_signals() -> void:
 	super()
-	if not _skin.jump_impulse_reached.is_connected(_on_jump_impulse_reached):
-		_skin.jump_impulse_reached.connect(_on_jump_impulse_reached)
+	
+	if not _skin.landing_finished.is_connected(_on_skin_landing_finished):
+		_skin.landing_finished.connect(_on_skin_landing_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
+	
 	if _skin != null:
-		if _skin.jump_impulse_reached.is_connected(_on_jump_impulse_reached):
-			_skin.jump_impulse_reached.disconnect(_on_jump_impulse_reached)
+		if _skin.landing_finished.is_connected(_on_skin_landing_finished):
+			_skin.landing_finished.disconnect(_on_skin_landing_finished)
 
 
-func _on_jump_impulse_reached() -> void:
-	_character.velocity.y = _attributes.jump_force
-	_state_machine.transition_to(_path_next_state)
-	_state_machine.set_physics_process(true)
+func _on_skin_landing_finished() -> void:
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	if direction.is_equal_approx(Vector2.ZERO):
+		_state_machine.transition_to(_path_idle)
+	else:
+		_state_machine.transition_to(_path_walk)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -106,8 +105,15 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
 	},
-	"path_next_state": {
-		backing_field = "_path_next_state",
+	"path_idle": {
+		backing_field = "_path_idle",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_walk": {
+		backing_field = "_path_walk",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

@@ -54,7 +54,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_air_state.enter(msg)
 	_skin.transition_to(_skin_state)
 
 
@@ -63,7 +62,6 @@ func physics_process(delta: float) -> void:
 
 
 func exit() -> void:
-	_air_state.exit()
 	super()
 
 ### -----------------------------------------------------------------------------------------------
@@ -90,7 +88,6 @@ func _on_air_attack_finished() -> void:
 	_state_machine.transition_to(_path_falling_state, {
 			velocity = _character.velocity, 
 			ignore_jump = true,
-			air_attack_count = 1,
 	})
 
 ### -----------------------------------------------------------------------------------------------

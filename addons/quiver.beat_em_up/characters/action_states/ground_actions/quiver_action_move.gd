@@ -18,7 +18,7 @@ const GroundState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_jump_state := "Air/Jump"
+@export var _path_jump_state := "Air/JumpImpulse"
 @export var _path_attack_state := "Ground/Combo1"
 
 var _direction := Vector2.ZERO
