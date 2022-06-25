@@ -88,12 +88,12 @@ states/rising/position = Vector2(243.226, -87.189)
 states/walk/node = SubResource( "AnimationNodeAnimation_inagd" )
 states/walk/position = Vector2(573.226, 105)
 transitions = ["Start", "idle", SubResource( "AnimationNodeStateMachineTransition_5huoi" ), "idle", "walk", SubResource( "AnimationNodeStateMachineTransition_2mjg0" ), "walk", "idle", SubResource( "AnimationNodeStateMachineTransition_wc4su" ), "idle", "attack1", SubResource( "AnimationNodeStateMachineTransition_8ulbr" ), "attack1", "idle", SubResource( "AnimationNodeStateMachineTransition_2tk4x" ), "attack1", "attack2", SubResource( "AnimationNodeStateMachineTransition_hhiei" ), "attack2", "idle", SubResource( "AnimationNodeStateMachineTransition_yvwep" ), "idle", "jump", SubResource( "AnimationNodeStateMachineTransition_647dt" ), "jump", "idle", SubResource( "AnimationNodeStateMachineTransition_f8o17" ), "walk", "jump", SubResource( "AnimationNodeStateMachineTransition_lajxs" ), "jump", "rising", SubResource( "AnimationNodeStateMachineTransition_crkbl" ), "rising", "air_attack", SubResource( "AnimationNodeStateMachineTransition_lo4r3" ), "rising", "falling", SubResource( "AnimationNodeStateMachineTransition_wmytv" ), "air_attack", "rising", SubResource( "AnimationNodeStateMachineTransition_ywvih" ), "air_attack", "falling", SubResource( "AnimationNodeStateMachineTransition_kcedg" ), "falling", "air_attack", SubResource( "AnimationNodeStateMachineTransition_ivr14" ), "falling", "landing", SubResource( "AnimationNodeStateMachineTransition_g0rgy" ), "landing", "idle", SubResource( "AnimationNodeStateMachineTransition_s7nor" )]
-graph_offset = Vector2(-336.774, -154.189)
+graph_offset = Vector2(-322.774, -129.189)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3xljo"]
 
 [resource]
-graph_offset = Vector2(-485, 50)
+graph_offset = Vector2(-445, -65)
 nodes/state_machine/node = SubResource( "AnimationNodeStateMachine_h6i7g" )
 nodes/state_machine/position = Vector2(-120, 100)
 nodes/time_scale/node = SubResource( "AnimationNodeTimeScale_3xljo" )

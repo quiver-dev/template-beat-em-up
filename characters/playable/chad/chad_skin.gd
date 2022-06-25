@@ -14,6 +14,9 @@ enum SkinStates {
 	ATTACK_1,
 	ATTACK_2,
 	JUMP,
+	RISING,
+	FALLING,
+	LANDING,
 	AIR_ATTACK,
 }
 
@@ -23,6 +26,9 @@ const ANIM_NODE_NAMES := {
 	SkinStates.IDLE: &"idle",
 	SkinStates.WALK: &"walk",
 	SkinStates.JUMP: &"jump",
+	SkinStates.RISING: &"rising",
+	SkinStates.FALLING: &"falling",
+	SkinStates.LANDING: &"landing",
 	SkinStates.ATTACK_1: &"attack1",
 	SkinStates.ATTACK_2: &"attack2",
 	SkinStates.AIR_ATTACK: &"air_attack",
