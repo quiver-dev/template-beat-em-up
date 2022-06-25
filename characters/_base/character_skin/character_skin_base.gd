@@ -90,6 +90,9 @@ func end_of_input_frames() -> void:
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
 ## [signal attack_animation_finished.emit()]
 func end_of_attack_animation() -> void:
+	if not _playback.get_travel_path().is_empty():
+		return
+	
 	attack_animation_finished.emit()
 
 
