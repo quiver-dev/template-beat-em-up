@@ -102,7 +102,7 @@ config/name="Template Beat Project"
 run/main_scene="res://prototype_main.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
-config/version="0.1.1"
+config/version="0.1.2"
 
 [display]
 
