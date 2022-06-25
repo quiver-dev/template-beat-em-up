@@ -12,6 +12,8 @@ extends QuiverAiState
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export var message := {}
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 # Right now I have to export this variable as advanced exports are not working. But the idea is
@@ -34,7 +36,7 @@ var _possible_states := []
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_actions.transition_to(_state_path)
+	_actions.transition_to(_state_path, message)
 	_actions.transitioned.connect(_on_actions_transitioned)
 
 
