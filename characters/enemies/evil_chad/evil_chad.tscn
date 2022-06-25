@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bib34toyvbfdv"]
+[gd_scene load_steps=20 format=3 uid="uid://bib34toyvbfdv"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="PackedScene" uid="uid://bl1nmnkvbhi4x" path="res://characters/playable/chad/chad_skin.tscn" id="2_jfeb4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="15_cerch"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_action.gd" id="16_ooocb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="17_v4twd"]
+[ext_resource type="Script" path="res://characters/enemies/evil_chad/debug_scripts/StateMachineDebugLabel.gd" id="18_fdici"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
 radius = 20.0
@@ -85,6 +86,7 @@ script = ExtResource( "15_cerch" )
 
 [node name="Punch" type="Node" parent="AiStateMachine/Attack" index="0"]
 script = ExtResource( "16_ooocb" )
+message = {}
 _state_path = "Ground/Combo1"
 
 [node name="Wait" type="Node" parent="AiStateMachine/Attack" index="1"]
@@ -93,10 +95,14 @@ wait_time = 0.5
 
 [node name="Punch2" type="Node" parent="AiStateMachine/Attack" index="2"]
 script = ExtResource( "16_ooocb" )
+message = {
+"auto_combo": true
+}
 _state_path = "Ground/Combo1"
 
 [node name="Kick" type="Node" parent="AiStateMachine/Attack" index="3"]
 script = ExtResource( "16_ooocb" )
+message = {}
 _state_path = "Ground/Combo2"
 
 [node name="Wait" type="Node" parent="AiStateMachine" index="2"]
@@ -124,14 +130,22 @@ properties = PackedStringArray("velocity")
 offset_top = 23.0
 offset_right = 336.0
 offset_bottom = 46.0
-script = ExtResource( "13_b2qfj" )
+script = ExtResource( "18_fdici" )
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
-[node name="AIState" type="Label" parent="DebugLabels" index="2"]
+[node name="Combo1" type="Label" parent="DebugLabels" index="2"]
 offset_top = 46.0
 offset_right = 336.0
 offset_bottom = 69.0
+script = ExtResource( "13_b2qfj" )
+path_reference = NodePath("../../StateMachine/Ground/Combo1")
+properties = PackedStringArray("_should_combo")
+
+[node name="AIState" type="Label" parent="DebugLabels" index="3"]
+offset_top = 69.0
+offset_right = 336.0
+offset_bottom = 92.0
 script = ExtResource( "13_b2qfj" )
 path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name")

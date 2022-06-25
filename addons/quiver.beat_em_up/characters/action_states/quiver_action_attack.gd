@@ -69,10 +69,13 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	get_parent().enter(msg)
 	
-	_state_machine.set_process_unhandled_input(_can_combo)
+	if msg.has("auto_combo") and msg.auto_combo and _can_combo:
+		_should_combo = true
+	else:
+		_should_combo = false
+		_state_machine.set_process_unhandled_input(_can_combo)
 	
 	_skin.transition_to(_skin_state)
-	_should_combo = false
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -121,7 +124,6 @@ func _disconnect_signals() -> void:
 
 func _on_attack_input_frames_finished() -> void:
 	_state_machine.set_process_unhandled_input(false)
-	print("CANT COMBO")
 	if _should_combo:
 		_state_machine.transition_to(_path_combo_state)
 
