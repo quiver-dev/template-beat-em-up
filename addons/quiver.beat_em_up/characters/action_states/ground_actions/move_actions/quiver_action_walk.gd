@@ -55,9 +55,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Public Methods --------------------------------------------------------------------------------
 
 func enter(msg: = {}) -> void:
+	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	super(msg)
 	_move_state.enter(msg)
 	_skin.transition_to(_skin_state)
+	
+	_handle_facing_direction()
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -68,10 +71,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func physics_process(delta: float) -> void:
 	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	
-	var facing_direction :int = sign(_move_state._direction.x)
-	if facing_direction != 0:
-		_skin.scale.x = facing_direction
+	_handle_facing_direction()
 	
 	if _move_state._direction == Vector2.ZERO:
 		_state_machine.transition_to(_path_idle_state)
@@ -87,6 +87,11 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _handle_facing_direction() -> void:
+	var facing_direction :int = sign(_move_state._direction.x)
+	if facing_direction != 0:
+		_skin.scale.x = facing_direction
 
 ### -----------------------------------------------------------------------------------------------
 

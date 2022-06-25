@@ -60,6 +60,8 @@ func enter(msg: = {}) -> void:
 	if msg.has("velocity"):
 		_character.velocity = msg.velocity
 		_direction = Vector2(msg.velocity.x, 0).normalized()
+	else:
+		_character.velocity = _attributes.speed_max * _direction
 
 
 func unhandled_input(event: InputEvent) -> void:
