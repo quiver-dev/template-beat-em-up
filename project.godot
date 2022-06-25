@@ -50,6 +50,11 @@ _global_script_classes=[{
 "path": "res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd"
 }, {
 "base": "RefCounted",
+"class": &"QuiverCollisionTypes",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_collision_types.gd"
+}, {
+"base": "RefCounted",
 "class": &"QuiverCyclicHelper",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_cyclic_error_helper.gd"
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "QuiverCharacterHelper": "",
 "QuiverCharacterSkin": "",
 "QuiverCharacterState": "",
+"QuiverCollisionTypes": "",
 "QuiverCyclicHelper": "",
 "QuiverEditorHelper": "",
 "QuiverMathHelper": "",
@@ -103,6 +109,11 @@ run/main_scene="res://prototype_main.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
 config/version="0.1.2"
+
+[debug]
+
+shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
+shapes/collision/contact_color=Color(0.5, 0.5, 0.5, 0.8)
 
 [display]
 
@@ -166,6 +177,10 @@ jump={
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="screen_limits"
 2d_physics/layer_4="ceiling_limits"
+2d_physics/layer_9="player_hit_boxes"
+2d_physics/layer_10="enemy_hit_boxes"
+2d_physics/layer_13="player_hurt_boxes"
+2d_physics/layer_14="enemy_hurt_boxes"
 
 [physics]
 
