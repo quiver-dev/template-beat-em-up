@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7tfr3wv3nnn4"
-path="res://.godot/imported/fall.png-42904911ef7e6812b314d00e88112f5e.ctex"
+uid="uid://ckuht4pw416lo"
+path="res://.godot/imported/2punch_05.png-034d6e8710221cccdb63d5c904125c51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/chad/resources/sprites/fall.png"
-dest_files=["res://.godot/imported/fall.png-42904911ef7e6812b314d00e88112f5e.ctex"]
+source_file="res://characters/playable/chad/resources/sprites/punches/2punch_05.png"
+dest_files=["res://.godot/imported/2punch_05.png-034d6e8710221cccdb63d5c904125c51.ctex"]
 
 [params]
 

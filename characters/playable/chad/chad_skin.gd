@@ -6,10 +6,6 @@ extends QuiverCharacterSkin
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-signal attack_1_finished # called by attack1 animation
-signal attack_2_finished # called by attack2 animation
-signal air_attack_finished # called by air_attack animation
-
 #--- enums ----------------------------------------------------------------------------------------
 
 enum SkinStates {
@@ -18,6 +14,9 @@ enum SkinStates {
 	ATTACK_1,
 	ATTACK_2,
 	JUMP,
+	RISING,
+	FALLING,
+	LANDING,
 	AIR_ATTACK,
 }
 
@@ -27,6 +26,9 @@ const ANIM_NODE_NAMES := {
 	SkinStates.IDLE: &"idle",
 	SkinStates.WALK: &"walk",
 	SkinStates.JUMP: &"jump",
+	SkinStates.RISING: &"rising",
+	SkinStates.FALLING: &"falling",
+	SkinStates.LANDING: &"landing",
 	SkinStates.ATTACK_1: &"attack1",
 	SkinStates.ATTACK_2: &"attack2",
 	SkinStates.AIR_ATTACK: &"air_attack",
@@ -38,6 +40,7 @@ const CONDITIONS := {
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+## Property that characters 
 @export var should_combo: bool :
 	get:
 		return _get_animation_tree_condition(CONDITIONS.should_combo)
@@ -61,16 +64,12 @@ func _ready() -> void:
 	
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
+		_animation_tree.set_deferred("active", false)
 		return
 	elif QuiverEditorHelper.is_standalone_run(self):
 		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
 	
 	_animation_tree.active = true
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_up") and QuiverEditorHelper.is_standalone_run(self):
-		_attack_test_routine()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -114,20 +113,5 @@ func _set_debug_skin_state(value: SkinStates) -> void:
 		if not _animation_tree.active:
 			_animation_tree.active = true
 		transition_to(_debug_skin_state)
-
-
-func _attack_test_routine() -> void:
-	print_debug("Should Attack and go to idle")
-	should_combo = false
-	_debug_skin_state = SkinStates.ATTACK_1
-	await attack_1_finished
-	_debug_skin_state = SkinStates.IDLE
-	await get_tree().create_timer(0.3).timeout
-	print_debug("Should Combo and go to idle")
-	should_combo = true
-	_debug_skin_state = SkinStates.ATTACK_1
-	await attack_2_finished
-	_debug_skin_state = SkinStates.IDLE
-	print_debug("TestFinished")
 
 ### -----------------------------------------------------------------------------------------------

@@ -10,19 +10,38 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/"
-		+"ground_actions/quiver_action_move.gd"
+const AirState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
-@export var _path_idle_state := "Ground/Move/Idle"
+@export var _skin_state_rising: int = -1
+@export var _skin_state_falling: int = -1
 
-@onready var _move_state := get_parent() as MoveState
+@export var _can_attack := true:
+	set(value):
+		var has_changed = value != _can_attack
+		_can_attack = value
+		if has_changed:
+			notify_property_list_changed()
+		
+		if not _can_attack:
+			_path_air_attack = ""
+		else:
+			update_configuration_warnings()
+
+@export var _path_air_attack := "Air/Attack":
+	set(value):
+		if _can_attack:
+			_path_air_attack = value
+		else:
+			_path_air_attack = ""
+		update_configuration_warnings()
+
+@onready var _air_state := get_parent() as AirState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -40,14 +59,16 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is MoveState:
+	if not get_parent() is AirState:
 		warnings.append(
-				"This ActionState must be a child of Action MoveState or a state " 
+				"This ActionState must be a child of Action AirState or a state " 
 				+ "inheriting from it."
 		)
 	
+	if _can_attack and _path_air_attack.is_empty():
+		warnings.append("You must select an attack state when _can_attack is true.")
+	
 	return warnings
-
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -55,61 +76,86 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Public Methods --------------------------------------------------------------------------------
 
 func enter(msg: = {}) -> void:
-	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	super(msg)
-	_move_state.enter(msg)
-	_skin.transition_to(_skin_state)
 	
-	_handle_facing_direction()
+	_handle_mid_air_animation()
+	
+	if not _can_attack:
+		_state_machine.set_process_unhandled_input(false)
 
 
 func unhandled_input(event: InputEvent) -> void:
+	if not _can_attack:
+		return
+	
 	var has_handled := false
+	
+	if event.is_action_pressed("attack"):
+		_attack()
+		has_handled = true
+	
 	if not has_handled:
-		get_parent().unhandled_input(event)
+		_air_state.unhandled_input(event)
 
 
 func physics_process(delta: float) -> void:
-	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	_handle_facing_direction()
-	
-	if _move_state._direction == Vector2.ZERO:
-		_state_machine.transition_to(_path_idle_state)
-	
-	_move_state.physics_process(delta)
+	_handle_mid_air_animation()
+	_air_state.physics_process(delta)
 
 
 func exit() -> void:
 	super()
-	_move_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _handle_facing_direction() -> void:
-	var facing_direction :int = sign(_move_state._direction.x)
-	if facing_direction != 0:
-		_skin.scale.x = facing_direction
+func _handle_mid_air_animation() -> void:
+	if _character.velocity.y < 0:
+		_skin.transition_to(_skin_state_rising)
+	else:
+		_skin.transition_to(_skin_state_falling)
+
+
+func _attack() -> void:
+	if _has_air_attack():
+		_air_state._air_attack_count += 1
+		_state_machine.transition_to(_path_air_attack)
+
+
+func _has_air_attack() -> bool:
+	return _can_attack and _air_state._air_attack_count == 0
 
 ### -----------------------------------------------------------------------------------------------
-
 
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"skin_state": {
-		backing_field = "_skin_state",
+	"skin_state_rising": {
+		backing_field = "_skin_state_rising",
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
 	},
-	"path_idle_state": {
-		backing_field = "_path_idle_state",
+	"skin_state_falling": {
+		backing_field = "_skin_state_falling",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+	},
+	"can_attack": {
+		backing_field = "_can_attack",
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"path_air_attack": {
+		backing_field = "_path_air_attack",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
@@ -135,6 +181,10 @@ func _get_property_list() -> Array:
 		var dict: Dictionary = CUSTOM_PROPERTIES[key]
 		if not dict.has("name"):
 			dict.name = key
+		
+		match key:
+			"path_air_attack":
+				add_property = _can_attack
 		
 		if add_property:
 			properties.append(dict)

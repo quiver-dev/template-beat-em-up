@@ -54,7 +54,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_air_state.enter(msg)
 	_skin.transition_to(_skin_state)
 
 
@@ -63,7 +62,6 @@ func physics_process(delta: float) -> void:
 
 
 func exit() -> void:
-	_air_state.exit()
 	super()
 
 ### -----------------------------------------------------------------------------------------------
@@ -71,11 +69,25 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_chad_skin_air_attack_finished() -> void:
+func _connect_signals() -> void:
+	super()
+	
+	if not _skin.attack_animation_finished.is_connected(_on_air_attack_finished):
+		_skin.attack_animation_finished.connect(_on_air_attack_finished)
+
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _skin != null:
+		if _skin.attack_animation_finished.is_connected(_on_air_attack_finished):
+			_skin.attack_animation_finished.disconnect(_on_air_attack_finished)
+
+
+func _on_air_attack_finished() -> void:
 	_state_machine.transition_to(_path_falling_state, {
 			velocity = _character.velocity, 
 			ignore_jump = true,
-			air_attack_count = 1,
 	})
 
 ### -----------------------------------------------------------------------------------------------
