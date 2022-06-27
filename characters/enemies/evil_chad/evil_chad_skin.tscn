@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc2mj2qu0u6qn"]
+
+[ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="1_r25ns"]
+[ext_resource type="Resource" uid="uid://fvhi7j4yexx8" path="res://characters/enemies/evil_chad/evil_chad_attributes.tres" id="2_ylxyx"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_gwnmd"]
+
+[node name="EvilChadSkin" instance=ExtResource( "1_r25ns" )]
+
+[node name="AnimationTree" parent="." index="1"]
+parameters/state_machine/playback = SubResource( "AnimationNodeStateMachinePlayback_gwnmd" )
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+self_modulate = Color(0.447059, 0.207843, 0.705882, 1)
+
+[node name="HurtBox" parent="AnimatedSprite2D" index="0"]
+collision_layer = 8192
+collision_mask = 256
+character_type = 1
+_attributes = ExtResource( "2_ylxyx" )
+metadata/collision_type = "enemy_hurt_box"
+
+[node name="HurtShape" parent="AnimatedSprite2D/HurtBox" index="0"]
+metadata/collision_type = "enemy_hurt_box"
+
+[node name="Attack1" parent="AnimatedSprite2D" index="1"]
+collision_layer = 512
+character_type = 1
+_attributes = ExtResource( "2_ylxyx" )
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Attack1Shape" parent="AnimatedSprite2D/Attack1" index="0"]
+metadata/collision_type = "enemy_hit_box"
