@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=23 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_gck4m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
 [ext_resource type="Resource" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
+[ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
 
 [sub_resource type="Animation" id="Animation_psjea"]
 resource_name = "RESET"
@@ -1058,7 +1059,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource( "5_f1o2m" )
-_attributes = ExtResource( "6_iqdvs" )
+_attack_data = ExtResource( "8_uylrb" )
 metadata/collision_type = "player_hit_box"
 
 [node name="Attack1Shape" type="CollisionShape2D" parent="AnimatedSprite2D/Attack1" index="0"]

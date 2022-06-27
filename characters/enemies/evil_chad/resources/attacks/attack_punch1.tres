@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cu5yi10wkeur6"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="1_x6duq"]
+
+[resource]
+script = ExtResource( "1_x6duq" )
+attack_damage = 5.0
