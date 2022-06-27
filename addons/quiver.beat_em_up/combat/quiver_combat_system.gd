@@ -29,6 +29,9 @@ enum CharacterTypes {
 
 ### Public Methods --------------------------------------------------------------------------------
 
+static func apply_damage(from: QuiverAttackData, to: QuiverAttributes) -> void:
+	to.health_current -= from.attack_damage
+
 ### -----------------------------------------------------------------------------------------------
 
 
