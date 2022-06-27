@@ -1,5 +1,5 @@
 @tool
-class_name QuiverHitBox
+class_name QuiverHurtBox
 extends Area2D
 
 ## Write your doc string for this file here
@@ -35,7 +35,6 @@ var character_attributes: QuiverAttributes = null
 	get:
 		return character_attributes
 
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -48,14 +47,17 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+	
+	if not area_entered.is_connected(_on_area_entered):
+		area_entered.connect(_on_area_entered)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	var collision_type := get_meta(QuiverCollisionTypes.META_KEY, "default") as String
-	if collision_type.find("hit_box") == -1 and collision_type != "custom":
-		warnings.append("hit box area is using an invalid presset")
+	if collision_type.find("hurt_box") == -1 and collision_type != "custom":
+		warnings.append("hurt box area is using an invalid presset")
 	
 	return warnings
 
@@ -63,11 +65,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-### -----------------------------------------------------------------------------------------------
-
-
-### Private Methods -------------------------------------------------------------------------------
 
 func _handle_character_type_presets() -> void:
 	var collision_type := get_meta(QuiverCollisionTypes.META_KEY, "default") as String
@@ -77,9 +74,9 @@ func _handle_character_type_presets() -> void:
 	var target_collision_type := ""
 	match character_type:
 		QuiverCombatSystem.CharacterTypes.PLAYERS:
-			target_collision_type = "player_hit_box"
+			target_collision_type = "player_hurt_box"
 		QuiverCombatSystem.CharacterTypes.ENEMIES:
-			target_collision_type = "enemy_hit_box"
+			target_collision_type = "enemy_hurt_box"
 		_:
 			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
 					character_type,
@@ -92,5 +89,18 @@ func _handle_character_type_presets() -> void:
 				QuiverCollisionTypes.PRESETS[target_collision_type], self
 		)
 
+
+func _on_area_entered(area: Area2D) -> void:
+	var hit_box := area as QuiverHitBox
+	if hit_box == null:
+		push_error("Unrecognized collision between: %s and %s"%[self, area])
+		return
+	
+	print("collided with: %s"%[hit_box.character_attributes.resource_path])
+
 ### -----------------------------------------------------------------------------------------------
 
+
+### Private Methods -------------------------------------------------------------------------------
+
+### -----------------------------------------------------------------------------------------------

@@ -55,6 +55,11 @@ _global_script_classes=[{
 "path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_collision_types.gd"
 }, {
 "base": "RefCounted",
+"class": &"QuiverCombatSystem",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/combat/quiver_combat_system.gd"
+}, {
+"base": "RefCounted",
 "class": &"QuiverCyclicHelper",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_cyclic_error_helper.gd"
@@ -68,6 +73,11 @@ _global_script_classes=[{
 "class": &"QuiverHitBox",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd"
+}, {
+"base": "Area2D",
+"class": &"QuiverHurtBox",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverMathHelper",
@@ -99,9 +109,11 @@ _global_script_class_icons={
 "QuiverCharacterSkin": "",
 "QuiverCharacterState": "",
 "QuiverCollisionTypes": "",
+"QuiverCombatSystem": "",
 "QuiverCyclicHelper": "",
 "QuiverEditorHelper": "",
 "QuiverHitBox": "",
+"QuiverHurtBox": "",
 "QuiverMathHelper": "",
 "QuiverState": "",
 "QuiverStateMachine": "",
