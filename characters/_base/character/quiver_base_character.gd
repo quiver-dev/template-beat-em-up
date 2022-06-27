@@ -32,7 +32,7 @@ var ground_level := 0.0
 
 ## This is also here as a "hack" for the lack of advanced exports. It is private because I don't 
 ## want to deal with this in code, it's just an editor field to populate the real property which
-## is the public [member character_attributes]. Once advanced exportes exist this will be converted
+## is the public [member attributes]. Once advanced exportes exist this will be converted
 ## to it.
 @export var _attributes: Resource:
 	set(value):

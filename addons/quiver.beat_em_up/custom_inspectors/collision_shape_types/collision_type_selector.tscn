@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxbwlv8kplvdg"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/custom_inspectors/collision_shape_types/collision_type_selector.gd" id="1_s75l0"]
+
+[node name="CollisionTypeSelector" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource( "1_s75l0" )
+
+[node name="Label" type="Label" parent="."]
+offset_top = 7.0
+offset_right = 119.0
+offset_bottom = 33.0
+size_flags_horizontal = 3
+text = "Collision Preset"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 123.0
+offset_right = 222.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+selected = 0
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
