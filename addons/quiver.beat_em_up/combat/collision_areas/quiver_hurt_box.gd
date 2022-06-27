@@ -96,7 +96,10 @@ func _on_area_entered(area: Area2D) -> void:
 		push_error("Unrecognized collision between: %s and %s"%[self, area])
 		return
 	
-	print("collided with: %s"%[hit_box.character_attributes.resource_path])
+	QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
+	print("%s took damage! Health: %s"%[
+			character_attributes.resource_path, character_attributes.health_current
+	])
 
 ### -----------------------------------------------------------------------------------------------
 

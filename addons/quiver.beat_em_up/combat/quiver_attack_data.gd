@@ -1,5 +1,5 @@
-class_name QuiverCombatSystem
-extends RefCounted
+class_name QuiverAttackData
+extends Resource
 
 ## Write your doc string for this file here
 
@@ -8,14 +8,11 @@ extends RefCounted
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum CharacterTypes {
-	PLAYERS,
-	ENEMIES,
-}
-
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
+
+@export_range(1, 2, 1, "or_greater") var attack_damage = 1
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -28,9 +25,6 @@ enum CharacterTypes {
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-static func apply_damage(from: QuiverAttackData, to: QuiverAttributes) -> void:
-	to.health_current -= from.attack_damage
 
 ### -----------------------------------------------------------------------------------------------
 

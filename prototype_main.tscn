@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="PackedScene" uid="uid://b14bl7t7f5sxu" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_lfeec"]
-[ext_resource type="PackedScene" uid="uid://bib34toyvbfdv" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
+[ext_resource type="PackedScene" uid="uid://dfqwrvm0rhqp2" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsl8r"]
 size = Vector2(87, 2212)
