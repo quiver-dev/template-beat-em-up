@@ -20,6 +20,11 @@ _global_script_classes=[{
 "path": "res://addons/quiver.beat_em_up/characters/ai/quiver_ai_state_machine.gd"
 }, {
 "base": "Resource",
+"class": &"QuiverAttackData",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd"
+}, {
+"base": "Resource",
 "class": &"QuiverAttributes",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/characters/quiver_attributes.gd"
@@ -102,6 +107,7 @@ _global_script_classes=[{
 _global_script_class_icons={
 "QuiverAiState": "",
 "QuiverAiStateMachine": "",
+"QuiverAttackData": "",
 "QuiverAttributes": "",
 "QuiverBitwiseHelper": "",
 "QuiverCharacter": "",
