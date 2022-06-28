@@ -19,6 +19,9 @@ extends Resource
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
+signal health_changed
+signal health_depleted
+
 #--- enums ----------------------------------------------------------------------------------------
 
 enum WeightClass {LIGHT, MEDIUM, HEAVY}
@@ -34,6 +37,8 @@ const WEIGHT_MULTIPLIER = {
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export var display_name := ""
+
 ## Max health for the character, when their life bar is full.
 @export_range(0, 1, 1, "or_greater") var health_max := 100
 
@@ -47,7 +52,15 @@ const WEIGHT_MULTIPLIER = {
 @export var weight: WeightClass = WeightClass.MEDIUM
 
 ## Character's current health. What the health bar will be showing.
-var health_current := health_max
+var health_current := health_max:
+	set(value):
+		var has_changed = value != health_current
+		health_current = clamp(value, 0, health_max)
+		if has_changed:
+			if health_current > 0:
+				health_changed.emit()
+			else:
+				health_depleted.emit()
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
