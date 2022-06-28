@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh7jt0k7hvmeo"]
+[gd_scene load_steps=7 format=3 uid="uid://dh7jt0k7hvmeo"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="PackedScene" uid="uid://b14bl7t7f5sxu" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_lfeec"]
 [ext_resource type="PackedScene" uid="uid://dfqwrvm0rhqp2" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
+[ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsl8r"]
 size = Vector2(87, 2212)
 
 [node name="PrototypeMain" type="Node2D"]
 script = ExtResource( "1_wp06a" )
+metadata/_edit_horizontal_guides_ = [-409.0]
 
 [node name="ScreenLimits" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -67,3 +69,5 @@ grow_horizontal = 0
 text = "version: %s"
 horizontal_alignment = 2
 script = ExtResource( "3_lfeec" )
+
+[node name="PlayerHud" parent="HudLayer" instance=ExtResource( "5_7i6ya" )]

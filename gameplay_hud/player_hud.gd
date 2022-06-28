@@ -28,7 +28,8 @@ var _attributes_current_enemy: QuiverAttributes = null
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	pass
+	Events.enemy_data_sent.connect(_on_Events_enemy_data_sent)
+	_enemy_block.hide()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -48,16 +49,19 @@ func set_player_attributes(p_attributes: QuiverAttributes) -> void:
 
 
 func set_enemy_attribute(p_attributes: QuiverAttributes) -> void:
+	if _attributes_current_enemy == p_attributes:
+		return
+	
 	_attributes_current_enemy = p_attributes
 	_enemy_name.text = _attributes_current_enemy.display_name
 	_enemy_life_bar.value = _attributes_current_enemy.get_health_as_percentage()
 	_enemy_block.show()
 	
-	if not _attributes_current_enemy.health_changed.is_connected(_on_player_health_changed):
-		_attributes_current_enemy.health_changed.connect(_on_player_health_changed)
+	if not _attributes_current_enemy.health_changed.is_connected(_on_enemy_health_changed):
+		_attributes_current_enemy.health_changed.connect(_on_enemy_health_changed)
 	
-	if not _attributes_current_enemy.health_depleted.is_connected(_on_player_health_depleted):
-		_attributes_current_enemy.health_depleted.connect(_on_player_health_depleted)
+	if not _attributes_current_enemy.health_depleted.is_connected(_on_enemy_health_depleted):
+		_attributes_current_enemy.health_depleted.connect(_on_enemy_health_depleted)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -77,8 +81,16 @@ func _on_enemy_health_changed() -> void:
 
 
 func _on_enemy_health_depleted() -> void:
+	_enemy_life_bar.value = 0
 	_attributes_current_enemy = null
 	_enemy_block.hide()
+
+
+func _on_Events_enemy_data_sent(p_enemy: QuiverAttributes, p_player: QuiverAttributes) -> void:
+	if p_player != _attributes_player_character:
+		return
+	
+	set_enemy_attribute(p_enemy)
 
 ### -----------------------------------------------------------------------------------------------
 
