@@ -22,6 +22,7 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+@export var _skin_state: int = -1
 @export var _path_next_state := "Ground/Move/Idle"
 
 var _target_node: Node2D = null
@@ -61,7 +62,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func enter(msg: = {}) -> void:
 	super(msg)
 	_move_state.enter(msg)
-	_skin.transition_to(_skin.SkinStates.WALK)
+	_skin.transition_to(_skin_state)
 	
 	if not msg.has("target_node") or not msg.target_node is Node2D:
 		_state_machine.transition_to(_path_next_state)
@@ -115,6 +116,13 @@ func exit() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"skin_state": {
+		backing_field = "_skin_state",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
