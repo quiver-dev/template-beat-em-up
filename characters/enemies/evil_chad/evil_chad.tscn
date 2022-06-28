@@ -48,10 +48,12 @@ script = ExtResource( "4_120xx" )
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "5_y1loh" )
+_skin_state = 0
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource( "2_py5s2" )
 ARRIVE_RANGE = 30
+_skin_state = 1
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "8_lnplq" )
