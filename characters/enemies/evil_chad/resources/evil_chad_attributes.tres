@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( "1_etxhr" )
+display_name = "Evil Chad"
 health_max = 100
 speed_max = 350
 jump_force = -1200

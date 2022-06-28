@@ -12,13 +12,16 @@ extends Node2D
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+@onready var _main_player := $Characters/Chad as QuiverCharacter
+@onready var _player_hud := $HudLayer/PlayerHud
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	pass
+	_player_hud.set_player_attributes(_main_player.attributes)
 
 ### -----------------------------------------------------------------------------------------------
 

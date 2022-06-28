@@ -97,9 +97,8 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
-	print("%s took damage! Health: %s"%[
-			character_attributes.resource_path, character_attributes.health_current
-	])
+	if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
+		Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
 
 ### -----------------------------------------------------------------------------------------------
 

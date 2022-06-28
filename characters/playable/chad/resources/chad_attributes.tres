@@ -1,9 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtgy5kdua2c1y"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_1ikth"]
 
 [resource]
 script = ExtResource( "1_1ikth" )
+display_name = "Chad"
 health_max = 100
 speed_max = 500
 jump_force = -1200

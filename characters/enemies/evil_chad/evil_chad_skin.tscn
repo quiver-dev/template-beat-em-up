@@ -30,7 +30,9 @@ modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 512
 character_type = 1
 _attack_data = ExtResource( "3_3tp73" )
+_character_attributes = null
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack1Shape" parent="AnimatedSprite2D/Attack1" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 metadata/collision_type = "enemy_hit_box"
