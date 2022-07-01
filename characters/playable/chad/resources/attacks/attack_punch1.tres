@@ -3,6 +3,6 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="1_hxbs7"]
 
 [resource]
-script = ExtResource( "1_hxbs7" )
+script = ExtResource("1_hxbs7")
 attack_damage = 10.0
 knockback = 1
