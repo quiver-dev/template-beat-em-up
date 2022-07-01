@@ -21,10 +21,13 @@ extends Resource
 
 signal health_changed
 signal health_depleted
+signal hurt_requested
+signal knockout_requested
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum WeightClass {LIGHT, MEDIUM, HEAVY}
+enum WeightClass { LIGHT, MEDIUM, HEAVY }
+enum KnockbackStrength { LIGHT, MEDIUM, STRONG, MASSIVE }
 
 #--- constants ------------------------------------------------------------------------------------
 
@@ -33,6 +36,13 @@ const WEIGHT_MULTIPLIER = {
 	WeightClass.LIGHT: 1.0,
 	WeightClass.MEDIUM: 2.0,
 	WeightClass.HEAVY: 4.0,
+}
+
+const KNOCKBACK_BY_STRENGTH = {
+	KnockbackStrength.LIGHT: 2, # Doesn't launch the target, but builds up
+	KnockbackStrength.MEDIUM: 20, # Should launch target
+	KnockbackStrength.STRONG: 40,
+	KnockbackStrength.MASSIVE: 80,
 }
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -50,6 +60,11 @@ const WEIGHT_MULTIPLIER = {
 ## Character's weight. Influences jump and things like if the character can be thrown or not.[br]
 ## Heavier character will only be able to be thrown by stronger characters.
 @export var weight: WeightClass = WeightClass.MEDIUM
+## This can be toggled on or off in animations to create invincibility frames.
+@export var is_invulnerable := false
+## This can be toggled on or off in animations to create animations that can't be interrupted
+## but still should allow damage to be received.
+@export var is_superarmor := false
 
 ## Character's current health. What the health bar will be showing.
 var health_current := health_max:
@@ -61,6 +76,12 @@ var health_current := health_max:
 				health_changed.emit()
 			else:
 				health_depleted.emit()
+
+## Amount of knockback character has received, will be used to calculate bounce the next time
+## it hits a wall or the ground.
+var knockback_amount := 0:
+	set(value):
+		knockback_amount = max(0, value)
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
