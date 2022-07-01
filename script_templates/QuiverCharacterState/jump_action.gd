@@ -1,5 +1,5 @@
 @tool
-extends QuiverCharacterState
+extends _BASE_
 
 ## Write your doc string for this file here
 
@@ -10,18 +10,15 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const AirState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
+const JumpState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
-@export var _path_landing := "Air/Jump/Landing"
 
-var _air_attack_count := 0
-
-@onready var _air_state := get_parent() as AirState
+@onready var _jump_state := get_parent() as JumpState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,9 +36,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is AirState:
+	if not get_parent() is JumpState:
 		warnings.append(
-				"This ActionState must be a child of Action AirState or a state " 
+				"This ActionState must be a child of Action Jump state or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -54,28 +51,31 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_air_state.enter(msg)
+	_jump_state.enter(msg)
+
+
+func unhandled_input(event: InputEvent) -> void:
+	var has_handled := false
+	
+	if not has_handled:
+		_jump_state.unhandled_input(event)
+
+
+func process(delta: float) -> void:
+	_jump_state.process(delta)
 
 
 func physics_process(delta: float) -> void:
-	_air_state._move_and_apply_gravity(delta)
-	if _air_state._has_reached_ground():
-		_handle_landing()
+	_jump_state.physics_process(delta)
 
 
 func exit() -> void:
 	super()
-	_air_state.exit()
-	_air_attack_count = 0
+	_jump_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _handle_landing() -> void:
-	_character.global_position.y = _character.ground_level
-	_character.velocity.y = 0.0
-	_state_machine.transition_to(_path_landing)
 
 ### -----------------------------------------------------------------------------------------------

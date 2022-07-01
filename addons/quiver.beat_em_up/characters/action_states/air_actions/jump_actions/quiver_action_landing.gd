@@ -10,8 +10,8 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const AirState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
+const JumpState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -22,7 +22,7 @@ const AirState = preload(
 @export var _path_idle := "Ground/Move/Idle"
 @export var _path_walk := "Ground/Move/Walk"
 
-@onready var _air_state := get_parent() as AirState
+@onready var _jump_state := get_parent() as JumpState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -40,9 +40,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is AirState:
+	if not get_parent() is JumpState:
 		warnings.append(
-				"This ActionState must be a child of Action AirState or a state " 
+				"This ActionState must be a child of Action Jump state or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -62,7 +62,7 @@ func enter(msg: = {}) -> void:
 func exit() -> void:
 	super()
 	_state_machine.set_physics_process(true)
-	_air_state.exit()
+	_jump_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 

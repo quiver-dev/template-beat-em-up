@@ -10,20 +10,18 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GroundState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
+const JumpState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_jump_state := "Air/Jump/Impulse"
-@export var _path_attack_state := "Ground/Combo1"
+@export var _skin_state: StringName
+@export var _path_next_state := "Air/Jump/MidAir"
 
-var _direction := Vector2.ZERO
-
-@onready var _ground_state := get_parent() as GroundState
+@onready var _jump_state := get_parent() as JumpState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,9 +39,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is GroundState:
+	if not get_parent() is JumpState:
 		warnings.append(
-				"This ActionState must be a child of Action GroundState or a state " 
+				"This ActionState must be a child of Action Jump state or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -56,82 +54,58 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
-	_attributes.knockback_amount = 0
+	_jump_state.enter(msg)
+	_skin.transition_to(_skin_state)
+	_state_machine.set_physics_process(false)
 	
 	if msg.has("velocity"):
 		_character.velocity = msg.velocity
-		_direction = Vector2(msg.velocity.x, 0).normalized()
-	else:
-		_character.velocity = _attributes.speed_max * _direction
-
-
-func unhandled_input(event: InputEvent) -> void:
-	var has_handled := true
-	
-	if event.is_action_pressed("attack"):
-		attack()
-	elif event.is_action_pressed("jump"):
-		jump()
-	else:
-		has_handled = false
-	
-	if not has_handled:
-		get_parent().unhandled_input(event)
-
-
-func physics_process(delta: float) -> void:
-	get_parent().physics_process(delta)
-	
-	if not _direction.is_equal_approx(Vector2.ZERO):
-		_character.velocity = _attributes.speed_max * _direction
-	else:
-		_character.velocity = _character.velocity.move_toward(Vector2.ZERO, _attributes.speed_max)
-	
-	_character.move_and_slide()
 
 
 func exit() -> void:
-	_direction = Vector2.ZERO
-	_character.velocity = Vector2.ZERO
-	
+	_state_machine.set_process_unhandled_input(true)
 	super()
-	get_parent().exit()
-
-
-func attack() -> void:
-	
-	_state_machine.transition_to(_path_attack_state)
-
-
-func jump() -> void:
-	if _direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to(_path_jump_state)
-	else:
-		_state_machine.transition_to(_path_jump_state, {velocity = _character.velocity})
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-### -----------------------------------------------------------------------------------------------
+func _connect_signals() -> void:
+	super()
+	if not _skin.jump_impulse_reached.is_connected(_on_jump_impulse_reached):
+		_skin.jump_impulse_reached.connect(_on_jump_impulse_reached)
 
+
+func _disconnect_signals() -> void:
+	super()
+	if _skin != null:
+		if _skin.jump_impulse_reached.is_connected(_on_jump_impulse_reached):
+			_skin.jump_impulse_reached.disconnect(_on_jump_impulse_reached)
+
+
+func _on_jump_impulse_reached() -> void:
+	_character.velocity.y = _attributes.jump_force
+	_state_machine.transition_to(_path_next_state)
+	_state_machine.set_physics_process(true)
+
+### -----------------------------------------------------------------------------------------------
 
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"path_jump_state": {
-		backing_field = "_path_jump_state",
-		type = TYPE_STRING,
+	"skin_state": {
+		backing_field = "_skin_state",
+		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
-	"path_attack_state": {
-		backing_field = "_path_attack_state",
+	"path_next_state": {
+		backing_field = "_path_next_state",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
