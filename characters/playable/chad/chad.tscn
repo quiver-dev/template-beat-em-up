@@ -52,12 +52,12 @@ _skin_state = &"idle"
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "9_cce84" )
-_skin_state = &"attack_group/attack1"
+_skin_state = &"attack1"
 _path_combo_state = "Ground/Combo2"
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource( "9_cce84" )
-_skin_state = &"attack_group/attack2"
+_skin_state = &"attack2"
 _can_combo = false
 _path_combo_state = ""
 
@@ -66,20 +66,20 @@ script = ExtResource( "9_o5gfu" )
 
 [node name="JumpImpulse" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_wf2ss" )
-_skin_state = &"jump_group/jump"
+_skin_state = &"jump"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "12_4dbtu" )
-_skin_state_rising = &"jump_group/rising"
-_skin_state_falling = &"jump_group/falling"
+_skin_state_rising = &"rising"
+_skin_state_falling = &"falling"
 
 [node name="Landing" type="Node" parent="StateMachine/Air" index="2"]
 script = ExtResource( "13_d8net" )
-_skin_state = &"jump_group/landing"
+_skin_state = &"landing"
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="3"]
 script = ExtResource( "13_cw2hu" )
-_skin_state = &"jump_group/air_attack"
+_skin_state = &"air_attack"
 _path_falling_state = "Air/MidAir"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]

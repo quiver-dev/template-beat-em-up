@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=31 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmm0a2tnko2g6" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
@@ -1838,13 +1838,7 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_g3bel"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_l4135"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_sd734"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_lph6i"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8xt1i"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vwjju"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
 size = Vector2(149, 378.5)
@@ -1866,10 +1860,7 @@ libraries = {
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource( "4_6ugt2" )
 parameters/state_machine/playback = SubResource( "AnimationNodeStateMachinePlayback_g3bel" )
-parameters/state_machine/attack_group/playback = SubResource( "AnimationNodeStateMachinePlayback_l4135" )
-parameters/state_machine/hurt_group/playback = SubResource( "AnimationNodeStateMachinePlayback_sd734" )
-parameters/state_machine/jump_group/playback = SubResource( "AnimationNodeStateMachinePlayback_lph6i" )
-parameters/state_machine/knockout_group/playback = SubResource( "AnimationNodeStateMachinePlayback_8xt1i" )
+parameters/state_machine/knockout_ground/playback = SubResource( "AnimationNodeStateMachinePlayback_vwjju" )
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
