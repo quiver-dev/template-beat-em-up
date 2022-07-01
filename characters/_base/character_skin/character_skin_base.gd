@@ -1,3 +1,4 @@
+@tool
 class_name QuiverCharacterSkin
 extends Node2D
 ## Base class for any kind of character, either playable or npc.
@@ -8,14 +9,8 @@ extends Node2D
 ## [br][br]
 ## If you do use it on another scene, just configure the exported variables accordingly.
 ## [br][br]
-## Regardless of using the base scene or not, you're never expected to use this script directly.
-## You should extend this script in the specific Character Skin scene, and declare an enum or
-## constants for that character's animation states, and use it to override the virtual methods
-## [method _is_valid_state] and [method _get_anim_name].
-## [br][br]
-## With both of those virtual methods defined in the inherited class, [method transition_to]
-## should work for most cases, but can be overriden if a character needs special behavior for
-## any given animation.
+## [method transition_to] should work for most cases, but can be overriden if a character needs 
+## special behavior for any given animation.
 
 
 ### Member Variables and Dependencies -------------------------------------------------------------
@@ -49,6 +44,8 @@ signal landing_finished
 ## See [member _path_animation_tree] for "private" reasoning.
 @export var _path_playback := "parameters/StateMachine/playback"
 
+var _animation_list := []
+
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
 @onready var _playback := _animation_tree.get(_path_playback) as AnimationNodeStateMachinePlayback
 
@@ -58,27 +55,32 @@ signal landing_finished
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	pass
+	_find_all_animation_nodes_from(_animation_tree.tree_root)
+	
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		_animation_tree.set_deferred("active", false)
+		return
+	elif QuiverEditorHelper.is_standalone_run(self):
+		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
+	
+	_animation_tree.active = true
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-## Main public method for the skin, it will check if the parameter is valid using the virtual
-## [method _is_valid_state] method and push an error if it's not. If it is it will get the
-## animation name using the virtual [method _get_anim_name] method and travel to it. [br]
-## You can also override this method if you need special behavior before playing
-## any specific state.
-func transition_to(anim_state: int) -> void:
+## Main public method for the skin, it will check if the parameter is valid and push an 
+## error if it's not. You can also override this method if you need special behavior 
+## before playing any specific state.
+func transition_to(anim_state: StringName) -> void:
 	var value_returned := _is_valid_state(anim_state)
-#	print("value returned: %s"%[value_returned])
 	if not value_returned:
 		push_error("%s is not a valid animation state."%[anim_state])
 		return
 	
-	var anim_name := _get_anim_name(anim_state)
-	_playback.travel(anim_name)
+	_playback.travel(anim_state)
 
 
 ## Use this method in your character's attack animations as a shortcut to emitting
@@ -116,17 +118,13 @@ func landed() -> void:
 
 ## Virtual function to be overriden and check for valid states. The parameter is an [int] because
 ## it expected to use enums or constants for tracking animation states and for autocomplete.
-func _is_valid_state(_anim_state: int) -> bool:
-	var value = false
-	push_warning("This is a virtual function and should not be used directly, but overriden.")
+func _is_valid_state(anim_state: StringName) -> bool:
+	var value = anim_state in _animation_list
+#	print("value: %s | anim_state: %s | Possible states: %s"%[
+#			value, anim_state, SkinStates.values()
+#	])
 	return value
 
-
-## Virtual function to be overriden and translate enum states into animation node names.
-func _get_anim_name(_anim_state: int) -> StringName:
-	var value := StringName()
-	push_warning("This is a virtual function and should not be used directly, but overriden.")
-	return value
 
 
 ## Helper to create getters for public condition properties.
@@ -145,5 +143,62 @@ func _set_animation_tree_condition(path: StringName, value: bool) -> void:
 		return
 	
 	_animation_tree.set(path, value)
+
+
+func _find_all_animation_nodes_from(
+		animation_node: AnimationNode = null, 
+		property_path := "parameters"
+) -> void:
+	if property_path == "parameters":
+		animation_node = _animation_tree.tree_root
+	
+	if animation_node == null:
+		return
+	
+	var properties := animation_node.get_property_list()
+	for property_dict in properties:
+		match property_dict:
+			{"hint_string": "AnimationNode", ..}:
+				_handle_animation_node(
+						animation_node.get(property_dict.name), 
+						property_dict.name,
+						property_path
+				)
+
+
+func _handle_animation_node(
+		node: AnimationNode, 
+		property_name: String, 
+		property_path: String
+) -> void:
+	if node == null:
+		if property_name.find("Start") == -1 and property_name.find("End") == -1:
+			push_warning("%s is null"%[property_name])
+		return
+	
+	var node_class := node.get_class()
+	match node_class:
+		"AnimationNodeAnimation":
+			var animation_name := _filter_main_playback_path(property_name, property_path) 
+			_animation_list.append(animation_name)
+		_:
+			var parameter_name = _get_actual_parameter_name(property_name)
+			property_path = property_path.plus_file(parameter_name)
+			_find_all_animation_nodes_from(node, property_path)
+
+
+func _filter_main_playback_path(animation_name: String, path: String) -> StringName:
+	var parameter_name = _get_actual_parameter_name(animation_name)
+	var full_path = path.plus_file(parameter_name)
+	var path_to_main_playback = _path_playback.replace("playback", "")
+	var value = full_path.replace(path_to_main_playback, "") as StringName
+	return value
+
+
+## property names for these AnimationNodes are in the format "nodes/name/node" 
+## or "states/name/node" so this is to get the middle part of that name
+func _get_actual_parameter_name(property_name: String) -> String:
+	var parameter_name = property_name.split("/")[1]
+	return parameter_name
 
 ### -----------------------------------------------------------------------------------------------
