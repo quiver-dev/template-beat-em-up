@@ -62,10 +62,20 @@ const KNOCKBACK_BY_STRENGTH = {
 ## Heavier character will only be able to be thrown by stronger characters.
 @export var weight: WeightClass = WeightClass.MEDIUM
 ## This can be toggled on or off in animations to create invincibility frames.
-@export var is_invulnerable := false
+@export var is_invulnerable := false:
+	set(value):
+		var has_changed = value != is_invulnerable
+		is_invulnerable = value
+		if has_changed and is_invulnerable:
+			knockback_amount = 0
 ## This can be toggled on or off in animations to create animations that can't be interrupted
 ## but still should allow damage to be received.
-@export var is_superarmor := false
+@export var has_superarmor := false:
+	set(value):
+		var has_changed = value != has_superarmor
+		has_superarmor = value
+		if has_changed and has_superarmor:
+			knockback_amount = 0
 
 ## Character's current health. What the health bar will be showing.
 var health_current := health_max:
@@ -91,10 +101,19 @@ var knockback_amount := 0:
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func add_knockback(strength: KnockbackStrength) -> void:
+	knockback_amount += KNOCKBACK_BY_STRENGTH[strength]
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func should_knockout() -> bool:
+	var has_enough_knockback: bool = \
+			knockback_amount >= KNOCKBACK_BY_STRENGTH[KnockbackStrength.MEDIUM]
+	return not has_superarmor and has_enough_knockback
+
 
 ## Returns the character's current health as percentage.
 func get_health_as_percentage() -> float:
@@ -107,4 +126,3 @@ func get_health_as_percentage() -> float:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
-

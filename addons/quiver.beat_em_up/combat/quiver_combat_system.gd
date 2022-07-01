@@ -29,8 +29,17 @@ enum CharacterTypes {
 
 ### Public Methods --------------------------------------------------------------------------------
 
-static func apply_damage(from: QuiverAttackData, to: QuiverAttributes) -> void:
-	to.health_current -= from.attack_damage
+static func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> void:
+	if target.is_invulnerable:
+		return
+	
+	target.add_knockback(attack.knockback)
+	if target.should_knockout():
+		target.knockout_requested.emit()
+	elif not target.has_superarmor:
+		target.hurt_requested.emit()
+	
+	target.health_current -= attack.attack_damage
 
 ### -----------------------------------------------------------------------------------------------
 
