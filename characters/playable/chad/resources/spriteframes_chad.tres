@@ -36,82 +36,82 @@
 
 [resource]
 animations = [{
-"frames": [ExtResource( "1_wrqq6" ), ExtResource( "2_1xc7n" ), ExtResource( "3_5djqb" ), ExtResource( "2_1xc7n" )],
+"frames": [ExtResource("1_wrqq6"), ExtResource("2_1xc7n"), ExtResource("3_5djqb"), ExtResource("2_1xc7n")],
 "loop": true,
 "name": &"idle",
 "speed": 8.0
 }, {
-"frames": [ExtResource( "5_m1p1s" ), ExtResource( "5_m1p1s" ), ExtResource( "5_m1p1s" ), ExtResource( "5_m1p1s" ), ExtResource( "6_6r71h" ), ExtResource( "6_6r71h" )],
+"frames": [ExtResource("5_m1p1s"), ExtResource("5_m1p1s"), ExtResource("5_m1p1s"), ExtResource("5_m1p1s"), ExtResource("6_6r71h"), ExtResource("6_6r71h")],
 "loop": false,
 "name": &"attack_1",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "6_ra0bq" ), ExtResource( "6_ra0bq" ), ExtResource( "7_n4s3j" ), ExtResource( "7_n4s3j" ), ExtResource( "7_n4s3j" ), ExtResource( "8_ytmlj" ), ExtResource( "8_ytmlj" ), ExtResource( "9_ur7d7" ), ExtResource( "9_ur7d7" ), ExtResource( "9_ur7d7" ), ExtResource( "10_vyrsa" ), ExtResource( "10_vyrsa" ), ExtResource( "11_5p56x" ), ExtResource( "11_5p56x" ), ExtResource( "12_sw7jw" ), ExtResource( "12_sw7jw" ), ExtResource( "12_sw7jw" ), ExtResource( "13_wlfmd" ), ExtResource( "13_wlfmd" ), ExtResource( "14_ujcpq" ), ExtResource( "14_ujcpq" ), ExtResource( "14_ujcpq" ), ExtResource( "15_bany5" ), ExtResource( "15_bany5" ), ExtResource( "16_wr7m3" ), ExtResource( "16_wr7m3" ), ExtResource( "17_j3734" ), ExtResource( "17_j3734" ), ExtResource( "17_j3734" )],
+"frames": [ExtResource("6_ra0bq"), ExtResource("6_ra0bq"), ExtResource("7_n4s3j"), ExtResource("7_n4s3j"), ExtResource("7_n4s3j"), ExtResource("8_ytmlj"), ExtResource("8_ytmlj"), ExtResource("9_ur7d7"), ExtResource("9_ur7d7"), ExtResource("9_ur7d7"), ExtResource("10_vyrsa"), ExtResource("10_vyrsa"), ExtResource("11_5p56x"), ExtResource("11_5p56x"), ExtResource("12_sw7jw"), ExtResource("12_sw7jw"), ExtResource("12_sw7jw"), ExtResource("13_wlfmd"), ExtResource("13_wlfmd"), ExtResource("14_ujcpq"), ExtResource("14_ujcpq"), ExtResource("14_ujcpq"), ExtResource("15_bany5"), ExtResource("15_bany5"), ExtResource("16_wr7m3"), ExtResource("16_wr7m3"), ExtResource("17_j3734"), ExtResource("17_j3734"), ExtResource("17_j3734")],
 "loop": true,
 "name": &"walk",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "19_y1ame" ), ExtResource( "19_y1ame" ), ExtResource( "19_y1ame" ), ExtResource( "20_7jacw" ), ExtResource( "20_7jacw" ), ExtResource( "20_7jacw" ), ExtResource( "20_7jacw" ), ExtResource( "20_7jacw" ), ExtResource( "21_nnpkm" ), ExtResource( "21_nnpkm" ), ExtResource( "6_6r71h" )],
+"frames": [ExtResource("19_y1ame"), ExtResource("19_y1ame"), ExtResource("19_y1ame"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("21_nnpkm"), ExtResource("21_nnpkm"), ExtResource("6_6r71h")],
 "loop": true,
 "name": &"attack_2",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "21_mbplx" ), ExtResource( "21_mbplx" ), ExtResource( "21_mbplx" ), ExtResource( "22_o0cvf" )],
+"frames": [ExtResource("21_mbplx"), ExtResource("21_mbplx"), ExtResource("21_mbplx"), ExtResource("22_o0cvf")],
 "loop": false,
 "name": &"air_attack",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "22_c167v" )],
+"frames": [ExtResource("22_c167v")],
 "loop": false,
 "name": &"rising",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "23_trcrx" ), ExtResource( "23_trcrx" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" )],
+"frames": [ExtResource("23_trcrx"), ExtResource("23_trcrx"), ExtResource("24_5taik"), ExtResource("24_5taik"), ExtResource("24_5taik"), ExtResource("24_5taik"), ExtResource("24_5taik")],
 "loop": false,
 "name": &"jump",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "25_bqngl" )],
+"frames": [ExtResource("25_bqngl")],
 "loop": false,
 "name": &"falling",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "24_5taik" ), ExtResource( "23_trcrx" ), ExtResource( "23_trcrx" )],
+"frames": [ExtResource("24_5taik"), ExtResource("24_5taik"), ExtResource("24_5taik"), ExtResource("23_trcrx"), ExtResource("23_trcrx")],
 "loop": true,
 "name": &"landing",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "27_fdxwh" )],
+"frames": [ExtResource("27_fdxwh")],
 "loop": true,
 "name": &"hurt_high",
 "speed": 5.0
 }, {
-"frames": [ExtResource( "28_niptm" )],
+"frames": [ExtResource("28_niptm")],
 "loop": true,
 "name": &"hurt_middle",
 "speed": 5.0
 }, {
-"frames": [ExtResource( "29_i7rbs" )],
+"frames": [ExtResource("29_i7rbs")],
 "loop": false,
 "name": &"knockout_launch",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "30_h1a1i" )],
+"frames": [ExtResource("30_h1a1i")],
 "loop": false,
 "name": &"knockout_rising",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "31_jaglq" )],
+"frames": [ExtResource("31_jaglq")],
 "loop": false,
 "name": &"knockout_falling",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "32_2hkrc" )],
+"frames": [ExtResource("32_2hkrc")],
 "loop": false,
 "name": &"knockout_bounce",
 "speed": 24.0
 }, {
-"frames": [ExtResource( "33_wiaj1" )],
+"frames": [ExtResource("33_wiaj1")],
 "loop": true,
 "name": &"knockout_landed",
 "speed": 24.0

@@ -10,7 +10,7 @@
 size = Vector2(87, 2212)
 
 [node name="PrototypeMain" type="Node2D"]
-script = ExtResource( "1_wp06a" )
+script = ExtResource("1_wp06a")
 metadata/_edit_horizontal_guides_ = [-409.0]
 
 [node name="ScreenLimits" type="StaticBody2D" parent="."]
@@ -18,16 +18,16 @@ collision_layer = 4
 
 [node name="Left" type="CollisionShape2D" parent="ScreenLimits"]
 position = Vector2(-22, 537)
-shape = SubResource( "RectangleShape2D_dsl8r" )
+shape = SubResource("RectangleShape2D_dsl8r")
 
 [node name="Right" type="CollisionShape2D" parent="ScreenLimits"]
 position = Vector2(1944, 537)
-shape = SubResource( "RectangleShape2D_dsl8r" )
+shape = SubResource("RectangleShape2D_dsl8r")
 
 [node name="Bottom" type="CollisionShape2D" parent="ScreenLimits"]
 position = Vector2(936, 1104)
 rotation = 1.5708
-shape = SubResource( "RectangleShape2D_dsl8r" )
+shape = SubResource("RectangleShape2D_dsl8r")
 
 [node name="CeilingLimits" type="StaticBody2D" parent="."]
 collision_layer = 8
@@ -35,7 +35,7 @@ collision_layer = 8
 [node name="Top" type="CollisionShape2D" parent="CeilingLimits"]
 position = Vector2(940, 379)
 rotation = 1.5708
-shape = SubResource( "RectangleShape2D_dsl8r" )
+shape = SubResource("RectangleShape2D_dsl8r")
 
 [node name="ColorRect" type="ColorRect" parent="CeilingLimits/Top"]
 show_behind_parent = true
@@ -48,10 +48,10 @@ color = Color(0.254902, 0.121569, 0.0705882, 1)
 [node name="Characters" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Chad" parent="Characters" instance=ExtResource( "2_l2dst" )]
+[node name="Chad" parent="Characters" instance=ExtResource("2_l2dst")]
 position = Vector2(652, 850)
 
-[node name="EvilChad" parent="Characters" groups=["player_character"] instance=ExtResource( "4_ses8m" )]
+[node name="EvilChad" parent="Characters" groups=["player_character"] instance=ExtResource("4_ses8m")]
 position = Vector2(1735, 987)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -68,6 +68,6 @@ offset_bottom = 26.0
 grow_horizontal = 0
 text = "version: %s"
 horizontal_alignment = 2
-script = ExtResource( "3_lfeec" )
+script = ExtResource("3_lfeec")
 
-[node name="PlayerHud" parent="HudLayer" instance=ExtResource( "5_7i6ya" )]
+[node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
