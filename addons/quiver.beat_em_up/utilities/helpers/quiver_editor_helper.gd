@@ -45,3 +45,9 @@ static func add_debug_camera2D_to(
 		camera.offset = centered_offset
 	
 	node2D.add_child(camera, true)
+
+
+## Helps to print lonf dictionaries in a more readable format.
+func _json_print(value) -> void:
+	var json := JSON.new()
+	print(json.stringify(value, "\t"))
