@@ -30,6 +30,8 @@ signal landing_finished
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+var attributes: QuiverAttributes = null
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ## Path to animation tree. [br][br]
@@ -38,11 +40,22 @@ signal landing_finished
 @export_node_path(AnimationTree) var _path_animation_tree := ^"AnimationTree"
 
 ## Path to [AnimationNodeStateMachinePlayback]. Usually I create an [AnimationNodeBlendTree] as the
-## root for the [AnimtionTree] and the [AnimationNodeStateMachine] inside it, so I can do anything 
-## with the output of the state machine playback, like changing the time scale for example. Use this
-## to point to the correct path if you structure your [AnimationTree] in a different way. [br][br]
+## root for the [AnimationTree] and the [AnimationNodeStateMachine] inside it, so I can do anything 
+## with the output of the state machine playback, like changing the time scale for example. 
+## Use this to point to the correct path if you structure your [AnimationTree] in a different way. 
+## [br][br]
 ## See [member _path_animation_tree] for "private" reasoning.
 @export var _path_playback := "parameters/StateMachine/playback"
+
+## This is also here as a "hack" for the lack of advanced exports. It is private because I don't 
+## want to deal with this in code, it's just an editor field to populate the real property which
+## is the public [member attributes]. Once advanced exportes exist this will be converted
+## to it.
+@export var _attributes: Resource:
+	set(value):
+		attributes = value as QuiverAttributes
+	get:
+		return attributes
 
 var _animation_list := []
 

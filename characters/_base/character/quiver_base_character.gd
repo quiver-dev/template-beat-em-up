@@ -37,6 +37,8 @@ var ground_level := 0.0
 @export var _attributes: Resource:
 	set(value):
 		attributes = value as QuiverAttributes
+		if is_instance_valid(_skin):
+			_skin.attributes = attributes
 	get:
 		return attributes
 
