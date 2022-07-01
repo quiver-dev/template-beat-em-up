@@ -27,7 +27,7 @@ signal knockout_requested
 #--- enums ----------------------------------------------------------------------------------------
 
 enum WeightClass { LIGHT, MEDIUM, HEAVY }
-enum KnockbackStrength { LIGHT, MEDIUM, STRONG, MASSIVE }
+enum KnockbackStrength { NONE, WEAK, MEDIUM, STRONG, MASSIVE }
 
 #--- constants ------------------------------------------------------------------------------------
 
@@ -39,7 +39,8 @@ const WEIGHT_MULTIPLIER = {
 }
 
 const KNOCKBACK_BY_STRENGTH = {
-	KnockbackStrength.LIGHT: 2, # Doesn't launch the target, but builds up
+	KnockbackStrength.NONE: 0,
+	KnockbackStrength.WEAK: 2, # Doesn't launch the target, but builds up
 	KnockbackStrength.MEDIUM: 20, # Should launch target
 	KnockbackStrength.STRONG: 40,
 	KnockbackStrength.MASSIVE: 80,
