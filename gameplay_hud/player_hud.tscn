@@ -22,12 +22,12 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_6vg6u"]
-ProgressBar/styles/bg = SubResource( "StyleBoxFlat_abo2o" )
-ProgressBar/styles/fg = SubResource( "StyleBoxFlat_tvend" )
+ProgressBar/styles/bg = SubResource("StyleBoxFlat_abo2o")
+ProgressBar/styles/fg = SubResource("StyleBoxFlat_tvend")
 
 [sub_resource type="Theme" id="Theme_iwr8p"]
-ProgressBar/styles/bg = SubResource( "StyleBoxFlat_abo2o" )
-ProgressBar/styles/fg = SubResource( "StyleBoxFlat_tvend" )
+ProgressBar/styles/bg = SubResource("StyleBoxFlat_abo2o")
+ProgressBar/styles/fg = SubResource("StyleBoxFlat_tvend")
 
 [node name="PlayerHud" type="VBoxContainer"]
 anchor_right = 0.5
@@ -35,7 +35,7 @@ offset_left = 50.0
 offset_top = 30.0
 offset_right = -50.0
 theme_override_constants/separation = 0
-script = ExtResource( "1_i2ajm" )
+script = ExtResource("1_i2ajm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="CharacterName" type="Label" parent="."]
@@ -44,11 +44,11 @@ offset_bottom = 26.0
 text = "CHAD"
 
 [node name="LifeBar" type="ProgressBar" parent="."]
-minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 30)
 offset_top = 26.0
 offset_right = 860.0
 offset_bottom = 56.0
-theme = SubResource( "Theme_6vg6u" )
+theme = SubResource("Theme_6vg6u")
 max_value = 1.0
 value = 0.5
 percent_visible = false
@@ -72,11 +72,11 @@ offset_bottom = 26.0
 text = "CHAD"
 
 [node name="LifeBar" type="ProgressBar" parent="EnemyContainer/Column"]
-minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 25)
 offset_top = 26.0
 offset_right = 560.0
 offset_bottom = 51.0
-theme = SubResource( "Theme_iwr8p" )
+theme = SubResource("Theme_iwr8p")
 max_value = 1.0
 value = 0.5
 percent_visible = false
