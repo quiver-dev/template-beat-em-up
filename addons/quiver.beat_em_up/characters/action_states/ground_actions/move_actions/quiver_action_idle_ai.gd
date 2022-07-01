@@ -19,7 +19,7 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
+@export var _skin_state: StringName
 @onready var _move_state := get_parent() as MoveState
 
 ### -----------------------------------------------------------------------------------------------
@@ -78,7 +78,8 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 #	"": {
 #		backing_field = "",

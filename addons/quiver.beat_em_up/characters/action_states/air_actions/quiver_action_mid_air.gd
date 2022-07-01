@@ -18,8 +18,8 @@ const AirState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state_rising: int = -1
-@export var _skin_state_falling: int = -1
+@export var _skin_state_rising: StringName
+@export var _skin_state_falling: StringName
 
 @export var _can_attack := true:
 	set(value):
@@ -139,14 +139,16 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 	"skin_state_falling": {
 		backing_field = "_skin_state_falling",
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 	"can_attack": {
 		backing_field = "_can_attack",

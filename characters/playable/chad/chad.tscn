@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Resource" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Resource" uid="uid://dtgy5kdua2c1y" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
@@ -44,20 +44,20 @@ script = ExtResource( "5_5sh7r" )
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "6_jtgbp" )
-_skin_state = 1
+_skin_state = &"walk"
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource( "7_kqgdb" )
-_skin_state = 0
+_skin_state = &"idle"
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "9_cce84" )
-_skin_state = 2
+_skin_state = &"attack_group/attack1"
 _path_combo_state = "Ground/Combo2"
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource( "9_cce84" )
-_skin_state = 3
+_skin_state = &"attack_group/attack2"
 _can_combo = false
 _path_combo_state = ""
 
@@ -66,20 +66,20 @@ script = ExtResource( "9_o5gfu" )
 
 [node name="JumpImpulse" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "11_wf2ss" )
-_skin_state = 4
+_skin_state = &"jump_group/jump"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "12_4dbtu" )
-_skin_state_rising = 5
-_skin_state_falling = 6
+_skin_state_rising = &"jump_group/rising"
+_skin_state_falling = &"jump_group/falling"
 
 [node name="Landing" type="Node" parent="StateMachine/Air" index="2"]
 script = ExtResource( "13_d8net" )
-_skin_state = 7
+_skin_state = &"jump_group/landing"
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="3"]
 script = ExtResource( "13_cw2hu" )
-_skin_state = 8
+_skin_state = &"jump_group/air_attack"
 _path_falling_state = "Air/MidAir"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]

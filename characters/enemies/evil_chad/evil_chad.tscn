@@ -48,21 +48,21 @@ script = ExtResource( "4_120xx" )
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource( "5_y1loh" )
-_skin_state = 0
+_skin_state = &"idle"
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource( "2_py5s2" )
 ARRIVE_RANGE = 30
-_skin_state = 1
+_skin_state = &"walk"
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource( "8_lnplq" )
-_skin_state = 2
+_skin_state = &"attack1"
 _path_combo_state = "Ground/Combo2"
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource( "8_lnplq" )
-_skin_state = 3
+_skin_state = &"attack2"
 _can_combo = false
 _path_combo_state = ""
 
@@ -71,20 +71,21 @@ script = ExtResource( "10_xyisi" )
 
 [node name="Attack" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource( "12_lphyp" )
-_skin_state = 5
+_skin_state = &"air_attack"
+_path_falling_state = "Air/Landing"
 
 [node name="JumpImpulse" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource( "11_rp4h6" )
-_skin_state = 4
+_skin_state = &"jump"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air" index="2"]
 script = ExtResource( "12_ocdi3" )
-_skin_state_rising = 5
-_skin_state_falling = 6
+_skin_state_rising = &"rising"
+_skin_state_falling = &"falling"
 
 [node name="Landing" type="Node" parent="StateMachine/Air" index="3"]
 script = ExtResource( "13_fwo3l" )
-_skin_state = 7
+_skin_state = &"landing"
 _path_walk = "Ground/Move/Follow"
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]

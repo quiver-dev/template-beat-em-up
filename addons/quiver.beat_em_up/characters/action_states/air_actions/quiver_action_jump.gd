@@ -18,7 +18,7 @@ const AirState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
+@export var _skin_state: StringName
 @export var _path_next_state := "Air/MidAir"
 
 @onready var _air_state := get_parent() as AirState
@@ -104,7 +104,8 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
