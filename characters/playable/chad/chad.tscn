@@ -1,22 +1,28 @@
-[gd_scene load_steps=19 format=3 uid="uid://chnnencdesvbc"]
+[gd_scene load_steps=25 format=3 uid="uid://chnnencdesvbc"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Resource" uid="uid://bc7lmcr388aee" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Resource" uid="uid://dtgy5kdua2c1y" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle.gd" id="7_kqgdb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="9_cce84"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="9_o5gfu"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="9_pb6nh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd" id="9_qvevi"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="11_a7lbg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="11_wf2ss"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="12_4dbtu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="12_vsxf2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="13_d8net"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="21_knrf0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
@@ -55,13 +61,9 @@ script = ExtResource("7_kqgdb")
 _skin_state = &"idle"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource("9_qvevi")
-
-[node name="Mid" type="Node" parent="StateMachine/Ground/Hurt" index="0"]
-script = ExtResource("9_qvevi")
-
-[node name="High" type="Node" parent="StateMachine/Ground/Hurt" index="1"]
-script = ExtResource("9_qvevi")
+script = ExtResource("9_pb6nh")
+_skin_state_high = &"hurt_high"
+_skin_state_mid = &"hurt_mid"
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("9_cce84")
@@ -75,7 +77,8 @@ _can_combo = false
 _path_combo_state = ""
 
 [node name="Recovery" type="Node" parent="StateMachine/Ground" index="4"]
-script = ExtResource("9_qvevi")
+script = ExtResource("11_a7lbg")
+_skin_state = &"knockout_ground"
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("9_o5gfu")
@@ -102,16 +105,21 @@ _skin_state = &"air_attack"
 _path_falling_state = "Air/MidAir"
 
 [node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
-script = ExtResource("9_qvevi")
+script = ExtResource("18_f4w2y")
 
 [node name="Launch" type="Node" parent="StateMachine/Air/Knockout" index="0"]
-script = ExtResource("9_qvevi")
+script = ExtResource("19_jff31")
+_skin_state_launch = &"knockout_launch"
+_skin_state_rising = &"knockout_rising"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
-script = ExtResource("9_qvevi")
+script = ExtResource("20_n08m6")
+_skin_state_rising = &"knockout_rising"
+_skin_state_falling = &"knockout_falling"
 
 [node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
-script = ExtResource("9_qvevi")
+script = ExtResource("21_knrf0")
+_skin_state = &"knockout_bounce"
 
 [node name="Die" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("9_qvevi")
