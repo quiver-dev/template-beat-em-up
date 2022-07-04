@@ -19,15 +19,20 @@ extends RefCounted
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+## Gets a position vector based on an angle and radius with a center offset.
 static func get_position_by_polar_coordinates(
-		center_position: Vector2, angle: float, radius: float
+		center_position: Vector2, angle_rad: float, radius: float
 ) -> Vector2:
-	var polar_coordinate = Vector2(
-		cos(angle) * radius,
-		sin(angle) * radius
-	)
+	var polar_coordinate := get_direction_by_angle(angle_rad) * radius
 	var value = center_position + polar_coordinate
 	return value
+
+## Gets a normalized direction vector based on an angle in radians
+static func get_direction_by_angle(angle_rad: float) -> Vector2:
+	return Vector2(
+		cos(angle_rad),
+		sin(angle_rad)
+	).normalized()
 
 ### -----------------------------------------------------------------------------------------------
 
