@@ -102,13 +102,14 @@ func _disconnect_signals() -> void:
 			_attributes.knockout_requested.disconnect(_on_knockout_requested)
 
 
-func _on_hurt_requested(_hurt_type: QuiverCombatSystem.HurtTypes) -> void:
+func _on_hurt_requested(knockback: QuiverKnockback) -> void:
 	# This is here because ANY hit you receive on air generates a knockout.
-	_state_machine.transition_to(_path_knockout)
+	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
 
 
-func _on_knockout_requested() -> void:
-	_state_machine.transition_to(_path_knockout)
+func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
+
 
 ### -----------------------------------------------------------------------------------------------
 

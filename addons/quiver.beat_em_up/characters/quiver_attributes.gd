@@ -21,13 +21,13 @@ extends Resource
 
 signal health_changed
 signal health_depleted
-signal hurt_requested(hurt_type)
-signal knockout_requested
+# not using type hints on this one becuase of Cyclic Errors
+signal hurt_requested(knockback: QuiverKnockback)
+signal knockout_requested(knockback: QuiverKnockback)
 
 #--- enums ----------------------------------------------------------------------------------------
 
 enum WeightClass { LIGHT, MEDIUM, HEAVY }
-enum KnockbackStrength { NONE, WEAK, MEDIUM, STRONG, MASSIVE }
 
 #--- constants ------------------------------------------------------------------------------------
 
@@ -39,11 +39,11 @@ const WEIGHT_MULTIPLIER = {
 }
 
 const KNOCKBACK_BY_STRENGTH = {
-	KnockbackStrength.NONE: 0,
-	KnockbackStrength.WEAK: 2, # Doesn't launch the target, but builds up
-	KnockbackStrength.MEDIUM: 20, # Should launch target
-	KnockbackStrength.STRONG: 40,
-	KnockbackStrength.MASSIVE: 80,
+	QuiverCyclicHelper.KnockbackStrength.NONE: 0,
+	QuiverCyclicHelper.KnockbackStrength.WEAK: 60, # Doesn't launch the target, but builds up
+	QuiverCyclicHelper.KnockbackStrength.MEDIUM: 600, # Should launch target
+	QuiverCyclicHelper.KnockbackStrength.STRONG: 1200,
+	QuiverCyclicHelper.KnockbackStrength.MASSIVE: 2400,
 }
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -101,7 +101,7 @@ var knockback_amount := 0:
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func add_knockback(strength: KnockbackStrength) -> void:
+func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
 	knockback_amount += KNOCKBACK_BY_STRENGTH[strength]
 
 ### -----------------------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ func add_knockback(strength: KnockbackStrength) -> void:
 
 func should_knockout() -> bool:
 	var has_enough_knockback: bool = \
-			knockback_amount >= KNOCKBACK_BY_STRENGTH[KnockbackStrength.MEDIUM]
+			knockback_amount >= KNOCKBACK_BY_STRENGTH[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
 	return not has_superarmor and has_enough_knockback
 
 
@@ -126,3 +126,5 @@ func get_health_as_percentage() -> float:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+
+

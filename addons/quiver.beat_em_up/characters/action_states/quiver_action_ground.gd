@@ -78,12 +78,12 @@ func _disconnect_signals() -> void:
 			_attributes.knockout_requested.disconnect(_on_knockout_requested)
 
 
-func _on_hurt_requested(hurt_type: QuiverCombatSystem.HurtTypes) -> void:
-	_state_machine.transition_to(_path_hurt, {hurt_type = hurt_type})
+func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+	_state_machine.transition_to(_path_hurt, {hurt_type = knockback.hurt_type})
 
 
-func _on_knockout_requested() -> void:
-	_state_machine.transition_to(_path_knockout)
+func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
 
 ### -----------------------------------------------------------------------------------------------
 

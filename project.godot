@@ -85,6 +85,11 @@ _global_script_classes=[{
 "path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd"
 }, {
 "base": "RefCounted",
+"class": &"QuiverKnockback",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/combat/quiver_knockback_struct.gd"
+}, {
+"base": "RefCounted",
 "class": &"QuiverMathHelper",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_math_helper.gd"
@@ -120,6 +125,7 @@ _global_script_class_icons={
 "QuiverEditorHelper": "",
 "QuiverHitBox": "",
 "QuiverHurtBox": "",
+"QuiverKnockback": "",
 "QuiverMathHelper": "",
 "QuiverState": "",
 "QuiverStateMachine": "",

@@ -57,14 +57,14 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_ground_state.enter(msg)
 	
-	var hurt_type := QuiverCombatSystem.HurtTypes.HIGH
+	var hurt_type := QuiverCyclicHelper.HurtTypes.HIGH
 	if msg.has("hurt_type"):
 		hurt_type = msg.hurt_type
 	
 	match hurt_type:
-		QuiverCombatSystem.HurtTypes.HIGH:
+		QuiverCyclicHelper.HurtTypes.HIGH:
 			_skin.transition_to(_skin_state_high)
-		QuiverCombatSystem.HurtTypes.MID:
+		QuiverCyclicHelper.HurtTypes.MID:
 			_skin.transition_to(_skin_state_mid)
 
 
