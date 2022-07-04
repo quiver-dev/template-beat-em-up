@@ -10,18 +10,20 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const JumpState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd"
+const KnockoutState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/"
+		+ "quiver_action_knockout.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
-@export var _path_next_state := "Air/Jump/MidAir"
+@export var _skin_state_launch: StringName
+@export var _skin_state_rising: StringName
+@export var _path_next_state := "Air/Knockout/MidAir"
 
-@onready var _jump_state := get_parent() as JumpState
+@onready var _knockout_state := get_parent() as KnockoutState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,9 +41,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is JumpState:
+	if not get_parent() is KnockoutState:
 		warnings.append(
-				"This ActionState must be a child of Action Jump state or a state " 
+				"This ActionState must be a child of Action KnockoutState or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -54,11 +56,31 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_jump_state.enter(msg)
-	_skin.transition_to(_skin_state)
+	_knockout_state.enter(msg)
+	if _knockout_state._launch_count == 0:
+		_skin.transition_to(_skin_state_launch)
+	else:
+		_skin.transition_to(_skin_state_rising)
 	
-	if msg.has("velocity"):
-		_character.velocity = msg.velocity
+	if msg.has("launch_vector"):
+		_handle_launch_speed(msg.launch_vector)
+	else:
+		assert(false, "No launch vector received on launch state.")
+		# The code above will error out in the editor, and the code below will allow the game
+		# to at least try to recover from an error scenario, though it will probably launch the
+		# enemy in the wrong direction.
+		var makeshift_launch_vector := Vector2(1,1).normalized()
+		push_error(
+				"No launch vector received on launch state. Launching to: %s"
+				%[makeshift_launch_vector]
+		)
+		_handle_launch_speed(makeshift_launch_vector)
+	
+	_knockout_state._launch_count += 1
+
+
+func physics_process(delta: float) -> void:
+	_knockout_state.physics_process(delta)
 
 
 func exit() -> void:
@@ -68,6 +90,12 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _handle_launch_speed(launch_vector: Vector2) -> void:
+	var knockback_velocity = _attributes.knockback_amount * launch_vector
+	_character.velocity += knockback_velocity
+	_attributes.knockback_amount = 0
+
 
 func _connect_signals() -> void:
 	super()
@@ -83,19 +111,26 @@ func _disconnect_signals() -> void:
 
 
 func _on_skin_animation_finished() -> void:
-	_character.velocity.y = _attributes.jump_force
 	_state_machine.transition_to(_path_next_state)
-	_state_machine.set_physics_process(true)
 
 ### -----------------------------------------------------------------------------------------------
+
 
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"skin_state": {
-		backing_field = "_skin_state",
+	"skin_state_launch": {
+		backing_field = "_skin_state_launch",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
+	"skin_state_rising": {
+		backing_field = "_skin_state_rising",
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
