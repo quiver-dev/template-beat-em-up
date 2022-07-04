@@ -58,7 +58,9 @@ func _inititalize_property() -> void:
 		print("EXTERNAL IS NULL")
 		return
 	
-	var current_value := _edited.get(get_edited_property()) as StringName
+	var current_value := StringName()
+	if _edited.get(get_edited_property()) != null:
+		current_value = _edited.get(get_edited_property()) as StringName
 	var item_id := 0
 	_options.clear()
 	_options.add_item("Choose enum value")
