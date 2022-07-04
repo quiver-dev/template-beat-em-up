@@ -5,5 +5,6 @@ extends Node
 ### Signals ---------------------------------------------------------------------------------------
 
 signal enemy_data_sent(enemy: QuiverAttributes, player: QuiverAttributes)
+signal characters_reseted
 
 ### -----------------------------------------------------------------------------------------------

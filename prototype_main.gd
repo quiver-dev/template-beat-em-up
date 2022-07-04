@@ -23,6 +23,12 @@ extends Node2D
 func _ready() -> void:
 	_player_hud.set_player_attributes(_main_player.attributes)
 
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_restart"):
+		Events.characters_reseted.emit()
+		get_tree().reload_current_scene()
+
 ### -----------------------------------------------------------------------------------------------
 
 

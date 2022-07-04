@@ -105,13 +105,17 @@ var knockback_amount := 0:
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
-	knockback_amount += KNOCKBACK_BY_STRENGTH[strength]
+func _init() -> void:
+	Events.characters_reseted.connect(reset)
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
+	knockback_amount += KNOCKBACK_BY_STRENGTH[strength]
+
 
 func should_knockout() -> bool:
 	var has_enough_knockback: bool = \
@@ -123,6 +127,12 @@ func should_knockout() -> bool:
 func get_health_as_percentage() -> float:
 	var value := health_current / float(health_max)
 	return value
+
+
+func reset() -> void:
+	health_current = health_max
+	is_invulnerable = false
+	has_superarmor = false
 
 ### -----------------------------------------------------------------------------------------------
 
