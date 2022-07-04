@@ -97,6 +97,13 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
+	var knockback: QuiverKnockback = QuiverKnockback.new(
+			hit_box.attack_data.knockback,
+			hit_box.attack_data.hurt_type,
+			_get_treated_launch_vector(hit_box)
+	)
+	QuiverCombatSystem.apply_knockback(knockback, character_attributes)
+	
 	if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
 		Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
 
@@ -104,5 +111,15 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _get_treated_launch_vector(hit_box: QuiverHitBox) -> Vector2:
+	var launch_vector := hit_box.attack_data.launch_vector
+	if _attack_is_coming_from_right(hit_box):
+		launch_vector = launch_vector.reflect(Vector2.UP)
+	return launch_vector
+
+
+func _attack_is_coming_from_right(hit_box: QuiverHitBox) -> bool:
+	return hit_box.global_position.x > global_position.x
 
 ### -----------------------------------------------------------------------------------------------

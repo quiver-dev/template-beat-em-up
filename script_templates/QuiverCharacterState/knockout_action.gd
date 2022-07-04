@@ -1,5 +1,5 @@
-class_name QuiverCombatSystem
-extends RefCounted
+@tool
+extends _BASE_
 
 ## Write your doc string for this file here
 
@@ -8,51 +8,71 @@ extends RefCounted
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum CharacterTypes {
-	PLAYERS,
-	ENEMIES,
-}
-
-enum HurtTypes {
-	MID,
-	HIGH
-}
-
 #--- constants ------------------------------------------------------------------------------------
+
+const KnockoutState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/"
+		+ "quiver_action_knockout.gd"
+)
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+@onready var _knockout_state := get_parent() as KnockoutState
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _ready() -> void:
+	super()
+	update_configuration_warnings()
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	
+	if not get_parent() is KnockoutState:
+		warnings.append(
+				"This ActionState must be a child of Action KnockoutState or a state " 
+				+ "inheriting from it."
+		)
+	
+	return warnings
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-static func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> void:
-	if target.is_invulnerable:
-		return
-	target.health_current -= attack.attack_damage
+func enter(msg: = {}) -> void:
+	super(msg)
+	_knockout_state.enter(msg)
 
 
-static func apply_knockback(
-		knockback: QuiverKnockback, 
-		target: QuiverAttributes
-) -> void:
-	if target.is_invulnerable:
-		return
+func unhandled_input(event: InputEvent) -> void:
+	var has_handled := false
 	
-	target.add_knockback(knockback.strength)
-	if target.should_knockout():
-		target.knockout_requested.emit(knockback)
-	elif not target.has_superarmor:
-		target.hurt_requested.emit(knockback)
-	
+	if not has_handled:
+		_knockout_state.unhandled_input(event)
+
+
+func process(delta: float) -> void:
+	_knockout_state.process(delta)
+
+
+func physics_process(delta: float) -> void:
+	_knockout_state.physics_process(delta)
+
+
+func exit() -> void:
+	super()
+	_knockout_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -60,4 +80,3 @@ static func apply_knockback(
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
-
