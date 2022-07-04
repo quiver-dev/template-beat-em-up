@@ -18,17 +18,10 @@ extends Node2D
 
 ## called by attack animations at the point where they stop accepting input for combos
 signal attack_input_frames_finished
-signal jump_impulse_reached
 
 ## called by animations at their last frame. This is a workaround for [AnimationPlayer] 
 ## not emitting any of it's signals when it's controlled by an [AnimationTree].
-signal attack_animation_finished
-## called by animations at their last frame. This is a workaround for [AnimationPlayer] 
-## not emitting any of it's signals when it's controlled by an [AnimationTree].
-signal landing_finished
-## called by animations at their last frame. This is a workaround for [AnimationPlayer] 
-## not emitting any of it's signals when it's controlled by an [AnimationTree].
-signal hurt_finished
+signal skin_animation_finished
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -109,32 +102,12 @@ func end_of_input_frames() -> void:
 
 
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
-## [signal attack_animation_finished)]
-func end_of_attack_animation() -> void:
+## [signal skin_animation_finished)]
+func end_of_skin_animation() -> void:
 	if not _playback.get_travel_path().is_empty():
 		return
 	
-	attack_animation_finished.emit()
-
-
-## Use this method at the end of your "jumping" animation. This will emit the 
-## [signal jump_impulse_reached] and the character's state machine will handle the actual 
-## jump and transitioning to the "rising" animation state.
-func jump_impulse() -> void:
-	jump_impulse_reached.emit()
-
-
-## Use this method at the end of your "landing" animation. This will emit the 
-## [signal landing_finished] and the character's state machine will handle the actual 
-## transitioning to the "idle" animation state.
-func landed() -> void:
-	landing_finished.emit()
-
-
-## Use this method at the end of your character's ground hurt animations as a shortcut to emitting
-## [signal hurt_finished]
-func end_of_hurt_animation() -> void:
-	hurt_finished.emit()
+	skin_animation_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

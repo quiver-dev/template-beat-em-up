@@ -66,7 +66,7 @@ tracks/4/keys = {
 "method": &"end_of_input_frames"
 }, {
 "args": [],
-"method": &"end_of_attack_animation"
+"method": &"end_of_skin_animation"
 }]
 }
 tracks/5/type = "value"

@@ -72,19 +72,19 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _skin.attack_animation_finished.is_connected(_on_air_attack_finished):
-		_skin.attack_animation_finished.connect(_on_air_attack_finished)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _skin != null:
-		if _skin.attack_animation_finished.is_connected(_on_air_attack_finished):
-			_skin.attack_animation_finished.disconnect(_on_air_attack_finished)
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
-func _on_air_attack_finished() -> void:
+func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_falling_state, {
 			velocity = _character.velocity, 
 			ignore_jump = true,

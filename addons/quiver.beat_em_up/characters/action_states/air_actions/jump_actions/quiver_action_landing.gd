@@ -72,19 +72,19 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _skin.landing_finished.is_connected(_on_skin_landing_finished):
-		_skin.landing_finished.connect(_on_skin_landing_finished)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _skin != null:
-		if _skin.landing_finished.is_connected(_on_skin_landing_finished):
-			_skin.landing_finished.disconnect(_on_skin_landing_finished)
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
-func _on_skin_landing_finished() -> void:
+func _on_skin_animation_finished() -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction.is_equal_approx(Vector2.ZERO):
 		_state_machine.transition_to(_path_idle)

@@ -80,18 +80,18 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _skin.hurt_finished.is_connected(_on_hurt_finished):
-		_skin.hurt_finished.connect(_on_hurt_finished)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	if _skin != null:
-		if _skin.hurt_finished.is_connected(_on_hurt_finished):
-			_skin.hurt_finished.disconnect(_on_hurt_finished)
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
-func _on_hurt_finished() -> void:
+func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_idle_state)
 
 ### -----------------------------------------------------------------------------------------------

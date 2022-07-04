@@ -73,18 +73,18 @@ func exit() -> void:
 
 func _connect_signals() -> void:
 	super()
-	if not _skin.jump_impulse_reached.is_connected(_on_jump_impulse_reached):
-		_skin.jump_impulse_reached.connect(_on_jump_impulse_reached)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	if _skin != null:
-		if _skin.jump_impulse_reached.is_connected(_on_jump_impulse_reached):
-			_skin.jump_impulse_reached.disconnect(_on_jump_impulse_reached)
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
-func _on_jump_impulse_reached() -> void:
+func _on_skin_animation_finished() -> void:
 	_character.velocity.y = _attributes.jump_force
 	_state_machine.transition_to(_path_next_state)
 	_state_machine.set_physics_process(true)
