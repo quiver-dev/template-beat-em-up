@@ -10,20 +10,19 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const AirState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
+const KnockoutState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/"
+		+ "quiver_action_knockout.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export var _skin_state_rising: StringName
+@export var _skin_state_falling: StringName
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_bounce := "Air/Knockout/Bounce"
-@export var _path_launch := "Air/Knockout/Launch"
-
-var _launch_count := 0
-
-@onready var _air_state := get_parent() as AirState
+@onready var _knockout_state := get_parent() as KnockoutState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,9 +40,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is AirState:
+	if not get_parent() is KnockoutState:
 		warnings.append(
-				"This ActionState must be a child of Action AirState or a state " 
+				"This ActionState must be a child of Action KnockoutState or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -56,80 +55,51 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_air_state.enter(msg)
+	_handle_mid_air_animation()
 
 
 func physics_process(delta: float) -> void:
-	_air_state._move_and_apply_gravity(delta)
-	if _air_state._has_reached_ground():
-		_handle_bounce()
+	_handle_mid_air_animation()
+	_knockout_state.physics_process(delta)
 
 
 func exit() -> void:
 	super()
-	_launch_count = 0
-	_air_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _handle_bounce() -> void:
-	_character.global_position.y = _character.ground_level
-	var bounce_direction = _character.velocity.reflect(Vector2.UP)
-	_character.velocity.y = 0.0
-	_state_machine.transition_to(_path_bounce, {bounce_direction = bounce_direction})
-
-
-func _launch_charater(launch_vector: Vector2) -> void:
-	var knockback_velocity = _attributes.knockback_amount * launch_vector
-	_character.velocity += knockback_velocity
-	_attributes.knockback_amount = 0
-
-
-func _connect_signals() -> void:
-	super()
-	
-	if not _attributes.hurt_requested.is_connected(_on_hurt_requested):
-		_attributes.hurt_requested.connect(_on_hurt_requested)
-	
-	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
-		_attributes.knockout_requested.connect(_on_knockout_requested)
-
-
-func _disconnect_signals() -> void:
-	super()
-	
-	if _attributes != null:
-		if _attributes.hurt_requested.is_connected(_on_hurt_requested):
-			_attributes.hurt_requested.disconnect(_on_hurt_requested)
-		
-		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
-			_attributes.knockout_requested.disconnect(_on_knockout_requested)
-
-
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
-	# This is here because ANY hit you receive on air generates a knockout.
-	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
-
-
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
-	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
+func _handle_mid_air_animation() -> void:
+	if _character.velocity.y < 0:
+		_skin.transition_to(_skin_state_rising)
+	else:
+		_skin.transition_to(_skin_state_falling)
 
 ### -----------------------------------------------------------------------------------------------
+
 
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"path_knockout": {
-		backing_field = "_path_knockout",
-		type = TYPE_STRING,
+	"skin_state_rising": {
+		backing_field = "_skin_state_rising",
+		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
+	"skin_state_falling": {
+		backing_field = "_skin_state_falling",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 #	"": {
 #		backing_field = "",

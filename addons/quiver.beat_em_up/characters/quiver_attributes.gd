@@ -88,6 +88,10 @@ var health_current := health_max:
 			else:
 				health_depleted.emit()
 
+var is_alive: bool:
+	get:
+		return get_health_as_percentage() > 0
+
 ## Amount of knockback character has received, will be used to calculate bounce the next time
 ## it hits a wall or the ground.
 var knockback_amount := 0:

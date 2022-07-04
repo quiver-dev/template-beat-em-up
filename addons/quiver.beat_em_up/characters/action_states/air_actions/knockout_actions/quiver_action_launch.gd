@@ -63,7 +63,7 @@ func enter(msg: = {}) -> void:
 		_skin.transition_to(_skin_state_rising)
 	
 	if msg.has("launch_vector"):
-		_handle_launch_speed(msg.launch_vector)
+		_knockout_state._launch_charater(msg.launch_vector)
 	else:
 		assert(false, "No launch vector received on launch state.")
 		# The code above will error out in the editor, and the code below will allow the game
@@ -74,7 +74,7 @@ func enter(msg: = {}) -> void:
 				"No launch vector received on launch state. Launching to: %s"
 				%[makeshift_launch_vector]
 		)
-		_handle_launch_speed(makeshift_launch_vector)
+		_knockout_state._launch_charater(makeshift_launch_vector)
 	
 	_knockout_state._launch_count += 1
 
@@ -90,12 +90,6 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _handle_launch_speed(launch_vector: Vector2) -> void:
-	var knockback_velocity = _attributes.knockback_amount * launch_vector
-	_character.velocity += knockback_velocity
-	_attributes.knockback_amount = 0
-
 
 func _connect_signals() -> void:
 	super()
