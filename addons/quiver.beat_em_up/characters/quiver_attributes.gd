@@ -21,7 +21,7 @@ extends Resource
 
 signal health_changed
 signal health_depleted
-signal hurt_requested
+signal hurt_requested(hurt_type)
 signal knockout_requested
 
 #--- enums ----------------------------------------------------------------------------------------

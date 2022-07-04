@@ -13,6 +13,11 @@ enum CharacterTypes {
 	ENEMIES,
 }
 
+enum HurtTypes {
+	MID,
+	HIGH
+}
+
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -37,7 +42,7 @@ static func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> 
 	if target.should_knockout():
 		target.knockout_requested.emit()
 	elif not target.has_superarmor:
-		target.hurt_requested.emit()
+		target.hurt_requested.emit(attack.hurt_type)
 	
 	target.health_current -= attack.attack_damage
 

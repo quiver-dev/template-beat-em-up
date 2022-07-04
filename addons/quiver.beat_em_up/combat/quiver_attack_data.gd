@@ -14,7 +14,8 @@ extends Resource
 
 @export_range(1, 2, 1, "or_greater") var attack_damage = 1
 @export var knockback:QuiverAttributes.KnockbackStrength = \
-		QuiverAttributes.KnockbackStrength.NONE
+	QuiverAttributes.KnockbackStrength.NONE
+@export var hurt_type: QuiverCombatSystem.HurtTypes = QuiverCombatSystem.HurtTypes.HIGH
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
