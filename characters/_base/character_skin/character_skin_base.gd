@@ -67,7 +67,7 @@ var _animation_list := []
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	_find_all_animation_nodes_from(_animation_tree.tree_root)
+	_find_all_animation_nodes_from()
 	
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
@@ -153,6 +153,10 @@ func _find_all_animation_nodes_from(
 	if animation_node == null:
 		return
 	
+	var should_ignore_child_state_machines := true
+	if animation_node is AnimationNodeStateMachine:
+		should_ignore_child_state_machines = false
+	
 	var properties := animation_node.get_property_list()
 	for property_dict in properties:
 		match property_dict:
@@ -160,14 +164,16 @@ func _find_all_animation_nodes_from(
 				_handle_animation_node(
 						animation_node.get(property_dict.name), 
 						property_dict.name,
-						property_path
+						property_path,
+						should_ignore_child_state_machines
 				)
 
 
 func _handle_animation_node(
 		node: AnimationNode, 
 		property_name: String, 
-		property_path: String
+		property_path: String,
+		ignore_groups := false
 ) -> void:
 	if node == null:
 		if property_name.find("Start") == -1 and property_name.find("End") == -1:
@@ -180,6 +186,9 @@ func _handle_animation_node(
 			var animation_name := _filter_main_playback_path(property_name, property_path) 
 			_animation_list.append(animation_name)
 		_:
+			if not ignore_groups and node_class == "AnimationNodeStateMachine":
+				var animation_name := _filter_main_playback_path(property_name, property_path) 
+				_animation_list.append(animation_name)
 			var parameter_name = _get_actual_parameter_name(property_name)
 			property_path = property_path.plus_file(parameter_name)
 			_find_all_animation_nodes_from(node, property_path)
