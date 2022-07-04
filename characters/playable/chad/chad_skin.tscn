@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=15 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="AnimationLibrary" uid="uid://c6fsleghrve54" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
 [ext_resource type="Resource" uid="uid://dtgy5kdua2c1y" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
 [ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
+[ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/attack_punch2.tres" id="9_cutyj"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_g3bel"]
 
@@ -16,8 +17,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
 size = Vector2(149, 378.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_once2"]
+size = Vector2(144, 52)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcrug"]
-size = Vector2(139, 62)
+size = Vector2(208, 43)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
 position = Vector2(0, 3)
@@ -58,10 +62,9 @@ position = Vector2(0, -12.75)
 shape = SubResource("RectangleShape2D_75u0j")
 metadata/collision_type = "player_hurt_box"
 
-[node name="Attack1" type="Area2D" parent="AnimatedSprite2D" index="1"]
+[node name="Attack1" type="Area2D" parent="." index="3"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
-position = Vector2(163, -112)
 collision_layer = 256
 collision_mask = 0
 monitoring = false
@@ -70,9 +73,27 @@ _attack_data = ExtResource("8_uylrb")
 _character_attributes = ExtResource("6_iqdvs")
 metadata/collision_type = "player_hit_box"
 
-[node name="Attack1Shape" type="CollisionShape2D" parent="AnimatedSprite2D/Attack1" index="0"]
+[node name="Attack1Shape" type="CollisionShape2D" parent="Attack1" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
-position = Vector2(-20.5, 0)
+position = Vector2(202, -303)
+shape = SubResource("RectangleShape2D_once2")
+disabled = true
+metadata/collision_type = "player_hit_box"
+
+[node name="Attack2" type="Area2D" parent="." index="4"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("5_f1o2m")
+_attack_data = ExtResource("9_cutyj")
+_character_attributes = ExtResource("6_iqdvs")
+metadata/collision_type = "player_hit_box"
+
+[node name="Attack2Shape" type="CollisionShape2D" parent="Attack2" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(231, -274.5)
 shape = SubResource("RectangleShape2D_tcrug")
 disabled = true
 metadata/collision_type = "player_hit_box"

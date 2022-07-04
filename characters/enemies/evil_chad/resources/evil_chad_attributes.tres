@@ -3,9 +3,11 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_etxhr"]
 
 [resource]
-script = ExtResource( "1_etxhr" )
+script = ExtResource("1_etxhr")
 display_name = "Evil Chad"
 health_max = 100
-speed_max = 350
+speed_max = 600
 jump_force = -1200
 weight = 1
+is_invulnerable = false
+has_superarmor = false
