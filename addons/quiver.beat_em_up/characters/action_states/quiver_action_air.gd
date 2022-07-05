@@ -14,10 +14,7 @@ extends QuiverCharacterState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_landing := "Air/Landing"
-
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var _air_attack_count := 0
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,19 +38,8 @@ func enter(msg: = {}) -> void:
 	_character._disable_collisions()
 
 
-func physics_process(delta: float) -> void:
-	_character.move_and_slide()
-	if _character.global_position.y >= _character.ground_level:
-		_character.global_position.y = _character.ground_level
-		_character.velocity.y = 0.0
-		_state_machine.transition_to(_path_landing)
-	else:
-		_character.velocity.y += _gravity * delta
-
-
 func exit() -> void:
 	_character._enable_collisions()
-	_air_attack_count = 0
 	super()
 
 ### -----------------------------------------------------------------------------------------------
@@ -61,8 +47,15 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-### -----------------------------------------------------------------------------------------------
+func _move_and_apply_gravity(delta: float) -> void:
+	_character.move_and_slide()
+	_character.velocity.y += _gravity * delta
 
+
+func _has_reached_ground() -> bool:
+	return _character.global_position.y >= _character.ground_level
+
+### -----------------------------------------------------------------------------------------------
 
 ###################################################################################################
 # Custom Inspector ################################################################################

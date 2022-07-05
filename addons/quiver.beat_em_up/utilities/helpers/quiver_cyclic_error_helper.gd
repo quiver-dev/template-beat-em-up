@@ -13,6 +13,10 @@ extends RefCounted
 
 #--- enums ----------------------------------------------------------------------------------------
 
+enum KnockbackStrength { NONE, WEAK, MEDIUM, STRONG, MASSIVE }
+enum HurtTypes { MID, HIGH }
+
+
 #--- constants ------------------------------------------------------------------------------------
 
 const PATH_STATE_MACHINE = (

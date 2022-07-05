@@ -11,7 +11,12 @@ extends EditorProperty
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var external_enum: ExternalEnum
+var external_property:
+	set(value):
+		if value is Array or value is Dictionary:
+			external_property = value
+		else:
+			external_property = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -36,10 +41,6 @@ func _update_property() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func create_external_enum(object: Object, p_name: String, p_enum: String) -> void:
-	if object.get(p_name) != null and object.get(p_name).get(p_enum) != null:
-		external_enum = ExternalEnum.new(object, p_name, p_enum)
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -53,46 +54,35 @@ func _add_property_scene() -> void:
 
 
 func _inititalize_property() -> void:
-	if external_enum == null:
+	if external_property == null or external_property.is_empty():
+		print("EXTERNAL IS NULL")
 		return
 	
-	var current_value := _edited.get(get_edited_property()) as int
+	var current_value := StringName()
+	if _edited.get(get_edited_property()) != null:
+		current_value = _edited.get(get_edited_property()) as StringName
 	var item_id := 0
 	_options.clear()
 	_options.add_item("Choose enum value")
 	_options.set_item_metadata(item_id, -1)
-	for key in external_enum.get_enum_keys():
+	
+	var properties := []
+	if external_property is Dictionary:
+		properties = external_property.keys()
+	else:
+		properties = external_property
+	
+	for key in properties:
 		item_id += 1
-		var enum_value := external_enum.get_value_at(item_id-1)
 		_options.add_item(key)
-		_options.set_item_metadata(item_id, enum_value)
-		if enum_value == current_value:
+		if (key as StringName) == current_value:
 			_options.set_item_disabled(0, true)
 			_options.selected = item_id
 
 
 func _on_options_item_selected(index: int) -> void:
 	if index != 0:
-		var new_value := _options.get_item_metadata(index) as int
+		var new_value := _options.get_item_text(index) as StringName
 		emit_changed(get_edited_property(), new_value)
 
 ### -----------------------------------------------------------------------------------------------
-
-
-class ExternalEnum:
-	var ref_enum
-	
-	func _init(object: Object, p_name: String, p_enum_name: String) -> void:
-		ref_enum = object.get(p_name).get(p_enum_name)
-	
-	func get_enum_keys() -> Array:
-		return ref_enum.keys()
-	
-	func get_enum_values() -> Array:
-		return ref_enum.values()
-	
-	func get_key_at(index: int) -> String:
-		return ref_enum.keys()[index]
-	
-	func get_value_at(index: int) -> int:
-		return ref_enum.values()[index]

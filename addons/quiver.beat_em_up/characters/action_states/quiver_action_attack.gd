@@ -14,7 +14,7 @@ extends QuiverCharacterState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
+@export var _skin_state: StringName
 
 @export var _can_combo := true:
 	set(value):
@@ -101,25 +101,25 @@ func attack() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _connect_signals() -> void:
+	get_parent()._connect_signals()
 	super()
-	
 	if _can_combo:
 		if not _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
 			_skin.attack_input_frames_finished.connect(_on_attack_input_frames_finished)
 	
-	if not _skin.attack_animation_finished.is_connected(_on_attack_finished):
-		_skin.attack_animation_finished.connect(_on_attack_finished)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
+	get_parent()._disconnect_signals()
 	super()
-	
 	if _skin != null:
 		if _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
 			_skin.attack_input_frames_finished.disconnect(_on_attack_input_frames_finished)
 		
-		if _skin.attack_animation_finished.is_connected(_on_attack_finished):
-			_skin.attack_animation_finished.disconnect(_on_attack_finished)
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
 func _on_attack_input_frames_finished() -> void:
@@ -129,7 +129,7 @@ func _on_attack_input_frames_finished() -> void:
 
 
 ## Connect the signal that marks the end of the attack to this function.
-func _on_attack_finished() -> void:
+func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
@@ -145,7 +145,8 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 	"can_combo": {
 		backing_field = "_can_combo",

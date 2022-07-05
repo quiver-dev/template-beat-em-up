@@ -21,10 +21,13 @@ extends Resource
 
 signal health_changed
 signal health_depleted
+# not using type hints on this one becuase of Cyclic Errors
+signal hurt_requested(knockback: QuiverKnockback)
+signal knockout_requested(knockback: QuiverKnockback)
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum WeightClass {LIGHT, MEDIUM, HEAVY}
+enum WeightClass { LIGHT, MEDIUM, HEAVY }
 
 #--- constants ------------------------------------------------------------------------------------
 
@@ -33,6 +36,14 @@ const WEIGHT_MULTIPLIER = {
 	WeightClass.LIGHT: 1.0,
 	WeightClass.MEDIUM: 2.0,
 	WeightClass.HEAVY: 4.0,
+}
+
+const KNOCKBACK_BY_STRENGTH = {
+	QuiverCyclicHelper.KnockbackStrength.NONE: 0,
+	QuiverCyclicHelper.KnockbackStrength.WEAK: 60, # Doesn't launch the target, but builds up
+	QuiverCyclicHelper.KnockbackStrength.MEDIUM: 600, # Should launch target
+	QuiverCyclicHelper.KnockbackStrength.STRONG: 1200,
+	QuiverCyclicHelper.KnockbackStrength.MASSIVE: 2400,
 }
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -44,12 +55,31 @@ const WEIGHT_MULTIPLIER = {
 
 ## Max movement speed for the character.
 @export_range(0, 1000, 1, "or_greater") var speed_max := 600
+
 ## Character's jump force. The heavier the character more jump force they'll need to reach the
 ## same jump height as a lighter character.
 @export_range(0, 0, 1, "or_lesser") var jump_force := -1200
+
 ## Character's weight. Influences jump and things like if the character can be thrown or not.[br]
 ## Heavier character will only be able to be thrown by stronger characters.
 @export var weight: WeightClass = WeightClass.MEDIUM
+
+## This can be toggled on or off in animations to create invincibility frames.
+@export var is_invulnerable := false:
+	set(value):
+		var has_changed = value != is_invulnerable
+		is_invulnerable = value
+		if has_changed and is_invulnerable:
+			knockback_amount = 0
+
+## This can be toggled on or off in animations to create animations that can't be interrupted
+## but still should allow damage to be received.
+@export var has_superarmor := false:
+	set(value):
+		var has_changed = value != has_superarmor
+		has_superarmor = value
+		if has_changed and has_superarmor:
+			knockback_amount = 0
 
 ## Character's current health. What the health bar will be showing.
 var health_current := health_max:
@@ -62,6 +92,16 @@ var health_current := health_max:
 			else:
 				health_depleted.emit()
 
+var is_alive: bool:
+	get:
+		return get_health_as_percentage() > 0
+
+## Amount of knockback character has received, will be used to calculate bounce the next time
+## it hits a wall or the ground.
+var knockback_amount := 0:
+	set(value):
+		knockback_amount = max(0, value)
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
@@ -69,15 +109,34 @@ var health_current := health_max:
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _init() -> void:
+	Events.characters_reseted.connect(reset)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
+	knockback_amount += KNOCKBACK_BY_STRENGTH[strength]
+
+
+func should_knockout() -> bool:
+	var has_enough_knockback: bool = \
+			knockback_amount >= KNOCKBACK_BY_STRENGTH[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
+	return not is_alive or (not has_superarmor and has_enough_knockback)
+
+
 ## Returns the character's current health as percentage.
 func get_health_as_percentage() -> float:
 	var value := health_current / float(health_max)
 	return value
+
+
+func reset() -> void:
+	health_current = health_max
+	is_invulnerable = false
+	has_superarmor = false
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -85,4 +144,5 @@ func get_health_as_percentage() -> float:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
+
 

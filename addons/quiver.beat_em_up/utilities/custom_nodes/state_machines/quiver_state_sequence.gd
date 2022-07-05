@@ -64,6 +64,8 @@ func physics_process(delta: float) -> void:
 
 func exit() -> void:
 	super()
+	if _current_state.state_finished.is_connected(_on_current_state_state_finished):
+		_current_state.state_finished.disconnect(_on_current_state_state_finished)
 	_current_state = null
 
 ### -----------------------------------------------------------------------------------------------

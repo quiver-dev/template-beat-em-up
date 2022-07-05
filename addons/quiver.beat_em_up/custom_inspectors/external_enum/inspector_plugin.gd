@@ -49,7 +49,9 @@ func _parse_property(
 			var options_dict = str2var(hint_string.replace("ExternalEnum", ""))
 			if options_dict != null and options_dict is Dictionary:
 				var property := ExternalEnumProperty.new()
-				property.create_external_enum(object, options_dict.property, options_dict.enum_name)
+				property.external_property = (
+						object.get(options_dict.property).get(options_dict.property_name)
+				)
 				add_property_editor(name, property)
 				replace_built_in = true
 	

@@ -22,7 +22,7 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
+@export var _skin_state: StringName
 @export var _path_next_state := "Ground/Move/Idle"
 
 var _target_node: Node2D = null
@@ -76,6 +76,10 @@ func unhandled_input(_event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
+	if not is_instance_valid(_target_node):
+		_state_machine.transition_to(_path_next_state)
+		return
+	
 	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
 	_skin.scale.x = 1 if facing_direction >=0 else -1
 	
@@ -121,7 +125,8 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",

@@ -18,7 +18,7 @@ const GroundState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_jump_state := "Air/JumpImpulse"
+@export var _path_jump_state := "Air/Jump/Impulse"
 @export var _path_attack_state := "Ground/Combo1"
 
 var _direction := Vector2.ZERO
@@ -57,6 +57,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 func enter(msg: = {}) -> void:
 	super(msg)
 	get_parent().enter(msg)
+	_attributes.knockback_amount = 0
+	
 	if msg.has("velocity"):
 		_character.velocity = msg.velocity
 		_direction = Vector2(msg.velocity.x, 0).normalized()
@@ -98,7 +100,6 @@ func exit() -> void:
 
 
 func attack() -> void:
-	
 	_state_machine.transition_to(_path_attack_state)
 
 
@@ -114,7 +115,6 @@ func jump() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
-
 
 ###################################################################################################
 # Custom Inspector ################################################################################

@@ -1,86 +1,128 @@
-[gd_scene load_steps=17 format=3 uid="uid://b14bl7t7f5sxu"]
+[gd_scene load_steps=25 format=3 uid="uid://chnnencdesvbc"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Resource" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Resource" uid="uid://dtgy5kdua2c1y" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle.gd" id="7_kqgdb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="9_cce84"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="9_o5gfu"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="11_wf2ss"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_mid_air.gd" id="12_4dbtu"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="9_pb6nh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="11_a7lbg"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="11_wf2ss"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="12_4dbtu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_landing.gd" id="13_d8net"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="12_vsxf2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="13_d8net"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="21_knrf0"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd" id="22_twsvw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
 height = 204.0
 
-[node name="Chad" groups=["players"] instance=ExtResource( "1_aj842" )]
-script = ExtResource( "2_dwyxr" )
-_attributes = ExtResource( "3_ylsip" )
+[node name="Chad" groups=["players"] instance=ExtResource("1_aj842")]
+script = ExtResource("2_dwyxr")
+_attributes = ExtResource("3_ylsip")
 _path_skin = NodePath("ChadSkin")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(1, 0)
 rotation = 1.5708
-shape = SubResource( "CapsuleShape2D_4uueb" )
+shape = SubResource("CapsuleShape2D_4uueb")
+metadata/collision_type = "default"
 
-[node name="ChadSkin" parent="." index="1" instance=ExtResource( "2_1tk2w" )]
+[node name="ChadSkin" parent="." index="1" instance=ExtResource("2_1tk2w")]
 metadata/_edit_horizontal_guides_ = [-516.0, -281.0]
 
 [node name="StateMachine" parent="." index="2"]
 initial_state = NodePath("Ground/Move/Idle")
 
 [node name="Ground" type="Node" parent="StateMachine" index="0"]
-script = ExtResource( "4_vubfk" )
+script = ExtResource("4_vubfk")
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
-script = ExtResource( "5_5sh7r" )
+script = ExtResource("5_5sh7r")
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
-script = ExtResource( "6_jtgbp" )
-_skin_state = 1
+script = ExtResource("6_jtgbp")
+_skin_state = &"walk"
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="1"]
-script = ExtResource( "7_kqgdb" )
-_skin_state = 0
+script = ExtResource("7_kqgdb")
+_skin_state = &"idle"
 
-[node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource( "9_cce84" )
-_skin_state = 2
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
+script = ExtResource("9_pb6nh")
+_skin_state_high = &"hurt_high"
+_skin_state_mid = &"hurt_mid"
+
+[node name="Combo1" type="Node" parent="StateMachine/Ground" index="2"]
+script = ExtResource("9_cce84")
+_skin_state = &"attack1"
 _path_combo_state = "Ground/Combo2"
 
-[node name="Combo2" type="Node" parent="StateMachine/Ground" index="2"]
-script = ExtResource( "9_cce84" )
-_skin_state = 3
+[node name="Combo2" type="Node" parent="StateMachine/Ground" index="3"]
+script = ExtResource("9_cce84")
+_skin_state = &"attack2"
 _can_combo = false
 _path_combo_state = ""
 
+[node name="Recovery" type="Node" parent="StateMachine/Ground" index="4"]
+script = ExtResource("11_a7lbg")
+_skin_state = &"knockout_ground"
+
 [node name="Air" type="Node" parent="StateMachine" index="1"]
-script = ExtResource( "9_o5gfu" )
+script = ExtResource("9_o5gfu")
 
-[node name="JumpImpulse" type="Node" parent="StateMachine/Air" index="0"]
-script = ExtResource( "11_wf2ss" )
-_skin_state = 4
+[node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
+script = ExtResource("12_vsxf2")
 
-[node name="MidAir" type="Node" parent="StateMachine/Air" index="1"]
-script = ExtResource( "12_4dbtu" )
-_skin_state_rising = 5
-_skin_state_falling = 6
+[node name="Impulse" type="Node" parent="StateMachine/Air/Jump" index="0"]
+script = ExtResource("11_wf2ss")
+_skin_state = &"jump"
 
-[node name="Landing" type="Node" parent="StateMachine/Air" index="2"]
-script = ExtResource( "13_d8net" )
-_skin_state = 7
+[node name="MidAir" type="Node" parent="StateMachine/Air/Jump" index="1"]
+script = ExtResource("12_4dbtu")
+_skin_state_rising = &"rising"
+_skin_state_falling = &"falling"
 
-[node name="Attack" type="Node" parent="StateMachine/Air" index="3"]
-script = ExtResource( "13_cw2hu" )
-_skin_state = 8
+[node name="Landing" type="Node" parent="StateMachine/Air/Jump" index="2"]
+script = ExtResource("13_d8net")
+_skin_state = &"landing"
+
+[node name="Attack" type="Node" parent="StateMachine/Air/Jump" index="3"]
+script = ExtResource("13_cw2hu")
+_skin_state = &"air_attack"
 _path_falling_state = "Air/MidAir"
+
+[node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
+script = ExtResource("18_f4w2y")
+
+[node name="Launch" type="Node" parent="StateMachine/Air/Knockout" index="0"]
+script = ExtResource("19_jff31")
+_skin_state_launch = &"knockout_launch"
+_skin_state_rising = &"knockout_rising"
+
+[node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
+script = ExtResource("20_n08m6")
+_skin_state_rising = &"knockout_rising"
+_skin_state_falling = &"knockout_falling"
+
+[node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
+script = ExtResource("21_knrf0")
+_skin_state = &"knockout_bounce"
+
+[node name="Die" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("22_twsvw")
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
 offset_left = -168.0
@@ -95,7 +137,7 @@ metadata/_edit_use_custom_anchors = true
 [node name="Chad" type="Label" parent="DebugLabels" index="0"]
 offset_right = 336.0
 offset_bottom = 23.0
-script = ExtResource( "12_sub7a" )
+script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
 properties = PackedStringArray("velocity")
 
@@ -103,6 +145,6 @@ properties = PackedStringArray("velocity")
 offset_top = 23.0
 offset_right = 336.0
 offset_bottom = 46.0
-script = ExtResource( "12_sub7a" )
+script = ExtResource("12_sub7a")
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")

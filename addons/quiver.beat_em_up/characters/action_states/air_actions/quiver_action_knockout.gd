@@ -18,9 +18,10 @@ const AirState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: int = -1
-@export var _path_idle := "Ground/Move/Idle"
-@export var _path_walk := "Ground/Move/Walk"
+@export var _path_bounce := "Air/Knockout/Bounce"
+@export var _path_launch := "Air/Knockout/Launch"
+
+var _launch_count := 0
 
 @onready var _air_state := get_parent() as AirState
 
@@ -55,13 +56,18 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_skin.transition_to(_skin_state)
-	_state_machine.set_physics_process(false)
+	_air_state.enter(msg)
+
+
+func physics_process(delta: float) -> void:
+	_air_state._move_and_apply_gravity(delta)
+	if _air_state._has_reached_ground():
+		_handle_bounce()
 
 
 func exit() -> void:
 	super()
-	_state_machine.set_physics_process(true)
+	_launch_count = 0
 	_air_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
@@ -69,27 +75,47 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _handle_bounce() -> void:
+	_character.global_position.y = _character.ground_level
+	var bounce_direction = _character.velocity.reflect(Vector2.UP)
+	_character.velocity.y = 0.0
+	_state_machine.transition_to(_path_bounce, {bounce_direction = bounce_direction})
+
+
+func _launch_charater(launch_vector: Vector2) -> void:
+	var knockback_velocity = _attributes.knockback_amount * launch_vector
+	_character.velocity += knockback_velocity
+	_attributes.knockback_amount = 0
+
+
 func _connect_signals() -> void:
 	super()
 	
-	if not _skin.landing_finished.is_connected(_on_skin_landing_finished):
-		_skin.landing_finished.connect(_on_skin_landing_finished)
+	if not _attributes.hurt_requested.is_connected(_on_hurt_requested):
+		_attributes.hurt_requested.connect(_on_hurt_requested)
+	
+	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
+		_attributes.knockout_requested.connect(_on_knockout_requested)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
-	if _skin != null:
-		if _skin.landing_finished.is_connected(_on_skin_landing_finished):
-			_skin.landing_finished.disconnect(_on_skin_landing_finished)
+	if _attributes != null:
+		if _attributes.hurt_requested.is_connected(_on_hurt_requested):
+			_attributes.hurt_requested.disconnect(_on_hurt_requested)
+		
+		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
+			_attributes.knockout_requested.disconnect(_on_knockout_requested)
 
 
-func _on_skin_landing_finished() -> void:
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	if direction.is_equal_approx(Vector2.ZERO):
-		_state_machine.transition_to(_path_idle)
-	else:
-		_state_machine.transition_to(_path_walk)
+func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+	# This is here because ANY hit you receive on air generates a knockout.
+	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
+
+
+func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -98,22 +124,8 @@ func _on_skin_landing_finished() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"skin_state": {
-		backing_field = "_skin_state",
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = 'ExternalEnum{"property": "_skin", "enum_name": "SkinStates"}'
-	},
-	"path_idle": {
-		backing_field = "_path_idle",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"path_walk": {
-		backing_field = "_path_walk",
+	"path_knockout": {
+		backing_field = "_path_knockout",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

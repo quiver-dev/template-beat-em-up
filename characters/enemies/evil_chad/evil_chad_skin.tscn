@@ -1,15 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo8dphuo7nlit"]
+[gd_scene load_steps=11 format=3 uid="uid://bo8dphuo7nlit"]
 
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="1_r25ns"]
 [ext_resource type="Resource" uid="uid://fvhi7j4yexx8" path="res://characters/enemies/evil_chad/resources/evil_chad_attributes.tres" id="2_ylxyx"]
 [ext_resource type="Resource" uid="uid://cu5yi10wkeur6" path="res://characters/enemies/evil_chad/resources/attacks/attack_punch1.tres" id="3_3tp73"]
+[ext_resource type="Resource" uid="uid://cwegrtgs3ilx" path="res://characters/enemies/evil_chad/resources/attacks/attack_punch2.tres" id="4_gom5s"]
+[ext_resource type="Resource" uid="uid://el35la3o01tq" path="res://characters/enemies/evil_chad/resources/attacks/attack_air_kick.tres" id="5_wyldv"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_gwnmd"]
 
-[node name="EvilChadSkin" instance=ExtResource( "1_r25ns" )]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_c5667"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qb06"]
+size = Vector2(149, 378.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6xly"]
+size = Vector2(144, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi4xr"]
+size = Vector2(208, 43)
+
+[node name="EvilChadSkin" instance=ExtResource("1_r25ns")]
+_attributes = ExtResource("2_ylxyx")
 
 [node name="AnimationTree" parent="." index="1"]
-parameters/state_machine/playback = SubResource( "AnimationNodeStateMachinePlayback_gwnmd" )
+parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_gwnmd")
+parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeStateMachinePlayback_c5667")
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 self_modulate = Color(0.447059, 0.207843, 0.705882, 1)
@@ -19,20 +34,39 @@ modulate = Color(0, 0.0666667, 0.701961, 1)
 collision_layer = 8192
 collision_mask = 256
 character_type = 1
-_attributes = ExtResource( "2_ylxyx" )
+_attributes = ExtResource("2_ylxyx")
 metadata/collision_type = "enemy_hurt_box"
 
 [node name="HurtShape" parent="AnimatedSprite2D/HurtBox" index="0"]
+modulate = Color(0, 0.0666667, 0.701961, 1)
+shape = SubResource("RectangleShape2D_4qb06")
 metadata/collision_type = "enemy_hurt_box"
 
-[node name="Attack1" parent="AnimatedSprite2D" index="1"]
+[node name="Attack1" parent="." index="3"]
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 512
 character_type = 1
-_attack_data = ExtResource( "3_3tp73" )
+_attack_data = ExtResource("3_3tp73")
 _character_attributes = null
 metadata/collision_type = "enemy_hit_box"
 
-[node name="Attack1Shape" parent="AnimatedSprite2D/Attack1" index="0"]
+[node name="Attack1Shape" parent="Attack1" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
+shape = SubResource("RectangleShape2D_r6xly")
 metadata/collision_type = "enemy_hit_box"
+
+[node name="Attack2" parent="." index="4"]
+modulate = Color(1, 0.2, 0.101961, 1)
+collision_layer = 512
+character_type = 1
+_attack_data = ExtResource("4_gom5s")
+_character_attributes = null
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Attack2Shape" parent="Attack2" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
+shape = SubResource("RectangleShape2D_qi4xr")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="AttackAir" parent="." index="5"]
+_attack_data = ExtResource("5_wyldv")
