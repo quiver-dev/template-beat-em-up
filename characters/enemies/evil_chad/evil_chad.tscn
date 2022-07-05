@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://busfprrckh5pb"]
+[gd_scene load_steps=30 format=3 uid="uid://busfprrckh5pb"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="2_py5s2"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://characters/enemies/evil_chad/debug_scripts/StateMachineDebugLabel.gd" id="18_fdici"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="18_qqgma"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="19_3vdef"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_die_ai.gd" id="21_1aui6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
 radius = 20.0
@@ -124,6 +125,9 @@ _skin_state_falling = &"knockout_falling"
 [node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
 script = ExtResource("19_3vdef")
 _skin_state = &"knockout_bounce"
+
+[node name="Die" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("21_1aui6")
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource("13_vcgxt")

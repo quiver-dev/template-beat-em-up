@@ -1,5 +1,7 @@
-extends Node2D
-# Write your doc string for this file here
+@tool
+extends "res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd"
+
+## Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -12,40 +14,30 @@ extends Node2D
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _main_player := $Characters/Chad as QuiverCharacter
-@onready var _player_hud := $HudLayer/PlayerHud
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	_player_hud.set_player_attributes(_main_player.attributes)
-	if not Events.player_died.is_connected(reload_prototype):
-		Events.player_died.connect(reload_prototype)
-	
-	if not Events.enemy_defeated.is_connected(reload_prototype):
-		Events.enemy_defeated.connect(reload_prototype)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_restart"):
-		reload_prototype()
+	super()
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func reload_prototype() -> void:
-	Events.characters_reseted.emit()
-	get_tree().reload_current_scene()
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _on_skin_animation_finished() -> void:
+	_character.queue_free()
+	Events.enemy_defeated.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
