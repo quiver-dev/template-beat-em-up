@@ -20,6 +20,8 @@ extends QuiverAiState
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+var _wait_timer: SceneTreeTimer
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -28,17 +30,22 @@ extends QuiverAiState
 func enter(msg: = {}) -> void:
 	super(msg)
 	_actions.transition_to("Ground/Move/Idle")
-	await get_tree().create_timer(wait_time).timeout
-	state_finished.emit()
+	_wait_timer = get_tree().create_timer(wait_time)
+	_wait_timer.timeout.connect(_on_wait_timer_timeout)
 
 
 func exit() -> void:
 	super()
+	if is_instance_valid(_wait_timer):
+		_wait_timer.timeout.disconnect(_on_wait_timer_timeout)
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _on_wait_timer_timeout() -> void:
+	state_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

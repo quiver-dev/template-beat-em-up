@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://busfprrckh5pb"]
+[gd_scene load_steps=31 format=3 uid="uid://busfprrckh5pb"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="2_py5s2"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="18_qqgma"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="19_3vdef"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_die_ai.gd" id="21_1aui6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_stunned.gd" id="27_h4pxa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
 radius = 20.0
@@ -131,7 +132,7 @@ script = ExtResource("21_1aui6")
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource("13_vcgxt")
-initial_state = NodePath("ChaseClosestPlayer")
+initial_state = NodePath("Wait")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine" index="0"]
 script = ExtResource("14_nuwmn")
@@ -164,6 +165,9 @@ _state_path = "Ground/Combo2"
 script = ExtResource("17_v4twd")
 wait_time = 3.0
 
+[node name="Stunned" type="Node" parent="AiStateMachine" index="3"]
+script = ExtResource("27_h4pxa")
+
 [node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
 offset_left = -168.0
 offset_top = -442.0
@@ -187,7 +191,7 @@ offset_right = 336.0
 offset_bottom = 46.0
 script = ExtResource("18_fdici")
 path_reference = NodePath("../../StateMachine")
-properties = PackedStringArray("state_name")
+properties = PackedStringArray("state_name", "_state_to_resume")
 
 [node name="Combo1" type="Label" parent="DebugLabels" index="2"]
 offset_top = 46.0
@@ -203,4 +207,4 @@ offset_right = 336.0
 offset_bottom = 92.0
 script = ExtResource("13_b2qfj")
 path_reference = NodePath("../../AiStateMachine")
-properties = PackedStringArray("state_name")
+properties = PackedStringArray("state_name", "_state_to_resume")
