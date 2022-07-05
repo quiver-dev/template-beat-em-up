@@ -22,17 +22,22 @@ extends Node2D
 
 func _ready() -> void:
 	_player_hud.set_player_attributes(_main_player.attributes)
+	if not Events.player_died.is_connected(reload_prototype):
+		Events.player_died.connect(reload_prototype)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_restart"):
-		Events.characters_reseted.emit()
-		get_tree().reload_current_scene()
+		reload_prototype()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func reload_prototype() -> void:
+	Events.characters_reseted.emit()
+	get_tree().reload_current_scene()
 
 ### -----------------------------------------------------------------------------------------------
 

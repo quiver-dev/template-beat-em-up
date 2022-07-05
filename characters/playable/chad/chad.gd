@@ -25,6 +25,9 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
+	if attributes != null:
+		attributes.reset()
+	
 	if QuiverEditorHelper.is_standalone_run(self):
 		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
 

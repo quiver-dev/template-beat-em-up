@@ -7,4 +7,6 @@ extends Node
 signal enemy_data_sent(enemy: QuiverAttributes, player: QuiverAttributes)
 signal characters_reseted
 
+signal player_died
+
 ### -----------------------------------------------------------------------------------------------

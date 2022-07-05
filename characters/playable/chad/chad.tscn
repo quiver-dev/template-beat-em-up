@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="9_cce84"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="9_o5gfu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="9_pb6nh"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd" id="9_qvevi"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="11_a7lbg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="11_wf2ss"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="12_4dbtu"]
@@ -23,6 +22,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="21_knrf0"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd" id="22_twsvw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
@@ -122,7 +122,7 @@ script = ExtResource("21_knrf0")
 _skin_state = &"knockout_bounce"
 
 [node name="Die" type="Node" parent="StateMachine" index="2"]
-script = ExtResource("9_qvevi")
+script = ExtResource("22_twsvw")
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
 offset_left = -168.0
