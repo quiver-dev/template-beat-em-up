@@ -101,8 +101,8 @@ func attack() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _connect_signals() -> void:
+	get_parent()._connect_signals()
 	super()
-	
 	if _can_combo:
 		if not _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
 			_skin.attack_input_frames_finished.connect(_on_attack_input_frames_finished)
@@ -112,8 +112,8 @@ func _connect_signals() -> void:
 
 
 func _disconnect_signals() -> void:
+	get_parent()._disconnect_signals()
 	super()
-	
 	if _skin != null:
 		if _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
 			_skin.attack_input_frames_finished.disconnect(_on_attack_input_frames_finished)

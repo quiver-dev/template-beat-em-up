@@ -100,7 +100,6 @@ func exit() -> void:
 
 
 func attack() -> void:
-	
 	_state_machine.transition_to(_path_attack_state)
 
 

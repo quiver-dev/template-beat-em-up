@@ -37,7 +37,6 @@ _attributes = ExtResource("2_ylxyx")
 metadata/collision_type = "enemy_hurt_box"
 
 [node name="HurtShape" parent="AnimatedSprite2D/HurtBox" index="0"]
-modulate = Color(0, 0.0666667, 0.701961, 1)
 shape = SubResource("RectangleShape2D_4qb06")
 metadata/collision_type = "enemy_hurt_box"
 
@@ -50,11 +49,11 @@ _character_attributes = null
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack1Shape" parent="Attack1" index="0"]
-modulate = Color(1, 0.2, 0.101961, 1)
 shape = SubResource("RectangleShape2D_r6xly")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack2" parent="." index="4"]
+modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 512
 character_type = 1
 _attack_data = ExtResource("4_gom5s")
@@ -62,6 +61,5 @@ _character_attributes = null
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack2Shape" parent="Attack2" index="0"]
-modulate = Color(1, 0.2, 0.101961, 1)
 shape = SubResource("RectangleShape2D_qi4xr")
 metadata/collision_type = "enemy_hit_box"

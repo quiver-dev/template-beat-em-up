@@ -50,6 +50,7 @@ var attributes: QuiverAttributes = null
 ## want to deal with this in code, it's just an editor field to populate the real property which
 ## is the public [member attributes]. Once advanced exportes exist this will be converted
 ## to it.
+@warning_ignore(unused_private_class_variable)
 @export var _attributes: Resource:
 	set(value):
 		attributes = value as QuiverAttributes
