@@ -76,6 +76,10 @@ func unhandled_input(_event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
+	if not is_instance_valid(_target_node):
+		_state_machine.transition_to(_path_next_state)
+		return
+	
 	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
 	_skin.scale.x = 1 if facing_direction >=0 else -1
 	
