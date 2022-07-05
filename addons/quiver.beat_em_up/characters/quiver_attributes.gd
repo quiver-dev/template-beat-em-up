@@ -55,12 +55,15 @@ const KNOCKBACK_BY_STRENGTH = {
 
 ## Max movement speed for the character.
 @export_range(0, 1000, 1, "or_greater") var speed_max := 600
+
 ## Character's jump force. The heavier the character more jump force they'll need to reach the
 ## same jump height as a lighter character.
 @export_range(0, 0, 1, "or_lesser") var jump_force := -1200
+
 ## Character's weight. Influences jump and things like if the character can be thrown or not.[br]
 ## Heavier character will only be able to be thrown by stronger characters.
 @export var weight: WeightClass = WeightClass.MEDIUM
+
 ## This can be toggled on or off in animations to create invincibility frames.
 @export var is_invulnerable := false:
 	set(value):
@@ -68,6 +71,7 @@ const KNOCKBACK_BY_STRENGTH = {
 		is_invulnerable = value
 		if has_changed and is_invulnerable:
 			knockback_amount = 0
+
 ## This can be toggled on or off in animations to create animations that can't be interrupted
 ## but still should allow damage to be received.
 @export var has_superarmor := false:
@@ -120,7 +124,7 @@ func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
 func should_knockout() -> bool:
 	var has_enough_knockback: bool = \
 			knockback_amount >= KNOCKBACK_BY_STRENGTH[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
-	return not has_superarmor and has_enough_knockback
+	return not is_alive or (not has_superarmor and has_enough_knockback)
 
 
 ## Returns the character's current health as percentage.
