@@ -93,16 +93,16 @@ func _get_configuration_warnings() -> PackedStringArray:
 	const INVALID_SKIN = "_path_skin must point to a valid QuiverCharacterSkin Node." 
 	const INVALID_COLLISION = \
 			"_path_collision must point to a valid CollisionShape2D or CollisionPolygon2D Node."
+	const INVALID_ATTRIBUTES = "attributes must have a valid CharacterAttributes resource."
 	var warnings := PackedStringArray()
 	
-	if _path_skin.is_empty():
-		warnings.append(INVALID_SKIN)
-	elif _skin == null:
+	if _attributes == null:
+		warnings.append(INVALID_ATTRIBUTES)
+	
+	if _path_skin.is_empty() or _skin == null:
 		warnings.append(INVALID_SKIN)
 	
-	if _path_collision.is_empty():
-		warnings.append(INVALID_COLLISION)
-	elif _collision == null:
+	if _path_collision.is_empty() or _collision == null:
 		warnings.append(INVALID_COLLISION)
 	
 	return warnings
