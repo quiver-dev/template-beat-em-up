@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo8dphuo7nlit"]
+[gd_scene load_steps=11 format=3 uid="uid://bo8dphuo7nlit"]
 
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="1_r25ns"]
 [ext_resource type="Resource" uid="uid://fvhi7j4yexx8" path="res://characters/enemies/evil_chad/resources/evil_chad_attributes.tres" id="2_ylxyx"]
 [ext_resource type="Resource" uid="uid://cu5yi10wkeur6" path="res://characters/enemies/evil_chad/resources/attacks/attack_punch1.tres" id="3_3tp73"]
 [ext_resource type="Resource" uid="uid://cwegrtgs3ilx" path="res://characters/enemies/evil_chad/resources/attacks/attack_punch2.tres" id="4_gom5s"]
+[ext_resource type="Resource" uid="uid://el35la3o01tq" path="res://characters/enemies/evil_chad/resources/attacks/attack_air_kick.tres" id="5_wyldv"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_gwnmd"]
 
@@ -37,6 +38,7 @@ _attributes = ExtResource("2_ylxyx")
 metadata/collision_type = "enemy_hurt_box"
 
 [node name="HurtShape" parent="AnimatedSprite2D/HurtBox" index="0"]
+modulate = Color(0, 0.0666667, 0.701961, 1)
 shape = SubResource("RectangleShape2D_4qb06")
 metadata/collision_type = "enemy_hurt_box"
 
@@ -49,6 +51,7 @@ _character_attributes = null
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack1Shape" parent="Attack1" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 shape = SubResource("RectangleShape2D_r6xly")
 metadata/collision_type = "enemy_hit_box"
 
@@ -61,5 +64,9 @@ _character_attributes = null
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack2Shape" parent="Attack2" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 shape = SubResource("RectangleShape2D_qi4xr")
 metadata/collision_type = "enemy_hit_box"
+
+[node name="AttackAir" parent="." index="5"]
+_attack_data = ExtResource("5_wyldv")
