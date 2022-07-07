@@ -60,7 +60,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] signal
+## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] 
+## signal
 func _decide_next_action(_last_state: StringName) -> void:
 	push_warning("This is a virtual function and should not be used directly, but overriden.")
 
