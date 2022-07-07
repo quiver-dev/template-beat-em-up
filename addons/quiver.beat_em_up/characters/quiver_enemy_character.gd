@@ -1,5 +1,6 @@
 @tool
-extends QuiverAiStateMachine
+class_name QuiverEnemyCharacter
+extends QuiverCharacter
 
 ## Write your doc string for this file here
 
@@ -14,11 +15,14 @@ extends QuiverAiStateMachine
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _character: QuiverCharacter = null
-var _actions: QuiverStateMachine = null
-var _attributes: QuiverAttributes = null
+@export_node_path(Node) var _path_ai_state_machine := ^"AiStateMachine":
+	set(value):
+		_path_ai_state_machine = value
+		if is_inside_tree():
+			_ai_state_machine = get_node_or_null(_path_ai_state_machine) as QuiverAiStateMachine
+		update_configuration_warnings()
 
-var _state_to_resume := NodePath()
+@onready var _ai_state_machine := get_node_or_null(_path_ai_state_machine) as QuiverAiStateMachine
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -27,57 +31,41 @@ var _state_to_resume := NodePath()
 
 func _ready() -> void:
 	super()
-	
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	if is_instance_valid(owner):
-		await owner.ready
-		_on_owner_ready()
+	attributes = attributes.duplicate()
+	attributes.reset()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	
+	if _path_ai_state_machine.is_empty() or _ai_state_machine == null:
+		warnings.append("_path_ai_state_machine must point to a valid QuiverAiStateMachine node.")
+	
+	return warnings
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func spawn_ground_to_position(target_position := Vector2.ONE * INF) -> void:
+	if target_position == Vector2.ONE * INF:
+		_ai_state_machine.transition_to(^"ChaseClosestPlayer")
+	else:
+		_ai_state_machine.transition_to(
+				^"GoToPosition", {
+					"position": target_position
+				}
+		)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _on_owner_ready() -> void:
-	_character = owner as QuiverCharacter
-	_actions = _character._state_machine
-	_attributes = _character.attributes
-	
-	_attributes.hurt_requested.connect(_ai_interrupted)
-	_attributes.knockout_requested.connect(_ai_reset)
-
-
-func _decide_next_action(last_state: StringName) -> void:
-	match last_state:
-		&"ChaseClosestPlayer":
-			transition_to(^"Attack")
-		&"GoToPosition":
-			transition_to(^"Wait")
-		&"Attack":
-			transition_to(^"Wait")
-		&"Wait":
-			transition_to(^"ChaseClosestPlayer")
-		&"Stunned":
-			transition_to(_state_to_resume)
-
-
-func _ai_interrupted(_knockback: QuiverKnockback) -> void:
-	_state_to_resume = get_path_to(state)
-	transition_to(^"Stunned")
-
-
-func _ai_reset(_knockback: QuiverKnockback) -> void:
-	if _state_to_resume.is_empty():
-		_ai_interrupted(null)
-	_state_to_resume = ^"Wait"
 
 ### -----------------------------------------------------------------------------------------------
 
