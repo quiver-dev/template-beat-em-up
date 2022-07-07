@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://busfprrckh5pb"]
+[gd_scene load_steps=33 format=3 uid="uid://busfprrckh5pb"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="2_py5s2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_enemy_character.gd" id="2_qirqt"]
 [ext_resource type="Resource" uid="uid://fvhi7j4yexx8" path="res://characters/enemies/evil_chad/resources/evil_chad_attributes.tres" id="2_qsegb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="3_bg7yk"]
 [ext_resource type="PackedScene" uid="uid://bo8dphuo7nlit" path="res://characters/enemies/evil_chad/evil_chad_skin.tscn" id="3_vi02f"]
@@ -28,6 +29,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="18_qqgma"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="19_3vdef"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_die_ai.gd" id="21_1aui6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_position.gd" id="24_6l3lj"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_stunned.gd" id="27_h4pxa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
@@ -35,13 +37,17 @@ radius = 20.0
 height = 204.0
 
 [node name="EvilChad" groups=["enemies"] instance=ExtResource("1_4jcfv")]
+script = ExtResource("2_qirqt")
 _attributes = ExtResource("2_qsegb")
 _path_skin = NodePath("EvilChadSkin")
+_path_ai_state_machine = NodePath("AiStateMachine")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_787ts")
+metadata/collision_type = "default"
 
 [node name="EvilChadSkin" parent="." index="1" instance=ExtResource("3_vi02f")]
 
@@ -137,7 +143,10 @@ initial_state = NodePath("Wait")
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine" index="0"]
 script = ExtResource("14_nuwmn")
 
-[node name="Attack" type="Node" parent="AiStateMachine" index="1"]
+[node name="GoToPosition" type="Node" parent="AiStateMachine" index="1"]
+script = ExtResource("24_6l3lj")
+
+[node name="Attack" type="Node" parent="AiStateMachine" index="2"]
 script = ExtResource("15_cerch")
 
 [node name="Punch" type="Node" parent="AiStateMachine/Attack" index="0"]
@@ -161,11 +170,11 @@ script = ExtResource("16_ooocb")
 message = {}
 _state_path = "Ground/Combo2"
 
-[node name="Wait" type="Node" parent="AiStateMachine" index="2"]
+[node name="Wait" type="Node" parent="AiStateMachine" index="3"]
 script = ExtResource("17_v4twd")
 wait_time = 3.0
 
-[node name="Stunned" type="Node" parent="AiStateMachine" index="3"]
+[node name="Stunned" type="Node" parent="AiStateMachine" index="4"]
 script = ExtResource("27_h4pxa")
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="4"]

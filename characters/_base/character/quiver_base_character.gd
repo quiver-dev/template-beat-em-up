@@ -23,7 +23,11 @@ const CEILING_LIMITS_LAYER_NUMBER = 4
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var attributes: QuiverAttributes = null
+var attributes: QuiverAttributes = null:
+	set(value):
+		attributes = value
+		if is_instance_valid(_skin):
+			_skin.attributes = attributes
 
 var is_on_air := false
 var ground_level := 0.0
@@ -37,8 +41,6 @@ var ground_level := 0.0
 @export var _attributes: Resource:
 	set(value):
 		attributes = value as QuiverAttributes
-		if is_instance_valid(_skin):
-			_skin.attributes = attributes
 	get:
 		return attributes
 

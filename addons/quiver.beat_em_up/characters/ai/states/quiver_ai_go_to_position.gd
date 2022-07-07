@@ -15,7 +15,7 @@ extends QuiverAiState
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _path_follow_state := "Ground/Move/Follow"
-var _target: QuiverCharacter
+
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -35,10 +35,18 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_target = QuiverCharacterHelper.find_closest_player_to(_character)
-	if is_instance_valid(_target):
-		_actions.transition_to(_path_follow_state, {target_node = _target})
-		_actions.transitioned.connect(_on_actions_transitioned)
+	
+	if msg.has("position") and msg.position is Vector2:
+		_actions.transition_to(_path_follow_state, {target_position = msg.position})
+	elif msg.has("node") and msg.node is Node2D:
+		if is_instance_valid(msg.node):
+			_actions.transition_to(_path_follow_state, {target_node = msg.node})
+	else:
+		push_error("Could not find any valid messages to identify position: %s"%[msg])
+		state_finished.emit()
+		return
+	
+	_actions.transitioned.connect(_on_actions_transitioned)
 
 
 func exit() -> void:

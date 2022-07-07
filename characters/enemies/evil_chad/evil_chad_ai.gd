@@ -27,6 +27,11 @@ var _state_to_resume := NodePath()
 
 func _ready() -> void:
 	super()
+	
+	if Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
+		return
+	
 	if is_instance_valid(owner):
 		await owner.ready
 		_on_owner_ready()
@@ -54,6 +59,8 @@ func _decide_next_action(last_state: StringName) -> void:
 	match last_state:
 		&"ChaseClosestPlayer":
 			transition_to(^"Attack")
+		&"GoToPosition":
+			transition_to(^"Wait")
 		&"Attack":
 			transition_to(^"Wait")
 		&"Wait":

@@ -15,6 +15,11 @@ extends Node2D
 @onready var _main_player := $Characters/Chad as QuiverCharacter
 @onready var _player_hud := $HudLayer/PlayerHud
 
+var _wave_enemies := 0
+
+@onready var _enemy_spawner_right := $Utilities/EnemySpawner as QuiverEnemySpawner
+@onready var _enemy_spawner_left := $Utilities/EnemySpawner2 as QuiverEnemySpawner
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -25,8 +30,10 @@ func _ready() -> void:
 	if not Events.player_died.is_connected(reload_prototype):
 		Events.player_died.connect(reload_prototype)
 	
-	if not Events.enemy_defeated.is_connected(reload_prototype):
-		Events.enemy_defeated.connect(reload_prototype)
+	if not Events.enemy_defeated.is_connected(_spawn_next_wave):
+		Events.enemy_defeated.connect(_spawn_next_wave, CONNECT_DEFERRED)
+	
+	_spawn_next_wave()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -46,6 +53,20 @@ func reload_prototype() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _spawn_next_wave() -> void:
+	var current_enemies := get_tree().get_nodes_in_group("enemies")
+	
+	if current_enemies.is_empty():
+		_wave_enemies = min(_wave_enemies + 1, 6)
+		if _wave_enemies > 1:
+			var enemies_right = max(1, _wave_enemies / 2)
+			var enemies_left = _wave_enemies - enemies_right
+			_enemy_spawner_right.spawn_enemies(enemies_right)
+			if enemies_left > 0:
+				_enemy_spawner_left.spawn_enemies(enemies_left)
+		else:
+			_enemy_spawner_right.spawn_enemies(_wave_enemies)
 
 ### -----------------------------------------------------------------------------------------------
 

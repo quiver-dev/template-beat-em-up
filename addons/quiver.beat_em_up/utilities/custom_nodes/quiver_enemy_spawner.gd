@@ -1,15 +1,7 @@
-@tool
-class_name QuiverAiStateMachine
-extends QuiverStateMachine
+class_name QuiverEnemySpawner
+extends Position2D
 
-## State Machine for AIs
-##
-## It will automatically connect all direct child states [signal QuiverState.state_finished] 
-## signal to the [method _decide_next_action] virtual method. Then the user can extend this class 
-## and override that method with the required logic.
-## [br][br]
-## The Ai State Machine should only take [QuiverAiState] and [QuiverStateSequence] as children.
-
+## Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -20,7 +12,13 @@ extends QuiverStateMachine
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export_node_path(Node2D) var path_spawn_parent := ^"../../Characters"
+@export var possible_positions: Array[NodePath] = []
+@export var possible_enemies: Array[PackedScene] = []
+
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+@onready var _spawn_parent := get_node_or_null(path_spawn_parent) as Node2D
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -28,42 +26,39 @@ extends QuiverStateMachine
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	for child in get_children():
-		var child_state := child as QuiverState
-		if not is_instance_valid(child_state):
-			continue
-		
-		child_state.state_finished.connect(_decide_next_action.bind(child_state.name))
-
-
-func _get_configuration_warnings() -> PackedStringArray:
-	var warnings := PackedStringArray()
-	
-	for child in get_children():
-		if not child is QuiverAiState and not child is QuiverStateSequence:
-			warnings.append("%s is not a QuiverAiState or QuiverSequenceState"%[child.name])
-	
-	return warnings
+	pass
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func spawn_enemies(amount := 1) -> void:
+	var pool_position := []
+	var pool_enemies := []
+	for _index in amount:
+		if pool_position.is_empty():
+			pool_position = possible_positions.duplicate()
+		
+		if pool_enemies.is_empty():
+			pool_enemies = possible_enemies.duplicate()
+		
+		var index_position = randi() % pool_position.size()
+		var index_enemy = randi() % pool_enemies.size()
+		var enemy := pool_enemies[index_enemy].instantiate() as QuiverEnemyCharacter
+		var reference_node := get_node(pool_position[index_position]) as Node2D
+		
+		enemy.global_position = global_position
+		_spawn_parent.add_child(enemy, true)
+		enemy.spawn_ground_to_position(reference_node.global_position)
+		
+		pool_position.remove_at(index_position)
+		pool_enemies.remove_at(index_enemy)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] 
-## signal
-func _decide_next_action(_last_state: StringName) -> void:
-	push_warning("This is a virtual function and should not be used directly, but overriden.")
 
 ### -----------------------------------------------------------------------------------------------
 

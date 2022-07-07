@@ -1,15 +1,8 @@
 @tool
-class_name QuiverAiStateMachine
-extends QuiverStateMachine
+class_name QuiverEnemyCharacter
+extends QuiverCharacter
 
-## State Machine for AIs
-##
-## It will automatically connect all direct child states [signal QuiverState.state_finished] 
-## signal to the [method _decide_next_action] virtual method. Then the user can extend this class 
-## and override that method with the required logic.
-## [br][br]
-## The Ai State Machine should only take [QuiverAiState] and [QuiverStateSequence] as children.
-
+## Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -22,6 +15,15 @@ extends QuiverStateMachine
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+@export_node_path(Node) var _path_ai_state_machine := ^"AiStateMachine":
+	set(value):
+		_path_ai_state_machine = value
+		if is_inside_tree():
+			_ai_state_machine = get_node_or_null(_path_ai_state_machine) as QuiverAiStateMachine
+		update_configuration_warnings()
+
+@onready var _ai_state_machine := get_node_or_null(_path_ai_state_machine) as QuiverAiStateMachine
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -33,20 +35,15 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	for child in get_children():
-		var child_state := child as QuiverState
-		if not is_instance_valid(child_state):
-			continue
-		
-		child_state.state_finished.connect(_decide_next_action.bind(child_state.name))
+	attributes = attributes.duplicate()
+	attributes.reset()
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	for child in get_children():
-		if not child is QuiverAiState and not child is QuiverStateSequence:
-			warnings.append("%s is not a QuiverAiState or QuiverSequenceState"%[child.name])
+	if _path_ai_state_machine.is_empty() or _ai_state_machine == null:
+		warnings.append("_path_ai_state_machine must point to a valid QuiverAiStateMachine node.")
 	
 	return warnings
 
@@ -55,15 +52,20 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func spawn_ground_to_position(target_position := Vector2.ONE * INF) -> void:
+	if target_position == Vector2.ONE * INF:
+		_ai_state_machine.transition_to(^"ChaseClosestPlayer")
+	else:
+		_ai_state_machine.transition_to(
+				^"GoToPosition", {
+					"position": target_position
+				}
+		)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] 
-## signal
-func _decide_next_action(_last_state: StringName) -> void:
-	push_warning("This is a virtual function and should not be used directly, but overriden.")
 
 ### -----------------------------------------------------------------------------------------------
 
