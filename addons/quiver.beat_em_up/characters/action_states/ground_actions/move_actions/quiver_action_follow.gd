@@ -26,6 +26,7 @@ const MoveState = preload(
 @export var _path_next_state := "Ground/Move/Idle"
 
 var _target_node: Node2D = null
+var _fixed_position := Vector2.ONE * INF
 
 @onready var _move_state := get_parent() as MoveState
 @onready var _squared_arrive = pow(ARRIVE_RANGE, 2)
@@ -64,11 +65,13 @@ func enter(msg: = {}) -> void:
 	_move_state.enter(msg)
 	_skin.transition_to(_skin_state)
 	
-	if not msg.has("target_node") or not msg.target_node is Node2D:
+	if msg.has("target_node") and msg.target_node is Node2D:
+		_target_node = msg.target_node
+	elif msg.has("target_position") and msg.target_position is Vector2:
+		_target_node = QuiverCharacterHelper.find_closest_player_to(_character)
+		_fixed_position = msg.target_position
+	else:
 		_state_machine.transition_to(_path_next_state)
-		return
-	
-	_target_node = msg.target_node
 
 
 func unhandled_input(_event: InputEvent) -> void:
@@ -76,22 +79,8 @@ func unhandled_input(_event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
-	if not is_instance_valid(_target_node):
-		_state_machine.transition_to(_path_next_state)
-		return
-	
-	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
-	_skin.scale.x = 1 if facing_direction >=0 else -1
-	
-	var target_position := _target_node.global_position
-	if _target_node is QuiverCharacter:
-		if _target_node.is_on_air:
-			target_position.y = _target_node.ground_level
-	
-	if _character.global_position.x >= target_position.x:
-		target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
-	else:
-		target_position += Vector2.LEFT * OFFSET_FROM_TARGET
+	_handle_facing_target_node()
+	var target_position := _handle_target_position()
 	
 	_move_state._direction = _character.global_position.direction_to(target_position)
 	var distance_to_target := _character.global_position.distance_squared_to(target_position)
@@ -107,11 +96,38 @@ func physics_process(delta: float) -> void:
 func exit() -> void:
 	super()
 	_move_state.exit()
+	_fixed_position = Vector2.ONE * INF
+	_target_node = null
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _handle_facing_target_node() -> void:
+	if not is_instance_valid(_target_node):
+		_state_machine.transition_to(_path_next_state)
+		return
+	
+	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
+	_skin.scale.x = 1 if facing_direction >=0 else -1
+
+
+func _handle_target_position() -> Vector2:
+	var should_use_fixed = _fixed_position != Vector2.ONE * INF
+	var target_position := _fixed_position if should_use_fixed else _target_node.global_position
+	
+	if not should_use_fixed:
+		if _target_node is QuiverCharacter:
+			if _target_node.is_on_air:
+				target_position.y = _target_node.ground_level
+		
+		if _character.global_position.x >= target_position.x:
+			target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
+		else:
+			target_position += Vector2.LEFT * OFFSET_FROM_TARGET
+	
+	return target_position
 
 ### -----------------------------------------------------------------------------------------------
 
