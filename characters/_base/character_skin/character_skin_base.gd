@@ -29,7 +29,11 @@ signal skin_animation_finished
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var attributes: QuiverAttributes = null
+var attributes: QuiverAttributes = null:
+	set(value):
+		attributes = value
+		if not Engine.is_editor_hint() and is_inside_tree():
+			get_tree().set_group(StringName(get_path()), "character_attributes", attributes)
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
