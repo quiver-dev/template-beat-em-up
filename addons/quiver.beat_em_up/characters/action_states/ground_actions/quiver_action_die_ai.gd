@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func _on_skin_animation_finished() -> void:
 	_character.queue_free()
-	Events.enemy_defeated.emit()
+	var enemy_defeated_event = Callable(Events, "emit_signal").bind("enemy_defeated")
+	tree_exited.connect(enemy_defeated_event, CONNECT_ONESHOT)
 
 ### -----------------------------------------------------------------------------------------------
-

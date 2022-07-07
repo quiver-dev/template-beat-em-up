@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dh7jt0k7hvmeo"]
+[gd_scene load_steps=10 format=3 uid="uid://dh7jt0k7hvmeo"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="PackedScene" uid="uid://chnnencdesvbc" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_lfeec"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd" id="4_ncwkl"]
 [ext_resource type="PackedScene" uid="uid://busfprrckh5pb" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
 [ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
 
@@ -67,8 +68,47 @@ y_sort_enabled = true
 [node name="Chad" parent="Characters" instance=ExtResource("2_l2dst")]
 position = Vector2(652, 850)
 
-[node name="EvilChad" parent="Characters" groups=["player_character"] instance=ExtResource("4_ses8m")]
-position = Vector2(1735, 987)
+[node name="Utilities" type="Node2D" parent="."]
+
+[node name="EnemySpawner" type="Position2D" parent="Utilities"]
+position = Vector2(2212, 743)
+gizmo_extents = 20.0
+script = ExtResource("4_ncwkl")
+parent_spawn_node = null
+possible_positions = [NodePath("../SpawnPosition1"), NodePath("../SpawnPosition2"), NodePath("../SpawnPosition3")]
+possible_enemies = [ExtResource("4_ses8m")]
+
+[node name="EnemySpawner2" type="Position2D" parent="Utilities"]
+position = Vector2(-421, 708)
+gizmo_extents = 20.0
+script = ExtResource("4_ncwkl")
+parent_spawn_node = null
+possible_positions = [NodePath("../SpawnPosition4"), NodePath("../SpawnPosition5"), NodePath("../SpawnPosition6")]
+possible_enemies = [ExtResource("4_ses8m")]
+
+[node name="SpawnPosition1" type="Position2D" parent="Utilities"]
+position = Vector2(1753, 509)
+gizmo_extents = 50.0
+
+[node name="SpawnPosition2" type="Position2D" parent="Utilities"]
+position = Vector2(1640, 726)
+gizmo_extents = 50.0
+
+[node name="SpawnPosition3" type="Position2D" parent="Utilities"]
+position = Vector2(1731, 955)
+gizmo_extents = 50.0
+
+[node name="SpawnPosition4" type="Position2D" parent="Utilities"]
+position = Vector2(173, 506)
+gizmo_extents = 50.0
+
+[node name="SpawnPosition5" type="Position2D" parent="Utilities"]
+position = Vector2(229, 718)
+gizmo_extents = 50.0
+
+[node name="SpawnPosition6" type="Position2D" parent="Utilities"]
+position = Vector2(151, 952)
+gizmo_extents = 50.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
