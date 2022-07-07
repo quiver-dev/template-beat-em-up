@@ -74,7 +74,6 @@ position = Vector2(652, 850)
 position = Vector2(2212, 743)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
-parent_spawn_node = null
 possible_positions = [NodePath("../SpawnPosition1"), NodePath("../SpawnPosition2"), NodePath("../SpawnPosition3")]
 possible_enemies = [ExtResource("4_ses8m")]
 
@@ -82,7 +81,6 @@ possible_enemies = [ExtResource("4_ses8m")]
 position = Vector2(-421, 708)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
-parent_spawn_node = null
 possible_positions = [NodePath("../SpawnPosition4"), NodePath("../SpawnPosition5"), NodePath("../SpawnPosition6")]
 possible_enemies = [ExtResource("4_ses8m")]
 
