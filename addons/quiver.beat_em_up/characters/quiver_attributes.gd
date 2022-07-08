@@ -60,6 +60,16 @@ const KNOCKBACK_BY_STRENGTH = {
 ## same jump height as a lighter character.
 @export_range(0, 0, 1, "or_lesser") var jump_force := -1200
 
+## If you need to make the hit lanes broader or narrower for a specifi character you can use
+## this property. Positive values will add to the default hit lane size defined in the Project
+## Setting, while negative values will subtract from it. 
+## [br][br]
+## Note that the hit lane size is how many pixels the character should still be able to receive
+## a hit from, so a value of 60 for example, means that they will be hurt by any attacks 
+## from another character whose base is between 60 pixels above or 60 pixels below 
+## this character's y position.
+@export var hit_lane_offset := 0
+
 ## Character's weight. Influences jump and things like if the character can be thrown or not.[br]
 ## Heavier character will only be able to be thrown by stronger characters.
 @export var weight: WeightClass = WeightClass.MEDIUM
@@ -102,6 +112,9 @@ var knockback_amount := 0:
 	set(value):
 		knockback_amount = max(0, value)
 
+## This character's current y value that represents their current ground level.
+var ground_level := 0.0
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
@@ -133,6 +146,11 @@ func get_health_as_percentage() -> float:
 	return value
 
 
+func get_hit_lane_limits() -> HitLaneLimits:
+	var limits = HitLaneLimits.new(hit_lane_offset, ground_level)
+	return limits
+
+
 func reset() -> void:
 	health_current = health_max
 	is_invulnerable = false
@@ -145,4 +163,19 @@ func reset() -> void:
 
 ### -----------------------------------------------------------------------------------------------
 
-
+class HitLaneLimits:
+	extends RefCounted
+	
+	var lane_size: int = ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_DEFAULT_HIT_LANE_SIZE)
+	
+	var upper_limit := 0
+	var lower_limit := 0
+	
+	func _init(p_increment, p_ground_level):
+		upper_limit = p_ground_level - lane_size - p_increment
+		lower_limit = p_ground_level + lane_size + p_increment
+	
+	
+	func is_value_inside_lane(y_position: float) -> bool:
+		var value := y_position >= upper_limit and y_position <= lower_limit
+		return value

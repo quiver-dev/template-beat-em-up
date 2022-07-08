@@ -36,7 +36,7 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_character.ground_level = _character.global_position.y
+	_attributes.ground_level = _character.global_position.y
 	_character.is_on_air = false
 
 
@@ -45,7 +45,7 @@ func unhandled_input(_event: InputEvent) -> void:
 
 
 func physics_process(_delta: float) -> void:
-	_character.ground_level = _character.global_position.y
+	_attributes.ground_level = _character.global_position.y
 
 
 func exit() -> void:

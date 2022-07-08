@@ -76,7 +76,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _handle_bounce() -> void:
-	_character.global_position.y = _character.ground_level
+	_character.global_position.y = _attributes.ground_level
 	var bounce_direction = _character.velocity.reflect(Vector2.UP)
 	_character.velocity.y = 0.0
 	_state_machine.transition_to(_path_bounce, {bounce_direction = bounce_direction})

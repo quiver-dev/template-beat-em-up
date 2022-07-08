@@ -53,7 +53,7 @@ func _move_and_apply_gravity(delta: float) -> void:
 
 
 func _has_reached_ground() -> bool:
-	return _character.global_position.y >= _character.ground_level
+	return _character.global_position.y >= _attributes.ground_level
 
 ### -----------------------------------------------------------------------------------------------
 
