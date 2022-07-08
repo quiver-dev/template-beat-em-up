@@ -13,6 +13,15 @@ extends EditorPlugin
 
 const PATH_CUSTOM_INSPECTORS = "res://addons/quiver.beat_em_up/custom_inspectors/"
 
+var SETTINGS = {
+	QuiverCyclicHelper.SETTINGS_DEFAULT_HIT_LANE_SIZE:{
+			value = 60,
+			type = TYPE_INT,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0,1,1,or_greater"
+	}
+}
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _loaded_inspectors := {}
@@ -28,6 +37,14 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	_remove_custom_inspectors()
+
+
+func _enable_plugin() -> void:
+	_add_plugin_settings()
+
+
+func _disable_plugin() -> void:
+	_remove_plugin_settings()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -71,5 +88,28 @@ func _load_custom_inspector_from(folder: String) -> void:
 func _remove_custom_inspectors() -> void:
 	for inspector in _loaded_inspectors.values():
 		remove_inspector_plugin(inspector)
+
+
+func _add_plugin_settings() -> void:
+	for setting in SETTINGS:
+		if not ProjectSettings.has_setting(setting):
+			var dict: Dictionary = SETTINGS[setting]
+			ProjectSettings.set_setting(setting, dict.value)
+			ProjectSettings.add_property_info({
+				"name": setting,
+				"type": dict.type,
+				"hint": dict.hint,
+				"hint_string": dict.hint_string,
+			})
+	
+	ProjectSettings.save()
+
+
+func _remove_plugin_settings() -> void:
+	for setting in SETTINGS:
+		if ProjectSettings.has_setting(setting):
+			ProjectSettings.set_setting(setting, null)
+	
+	ProjectSettings.save()
 
 ### -----------------------------------------------------------------------------------------------

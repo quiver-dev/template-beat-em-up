@@ -237,3 +237,7 @@ debug_restart={
 [physics]
 
 2d/default_gravity=2450.0
+
+[quiver]
+
+beat_em_up/default_hit_lane_size=60
