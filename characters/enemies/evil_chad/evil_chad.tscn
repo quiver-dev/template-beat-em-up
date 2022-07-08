@@ -200,7 +200,7 @@ offset_right = 336.0
 offset_bottom = 46.0
 script = ExtResource("18_fdici")
 path_reference = NodePath("../../StateMachine")
-properties = PackedStringArray("state_name", "_state_to_resume")
+properties = PackedStringArray("state_name")
 
 [node name="Combo1" type="Label" parent="DebugLabels" index="2"]
 offset_top = 46.0

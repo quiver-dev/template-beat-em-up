@@ -139,7 +139,7 @@ offset_right = 336.0
 offset_bottom = 23.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
-properties = PackedStringArray("velocity")
+properties = PackedStringArray("velocity", "is_on_air")
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
 offset_top = 23.0
