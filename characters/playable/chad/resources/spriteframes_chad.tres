@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://drxcnmfeqjged"]
+[gd_resource type="SpriteFrames" load_steps=34 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://pehngd25bdaa" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_01.png" id="30_h1a1i"]
 [ext_resource type="Texture2D" uid="uid://fj5wwrsd2nw" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_02.png" id="31_jaglq"]
 [ext_resource type="Texture2D" uid="uid://vbixjb2cw834" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_03.png" id="32_2hkrc"]
-[ext_resource type="Texture2D" uid="uid://dcjwkb5kaydv2" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_04.png" id="33_wiaj1"]
+[ext_resource type="Texture2D" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_04.png" id="33_j15rn"]
 
 [resource]
 animations = [{
@@ -111,7 +111,7 @@ animations = [{
 "name": &"knockout_bounce",
 "speed": 24.0
 }, {
-"frames": [ExtResource("33_wiaj1")],
+"frames": [ExtResource("33_j15rn")],
 "loop": true,
 "name": &"knockout_landed",
 "speed": 24.0

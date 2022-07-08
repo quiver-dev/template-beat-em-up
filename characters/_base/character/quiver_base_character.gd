@@ -30,7 +30,6 @@ var attributes: QuiverAttributes = null:
 			_skin.attributes = attributes
 
 var is_on_air := false
-var ground_level := 0.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 

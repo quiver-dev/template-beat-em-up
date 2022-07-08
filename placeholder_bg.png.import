@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k0hvtjlhaakw"
-path="res://.godot/imported/knockout_04.png-4694fa1599d2255f2dd08ef736629dcc.ctex"
+uid="uid://uwl1nm0n31yj"
+path="res://.godot/imported/placeholder_bg.png-de4678e355ed40d9710cd76dc2ab1beb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/chad/resources/sprites/knock_out/knockout_04.png"
-dest_files=["res://.godot/imported/knockout_04.png-4694fa1599d2255f2dd08ef736629dcc.ctex"]
+source_file="res://placeholder_bg.png"
+dest_files=["res://.godot/imported/placeholder_bg.png-de4678e355ed40d9710cd76dc2ab1beb.ctex"]
 
 [params]
 

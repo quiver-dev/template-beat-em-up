@@ -16,8 +16,11 @@ extends RefCounted
 enum KnockbackStrength { NONE, WEAK, MEDIUM, STRONG, MASSIVE }
 enum HurtTypes { MID, HIGH }
 
-
 #--- constants ------------------------------------------------------------------------------------
+
+# I have to leave this here because if I try to move it to the plugin script I get an error
+# when trying to use it in the subclass inside the attributes script
+const SETTINGS_DEFAULT_HIT_LANE_SIZE = "quiver/beat_em_up/default_hit_lane_size"
 
 const PATH_STATE_MACHINE = (
 		"res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/"

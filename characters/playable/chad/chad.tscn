@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://chnnencdesvbc"]
+[gd_scene load_steps=26 format=3 uid="uid://chnnencdesvbc"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
@@ -27,6 +27,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
 height = 204.0
+
+[sub_resource type="Theme" id="Theme_qfd1g"]
+Label/colors/font_color = Color(0.101961, 0.0117647, 0.415686, 1)
 
 [node name="Chad" groups=["players"] instance=ExtResource("1_aj842")]
 script = ExtResource("2_dwyxr")
@@ -131,6 +134,7 @@ offset_right = 168.0
 offset_bottom = -392.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_qfd1g")
 theme_override_constants/separation = 0
 metadata/_edit_use_custom_anchors = true
 
@@ -139,7 +143,7 @@ offset_right = 336.0
 offset_bottom = 23.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
-properties = PackedStringArray("velocity")
+properties = PackedStringArray("velocity", "is_on_air")
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
 offset_top = 23.0
