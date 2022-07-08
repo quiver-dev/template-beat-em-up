@@ -103,13 +103,17 @@ func _disconnect_signals() -> void:
 
 
 func _on_hurt_requested(knockback: QuiverKnockback) -> void:
-	_air_attack_count = 0
+	# We force exit here when jump is interrupted because normally only the Jump/Landing state
+	# triggers the Jump exit
+	exit()
 	# This is here because ANY hit you receive on air generates a knockout.
 	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
 
 
 func _on_knockout_requested(knockback: QuiverKnockback) -> void:
-	_air_attack_count = 0
+	# We force exit here when jump is interrupted because normally only the Jump/Landing state
+	# triggers the Jump exit
+	exit()
 	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
 
 

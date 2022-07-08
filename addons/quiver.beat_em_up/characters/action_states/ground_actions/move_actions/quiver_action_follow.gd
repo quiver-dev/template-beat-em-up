@@ -27,6 +27,7 @@ const MoveState = preload(
 
 var _target_node: Node2D = null
 var _fixed_position := Vector2.ONE * INF
+var _should_use_fixed := false
 
 @onready var _move_state := get_parent() as MoveState
 @onready var _squared_arrive = pow(ARRIVE_RANGE, 2)
@@ -70,6 +71,7 @@ func enter(msg: = {}) -> void:
 	elif msg.has("target_position") and msg.target_position is Vector2:
 		_target_node = QuiverCharacterHelper.find_closest_player_to(_character)
 		_fixed_position = msg.target_position
+		_should_use_fixed = true
 	else:
 		_state_machine.transition_to(_path_next_state)
 
@@ -85,7 +87,13 @@ func physics_process(delta: float) -> void:
 	_move_state._direction = _character.global_position.direction_to(target_position)
 	var distance_to_target := _character.global_position.distance_squared_to(target_position)
 	
-	if distance_to_target <= _squared_arrive:
+	var is_in_same_lane := true 
+	if not _should_use_fixed and _target_node is QuiverCharacter:
+		is_in_same_lane = QuiverCombatSystem.is_in_same_lane_as(
+				_attributes, _target_node.attributes
+		)
+	
+	if is_in_same_lane and distance_to_target <= _squared_arrive:
 		_state_machine.transition_to(_path_next_state)
 		state_finished.emit()
 		return
@@ -98,6 +106,7 @@ func exit() -> void:
 	_move_state.exit()
 	_fixed_position = Vector2.ONE * INF
 	_target_node = null
+	_should_use_fixed = false
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -114,13 +123,12 @@ func _handle_facing_target_node() -> void:
 
 
 func _handle_target_position() -> Vector2:
-	var should_use_fixed = _fixed_position != Vector2.ONE * INF
-	var target_position := _fixed_position if should_use_fixed else _target_node.global_position
+	var target_position := _fixed_position if _should_use_fixed else _target_node.global_position
 	
-	if not should_use_fixed:
+	if not _should_use_fixed:
 		if _target_node is QuiverCharacter:
 			if _target_node.is_on_air:
-				target_position.y = _target_node.ground_level
+				target_position.y = _attributes.ground_level
 		
 		if _character.global_position.x >= target_position.x:
 			target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
