@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dh7jt0k7hvmeo"]
+[gd_scene load_steps=11 format=3 uid="uid://dh7jt0k7hvmeo"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
+[ext_resource type="Texture2D" uid="uid://uwl1nm0n31yj" path="res://placeholder_bg.png" id="2_3vj1c"]
 [ext_resource type="PackedScene" uid="uid://chnnencdesvbc" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_lfeec"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd" id="4_ncwkl"]
@@ -19,6 +20,18 @@ size = Vector2(87, 2212)
 [node name="PrototypeMain" type="Node2D"]
 script = ExtResource("1_wp06a")
 metadata/_edit_horizontal_guides_ = [-409.0]
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PlaceholderBG" type="Sprite2D" parent="BG"]
+position = Vector2(1811, 333)
+scale = Vector2(0.51298, 0.51298)
+texture = ExtResource("2_3vj1c")
 
 [node name="ScreenLimits" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -55,6 +68,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_dsl8r")
 
 [node name="ColorRect" type="ColorRect" parent="CeilingLimits/Top"]
+visible = false
 show_behind_parent = true
 offset_left = -45.0
 offset_top = -1105.0

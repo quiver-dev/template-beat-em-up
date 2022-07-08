@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://busfprrckh5pb"]
+[gd_scene load_steps=34 format=3 uid="uid://busfprrckh5pb"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4jcfv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="2_py5s2"]
@@ -35,6 +35,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_787ts"]
 radius = 20.0
 height = 204.0
+
+[sub_resource type="Theme" id="Theme_gg7jm"]
+Label/colors/font_color = Color(0.101961, 0.0117647, 0.415686, 1)
 
 [node name="EvilChad" groups=["enemies"] instance=ExtResource("1_4jcfv")]
 script = ExtResource("2_qirqt")
@@ -184,6 +187,7 @@ offset_right = 168.0
 offset_bottom = -392.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_gg7jm")
 theme_override_constants/separation = 0
 metadata/_edit_use_custom_anchors = true
 
