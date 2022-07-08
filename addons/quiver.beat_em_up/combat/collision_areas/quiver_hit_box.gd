@@ -17,9 +17,6 @@ extends Area2D
 		QuiverCombatSystem.CharacterTypes.PLAYERS:
 	set(value):
 		character_type = value 
-		if not character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
-			character_attributes = null
-		
 		_handle_character_type_presets()
 		notify_property_list_changed()
 		update_configuration_warnings()
@@ -44,14 +41,10 @@ var attack_data: QuiverAttackData = null
 			attack_data = QuiverAttackData.new()
 		return attack_data
 
-## Same hack as [member _attack_data], but this one should only be visible if 
-## [member character_type] is Players
+## Same hack as [member _attack_data]
 @export var _character_attributes: Resource:
 	set(value):
-		if character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
-			character_attributes = value as QuiverAttributes
-		else:
-			character_attributes = null
+		character_attributes = value as QuiverAttributes
 	get:
 		return character_attributes
 
@@ -67,6 +60,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+	
+	add_to_group(StringName(owner.get_path()))
 
 
 func _get_configuration_warnings() -> PackedStringArray:

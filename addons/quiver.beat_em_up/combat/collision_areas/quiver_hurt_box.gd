@@ -98,16 +98,17 @@ func _on_area_entered(area: Area2D) -> void:
 		push_error("Unrecognized collision between: %s and %s"%[self, area])
 		return
 	
-	QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
-	var knockback: QuiverKnockback = QuiverKnockback.new(
-			hit_box.attack_data.knockback,
-			hit_box.attack_data.hurt_type,
-			_get_treated_launch_vector(hit_box)
-	)
-	QuiverCombatSystem.apply_knockback(knockback, character_attributes)
-	
-	if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
-		Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
+	if QuiverCombatSystem.is_in_same_lane_as(character_attributes, hit_box.character_attributes):
+		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
+		var knockback: QuiverKnockback = QuiverKnockback.new(
+				hit_box.attack_data.knockback,
+				hit_box.attack_data.hurt_type,
+				_get_treated_launch_vector(hit_box)
+		)
+		QuiverCombatSystem.apply_knockback(knockback, character_attributes)
+		
+		if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
+			Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
 
 ### -----------------------------------------------------------------------------------------------
 
