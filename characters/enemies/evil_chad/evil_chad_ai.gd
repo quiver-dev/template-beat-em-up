@@ -57,14 +57,14 @@ func _on_owner_ready() -> void:
 
 func _decide_next_action(last_state: StringName) -> void:
 	match last_state:
-		&"ChaseClosestPlayer":
+		&"Chase":
 			transition_to(^"Attack")
 		&"GoToPosition":
 			transition_to(^"Wait")
 		&"Attack":
 			transition_to(^"Wait")
 		&"Wait":
-			transition_to(^"ChaseClosestPlayer")
+			transition_to(^"Chase")
 		&"Stunned":
 			transition_to(_state_to_resume)
 
