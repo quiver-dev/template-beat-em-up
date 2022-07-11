@@ -143,8 +143,15 @@ script = ExtResource("21_1aui6")
 script = ExtResource("13_vcgxt")
 initial_state = NodePath("Wait")
 
-[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine" index="0"]
+[node name="Chase" type="Node" parent="AiStateMachine" index="0"]
+script = ExtResource("15_cerch")
+
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Chase" index="0"]
 script = ExtResource("14_nuwmn")
+
+[node name="QuiverAiWait" type="Node" parent="AiStateMachine/Chase" index="1"]
+script = ExtResource("17_v4twd")
+wait_time = 0.2
 
 [node name="GoToPosition" type="Node" parent="AiStateMachine" index="1"]
 script = ExtResource("24_6l3lj")

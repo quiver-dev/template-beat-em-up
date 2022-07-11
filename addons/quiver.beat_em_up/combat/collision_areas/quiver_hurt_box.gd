@@ -25,16 +25,6 @@ var character_attributes: QuiverAttributes = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-## This is also here as a "hack" for the lack of advanced exports. It is private because I don't 
-## want to deal with this in code, it's just an editor field to populate the real property which
-## is the public [member character_attributes]. Once advanced exportes exist this will be converted
-## to it.
-@export var _attributes: Resource:
-	set(value):
-		character_attributes = value as QuiverAttributes
-	get:
-		return character_attributes
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -48,7 +38,8 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	add_to_group(StringName(owner.get_path()))
+	var owner_path := owner.get_path()
+	add_to_group(StringName(owner_path))
 	
 	if not area_entered.is_connected(_on_area_entered):
 		area_entered.connect(_on_area_entered)

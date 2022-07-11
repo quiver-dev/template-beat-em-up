@@ -30,13 +30,13 @@ extends QuiverCharacter
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	super()
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
 	attributes = attributes.duplicate()
 	attributes.reset()
+	super()
 
 
 func _get_configuration_warnings() -> PackedStringArray:

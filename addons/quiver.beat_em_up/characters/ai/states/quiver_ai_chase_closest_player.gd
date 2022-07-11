@@ -12,10 +12,14 @@ extends QuiverAiState
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export_range(1,10,0.1,"or_greater") var max_chase_time := 5
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _path_follow_state := "Ground/Move/Follow"
+
 var _target: QuiverCharacter
+var _chase_timer: SceneTreeTimer
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,9 +43,15 @@ func enter(msg: = {}) -> void:
 	if is_instance_valid(_target):
 		_actions.transition_to(_path_follow_state, {target_node = _target})
 		_actions.transitioned.connect(_on_actions_transitioned)
+		_chase_timer = get_tree().create_timer(max_chase_time)
+		_chase_timer.timeout.connect(_on_chase_timer_timeout)
 
 
 func exit() -> void:
+	_actions.transitioned.disconnect(_on_actions_transitioned)
+	if is_instance_valid(_chase_timer):
+		_chase_timer.timeout.disconnect(_on_chase_timer_timeout)
+	_chase_timer = null
 	super()
 
 ### -----------------------------------------------------------------------------------------------
@@ -54,8 +64,11 @@ func _target_reached() -> void:
 
 
 func _on_actions_transitioned(_path_state: String) -> void:
-	_actions.transitioned.disconnect(_on_actions_transitioned)
 	_target_reached()
+
+
+func _on_chase_timer_timeout() -> void:
+	state_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

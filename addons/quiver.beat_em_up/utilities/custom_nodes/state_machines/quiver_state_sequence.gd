@@ -68,6 +68,15 @@ func exit() -> void:
 		_current_state.state_finished.disconnect(_on_current_state_state_finished)
 	_current_state = null
 
+
+func get_list_of_ai_states() -> Array:
+	var list := ["Node not ready yet"]
+	if _state_machine != null:
+		return list
+	
+	list = _state_machine.get_list_of_ai_states()
+	return list
+
 ### -----------------------------------------------------------------------------------------------
 
 

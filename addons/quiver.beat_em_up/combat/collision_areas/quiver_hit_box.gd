@@ -41,13 +41,6 @@ var attack_data: QuiverAttackData = null
 			attack_data = QuiverAttackData.new()
 		return attack_data
 
-## Same hack as [member _attack_data]
-@export var _character_attributes: Resource:
-	set(value):
-		character_attributes = value as QuiverAttributes
-	get:
-		return character_attributes
-
 ### -----------------------------------------------------------------------------------------------
 
 

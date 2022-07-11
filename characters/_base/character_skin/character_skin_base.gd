@@ -32,7 +32,9 @@ signal skin_animation_finished
 var attributes: QuiverAttributes = null:
 	set(value):
 		attributes = value
-		if not Engine.is_editor_hint() and is_inside_tree():
+		if not Engine.is_editor_hint():
+			if not is_inside_tree():
+				await ready
 			get_tree().set_group(StringName(get_path()), "character_attributes", attributes)
 
 #--- private variables - order: export > normal var > onready -------------------------------------

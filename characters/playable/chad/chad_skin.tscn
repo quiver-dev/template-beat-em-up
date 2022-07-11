@@ -57,7 +57,6 @@ collision_layer = 4096
 collision_mask = 512
 monitorable = false
 script = ExtResource("5_k0gpy")
-_attributes = ExtResource("6_iqdvs")
 metadata/collision_type = "player_hurt_box"
 
 [node name="HurtShape" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox" index="0"]
@@ -74,7 +73,6 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("8_uylrb")
-_character_attributes = ExtResource("6_iqdvs")
 metadata/collision_type = "player_hit_box"
 
 [node name="Attack1Shape" type="CollisionShape2D" parent="Attack1" index="0"]
@@ -92,7 +90,6 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("9_cutyj")
-_character_attributes = ExtResource("6_iqdvs")
 metadata/collision_type = "player_hit_box"
 
 [node name="Attack2Shape" type="CollisionShape2D" parent="Attack2" index="0"]
@@ -110,7 +107,6 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("10_556uq")
-_character_attributes = ExtResource("6_iqdvs")
 metadata/collision_type = "player_hit_box"
 
 [node name="AttackAirShape" type="CollisionShape2D" parent="AttackAir" index="0"]
