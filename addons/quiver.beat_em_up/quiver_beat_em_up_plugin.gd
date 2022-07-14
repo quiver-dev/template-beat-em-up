@@ -19,6 +19,11 @@ var SETTINGS = {
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0,1,1,or_greater"
+	},
+	QuiverCyclicHelper.SETTINGS_LOGGING: {
+			value = true,
+			type = TYPE_BOOL,
+			hint = PROPERTY_HINT_NONE,
 	}
 }
 
