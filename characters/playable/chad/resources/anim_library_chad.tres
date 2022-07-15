@@ -1,6 +1,7 @@
-[gd_resource type="AnimationLibrary" load_steps=20 format=3 uid="uid://c6fsleghrve54"]
+[gd_resource type="AnimationLibrary" load_steps=29 format=3 uid="uid://c6fsleghrve54"]
 
 [ext_resource type="Animation" uid="uid://btquhprad5iru" path="res://characters/playable/chad/resources/animations/air_attack.tres" id="1_jgcla"]
+[ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="1_m65eu"]
 [ext_resource type="Animation" uid="uid://cog1iucyx4hyl" path="res://characters/playable/chad/resources/animations/attack1.tres" id="2_b3008"]
 [ext_resource type="Animation" uid="uid://b6tt1r7v70pia" path="res://characters/playable/chad/resources/animations/attack2.tres" id="3_mfu82"]
 [ext_resource type="Animation" uid="uid://bdam1ybbgvwy7" path="res://characters/playable/chad/resources/animations/die.tres" id="4_yath4"]
@@ -8,8 +9,10 @@
 [ext_resource type="Animation" uid="uid://cgeixqskw28xm" path="res://characters/playable/chad/resources/animations/getting_up.tres" id="6_fri02"]
 [ext_resource type="Animation" uid="uid://crqm6giy4n8gj" path="res://characters/playable/chad/resources/animations/hurt_high.tres" id="7_mg2mq"]
 [ext_resource type="Animation" uid="uid://n1iiq1shupv3" path="res://characters/playable/chad/resources/animations/hurt_mid.tres" id="8_iul5p"]
+[ext_resource type="Animation" uid="uid://qwnmeb6powgs" path="res://characters/playable/chad/resources/animations/grab.tres" id="8_nxw12"]
 [ext_resource type="Animation" uid="uid://bas87watx67xp" path="res://characters/playable/chad/resources/animations/idle.tres" id="9_4hgcx"]
 [ext_resource type="Animation" uid="uid://bhk6m2enqae8i" path="res://characters/playable/chad/resources/animations/jump.tres" id="10_dvd63"]
+[ext_resource type="Animation" uid="uid://ti8trwf2fogq" path="res://characters/playable/chad/resources/animations/grab_release.tres" id="10_j3acn"]
 [ext_resource type="Animation" uid="uid://dctfa0cbxl7j" path="res://characters/playable/chad/resources/animations/knockout_bounce.tres" id="11_io3cm"]
 [ext_resource type="Animation" uid="uid://cmm34221tjpo" path="res://characters/playable/chad/resources/animations/knockout_falling.tres" id="12_bwx7t"]
 [ext_resource type="Animation" uid="uid://7jgevo3srgir" path="res://characters/playable/chad/resources/animations/knockout_landed.tres" id="13_qn24t"]
@@ -18,224 +21,26 @@
 [ext_resource type="Animation" uid="uid://bdwi7p23h5cl1" path="res://characters/playable/chad/resources/animations/landing.tres" id="16_8yctp"]
 [ext_resource type="Animation" uid="uid://dh4gx7nf64p83" path="res://characters/playable/chad/resources/animations/rising.tres" id="17_24mvo"]
 [ext_resource type="Animation" uid="uid://ughjxbhm0crt" path="res://characters/playable/chad/resources/animations/walk.tres" id="18_ph30l"]
-
-[sub_resource type="Animation" id="Animation_xs8v1"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -190)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimationTree:active")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AnimatedSprite2D/HurtBox:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(5, 22)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:shape:size")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(149, 378.5)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -12.75)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath(".:_attributes:is_invulnerable")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("AnimatedSprite2D:modulate")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Attack1:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Attack1/Attack1Shape:disabled")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Attack2:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Attack2/Attack2Shape:disabled")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("AttackAir:visible")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("AttackAir/AttackAirShape:disabled")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
+[ext_resource type="Animation" uid="uid://cqnai3hk58q2x" path="res://characters/playable/chad/resources/animations/grab_idle.tres" id="21_tmyyo"]
+[ext_resource type="Animation" uid="uid://nsyi7dtdjk76" path="res://characters/playable/chad/resources/animations/throw_backward.tres" id="22_2royc"]
+[ext_resource type="Animation" uid="uid://bnlvt0cgysh6q" path="res://characters/playable/chad/resources/animations/throw_backward_noah.tres" id="23_1jfuq"]
+[ext_resource type="Animation" uid="uid://dwf2sua165e5v" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_1.tres" id="24_jcgmp"]
+[ext_resource type="Animation" uid="uid://bpljuokg43hta" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_2.tres" id="25_omrhd"]
+[ext_resource type="Animation" uid="uid://cm3mqtbiolxdj" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_3.tres" id="26_wlgnu"]
+[ext_resource type="Animation" uid="uid://d06imq3jiaovm" path="res://characters/playable/chad/resources/animations/throw_forward.tres" id="27_h0xl8"]
 
 [resource]
 _data = {
-"RESET": SubResource("Animation_xs8v1"),
+"RESET": ExtResource("1_m65eu"),
 "air_attack": ExtResource("1_jgcla"),
 "attack1": ExtResource("2_b3008"),
 "attack2": ExtResource("3_mfu82"),
 "die": ExtResource("4_yath4"),
 "falling": ExtResource("5_ti25v"),
 "getting_up": ExtResource("6_fri02"),
+"grab": ExtResource("8_nxw12"),
+"grab_idle": ExtResource("21_tmyyo"),
+"grab_release": ExtResource("10_j3acn"),
 "hurt_high": ExtResource("7_mg2mq"),
 "hurt_mid": ExtResource("8_iul5p"),
 "idle": ExtResource("9_4hgcx"),
@@ -247,5 +52,11 @@ _data = {
 "knockout_rising": ExtResource("15_mscj3"),
 "landing": ExtResource("16_8yctp"),
 "rising": ExtResource("17_24mvo"),
+"throw_backward": ExtResource("22_2royc"),
+"throw_backward_noah": ExtResource("23_1jfuq"),
+"throw_backward_recovery_1": ExtResource("24_jcgmp"),
+"throw_backward_recovery_2": ExtResource("25_omrhd"),
+"throw_backward_recovery_3": ExtResource("26_wlgnu"),
+"throw_forward": ExtResource("27_h0xl8"),
 "walk": ExtResource("18_ph30l")
 }
