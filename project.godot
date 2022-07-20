@@ -237,6 +237,8 @@ debug_restart={
 2d_physics/layer_4="ceiling_limits"
 2d_physics/layer_9="player_hit_boxes"
 2d_physics/layer_10="enemy_hit_boxes"
+2d_physics/layer_11="player_grab_boxes"
+2d_physics/layer_12="enemy_grab_boxes"
 2d_physics/layer_13="player_hurt_boxes"
 2d_physics/layer_14="enemy_hurt_boxes"
 
