@@ -91,6 +91,8 @@ const KNOCKBACK_BY_STRENGTH = {
 		if has_changed and has_superarmor:
 			knockback_amount = 0
 
+@export var can_be_grabbed := true
+
 ## Character's current health. What the health bar will be showing.
 var health_current := health_max:
 	set(value):
@@ -155,6 +157,7 @@ func reset() -> void:
 	health_current = health_max
 	is_invulnerable = false
 	has_superarmor = false
+	can_be_grabbed = true
 
 ### -----------------------------------------------------------------------------------------------
 
