@@ -10,9 +10,9 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/"
-		+"ground_actions/quiver_action_move.gd"
+const GrabState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/ground_actions/"
+		+"quiver_action_grab.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -20,10 +20,9 @@ const MoveState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _skin_state: StringName
-@export var _path_idle_state := "Ground/Move/Idle"
-@export var _path_grabbing_state := "Ground/Grab/Grabbing"
+@export var _path_next_state := "Ground/Grab/Idle"
 
-@onready var _move_state := get_parent() as MoveState
+@onready var _grab_state := get_parent() as GrabState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,14 +40,13 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is MoveState:
+	if not get_parent() is GrabState:
 		warnings.append(
-				"This ActionState must be a child of Action MoveState or a state " 
+				"This ActionState must be a child of Action GrabState or a state " 
 				+ "inheriting from it."
 		)
 	
 	return warnings
-
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -56,65 +54,41 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Public Methods --------------------------------------------------------------------------------
 
 func enter(msg: = {}) -> void:
-	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	super(msg)
-	_move_state.enter(msg)
+	_grab_state.enter(msg)
 	_skin.transition_to(_skin_state)
-	
-	_handle_facing_direction()
-
-
-func unhandled_input(event: InputEvent) -> void:
-	var has_handled := false
-	if not has_handled:
-		get_parent().unhandled_input(event)
-
-
-func physics_process(delta: float) -> void:
-	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	_handle_facing_direction()
-	
-	if _move_state._direction == Vector2.ZERO:
-		_state_machine.transition_to(_path_idle_state)
-	
-	_move_state.physics_process(delta)
 
 
 func exit() -> void:
 	super()
-	_move_state.exit()
+	_grab_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _handle_facing_direction() -> void:
-	var facing_direction :int = sign(_move_state._direction.x)
-	if facing_direction != 0:
-		_skin.scale.x = facing_direction
-
-
 func _connect_signals() -> void:
+	get_parent()._connect_signals()
 	super()
 	
-	if not _attributes.grab_requested.is_connected(_on_grab_requested):
-		_attributes.grab_requested.connect(_on_grab_requested)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
+	get_parent()._disconnect_signals()
 	super()
-	
-	if _attributes != null:
-		if _attributes.grab_requested.is_connected(_on_grab_requested):
-			_attributes.grab_requested.disconnect(_on_grab_requested)
+	if _skin != null:
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
-func _on_grab_requested(grab_target: QuiverAttributes) -> void:
-	_state_machine.transition_to(_path_grabbing_state, {target = grab_target})
+## Connect the signal that marks the end of the attack to this function.
+func _on_skin_animation_finished() -> void:
+	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
-
 
 ###################################################################################################
 # Custom Inspector ################################################################################
@@ -129,15 +103,8 @@ const CUSTOM_PROPERTIES = {
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
-	"path_idle_state": {
-		backing_field = "_path_idle_state",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"path_grabbing_state": {
-		backing_field = "_path_grabbing_state",
+	"path_next_state": {
+		backing_field = "_path_next_state",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
