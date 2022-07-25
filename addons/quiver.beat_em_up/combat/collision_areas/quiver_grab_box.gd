@@ -1,5 +1,5 @@
 @tool
-class_name QuiverHurtBox
+class_name QuiverGrabBox
 extends Area2D
 
 ## Write your doc string for this file here
@@ -38,19 +38,15 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	var owner_path := owner.get_path()
-	add_to_group(StringName(owner_path))
-	
-	if not area_entered.is_connected(_on_area_entered):
-		area_entered.connect(_on_area_entered)
+	add_to_group(StringName(owner.get_path()))
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	var collision_type := get_meta(QuiverCollisionTypes.META_KEY, "default") as String
-	if collision_type.find("hurt_box") == -1 and collision_type != "custom":
-		warnings.append("hurt box area is using an invalid presset")
+	if collision_type.find("grab_box") == -1 and collision_type != "custom":
+		warnings.append("grab box area is using an invalid presset")
 	
 	return warnings
 
@@ -58,6 +54,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+### -----------------------------------------------------------------------------------------------
+
+
+### Private Methods -------------------------------------------------------------------------------
 
 func _handle_character_type_presets() -> void:
 	var collision_type := get_meta(QuiverCollisionTypes.META_KEY, "default") as String
@@ -67,9 +68,9 @@ func _handle_character_type_presets() -> void:
 	var target_collision_type := ""
 	match character_type:
 		QuiverCombatSystem.CharacterTypes.PLAYERS:
-			target_collision_type = "player_hurt_box"
+			target_collision_type = "player_grab_box"
 		QuiverCombatSystem.CharacterTypes.ENEMIES:
-			target_collision_type = "enemy_hurt_box"
+			target_collision_type = "enemy_grab_box"
 		_:
 			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
 					character_type,
@@ -82,53 +83,5 @@ func _handle_character_type_presets() -> void:
 				QuiverCollisionTypes.PRESETS[target_collision_type], self
 		)
 
-
-func _on_area_entered(area: Area2D) -> void:
-	if area is QuiverHitBox:
-		_handle_hit_box(area)
-	elif area is QuiverGrabBox:
-		_handle_grab_box(area)
-	else:
-		push_error("Unrecognized collision between: %s and %s"%[self, area])
-		return
-
 ### -----------------------------------------------------------------------------------------------
 
-
-### Private Methods -------------------------------------------------------------------------------
-
-func _handle_hit_box(hit_box: QuiverHitBox) -> void:
-	if QuiverCombatSystem.is_in_same_lane_as(character_attributes, hit_box.character_attributes):
-		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
-		var knockback: QuiverKnockback = QuiverKnockback.new(
-				hit_box.attack_data.knockback,
-				hit_box.attack_data.hurt_type,
-				_get_treated_launch_vector(hit_box)
-		)
-		QuiverCombatSystem.apply_knockback(knockback, character_attributes)
-		
-		if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
-			Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
-
-
-func _handle_grab_box(grab_box: QuiverGrabBox) -> void:
-	var grabber := grab_box.character_attributes
-	if (
-			character_attributes.can_be_grabbed
-			and QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
-	):
-		character_attributes.grabbed.emit()
-		grabber.grab_requested.emit(character_attributes)
-
-
-func _get_treated_launch_vector(hit_box: QuiverHitBox) -> Vector2:
-	var launch_vector := hit_box.attack_data.launch_vector
-	if _attack_is_coming_from_right(hit_box):
-		launch_vector = launch_vector.reflect(Vector2.UP)
-	return launch_vector
-
-
-func _attack_is_coming_from_right(hit_box: QuiverHitBox) -> bool:
-	return hit_box.global_position.x > global_position.x
-
-### -----------------------------------------------------------------------------------------------

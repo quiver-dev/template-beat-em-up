@@ -21,9 +21,10 @@ extends Resource
 
 signal health_changed
 signal health_depleted
-# not using type hints on this one becuase of Cyclic Errors
 signal hurt_requested(knockback: QuiverKnockback)
 signal knockout_requested(knockback: QuiverKnockback)
+signal grab_requested(grabbed_character: QuiverAttributes)
+signal grabbed
 
 #--- enums ----------------------------------------------------------------------------------------
 
