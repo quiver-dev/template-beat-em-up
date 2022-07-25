@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://chnnencdesvbc"]
+[gd_scene load_steps=29 format=3 uid="uid://cxk8g4d6w5t7d"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Resource" uid="uid://dtgy5kdua2c1y" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Resource" uid="uid://cwbexdkq2mal0" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
@@ -14,10 +14,13 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="11_a7lbg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="11_wf2ss"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="12_4dbtu"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grab.gd" id="12_o57a3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="12_vsxf2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd" id="12_xkj6t"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="13_d8net"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grabbing.gd" id="13_x323f"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
@@ -82,6 +85,25 @@ _path_combo_state = ""
 [node name="Recovery" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_a7lbg")
 _skin_state = &"knockout_ground"
+
+[node name="Grab" type="Node" parent="StateMachine/Ground" index="5"]
+script = ExtResource("12_o57a3")
+
+[node name="Grabbing" type="Node" parent="StateMachine/Ground/Grab" index="0"]
+script = ExtResource("13_x323f")
+_skin_state = &"grab"
+
+[node name="Idle" type="Node" parent="StateMachine/Ground/Grab" index="1"]
+script = ExtResource("12_xkj6t")
+
+[node name="Release" type="Node" parent="StateMachine/Ground/Grab" index="2"]
+script = ExtResource("12_xkj6t")
+
+[node name="ThrowFoward" type="Node" parent="StateMachine/Ground/Grab" index="3"]
+script = ExtResource("12_xkj6t")
+
+[node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
+script = ExtResource("12_xkj6t")
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("9_o5gfu")
