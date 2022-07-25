@@ -16,12 +16,18 @@ extends Node2D
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-## called by attack animations at the point where they stop accepting input for combos
-signal attack_input_frames_finished
-
 ## called by animations at their last frame. This is a workaround for [AnimationPlayer] 
 ## not emitting any of it's signals when it's controlled by an [AnimationTree].
 signal skin_animation_finished
+
+## called by attack animations at the point where they stop accepting input for combos
+signal attack_input_frames_finished
+
+## emited by calling [method grab_notify] in grab animations, at the point the grab should 
+## connect and link character who is grabbing to grabbed character
+signal grab_frame_reached(pivot_node_path: NodePath)
+
+signal grab_released
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -43,6 +49,8 @@ var attributes: QuiverAttributes = null:
 ## Kept the underscore to make it "private" because it's not suposed to be changed
 ## from outside of the scene, to point to an external [AnimationTree] for example.
 @export_node_path(AnimationTree) var _path_animation_tree := ^"AnimationTree"
+
+@export_node_path(Position2D) var _path_grab_pivot := ^"Positions/GrabPivot"
 
 ## Path to [AnimationNodeStateMachinePlayback]. Usually I create an [AnimationNodeBlendTree] as the
 ## root for the [AnimationTree] and the [AnimationNodeStateMachine] inside it, so I can do anything 
@@ -67,6 +75,7 @@ var _animation_list := []
 
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
 @onready var _playback := _animation_tree.get(_path_playback) as AnimationNodeStateMachinePlayback
+@onready var _grab_pivot := get_node(_path_grab_pivot) as Position2D
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -108,6 +117,19 @@ func end_of_input_frames() -> void:
 	attack_input_frames_finished.emit()
 
 
+## Ese this method in character's grab animations to emit the signal [signal grab_frame_reached].
+## The variable [member _path_grab_pivot] must be correctly set for this to work.
+func grab_notify() -> void:
+	if not is_instance_valid(_grab_pivot) and not _path_grab_pivot.is_empty():
+		_grab_pivot = get_node_or_null(_path_grab_pivot)
+	
+	if not is_instance_valid(_grab_pivot):
+		push_error("Could not get grab pivot Position 2D from path: %s"%[_path_grab_pivot])
+		return
+	
+	grab_frame_reached.emit(_grab_pivot.get_path())
+
+
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
 ## [signal skin_animation_finished)]
 func end_of_skin_animation() -> void:
@@ -129,7 +151,6 @@ func _is_valid_state(anim_state: StringName) -> bool:
 #			value, anim_state, SkinStates.values()
 #	])
 	return value
-
 
 
 ## Helper to create getters for public condition properties.

@@ -97,10 +97,16 @@ position = Vector2(0, -190)
 frames = ExtResource("4_l5bf7")
 animation = &"idle"
 
-[node name="SuplexLanding" type="Position2D" parent="." index="4"]
+[node name="Positions" type="Node2D" parent="." index="4"]
+
+[node name="SuplexLanding" type="Position2D" parent="Positions" index="0"]
 position = Vector2(-735, 0)
 
-[node name="Attack1" type="Area2D" parent="." index="5"]
+[node name="GrabPivot" type="Position2D" parent="Positions" index="1"]
+
+[node name="Attacks" type="Node2D" parent="." index="5"]
+
+[node name="Attack1" type="Area2D" parent="Attacks" index="0"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256
@@ -110,14 +116,14 @@ script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("8_uylrb")
 metadata/collision_type = "player_hit_box"
 
-[node name="Attack1Shape" type="CollisionShape2D" parent="Attack1" index="0"]
+[node name="Attack1Shape" type="CollisionShape2D" parent="Attacks/Attack1" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(202, -303)
 shape = SubResource("RectangleShape2D_once2")
 disabled = true
 metadata/collision_type = "player_hit_box"
 
-[node name="Attack2" type="Area2D" parent="." index="6"]
+[node name="Attack2" type="Area2D" parent="Attacks" index="1"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256
@@ -127,14 +133,14 @@ script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("9_cutyj")
 metadata/collision_type = "player_hit_box"
 
-[node name="Attack2Shape" type="CollisionShape2D" parent="Attack2" index="0"]
+[node name="Attack2Shape" type="CollisionShape2D" parent="Attacks/Attack2" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(231, -274.5)
 shape = SubResource("RectangleShape2D_tcrug")
 disabled = true
 metadata/collision_type = "player_hit_box"
 
-[node name="AttackGrabPunch" type="Area2D" parent="." index="7"]
+[node name="AttackGrabPunch" type="Area2D" parent="Attacks" index="2"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256
@@ -144,7 +150,7 @@ script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("10_ph8u0")
 metadata/collision_type = "player_hit_box"
 
-[node name="GrabPunchShape" type="CollisionShape2D" parent="AttackGrabPunch" index="0"]
+[node name="GrabPunchShape" type="CollisionShape2D" parent="Attacks/AttackGrabPunch" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(138, -319)
 rotation = -0.412943
@@ -152,7 +158,7 @@ shape = SubResource("RectangleShape2D_67shm")
 disabled = true
 metadata/collision_type = "player_hit_box"
 
-[node name="AttackSuplex" type="Area2D" parent="." index="8"]
+[node name="AttackSuplex" type="Area2D" parent="Attacks" index="3"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256
@@ -162,14 +168,14 @@ script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("11_4bw6m")
 metadata/collision_type = "player_hit_box"
 
-[node name="SuplexShape" type="CollisionShape2D" parent="AttackSuplex" index="0"]
+[node name="SuplexShape" type="CollisionShape2D" parent="Attacks/AttackSuplex" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(-505, -124)
 shape = SubResource("RectangleShape2D_5eyoc")
 disabled = true
 metadata/collision_type = "player_hit_box"
 
-[node name="AttackAir" type="Area2D" parent="." index="9"]
+[node name="AttackAir" type="Area2D" parent="Attacks" index="4"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256
@@ -179,7 +185,7 @@ script = ExtResource("5_f1o2m")
 _attack_data = ExtResource("10_556uq")
 metadata/collision_type = "player_hit_box"
 
-[node name="AttackAirShape" type="CollisionShape2D" parent="AttackAir" index="0"]
+[node name="AttackAirShape" type="CollisionShape2D" parent="Attacks/AttackAir" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(187, -254)
 rotation = 0.294481
