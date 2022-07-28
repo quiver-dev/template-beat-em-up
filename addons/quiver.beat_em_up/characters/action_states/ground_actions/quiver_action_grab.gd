@@ -16,6 +16,7 @@ const GroundState = preload(
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var grab_target: QuiverAttributes = null
+var grab_target_node: QuiverCharacter = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -61,12 +62,14 @@ func enter(msg: = {}) -> void:
 		return
 	
 	grab_target = msg.target
+	grab_target_node = grab_target.character_node
 
 
 func exit() -> void:
 	super()
 	_ground_state.exit()
 	grab_target = null
+	grab_target_node = null
 
 ### -----------------------------------------------------------------------------------------------
 

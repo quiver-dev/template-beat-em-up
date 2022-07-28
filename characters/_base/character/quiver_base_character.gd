@@ -79,15 +79,17 @@ var _path_collision := NodePath("Collision"):
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
-	else:
-		const ERROR_BASE_SCENE_USED_DIRECTLY = (
-			"You should not use this scene directly, inherit from it to create your characters"
-		)
-		var is_not_base_scene = \
-				scene_file_path != "res://characters/_base/character/quiver_base_character.tscn"
-		assert(is_not_base_scene, ERROR_BASE_SCENE_USED_DIRECTLY)
-
-	pass
+		return
+	
+	const ERROR_BASE_SCENE_USED_DIRECTLY = (
+		"You should not use this scene directly, inherit from it to create your characters"
+	)
+	var is_not_base_scene = \
+			scene_file_path != "res://characters/_base/character/quiver_base_character.tscn"
+	assert(is_not_base_scene, ERROR_BASE_SCENE_USED_DIRECTLY)
+	
+	if attributes != null:
+		attributes.character_node = self
 
 
 func _get_configuration_warnings() -> PackedStringArray:

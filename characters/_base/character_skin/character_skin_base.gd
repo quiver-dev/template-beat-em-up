@@ -41,6 +41,9 @@ var attributes: QuiverAttributes = null:
 		if not Engine.is_editor_hint():
 			if not is_inside_tree():
 				await ready
+			if attributes != null:
+				attributes.grabbed_offset = _grabbed_pivot
+			
 			get_tree().set_group(StringName(get_path()), "character_attributes", attributes)
 
 #--- private variables - order: export > normal var > onready -------------------------------------
