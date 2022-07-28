@@ -10,13 +10,21 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
+const GroundState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
+)
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_hurt := "Ground/Hurt"
-@export var _path_knockout := "Air/Knockout/Launch"
-@export var _path_grabbed := "Ground/Grabbed"
+@export var _skin_state: StringName
+@export_range(0.0, 5.0, 0.1, "or_greater") var _time_to_freed := 5.0
+@export var _path_next_state := "Ground/Grab/Idle"
+
+var _grabbed_timer: Timer = null
+
+@onready var _ground_state := get_parent() as GroundState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -29,6 +37,21 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+	
+	_grabbed_timer = Timer.new()
+	add_child(_grabbed_timer, true)
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	
+	if not get_parent() is GroundState:
+		warnings.append(
+				"This ActionState must be a child of Action GroundState or a state " 
+				+ "inheriting from it."
+		)
+	
+	return warnings
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -37,21 +60,16 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_attributes.ground_level = _character.global_position.y
-	_character.is_on_air = false
-
-
-func unhandled_input(_event: InputEvent) -> void:
-	pass
-
-
-func physics_process(_delta: float) -> void:
-	_attributes.ground_level = _character.global_position.y
+	_ground_state.enter(msg)
+	_skin.transition_to(_skin_state)
+	_grabbed_timer.start(_time_to_freed)
+	_character._disable_collisions()
 
 
 func exit() -> void:
-	_character.is_on_air = true
 	super()
+	_ground_state.exit()
+	_character._enable_collisions()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -61,40 +79,21 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _attributes.hurt_requested.is_connected(_on_hurt_requested):
-		_attributes.hurt_requested.connect(_on_hurt_requested)
-	
-	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
-		_attributes.knockout_requested.connect(_on_knockout_requested)
-	
-	if not _attributes.grabbed.is_connected(_on_grabbed):
-		_attributes.grabbed.connect(_on_grabbed)
+	if not _grabbed_timer.timeout.is_connected(_on_grabbed_timer_timeout):
+		_grabbed_timer.timeout.connect(_on_grabbed_timer_timeout)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
-	if _attributes != null:
-		if _attributes.hurt_requested.is_connected(_on_hurt_requested):
-			_attributes.hurt_requested.disconnect(_on_hurt_requested)
-		
-		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
-			_attributes.knockout_requested.disconnect(_on_knockout_requested)
-		
-		if _attributes.grabbed.is_connected(_on_grabbed):
-			_attributes.grabbed.disconnect(_on_grabbed)
+	if _grabbed_timer != null:
+		if _grabbed_timer.timeout.is_connected(_on_grabbed_timer_timeout):
+			_grabbed_timer.timeout.disconnect(_on_grabbed_timer_timeout)
 
 
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
-	_state_machine.transition_to(_path_hurt, {hurt_type = knockback.hurt_type})
-
-
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
-	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
-
-
-func _on_grabbed() -> void:
-	_state_machine.transition_to(_path_grabbed)
+func _on_grabbed_timer_timeout() -> void:
+	_attributes.grab_denied.emit()
+	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -103,22 +102,16 @@ func _on_grabbed() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"path_hurt": {
-		backing_field = "_path_hurt",
-		type = TYPE_STRING,
+	"skin_state": {
+		backing_field = "_skin_state",
+		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
-	"path_knockout": {
-		backing_field = "_path_knockout",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"path_grabbed": {
-		backing_field = "_path_grabbed",
+	"path_next_state": {
+		backing_field = "_path_next_state",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

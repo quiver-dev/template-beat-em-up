@@ -117,7 +117,6 @@ func _handle_grab_box(grab_box: QuiverGrabBox) -> void:
 			character_attributes.can_be_grabbed
 			and QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
 	):
-		character_attributes.grabbed.emit()
 		grabber.grab_requested.emit(character_attributes)
 
 
