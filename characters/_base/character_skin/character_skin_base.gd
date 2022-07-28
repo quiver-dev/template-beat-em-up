@@ -25,7 +25,7 @@ signal attack_input_frames_finished
 
 ## emited by calling [method grab_notify] in grab animations, at the point the grab should 
 ## connect and link character who is grabbing to grabbed character
-signal grab_frame_reached(pivot_node_path: NodePath)
+signal grab_frame_reached(ref_position: Position2D)
 
 signal grab_released
 
@@ -132,7 +132,7 @@ func grab_notify() -> void:
 		push_error("Could not get grab pivot Position 2D from path: %s"%[_path_grab_pivot])
 		return
 	
-	grab_frame_reached.emit(_grab_pivot.get_path())
+	grab_frame_reached.emit(_grab_pivot)
 
 
 ## Use this method at the end of your character's attack animations as a shortcut to emitting

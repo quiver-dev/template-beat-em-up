@@ -19,11 +19,8 @@ const GrabState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _grab_ref_position: Position2D = null
-var _grab_target_offset: Position2D = null
-
 @export var _skin_state: StringName
-@export var _path_next_state := "Ground/Grab/Idle"
+@export var _path_grab_denied := "Ground/Hurt"
 
 @onready var _grab_state := get_parent() as GrabState
 
@@ -58,30 +55,18 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_grab_state.enter(msg)
 	_skin.transition_to(_skin_state)
-	_state_machine.set_process(false)
 
 
-func process(_delta: float) -> void:
-	var new_position = _grab_ref_position.global_position
-	if is_instance_valid(_grab_target_offset):
-		var local_offset = _grab_state.grab_target_node.to_local(_grab_target_offset.global_position)
-		new_position -= local_offset
-#		print("difference: %s | position: %s | xformed_offset: %s | actual_position: %s"%[
-#				_grab_ref_position.global_position - _grab_target_offset.position, 
-#				_grab_target_offset.position, local_offset, 
-#				new_position 
-#		])
+func unhandled_input(event: InputEvent) -> void:
+	var has_handled := false
 	
-	_grab_state.grab_target_node.global_position = new_position
+	if not has_handled:
+		_grab_state.unhandled_input(event)
 
 
 func exit() -> void:
 	super()
-	
-	_state_machine.set_process(true)
-	_grab_ref_position = null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -89,37 +74,22 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _connect_signals() -> void:
-	get_parent()._connect_signals()
 	super()
 	
-	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
-	
-	if not _skin.grab_frame_reached.is_connected(_on_skin_grab_frame_reached):
-		_skin.grab_frame_reached.connect(_on_skin_grab_frame_reached)
+	if not _grab_state.grab_target.grab_denied.is_connected(_on_grab_target_grab_denied):
+		_grab_state.grab_target.grab_denied.connect(_on_grab_target_grab_denied)
 
 
 func _disconnect_signals() -> void:
-	get_parent()._disconnect_signals()
 	super()
-	if _skin != null:
-		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
-		
-		if _skin.grab_frame_reached.is_connected(_on_skin_grab_frame_reached):
-			_skin.grab_frame_reached.disconnect(_on_skin_grab_frame_reached)
+	
+	if not is_instance_valid(_grab_state):
+		if _grab_state.grab_target.grab_denied.is_connected(_on_grab_target_grab_denied):
+			_grab_state.grab_target.grab_denied.disconnect(_on_grab_target_grab_denied)
 
 
-## Connect the signal that marks the end of the attack to this function.
-func _on_skin_animation_finished() -> void:
-	_state_machine.transition_to(_path_next_state)
-
-
-func _on_skin_grab_frame_reached(ref_position: Position2D) -> void:
-	_grab_ref_position = ref_position
-	_grab_target_offset = _grab_state.grab_target.grabbed_offset
-	_grab_state.grab_target.grabbed.emit()
-	_state_machine.set_process(true)
+func _on_grab_target_grab_denied() -> void:
+	_state_machine.transition_to(_path_grab_denied)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -136,8 +106,8 @@ const CUSTOM_PROPERTIES = {
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
-	"path_next_state": {
-		backing_field = "_path_next_state",
+	"path_grab_denied": {
+		backing_field = "_path_grab_denied",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
