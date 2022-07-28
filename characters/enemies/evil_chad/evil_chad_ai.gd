@@ -14,7 +14,7 @@ extends QuiverAiStateMachine
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _ai_state_hurt := "Stunned"
+@export var _ai_state_hurt := "WaitTillIdle"
 @export var _ai_state_after_reset := "Wait"
 
 var _character: QuiverCharacter = null
@@ -56,6 +56,9 @@ func _on_owner_ready() -> void:
 	
 	_attributes.hurt_requested.connect(_ai_interrupted)
 	_attributes.knockout_requested.connect(_ai_reset)
+	
+	if not _attributes.grabbed.is_connected(_ai_interrupted):
+		_attributes.grabbed.connect(_ai_interrupted)
 
 
 func _decide_next_action(last_state: StringName) -> void:
@@ -68,19 +71,19 @@ func _decide_next_action(last_state: StringName) -> void:
 			transition_to(^"Wait")
 		&"Wait":
 			transition_to(^"Chase")
-		&"Stunned":
+		&"WaitTillIdle":
 			transition_to(_state_to_resume)
 
 
-func _ai_interrupted(_knockback: QuiverKnockback) -> void:
+func _ai_interrupted(_knockback: QuiverKnockback = null) -> void:
 	_state_to_resume = get_path_to(state)
-	transition_to(^"Stunned")
+	transition_to(_ai_state_hurt)
 
 
 func _ai_reset(_knockback: QuiverKnockback) -> void:
 	if _state_to_resume.is_empty():
 		_ai_interrupted(null)
-	_state_to_resume = ^"Wait"
+	_state_to_resume = _ai_state_after_reset
 
 ### -----------------------------------------------------------------------------------------------
 

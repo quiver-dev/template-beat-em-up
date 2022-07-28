@@ -64,8 +64,15 @@ func physics_process(delta: float) -> void:
 
 func exit() -> void:
 	super()
-	if _current_state.state_finished.is_connected(_on_current_state_state_finished):
-		_current_state.state_finished.disconnect(_on_current_state_state_finished)
+	
+	for child in get_children():
+		var state = child as QuiverState
+		if state == null:
+			continue
+		
+		if state.state_finished.is_connected(_on_current_state_state_finished):
+			state.state_finished.disconnect(_on_current_state_state_finished)
+	
 	_current_state = null
 
 
@@ -89,6 +96,9 @@ func _enter_child_state(index: int) -> void:
 
 
 func _on_current_state_state_finished() -> void:
+	if not _is_active_state():
+		return
+	
 	_current_state.exit()
 	_current_state.state_finished.disconnect(_on_current_state_state_finished)
 	
@@ -98,5 +108,9 @@ func _on_current_state_state_finished() -> void:
 	else:
 		state_finished.emit()
 
-### -----------------------------------------------------------------------------------------------
 
+func _is_active_state() -> bool:
+	var value := (_state_machine.state.get_path() as String).begins_with(get_path())
+	return value
+
+### -----------------------------------------------------------------------------------------------
