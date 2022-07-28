@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cxk8g4d6w5t7d"]
+[gd_scene load_steps=31 format=3 uid="uid://cxk8g4d6w5t7d"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="13_d8net"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grabbing.gd" id="13_x323f"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_idle.gd" id="14_w1ug6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="15_556th"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
@@ -47,6 +49,7 @@ shape = SubResource("CapsuleShape2D_4uueb")
 metadata/collision_type = "default"
 
 [node name="ChadSkin" parent="." index="1" instance=ExtResource("2_1tk2w")]
+position = Vector2(0, 0)
 metadata/_edit_horizontal_guides_ = [-516.0, -281.0]
 
 [node name="StateMachine" parent="." index="2"]
@@ -94,7 +97,8 @@ script = ExtResource("13_x323f")
 _skin_state = &"grab"
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Grab" index="1"]
-script = ExtResource("12_xkj6t")
+script = ExtResource("14_w1ug6")
+_skin_state = &"grab_idle"
 
 [node name="Release" type="Node" parent="StateMachine/Ground/Grab" index="2"]
 script = ExtResource("12_xkj6t")
@@ -104,6 +108,11 @@ script = ExtResource("12_xkj6t")
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
 script = ExtResource("12_xkj6t")
+
+[node name="Grabbed" type="Node" parent="StateMachine/Ground" index="6"]
+script = ExtResource("15_556th")
+_skin_state = &"grabbed"
+_path_next_state = "Air/Jump/MidAir"
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("9_o5gfu")
