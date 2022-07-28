@@ -51,6 +51,7 @@ var attributes: QuiverAttributes = null:
 @export_node_path(AnimationTree) var _path_animation_tree := ^"AnimationTree"
 
 @export_node_path(Position2D) var _path_grab_pivot := ^"Positions/GrabPivot"
+@export_node_path(Position2D) var _path_grabbed_pivot := ^"Positions/GrabbedPivot"
 
 ## Path to [AnimationNodeStateMachinePlayback]. Usually I create an [AnimationNodeBlendTree] as the
 ## root for the [AnimationTree] and the [AnimationNodeStateMachine] inside it, so I can do anything 
@@ -76,6 +77,7 @@ var _animation_list := []
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
 @onready var _playback := _animation_tree.get(_path_playback) as AnimationNodeStateMachinePlayback
 @onready var _grab_pivot := get_node(_path_grab_pivot) as Position2D
+@onready var _grabbed_pivot := get_node(_path_grabbed_pivot) as Position2D
 
 ### -----------------------------------------------------------------------------------------------
 
