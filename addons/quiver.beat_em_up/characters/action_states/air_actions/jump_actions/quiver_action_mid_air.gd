@@ -77,6 +77,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
+	_jump_state.enter(msg)
 	
 	_handle_mid_air_animation()
 	

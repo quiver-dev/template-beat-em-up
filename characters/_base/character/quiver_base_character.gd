@@ -120,11 +120,19 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _disable_collisions() -> void:
+func _disable_ceiling_collisions() -> void:
 	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, false)
 
 
-func _enable_collisions() -> void:
+func _enable_ceiling_collisions() -> void:
 	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, true)
+
+
+func _disable_collisions() -> void:
+	_collision.disabled = true
+
+
+func _enable_collisions() -> void:
+	_collision.disabled = false
 
 ### -----------------------------------------------------------------------------------------------

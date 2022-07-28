@@ -82,6 +82,7 @@ func exit() -> void:
 	
 	_state_machine.set_process(true)
 	_grab_ref_position = null
+	_grab_target_offset = null
 
 ### -----------------------------------------------------------------------------------------------
 
