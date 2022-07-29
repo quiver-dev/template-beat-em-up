@@ -137,7 +137,8 @@ func grab_notify() -> void:
 
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
 ## [signal skin_animation_finished)]
-func end_of_skin_animation() -> void:
+func end_of_skin_animation(_animation_name := "") -> void:
+#	print("anim name: %s"%[_animation_name])
 	if not _playback.get_travel_path().is_empty():
 		return
 	

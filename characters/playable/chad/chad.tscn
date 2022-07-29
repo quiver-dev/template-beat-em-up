@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cxk8g4d6w5t7d"]
+[gd_scene load_steps=32 format=3 uid="uid://cxk8g4d6w5t7d"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grabbing.gd" id="13_x323f"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_idle.gd" id="14_w1ug6"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="15_556th"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_release.gd" id="15_k2ug3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
@@ -101,7 +102,8 @@ script = ExtResource("14_w1ug6")
 _skin_state = &"grab_idle"
 
 [node name="Release" type="Node" parent="StateMachine/Ground/Grab" index="2"]
-script = ExtResource("12_xkj6t")
+script = ExtResource("15_k2ug3")
+_skin_state = &"grab_release"
 
 [node name="ThrowForward" type="Node" parent="StateMachine/Ground/Grab" index="3"]
 script = ExtResource("12_xkj6t")

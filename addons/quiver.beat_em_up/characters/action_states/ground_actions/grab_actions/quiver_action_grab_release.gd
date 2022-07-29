@@ -10,8 +10,9 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GroundState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
+const GrabState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/ground_actions/"
+		+"quiver_action_grab.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -19,12 +20,9 @@ const GroundState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _skin_state: StringName
-@export_range(0.0, 5.0, 0.1, "or_greater") var _time_to_freed := 5.0
-@export var _path_next_state := "Ground/Grab/Idle"
+@export var _path_next_state := "Ground/Move/Idle"
 
-var _grabbed_timer: Timer = null
-
-@onready var _ground_state := get_parent() as GroundState
+@onready var _grab_state := get_parent() as GrabState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -37,17 +35,14 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
-	
-	_grabbed_timer = Timer.new()
-	add_child(_grabbed_timer, true)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is GroundState:
+	if not get_parent() is GrabState:
 		warnings.append(
-				"This ActionState must be a child of Action GroundState or a state " 
+				"This ActionState must be a child of Action GrabState or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -60,16 +55,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_ground_state.enter(msg)
 	_skin.transition_to(_skin_state)
-	_grabbed_timer.start(_time_to_freed)
-	_character._disable_collisions()
+	_grab_state.grab_target.grab_released.emit()
 
 
 func exit() -> void:
 	super()
-	_ground_state.exit()
-	_character._enable_collisions()
+	_grab_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -79,31 +71,19 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _grabbed_timer.timeout.is_connected(_on_grabbed_timer_timeout):
-		_grabbed_timer.timeout.connect(_on_grabbed_timer_timeout)
-	
-	if not _attributes.grab_released.is_connected(_on_attributes_grab_released):
-		_attributes.grab_released.connect(_on_attributes_grab_released)
+	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
-	if _grabbed_timer != null:
-		if _grabbed_timer.timeout.is_connected(_on_grabbed_timer_timeout):
-			_grabbed_timer.timeout.disconnect(_on_grabbed_timer_timeout)
-	
-	if _attributes != null:
-		if _attributes.grab_released.is_connected(_on_attributes_grab_released):
-			_attributes.grab_released.disconnect(_on_attributes_grab_released)
+	if _skin != null:
+		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
+			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
 
-func _on_grabbed_timer_timeout() -> void:
-	_attributes.grab_denied.emit()
-	_state_machine.transition_to(_path_next_state)
-
-
-func _on_attributes_grab_released() -> void:
+func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
