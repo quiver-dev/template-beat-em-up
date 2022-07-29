@@ -103,7 +103,7 @@ _skin_state = &"grab_idle"
 [node name="Release" type="Node" parent="StateMachine/Ground/Grab" index="2"]
 script = ExtResource("12_xkj6t")
 
-[node name="ThrowFoward" type="Node" parent="StateMachine/Ground/Grab" index="3"]
+[node name="ThrowForward" type="Node" parent="StateMachine/Ground/Grab" index="3"]
 script = ExtResource("12_xkj6t")
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]

@@ -20,7 +20,15 @@ const GrabState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _skin_state: StringName
+@export_range(0.0, 3.0, 0.05, "or_greater") var _release_delay := 1.5
+@export var _path_release := "Ground/Grab/Release"
+@export var _path_throw_forward := "Ground/Grab/ThrowForward"
+@export var _path_throw_backwards := "Ground/Grab/ThrowBackward"
 @export var _path_grab_denied := "Ground/Hurt"
+
+var _is_holding_backwards := false
+var _release_action := ""
+var _release_timer: SceneTreeTimer = null
 
 @onready var _grab_state := get_parent() as GrabState
 
@@ -56,10 +64,32 @@ func _get_configuration_warnings() -> PackedStringArray:
 func enter(msg: = {}) -> void:
 	super(msg)
 	_skin.transition_to(_skin_state)
+	
+	_release_action = "move_left" if _skin.scale.x == 1 else "move_right"
+	_is_holding_backwards = false
 
 
 func unhandled_input(event: InputEvent) -> void:
 	var has_handled := false
+	
+	if event.is_action_pressed(_release_action):
+		if _release_timer == null:
+			_create_release_timer()
+		_is_holding_backwards = true
+		has_handled = true
+	elif event.is_action_released(_release_action):
+		if _release_timer != null:
+			_remove_release_timer()
+		_is_holding_backwards = false
+		has_handled = true
+	
+	if event.is_action_pressed("attack"):
+		if _is_holding_backwards:
+			_state_machine.transition_to(_path_throw_backwards)
+			has_handled = true
+		else:
+			_state_machine.transition_to(_path_throw_forward)
+			has_handled = true
 	
 	if not has_handled:
 		_grab_state.unhandled_input(event)
@@ -67,6 +97,11 @@ func unhandled_input(event: InputEvent) -> void:
 
 func exit() -> void:
 	super()
+	_release_action = ""
+	_is_holding_backwards = false
+	if _release_timer != null:
+		_release_timer.timeout.disconnect(_on_release_timer_timeout)
+		_release_timer = null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -88,8 +123,23 @@ func _disconnect_signals() -> void:
 			_grab_state.grab_target.grab_denied.disconnect(_on_grab_target_grab_denied)
 
 
+func _create_release_timer() -> void:
+	_release_timer = get_tree().create_timer(_release_delay)
+	_release_timer.timeout.connect(_on_release_timer_timeout)
+
+
+func _remove_release_timer() -> void:
+	_release_timer.timeout.disconnect(_on_release_timer_timeout)
+	_release_timer = null
+
+
 func _on_grab_target_grab_denied() -> void:
 	_state_machine.transition_to(_path_grab_denied)
+
+
+func _on_release_timer_timeout() -> void:
+	_release_timer = null
+	_state_machine.transition_to(_path_release)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -108,6 +158,27 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_grab_denied": {
 		backing_field = "_path_grab_denied",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_release": {
+		backing_field = "_path_release",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_throw_forward": {
+		backing_field = "_path_throw_forward",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_throw_backwards": {
+		backing_field = "_path_throw_backwards",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
