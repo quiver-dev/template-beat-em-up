@@ -106,7 +106,11 @@ script = ExtResource("15_k2ug3")
 _skin_state = &"grab_release"
 
 [node name="ThrowForward" type="Node" parent="StateMachine/Ground/Grab" index="3"]
-script = ExtResource("12_xkj6t")
+script = ExtResource("9_cce84")
+_skin_state = &"throw_forward"
+_can_combo = false
+_path_combo_state = ""
+_should_enter_parent = false
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
 script = ExtResource("12_xkj6t")

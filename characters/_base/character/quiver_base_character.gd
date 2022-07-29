@@ -129,10 +129,10 @@ func _enable_ceiling_collisions() -> void:
 
 
 func _disable_collisions() -> void:
-	_collision.disabled = true
+	_collision.set_deferred("disabled", true)
 
 
 func _enable_collisions() -> void:
-	_collision.disabled = false
+	_collision.set_deferred("disabled", false)
 
 ### -----------------------------------------------------------------------------------------------

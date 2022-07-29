@@ -38,6 +38,9 @@ extends QuiverCharacterState
 	
 @export var _path_next_state := "Ground/Move/Idle"
 
+@export var _should_enter_parent := true
+@export var _should_exit_parent := true
+
 var _should_combo := false
 
 ### -----------------------------------------------------------------------------------------------
@@ -67,7 +70,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	get_parent().enter(msg)
+	if _should_enter_parent:
+		get_parent().enter(msg)
 	
 	if msg.has("auto_combo") and msg.auto_combo and _can_combo:
 		_should_combo = true
@@ -89,7 +93,8 @@ func unhandled_input(event: InputEvent) -> void:
 func exit() -> void:
 	_state_machine.set_process_unhandled_input(true)
 	super()
-	get_parent().exit()
+	if _should_exit_parent:
+		get_parent().exit()
 
 
 func attack() -> void:
