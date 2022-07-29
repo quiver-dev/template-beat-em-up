@@ -117,7 +117,8 @@ offset_bottom = 20.0
 color = Color(1, 0.968627, 0.113725, 1)
 
 [node name="GrabbedPivot" type="Position2D" parent="Positions" index="2"]
-position = Vector2(20, -180)
+visible = false
+position = Vector2(-26, -356)
 z_index = 99
 
 [node name="ColorRect" type="ColorRect" parent="Positions/GrabbedPivot" index="0"]

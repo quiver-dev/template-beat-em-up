@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=62 format=3 uid="uid://bmxehcfr3kr24"]
+[gd_resource type="SpriteFrames" load_steps=61 format=3 uid="uid://bmxehcfr3kr24"]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://dlsdi7mi362ox" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_09.png" id="15_bany5"]
 [ext_resource type="Texture2D" uid="uid://xwc6l54otrc8" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_10.png" id="16_wr7m3"]
 [ext_resource type="Texture2D" uid="uid://bv5edst2ca6jb" path="res://characters/playable/chad/resources/sprites/walk/walkcycle_11.png" id="17_j3734"]
-[ext_resource type="Texture2D" uid="uid://b6a7bbj5l6qgc" path="res://characters/playable/chad/resources/sprites/grabbed/grabbed_00.png" id="19_dk0gq"]
 [ext_resource type="Texture2D" uid="uid://dqjdbs6bjijxn" path="res://characters/playable/chad/resources/sprites/punches/2punch_04.png" id="19_y1ame"]
 [ext_resource type="Texture2D" uid="uid://ckuht4pw416lo" path="res://characters/playable/chad/resources/sprites/punches/2punch_05.png" id="20_7jacw"]
 [ext_resource type="Texture2D" uid="uid://cfrmbi5a0smva" path="res://characters/playable/chad/resources/sprites/air_attack/jumpkick1_04.png" id="21_mbplx"]
@@ -99,7 +98,7 @@ animations = [{
 "name": &"grab_release",
 "speed": 24.0
 }, {
-"frames": [ExtResource("19_dk0gq")],
+"frames": [ExtResource("29_i7rbs")],
 "loop": false,
 "name": &"grabbed",
 "speed": 24.0
