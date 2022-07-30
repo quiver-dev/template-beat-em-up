@@ -17,13 +17,13 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grab.gd" id="12_o57a3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="12_vsxf2"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_character_state.gd" id="12_xkj6t"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="13_d8net"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grabbing.gd" id="13_x323f"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_idle.gd" id="14_w1ug6"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="15_556th"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_release.gd" id="15_k2ug3"]
+[ext_resource type="Script" path="res://characters/playable/chad/resources/custom_states/ThrowBackwardRecovery.gd" id="16_1juox"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
@@ -113,7 +113,19 @@ _path_combo_state = ""
 _should_enter_parent = false
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
-script = ExtResource("12_xkj6t")
+script = ExtResource("9_cce84")
+_skin_state = &"throw_backward"
+_can_combo = false
+_path_combo_state = ""
+_path_next_state = "Ground/Grab/ThrowBackwardRecovery"
+_should_enter_parent = false
+_should_exit_parent = false
+
+[node name="ThrowBackwardRecovery" type="Node" parent="StateMachine/Ground/Grab" index="5"]
+script = ExtResource("16_1juox")
+_recovery_1 = &"throw_backward_recovery_1"
+_recovery_2 = &"throw_backward_recovery_2"
+_recovery_3 = &"throw_backward_recovery_3"
 
 [node name="Grabbed" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("15_556th")
