@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cxk8g4d6w5t7d"]
+[gd_scene load_steps=33 format=3 uid="uid://cxk8g4d6w5t7d"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="15_556th"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_release.gd" id="15_k2ug3"]
 [ext_resource type="Script" path="res://characters/playable/chad/resources/custom_states/ThrowBackwardRecovery.gd" id="16_1juox"]
+[ext_resource type="Script" path="res://characters/playable/chad/resources/custom_states/ThrowBackward.gd" id="16_ekfnh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
@@ -113,7 +114,7 @@ _path_combo_state = ""
 _should_enter_parent = false
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
-script = ExtResource("9_cce84")
+script = ExtResource("16_ekfnh")
 _skin_state = &"throw_backward"
 _can_combo = false
 _path_combo_state = ""
@@ -125,7 +126,6 @@ _should_exit_parent = false
 script = ExtResource("16_1juox")
 _recovery_1 = &"throw_backward_recovery_1"
 _recovery_2 = &"throw_backward_recovery_2"
-_recovery_3 = &"throw_backward_recovery_3"
 
 [node name="Grabbed" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("15_556th")

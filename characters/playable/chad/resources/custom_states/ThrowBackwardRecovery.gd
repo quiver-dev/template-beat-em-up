@@ -15,14 +15,19 @@ const GrabState = preload(
 		+"quiver_action_grab.gd"
 )
 
+@export var SLIDE_IMPULSE := 300
+@export var SLIDE_FRICTION := 150
+
 #--- public variables - order: export > normal var > onready --------------------------------------
+
+#--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _recovery_1: StringName
 @export var _recovery_2: StringName
-@export var _recovery_3: StringName
 @export var _path_next_state := "Ground/Move/Idle"
 
-#--- private variables - order: export > normal var > onready -------------------------------------
+var _friction_direction := 1
+var _slide_direction := -1
 
 @onready var _grab_state := get_parent() as GrabState
 
@@ -59,11 +64,35 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_skin.transition_to(_recovery_1)
 	_skin.skin_animation_finished.connect(_on_skin_animation_finished.bind(_recovery_1))
+	var next_position = _skin.get_suplex_landing_position()
+	
+	# I Have to wait two frames for the animation to update properly before changing position.
+	await  get_tree().process_frame
+	await  get_tree().process_frame
+	
+	_character.global_position = next_position
+	_friction_direction = sign(_skin.scale.x)
+	_slide_direction = _friction_direction * -1
+	_character.velocity.x += SLIDE_IMPULSE * _slide_direction
+
+
+func physics_process(delta: float) -> void:
+	if _character.velocity.x != 0:
+		_character.velocity.x = move_toward(
+				_character.velocity.x, 0, 
+				SLIDE_FRICTION * _friction_direction * delta
+		)
+		_character.move_and_slide()
 
 
 func exit() -> void:
 	super()
 	_grab_state.exit()
+	
+	_friction_direction = 1
+	_slide_direction = -1
+	_character.velocity.x = 0
+	
 	if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
 		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 
@@ -77,11 +106,8 @@ func _on_skin_animation_finished(phase_finished: StringName) -> void:
 		_skin.transition_to(_recovery_2)
 		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 		_skin.skin_animation_finished.connect(_on_skin_animation_finished.bind(_recovery_2))
+		_character.velocity.x = 0
 	elif phase_finished == _recovery_2:
-		_skin.transition_to(_recovery_3)
-		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished.bind(_recovery_3))
-	elif phase_finished == _recovery_3:
 		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
 		_state_machine.transition_to(_path_next_state)
 
@@ -102,14 +128,6 @@ const CUSTOM_PROPERTIES = {
 	},
 	"recovery_2": {
 		backing_field = "_recovery_2",
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
-	},
-	"recovery_3": {
-		backing_field = "_recovery_3",
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,

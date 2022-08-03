@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=24 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
+[ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
 [ext_resource type="AnimationLibrary" uid="uid://c6fsleghrve54" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmm0a2tnko2g6" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://bmxehcfr3kr24" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
@@ -41,6 +42,7 @@ size = Vector2(285.095, 79.2264)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
 position = Vector2(0, 3)
+script = ExtResource("2_jvmk2")
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
 metadata/_edit_horizontal_guides_ = [12.0, -233.0]
@@ -93,9 +95,9 @@ metadata/collision_type = "player_grab_box"
 [node name="onion_ghost" type="AnimatedSprite2D" parent="." index="3"]
 visible = false
 modulate = Color(1, 0.337255, 0.792157, 0.298039)
-position = Vector2(0, -190)
 frames = ExtResource("4_l5bf7")
-animation = &"idle"
+animation = &"knockout_launch"
+offset = Vector2(0, -190)
 
 [node name="Positions" type="Node2D" parent="." index="4"]
 
@@ -115,6 +117,14 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 color = Color(1, 0.968627, 0.113725, 1)
+
+[node name="onion_ghost2" type="AnimatedSprite2D" parent="Positions/GrabPivot" index="1"]
+visible = false
+modulate = Color(1, 0.337255, 0.792157, 0.298039)
+position = Vector2(-94.6772, 118.685)
+frames = ExtResource("4_l5bf7")
+animation = &"knockout_launch"
+flip_h = true
 
 [node name="GrabbedPivot" type="Position2D" parent="Positions" index="2"]
 visible = false
