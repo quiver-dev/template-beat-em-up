@@ -35,11 +35,11 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_character._disable_collisions()
+	_character._disable_ceiling_collisions()
 
 
 func exit() -> void:
-	_character._enable_collisions()
+	_character._enable_ceiling_collisions()
 	super()
 
 ### -----------------------------------------------------------------------------------------------

@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://chnnencdesvbc"]
+[gd_scene load_steps=33 format=3 uid="uid://cxk8g4d6w5t7d"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Resource" uid="uid://dtgy5kdua2c1y" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Resource" uid="uid://cwbexdkq2mal0" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
@@ -14,10 +14,17 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="11_a7lbg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="11_wf2ss"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="12_4dbtu"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grab.gd" id="12_o57a3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="12_sub7a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="12_vsxf2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_air_attack.gd" id="13_cw2hu"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="13_d8net"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grabbing.gd" id="13_x323f"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_idle.gd" id="14_w1ug6"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="15_556th"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/grab_actions/quiver_action_grab_release.gd" id="15_k2ug3"]
+[ext_resource type="Script" path="res://characters/playable/chad/resources/custom_states/ThrowBackwardRecovery.gd" id="16_1juox"]
+[ext_resource type="Script" path="res://characters/playable/chad/resources/custom_states/ThrowBackward.gd" id="16_ekfnh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_f4w2y"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_jff31"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
@@ -44,6 +51,7 @@ shape = SubResource("CapsuleShape2D_4uueb")
 metadata/collision_type = "default"
 
 [node name="ChadSkin" parent="." index="1" instance=ExtResource("2_1tk2w")]
+position = Vector2(0, 0)
 metadata/_edit_horizontal_guides_ = [-516.0, -281.0]
 
 [node name="StateMachine" parent="." index="2"]
@@ -82,6 +90,47 @@ _path_combo_state = ""
 [node name="Recovery" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_a7lbg")
 _skin_state = &"knockout_ground"
+
+[node name="Grab" type="Node" parent="StateMachine/Ground" index="5"]
+script = ExtResource("12_o57a3")
+
+[node name="Grabbing" type="Node" parent="StateMachine/Ground/Grab" index="0"]
+script = ExtResource("13_x323f")
+_skin_state = &"grab"
+
+[node name="Idle" type="Node" parent="StateMachine/Ground/Grab" index="1"]
+script = ExtResource("14_w1ug6")
+_skin_state = &"grab_idle"
+
+[node name="Release" type="Node" parent="StateMachine/Ground/Grab" index="2"]
+script = ExtResource("15_k2ug3")
+_skin_state = &"grab_release"
+
+[node name="ThrowForward" type="Node" parent="StateMachine/Ground/Grab" index="3"]
+script = ExtResource("9_cce84")
+_skin_state = &"throw_forward"
+_can_combo = false
+_path_combo_state = ""
+_should_enter_parent = false
+
+[node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
+script = ExtResource("16_ekfnh")
+_skin_state = &"throw_backward"
+_can_combo = false
+_path_combo_state = ""
+_path_next_state = "Ground/Grab/ThrowBackwardRecovery"
+_should_enter_parent = false
+_should_exit_parent = false
+
+[node name="ThrowBackwardRecovery" type="Node" parent="StateMachine/Ground/Grab" index="5"]
+script = ExtResource("16_1juox")
+_recovery_1 = &"throw_backward_recovery_1"
+_recovery_2 = &"throw_backward_recovery_2"
+
+[node name="Grabbed" type="Node" parent="StateMachine/Ground" index="6"]
+script = ExtResource("15_556th")
+_skin_state = &"grabbed"
+_path_next_state = "Air/Jump/MidAir"
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("9_o5gfu")

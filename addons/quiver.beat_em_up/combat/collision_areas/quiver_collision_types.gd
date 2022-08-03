@@ -36,7 +36,16 @@ const PRESETS = {
 		"monitoring": true,
 		"monitorable": false,
 		"collision_layer": 4096,
-		"collision_mask": 512,
+		"collision_mask": 512+2048,
+		"character_type": QuiverCombatSystem.CharacterTypes.PLAYERS,
+	},
+	"player_grab_box": { 
+		META_KEY: "player_grab_box",
+		"modulate": Color("ff9f00"),
+		"monitoring": false,
+		"monitorable": true,
+		"collision_layer": 1024,
+		"collision_mask": 0,
 		"character_type": QuiverCombatSystem.CharacterTypes.PLAYERS,
 	},
 	"enemy_hit_box": { 
@@ -54,7 +63,16 @@ const PRESETS = {
 		"monitoring": true,
 		"monitorable": false,
 		"collision_layer": 8192,
-		"collision_mask": 256,
+		"collision_mask": 256+1024,
+		"character_type": QuiverCombatSystem.CharacterTypes.ENEMIES,
+	},
+	"enemy_grab_box": { 
+		META_KEY: "enemy_grab_box",
+		"modulate": Color("ff9f00"),
+		"monitoring": false,
+		"monitorable": true,
+		"collision_layer": 2048,
+		"collision_mask": 0,
 		"character_type": QuiverCombatSystem.CharacterTypes.ENEMIES,
 	},
 	"custom": {
@@ -85,6 +103,8 @@ static func apply_preset_to(dict: Dictionary, node: Node2D) -> void:
 		for key in dict:
 			if key == META_KEY:
 				node.set_meta(META_KEY, dict[META_KEY])
+			elif key == "modulate":
+				continue
 			else:
 				node.set(key, dict[key])
 		

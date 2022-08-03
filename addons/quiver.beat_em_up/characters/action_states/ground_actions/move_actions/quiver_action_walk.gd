@@ -21,6 +21,7 @@ const MoveState = preload(
 
 @export var _skin_state: StringName
 @export var _path_idle_state := "Ground/Move/Idle"
+@export var _path_grabbing_state := "Ground/Grab/Grabbing"
 
 @onready var _move_state := get_parent() as MoveState
 
@@ -93,6 +94,25 @@ func _handle_facing_direction() -> void:
 	if facing_direction != 0:
 		_skin.scale.x = facing_direction
 
+
+func _connect_signals() -> void:
+	super()
+	
+	if not _attributes.grab_requested.is_connected(_on_grab_requested):
+		_attributes.grab_requested.connect(_on_grab_requested)
+
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _attributes != null:
+		if _attributes.grab_requested.is_connected(_on_grab_requested):
+			_attributes.grab_requested.disconnect(_on_grab_requested)
+
+
+func _on_grab_requested(grab_target: QuiverAttributes) -> void:
+	_state_machine.transition_to(_path_grabbing_state, {target = grab_target})
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -111,6 +131,13 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_idle_state": {
 		backing_field = "_path_idle_state",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_grabbing_state": {
+		backing_field = "_path_grabbing_state",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

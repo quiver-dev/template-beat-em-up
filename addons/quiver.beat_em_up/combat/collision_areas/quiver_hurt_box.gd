@@ -84,11 +84,20 @@ func _handle_character_type_presets() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	var hit_box := area as QuiverHitBox
-	if hit_box == null:
+	if area is QuiverHitBox:
+		_handle_hit_box(area)
+	elif area is QuiverGrabBox:
+		_handle_grab_box(area)
+	else:
 		push_error("Unrecognized collision between: %s and %s"%[self, area])
 		return
-	
+
+### -----------------------------------------------------------------------------------------------
+
+
+### Private Methods -------------------------------------------------------------------------------
+
+func _handle_hit_box(hit_box: QuiverHitBox) -> void:
 	if QuiverCombatSystem.is_in_same_lane_as(character_attributes, hit_box.character_attributes):
 		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
 		var knockback: QuiverKnockback = QuiverKnockback.new(
@@ -101,10 +110,15 @@ func _on_area_entered(area: Area2D) -> void:
 		if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
 			Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
 
-### -----------------------------------------------------------------------------------------------
 
+func _handle_grab_box(grab_box: QuiverGrabBox) -> void:
+	var grabber := grab_box.character_attributes
+	if (
+			character_attributes.can_be_grabbed
+			and QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
+	):
+		grabber.grab_requested.emit(character_attributes)
 
-### Private Methods -------------------------------------------------------------------------------
 
 func _get_treated_launch_vector(hit_box: QuiverHitBox) -> Vector2:
 	var launch_vector := hit_box.attack_data.launch_vector

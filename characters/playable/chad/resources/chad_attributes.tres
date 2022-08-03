@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtgy5kdua2c1y"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cwbexdkq2mal0"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_1ikth"]
 
@@ -12,3 +12,4 @@ hit_lane_offset = 0
 weight = 1
 is_invulnerable = false
 has_superarmor = false
+can_be_grabbed = true

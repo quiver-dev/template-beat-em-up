@@ -21,9 +21,12 @@ extends Resource
 
 signal health_changed
 signal health_depleted
-# not using type hints on this one becuase of Cyclic Errors
 signal hurt_requested(knockback: QuiverKnockback)
 signal knockout_requested(knockback: QuiverKnockback)
+signal grab_requested(grabbed_character: QuiverAttributes)
+signal grab_released
+signal grabbed
+signal grab_denied
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -91,6 +94,8 @@ const KNOCKBACK_BY_STRENGTH = {
 		if has_changed and has_superarmor:
 			knockback_amount = 0
 
+@export var can_be_grabbed := true
+
 ## Character's current health. What the health bar will be showing.
 var health_current := health_max:
 	set(value):
@@ -115,6 +120,9 @@ var knockback_amount := 0:
 ## This character's current y value that represents their current ground level.
 var ground_level := 0.0
 
+var character_node: QuiverCharacter = null
+var grabbed_offset: Position2D = null
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
@@ -124,6 +132,15 @@ var ground_level := 0.0
 
 func _init() -> void:
 	Events.characters_reseted.connect(reset)
+
+
+func _to_string() -> String:
+	var dict = {
+		resource_path = resource_path,
+		grabbed_offset = grabbed_offset.get_path() if grabbed_offset != null else "none"
+	}
+	var json := JSON.new()
+	return "QuiverAttributes: %s"%[json.stringify(dict, "\t")]
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -155,6 +172,7 @@ func reset() -> void:
 	health_current = health_max
 	is_invulnerable = false
 	has_superarmor = false
+	can_be_grabbed = true
 
 ### -----------------------------------------------------------------------------------------------
 

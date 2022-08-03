@@ -69,6 +69,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_cyclic_error_helper.gd"
 }, {
+"base": "Resource",
+"class": &"QuiverDebugLogger",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_debug_logger.gd"
+}, {
 "base": "RefCounted",
 "class": &"QuiverEditorHelper",
 "language": &"GDScript",
@@ -83,6 +88,11 @@ _global_script_classes=[{
 "class": &"QuiverEnemySpawner",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd"
+}, {
+"base": "Area2D",
+"class": &"QuiverGrabBox",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_grab_box.gd"
 }, {
 "base": "Area2D",
 "class": &"QuiverHitBox",
@@ -132,9 +142,11 @@ _global_script_class_icons={
 "QuiverCollisionTypes": "",
 "QuiverCombatSystem": "",
 "QuiverCyclicHelper": "",
+"QuiverDebugLogger": "",
 "QuiverEditorHelper": "",
 "QuiverEnemyCharacter": "",
 "QuiverEnemySpawner": "",
+"QuiverGrabBox": "",
 "QuiverHitBox": "",
 "QuiverHurtBox": "",
 "QuiverKnockback": "",
@@ -150,7 +162,7 @@ config/name="Template Beat Project"
 run/main_scene="res://prototype_main.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
-config/version="0.2.1"
+config/version="0.2.2"
 
 [autoload]
 
@@ -231,6 +243,8 @@ debug_restart={
 2d_physics/layer_4="ceiling_limits"
 2d_physics/layer_9="player_hit_boxes"
 2d_physics/layer_10="enemy_hit_boxes"
+2d_physics/layer_11="player_grab_boxes"
+2d_physics/layer_12="enemy_grab_boxes"
 2d_physics/layer_13="player_hurt_boxes"
 2d_physics/layer_14="enemy_hurt_boxes"
 
@@ -241,3 +255,4 @@ debug_restart={
 [quiver]
 
 beat_em_up/default_hit_lane_size=60
+beat_em_up/logging_enabled=true

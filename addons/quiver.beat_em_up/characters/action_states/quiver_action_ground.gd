@@ -16,6 +16,7 @@ extends QuiverCharacterState
 
 @export var _path_hurt := "Ground/Hurt"
 @export var _path_knockout := "Air/Knockout/Launch"
+@export var _path_grabbed := "Ground/Grabbed"
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -65,6 +66,9 @@ func _connect_signals() -> void:
 	
 	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
 		_attributes.knockout_requested.connect(_on_knockout_requested)
+	
+	if not _attributes.grabbed.is_connected(_on_grabbed):
+		_attributes.grabbed.connect(_on_grabbed)
 
 
 func _disconnect_signals() -> void:
@@ -76,6 +80,9 @@ func _disconnect_signals() -> void:
 		
 		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
 			_attributes.knockout_requested.disconnect(_on_knockout_requested)
+		
+		if _attributes.grabbed.is_connected(_on_grabbed):
+			_attributes.grabbed.disconnect(_on_grabbed)
 
 
 func _on_hurt_requested(knockback: QuiverKnockback) -> void:
@@ -84,6 +91,10 @@ func _on_hurt_requested(knockback: QuiverKnockback) -> void:
 
 func _on_knockout_requested(knockback: QuiverKnockback) -> void:
 	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
+
+
+func _on_grabbed() -> void:
+	_state_machine.transition_to(_path_grabbed)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -101,6 +112,13 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_knockout": {
 		backing_field = "_path_knockout",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_grabbed": {
+		backing_field = "_path_grabbed",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

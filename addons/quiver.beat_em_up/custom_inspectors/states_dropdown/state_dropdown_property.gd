@@ -42,6 +42,7 @@ func _update_property() -> void:
 
 func _add_property_scene() -> void:
 	_options = OptionButton.new()
+	_options.clip_text = true
 	add_child(_options, true)
 	_options.item_selected.connect(_on_options_item_selected)
 	add_focusable(_options)
