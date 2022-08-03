@@ -19,9 +19,6 @@ const GrabState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _grab_ref_position: Position2D = null
-var _original_parent: Node = null
-
 @onready var _grab_state := get_parent() as GrabState
 
 ### -----------------------------------------------------------------------------------------------
@@ -55,23 +52,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_grab_ref_position = _skin.get_grab_pivot()
-	
-	_original_parent = _grab_state.grab_target_node.get_parent()
-	_reparent_target_node_to(_grab_ref_position)
-
-
-func _reparent_target_node_to(new_parent: Node2D) -> void:
-	var global_transform = _grab_state.grab_target_node.get_global_transform()
-	_grab_state.grab_target_node.get_parent().remove_child(_grab_state.grab_target_node)
-	new_parent.add_child(_grab_state.grab_target_node)
-	_grab_state.grab_target_node.global_transform = global_transform
 
 
 func exit() -> void:
 	super()
-	_grab_ref_position = null
-	_original_parent = null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -94,12 +78,11 @@ func _disconnect_signals() -> void:
 
 
 func _on_skin_suplex_landed() -> void:
-	_reparent_target_node_to(_original_parent)
+	_grab_state.reparent_target_node_to(_grab_state.original_parent)
 	_grab_state.grab_target_node.global_position = Vector2(
-			_grab_ref_position.global_position.x,
+			_grab_state.grab_pivot.global_position.x,
 			_character.global_position.y
 	)
 	_grab_state.grab_target_node.rotation = 0
-	pass
 
 ### -----------------------------------------------------------------------------------------------

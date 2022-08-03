@@ -19,9 +19,6 @@ const GrabState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _grab_ref_position: Position2D = null
-var _grab_target_offset: Position2D = null
-
 @export var _skin_state: StringName
 @export var _path_next_state := "Ground/Grab/Idle"
 
@@ -60,34 +57,24 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_grab_state.enter(msg)
 	_skin.transition_to(_skin_state)
-	_state_machine.set_process(false)
-
-
-func process(_delta: float) -> void:
-	var new_position = _grab_ref_position.global_position
-	if is_instance_valid(_grab_target_offset):
-		var local_offset = _grab_state.grab_target_node.to_local(_grab_target_offset.global_position)
-		new_position -= local_offset
-#		print("difference: %s | position: %s | xformed_offset: %s | actual_position: %s"%[
-#				_grab_ref_position.global_position - _grab_target_offset.position, 
-#				_grab_target_offset.position, local_offset, 
-#				new_position 
-#		])
-	
-	_grab_state.grab_target_node.global_position = new_position
 
 
 func exit() -> void:
 	super()
-	
-	_state_machine.set_process(true)
-	_grab_ref_position = null
-	_grab_target_offset = null
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _adjust_grabbed_target_position(ref_position: Position2D) -> void:
+	var grab_target_offset = _grab_state.grab_target.grabbed_offset
+	var new_position = ref_position.global_position
+	if is_instance_valid(grab_target_offset):
+		var local_offset = _grab_state.grab_target_node.to_local(grab_target_offset.global_position)
+		new_position -= local_offset
+	_grab_state.grab_target_node.global_position = new_position
+
 
 func _connect_signals() -> void:
 	get_parent()._connect_signals()
@@ -101,7 +88,6 @@ func _connect_signals() -> void:
 
 
 func _disconnect_signals() -> void:
-	get_parent()._disconnect_signals()
 	super()
 	if _skin != null:
 		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
@@ -117,10 +103,10 @@ func _on_skin_animation_finished() -> void:
 
 
 func _on_skin_grab_frame_reached(ref_position: Position2D) -> void:
-	_grab_ref_position = ref_position
-	_grab_target_offset = _grab_state.grab_target.grabbed_offset
 	_grab_state.grab_target.grabbed.emit()
-	_state_machine.set_process(true)
+	_grab_state.reparent_target_node_to(ref_position)
+	_grab_state.grab_pivot = ref_position
+	_adjust_grabbed_target_position(ref_position)
 
 ### -----------------------------------------------------------------------------------------------
 
