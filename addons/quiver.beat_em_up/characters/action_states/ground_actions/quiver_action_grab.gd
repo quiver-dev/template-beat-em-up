@@ -58,8 +58,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Public Methods --------------------------------------------------------------------------------
 
 func enter(msg: = {}) -> void:
-	super(msg)
 	_ground_state.enter(msg)
+	super(msg)
 	
 	if not "target" in msg:
 		_state_machine.transition_to(_path_move_idle)
@@ -95,5 +95,40 @@ func reparent_target_node_to(new_parent: Node2D) -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _force_exit_state() -> void:
+	# We don't need to change states because ground will do it for us, we just need to force
+	# exit the Grab parent state as not all its children call its exit.
+	grab_target.grab_released.emit()
+	call_deferred("exit")
+
+
+func _connect_signals() -> void:
+	super()
+	
+	if not _attributes.hurt_requested.is_connected(_on_hurt_requested):
+		_attributes.hurt_requested.connect(_on_hurt_requested)
+	
+	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
+		_attributes.knockout_requested.connect(_on_knockout_requested)
+
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _attributes != null:
+		if _attributes.hurt_requested.is_connected(_on_hurt_requested):
+			_attributes.hurt_requested.disconnect(_on_hurt_requested)
+		
+		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
+			_attributes.knockout_requested.disconnect(_on_knockout_requested)
+
+
+func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+	_force_exit_state()
+
+
+func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+	_force_exit_state()
 
 ### -----------------------------------------------------------------------------------------------

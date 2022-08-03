@@ -66,7 +66,7 @@ func enter(msg: = {}) -> void:
 	_skin.transition_to(_skin_state)
 	
 	_release_action = "move_left" if _skin.scale.x == 1 else "move_right"
-	_is_holding_backwards = false
+	_is_holding_backwards = Input.is_action_pressed(_release_action)
 
 
 func unhandled_input(event: InputEvent) -> void:
@@ -134,6 +134,7 @@ func _remove_release_timer() -> void:
 
 
 func _on_grab_target_grab_denied() -> void:
+	_grab_state.exit()
 	_state_machine.transition_to(_path_grab_denied)
 
 

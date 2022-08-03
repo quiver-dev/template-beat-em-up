@@ -75,6 +75,8 @@ var attributes: QuiverAttributes = null:
 	get:
 		return attributes
 
+@export var debug_prints := false
+
 var _animation_list := []
 
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
@@ -138,7 +140,7 @@ func grab_notify() -> void:
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
 ## [signal skin_animation_finished)]
 func end_of_skin_animation(_animation_name := "") -> void:
-	if OS.has_feature("debug") and not _animation_name.is_empty():
+	if debug_prints and not _animation_name.is_empty():
 		print("anim name: %s"%[_animation_name])
 	
 	if not _playback.get_travel_path().is_empty():
