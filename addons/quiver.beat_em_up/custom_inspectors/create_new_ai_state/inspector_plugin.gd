@@ -93,4 +93,3 @@ func _on_widget_add_node_to(node_to_add: QuiverState, parent_node: Node) -> void
 	undo_redo.commit_action()
 
 ### -----------------------------------------------------------------------------------------------
-
