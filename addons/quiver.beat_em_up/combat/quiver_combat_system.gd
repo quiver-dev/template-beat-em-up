@@ -11,6 +11,7 @@ extends RefCounted
 enum CharacterTypes {
 	PLAYERS,
 	ENEMIES,
+	BOUNCE_OBSTACLE,
 }
 
 enum HurtTypes {

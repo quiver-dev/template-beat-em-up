@@ -75,6 +75,15 @@ const PRESETS = {
 		"collision_mask": 0,
 		"character_type": QuiverCombatSystem.CharacterTypes.ENEMIES,
 	},
+	"world_hit_box": { 
+		META_KEY: "world_hit_box",
+		"modulate": Color("ff1167"),
+		"monitoring": false,
+		"monitorable": true,
+		"collision_layer": 128,
+		"collision_mask": 0,
+		"character_type": QuiverCombatSystem.CharacterTypes.BOUNCE_OBSTACLE,
+	},
 	"custom": {
 		META_KEY: "custom",
 		"modulate": Color("0099b3"),

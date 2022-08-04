@@ -87,6 +87,8 @@ func _handle_character_type_presets() -> void:
 			target_collision_type = "player_hit_box"
 		QuiverCombatSystem.CharacterTypes.ENEMIES:
 			target_collision_type = "enemy_hit_box"
+		QuiverCombatSystem.CharacterTypes.BOUNCE_OBSTACLE:
+			target_collision_type = "world_hit_box"
 		_:
 			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
 					character_type,
