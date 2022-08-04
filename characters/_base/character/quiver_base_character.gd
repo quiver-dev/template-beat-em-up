@@ -33,9 +33,9 @@ var is_on_air := false
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-## This is also here as a "hack" for the lack of advanced exports. It is private because I don't 
+## This is also here as a "hack" for the lack of custom typed exports. It is private because I don't 
 ## want to deal with this in code, it's just an editor field to populate the real property which
-## is the public [member attributes]. Once advanced exportes exist this will be converted
+## is the public [member attributes]. Once custom typed exports exist this will be converted
 ## to it.
 @export var _attributes: Resource:
 	set(value):

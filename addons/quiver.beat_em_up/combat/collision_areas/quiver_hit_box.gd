@@ -22,13 +22,22 @@ extends Area2D
 		update_configuration_warnings()
 
 var character_attributes: QuiverAttributes = null
-var attack_data: QuiverAttackData = null
+var attack_data: QuiverAttackData = null:
+	set(value):
+		if value == null:
+			attack_data = QuiverAttackData.new()
+		else:
+			attack_data = value as QuiverAttackData
+	get:
+		if attack_data == null:
+			attack_data = QuiverAttackData.new()
+		return attack_data
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-## This is also here as a "hack" for the lack of advanced exports. It is private because I don't 
+## This is also here as a "hack" for the lack of custom typed exports. It is private because I don't 
 ## want to deal with this in code, it's just an editor field to populate the real property which
-## is the public [member attack_data]. Once advanced exportes exist this will be converted
+## is the public [member attack_data]. Once custom typed exports exist this will be converted
 ## to it.
 @export var _attack_data: Resource:
 	set(value):
@@ -102,4 +111,3 @@ func _handle_character_type_presets() -> void:
 		)
 
 ### -----------------------------------------------------------------------------------------------
-
