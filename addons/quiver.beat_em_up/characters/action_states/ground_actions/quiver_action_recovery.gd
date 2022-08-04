@@ -16,8 +16,8 @@ const GroundState = preload(
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var _skin_state := StringName()
-@export var _path_idle_state := "Ground/Move/Idle"
+var _skin_state := StringName()
+var _path_idle_state := "Ground/Move/Idle"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -91,10 +91,15 @@ func _on_skin_animation_finished() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Ground Recovery State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -102,7 +107,7 @@ const CUSTOM_PROPERTIES = {
 	"path_idle_state": {
 		backing_field = "_path_idle_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

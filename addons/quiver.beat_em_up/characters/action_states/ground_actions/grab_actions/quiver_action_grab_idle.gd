@@ -19,12 +19,12 @@ const GrabState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
-@export_range(0.0, 3.0, 0.05, "or_greater") var _release_delay := 1.5
-@export var _path_release := "Ground/Grab/Release"
-@export var _path_throw_forward := "Ground/Grab/ThrowForward"
-@export var _path_throw_backwards := "Ground/Grab/ThrowBackward"
-@export var _path_grab_denied := "Ground/Hurt"
+var _release_delay := 1.5
+var _skin_state: StringName
+var _path_release := "Ground/Grab/Release"
+var _path_throw_forward := "Ground/Grab/ThrowForward"
+var _path_throw_backwards := "Ground/Grab/ThrowBackward"
+var _path_grab_denied := "Ground/Hurt"
 
 var _is_holding_backwards := false
 var _release_action := ""
@@ -149,39 +149,55 @@ func _on_release_timer_timeout() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Grab Idle":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+	},
+	"release_delay": {
+		backing_field = "_release_delay",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0.0,3.0,0.05,or_greater",
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
+	"Follow Up Actions":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_GROUP,
+		hint_string = "path_"
+	},
 	"path_grab_denied": {
 		backing_field = "_path_grab_denied",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_release": {
 		backing_field = "_path_release",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_throw_forward": {
 		backing_field = "_path_throw_forward",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_throw_backwards": {
 		backing_field = "_path_throw_backwards",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
@@ -189,7 +205,7 @@ const CUSTOM_PROPERTIES = {
 #		backing_field = "",
 #		name = "",
 #		type = TYPE_NIL,
-#		usage = PROPERTY_USAGE_DEFAULT,
+#		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 #		hint = PROPERTY_HINT_NONE,
 #		hint_string = "",
 #	},

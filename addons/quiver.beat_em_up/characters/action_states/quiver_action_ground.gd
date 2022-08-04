@@ -14,9 +14,9 @@ extends QuiverCharacterState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_hurt := "Ground/Hurt"
-@export var _path_knockout := "Air/Knockout/Launch"
-@export var _path_grabbed := "Ground/Grabbed"
+var _path_hurt := "Ground/Hurt"
+var _path_knockout := "Air/Knockout/Launch"
+var _path_grabbed := "Ground/Grabbed"
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -103,24 +103,29 @@ func _on_grabbed() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Ground State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"path_hurt": {
 		backing_field = "_path_hurt",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_knockout": {
 		backing_field = "_path_knockout",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_grabbed": {
 		backing_field = "_path_grabbed",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

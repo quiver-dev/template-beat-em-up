@@ -19,9 +19,9 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
-@export var _path_idle_state := "Ground/Move/Idle"
-@export var _path_grabbing_state := "Ground/Grab/Grabbing"
+var _skin_state: StringName
+var _path_idle_state := "Ground/Move/Idle"
+var _path_grabbing_state := "Ground/Grab/Grabbing"
 
 @onready var _move_state := get_parent() as MoveState
 
@@ -121,10 +121,15 @@ func _on_grab_requested(grab_target: QuiverAttributes) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Walk State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -132,14 +137,14 @@ const CUSTOM_PROPERTIES = {
 	"path_idle_state": {
 		backing_field = "_path_idle_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_grabbing_state": {
 		backing_field = "_path_grabbing_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

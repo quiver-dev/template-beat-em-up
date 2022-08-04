@@ -12,11 +12,11 @@ extends QuiverAiState
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export_range(1,10,0.1,"or_greater") var max_chase_time := 5
+var max_chase_time := 5.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_follow_state := "Ground/Move/Follow"
+var _path_follow_state := "Ground/Move/Follow"
 
 var _target: QuiverCharacter
 var _chase_timer: SceneTreeTimer
@@ -77,10 +77,22 @@ func _on_chase_timer_timeout() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Chase Closest Player":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"_max_chase_time": {
+		backing_field = "max_chase_time",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "1.0,10.0,0.1,or_greater",
+	},
 	"path_follow_state": {
 		backing_field = "_path_follow_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

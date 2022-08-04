@@ -15,16 +15,16 @@ const GrabState = preload(
 		+"quiver_action_grab.gd"
 )
 
-@export var SLIDE_IMPULSE := 300
-@export var SLIDE_FRICTION := 150
+var SLIDE_IMPULSE := 300
+var SLIDE_FRICTION := 150
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _recovery_1: StringName
-@export var _recovery_2: StringName
-@export var _path_next_state := "Ground/Move/Idle"
+var _recovery_1: StringName
+var _recovery_2: StringName
+var _path_next_state := "Ground/Move/Idle"
 
 var _friction_direction := 1
 var _slide_direction := -1
@@ -118,28 +118,51 @@ func _on_skin_animation_finished(phase_finished: StringName) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"recovery_1": {
-		backing_field = "_recovery_1",
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	"Throw Backwards Recovery":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
 	},
-	"recovery_2": {
-		backing_field = "_recovery_2",
+	"_SLIDE_IMPULSE": {
+		backing_field = "SLIDE_IMPULSE",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+		usage = PROPERTY_USAGE_DEFAULT,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0,1000,50,or_greater",
+	},
+	"_SLIDE_FRICTION": {
+		backing_field = "SLIDE_FRICTION",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0,1000,50,or_greater",
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"Animation Sequence":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_GROUP,
+		hint_string = "anim_"
+	},
+	"anim_recovery_1": {
+		backing_field = "_recovery_1",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
+	"anim_recovery_2": {
+		backing_field = "_recovery_2",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 #	"": {
 #		backing_field = "",

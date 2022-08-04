@@ -1,3 +1,4 @@
+@tool
 extends QuiverCharacterState
 
 ## Write your doc string for this file here
@@ -22,7 +23,7 @@ var original_parent: Node = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_move_idle := "Ground/Move/Idle"
+var _path_no_grab_target := "Ground/Move/Idle"
 
 var _original_transform: Transform2D
 
@@ -62,7 +63,7 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	
 	if not "target" in msg:
-		_state_machine.transition_to(_path_move_idle)
+		_state_machine.transition_to(_path_no_grab_target)
 		return
 	
 	grab_target = msg.target
@@ -130,5 +131,69 @@ func _on_hurt_requested(knockback: QuiverKnockback) -> void:
 
 func _on_knockout_requested(knockback: QuiverKnockback) -> void:
 	_force_exit_state()
+
+### -----------------------------------------------------------------------------------------------
+
+###################################################################################################
+# Custom Inspector ################################################################################
+###################################################################################################
+
+const CUSTOM_PROPERTIES = {
+	"Grab State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"path_no_grab_target": {
+		backing_field = "_path_no_grab_target",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+#	"": {
+#		backing_field = "",
+#		name = "",
+#		type = TYPE_NIL,
+#		usage = PROPERTY_USAGE_DEFAULT,
+#		hint = PROPERTY_HINT_NONE,
+#		hint_string = "",
+#	},
+}
+
+### Custom Inspector built in functions -----------------------------------------------------------
+
+func _get_property_list() -> Array:
+	var properties: = []
+	
+	for key in CUSTOM_PROPERTIES:
+		var add_property := true
+		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+		if not dict.has("name"):
+			dict.name = key
+		
+		if add_property:
+			properties.append(dict)
+	
+	return properties
+
+
+func _get(property: StringName):
+	var value
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	
+	return value
+
+
+func _set(property: StringName, value) -> bool:
+	var has_handled: = false
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+		has_handled = true
+	
+	return has_handled
 
 ### -----------------------------------------------------------------------------------------------

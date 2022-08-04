@@ -14,9 +14,9 @@ extends QuiverCharacterState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
+var _skin_state: StringName
 
-@export var _can_combo := true:
+var _can_combo := true:
 	set(value):
 		var has_changed = value != _can_combo
 		_can_combo = value
@@ -28,7 +28,7 @@ extends QuiverCharacterState
 		else:
 			update_configuration_warnings()
 
-@export var _path_combo_state := "Ground/Attack/Combo2":
+var _path_combo_state := "Ground/Attack/Combo2":
 	set(value):
 		if _can_combo:
 			_path_combo_state = value
@@ -36,10 +36,9 @@ extends QuiverCharacterState
 			_path_combo_state = ""
 		update_configuration_warnings()
 	
-@export var _path_next_state := "Ground/Move/Idle"
-
-@export var _should_enter_parent := true
-@export var _should_exit_parent := true
+var _path_next_state := "Ground/Move/Idle"
+var _should_enter_parent := true
+var _should_exit_parent := true
 
 var _should_combo := false
 
@@ -145,10 +144,15 @@ func _on_skin_animation_finished() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Attack State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -156,22 +160,34 @@ const CUSTOM_PROPERTIES = {
 	"can_combo": {
 		backing_field = "_can_combo",
 		type = TYPE_BOOL,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 	},
 	"path_combo_state": {
 		backing_field = "_path_combo_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"should_enter_parent": {
+		backing_field = "_should_enter_parent",
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"should_exit_parent": {
+		backing_field = "_should_exit_parent",
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
 	},
 #	"": {
 #		backing_field = "",

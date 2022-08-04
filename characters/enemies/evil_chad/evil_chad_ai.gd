@@ -14,8 +14,8 @@ extends QuiverAiStateMachine
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _ai_state_hurt := "WaitTillIdle"
-@export var _ai_state_after_reset := "Wait"
+var _ai_state_hurt := "WaitTillIdle"
+var _ai_state_after_reset := "Wait"
 
 var _character: QuiverCharacter = null
 var _actions: QuiverStateMachine = null
@@ -92,17 +92,22 @@ func _ai_reset(_knockback: QuiverKnockback) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"AI State Machine":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"ai_state_hurt": {
 		backing_field = "_ai_state_hurt",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_AI_STATE_LIST,
 	},
 	"ai_state_after_reset": {
 		backing_field = "_ai_state_after_reset",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_AI_STATE_LIST,
 	},

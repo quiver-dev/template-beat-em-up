@@ -18,8 +18,8 @@ const AirState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_bounce := "Air/Knockout/Bounce"
-@export var _path_launch := "Air/Knockout/Launch"
+var _path_bounce := "Air/Knockout/Bounce"
+var _path_launch := "Air/Knockout/Launch"
 
 var _launch_count := 0
 
@@ -124,10 +124,22 @@ func _on_knockout_requested(knockback: QuiverKnockback) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"path_knockout": {
-		backing_field = "_path_knockout",
+	"Knockout State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"path_bounce": {
+		backing_field = "_path_bounce",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"_path_launch": {
+		backing_field = "_path_launch",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

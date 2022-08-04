@@ -19,9 +19,9 @@ const KnockoutState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state_launch: StringName
-@export var _skin_state_rising: StringName
-@export var _path_next_state := "Air/Knockout/MidAir"
+var _skin_state_launch: StringName
+var _skin_state_rising: StringName
+var _path_next_state := "Air/Knockout/MidAir"
 
 @onready var _knockout_state := get_parent() as KnockoutState
 
@@ -115,10 +115,15 @@ func _on_skin_animation_finished() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Launch State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state_launch": {
 		backing_field = "_skin_state_launch",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -126,7 +131,7 @@ const CUSTOM_PROPERTIES = {
 	"skin_state_rising": {
 		backing_field = "_skin_state_rising",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -134,7 +139,7 @@ const CUSTOM_PROPERTIES = {
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

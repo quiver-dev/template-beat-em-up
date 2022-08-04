@@ -19,7 +19,8 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
+var _skin_state: StringName
+
 @onready var _move_state := get_parent() as MoveState
 
 ### -----------------------------------------------------------------------------------------------
@@ -73,10 +74,15 @@ func exit() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"AI Ground Idle":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
