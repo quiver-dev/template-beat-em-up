@@ -23,6 +23,7 @@ signal health_changed
 signal health_depleted
 signal hurt_requested(knockback: QuiverKnockback)
 signal knockout_requested(knockback: QuiverKnockback)
+signal wall_bounced
 signal grab_requested(grabbed_character: QuiverAttributes)
 signal grab_released
 signal grabbed

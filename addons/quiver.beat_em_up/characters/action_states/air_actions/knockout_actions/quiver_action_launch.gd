@@ -64,6 +64,8 @@ func enter(msg: = {}) -> void:
 	
 	if msg.has("launch_vector"):
 		_knockout_state._launch_charater(msg.launch_vector)
+	elif msg.has("is_wall_bounce") and msg.is_wall_bounce:
+		_character.velocity = _character.velocity.reflect(Vector2.UP)
 	else:
 		assert(false, "No launch vector received on launch state.")
 		# The code above will error out in the editor, and the code below will allow the game

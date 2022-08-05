@@ -91,22 +91,17 @@ func _launch_charater(launch_vector: Vector2) -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _attributes.hurt_requested.is_connected(_on_hurt_requested):
-		_attributes.hurt_requested.connect(_on_hurt_requested)
-	
-	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
-		_attributes.knockout_requested.connect(_on_knockout_requested)
-
+	QuiverEditorHelper.connect_between(_attributes.hurt_requested, _on_hurt_requested)
+	QuiverEditorHelper.connect_between(_attributes.knockout_requested, _on_knockout_requested)
+	QuiverEditorHelper.connect_between(_attributes.wall_bounced, _on_wall_bounced)
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _attributes != null:
-		if _attributes.hurt_requested.is_connected(_on_hurt_requested):
-			_attributes.hurt_requested.disconnect(_on_hurt_requested)
-		
-		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
-			_attributes.knockout_requested.disconnect(_on_knockout_requested)
+		QuiverEditorHelper.disconnect_between(_attributes.hurt_requested, _on_hurt_requested)
+		QuiverEditorHelper.disconnect_between(_attributes.knockout_requested, _on_knockout_requested)
+		QuiverEditorHelper.disconnect_between(_attributes.wall_bounced, _on_wall_bounced)
 
 
 func _on_hurt_requested(knockback: QuiverKnockback) -> void:
@@ -116,6 +111,10 @@ func _on_hurt_requested(knockback: QuiverKnockback) -> void:
 
 func _on_knockout_requested(knockback: QuiverKnockback) -> void:
 	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
+
+
+func _on_wall_bounced() -> void:
+	_state_machine.transition_to(_path_launch, {is_wall_bounce = true})
 
 ### -----------------------------------------------------------------------------------------------
 

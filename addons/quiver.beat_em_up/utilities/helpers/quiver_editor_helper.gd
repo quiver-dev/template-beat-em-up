@@ -48,6 +48,18 @@ static func add_debug_camera2D_to(
 
 
 ## Helps to print lonf dictionaries in a more readable format.
-func _json_print(value) -> void:
+static func _json_print(value) -> void:
 	var json := JSON.new()
 	print(json.stringify(value, "\t"))
+
+
+## Helper to connect signals with proper checking if it's not already connected.
+static func connect_between(signal_object: Signal, callable: Callable, type := 0) -> void:
+	if not signal_object.is_connected(callable):
+		signal_object.connect(callable, type)
+
+
+## Helper to disconnect signals with proper checking if a connection actually exists.
+static func disconnect_between(signal_object: Signal, callable: Callable) -> void:
+	if signal_object.is_connected(callable):
+		signal_object.disconnect(callable)

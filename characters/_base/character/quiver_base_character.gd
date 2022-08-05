@@ -19,8 +19,6 @@ extends CharacterBody2D
 
 #--- constants ------------------------------------------------------------------------------------
 
-const CEILING_LIMITS_LAYER_NUMBER = 4
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var attributes: QuiverAttributes = null:
@@ -121,11 +119,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _disable_ceiling_collisions() -> void:
-	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, false)
+	set_collision_mask_value(QuiverCollisionTypes.COLLISION_LAYER_CEILING, false)
 
 
 func _enable_ceiling_collisions() -> void:
-	set_collision_mask_value(CEILING_LIMITS_LAYER_NUMBER, true)
+	set_collision_mask_value(QuiverCollisionTypes.COLLISION_LAYER_CEILING, true)
 
 
 func _disable_collisions() -> void:

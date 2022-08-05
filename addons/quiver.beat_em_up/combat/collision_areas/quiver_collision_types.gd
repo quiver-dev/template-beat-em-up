@@ -90,6 +90,9 @@ const PRESETS = {
 	}
 }
 
+const COLLISION_LAYER_CEILING = 4
+const COLLISION_LAYER_WORLD_HIT_BOX = 8
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
