@@ -1,0 +1,263 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjlpun4pyy80a"]
+
+[ext_resource type="Script" path="res://pause_menu/PauseMenu.gd" id="1_nnmou"]
+
+[sub_resource type="Animation" id="Animation_0pjgj"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/Content/Resume")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jlyby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ua1p"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_unpause"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_o5ytk"]
+resource_name = "EDITOR"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6fsw4"]
+_data = {
+"EDITOR": SubResource("Animation_o5ytk"),
+"RESET": SubResource("Animation_jlyby"),
+"close": SubResource("Animation_4ua1p"),
+"open": SubResource("Animation_0pjgj")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4s1v"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_dbcg5"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_i4s1v")
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_nnmou")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6fsw4")
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -123.0
+offset_right = 200.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dbcg5")
+metadata/_edit_layout_mode = 1
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 375.0
+offset_bottom = 221.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/Content"]
+offset_right = 350.0
+offset_bottom = 26.0
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="PanelContainer/Content"]
+offset_top = 30.0
+offset_right = 350.0
+offset_bottom = 61.0
+text = "Resume"
+
+[node name="TimeScaleLine" type="HBoxContainer" parent="PanelContainer/Content"]
+offset_top = 65.0
+offset_right = 350.0
+offset_bottom = 91.0
+
+[node name="Label" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
+offset_right = 79.0
+offset_bottom = 26.0
+text = "time scale"
+
+[node name="Slider" type="HSlider" parent="PanelContainer/Content/TimeScaleLine"]
+offset_left = 83.0
+offset_top = 5.0
+offset_right = 323.0
+offset_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Value" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
+offset_left = 327.0
+offset_right = 350.0
+offset_bottom = 26.0
+text = "1.0"
+
+[node name="ThrowVariation" type="CheckBox" parent="PanelContainer/Content"]
+offset_top = 95.0
+offset_right = 350.0
+offset_bottom = 126.0
+text = "Use Longer Throw Backwards"
+
+[node name="Restart" type="Button" parent="PanelContainer/Content"]
+offset_top = 130.0
+offset_right = 350.0
+offset_bottom = 161.0
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="PanelContainer/Content"]
+offset_top = 165.0
+offset_right = 350.0
+offset_bottom = 196.0
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/Content/Resume" to="." method="_on_resume_pressed"]
+[connection signal="value_changed" from="PanelContainer/Content/TimeScaleLine/Slider" to="." method="_on_slider_value_changed"]
+[connection signal="toggled" from="PanelContainer/Content/ThrowVariation" to="." method="_on_throw_variation_toggled"]
+[connection signal="pressed" from="PanelContainer/Content/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/Quit" to="." method="_on_quit_pressed"]
