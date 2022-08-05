@@ -18,9 +18,9 @@ const GroundState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
-@export_range(0.0, 5.0, 0.1, "or_greater") var _time_to_freed := 5.0
-@export var _path_next_state := "Ground/Grab/Idle"
+var _escape_delay := 5.0
+var _skin_state: StringName
+var _path_next_state := "Ground/Grab/Idle"
 
 var _grabbed_timer: Timer = null
 
@@ -62,7 +62,7 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_ground_state.enter(msg)
 	_skin.transition_to(_skin_state)
-	_grabbed_timer.start(_time_to_freed)
+	_grabbed_timer.start(_escape_delay)
 	_character._disable_collisions()
 
 
@@ -79,23 +79,20 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _grabbed_timer.timeout.is_connected(_on_grabbed_timer_timeout):
-		_grabbed_timer.timeout.connect(_on_grabbed_timer_timeout)
-	
-	if not _attributes.grab_released.is_connected(_on_attributes_grab_released):
-		_attributes.grab_released.connect(_on_attributes_grab_released)
+	QuiverEditorHelper.connect_between(_grabbed_timer.timeout, _on_grabbed_timer_timeout)
+	QuiverEditorHelper.connect_between(_attributes.grab_released, _on_attributes_grab_released)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _grabbed_timer != null:
-		if _grabbed_timer.timeout.is_connected(_on_grabbed_timer_timeout):
-			_grabbed_timer.timeout.disconnect(_on_grabbed_timer_timeout)
+		QuiverEditorHelper.disconnect_between(_grabbed_timer.timeout, _on_grabbed_timer_timeout)
 	
 	if _attributes != null:
-		if _attributes.grab_released.is_connected(_on_attributes_grab_released):
-			_attributes.grab_released.disconnect(_on_attributes_grab_released)
+		QuiverEditorHelper.disconnect_between(
+				_attributes.grab_released, _on_attributes_grab_released
+		)
 
 
 func _on_grabbed_timer_timeout() -> void:
@@ -113,10 +110,22 @@ func _on_attributes_grab_released() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Grabbed State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"escape_delay": {
+		backing_field = "_escape_delay",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0.0,5.0,0.1,or_greater",
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -124,7 +133,7 @@ const CUSTOM_PROPERTIES = {
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

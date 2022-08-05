@@ -18,10 +18,10 @@ const JumpState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state_rising: StringName
-@export var _skin_state_falling: StringName
+var _skin_state_rising: StringName
+var _skin_state_falling: StringName
 
-@export var _can_attack := true:
+var _can_attack := true:
 	set(value):
 		var has_changed = value != _can_attack
 		_can_attack = value
@@ -33,7 +33,7 @@ const JumpState = preload(
 		else:
 			update_configuration_warnings()
 
-@export var _path_air_attack := "Air/Jump/Attack":
+var _path_air_attack := "Air/Jump/Attack":
 	set(value):
 		if _can_attack:
 			_path_air_attack = value
@@ -135,10 +135,15 @@ func _has_air_attack() -> bool:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Mid Air State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state_rising": {
 		backing_field = "_skin_state_rising",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -146,7 +151,7 @@ const CUSTOM_PROPERTIES = {
 	"skin_state_falling": {
 		backing_field = "_skin_state_falling",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -154,13 +159,13 @@ const CUSTOM_PROPERTIES = {
 	"can_attack": {
 		backing_field = "_can_attack",
 		type = TYPE_BOOL,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 	},
 	"path_air_attack": {
 		backing_field = "_path_air_attack",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

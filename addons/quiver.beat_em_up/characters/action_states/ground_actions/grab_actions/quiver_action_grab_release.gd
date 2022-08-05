@@ -19,8 +19,8 @@ const GrabState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _skin_state: StringName
-@export var _path_next_state := "Ground/Move/Idle"
+var _skin_state: StringName
+var _path_next_state := "Ground/Move/Idle"
 
 @onready var _grab_state := get_parent() as GrabState
 
@@ -70,17 +70,16 @@ func exit() -> void:
 
 func _connect_signals() -> void:
 	super()
-	
-	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
+	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _skin != null:
-		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+		QuiverEditorHelper.disconnect_between(
+			_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 
 
 func _on_skin_animation_finished() -> void:
@@ -93,10 +92,15 @@ func _on_skin_animation_finished() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Grab Release State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"skin_state": {
 		backing_field = "_skin_state",
 		type = TYPE_INT,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
@@ -104,7 +108,7 @@ const CUSTOM_PROPERTIES = {
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

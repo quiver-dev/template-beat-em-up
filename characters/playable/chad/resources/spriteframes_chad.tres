@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=61 format=3 uid="uid://bmxehcfr3kr24"]
+[gd_resource type="SpriteFrames" load_steps=62 format=3 uid="uid://c8j7ycyt3mx65"]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
@@ -30,9 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://dl45txlfjwfss" path="res://characters/playable/chad/resources/sprites/hurt/hurt_mid.png" id="28_niptm"]
 [ext_resource type="Texture2D" uid="uid://cxgdqgab6eqg7" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_00.png" id="29_i7rbs"]
 [ext_resource type="Texture2D" uid="uid://pehngd25bdaa" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_01.png" id="30_h1a1i"]
-[ext_resource type="Texture2D" uid="uid://fj5wwrsd2nw" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_02.png" id="31_jaglq"]
-[ext_resource type="Texture2D" uid="uid://vbixjb2cw834" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_03.png" id="32_2hkrc"]
-[ext_resource type="Texture2D" uid="uid://k0hvtjlhaakw" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_04.png" id="33_j15rn"]
+[ext_resource type="Texture2D" uid="uid://k0hvtjlhaakw" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_05.png" id="30_hd20p"]
+[ext_resource type="Texture2D" uid="uid://q67xqn1rkws2" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_02.png" id="31_jaglq"]
+[ext_resource type="Texture2D" uid="uid://fj5wwrsd2nw" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_03.png" id="32_2hkrc"]
+[ext_resource type="Texture2D" uid="uid://vbixjb2cw834" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_04.png" id="33_j15rn"]
 [ext_resource type="Texture2D" uid="uid://c4dt1hb0lq6n5" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_02.png" id="34_ujyh1"]
 [ext_resource type="Texture2D" uid="uid://isd822rjfr6q" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_03.png" id="35_lpn1d"]
 [ext_resource type="Texture2D" uid="uid://bvnlte3vlwcrm" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_04.png" id="36_3l4gn"]
@@ -123,7 +124,7 @@ animations = [{
 "name": &"jump",
 "speed": 24.0
 }, {
-"frames": [ExtResource("32_2hkrc")],
+"frames": [ExtResource("32_2hkrc"), ExtResource("33_j15rn")],
 "loop": false,
 "name": &"knockout_bounce",
 "speed": 24.0
@@ -133,7 +134,7 @@ animations = [{
 "name": &"knockout_falling",
 "speed": 24.0
 }, {
-"frames": [ExtResource("33_j15rn")],
+"frames": [ExtResource("30_hd20p")],
 "loop": true,
 "name": &"knockout_landed",
 "speed": 24.0

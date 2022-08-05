@@ -1,5 +1,6 @@
-class_name QuiverCombatSystem
-extends RefCounted
+@tool
+class_name WallHitBox
+extends QuiverHitBox
 
 ## Write your doc string for this file here
 
@@ -7,17 +8,6 @@ extends RefCounted
 #--- signals --------------------------------------------------------------------------------------
 
 #--- enums ----------------------------------------------------------------------------------------
-
-enum CharacterTypes {
-	PLAYERS,
-	ENEMIES,
-	BOUNCE_OBSTACLE,
-}
-
-enum HurtTypes {
-	MID,
-	HIGH
-}
 
 #--- constants ------------------------------------------------------------------------------------
 
@@ -30,36 +20,13 @@ enum HurtTypes {
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _ready() -> void:
+	super()
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-static func is_in_same_lane_as(defender: QuiverAttributes, attacker: QuiverAttributes) -> bool:
-	var lane_limits := defender.get_hit_lane_limits()
-	return lane_limits.is_value_inside_lane(attacker.ground_level)
-
-
-static func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> void:
-	if target.is_invulnerable:
-		return
-	target.health_current -= attack.attack_damage
-
-
-static func apply_knockback(
-		knockback: QuiverKnockback, 
-		target: QuiverAttributes
-) -> void:
-	if target.is_invulnerable:
-		return
-	
-	target.add_knockback(knockback.strength)
-	if target.should_knockout():
-		if not target.is_alive:
-			target.add_knockback(QuiverCyclicHelper.KnockbackStrength.MEDIUM)
-		target.knockout_requested.emit(knockback)
-	elif not target.has_superarmor:
-		target.hurt_requested.emit(knockback)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -67,4 +34,3 @@ static func apply_knockback(
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
-

@@ -12,15 +12,11 @@ extends QuiverAiState
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var message := {}
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-# Right now I have to export this variable as advanced exports are not working. But the idea is
-# for this to be a backing filed to an advanced property which uses the correct hint string
-# for the beat em up plugin to catch it and transform it into a list of paths, tailored to this 
-# scene
-@export var _state_path := ""
+var _state_path := ""
+var _message := {}
 
 var _possible_states := []
 
@@ -36,8 +32,8 @@ var _possible_states := []
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_actions.transition_to(_state_path, message)
-	_actions.transitioned.connect(_on_actions_transitioned)
+	_actions.transition_to(_state_path, _message)
+	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
 func exit() -> void:
@@ -49,7 +45,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_actions_transitioned(_p_state_path: NodePath) -> void:
-	_actions.transitioned.disconnect(_on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 	state_finished.emit()
 
 
@@ -64,12 +60,24 @@ func _on_owner_ready() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Call Action":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"state_path": {
 		backing_field = "_state_path",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"message": {
+		backing_field = "_message",
+		type = TYPE_DICTIONARY,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = "",
 	},
 #	"": {
 #		backing_field = "",

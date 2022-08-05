@@ -18,8 +18,8 @@ const GroundState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_jump_state := "Air/Jump/Impulse"
-@export var _path_attack_state := "Ground/Combo1"
+var _path_jump_state := "Air/Jump/Impulse"
+var _path_attack_state := "Ground/Combo1"
 
 var _direction := Vector2.ZERO
 
@@ -121,17 +121,22 @@ func jump() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Move State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"path_jump_state": {
 		backing_field = "_path_jump_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 	"path_attack_state": {
 		backing_field = "_path_attack_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

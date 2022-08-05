@@ -14,8 +14,7 @@ extends QuiverAiState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export var _path_follow_state := "Ground/Move/Follow"
-
+var _path_follow_state := "Ground/Move/Follow"
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -46,7 +45,7 @@ func enter(msg: = {}) -> void:
 		state_finished.emit()
 		return
 	
-	_actions.transitioned.connect(_on_actions_transitioned)
+	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
 func exit() -> void:
@@ -62,7 +61,7 @@ func _target_reached() -> void:
 
 
 func _on_actions_transitioned(_path_state: String) -> void:
-	_actions.transitioned.disconnect(_on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 	_target_reached()
 
 ### -----------------------------------------------------------------------------------------------
@@ -72,10 +71,15 @@ func _on_actions_transitioned(_path_state: String) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Go To Position":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"path_follow_state": {
 		backing_field = "_path_follow_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

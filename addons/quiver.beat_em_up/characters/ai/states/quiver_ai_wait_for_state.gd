@@ -16,7 +16,7 @@ extends QuiverAiState
 
 ## The action that when entered will mark the end of the Stunned phase and give control back to
 ## the AI.
-@export var _path_ready_state := "Ground/Move/Idle"
+var _path_ready_state := "Ground/Move/Idle"
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -36,12 +36,12 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_actions.transitioned.connect(_on_actions_transitioned)
+	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
 func exit() -> void:
 	super()
-	_actions.transitioned.disconnect(_on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -59,10 +59,15 @@ func _on_actions_transitioned(state_path: NodePath) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
+	"Wait For State":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+		hint = PROPERTY_HINT_NONE,
+	},
 	"path_ready_state": {
 		backing_field = "_path_ready_state",
 		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_SCRIPT_VARIABLE,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},

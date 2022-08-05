@@ -23,6 +23,7 @@ signal health_changed
 signal health_depleted
 signal hurt_requested(knockback: QuiverKnockback)
 signal knockout_requested(knockback: QuiverKnockback)
+signal wall_bounced
 signal grab_requested(grabbed_character: QuiverAttributes)
 signal grab_released
 signal grabbed
@@ -131,7 +132,7 @@ var grabbed_offset: Position2D = null
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _init() -> void:
-	Events.characters_reseted.connect(reset)
+	QuiverEditorHelper.connect_between(Events.characters_reseted, reset)
 
 
 func _to_string() -> String:

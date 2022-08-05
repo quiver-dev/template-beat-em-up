@@ -41,8 +41,7 @@ func _ready() -> void:
 	var owner_path := owner.get_path()
 	add_to_group(StringName(owner_path))
 	
-	if not area_entered.is_connected(_on_area_entered):
-		area_entered.connect(_on_area_entered)
+	QuiverEditorHelper.connect_between(area_entered, _on_area_entered)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -59,32 +58,15 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func _handle_character_type_presets() -> void:
-	var collision_type := get_meta(QuiverCollisionTypes.META_KEY, "default") as String
-	if collision_type == "custom":
-		return
-	
-	var target_collision_type := ""
-	match character_type:
-		QuiverCombatSystem.CharacterTypes.PLAYERS:
-			target_collision_type = "player_hurt_box"
-		QuiverCombatSystem.CharacterTypes.ENEMIES:
-			target_collision_type = "enemy_hurt_box"
-		_:
-			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
-					character_type,
-					QuiverCombatSystem.CharacterTypes.keys()
-			])
-			return
-	
-	if target_collision_type != collision_type:
-		QuiverCollisionTypes.apply_preset_to(
-				QuiverCollisionTypes.PRESETS[target_collision_type], self
-		)
+### -----------------------------------------------------------------------------------------------
 
+
+### Private Methods -------------------------------------------------------------------------------
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is QuiverHitBox:
+	if area is WallHitBox:
+		_handle_wall_hit_box(area)
+	elif area is QuiverHitBox:
 		_handle_hit_box(area)
 	elif area is QuiverGrabBox:
 		_handle_grab_box(area)
@@ -92,10 +74,6 @@ func _on_area_entered(area: Area2D) -> void:
 		push_error("Unrecognized collision between: %s and %s"%[self, area])
 		return
 
-### -----------------------------------------------------------------------------------------------
-
-
-### Private Methods -------------------------------------------------------------------------------
 
 func _handle_hit_box(hit_box: QuiverHitBox) -> void:
 	if QuiverCombatSystem.is_in_same_lane_as(character_attributes, hit_box.character_attributes):
@@ -109,6 +87,11 @@ func _handle_hit_box(hit_box: QuiverHitBox) -> void:
 		
 		if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
 			Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
+
+
+func _handle_wall_hit_box(wall_hit_box: WallHitBox) -> void: 
+	QuiverCombatSystem.apply_damage(wall_hit_box.attack_data, character_attributes)
+	character_attributes.wall_bounced.emit()
 
 
 func _handle_grab_box(grab_box: QuiverGrabBox) -> void:
@@ -129,5 +112,39 @@ func _get_treated_launch_vector(hit_box: QuiverHitBox) -> Vector2:
 
 func _attack_is_coming_from_right(hit_box: QuiverHitBox) -> bool:
 	return hit_box.global_position.x > global_position.x
+
+
+func _disable_wall_bounce_collisions() -> void:
+	set_collision_mask_value(QuiverCollisionTypes.COLLISION_LAYER_WORLD_HIT_BOX, false)
+
+
+func _enable_wall_bounce_collisions() -> void:
+	set_collision_mask_value(QuiverCollisionTypes.COLLISION_LAYER_WORLD_HIT_BOX, true)
+
+
+func _handle_character_type_presets() -> void:
+	var collision_type := get_meta(QuiverCollisionTypes.META_KEY, "default") as String
+	if collision_type == "custom":
+		return
+	
+	var target_collision_type := ""
+	match character_type:
+		QuiverCombatSystem.CharacterTypes.PLAYERS:
+			target_collision_type = "player_hurt_box"
+		QuiverCombatSystem.CharacterTypes.ENEMIES:
+			target_collision_type = "enemy_hurt_box"
+		QuiverCombatSystem.CharacterTypes.BOUNCE_OBSTACLE:
+			push_error("Bounce Obstacles is currently icompatible with hurt boxes")
+		_:
+			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
+					character_type,
+					QuiverCombatSystem.CharacterTypes.keys()
+			])
+			return
+	
+	if target_collision_type != collision_type:
+		QuiverCollisionTypes.apply_preset_to(
+				QuiverCollisionTypes.PRESETS[target_collision_type], self
+		)
 
 ### -----------------------------------------------------------------------------------------------

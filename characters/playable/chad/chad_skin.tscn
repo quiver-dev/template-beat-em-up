@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
 [ext_resource type="AnimationLibrary" uid="uid://c6fsleghrve54" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmm0a2tnko2g6" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
-[ext_resource type="SpriteFrames" uid="uid://bmxehcfr3kr24" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
+[ext_resource type="SpriteFrames" uid="uid://c8j7ycyt3mx65" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
-[ext_resource type="Resource" uid="uid://cwbexdkq2mal0" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
+[ext_resource type="Resource" uid="uid://dnddg0imisrgl" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_grab_box.gd" id="7_a6aw4"]
 [ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
 [ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/attack_punch2.tres" id="9_cutyj"]
@@ -108,6 +108,7 @@ position = Vector2(-735, 0)
 position = Vector2(295, -241)
 
 [node name="ColorRect2" type="ColorRect" parent="Positions/GrabPivot" index="0"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -132,6 +133,7 @@ position = Vector2(-26, -356)
 z_index = 99
 
 [node name="ColorRect" type="ColorRect" parent="Positions/GrabbedPivot" index="0"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

@@ -42,9 +42,6 @@ func _parse_property(
 		return replace_built_in
 	
 	if QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_EDITOR, usage_flags):
-		# DELETE-ME The line below is hack-fix while advanced exports aren't working
-		hint_string = _get_real_hint_string_hack(state, name, hint_string)
-		
 		if hint_string == QuiverState.HINT_STATE_LIST:
 			var property := QuiverPropertyStateDropDown.new()
 			replace_built_in = true
@@ -62,20 +59,4 @@ func _parse_property(
 
 ### Private Methods -------------------------------------------------------------------------------
 
-# DELETE-ME Remove this once advanced exports are working
-func _get_real_hint_string_hack(state: QuiverState, name: String, hint_string: String) -> String:
-	var value := hint_string
-	var custom_properties = state.get("CUSTOM_PROPERTIES")
-	
-	if custom_properties is Dictionary and not custom_properties.is_empty():
-		var treated_name = name.substr(1) if name.begins_with("_") else name
-		if (
-				custom_properties.has(treated_name) 
-				and custom_properties[treated_name].has("hint_string")
-		):
-			value = state.CUSTOM_PROPERTIES[treated_name].hint_string
-	
-	return value
-
 ### -----------------------------------------------------------------------------------------------
-

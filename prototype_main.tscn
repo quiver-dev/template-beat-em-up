@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dh7jt0k7hvmeo"]
+[gd_scene load_steps=17 format=3 uid="uid://m51ca0yn87jx"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="Texture2D" uid="uid://uwl1nm0n31yj" path="res://placeholder_bg.png" id="2_3vj1c"]
-[ext_resource type="PackedScene" uid="uid://chnnencdesvbc" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
+[ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
+[ext_resource type="Script" path="res://level/obstacles/WallHitBox.gd" id="3_4xx38"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_lfeec"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd" id="4_ncwkl"]
-[ext_resource type="PackedScene" uid="uid://busfprrckh5pb" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
+[ext_resource type="PackedScene" uid="uid://b7yu7e63hwkml" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="4_taqca"]
 [ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
+[ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]
 size = Vector2(2212, 87)
@@ -16,6 +19,23 @@ size = Vector2(2212, 87)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsl8r"]
 size = Vector2(87, 2212)
+
+[sub_resource type="Resource" id="Resource_hta03"]
+script = ExtResource("4_taqca")
+attack_damage = 5.0
+hurt_type = 1
+knockback = 0
+launch_angle = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50mem"]
+size = Vector2(100, 2212)
+
+[sub_resource type="Resource" id="Resource_ghf18"]
+script = ExtResource("4_taqca")
+attack_damage = 5.0
+hurt_type = 1
+knockback = 0
+launch_angle = 0
 
 [node name="PrototypeMain" type="Node2D"]
 script = ExtResource("1_wp06a")
@@ -33,10 +53,12 @@ position = Vector2(1811, 333)
 scale = Vector2(0.51298, 0.51298)
 texture = ExtResource("2_3vj1c")
 
-[node name="ScreenLimits" type="StaticBody2D" parent="."]
+[node name="Limits" type="Node2D" parent="."]
+
+[node name="ScreenLimits" type="StaticBody2D" parent="Limits"]
 collision_layer = 4
 
-[node name="Left" type="CollisionShape2D" parent="ScreenLimits"]
+[node name="Left" type="CollisionShape2D" parent="Limits/ScreenLimits"]
 modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(-22, 537)
 rotation = 1.5708
@@ -44,7 +66,7 @@ shape = SubResource("RectangleShape2D_3xrdj")
 one_way_collision = true
 metadata/collision_type = "default"
 
-[node name="Right" type="CollisionShape2D" parent="ScreenLimits"]
+[node name="Right" type="CollisionShape2D" parent="Limits/ScreenLimits"]
 modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(1944, 537)
 rotation = -1.5708
@@ -52,29 +74,51 @@ shape = SubResource("RectangleShape2D_t57al")
 one_way_collision = true
 metadata/collision_type = "default"
 
-[node name="Bottom" type="CollisionShape2D" parent="ScreenLimits"]
+[node name="Bottom" type="CollisionShape2D" parent="Limits/ScreenLimits"]
 modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(936, 1104)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dsl8r")
 metadata/collision_type = "default"
 
-[node name="CeilingLimits" type="StaticBody2D" parent="."]
+[node name="CeilingLimits" type="StaticBody2D" parent="Limits"]
+modulate = Color(0, 0.6, 0.701961, 0.4)
 collision_layer = 8
 
-[node name="Top" type="CollisionShape2D" parent="CeilingLimits"]
+[node name="Top" type="CollisionShape2D" parent="Limits/CeilingLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(940, 379)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dsl8r")
+metadata/collision_type = "default"
 
-[node name="ColorRect" type="ColorRect" parent="CeilingLimits/Top"]
-visible = false
-show_behind_parent = true
-offset_left = -45.0
-offset_top = -1105.0
-offset_right = 45.0
-offset_bottom = 1105.0
-color = Color(0.254902, 0.121569, 0.0705882, 1)
+[node name="RightBounce" type="Area2D" parent="Limits"]
+position = Vector2(1937, 537)
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_4xx38")
+_attack_data = SubResource("Resource_hta03")
+metadata/collision_type = "world_hit_box"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits/RightBounce"]
+modulate = Color(1, 0.0666667, 0.403922, 1)
+shape = SubResource("RectangleShape2D_50mem")
+metadata/collision_type = "world_hit_box"
+
+[node name="LeftBounce" type="Area2D" parent="Limits"]
+position = Vector2(-12, 537)
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_4xx38")
+_attack_data = SubResource("Resource_ghf18")
+metadata/collision_type = "world_hit_box"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limits/LeftBounce"]
+modulate = Color(1, 0.0666667, 0.403922, 1)
+shape = SubResource("RectangleShape2D_50mem")
+metadata/collision_type = "world_hit_box"
 
 [node name="Characters" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -139,3 +183,5 @@ horizontal_alignment = 2
 script = ExtResource("3_lfeec")
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
+
+[node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_r1bdp")]
