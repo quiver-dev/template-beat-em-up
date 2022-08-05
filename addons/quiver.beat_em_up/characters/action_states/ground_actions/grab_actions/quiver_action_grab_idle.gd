@@ -15,6 +15,8 @@ const GrabState = preload(
 		+"quiver_action_grab.gd"
 )
 
+const ONE_SHOT_TIMER = preload("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -28,7 +30,7 @@ var _path_grab_denied := "Ground/Hurt"
 
 var _is_holding_backwards := false
 var _release_action := ""
-var _release_timer: SceneTreeTimer = null
+var _release_timer: Timer = null
 
 @onready var _grab_state := get_parent() as GrabState
 
@@ -43,6 +45,9 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+	
+	_release_timer = ONE_SHOT_TIMER.instantiate()
+	add_child(_release_timer, true)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -73,13 +78,15 @@ func unhandled_input(event: InputEvent) -> void:
 	var has_handled := false
 	
 	if event.is_action_pressed(_release_action):
-		if _release_timer == null:
-			_create_release_timer()
+		if _release_timer.is_stopped():
+			_release_timer.timeout.connect(_on_release_timer_timeout)
+			_release_timer.start(_release_delay)
 		_is_holding_backwards = true
 		has_handled = true
 	elif event.is_action_released(_release_action):
-		if _release_timer != null:
-			_remove_release_timer()
+		if not _release_timer.is_stopped():
+			_release_timer.timeout.disconnect(_on_release_timer_timeout)
+			_release_timer.stop()
 		_is_holding_backwards = false
 		has_handled = true
 	
@@ -99,9 +106,8 @@ func exit() -> void:
 	super()
 	_release_action = ""
 	_is_holding_backwards = false
-	if _release_timer != null:
+	if _release_timer.timeout.is_connected(_on_release_timer_timeout):
 		_release_timer.timeout.disconnect(_on_release_timer_timeout)
-		_release_timer = null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -123,23 +129,12 @@ func _disconnect_signals() -> void:
 			_grab_state.grab_target.grab_denied.disconnect(_on_grab_target_grab_denied)
 
 
-func _create_release_timer() -> void:
-	_release_timer = get_tree().create_timer(_release_delay)
-	_release_timer.timeout.connect(_on_release_timer_timeout)
-
-
-func _remove_release_timer() -> void:
-	_release_timer.timeout.disconnect(_on_release_timer_timeout)
-	_release_timer = null
-
-
 func _on_grab_target_grab_denied() -> void:
 	_grab_state.exit()
 	_state_machine.transition_to(_path_grab_denied)
 
 
 func _on_release_timer_timeout() -> void:
-	_release_timer = null
 	_state_machine.transition_to(_path_release)
 
 ### -----------------------------------------------------------------------------------------------
