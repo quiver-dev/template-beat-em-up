@@ -6,5 +6,5 @@
 script = ExtResource("1_ncgnv")
 attack_damage = 30.0
 hurt_type = 1
-knockback = 4
+knockback = 3
 launch_angle = 45

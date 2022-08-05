@@ -11,4 +11,6 @@ signal enemy_defeated
 
 signal player_died
 
+signal debug_throw_change_requested(is_slow: bool)
+
 ### -----------------------------------------------------------------------------------------------

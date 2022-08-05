@@ -141,6 +141,7 @@ should_exit_parent = true
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
 script = ExtResource("16_ekfnh")
+alt_skin_state = &"throw_backward_noah"
 skin_state = &"throw_backward"
 can_combo = false
 path_next_state = "Ground/Grab/ThrowBackwardRecovery"

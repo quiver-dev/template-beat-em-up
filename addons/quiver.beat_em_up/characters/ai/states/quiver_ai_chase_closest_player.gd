@@ -10,6 +10,8 @@ extends QuiverAiState
 
 #--- constants ------------------------------------------------------------------------------------
 
+const ONE_SHOT_TIMER = preload("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var max_chase_time := 5.0
@@ -19,7 +21,7 @@ var max_chase_time := 5.0
 var _path_follow_state := "Ground/Move/Follow"
 
 var _target: QuiverCharacter
-var _chase_timer: SceneTreeTimer
+var _chase_timer: Timer
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -31,6 +33,9 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+	
+	_chase_timer = ONE_SHOT_TIMER.instantiate()
+	add_child(_chase_timer, true)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -43,15 +48,13 @@ func enter(msg: = {}) -> void:
 	if is_instance_valid(_target):
 		_actions.transition_to(_path_follow_state, {target_node = _target})
 		_actions.transitioned.connect(_on_actions_transitioned)
-		_chase_timer = get_tree().create_timer(max_chase_time)
 		_chase_timer.timeout.connect(_on_chase_timer_timeout)
 
 
 func exit() -> void:
 	_actions.transitioned.disconnect(_on_actions_transitioned)
-	if is_instance_valid(_chase_timer):
+	if _chase_timer.timeout.is_connected(_on_chase_timer_timeout):
 		_chase_timer.timeout.disconnect(_on_chase_timer_timeout)
-	_chase_timer = null
 	super()
 
 ### -----------------------------------------------------------------------------------------------

@@ -1,5 +1,4 @@
-@tool
-extends QuiverAiState
+extends Control
 
 ## Write your doc string for this file here
 
@@ -10,15 +9,13 @@ extends QuiverAiState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const ONE_SHOT_TIMER = preload("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
-
 #--- public variables - order: export > normal var > onready --------------------------------------
-
-@export_range(0.0, 10.0, 0.1, "or_greater") var wait_time := 5.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _wait_timer: Timer
+@onready var _animator := $AnimationPlayer as AnimationPlayer
+@onready var _timescale_value := $PanelContainer/Content/TimeScaleLine/Value as Label
+@onready var _noah_throw := $PanelContainer/Content/ThrowVariation as CheckBox
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -26,39 +23,59 @@ var _wait_timer: Timer
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
-	
-	if not has_node("Timer"):
-		_wait_timer = ONE_SHOT_TIMER.instantiate()
-		add_child(_wait_timer, true)
+	pass
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if not visible:
+			open_pause_menu()
+		else:
+			close_pause_menu()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func enter(msg: = {}) -> void:
-	super(msg)
-	_actions.transition_to("Ground/Move/Idle")
-	_wait_timer.start(wait_time)
-	_wait_timer.timeout.connect(_on_wait_timer_timeout)
+func open_pause_menu() -> void:
+	get_tree().paused = true
+	_animator.play("open")
 
 
-func exit() -> void:
-	super()
-	if _wait_timer.timeout.is_connected(_on_wait_timer_timeout):
-		_wait_timer.timeout.disconnect(_on_wait_timer_timeout)
+func close_pause_menu() -> void:
+	_animator.play("close")
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_wait_timer_timeout() -> void:
-	state_finished.emit()
+
+# Called by close animation
+func _unpause() -> void:
+	get_tree().paused = false
+
+
+func _on_resume_pressed() -> void:
+	close_pause_menu()
+
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	Events.player_died.emit()
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+
+
+func _on_slider_value_changed(value: float) -> void:
+	Engine.time_scale = value
+	_timescale_value.text = "%0.2f"%[value]
+
+
+func _on_throw_variation_toggled(button_pressed: bool) -> void:
+	Events.debug_throw_change_requested.emit(button_pressed)
 
 ### -----------------------------------------------------------------------------------------------
-

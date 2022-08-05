@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd" id="4_ncwkl"]
 [ext_resource type="PackedScene" uid="uid://busfprrckh5pb" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="4_ses8m"]
 [ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
+[ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]
 size = Vector2(2212, 87)
@@ -139,3 +140,5 @@ horizontal_alignment = 2
 script = ExtResource("3_lfeec")
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
+
+[node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_r1bdp")]

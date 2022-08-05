@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://ig1h5w3krdgm"]
+
+[node name="Timer" type="Timer"]
+one_shot = true
