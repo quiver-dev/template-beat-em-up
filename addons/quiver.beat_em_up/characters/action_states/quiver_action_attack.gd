@@ -107,23 +107,26 @@ func attack() -> void:
 func _connect_signals() -> void:
 	get_parent()._connect_signals()
 	super()
-	if _can_combo:
-		if not _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
-			_skin.attack_input_frames_finished.connect(_on_attack_input_frames_finished)
 	
-	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
+	if _can_combo:
+		QuiverEditorHelper.connect_between(
+				_skin.attack_input_frames_finished, _on_attack_input_frames_finished
+		)
+	
+	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	get_parent()._disconnect_signals()
 	super()
 	if _skin != null:
-		if _skin.attack_input_frames_finished.is_connected(_on_attack_input_frames_finished):
-			_skin.attack_input_frames_finished.disconnect(_on_attack_input_frames_finished)
+		QuiverEditorHelper.disconnect_between(
+				_skin.attack_input_frames_finished, _on_attack_input_frames_finished
+		)
 		
-		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+		QuiverEditorHelper.disconnect_between(
+			_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 
 
 func _on_attack_input_frames_finished() -> void:

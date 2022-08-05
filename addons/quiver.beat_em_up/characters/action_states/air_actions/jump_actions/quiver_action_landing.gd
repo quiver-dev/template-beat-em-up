@@ -72,16 +72,16 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
+	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _skin != null:
-		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+		QuiverEditorHelper.disconnect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 
 
 func _on_skin_animation_finished() -> void:

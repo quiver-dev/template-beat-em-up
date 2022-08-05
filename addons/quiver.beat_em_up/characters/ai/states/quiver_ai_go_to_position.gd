@@ -45,7 +45,7 @@ func enter(msg: = {}) -> void:
 		state_finished.emit()
 		return
 	
-	_actions.transitioned.connect(_on_actions_transitioned)
+	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
 func exit() -> void:
@@ -61,7 +61,7 @@ func _target_reached() -> void:
 
 
 func _on_actions_transitioned(_path_state: String) -> void:
-	_actions.transitioned.disconnect(_on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 	_target_reached()
 
 ### -----------------------------------------------------------------------------------------------

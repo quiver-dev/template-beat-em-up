@@ -79,13 +79,13 @@ func unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed(_release_action):
 		if _release_timer.is_stopped():
-			_release_timer.timeout.connect(_on_release_timer_timeout)
+			QuiverEditorHelper.connect_between(_release_timer.timeout, _on_release_timer_timeout)
 			_release_timer.start(_release_delay)
 		_is_holding_backwards = true
 		has_handled = true
 	elif event.is_action_released(_release_action):
 		if not _release_timer.is_stopped():
-			_release_timer.timeout.disconnect(_on_release_timer_timeout)
+			QuiverEditorHelper.disconnect_between(_release_timer.timeout, _on_release_timer_timeout)
 			_release_timer.stop()
 		_is_holding_backwards = false
 		has_handled = true
@@ -106,8 +106,7 @@ func exit() -> void:
 	super()
 	_release_action = ""
 	_is_holding_backwards = false
-	if _release_timer.timeout.is_connected(_on_release_timer_timeout):
-		_release_timer.timeout.disconnect(_on_release_timer_timeout)
+	QuiverEditorHelper.disconnect_between(_release_timer.timeout, _on_release_timer_timeout)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -117,16 +116,18 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _grab_state.grab_target.grab_denied.is_connected(_on_grab_target_grab_denied):
-		_grab_state.grab_target.grab_denied.connect(_on_grab_target_grab_denied)
+	QuiverEditorHelper.connect_between(
+			_grab_state.grab_target.grab_denied, _on_grab_target_grab_denied
+	)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if not is_instance_valid(_grab_state):
-		if _grab_state.grab_target.grab_denied.is_connected(_on_grab_target_grab_denied):
-			_grab_state.grab_target.grab_denied.disconnect(_on_grab_target_grab_denied)
+		QuiverEditorHelper.disconnect_between(
+				_grab_state.grab_target.grab_denied, _on_grab_target_grab_denied
+		)
 
 
 func _on_grab_target_grab_denied() -> void:

@@ -47,14 +47,13 @@ func enter(msg: = {}) -> void:
 	_target = QuiverCharacterHelper.find_closest_player_to(_character)
 	if is_instance_valid(_target):
 		_actions.transition_to(_path_follow_state, {target_node = _target})
-		_actions.transitioned.connect(_on_actions_transitioned)
-		_chase_timer.timeout.connect(_on_chase_timer_timeout)
+		QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
+		QuiverEditorHelper.connect_between(_chase_timer.timeout, _on_chase_timer_timeout)
 
 
 func exit() -> void:
-	_actions.transitioned.disconnect(_on_actions_transitioned)
-	if _chase_timer.timeout.is_connected(_on_chase_timer_timeout):
-		_chase_timer.timeout.disconnect(_on_chase_timer_timeout)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_chase_timer.timeout, _on_chase_timer_timeout)
 	super()
 
 ### -----------------------------------------------------------------------------------------------

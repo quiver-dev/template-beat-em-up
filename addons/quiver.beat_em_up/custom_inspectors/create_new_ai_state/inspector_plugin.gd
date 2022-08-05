@@ -57,7 +57,7 @@ func _can_handle(object) -> bool:
 func _parse_begin(object: Object) -> void:
 	var widget: = SCENE_WIDGET.instantiate() as CreateNewAiStateWidget
 	widget.selected_node = object
-	widget.add_node_to.connect(_on_widget_add_node_to)
+	QuiverEditorHelper.connect_between(widget.add_node_to, _on_widget_add_node_to)
 	add_custom_control(widget)
 
 ### -----------------------------------------------------------------------------------------------

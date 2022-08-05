@@ -28,11 +28,8 @@ var _debug_logger := QuiverDebugLogger.get_logger()
 
 func _ready() -> void:
 	_player_hud.set_player_attributes(_main_player.attributes)
-	if not Events.player_died.is_connected(reload_prototype):
-		Events.player_died.connect(reload_prototype)
-	
-	if not Events.enemy_defeated.is_connected(_on_enemy_defeated):
-		Events.enemy_defeated.connect(_on_enemy_defeated, CONNECT_DEFERRED)
+	QuiverEditorHelper.connect_between(Events.player_died, reload_prototype)
+	QuiverEditorHelper.connect_between(Events.enemy_defeated, _on_enemy_defeated, CONNECT_DEFERRED)
 	
 	_debug_logger.start_new_log()
 	_spawn_next_wave()

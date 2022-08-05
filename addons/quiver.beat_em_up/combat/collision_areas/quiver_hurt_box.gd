@@ -41,8 +41,7 @@ func _ready() -> void:
 	var owner_path := owner.get_path()
 	add_to_group(StringName(owner_path))
 	
-	if not area_entered.is_connected(_on_area_entered):
-		area_entered.connect(_on_area_entered)
+	QuiverEditorHelper.connect_between(area_entered, _on_area_entered)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -70,8 +70,9 @@ func exit() -> void:
 		if state == null:
 			continue
 		
-		if state.state_finished.is_connected(_on_current_state_state_finished):
-			state.state_finished.disconnect(_on_current_state_state_finished)
+		QuiverEditorHelper.disconnect_between(
+				state.state_finished, _on_current_state_state_finished
+		)
 	
 	_current_state = null
 
@@ -91,7 +92,7 @@ func get_list_of_ai_states() -> Array:
 
 func _enter_child_state(index: int) -> void:
 	_current_state = get_child(index)
-	_current_state.state_finished.connect(_on_current_state_state_finished)
+	QuiverEditorHelper.connect_between(_current_state.state_finished, _on_current_state_state_finished)
 	_current_state.enter()
 
 
@@ -100,7 +101,9 @@ func _on_current_state_state_finished() -> void:
 		return
 	
 	_current_state.exit()
-	_current_state.state_finished.disconnect(_on_current_state_state_finished)
+	QuiverEditorHelper.disconnect_between(
+			_current_state.state_finished, _on_current_state_state_finished
+	)
 	
 	var next_index = _current_state.get_index() + 1
 	if next_index < get_child_count():

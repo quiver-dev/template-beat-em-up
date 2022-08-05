@@ -36,7 +36,10 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	Events.debug_throw_change_requested.connect(_on_Events_debug_throw_change_requested)
+	QuiverEditorHelper.connect_between(
+			Events.debug_throw_change_requested, 
+			_on_Events_debug_throw_change_requested
+	)
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -70,16 +73,14 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _skin.suplex_landed.is_connected(_on_skin_suplex_landed):
-		_skin.suplex_landed.connect(_on_skin_suplex_landed)
+	QuiverEditorHelper.connect_between(_skin.suplex_landed, _on_skin_suplex_landed)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if is_instance_valid(_skin):
-		if _skin.suplex_landed.is_connected(_on_skin_suplex_landed):
-			_skin.suplex_landed.disconnect(_on_skin_suplex_landed)
+		QuiverEditorHelper.disconnect_between(_skin.suplex_landed, _on_skin_suplex_landed)
 
 
 func _on_skin_suplex_landed() -> void:

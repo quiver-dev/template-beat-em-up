@@ -61,28 +61,18 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _attributes.hurt_requested.is_connected(_on_hurt_requested):
-		_attributes.hurt_requested.connect(_on_hurt_requested)
-	
-	if not _attributes.knockout_requested.is_connected(_on_knockout_requested):
-		_attributes.knockout_requested.connect(_on_knockout_requested)
-	
-	if not _attributes.grabbed.is_connected(_on_grabbed):
-		_attributes.grabbed.connect(_on_grabbed)
+	QuiverEditorHelper.connect_between(_attributes.hurt_requested, _on_hurt_requested)
+	QuiverEditorHelper.connect_between(_attributes.knockout_requested, _on_knockout_requested)
+	QuiverEditorHelper.connect_between(_attributes.grabbed, _on_grabbed)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _attributes != null:
-		if _attributes.hurt_requested.is_connected(_on_hurt_requested):
-			_attributes.hurt_requested.disconnect(_on_hurt_requested)
-		
-		if _attributes.knockout_requested.is_connected(_on_knockout_requested):
-			_attributes.knockout_requested.disconnect(_on_knockout_requested)
-		
-		if _attributes.grabbed.is_connected(_on_grabbed):
-			_attributes.grabbed.disconnect(_on_grabbed)
+		QuiverEditorHelper.disconnect_between(_attributes.hurt_requested, _on_hurt_requested)
+		QuiverEditorHelper.disconnect_between(_attributes.knockout_requested, _on_knockout_requested)
+		QuiverEditorHelper.disconnect_between(_attributes.grabbed, _on_grabbed)
 
 
 func _on_hurt_requested(knockback: QuiverKnockback) -> void:

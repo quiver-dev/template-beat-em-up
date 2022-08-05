@@ -28,7 +28,7 @@ var _attributes_current_enemy: QuiverAttributes = null
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	Events.enemy_data_sent.connect(_on_Events_enemy_data_sent)
+	QuiverEditorHelper.connect_between(Events.enemy_data_sent, _on_Events_enemy_data_sent)
 	_enemy_block.hide()
 
 ### -----------------------------------------------------------------------------------------------
@@ -41,32 +41,54 @@ func set_player_attributes(p_attributes: QuiverAttributes) -> void:
 	_player_character_name.text = _attributes_player_character.display_name
 	_player_life_bar.value = _attributes_player_character.get_health_as_percentage()
 	
-	if not _attributes_player_character.health_changed.is_connected(_on_player_health_changed):
-		_attributes_player_character.health_changed.connect(_on_player_health_changed)
+	QuiverEditorHelper.connect_between(
+			_attributes_player_character.health_changed, _on_player_health_changed
+	)
 	
-	if not _attributes_player_character.health_depleted.is_connected(_on_player_health_depleted):
-		_attributes_player_character.health_depleted.connect(_on_player_health_depleted)
+	QuiverEditorHelper.connect_between(
+			_attributes_player_character.health_depleted, 
+			_on_player_health_depleted
+	)
 
 
 func set_enemy_attribute(p_attributes: QuiverAttributes) -> void:
 	if _attributes_current_enemy == p_attributes:
 		return
 	
+	_disconnect_enemy_attribute_signals()
+	
 	_attributes_current_enemy = p_attributes
 	_enemy_name.text = _attributes_current_enemy.display_name
 	_enemy_life_bar.value = _attributes_current_enemy.get_health_as_percentage()
 	_enemy_block.show()
 	
-	if not _attributes_current_enemy.health_changed.is_connected(_on_enemy_health_changed):
-		_attributes_current_enemy.health_changed.connect(_on_enemy_health_changed)
-	
-	if not _attributes_current_enemy.health_depleted.is_connected(_on_enemy_health_depleted):
-		_attributes_current_enemy.health_depleted.connect(_on_enemy_health_depleted)
+	_connect_enemy_attribute_signals()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _disconnect_enemy_attribute_signals() -> void:
+	if is_instance_valid(_attributes_current_enemy):
+		QuiverEditorHelper.disconnect_between(
+				_attributes_current_enemy.health_changed, _on_enemy_health_changed
+		)
+		
+		QuiverEditorHelper.disconnect_between(
+				_attributes_current_enemy.health_depleted, _on_enemy_health_depleted
+		)
+
+
+func _connect_enemy_attribute_signals() -> void:
+	QuiverEditorHelper.connect_between(
+			_attributes_current_enemy.health_changed, _on_enemy_health_changed
+	)
+	
+	QuiverEditorHelper.connect_between(
+			_attributes_current_enemy.health_depleted, _on_enemy_health_depleted
+	)
+
 
 func _on_player_health_changed() -> void:
 	_player_life_bar.value = _attributes_player_character.get_health_as_percentage()
@@ -77,7 +99,8 @@ func _on_player_health_depleted() -> void:
 
 
 func _on_enemy_health_changed() -> void:
-	_enemy_life_bar.value = _attributes_current_enemy.get_health_as_percentage()
+	if is_instance_valid(_attributes_current_enemy):
+		_enemy_life_bar.value = _attributes_current_enemy.get_health_as_percentage()
 
 
 func _on_enemy_health_depleted() -> void:

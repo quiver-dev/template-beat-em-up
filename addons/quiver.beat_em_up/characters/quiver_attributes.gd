@@ -132,7 +132,7 @@ var grabbed_offset: Position2D = null
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _init() -> void:
-	Events.characters_reseted.connect(reset)
+	QuiverEditorHelper.connect_between(Events.characters_reseted, reset)
 
 
 func _to_string() -> String:

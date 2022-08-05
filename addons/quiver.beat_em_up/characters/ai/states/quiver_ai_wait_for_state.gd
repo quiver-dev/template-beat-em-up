@@ -36,12 +36,12 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_actions.transitioned.connect(_on_actions_transitioned)
+	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
 func exit() -> void:
 	super()
-	_actions.transitioned.disconnect(_on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 
 ### -----------------------------------------------------------------------------------------------
 

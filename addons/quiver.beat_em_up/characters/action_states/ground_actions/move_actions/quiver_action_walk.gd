@@ -98,16 +98,14 @@ func _handle_facing_direction() -> void:
 func _connect_signals() -> void:
 	super()
 	
-	if not _attributes.grab_requested.is_connected(_on_grab_requested):
-		_attributes.grab_requested.connect(_on_grab_requested)
+	QuiverEditorHelper.connect_between(_attributes.grab_requested, _on_grab_requested)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
 	if _attributes != null:
-		if _attributes.grab_requested.is_connected(_on_grab_requested):
-			_attributes.grab_requested.disconnect(_on_grab_requested)
+		QuiverEditorHelper.disconnect_between(_attributes.grab_requested, _on_grab_requested)
 
 
 func _on_grab_requested(grab_target: QuiverAttributes) -> void:

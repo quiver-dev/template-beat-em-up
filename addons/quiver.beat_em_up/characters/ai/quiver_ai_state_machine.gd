@@ -38,7 +38,9 @@ func _ready() -> void:
 		if not is_instance_valid(child_state):
 			continue
 		
-		child_state.state_finished.connect(_decide_next_action.bind(child_state.name))
+		QuiverEditorHelper.connect_between(
+				child_state.state_finished, _decide_next_action.bind(child_state.name)
+		)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

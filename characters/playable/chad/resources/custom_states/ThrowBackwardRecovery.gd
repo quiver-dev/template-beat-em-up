@@ -63,7 +63,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 func enter(msg: = {}) -> void:
 	super(msg)
 	_skin.transition_to(_recovery_1)
-	_skin.skin_animation_finished.connect(_on_skin_animation_finished.bind(_recovery_1))
+	QuiverEditorHelper.connect_between(
+			_skin.skin_animation_finished, 
+			_on_skin_animation_finished.bind(_recovery_1)
+	)
 	var next_position = _skin.get_suplex_landing_position()
 	
 	# I Have to wait two frames for the animation to update properly before changing position.
@@ -93,8 +96,9 @@ func exit() -> void:
 	_slide_direction = -1
 	_character.velocity.x = 0
 	
-	if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+	QuiverEditorHelper.disconnect_between(
+			_skin.skin_animation_finished, _on_skin_animation_finished
+	)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -104,11 +108,18 @@ func exit() -> void:
 func _on_skin_animation_finished(phase_finished: StringName) -> void:
 	if phase_finished == _recovery_1:
 		_skin.transition_to(_recovery_2)
-		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished.bind(_recovery_2))
+		QuiverEditorHelper.disconnect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
+		QuiverEditorHelper.connect_between(
+				_skin.skin_animation_finished, 
+				_on_skin_animation_finished.bind(_recovery_2)
+		)
 		_character.velocity.x = 0
 	elif phase_finished == _recovery_2:
-		_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+		QuiverEditorHelper.disconnect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 		_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------

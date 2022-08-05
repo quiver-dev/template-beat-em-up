@@ -80,21 +80,18 @@ func _connect_signals() -> void:
 	get_parent()._connect_signals()
 	super()
 	
-	if not _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
-	
-	if not _skin.grab_frame_reached.is_connected(_on_skin_grab_frame_reached):
-		_skin.grab_frame_reached.connect(_on_skin_grab_frame_reached)
+	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
+	QuiverEditorHelper.connect_between(_skin.grab_frame_reached, _on_skin_grab_frame_reached)
 
 
 func _disconnect_signals() -> void:
 	super()
 	if _skin != null:
-		if _skin.skin_animation_finished.is_connected(_on_skin_animation_finished):
-			_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+		QuiverEditorHelper.disconnect_between(
+			_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 		
-		if _skin.grab_frame_reached.is_connected(_on_skin_grab_frame_reached):
-			_skin.grab_frame_reached.disconnect(_on_skin_grab_frame_reached)
+		QuiverEditorHelper.disconnect_between(_skin.grab_frame_reached, _on_skin_grab_frame_reached)
 
 
 ## Connect the signal that marks the end of the attack to this function.

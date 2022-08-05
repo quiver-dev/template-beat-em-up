@@ -33,7 +33,7 @@ var _possible_states := []
 func enter(msg: = {}) -> void:
 	super(msg)
 	_actions.transition_to(_state_path, _message)
-	_actions.transitioned.connect(_on_actions_transitioned)
+	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
 func exit() -> void:
@@ -45,7 +45,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_actions_transitioned(_p_state_path: NodePath) -> void:
-	_actions.transitioned.disconnect(_on_actions_transitioned)
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 	state_finished.emit()
 
 

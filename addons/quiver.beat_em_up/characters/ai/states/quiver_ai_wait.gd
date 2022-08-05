@@ -44,13 +44,12 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_actions.transition_to("Ground/Move/Idle")
 	_wait_timer.start(wait_time)
-	_wait_timer.timeout.connect(_on_wait_timer_timeout)
+	QuiverEditorHelper.connect_between(_wait_timer.timeout, _on_wait_timer_timeout)
 
 
 func exit() -> void:
 	super()
-	if _wait_timer.timeout.is_connected(_on_wait_timer_timeout):
-		_wait_timer.timeout.disconnect(_on_wait_timer_timeout)
+	QuiverEditorHelper.disconnect_between(_wait_timer.timeout, _on_wait_timer_timeout)
 
 ### -----------------------------------------------------------------------------------------------
 

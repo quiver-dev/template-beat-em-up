@@ -54,11 +54,9 @@ func _on_owner_ready() -> void:
 	_actions = _character._state_machine
 	_attributes = _character.attributes
 	
-	_attributes.hurt_requested.connect(_ai_interrupted)
-	_attributes.knockout_requested.connect(_ai_reset)
-	
-	if not _attributes.grabbed.is_connected(_ai_interrupted):
-		_attributes.grabbed.connect(_ai_interrupted)
+	QuiverEditorHelper.connect_between(_attributes.hurt_requested, _ai_interrupted)
+	QuiverEditorHelper.connect_between(_attributes.knockout_requested, _ai_reset)
+	QuiverEditorHelper.connect_between(_attributes.grabbed, _ai_interrupted)
 
 
 func _decide_next_action(last_state: StringName) -> void:

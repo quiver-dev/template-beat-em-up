@@ -26,7 +26,7 @@ var launch_vector := Vector2.ZERO
 func _init(
 		p_knockback: QuiverCyclicHelper.KnockbackStrength, 
 		p_hurt: QuiverCyclicHelper.HurtTypes, 
-		p_vector
+		p_vector: Vector2
 ) -> void:
 	strength = p_knockback
 	hurt_type = p_hurt
