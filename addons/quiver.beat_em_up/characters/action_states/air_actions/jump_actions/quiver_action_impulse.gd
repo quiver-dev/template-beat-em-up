@@ -58,7 +58,7 @@ func enter(msg: = {}) -> void:
 	_skin.transition_to(_skin_state)
 	
 	if msg.has("velocity"):
-		_character.velocity = msg.velocity
+		_character.velocity = msg.velocity * Vector2.RIGHT
 
 
 func exit() -> void:
@@ -83,7 +83,7 @@ func _disconnect_signals() -> void:
 
 
 func _on_skin_animation_finished() -> void:
-	_character.velocity.y = _attributes.jump_force
+	_jump_state._air_state._skin_velocity_y = _attributes.jump_force
 	_state_machine.transition_to(_path_next_state)
 	_state_machine.set_physics_process(true)
 

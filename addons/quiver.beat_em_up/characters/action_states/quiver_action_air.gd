@@ -15,6 +15,7 @@ extends QuiverCharacterState
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var _skin_velocity_y := 0.0
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -49,10 +50,11 @@ func exit() -> void:
 
 func _move_and_apply_gravity(delta: float) -> void:
 	_character.move_and_slide()
-	_character.velocity.y += _gravity * delta
+	_skin.position.y += _skin_velocity_y * delta
+	_skin_velocity_y += _gravity * delta
 
 
 func _has_reached_ground() -> bool:
-	return _character.global_position.y >= _attributes.ground_level
+	return _skin.position.y >= 0
 
 ### -----------------------------------------------------------------------------------------------
