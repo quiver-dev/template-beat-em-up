@@ -84,7 +84,8 @@ func _handle_bounce() -> void:
 
 func _launch_charater(launch_vector: Vector2) -> void:
 	var knockback_velocity = _attributes.knockback_amount * launch_vector
-	_character.velocity += knockback_velocity
+	_character.velocity.x += knockback_velocity.x
+	_air_state._skin_velocity_y = knockback_velocity.y
 	_attributes.knockback_amount = 0
 
 
