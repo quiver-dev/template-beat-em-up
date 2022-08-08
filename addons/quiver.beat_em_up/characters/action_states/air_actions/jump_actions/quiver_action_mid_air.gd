@@ -41,6 +41,8 @@ var _path_air_attack := "Air/Jump/Attack":
 			_path_air_attack = ""
 		update_configuration_warnings()
 
+var _air_control_max_speed := 0.0
+
 @onready var _jump_state := get_parent() as JumpState
 
 ### -----------------------------------------------------------------------------------------------
@@ -81,6 +83,8 @@ func enter(msg: = {}) -> void:
 	
 	_handle_mid_air_animation()
 	
+	_air_control_max_speed = _attributes.speed_max * _attributes.air_control
+	
 	if not _can_attack:
 		_state_machine.set_process_unhandled_input(false)
 
@@ -100,6 +104,12 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func physics_process(delta: float) -> void:
+	var h_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down").x
+	var air_control_influence: float = _air_control_max_speed * h_direction
+	
+	if _should_apply_air_control(h_direction):
+		_character.velocity.x = air_control_influence
+	
 	_handle_mid_air_animation()
 	_jump_state.physics_process(delta)
 
@@ -117,6 +127,13 @@ func _handle_mid_air_animation() -> void:
 		_skin.transition_to(_skin_state_rising)
 	else:
 		_skin.transition_to(_skin_state_falling)
+
+
+func _should_apply_air_control(input_direction: float) -> bool:
+	var is_not_neutral: bool = not is_zero_approx(input_direction)
+	var is_opposite_directions: bool = sign(input_direction) != sign(_character.velocity.x)
+	var has_already_changed_direction: bool = abs(_character.velocity.x) <= _air_control_max_speed
+	return is_not_neutral and (is_opposite_directions or has_already_changed_direction)
 
 
 func _attack() -> void:
