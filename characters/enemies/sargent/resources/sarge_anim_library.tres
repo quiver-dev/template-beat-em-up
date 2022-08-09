@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://clk5d836dt3jx"]
+[gd_resource type="AnimationLibrary" load_steps=20 format=3 uid="uid://clk5d836dt3jx"]
 
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="1_3udoq"]
 [ext_resource type="Animation" uid="uid://cfh0uolp6i26u" path="res://characters/enemies/sargent/resources/animations/idle_right.tres" id="2_k1plb"]
@@ -15,10 +15,18 @@
 [ext_resource type="Animation" uid="uid://bbc3fyfqrwj6d" path="res://characters/enemies/sargent/resources/animations/jump_falling_left.tres" id="13_jkm01"]
 [ext_resource type="Animation" uid="uid://ruiddbbtbhh" path="res://characters/enemies/sargent/resources/animations/jump_landing_right.tres" id="14_1ik25"]
 [ext_resource type="Animation" uid="uid://bnpfooqh3h3c1" path="res://characters/enemies/sargent/resources/animations/jump_landing_left.tres" id="15_ub11v"]
+[ext_resource type="Animation" uid="uid://bc0oamfelqg1f" path="res://characters/enemies/sargent/resources/animations/hurt_hight_right.tres" id="16_ylgla"]
+[ext_resource type="Animation" uid="uid://d2f2swstx5wiq" path="res://characters/enemies/sargent/resources/animations/hurt_hight_left.tres" id="17_hmu3w"]
+[ext_resource type="Animation" uid="uid://8ljsr52g1eca" path="res://characters/enemies/sargent/resources/animations/hurt_mid_right.tres" id="18_lqjcc"]
+[ext_resource type="Animation" uid="uid://cokp3por6r46b" path="res://characters/enemies/sargent/resources/animations/hurt_mid_left.tres" id="19_nyovj"]
 
 [resource]
 _data = {
 "RESET": ExtResource("1_3udoq"),
+"hurt_hight_left": ExtResource("17_hmu3w"),
+"hurt_hight_right": ExtResource("16_ylgla"),
+"hurt_mid_left": ExtResource("19_nyovj"),
+"hurt_mid_right": ExtResource("18_lqjcc"),
 "idle_left": ExtResource("3_hwod1"),
 "idle_right": ExtResource("2_k1plb"),
 "jump_falling_left": ExtResource("13_jkm01"),
