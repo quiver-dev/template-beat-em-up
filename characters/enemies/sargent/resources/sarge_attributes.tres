@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://pn2qrl0x1wj8"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_s4idg"]
+
+[resource]
+script = ExtResource("1_s4idg")
+display_name = "Sargent"
+health_max = 50
+speed_max = 400
+air_control = 0.6
+jump_force = -1200
+hit_lane_offset = 0
+is_invulnerable = false
+has_superarmor = false
+can_be_grabbed = true
