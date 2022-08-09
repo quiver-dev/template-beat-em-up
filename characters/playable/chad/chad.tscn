@@ -52,7 +52,6 @@ metadata/collision_type = "default"
 
 [node name="ChadSkin" parent="." index="1" instance=ExtResource("2_1tk2w")]
 position = Vector2(0, 0)
-debug_prints = true
 metadata/_edit_horizontal_guides_ = [-516.0, -281.0]
 
 [node name="StateMachine" parent="." index="2"]
@@ -191,7 +190,9 @@ path_walk = "Ground/Move/Walk"
 [node name="Attack" type="Node" parent="StateMachine/Air/Jump" index="3"]
 script = ExtResource("13_cw2hu")
 skin_state = &"air_attack"
-path_falling_state = "Air/MidAir"
+path_falling_state = "Air/Jump/MidAir"
+end_condition = 1
+min_distance_from_ground = 250
 
 [node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource("18_f4w2y")
