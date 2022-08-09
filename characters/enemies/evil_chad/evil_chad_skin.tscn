@@ -31,6 +31,7 @@ character_type = 1
 metadata/collision_type = "enemy_hurt_box"
 
 [node name="HurtShape" parent="AnimatedSprite2D/HurtBox" index="0"]
+modulate = Color(0, 0.0666667, 0.701961, 1)
 shape = SubResource("RectangleShape2D_4qb06")
 metadata/collision_type = "enemy_hurt_box"
 
@@ -50,6 +51,7 @@ _attack_data = ExtResource("3_3tp73")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack1Shape" parent="Attacks/Attack1" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack2" parent="Attacks" index="1"]
@@ -59,6 +61,7 @@ _attack_data = ExtResource("4_gom5s")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Attack2Shape" parent="Attacks/Attack2" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 metadata/collision_type = "enemy_hit_box"
 
 [node name="AttackGrabPunch" parent="Attacks" index="2"]
@@ -67,6 +70,7 @@ character_type = 1
 metadata/collision_type = "enemy_hit_box"
 
 [node name="GrabPunchShape" parent="Attacks/AttackGrabPunch" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 metadata/collision_type = "enemy_hit_box"
 
 [node name="AttackSuplex" parent="Attacks" index="3"]
@@ -75,6 +79,7 @@ character_type = 1
 metadata/collision_type = "enemy_hit_box"
 
 [node name="SuplexShape" parent="Attacks/AttackSuplex" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 metadata/collision_type = "enemy_hit_box"
 
 [node name="AttackAir" parent="Attacks" index="4"]
@@ -84,4 +89,5 @@ _attack_data = ExtResource("5_wyldv")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="AttackAirShape" parent="Attacks/AttackAir" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
 metadata/collision_type = "enemy_hit_box"

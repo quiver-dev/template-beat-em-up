@@ -77,7 +77,7 @@ func exit() -> void:
 
 func _handle_landing() -> void:
 	_skin.position.y = 0.0
-	_character.velocity.y = 0.0
+	_air_state._skin_velocity_y = 0.0
 	_state_machine.transition_to(_path_landing)
 
 

@@ -123,7 +123,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _handle_mid_air_animation() -> void:
-	if _character.velocity.y < 0:
+	if _jump_state._air_state._skin_velocity_y < 0:
 		_skin.transition_to(_skin_state_rising)
 	else:
 		_skin.transition_to(_skin_state_falling)
