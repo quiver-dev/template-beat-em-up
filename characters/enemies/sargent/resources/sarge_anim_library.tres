@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://clk5d836dt3jx"]
+[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://clk5d836dt3jx"]
 
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="1_3udoq"]
 [ext_resource type="Animation" uid="uid://cfh0uolp6i26u" path="res://characters/enemies/sargent/resources/animations/idle_right.tres" id="2_k1plb"]
@@ -7,12 +7,28 @@
 [ext_resource type="Animation" uid="uid://omoool67xpnk" path="res://characters/enemies/sargent/resources/animations/walk_left.tres" id="5_blqky"]
 [ext_resource type="Animation" uid="uid://cgvmgsw85ktgm" path="res://characters/enemies/sargent/resources/animations/turn_left.tres" id="6_8dogx"]
 [ext_resource type="Animation" uid="uid://cexhf5ufipt0a" path="res://characters/enemies/sargent/resources/animations/turn_right.tres" id="7_f25eb"]
+[ext_resource type="Animation" uid="uid://cni317aarg2v6" path="res://characters/enemies/sargent/resources/animations/jump_impulse_right.tres" id="8_uh0gu"]
+[ext_resource type="Animation" uid="uid://8fpq4facsehm" path="res://characters/enemies/sargent/resources/animations/jump_impulse_left.tres" id="9_fp4m6"]
+[ext_resource type="Animation" uid="uid://d1cjvprg7yj04" path="res://characters/enemies/sargent/resources/animations/jump_rising_right.tres" id="10_thk0b"]
+[ext_resource type="Animation" uid="uid://by5lc2g7gylst" path="res://characters/enemies/sargent/resources/animations/jump_rising_left.tres" id="11_egf3d"]
+[ext_resource type="Animation" uid="uid://bs1pc7pmsf3d6" path="res://characters/enemies/sargent/resources/animations/jump_falling_right.tres" id="12_w00ev"]
+[ext_resource type="Animation" uid="uid://bbc3fyfqrwj6d" path="res://characters/enemies/sargent/resources/animations/jump_falling_left.tres" id="13_jkm01"]
+[ext_resource type="Animation" uid="uid://ruiddbbtbhh" path="res://characters/enemies/sargent/resources/animations/jump_landing_right.tres" id="14_1ik25"]
+[ext_resource type="Animation" uid="uid://bnpfooqh3h3c1" path="res://characters/enemies/sargent/resources/animations/jump_landing_left.tres" id="15_ub11v"]
 
 [resource]
 _data = {
 "RESET": ExtResource("1_3udoq"),
 "idle_left": ExtResource("3_hwod1"),
 "idle_right": ExtResource("2_k1plb"),
+"jump_falling_left": ExtResource("13_jkm01"),
+"jump_falling_right": ExtResource("12_w00ev"),
+"jump_impulse_left": ExtResource("9_fp4m6"),
+"jump_impulse_right": ExtResource("8_uh0gu"),
+"jump_landing_left": ExtResource("15_ub11v"),
+"jump_landing_right": ExtResource("14_1ik25"),
+"jump_rising_left": ExtResource("11_egf3d"),
+"jump_rising_right": ExtResource("10_thk0b"),
 "turn_left": ExtResource("6_8dogx"),
 "turn_right": ExtResource("7_f25eb"),
 "walk_left": ExtResource("5_blqky"),

@@ -15,3 +15,11 @@ libraries = {
 position = Vector2(0, -216)
 frames = ExtResource("3_b0w6d")
 animation = &"idle"
+
+[node name="OnionGhost" type="AnimatedSprite2D" parent="." index="3"]
+visible = false
+modulate = Color(0.333333, 0.423529, 1, 0.45098)
+position = Vector2(0, -216)
+frames = ExtResource("3_b0w6d")
+animation = &"idle"
+flip_h = true
