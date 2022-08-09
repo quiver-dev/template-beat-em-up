@@ -24,7 +24,14 @@ var SETTINGS = {
 			value = true,
 			type = TYPE_BOOL,
 			hint = PROPERTY_HINT_NONE,
-	}
+			hint_string = "",
+	},
+	QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER: {
+			value = 1.0,
+			type = TYPE_FLOAT,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0.0,2.0,0.01,or_greater"
+	},
 }
 
 #--- private variables - order: export > normal var > onready -------------------------------------

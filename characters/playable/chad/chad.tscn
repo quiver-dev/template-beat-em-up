@@ -163,6 +163,7 @@ path_next_state = "Air/Jump/MidAir"
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("9_o5gfu")
+_debug_fall_modifier = 2.5
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource("12_vsxf2")

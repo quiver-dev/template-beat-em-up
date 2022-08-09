@@ -21,6 +21,7 @@ enum HurtTypes { MID, HIGH }
 # I have to leave this here because if I try to move it to the plugin script I get an error
 # when trying to use it in the subclass inside the attributes script
 const SETTINGS_DEFAULT_HIT_LANE_SIZE = "quiver/beat_em_up/default_hit_lane_size"
+const SETTINGS_FALL_GRAVITY_MODIFIER = "quiver/beat_em_up/fall_gravity_modifier"
 const SETTINGS_LOGGING = "quiver/beat_em_up/logging_enabled"
 
 const PATH_STATE_MACHINE = (

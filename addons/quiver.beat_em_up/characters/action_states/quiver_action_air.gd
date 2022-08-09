@@ -15,6 +15,21 @@ extends QuiverCharacterState
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var _fall_modifier: float = \
+		ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER)
+
+# This one is just to help tweak it by using F6
+@export_range(0.0,5.0,0.05,"or_greater") var _debug_fall_modifier := 1.0:
+	set(value):
+		_debug_fall_modifier = value
+		ProjectSettings.set_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER, value)
+		ProjectSettings.save()
+	get:
+		var value := _debug_fall_modifier
+		if ProjectSettings.has_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER):
+			value = ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER)
+		return value
+
 var _skin_velocity_y := 0.0
 
 ### -----------------------------------------------------------------------------------------------
@@ -51,7 +66,12 @@ func exit() -> void:
 func _move_and_apply_gravity(delta: float) -> void:
 	_character.move_and_slide()
 	_skin.position.y += _skin_velocity_y * delta
-	_skin_velocity_y += _gravity * delta
+	
+	var actual_gravity = _gravity if _skin_velocity_y < 0 else _gravity * _fall_modifier
+	if QuiverEditorHelper.is_standalone_run(_character):
+		actual_gravity = _gravity if _skin_velocity_y < 0 else _gravity * _debug_fall_modifier
+	
+	_skin_velocity_y += actual_gravity * delta
 
 
 func _has_reached_ground() -> bool:

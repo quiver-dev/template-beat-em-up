@@ -298,9 +298,10 @@ pause={
 
 [physics]
 
-2d/default_gravity=2450.0
+2d/default_gravity=3000.0
 
 [quiver]
 
 beat_em_up/default_hit_lane_size=60
 beat_em_up/logging_enabled=true
+beat_em_up/fall_gravity_modifier=2.5
