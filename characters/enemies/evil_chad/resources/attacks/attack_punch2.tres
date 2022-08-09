@@ -7,4 +7,4 @@ script = ExtResource("1_mf4io")
 attack_damage = 30.0
 hurt_type = 1
 knockback = 4
-launch_angle = 10
+launch_angle = 15

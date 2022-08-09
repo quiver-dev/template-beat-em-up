@@ -77,14 +77,19 @@ func exit() -> void:
 
 func _handle_bounce() -> void:
 	_character.global_position.y = _attributes.ground_level
-	var bounce_direction = _character.velocity.reflect(Vector2.UP)
-	_character.velocity.y = 0.0
+	var bounce_direction = Vector2(
+			_character.velocity.reflect(Vector2.UP).x,
+			_air_state._skin_velocity_y
+	).normalized()
+	
+	_air_state._skin_velocity_y = 0.0
 	_state_machine.transition_to(_path_bounce, {bounce_direction = bounce_direction})
 
 
 func _launch_charater(launch_vector: Vector2) -> void:
 	var knockback_velocity = _attributes.knockback_amount * launch_vector
-	_character.velocity += knockback_velocity
+	_character.velocity.x += knockback_velocity.x
+	_air_state._skin_velocity_y += knockback_velocity.y
 	_attributes.knockback_amount = 0
 
 

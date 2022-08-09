@@ -8,6 +8,12 @@ extends QuiverCharacterState
 
 #--- enums ----------------------------------------------------------------------------------------
 
+enum EndConditions {
+	ANIMATION, ## Triggers end of state when air attack animation emits [signal QuiverCharacterSkin.skin_animation_finished].
+	DISTANCE_FROM_GROUND, ## Triggers end of state using [member _min_distance_from_ground].
+	FIRST_TO_TRIGGER, ## Triggers end of state by whatever happens first, ANIMATION or DISTANCE_FROM_GROUND
+}
+
 #--- constants ------------------------------------------------------------------------------------
 
 const JumpState = preload(
@@ -20,6 +26,17 @@ const JumpState = preload(
 
 var _skin_state: StringName
 var _path_falling_state := "Air/Jump"
+
+## What Condition should trigger the end of the air attack. See enum [b]EndContitions.[/b]
+var _end_condition: EndConditions = EndConditions.DISTANCE_FROM_GROUND:
+	set(value):
+		_end_condition = value
+		notify_property_list_changed()
+
+## Minimum distance the air attack can have from ground. Anything below this will trigger 
+## the end of the air attack if [member _end_condition] is either 
+## [b]EndConditions.DISTANCE_FROM_GROUND[/b] or [b]EndConditions.FIRST_TO_TRIGGER[/b].
+var _min_distance_from_ground = 100
 
 @onready var _jump_state := get_parent() as JumpState
 
@@ -59,6 +76,9 @@ func enter(msg: = {}) -> void:
 
 func physics_process(delta: float) -> void:
 	_jump_state.physics_process(delta)
+	if _has_distance_condition():
+		if _skin.position.y >= _min_distance_from_ground:
+			_state_machine.transition_to(_path_falling_state)
 
 
 func exit() -> void:
@@ -69,25 +89,39 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _has_animation_condition() -> bool:
+	return (
+			_end_condition == EndConditions.ANIMATION 
+			or _end_condition == EndConditions.FIRST_TO_TRIGGER
+	)
+
+
+func _has_distance_condition() -> bool:
+	return (
+			_end_condition == EndConditions.DISTANCE_FROM_GROUND 
+			or _end_condition == EndConditions.FIRST_TO_TRIGGER
+	)
+
 func _connect_signals() -> void:
 	super()
-	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
+	
+	if _has_animation_condition():
+		QuiverEditorHelper.connect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 
 
 func _disconnect_signals() -> void:
 	super()
 	
-	if _skin != null:
+	if _skin != null and _has_animation_condition():
 		QuiverEditorHelper.disconnect_between(
 				_skin.skin_animation_finished, _on_skin_animation_finished
 		)
 
 
 func _on_skin_animation_finished() -> void:
-	_state_machine.transition_to(_path_falling_state, {
-			velocity = _character.velocity, 
-			ignore_jump = true,
-	})
+	_state_machine.transition_to(_path_falling_state)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -96,7 +130,8 @@ func _on_skin_animation_finished() -> void:
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-const CUSTOM_PROPERTIES = {
+
+var _CUSTOM_PROPERTIES = {
 	"Air Attack State":{
 		type = TYPE_NIL,
 		usage = PROPERTY_USAGE_CATEGORY,
@@ -117,6 +152,20 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
+	"end_condition": {
+		backing_field = "_end_condition",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = ",".join(EndConditions.keys()),
+	},
+	"min_distance_from_ground": {
+		backing_field = "_min_distance_from_ground",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0,1000,10,or_greater",
+	},
 #	"": {
 #		backing_field = "",
 #		name = "",
@@ -132,11 +181,16 @@ const CUSTOM_PROPERTIES = {
 func _get_property_list() -> Array:
 	var properties: = []
 	
-	for key in CUSTOM_PROPERTIES:
+	for key in _CUSTOM_PROPERTIES:
 		var add_property := true
-		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+		var dict: Dictionary = _CUSTOM_PROPERTIES[key]
 		if not dict.has("name"):
 			dict.name = key
+		
+		if _has_distance_condition() and key == "min_distance_from_ground":
+			dict.usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
+		elif key == "min_distance_from_ground":
+			dict.usage = PROPERTY_USAGE_STORAGE
 		
 		if add_property:
 			properties.append(dict)
@@ -147,8 +201,8 @@ func _get_property_list() -> Array:
 func _get(property: StringName):
 	var value
 	
-	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	if property in _CUSTOM_PROPERTIES and _CUSTOM_PROPERTIES[property].has("backing_field"):
+		value = get(_CUSTOM_PROPERTIES[property]["backing_field"])
 	
 	return value
 
@@ -156,8 +210,8 @@ func _get(property: StringName):
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
 	
-	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+	if property in _CUSTOM_PROPERTIES and _CUSTOM_PROPERTIES[property].has("backing_field"):
+		set(_CUSTOM_PROPERTIES[property]["backing_field"], value)
 		has_handled = true
 	
 	return has_handled

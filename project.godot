@@ -168,7 +168,7 @@ config/name="Template Beat Project"
 run/main_scene="res://prototype_main.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
-config/version="0.2.3"
+config/version="0.2.4"
 
 [autoload]
 
@@ -298,9 +298,10 @@ pause={
 
 [physics]
 
-2d/default_gravity=2450.0
+2d/default_gravity=3000.0
 
 [quiver]
 
 beat_em_up/default_hit_lane_size=60
 beat_em_up/logging_enabled=true
+beat_em_up/fall_gravity_modifier=2.5

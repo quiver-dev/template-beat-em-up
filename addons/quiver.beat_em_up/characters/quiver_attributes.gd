@@ -31,16 +31,7 @@ signal grab_denied
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum WeightClass { LIGHT, MEDIUM, HEAVY }
-
 #--- constants ------------------------------------------------------------------------------------
-
-# move this to the function that will calculate jump force when you refactor
-const WEIGHT_MULTIPLIER = {
-	WeightClass.LIGHT: 1.0,
-	WeightClass.MEDIUM: 2.0,
-	WeightClass.HEAVY: 4.0,
-}
 
 const KNOCKBACK_BY_STRENGTH = {
 	QuiverCyclicHelper.KnockbackStrength.NONE: 0,
@@ -60,6 +51,11 @@ const KNOCKBACK_BY_STRENGTH = {
 ## Max movement speed for the character.
 @export_range(0, 1000, 1, "or_greater") var speed_max := 600
 
+## Max influence for player controlled movement on air.
+## If 1.0 player's will be able to freely control character's direction on air, just as on the
+## ground, and at 0.0 player input will have no influence on a character's air trajectory.
+@export_range(0.0, 1.0, 0.01, "or_greater") var air_control := 0.6
+
 ## Character's jump force. The heavier the character more jump force they'll need to reach the
 ## same jump height as a lighter character.
 @export_range(0, 0, 1, "or_lesser") var jump_force := -1200
@@ -73,10 +69,6 @@ const KNOCKBACK_BY_STRENGTH = {
 ## from another character whose base is between 60 pixels above or 60 pixels below 
 ## this character's y position.
 @export var hit_lane_offset := 0
-
-## Character's weight. Influences jump and things like if the character can be thrown or not.[br]
-## Heavier character will only be able to be thrown by stronger characters.
-@export var weight: WeightClass = WeightClass.MEDIUM
 
 ## This can be toggled on or off in animations to create invincibility frames.
 @export var is_invulnerable := false:
