@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn1vp8lg8eb48"]
+
+[ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_kelmx"]
+[ext_resource type="AnimationLibrary" uid="uid://clk5d836dt3jx" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
+[ext_resource type="SpriteFrames" uid="uid://0l8bwbsypux4" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
+
+[node name="SargeSkin" instance=ExtResource("1_kelmx")]
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": ExtResource("2_51vq1")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -216)
+frames = ExtResource("3_b0w6d")
+animation = &"idle"

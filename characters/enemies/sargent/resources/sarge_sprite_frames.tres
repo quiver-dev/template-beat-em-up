@@ -1,0 +1,45 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://0l8bwbsypux4"]
+
+[ext_resource type="Texture2D" uid="uid://c2guwppp2v744" path="res://characters/enemies/sargent/resources/sprites/idle/idle_00.png" id="1_8vii6"]
+[ext_resource type="Texture2D" uid="uid://bivmut4fun3h6" path="res://characters/enemies/sargent/resources/sprites/idle/idle_01.png" id="2_6p8f3"]
+[ext_resource type="Texture2D" uid="uid://d2sgc6ps3df02" path="res://characters/enemies/sargent/resources/sprites/idle/idle_02.png" id="3_57uuc"]
+[ext_resource type="Texture2D" uid="uid://2im8lfd07y6s" path="res://characters/enemies/sargent/resources/sprites/idle/idle_03.png" id="4_y52hy"]
+[ext_resource type="Texture2D" uid="uid://crxaiuqocbq4x" path="res://characters/enemies/sargent/resources/sprites/idle/idle_04.png" id="5_5hfyp"]
+[ext_resource type="Texture2D" uid="uid://d5o3e0cqfw2x" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_00.png" id="6_0gj5u"]
+[ext_resource type="Texture2D" uid="uid://ct8sw0i2o510e" path="res://characters/enemies/sargent/resources/sprites/turn_around/turnaround_00.png" id="6_fnbqv"]
+[ext_resource type="Texture2D" uid="uid://jhha7pdoyv6a" path="res://characters/enemies/sargent/resources/sprites/turn_around/turnaround_01.png" id="7_ctkgl"]
+[ext_resource type="Texture2D" uid="uid://brha5oh8m3r74" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_01.png" id="7_ldl3g"]
+[ext_resource type="Texture2D" uid="uid://cdefube48f4ca" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_02.png" id="8_0a7e7"]
+[ext_resource type="Texture2D" uid="uid://b8k83uta1jg8p" path="res://characters/enemies/sargent/resources/sprites/turn_around/turnaround_02.png" id="8_fiivc"]
+[ext_resource type="Texture2D" uid="uid://dwvtuk6f7i8ad" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_03.png" id="9_ivwqh"]
+[ext_resource type="Texture2D" uid="uid://cphldmi3j6ifa" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_04.png" id="10_8nldj"]
+[ext_resource type="Texture2D" uid="uid://b6ddbx6pxkbj8" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_05.png" id="11_fp7yp"]
+[ext_resource type="Texture2D" uid="uid://di7l4gifv0uop" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_06.png" id="12_4syoh"]
+[ext_resource type="Texture2D" uid="uid://2o0oljcl6khb" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_07.png" id="13_qhwtb"]
+[ext_resource type="Texture2D" uid="uid://ggdxwvs1upyd" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_08.png" id="14_wulq8"]
+[ext_resource type="Texture2D" uid="uid://djuu48uc368yu" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_09.png" id="15_o3ai6"]
+[ext_resource type="Texture2D" uid="uid://b4u5vjee5nfhq" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_10.png" id="16_ccpnd"]
+[ext_resource type="Texture2D" uid="uid://b4l8m8632hpny" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_11.png" id="17_hfra4"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("1_8vii6"), ExtResource("1_8vii6"), ExtResource("1_8vii6"), ExtResource("1_8vii6"), ExtResource("1_8vii6"), ExtResource("2_6p8f3"), ExtResource("2_6p8f3"), ExtResource("2_6p8f3"), ExtResource("2_6p8f3"), ExtResource("2_6p8f3"), ExtResource("3_57uuc"), ExtResource("3_57uuc"), ExtResource("3_57uuc"), ExtResource("3_57uuc"), ExtResource("3_57uuc"), ExtResource("3_57uuc"), ExtResource("3_57uuc"), ExtResource("4_y52hy"), ExtResource("4_y52hy"), ExtResource("4_y52hy"), ExtResource("4_y52hy"), ExtResource("4_y52hy"), ExtResource("5_5hfyp"), ExtResource("5_5hfyp"), ExtResource("5_5hfyp"), ExtResource("5_5hfyp"), ExtResource("5_5hfyp"), ExtResource("5_5hfyp"), ExtResource("5_5hfyp")],
+"loop": true,
+"name": &"idle",
+"speed": 24.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump_impulse",
+"speed": 5.0
+}, {
+"frames": [ExtResource("6_fnbqv"), ExtResource("6_fnbqv"), ExtResource("7_ctkgl"), ExtResource("7_ctkgl"), ExtResource("8_fiivc"), ExtResource("8_fiivc")],
+"loop": false,
+"name": &"turn_around",
+"speed": 24.0
+}, {
+"frames": [ExtResource("6_0gj5u"), ExtResource("6_0gj5u"), ExtResource("7_ldl3g"), ExtResource("7_ldl3g"), ExtResource("7_ldl3g"), ExtResource("8_0a7e7"), ExtResource("8_0a7e7"), ExtResource("9_ivwqh"), ExtResource("9_ivwqh"), ExtResource("9_ivwqh"), ExtResource("10_8nldj"), ExtResource("10_8nldj"), ExtResource("11_fp7yp"), ExtResource("11_fp7yp"), ExtResource("12_4syoh"), ExtResource("12_4syoh"), ExtResource("13_qhwtb"), ExtResource("13_qhwtb"), ExtResource("12_4syoh"), ExtResource("14_wulq8"), ExtResource("14_wulq8"), ExtResource("14_wulq8"), ExtResource("15_o3ai6"), ExtResource("15_o3ai6"), ExtResource("16_ccpnd"), ExtResource("16_ccpnd"), ExtResource("17_hfra4"), ExtResource("17_hfra4"), ExtResource("17_hfra4")],
+"loop": true,
+"name": &"walk",
+"speed": 24.0
+}]

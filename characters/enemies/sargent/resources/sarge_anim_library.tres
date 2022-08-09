@@ -1,0 +1,20 @@
+[gd_resource type="AnimationLibrary" load_steps=8 format=3 uid="uid://clk5d836dt3jx"]
+
+[ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="1_3udoq"]
+[ext_resource type="Animation" uid="uid://cfh0uolp6i26u" path="res://characters/enemies/sargent/resources/animations/idle_right.tres" id="2_k1plb"]
+[ext_resource type="Animation" uid="uid://cqx4hca0x422e" path="res://characters/enemies/sargent/resources/animations/idle_left.tres" id="3_hwod1"]
+[ext_resource type="Animation" uid="uid://day7qwlu0r0ax" path="res://characters/enemies/sargent/resources/animations/walk_right.tres" id="4_kawsj"]
+[ext_resource type="Animation" uid="uid://omoool67xpnk" path="res://characters/enemies/sargent/resources/animations/walk_left.tres" id="5_blqky"]
+[ext_resource type="Animation" uid="uid://cgvmgsw85ktgm" path="res://characters/enemies/sargent/resources/animations/turn_left.tres" id="6_8dogx"]
+[ext_resource type="Animation" uid="uid://cexhf5ufipt0a" path="res://characters/enemies/sargent/resources/animations/turn_right.tres" id="7_f25eb"]
+
+[resource]
+_data = {
+"RESET": ExtResource("1_3udoq"),
+"idle_left": ExtResource("3_hwod1"),
+"idle_right": ExtResource("2_k1plb"),
+"turn_left": ExtResource("6_8dogx"),
+"turn_right": ExtResource("7_f25eb"),
+"walk_left": ExtResource("5_blqky"),
+"walk_right": ExtResource("4_kawsj")
+}
