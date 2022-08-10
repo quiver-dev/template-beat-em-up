@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=20 format=3 uid="uid://clk5d836dt3jx"]
+[gd_resource type="AnimationLibrary" load_steps=30 format=3 uid="uid://clk5d836dt3jx"]
 
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="1_3udoq"]
 [ext_resource type="Animation" uid="uid://cfh0uolp6i26u" path="res://characters/enemies/sargent/resources/animations/idle_right.tres" id="2_k1plb"]
@@ -19,6 +19,16 @@
 [ext_resource type="Animation" uid="uid://d2f2swstx5wiq" path="res://characters/enemies/sargent/resources/animations/hurt_hight_left.tres" id="17_hmu3w"]
 [ext_resource type="Animation" uid="uid://8ljsr52g1eca" path="res://characters/enemies/sargent/resources/animations/hurt_mid_right.tres" id="18_lqjcc"]
 [ext_resource type="Animation" uid="uid://cokp3por6r46b" path="res://characters/enemies/sargent/resources/animations/hurt_mid_left.tres" id="19_nyovj"]
+[ext_resource type="Animation" uid="uid://b2fnplp44xd55" path="res://characters/enemies/sargent/resources/animations/knockout_launch_right.tres" id="20_ko61o"]
+[ext_resource type="Animation" uid="uid://xo7hp4jgdjsf" path="res://characters/enemies/sargent/resources/animations/knockout_launch_left.tres" id="21_7icnx"]
+[ext_resource type="Animation" uid="uid://coq5i8r3ajbjq" path="res://characters/enemies/sargent/resources/animations/knockout_rising_right.tres" id="22_l4irh"]
+[ext_resource type="Animation" uid="uid://dnxwuqcnjq1hx" path="res://characters/enemies/sargent/resources/animations/knockout_rising_left.tres" id="23_62xob"]
+[ext_resource type="Animation" uid="uid://jlnccggyx0yo" path="res://characters/enemies/sargent/resources/animations/knockout_falling_right.tres" id="24_aofah"]
+[ext_resource type="Animation" uid="uid://d2px5a6632hxj" path="res://characters/enemies/sargent/resources/animations/knockout_falling_left.tres" id="25_nmf8s"]
+[ext_resource type="Animation" uid="uid://luobc0a0gb62" path="res://characters/enemies/sargent/resources/animations/knockout_bounce_right.tres" id="26_1j6v3"]
+[ext_resource type="Animation" uid="uid://ctdoqvkt72xrw" path="res://characters/enemies/sargent/resources/animations/knockout_bounce_left.tres" id="27_s0tsg"]
+[ext_resource type="Animation" uid="uid://dyrxvwpqbbmy8" path="res://characters/enemies/sargent/resources/animations/knockout_landed_right.tres" id="28_3sp7u"]
+[ext_resource type="Animation" uid="uid://clp0xmh7ntur7" path="res://characters/enemies/sargent/resources/animations/knockout_landed_left.tres" id="29_mpjem"]
 
 [resource]
 _data = {
@@ -37,6 +47,16 @@ _data = {
 "jump_landing_right": ExtResource("14_1ik25"),
 "jump_rising_left": ExtResource("11_egf3d"),
 "jump_rising_right": ExtResource("10_thk0b"),
+"knockout_bounce_left": ExtResource("27_s0tsg"),
+"knockout_bounce_right": ExtResource("26_1j6v3"),
+"knockout_falling_left": ExtResource("25_nmf8s"),
+"knockout_falling_right": ExtResource("24_aofah"),
+"knockout_landed_left": ExtResource("29_mpjem"),
+"knockout_landed_right": ExtResource("28_3sp7u"),
+"knockout_launch_left": ExtResource("21_7icnx"),
+"knockout_launch_right": ExtResource("20_ko61o"),
+"knockout_rising_left": ExtResource("23_62xob"),
+"knockout_rising_right": ExtResource("22_l4irh"),
 "turn_left": ExtResource("6_8dogx"),
 "turn_right": ExtResource("7_f25eb"),
 "walk_left": ExtResource("5_blqky"),
