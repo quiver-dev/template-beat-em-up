@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://0l8bwbsypux4"]
+[gd_resource type="SpriteFrames" load_steps=58 format=3 uid="uid://0l8bwbsypux4"]
 
 [ext_resource type="Texture2D" uid="uid://c2guwppp2v744" path="res://characters/enemies/sargent/resources/sprites/idle/idle_00.png" id="1_8vii6"]
 [ext_resource type="Texture2D" uid="uid://bpc7bmkwxtvvc" path="res://characters/enemies/sargent/resources/sprites/hurt/injury_01.png" id="1_lq04a"]
@@ -36,6 +36,27 @@
 [ext_resource type="Texture2D" uid="uid://b4l8m8632hpny" path="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_11.png" id="17_hfra4"]
 [ext_resource type="Texture2D" uid="uid://dk171jim3ba26" path="res://characters/enemies/sargent/resources/sprites/knockout/knockout_02.png" id="18_ih7np"]
 [ext_resource type="Texture2D" uid="uid://db458rkyay3yv" path="res://characters/enemies/sargent/resources/sprites/knockout/knockout_05.png" id="19_n014q"]
+[ext_resource type="Texture2D" uid="uid://nrdpiudoubic" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_1/1punch_00.png" id="22_if4i7"]
+[ext_resource type="Texture2D" uid="uid://btbxj73fxnsni" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_1/1punch_01.png" id="23_8nshl"]
+[ext_resource type="Texture2D" uid="uid://cmoredtc4sl1j" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_1/1punch_02.png" id="24_qw8qu"]
+[ext_resource type="Texture2D" uid="uid://cwc673n3s3242" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_1/1punch_03.png" id="25_4c5of"]
+[ext_resource type="Texture2D" uid="uid://cha6i84sews42" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_03.png" id="26_a0kkk"]
+[ext_resource type="Texture2D" uid="uid://xec6ic3486ea" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_04.png" id="27_o6wi1"]
+[ext_resource type="Texture2D" uid="uid://b6im23td2bof1" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_05.png" id="28_ojlcg"]
+[ext_resource type="Texture2D" uid="uid://dfopdfpp4pjwa" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_06.png" id="29_kmxly"]
+[ext_resource type="Texture2D" uid="uid://krf8yeedpbdm" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_07.png" id="30_fi56y"]
+[ext_resource type="Texture2D" uid="uid://d4f8q4g6dof30" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_08.png" id="31_ru045"]
+[ext_resource type="Texture2D" uid="uid://v8s6ttdhan17" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_09.png" id="32_wgvm6"]
+[ext_resource type="Texture2D" uid="uid://dldhvw4f7c8va" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_10.png" id="33_07t7j"]
+[ext_resource type="Texture2D" uid="uid://wg81hwx6qc1f" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_2/1_2punch_11.png" id="34_ffl3h"]
+[ext_resource type="Texture2D" uid="uid://b00qodnxysbv8" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_00.png" id="35_uwu2v"]
+[ext_resource type="Texture2D" uid="uid://bctr73kmn3c63" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_01.png" id="36_3hk51"]
+[ext_resource type="Texture2D" uid="uid://c5uthvsbi0dg6" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_02.png" id="37_m3un6"]
+[ext_resource type="Texture2D" uid="uid://b2j53n411smps" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_03.png" id="38_t2etc"]
+[ext_resource type="Texture2D" uid="uid://6mdsbhlnrcbl" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_04.png" id="39_375x0"]
+[ext_resource type="Texture2D" uid="uid://dq1vdi3m352pi" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_05.png" id="40_cwnj6"]
+[ext_resource type="Texture2D" uid="uid://c0gpu4yugqdvo" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_06.png" id="41_ni6iy"]
+[ext_resource type="Texture2D" uid="uid://0f8w0ae71s0b" path="res://characters/enemies/sargent/resources/sprites/attacks/punch_3/3rd_attack_in_combo_07.png" id="42_0yja4"]
 
 [resource]
 animations = [{
@@ -97,6 +118,21 @@ animations = [{
 "frames": [ExtResource("16_2xuvu")],
 "loop": false,
 "name": &"knockout_rising",
+"speed": 24.0
+}, {
+"frames": [ExtResource("22_if4i7"), ExtResource("22_if4i7"), ExtResource("23_8nshl"), ExtResource("23_8nshl"), ExtResource("24_qw8qu"), ExtResource("24_qw8qu"), ExtResource("25_4c5of"), ExtResource("25_4c5of")],
+"loop": false,
+"name": &"punch_1",
+"speed": 24.0
+}, {
+"frames": [ExtResource("26_a0kkk"), ExtResource("27_o6wi1"), ExtResource("27_o6wi1"), ExtResource("28_ojlcg"), ExtResource("28_ojlcg"), ExtResource("28_ojlcg"), ExtResource("29_kmxly"), ExtResource("30_fi56y"), ExtResource("30_fi56y"), ExtResource("30_fi56y"), ExtResource("31_ru045"), ExtResource("32_wgvm6"), ExtResource("33_07t7j"), ExtResource("33_07t7j"), ExtResource("34_ffl3h")],
+"loop": false,
+"name": &"punch_2",
+"speed": 24.0
+}, {
+"frames": [ExtResource("35_uwu2v"), ExtResource("35_uwu2v"), ExtResource("36_3hk51"), ExtResource("36_3hk51"), ExtResource("36_3hk51"), ExtResource("37_m3un6"), ExtResource("37_m3un6"), ExtResource("38_t2etc"), ExtResource("38_t2etc"), ExtResource("38_t2etc"), ExtResource("38_t2etc"), ExtResource("38_t2etc"), ExtResource("38_t2etc"), ExtResource("38_t2etc"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("39_375x0"), ExtResource("40_cwnj6"), ExtResource("40_cwnj6"), ExtResource("41_ni6iy"), ExtResource("41_ni6iy"), ExtResource("41_ni6iy"), ExtResource("42_0yja4"), ExtResource("42_0yja4"), ExtResource("42_0yja4"), ExtResource("42_0yja4"), ExtResource("42_0yja4")],
+"loop": false,
+"name": &"punch_3",
 "speed": 24.0
 }, {
 "frames": [ExtResource("6_fnbqv"), ExtResource("6_fnbqv"), ExtResource("7_ctkgl"), ExtResource("7_ctkgl"), ExtResource("8_fiivc"), ExtResource("8_fiivc")],

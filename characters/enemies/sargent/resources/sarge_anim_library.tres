@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=30 format=3 uid="uid://clk5d836dt3jx"]
+[gd_resource type="AnimationLibrary" load_steps=36 format=3 uid="uid://clk5d836dt3jx"]
 
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="1_3udoq"]
 [ext_resource type="Animation" uid="uid://cfh0uolp6i26u" path="res://characters/enemies/sargent/resources/animations/idle_right.tres" id="2_k1plb"]
@@ -29,6 +29,12 @@
 [ext_resource type="Animation" uid="uid://ctdoqvkt72xrw" path="res://characters/enemies/sargent/resources/animations/knockout_bounce_left.tres" id="27_s0tsg"]
 [ext_resource type="Animation" uid="uid://dyrxvwpqbbmy8" path="res://characters/enemies/sargent/resources/animations/knockout_landed_right.tres" id="28_3sp7u"]
 [ext_resource type="Animation" uid="uid://clp0xmh7ntur7" path="res://characters/enemies/sargent/resources/animations/knockout_landed_left.tres" id="29_mpjem"]
+[ext_resource type="Animation" uid="uid://bfoxf7ai2xjdc" path="res://characters/enemies/sargent/resources/animations/punch_1_right.tres" id="30_5fxeh"]
+[ext_resource type="Animation" uid="uid://0yi1l5owvckq" path="res://characters/enemies/sargent/resources/animations/punch_1_left.tres" id="31_b3h45"]
+[ext_resource type="Animation" uid="uid://u520vd2pt2k4" path="res://characters/enemies/sargent/resources/animations/punch_2_right.tres" id="32_58q0v"]
+[ext_resource type="Animation" uid="uid://bv0br46e7cdnp" path="res://characters/enemies/sargent/resources/animations/punch_2_left.tres" id="33_dgrwp"]
+[ext_resource type="Animation" uid="uid://54h7am41n8gp" path="res://characters/enemies/sargent/resources/animations/punch_3_right.tres" id="34_8kj0o"]
+[ext_resource type="Animation" uid="uid://cwc6fqa16p5b7" path="res://characters/enemies/sargent/resources/animations/punch_3_left.tres" id="35_bg84b"]
 
 [resource]
 _data = {
@@ -57,6 +63,12 @@ _data = {
 "knockout_launch_right": ExtResource("20_ko61o"),
 "knockout_rising_left": ExtResource("23_62xob"),
 "knockout_rising_right": ExtResource("22_l4irh"),
+"punch_1_left": ExtResource("31_b3h45"),
+"punch_1_right": ExtResource("30_5fxeh"),
+"punch_2_left": ExtResource("33_dgrwp"),
+"punch_2_right": ExtResource("32_58q0v"),
+"punch_3_left": ExtResource("35_bg84b"),
+"punch_3_right": ExtResource("34_8kj0o"),
 "turn_left": ExtResource("6_8dogx"),
 "turn_right": ExtResource("7_f25eb"),
 "walk_left": ExtResource("5_blqky"),
