@@ -1,0 +1,89 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=22 format=3 uid="uid://cnc0xndpg4dlj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kvuas"]
+animation = &"Sarge/walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1per"]
+animation = &"Sarge/walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jfl7e"]
+animation = &"Sarge/walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ffrvh"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_kvuas")
+blend_point_0/pos = Vector2(1, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_j1per")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_jfl7e")
+blend_point_2/pos = Vector2(1, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2apch"]
+animation = &"sarge/idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_skh6i"]
+animation = &"sarge/idle_left"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jjaai"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_2apch")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_skh6i")
+blend_point_1/pos = -1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dl5po"]
+animation = &"sarge/turn_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_srrf6"]
+animation = &"sarge/turn_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_bjkpg"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dl5po")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_srrf6")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0snt"]
+animation = &"sarge/walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y5py6"]
+animation = &"sarge/walk_left"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yhfme"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_l0snt")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_y5py6")
+blend_point_1/pos = -1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4i0fk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rpaxn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jsxhf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_brdjm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jvxxt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vk2r0"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ngl00"]
+states/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_ffrvh")
+states/BlendSpace2D/position = Vector2(260, -17)
+states/idle/node = SubResource("AnimationNodeBlendSpace1D_jjaai")
+states/idle/position = Vector2(521, 117)
+states/turn/node = SubResource("AnimationNodeBlendSpace1D_bjkpg")
+states/turn/position = Vector2(790, 211)
+states/walk/node = SubResource("AnimationNodeBlendSpace1D_yhfme")
+states/walk/position = Vector2(790, 137)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_4i0fk"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_rpaxn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_jsxhf"), "walk", "turn", SubResource("AnimationNodeStateMachineTransition_brdjm"), "turn", "walk", SubResource("AnimationNodeStateMachineTransition_jvxxt"), "Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_vk2r0")]
+graph_offset = Vector2(-191, -89)
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_viqkn"]
+
+[resource]
+nodes/output/position = Vector2(720, 140)
+nodes/state_machine/node = SubResource("AnimationNodeStateMachine_ngl00")
+nodes/state_machine/position = Vector2(260, 80)
+nodes/time_scale/node = SubResource("AnimationNodeTimeScale_viqkn")
+nodes/time_scale/position = Vector2(500, 80)
+node_connections = [&"output", 0, &"time_scale", &"time_scale", 0, &"state_machine"]
