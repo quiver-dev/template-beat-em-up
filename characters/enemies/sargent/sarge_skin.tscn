@@ -1,17 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn1vp8lg8eb48"]
+[gd_scene load_steps=9 format=3 uid="uid://dn1vp8lg8eb48"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_kelmx"]
 [ext_resource type="AnimationLibrary" uid="uid://clk5d836dt3jx" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
 [ext_resource type="Resource" uid="uid://pn2qrl0x1wj8" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_ajvg2"]
 [ext_resource type="SpriteFrames" uid="uid://0l8bwbsypux4" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
+[ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="3_pkfas"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cnc0xndpg4dlj" path="res://characters/enemies/sargent/resources/sarge_animation_tree_root.tres" id="4_i00o2"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mshsr"]
+_data = {
+"RESET": ExtResource("3_pkfas")
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ffbdk"]
 
 [node name="SargeSkin" instance=ExtResource("1_kelmx")]
+_path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("2_ajvg2")
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
-"": ExtResource("2_51vq1")
+"": SubResource("AnimationLibrary_mshsr"),
+"sarge": ExtResource("2_51vq1")
 }
+
+[node name="AnimationTree" parent="." index="1"]
+tree_root = ExtResource("4_i00o2")
+parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_ffbdk")
+parameters/state_machine/attack_1/blend_position = 1
+parameters/state_machine/attack_2/blend_position = 1
+parameters/state_machine/attack_3/blend_position = 1
+parameters/state_machine/die/blend_position = 1
+parameters/state_machine/hurt_high/blend_position = 1
+parameters/state_machine/hurt_mid/blend_position = 1
+parameters/state_machine/idle/blend_position = 1
+parameters/state_machine/jump_falling/blend_position = 1
+parameters/state_machine/jump_impulse/blend_position = 1
+parameters/state_machine/jump_landing/blend_position = 1
+parameters/state_machine/jump_rising/blend_position = 1
+parameters/state_machine/knockout_bounce/blend_position = 1
+parameters/state_machine/knockout_falling/blend_position = 1
+parameters/state_machine/knockout_ground/blend_position = 1
+parameters/state_machine/knockout_launch/blend_position = 1
+parameters/state_machine/knockout_rising/blend_position = 1
+parameters/state_machine/turn/blend_position = 1
+parameters/state_machine/walk/blend_position = 1
+parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -216)

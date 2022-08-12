@@ -31,6 +31,8 @@ signal grab_released
 
 #--- enums ----------------------------------------------------------------------------------------
 
+enum SkinDirection { LEFT = -1, RIGHT = 1}
+
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -45,6 +47,13 @@ var attributes: QuiverAttributes = null:
 				attributes.grabbed_offset = _grabbed_pivot
 			
 			get_tree().set_group(StringName(get_path()), "character_attributes", attributes)
+
+
+@export var skin_direction: SkinDirection = SkinDirection.RIGHT:
+	set(value):
+		skin_direction = value
+		if not _blend_positions.is_empty():
+			_update_blend_directions()
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -77,6 +86,7 @@ var attributes: QuiverAttributes = null:
 
 @export var debug_prints := false
 
+var _blend_positions := []
 var _animation_list := []
 
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
@@ -91,6 +101,7 @@ var _animation_list := []
 
 func _ready() -> void:
 	_find_all_animation_nodes_from()
+	_blend_positions = _get_blend_position_paths_from(_animation_tree)
 	
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
@@ -99,6 +110,7 @@ func _ready() -> void:
 	elif QuiverEditorHelper.is_standalone_run(self):
 		QuiverEditorHelper.add_debug_camera2D_to(self, Vector2(0,-0.8))
 	
+	_update_blend_directions()
 	_animation_tree.active = true
 
 ### -----------------------------------------------------------------------------------------------
@@ -179,6 +191,21 @@ func _set_animation_tree_condition(path: StringName, value: bool) -> void:
 		return
 	
 	_animation_tree.set(path, value)
+
+
+func _update_blend_directions() -> void:
+	for path in _blend_positions:
+		_animation_tree[path] = skin_direction
+
+
+func _get_blend_position_paths_from(animation_tree: AnimationTree) -> Array:
+	var blend_positions = []
+	
+	for property in animation_tree.get_property_list():
+		if property.usage >= PROPERTY_USAGE_DEFAULT and property.name.ends_with("blend_position"):
+			blend_positions.append(property.name)
+	
+	return blend_positions
 
 
 func _find_all_animation_nodes_from(

@@ -217,6 +217,7 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_y5py6")
 blend_point_1/pos = -1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4i0fk"]
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rpaxn"]
 
@@ -312,7 +313,7 @@ states/turn/position = Vector2(532, 174)
 states/walk/node = SubResource("AnimationNodeBlendSpace1D_yhfme")
 states/walk/position = Vector2(532, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_4i0fk"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_rpaxn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_jsxhf"), "walk", "turn", SubResource("AnimationNodeStateMachineTransition_brdjm"), "turn", "walk", SubResource("AnimationNodeStateMachineTransition_jvxxt"), "idle", "attack_1", SubResource("AnimationNodeStateMachineTransition_e5tc5"), "attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_5v8xr"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_vc81v"), "attack_2", "attack_1", SubResource("AnimationNodeStateMachineTransition_5335a"), "attack_2", "attack_3", SubResource("AnimationNodeStateMachineTransition_jcir4"), "attack_3", "attack_2", SubResource("AnimationNodeStateMachineTransition_550k2"), "idle", "hurt_high", SubResource("AnimationNodeStateMachineTransition_45qd8"), "hurt_high", "idle", SubResource("AnimationNodeStateMachineTransition_nm521"), "hurt_high", "hurt_mid", SubResource("AnimationNodeStateMachineTransition_0stfx"), "hurt_mid", "hurt_high", SubResource("AnimationNodeStateMachineTransition_nm8h0"), "idle", "jump_impulse", SubResource("AnimationNodeStateMachineTransition_r25i3"), "jump_impulse", "jump_rising", SubResource("AnimationNodeStateMachineTransition_8eui6"), "jump_falling", "jump_landing", SubResource("AnimationNodeStateMachineTransition_dvl7e"), "jump_landing", "idle", SubResource("AnimationNodeStateMachineTransition_midsu"), "jump_falling", "jump_rising", SubResource("AnimationNodeStateMachineTransition_xm7hj"), "idle", "knockout_launch", SubResource("AnimationNodeStateMachineTransition_60wxd"), "knockout_launch", "knockout_rising", SubResource("AnimationNodeStateMachineTransition_7tcf4"), "knockout_rising", "knockout_falling", SubResource("AnimationNodeStateMachineTransition_furvy"), "knockout_falling", "knockout_rising", SubResource("AnimationNodeStateMachineTransition_tk8fp"), "knockout_falling", "knockout_bounce", SubResource("AnimationNodeStateMachineTransition_2qt14"), "knockout_bounce", "knockout_rising", SubResource("AnimationNodeStateMachineTransition_pbyq1"), "knockout_bounce", "knockout_ground", SubResource("AnimationNodeStateMachineTransition_k4m5t"), "knockout_ground", "idle", SubResource("AnimationNodeStateMachineTransition_yak6i"), "knockout_ground", "die", SubResource("AnimationNodeStateMachineTransition_38p81")]
-graph_offset = Vector2(-157, -185)
+graph_offset = Vector2(-225, -4)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_viqkn"]
 
