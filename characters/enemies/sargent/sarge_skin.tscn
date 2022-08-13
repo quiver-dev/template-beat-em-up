@@ -69,7 +69,7 @@ script = ExtResource("7_7ybvf")
 character_type = 1
 metadata/collision_type = "enemy_hurt_box"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/QuiverHurtBox" index="0"]
+[node name="HurtArea" type="CollisionShape2D" parent="AnimatedSprite2D/QuiverHurtBox" index="0"]
 modulate = Color(0, 0.0666667, 0.701961, 1)
 position = Vector2(-10, 7)
 shape = SubResource("RectangleShape2D_jrxa7")
