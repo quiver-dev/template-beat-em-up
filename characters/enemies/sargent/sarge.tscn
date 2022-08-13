@@ -1,0 +1,159 @@
+[gd_scene load_steps=23 format=3 uid="uid://dstj8nbboruvo"]
+
+[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_32xd3"]
+[ext_resource type="Resource" uid="uid://pn2qrl0x1wj8" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_3db7i"]
+[ext_resource type="PackedScene" uid="uid://dn1vp8lg8eb48" path="res://characters/enemies/sargent/sarge_skin.tscn" id="3_wjp8o"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_302rx"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_k2im7"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="6_3jnde"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_d1bnb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="7_lmpvv"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="7_t2y4d"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd" id="8_xwijw"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="9_vd63n"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="10_38i3y"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="11_ekbeb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="13_jkpxb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="14_qqh5g"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="15_ab5u7"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="16_evedi"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="17_iogx1"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="18_ejy8c"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="19_0se75"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="20_w7t6v"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8yk3v"]
+radius = 18.0
+height = 220.0
+
+[node name="Sarge" instance=ExtResource("1_32xd3")]
+_attributes = ExtResource("2_3db7i")
+_path_skin = NodePath("SargeSkin")
+
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(-38, -17)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8yk3v")
+metadata/collision_type = "default"
+
+[node name="SargeSkin" parent="." index="1" instance=ExtResource("3_wjp8o")]
+
+[node name="StateMachine" parent="." index="2"]
+initial_state = NodePath("Ground/Move/IdleAi")
+
+[node name="Ground" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("4_302rx")
+path_hurt = "Ground/Hurt"
+path_knockout = "Air/Knockout/Launch"
+path_grabbed = "Ground/Grabbed"
+
+[node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
+script = ExtResource("5_k2im7")
+path_jump_state = "Air/Jump/Impulse"
+path_attack_state = "Ground/Attack1"
+
+[node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
+script = ExtResource("6_d1bnb")
+skin_state = &"walk"
+path_next_state = "Ground/Move/IdleAi"
+
+[node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
+script = ExtResource("7_t2y4d")
+skin_state = &"idle"
+
+[node name="Grabbed" type="Node" parent="StateMachine/Ground" index="1"]
+script = ExtResource("7_lmpvv")
+escape_delay = 5.0
+skin_state = &"grabbed"
+path_next_state = "Air/Jump/MidAir"
+
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="2"]
+script = ExtResource("6_3jnde")
+skin_state_mid = &"hurt_high"
+skin_state_high = &"hurt_mid"
+path_idle_state = "Ground/Move/IdleAi"
+
+[node name="Recovery" type="Node" parent="StateMachine/Ground" index="3"]
+script = ExtResource("10_38i3y")
+skin_state = &"knockout_ground"
+path_idle_state = "Ground/Move/IdleAi"
+
+[node name="Attack1" type="Node" parent="StateMachine/Ground" index="4"]
+script = ExtResource("11_ekbeb")
+skin_state = &"attack_1"
+can_combo = true
+path_combo_state = "Ground/Attack2"
+path_next_state = "Ground/Move/IdleAi"
+should_enter_parent = true
+should_exit_parent = true
+
+[node name="Attack2" type="Node" parent="StateMachine/Ground" index="5"]
+script = ExtResource("11_ekbeb")
+skin_state = &"attack_2"
+can_combo = true
+path_combo_state = "Ground/Attack3"
+path_next_state = "Ground/Move/IdleAi"
+should_enter_parent = true
+should_exit_parent = true
+
+[node name="Attack3" type="Node" parent="StateMachine/Ground" index="6"]
+script = ExtResource("11_ekbeb")
+skin_state = &"attack_3"
+can_combo = false
+path_next_state = "Ground/Move/IdleAi"
+should_enter_parent = true
+should_exit_parent = true
+
+[node name="Air" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("9_vd63n")
+_debug_fall_modifier = 2.5
+
+[node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
+script = ExtResource("13_jkpxb")
+path_landing = "Air/Jump/Landing"
+path_knockout = "Air/Knockout/Launch"
+
+[node name="Impulse" type="Node" parent="StateMachine/Air/Jump" index="0"]
+script = ExtResource("14_qqh5g")
+skin_state = &"jump_impulse"
+path_next_state = "Air/Jump/MidAir"
+
+[node name="MidAir" type="Node" parent="StateMachine/Air/Jump" index="1"]
+script = ExtResource("15_ab5u7")
+skin_state_rising = &"jump_rising"
+skin_state_falling = &"jump_falling"
+can_attack = false
+
+[node name="Landing" type="Node" parent="StateMachine/Air/Jump" index="2"]
+script = ExtResource("16_evedi")
+skin_state = &"jump_landing"
+path_idle = "Ground/Move/IdleAi"
+path_walk = "Ground/Move/Follow"
+
+[node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
+script = ExtResource("17_iogx1")
+path_bounce = "Air/Knockout/Bounce"
+_path_launch = "Air/Knockout/Launch"
+
+[node name="Launch" type="Node" parent="StateMachine/Air/Knockout" index="0"]
+script = ExtResource("18_ejy8c")
+skin_state_launch = &"knockout_launch"
+skin_state_rising = &"knockout_rising"
+path_next_state = "Air/Knockout/MidAir"
+
+[node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
+script = ExtResource("19_0se75")
+skin_state_rising = &"knockout_rising"
+skin_state_falling = &"knockout_falling"
+
+[node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
+script = ExtResource("20_w7t6v")
+skin_state = &"knockout_bounce"
+path_air_mid_air = "Air/Knockout/MidAir"
+path_ground_recovery = "Ground/Recovery"
+path_die = "Die"
+
+[node name="Die" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("8_xwijw")
+skin_state = &"die"
