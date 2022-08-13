@@ -150,3 +150,17 @@ tracks/11/keys = {
 "update": 1,
 "values": [0.0]
 }
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AnimatedSprite2D/QuiverHurtBox")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_disable_wall_bounce_collisions"
+}]
+}
