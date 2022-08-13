@@ -257,16 +257,21 @@ func _handle_animation_node(
 	
 	var node_class := node.get_class()
 	match node_class:
-		"AnimationNodeAnimation":
+		"AnimationNodeAnimation", "AnimationNodeBlendSpace1D", \
+		"AnimationNodeBlendSpace2D", "AnimationNodeBlendTree":
 			var animation_name := _filter_main_playback_path(property_name, property_path) 
 			_animation_list.append(animation_name)
-		_:
-			if not ignore_groups and node_class == "AnimationNodeStateMachine":
+		"AnimationNodeStateMachine":
+			if not ignore_groups :
 				var animation_name := _filter_main_playback_path(property_name, property_path) 
 				_animation_list.append(animation_name)
+			
 			var parameter_name = _get_actual_parameter_name(property_name)
 			property_path = property_path.plus_file(parameter_name)
 			_find_all_animation_nodes_from(node, property_path)
+		_:
+			if node is AnimationRootNode:
+				push_error("Unknown animation node: %s"%[node_class])
 
 
 func _filter_main_playback_path(animation_name: String, path: String) -> StringName:
