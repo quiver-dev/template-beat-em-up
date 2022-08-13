@@ -62,9 +62,6 @@ var attributes: QuiverAttributes = null:
 ## from outside of the scene, to point to an external [AnimationTree] for example.
 @export_node_path(AnimationTree) var _path_animation_tree := ^"AnimationTree"
 
-@export_node_path(Position2D) var _path_grab_pivot := ^"Positions/GrabPivot"
-@export_node_path(Position2D) var _path_grabbed_pivot := ^"Positions/GrabbedPivot"
-
 ## Path to [AnimationNodeStateMachinePlayback]. Usually I create an [AnimationNodeBlendTree] as the
 ## root for the [AnimationTree] and the [AnimationNodeStateMachine] inside it, so I can do anything 
 ## with the output of the state machine playback, like changing the time scale for example. 
@@ -86,13 +83,25 @@ var attributes: QuiverAttributes = null:
 
 @export var debug_prints := false
 
+# Grab Settings
+var _has_grab := true:
+	set(value):
+		_has_grab = value
+		notify_property_list_changed()
+var _path_grab_pivot := ^"Positions/GrabPivot"
+var _has_grabbed := true:
+	set(value):
+		_has_grabbed = value
+		notify_property_list_changed()
+var _path_grabbed_pivot := ^"Positions/GrabbedPivot"
+
 var _blend_positions := []
 var _animation_list := []
 
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
 @onready var _playback := _animation_tree.get(_path_playback) as AnimationNodeStateMachinePlayback
-@onready var _grab_pivot := get_node(_path_grab_pivot) as Position2D
-@onready var _grabbed_pivot := get_node(_path_grabbed_pivot) as Position2D
+@onready var _grab_pivot := get_node(_path_grab_pivot) as Position2D if _has_grab else null
+@onready var _grabbed_pivot := get_node(_path_grabbed_pivot) as Position2D if _has_grabbed else null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -139,14 +148,15 @@ func end_of_input_frames() -> void:
 ## Ese this method in character's grab animations to emit the signal [signal grab_frame_reached].
 ## The variable [member _path_grab_pivot] must be correctly set for this to work.
 func grab_notify() -> void:
-	if not is_instance_valid(_grab_pivot) and not _path_grab_pivot.is_empty():
-		_grab_pivot = get_node_or_null(_path_grab_pivot)
-	
-	if not is_instance_valid(_grab_pivot):
-		push_error("Could not get grab pivot Position 2D from path: %s"%[_path_grab_pivot])
-		return
-	
-	grab_frame_reached.emit(_grab_pivot)
+	if _has_grab:
+		if not is_instance_valid(_grab_pivot) and not _path_grab_pivot.is_empty():
+			_grab_pivot = get_node_or_null(_path_grab_pivot)
+		
+		if not is_instance_valid(_grab_pivot):
+			push_error("Could not get grab pivot Position 2D from path: %s"%[_path_grab_pivot])
+			return
+		
+		grab_frame_reached.emit(_grab_pivot)
 
 
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
@@ -272,5 +282,101 @@ func _filter_main_playback_path(animation_name: String, path: String) -> StringN
 func _get_actual_parameter_name(property_name: String) -> String:
 	var parameter_name = property_name.split("/")[1]
 	return parameter_name
+
+### -----------------------------------------------------------------------------------------------
+
+###################################################################################################
+# Custom Inspector ################################################################################
+###################################################################################################
+
+const CUSTOM_PROPERTIES = {
+	"Grab Options": {
+		backing_field = "",
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_CATEGORY,
+	},
+	"has_grab": {
+		backing_field = "_has_grab",
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = "",
+	},
+	"path_grab_pivot": {
+		backing_field = "_path_grab_pivot",
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
+		hint_string = "Position2D",
+	},
+	"has_grabbed": {
+		backing_field = "_has_grabbed",
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = "",
+	},
+	"path_grabbed_pivot": {
+		backing_field = "_path_grabbed_pivot",
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
+		hint_string = "Position2D",
+	},
+#	"": {
+#		backing_field = "",
+#		name = "",
+#		type = TYPE_NIL,
+#		usage = usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+#		hint = PROPERTY_HINT_NONE,
+#		hint_string = "",
+#	},
+}
+
+### Custom Inspector built in functions -----------------------------------------------------------
+
+func _get_property_list() -> Array:
+	var properties: = []
+	
+	for key in CUSTOM_PROPERTIES:
+		var add_property := true
+		var dict: Dictionary = CUSTOM_PROPERTIES[key].duplicate()
+		if not dict.has("name"):
+			dict.name = key
+		
+		match key:
+			"path_grab_pivot":
+				if not _has_grab:
+					dict.usage = PROPERTY_USAGE_STORAGE
+				else:
+					dict.usage = CUSTOM_PROPERTIES[key].usage
+			"path_grabbed_pivot":
+				if not _has_grabbed:
+					dict.usage = PROPERTY_USAGE_STORAGE
+				else:
+					dict.usage = CUSTOM_PROPERTIES[key].usage
+		
+		if add_property:
+			properties.append(dict)
+	
+	return properties
+
+
+func _get(property: StringName):
+	var value
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	
+	return value
+
+
+func _set(property: StringName, value) -> bool:
+	var has_handled: = false
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+		has_handled = true
+
+	return has_handled
 
 ### -----------------------------------------------------------------------------------------------
