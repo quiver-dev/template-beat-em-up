@@ -20,7 +20,7 @@
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vwjju"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
-size = Vector2(149, 378.5)
+size = Vector2(142.5, 465.535)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51nq5"]
 size = Vector2(149, 353)
@@ -45,12 +45,16 @@ position = Vector2(0, 3)
 script = ExtResource("2_jvmk2")
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
+has_grab = true
+path_grab_pivot = NodePath("Positions/GrabPivot")
+has_grabbed = true
+path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 metadata/_edit_horizontal_guides_ = [12.0, -233.0]
 metadata/_edit_vertical_guides_ = [154.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
-"": ExtResource("3_uxodg")
+"Chad": ExtResource("3_uxodg")
 }
 
 [node name="AnimationTree" parent="." index="1"]
@@ -60,9 +64,9 @@ parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeSt
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
-position = Vector2(0, -190)
+position = Vector2(18, -231)
 frames = ExtResource("4_l5bf7")
-animation = &"idle"
+animation = &"grabbed"
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
 position = Vector2(5, 22)
@@ -74,7 +78,8 @@ metadata/collision_type = "player_hurt_box"
 
 [node name="HurtShape" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox" index="0"]
 modulate = Color(0, 0.0666667, 0.701961, 1)
-position = Vector2(0, -12.75)
+position = Vector2(-13.25, -20)
+rotation = -0.377976
 shape = SubResource("RectangleShape2D_75u0j")
 metadata/collision_type = "player_hurt_box"
 
@@ -128,7 +133,6 @@ animation = &"knockout_launch"
 flip_h = true
 
 [node name="GrabbedPivot" type="Position2D" parent="Positions" index="2"]
-visible = false
 position = Vector2(-26, -356)
 z_index = 99
 

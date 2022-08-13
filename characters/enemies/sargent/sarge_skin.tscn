@@ -10,8 +10,8 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="8_kuwvm"]
 [ext_resource type="Resource" uid="uid://7jmw01vum05h" path="res://characters/enemies/sargent/resources/attacks/punch_1_attack_data.tres" id="9_ccdvn"]
 [ext_resource type="Resource" uid="uid://d200oya1xbpq" path="res://characters/enemies/sargent/resources/attacks/punch_2_attack_data.tres" id="10_dsxar"]
-[ext_resource type="Resource" path="res://characters/enemies/sargent/resources/attacks/dash_attack_data.tres" id="11_vgfqt"]
-[ext_resource type="Resource" path="res://characters/enemies/sargent/resources/attacks/punch_3_attack_data.tres" id="12_m2xtq"]
+[ext_resource type="Resource" uid="uid://1bul8w06kj1u" path="res://characters/enemies/sargent/resources/attacks/dash_attack_data.tres" id="11_vgfqt"]
+[ext_resource type="Resource" uid="uid://dx8erxlmvq4u8" path="res://characters/enemies/sargent/resources/attacks/punch_3_attack_data.tres" id="12_m2xtq"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mshsr"]
 _data = {
@@ -40,6 +40,10 @@ size = Vector2(285, 86.436)
 [node name="SargeSkin" instance=ExtResource("1_kelmx")]
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("2_ajvg2")
+has_grab = false
+path_grab_pivot = NodePath("Positions/GrabPivot")
+has_grabbed = true
+path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -94,6 +98,10 @@ metadata/collision_type = "enemy_hurt_box"
 
 [node name="Positions" type="Node2D" parent="." index="3"]
 
+[node name="GrabbedPivot" type="Position2D" parent="Positions" index="0"]
+position = Vector2(-14, -363)
+gizmo_extents = 25.0
+
 [node name="Attack" type="Node2D" parent="." index="4"]
 
 [node name="Punch1" type="Area2D" parent="Attack" index="0"]
@@ -145,7 +153,6 @@ visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(57.5604, -243.126)
 rotation = -0.548782
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_cm2p1")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
