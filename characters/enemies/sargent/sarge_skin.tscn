@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dn1vp8lg8eb48"]
+[gd_scene load_steps=21 format=3 uid="uid://dn1vp8lg8eb48"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_kelmx"]
 [ext_resource type="AnimationLibrary" uid="uid://clk5d836dt3jx" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
@@ -7,6 +7,11 @@
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="3_pkfas"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cnc0xndpg4dlj" path="res://characters/enemies/sargent/resources/sarge_animation_tree_root.tres" id="4_i00o2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="7_7ybvf"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="8_kuwvm"]
+[ext_resource type="Resource" uid="uid://7jmw01vum05h" path="res://characters/enemies/sargent/resources/attacks/punch_1_attack_data.tres" id="9_ccdvn"]
+[ext_resource type="Resource" uid="uid://d200oya1xbpq" path="res://characters/enemies/sargent/resources/attacks/punch_2_attack_data.tres" id="10_dsxar"]
+[ext_resource type="Resource" path="res://characters/enemies/sargent/resources/attacks/dash_attack_data.tres" id="11_vgfqt"]
+[ext_resource type="Resource" path="res://characters/enemies/sargent/resources/attacks/punch_3_attack_data.tres" id="12_m2xtq"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mshsr"]
 _data = {
@@ -19,6 +24,18 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrxa7"]
 size = Vector2(210, 414)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiudb"]
+size = Vector2(195, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_580mb"]
+size = Vector2(314, 98.7822)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cm2p1"]
+size = Vector2(159.327, 402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrdn4"]
+size = Vector2(285, 86.436)
 
 [node name="SargeSkin" instance=ExtResource("1_kelmx")]
 _path_playback = "parameters/state_machine/playback"
@@ -78,3 +95,75 @@ metadata/collision_type = "enemy_hurt_box"
 [node name="Positions" type="Node2D" parent="." index="3"]
 
 [node name="Attack" type="Node2D" parent="." index="4"]
+
+[node name="Punch1" type="Area2D" parent="Attack" index="0"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("9_ccdvn")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch1Area" type="CollisionShape2D" parent="Attack/Punch1" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(185.5, -338)
+shape = SubResource("RectangleShape2D_kiudb")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch2" type="Area2D" parent="Attack" index="1"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("10_dsxar")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch2Area" type="CollisionShape2D" parent="Attack/Punch2" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(253.534, -302.218)
+rotation = 0.209387
+shape = SubResource("RectangleShape2D_580mb")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="DashAttack" type="Area2D" parent="Attack" index="2"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("11_vgfqt")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="DashArea" type="CollisionShape2D" parent="Attack/DashAttack" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(57.5604, -243.126)
+rotation = -0.548782
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_cm2p1")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch3" type="Area2D" parent="Attack" index="3"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("12_m2xtq")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch3Area" type="CollisionShape2D" parent="Attack/Punch3" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(234.5, -302.218)
+rotation = 0.20944
+shape = SubResource("RectangleShape2D_jrdn4")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
