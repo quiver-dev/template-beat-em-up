@@ -37,6 +37,7 @@ parameters/state_machine/attack_1/blend_position = 1
 parameters/state_machine/attack_2/blend_position = 1
 parameters/state_machine/attack_3/blend_position = 1
 parameters/state_machine/die/blend_position = 1
+parameters/state_machine/grabbed/blend_position = 0
 parameters/state_machine/hurt_high/blend_position = 1
 parameters/state_machine/hurt_mid/blend_position = 1
 parameters/state_machine/idle/blend_position = 1
@@ -74,14 +75,6 @@ position = Vector2(-10, 7)
 shape = SubResource("RectangleShape2D_jrxa7")
 metadata/collision_type = "enemy_hurt_box"
 
-[node name="OnionGhost" type="AnimatedSprite2D" parent="." index="3"]
-visible = false
-modulate = Color(0.333333, 0.423529, 1, 0.45098)
-position = Vector2(0, -216)
-frames = ExtResource("3_b0w6d")
-animation = &"idle"
-flip_h = true
+[node name="Positions" type="Node2D" parent="." index="3"]
 
-[node name="Positions" type="Node2D" parent="." index="4"]
-
-[node name="Attack" type="Node2D" parent="." index="5"]
+[node name="Attack" type="Node2D" parent="." index="4"]
