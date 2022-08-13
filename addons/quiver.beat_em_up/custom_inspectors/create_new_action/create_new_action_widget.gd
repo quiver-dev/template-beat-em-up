@@ -105,7 +105,12 @@ func _on_option_button_item_selected(index: int) -> void:
 	if index > 0:
 		_confirm.disabled = false
 		_selected_script = _options.get_item_metadata(index)
-		_selected_script_name = _options.get_item_text(index).capitalize().replace(" ", "")
+		_selected_script_name = (
+				_options.get_item_text(index)
+					.capitalize()
+					.replace(" ", "")
+					.replace("QuiverAction", "")
+		)
 	else:
 		_confirm.disabled = true
 
@@ -113,6 +118,7 @@ func _on_option_button_item_selected(index: int) -> void:
 func _on_confirm_pressed() -> void:
 	var node = load(_selected_script).new()
 	node.name = _selected_script_name
+	
 	add_node_to.emit(node, selected_node)
 
 ### -----------------------------------------------------------------------------------------------
