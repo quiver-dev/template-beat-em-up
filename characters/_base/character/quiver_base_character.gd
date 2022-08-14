@@ -25,7 +25,18 @@ var attributes: QuiverAttributes = null:
 	set(value):
 		attributes = value
 		if is_instance_valid(_skin):
+			# I need to add it directly to the skin because the skin is a scene of it's own,
+			# so it's "owner path" is different than the character's. Also because I need to 
+			# animate some of the attributes properties so it needs to be exported to 
+			# the editor anyway.
 			_skin.attributes = attributes
+		
+		if not Engine.is_editor_hint():
+			if not is_inside_tree():
+				await ready
+			
+			# But other cases, like the AI State machine can benefit from this.
+			get_tree().set_group(StringName(get_path()), "character_attributes", attributes)
 
 var is_on_air := false
 
