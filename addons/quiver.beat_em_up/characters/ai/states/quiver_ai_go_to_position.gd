@@ -50,19 +50,15 @@ func enter(msg: = {}) -> void:
 
 func exit() -> void:
 	super()
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _target_reached() -> void:
-	state_finished.emit()
-
-
 func _on_actions_transitioned(_path_state: String) -> void:
-	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
-	_target_reached()
+	state_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

@@ -64,16 +64,6 @@ func physics_process(delta: float) -> void:
 
 func exit() -> void:
 	super()
-	
-	for child in get_children():
-		var state = child as QuiverState
-		if state == null:
-			continue
-		
-		QuiverEditorHelper.disconnect_between(
-				state.state_finished, _on_current_state_state_finished
-		)
-	
 	_current_state = null
 
 
@@ -84,6 +74,20 @@ func get_list_of_ai_states() -> Array:
 	
 	list = _state_machine.get_list_of_ai_states()
 	return list
+
+
+func interrupt_state() -> void:
+	for child in get_children():
+		var state = child as QuiverState
+		if state == null:
+			continue
+		
+		QuiverEditorHelper.disconnect_between(
+				state.state_finished, _on_current_state_state_finished
+		)
+		
+		if state.has_method("interrupt_state"):
+			state.interrupt_state()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -97,9 +101,6 @@ func _enter_child_state(index: int) -> void:
 
 
 func _on_current_state_state_finished() -> void:
-	if not _is_active_state():
-		return
-	
 	_current_state.exit()
 	QuiverEditorHelper.disconnect_between(
 			_current_state.state_finished, _on_current_state_state_finished
@@ -110,10 +111,5 @@ func _on_current_state_state_finished() -> void:
 		_enter_child_state(next_index)
 	else:
 		state_finished.emit()
-
-
-func _is_active_state() -> bool:
-	var value := (_state_machine.state.get_path() as String).begins_with(get_path())
-	return value
 
 ### -----------------------------------------------------------------------------------------------

@@ -18,8 +18,6 @@ extends QuiverAiState
 var _state_path := ""
 var _message := {}
 
-var _possible_states := []
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -38,6 +36,7 @@ func enter(msg: = {}) -> void:
 
 func exit() -> void:
 	super()
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -45,13 +44,7 @@ func exit() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_actions_transitioned(_p_state_path: NodePath) -> void:
-	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 	state_finished.emit()
-
-
-func _on_owner_ready() -> void:
-	super()
-	_possible_states = _actions.get_leaf_nodes_path_list()
 
 ### -----------------------------------------------------------------------------------------------
 
