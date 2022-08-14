@@ -23,18 +23,23 @@ _data = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_s3dlm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrxa7"]
+resource_local_to_scene = true
 size = Vector2(210, 414)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiudb"]
+resource_local_to_scene = true
 size = Vector2(195, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_580mb"]
+resource_local_to_scene = true
 size = Vector2(314, 98.7822)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm2p1"]
+resource_local_to_scene = true
 size = Vector2(159.327, 402)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrdn4"]
+resource_local_to_scene = true
 size = Vector2(285, 86.436)
 
 [node name="SargeSkin" instance=ExtResource("1_kelmx")]
