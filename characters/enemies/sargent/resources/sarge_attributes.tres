@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_s4idg")
 display_name = "Sargent"
-health_max = 50
+health_max = 50.0
 speed_max = 400
 air_control = 0.6
 jump_force = -1200
