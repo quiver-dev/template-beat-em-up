@@ -27,7 +27,8 @@ signal attack_input_frames_finished
 ## connect and link character who is grabbing to grabbed character
 signal grab_frame_reached(ref_position: Position2D)
 
-signal grab_released
+signal attack_movement_started(direction: Vector2, speed: float)
+signal attack_movement_ended
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -169,6 +170,14 @@ func end_of_skin_animation(_animation_name := "") -> void:
 		return
 	
 	skin_animation_finished.emit()
+
+
+func start_attack_movement(p_direction: Vector2, p_speed: float) -> void:
+	attack_movement_started.emit(p_direction, p_speed)
+
+
+func stop_attack_movement() -> void:
+	attack_movement_ended.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

@@ -11,9 +11,15 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.41667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.25, 1.41667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [Vector2(-1, 0), 900.0],
+"method": &"start_attack_movement"
+}, {
+"args": [],
+"method": &"stop_attack_movement"
+}, {
 "args": ["punch_3_left"],
 "method": &"end_of_skin_animation"
 }]
