@@ -88,6 +88,9 @@ func interrupt_state() -> void:
 		
 		if state.has_method("interrupt_state"):
 			state.interrupt_state()
+		
+		if state == _current_state:
+			_current_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
