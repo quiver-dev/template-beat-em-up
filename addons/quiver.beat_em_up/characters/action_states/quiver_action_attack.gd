@@ -41,6 +41,7 @@ var _should_enter_parent := true
 var _should_exit_parent := true
 
 var _should_combo := false
+var _auto_combo_amount := 0
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -72,8 +73,9 @@ func enter(msg: = {}) -> void:
 	if _should_enter_parent:
 		get_parent().enter(msg)
 	
-	if msg.has("auto_combo") and msg.auto_combo and _can_combo:
+	if msg.has("auto_combo") and msg.auto_combo > 0 and _can_combo:
 		_should_combo = true
+		_auto_combo_amount = msg.auto_combo
 	else:
 		_should_combo = false
 		_state_machine.set_process_unhandled_input(_can_combo)
@@ -90,6 +92,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 
 func exit() -> void:
+	_auto_combo_amount = 0
 	_state_machine.set_process_unhandled_input(true)
 	super()
 	if _should_exit_parent:
@@ -132,7 +135,11 @@ func _disconnect_signals() -> void:
 func _on_attack_input_frames_finished() -> void:
 	_state_machine.set_process_unhandled_input(false)
 	if _should_combo:
-		_state_machine.transition_to(_path_combo_state)
+		_auto_combo_amount -= 1
+		if _auto_combo_amount > 0:
+			_state_machine.transition_to(_path_combo_state, {auto_combo = _auto_combo_amount})
+		else:
+			_state_machine.transition_to(_path_combo_state)
 
 
 ## Connect the signal that marks the end of the attack to this function.

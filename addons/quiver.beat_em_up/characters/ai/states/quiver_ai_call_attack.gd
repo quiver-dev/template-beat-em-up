@@ -35,7 +35,8 @@ var _transitions_count := 0
 func enter(msg: = {}) -> void:
 	super(msg)
 	_transitions_count = _combo_hits_amount
-	_actions.transition_to(_attack_state_path, { auto_combo = _combo_hits_amount })
+	# the number of auto "combo" transitions is the number of combo hits - 1
+	_actions.transition_to(_attack_state_path, { auto_combo = _combo_hits_amount - 1 })
 	QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 
 
@@ -43,6 +44,11 @@ func exit() -> void:
 	super()
 	_transitions_count = 0
 	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
+
+
+func interrupt_state() -> void:
+	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
+	state_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -67,7 +73,7 @@ func _on_actions_transitioned(p_state_path: NodePath) -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"Call Action":{
+	"Call Attack":{
 		type = TYPE_NIL,
 		usage = PROPERTY_USAGE_CATEGORY,
 		hint = PROPERTY_HINT_NONE,
@@ -85,6 +91,13 @@ const CUSTOM_PROPERTIES = {
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_RANGE,
 		hint_string = "1,2,1,or_greater",
+	},
+	"fallback_state_path": {
+		backing_field = "_fallback_state_path",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
 	},
 #	"": {
 #		backing_field = "",
