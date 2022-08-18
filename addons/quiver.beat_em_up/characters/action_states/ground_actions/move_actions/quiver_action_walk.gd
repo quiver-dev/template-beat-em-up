@@ -92,7 +92,7 @@ func exit() -> void:
 func _handle_facing_direction() -> void:
 	var facing_direction :int = sign(_move_state._direction.x)
 	if facing_direction != 0:
-		_skin.scale.x = facing_direction
+		_skin.skin_direction = facing_direction
 
 
 func _connect_signals() -> void:

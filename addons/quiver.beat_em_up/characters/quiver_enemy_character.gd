@@ -22,6 +22,8 @@ extends QuiverCharacter
 			_ai_state_machine = get_node_or_null(_path_ai_state_machine) as QuiverAiStateMachine
 		update_configuration_warnings()
 
+@export var _debug_draw_lane_limits := false
+
 @onready var _ai_state_machine := get_node_or_null(_path_ai_state_machine) as QuiverAiStateMachine
 
 ### -----------------------------------------------------------------------------------------------
@@ -37,6 +39,27 @@ func _ready() -> void:
 	attributes = attributes.duplicate()
 	attributes.reset()
 	super()
+
+
+func _draw() -> void:
+	if _debug_draw_lane_limits:
+		var lane_limits = attributes.get_hit_lane_limits()
+		var half_lane_size = (lane_limits.lower_limit - lane_limits.upper_limit)/2.0
+		draw_dashed_line(
+				Vector2(-500.0, -half_lane_size),
+				Vector2(500.0, -half_lane_size),
+				Color.BROWN,
+				2.0
+		)
+		draw_dashed_line(
+				Vector2(-500.0, half_lane_size),
+				Vector2(500.0, half_lane_size),
+				Color.DARK_ORANGE,
+				2.0)
+
+
+func _process(delta: float) -> void:
+	update()
 
 
 func _get_configuration_warnings() -> PackedStringArray:

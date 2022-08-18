@@ -70,11 +70,11 @@ func enter(msg: = {}) -> void:
 	var next_position = _skin.get_suplex_landing_position()
 	
 	# I Have to wait two frames for the animation to update properly before changing position.
-	await  get_tree().process_frame
-	await  get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
 	
 	_character.global_position = next_position
-	_friction_direction = sign(_skin.scale.x)
+	_friction_direction = sign(_skin.skin_direction)
 	_slide_direction = _friction_direction * -1
 	_character.velocity.x += SLIDE_IMPULSE * _slide_direction
 
