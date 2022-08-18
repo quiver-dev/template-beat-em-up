@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
-[ext_resource type="AnimationLibrary" uid="uid://c6fsleghrve54" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
+[ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmm0a2tnko2g6" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://c8j7ycyt3mx65" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 [ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="4_vrxwg"]
@@ -54,8 +54,8 @@ has_grab = true
 path_grab_pivot = NodePath("Positions/GrabPivot")
 has_grabbed = true
 path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
-metadata/_edit_horizontal_guides_ = [12.0, -233.0]
-metadata/_edit_vertical_guides_ = [154.0]
+metadata/_edit_vertical_guides_ = [-155.0]
+metadata/_edit_horizontal_guides_ = [10.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 playback_process_mode = 0
@@ -75,7 +75,6 @@ parameters/time_scale/scale = 1.0
 position = Vector2(0, -190)
 frames = ExtResource("4_l5bf7")
 animation = &"idle"
-flip_h = true
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
 position = Vector2(5, 22)

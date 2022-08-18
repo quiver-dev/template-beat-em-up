@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=29 format=3 uid="uid://bl7wdbfxh6gm0"]
+[gd_resource type="AnimationLibrary" load_steps=57 format=3 uid="uid://bec4th23gqkxd"]
 
 [ext_resource type="Animation" uid="uid://btquhprad5iru" path="res://characters/playable/chad/resources/animations/air_attack_right.tres" id="1_jgcla"]
 [ext_resource type="Animation" uid="uid://cog1iucyx4hyl" path="res://characters/playable/chad/resources/animations/attack1_right.tres" id="2_qtktm"]
@@ -8,10 +8,11 @@
 [ext_resource type="Animation" uid="uid://cgeixqskw28xm" path="res://characters/playable/chad/resources/animations/getting_up_right.tres" id="6_xtauq"]
 [ext_resource type="Animation" uid="uid://qwnmeb6powgs" path="res://characters/playable/chad/resources/animations/grab_right.tres" id="7_grais"]
 [ext_resource type="Animation" uid="uid://cnnbw7sdbm3hs" path="res://characters/playable/chad/resources/animations/grabbed_right.tres" id="10_5ty8j"]
-[ext_resource type="Animation" uid="uid://ti8trwf2fogq" path="res://characters/playable/chad/resources/animations/grab_release.tres" id="10_j3acn"]
 [ext_resource type="Animation" uid="uid://crqm6giy4n8gj" path="res://characters/playable/chad/resources/animations/hurt_high_right.tres" id="11_yimt6"]
 [ext_resource type="Animation" uid="uid://n1iiq1shupv3" path="res://characters/playable/chad/resources/animations/hurt_mid_right.tres" id="12_5xeon"]
+[ext_resource type="Animation" uid="uid://cqnai3hk58q2x" path="res://characters/playable/chad/resources/animations/grab_idle_right.tres" id="12_um3us"]
 [ext_resource type="Animation" uid="uid://bas87watx67xp" path="res://characters/playable/chad/resources/animations/idle_right.tres" id="13_au6o7"]
+[ext_resource type="Animation" uid="uid://ti8trwf2fogq" path="res://characters/playable/chad/resources/animations/grab_release_right.tres" id="13_mdg57"]
 [ext_resource type="Animation" uid="uid://bhk6m2enqae8i" path="res://characters/playable/chad/resources/animations/jump_right.tres" id="14_tu0qv"]
 [ext_resource type="Animation" uid="uid://dctfa0cbxl7j" path="res://characters/playable/chad/resources/animations/knockout_bounce_right.tres" id="15_06w66"]
 [ext_resource type="Animation" uid="uid://cmm34221tjpo" path="res://characters/playable/chad/resources/animations/knockout_falling_right.tres" id="16_l7wen"]
@@ -20,7 +21,6 @@
 [ext_resource type="Animation" uid="uid://c28idlkidm4bi" path="res://characters/playable/chad/resources/animations/knockout_rising_right.tres" id="19_7ivc7"]
 [ext_resource type="Animation" uid="uid://bdwi7p23h5cl1" path="res://characters/playable/chad/resources/animations/landing_right.tres" id="20_eate4"]
 [ext_resource type="Animation" uid="uid://dh4gx7nf64p83" path="res://characters/playable/chad/resources/animations/rising_right.tres" id="21_t5hwm"]
-[ext_resource type="Animation" uid="uid://cqnai3hk58q2x" path="res://characters/playable/chad/resources/animations/grab_idle.tres" id="21_tmyyo"]
 [ext_resource type="Animation" uid="uid://nsyi7dtdjk76" path="res://characters/playable/chad/resources/animations/throw_backward_right.tres" id="22_iufhr"]
 [ext_resource type="Animation" uid="uid://bnlvt0cgysh6q" path="res://characters/playable/chad/resources/animations/throw_backward_noah_right.tres" id="23_xkduy"]
 [ext_resource type="Animation" uid="uid://dwf2sua165e5v" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_1_right.tres" id="24_bc6xm"]
@@ -28,35 +28,91 @@
 [ext_resource type="Animation" uid="uid://cm3mqtbiolxdj" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_3_right.tres" id="26_yvv35"]
 [ext_resource type="Animation" uid="uid://d06imq3jiaovm" path="res://characters/playable/chad/resources/animations/throw_forward_right.tres" id="27_0vnhv"]
 [ext_resource type="Animation" uid="uid://ughjxbhm0crt" path="res://characters/playable/chad/resources/animations/walk_right.tres" id="28_qke1s"]
+[ext_resource type="Animation" uid="uid://c80btfqehll2y" path="res://characters/playable/chad/resources/animations/air_attack_left.tres" id="29_itwoa"]
+[ext_resource type="Animation" uid="uid://dir4h7n5vu8jg" path="res://characters/playable/chad/resources/animations/attack1_left.tres" id="30_1ys5c"]
+[ext_resource type="Animation" uid="uid://b360mox2l4gfo" path="res://characters/playable/chad/resources/animations/attack2_left.tres" id="31_l68i0"]
+[ext_resource type="Animation" uid="uid://b3ov4284rttwv" path="res://characters/playable/chad/resources/animations/die_left.tres" id="32_i63wn"]
+[ext_resource type="Animation" uid="uid://rntvxkuomu4l" path="res://characters/playable/chad/resources/animations/falling_left.tres" id="33_2bi3r"]
+[ext_resource type="Animation" uid="uid://bu87lq2r2t6ku" path="res://characters/playable/chad/resources/animations/getting_up_left.tres" id="34_033ig"]
+[ext_resource type="Animation" uid="uid://pf381va25kok" path="res://characters/playable/chad/resources/animations/grabbed_left.tres" id="35_22jeb"]
+[ext_resource type="Animation" uid="uid://qtpx7lfj3gbe" path="res://characters/playable/chad/resources/animations/grab_idle_left.tres" id="36_287y0"]
+[ext_resource type="Animation" uid="uid://b7f0pc2iycm7l" path="res://characters/playable/chad/resources/animations/grab_left.tres" id="37_p0bfr"]
+[ext_resource type="Animation" uid="uid://c0ogbaaf1iu64" path="res://characters/playable/chad/resources/animations/grab_release_left.tres" id="38_aou0c"]
+[ext_resource type="Animation" uid="uid://c0rtccrfdqcl8" path="res://characters/playable/chad/resources/animations/hurt_high_left.tres" id="39_stgrd"]
+[ext_resource type="Animation" uid="uid://ckgdiawpqood8" path="res://characters/playable/chad/resources/animations/hurt_mid_left.tres" id="40_3erv8"]
+[ext_resource type="Animation" uid="uid://cjfriyeiq3jj1" path="res://characters/playable/chad/resources/animations/idle_left.tres" id="41_mryln"]
+[ext_resource type="Animation" uid="uid://pn1c35qgs0na" path="res://characters/playable/chad/resources/animations/jump_left.tres" id="42_ltrfp"]
+[ext_resource type="Animation" uid="uid://crx78rxsq2246" path="res://characters/playable/chad/resources/animations/knockout_bounce_left.tres" id="43_f4qat"]
+[ext_resource type="Animation" uid="uid://suebp83fyjsb" path="res://characters/playable/chad/resources/animations/knockout_falling_left.tres" id="44_vrmmg"]
+[ext_resource type="Animation" uid="uid://h8vqnwsbpjop" path="res://characters/playable/chad/resources/animations/knockout_landed_left.tres" id="45_woxv8"]
+[ext_resource type="Animation" uid="uid://cf4skmg5x1vi3" path="res://characters/playable/chad/resources/animations/knockout_launch_left.tres" id="46_eee76"]
+[ext_resource type="Animation" uid="uid://c7ayqo1le4syj" path="res://characters/playable/chad/resources/animations/knockout_rising_left.tres" id="47_do033"]
+[ext_resource type="Animation" uid="uid://37me3ndokw85" path="res://characters/playable/chad/resources/animations/landing_left.tres" id="48_01ica"]
+[ext_resource type="Animation" uid="uid://bs0vkmdht1jxf" path="res://characters/playable/chad/resources/animations/throw_backward_noah_left.tres" id="49_gmt23"]
+[ext_resource type="Animation" uid="uid://62nnytfvncng" path="res://characters/playable/chad/resources/animations/throw_backward_left.tres" id="50_rol5v"]
+[ext_resource type="Animation" uid="uid://n1s7gkvaproa" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_1_left.tres" id="51_6vw4i"]
+[ext_resource type="Animation" uid="uid://25jonf286yix" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_2_left.tres" id="52_fw1xf"]
+[ext_resource type="Animation" uid="uid://xk8c14l0m8tr" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_3_left.tres" id="53_0s02p"]
+[ext_resource type="Animation" uid="uid://bs4425nym7xd5" path="res://characters/playable/chad/resources/animations/throw_forward_left.tres" id="54_gidmc"]
+[ext_resource type="Animation" uid="uid://513qytwixpr2" path="res://characters/playable/chad/resources/animations/walk_left.tres" id="55_ihi0c"]
+[ext_resource type="Animation" uid="uid://barjq3mv17in2" path="res://characters/playable/chad/resources/animations/rising_left.tres" id="56_q1d5v"]
 
 [resource]
 _data = {
+"air_attack_left": ExtResource("29_itwoa"),
 "air_attack_right": ExtResource("1_jgcla"),
+"attack1_left": ExtResource("30_1ys5c"),
 "attack1_right": ExtResource("2_qtktm"),
+"attack2_left": ExtResource("31_l68i0"),
 "attack2_right": ExtResource("3_btu6m"),
+"die_left": ExtResource("32_i63wn"),
 "die_right": ExtResource("4_i5tkq"),
+"falling_left": ExtResource("33_2bi3r"),
 "falling_right": ExtResource("5_wb2lw"),
+"getting_up_left": ExtResource("34_033ig"),
 "getting_up_right": ExtResource("6_xtauq"),
-"grab_idle_right": ExtResource("21_tmyyo"),
-"grab_release_right": ExtResource("10_j3acn"),
+"grab_idle_left": ExtResource("36_287y0"),
+"grab_idle_right": ExtResource("12_um3us"),
+"grab_left": ExtResource("37_p0bfr"),
+"grab_release_left": ExtResource("38_aou0c"),
+"grab_release_right": ExtResource("13_mdg57"),
 "grab_right": ExtResource("7_grais"),
+"grabbed_left": ExtResource("35_22jeb"),
 "grabbed_right": ExtResource("10_5ty8j"),
+"hurt_high_left": ExtResource("39_stgrd"),
 "hurt_high_right": ExtResource("11_yimt6"),
+"hurt_mid_left": ExtResource("40_3erv8"),
 "hurt_mid_right": ExtResource("12_5xeon"),
+"idle_left": ExtResource("41_mryln"),
 "idle_right": ExtResource("13_au6o7"),
+"jump_left": ExtResource("42_ltrfp"),
 "jump_right": ExtResource("14_tu0qv"),
+"knockout_bounce_left": ExtResource("43_f4qat"),
 "knockout_bounce_right": ExtResource("15_06w66"),
+"knockout_falling_left": ExtResource("44_vrmmg"),
 "knockout_falling_right": ExtResource("16_l7wen"),
+"knockout_landed_left": ExtResource("45_woxv8"),
 "knockout_landed_right": ExtResource("17_wln4k"),
+"knockout_launch_left": ExtResource("46_eee76"),
 "knockout_launch_right": ExtResource("18_q4ad6"),
+"knockout_rising_left": ExtResource("47_do033"),
 "knockout_rising_right": ExtResource("19_7ivc7"),
+"landing_left": ExtResource("48_01ica"),
 "landing_right": ExtResource("20_eate4"),
+"rising_left": ExtResource("56_q1d5v"),
 "rising_right": ExtResource("21_t5hwm"),
+"throw_backward_left": ExtResource("50_rol5v"),
+"throw_backward_noah_left": ExtResource("49_gmt23"),
 "throw_backward_noah_right": ExtResource("23_xkduy"),
+"throw_backward_recovery_1_left": ExtResource("51_6vw4i"),
 "throw_backward_recovery_1_right": ExtResource("24_bc6xm"),
+"throw_backward_recovery_2_left": ExtResource("52_fw1xf"),
 "throw_backward_recovery_2_right": ExtResource("25_lbrhc"),
+"throw_backward_recovery_3_left": ExtResource("53_0s02p"),
 "throw_backward_recovery_3_right": ExtResource("26_yvv35"),
 "throw_backward_right": ExtResource("22_iufhr"),
+"throw_forward_left": ExtResource("54_gidmc"),
 "throw_forward_right": ExtResource("27_0vnhv"),
+"walk_left": ExtResource("55_ihi0c"),
 "walk_right": ExtResource("28_qke1s")
 }
