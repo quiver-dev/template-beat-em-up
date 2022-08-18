@@ -1,8 +1,8 @@
-[gd_resource type="Animation" format=3 uid="uid://dwf2sua165e5v"]
+[gd_resource type="Animation" format=3 uid="uid://cnnbw7sdbm3hs"]
 
 [resource]
-resource_name = "throw_backward_recovery_1"
-length = 0.416667
+resource_name = "grabbed"
+length = 0.0416667
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -11,10 +11,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.208333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(-15, -132), Vector2(5, -141)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, -231)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -23,10 +23,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.375),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0, 9]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -38,7 +38,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"throw_backwards_recovery_1"]
+"values": [&"grabbed"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -71,10 +71,10 @@ tracks/5/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:shape:size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.208333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(175, 276), Vector2(180, 243)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(142.5, 465.535)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -83,10 +83,10 @@ tracks/6/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.208333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(20.5, -25), Vector2(-36, 5.5)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13.25, -20)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -98,7 +98,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-0.377976]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -107,10 +107,10 @@ tracks/8/path = NodePath(".:_attributes:is_invulnerable")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.208333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -205,7 +205,7 @@ tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/17/type = "value"
@@ -217,7 +217,7 @@ tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/18/type = "value"
@@ -229,7 +229,7 @@ tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/19/type = "value"
@@ -241,7 +241,7 @@ tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/20/type = "value"
@@ -251,22 +251,56 @@ tracks/20/path = NodePath(".:_attributes:can_be_grabbed")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.208334),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
-tracks/21/type = "method"
+tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath(".")
+tracks/21/path = NodePath("AnimatedSprite2D/GrabBox:visible")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
-"times": PackedFloat32Array(0.413993),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["recovery_1"],
-"method": &"end_of_skin_animation"
-}]
+"update": 0,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("AnimatedSprite2D/GrabBox/GrabShape:disabled")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Positions/GrabbedPivot:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }

@@ -1,8 +1,8 @@
-[gd_resource type="Animation" format=3 uid="uid://qwnmeb6powgs"]
+[gd_resource type="Animation" format=3 uid="uid://d06imq3jiaovm"]
 
 [resource]
-resource_name = "grab"
-length = 0.583333
+resource_name = "throw_forward"
+length = 0.5
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -11,10 +11,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -190)]
+"times": PackedFloat32Array(0, 0.416667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -190), Vector2(-14, -172)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -23,10 +23,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.541667),
+"times": PackedFloat32Array(0, 0.458333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 13]
+"values": [0, 11]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -38,7 +38,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"grab"]
+"values": [&"throw_forward"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -71,10 +71,10 @@ tracks/5/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:shape:size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.416667, 0.541667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.416667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2(149, 378.5), Vector2(209, 378.5), Vector2(193, 378.5), Vector2(150, 378.5), Vector2(162, 378.5)]
+"values": [Vector2(162, 378.5), Vector2(149, 378.5)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -83,10 +83,10 @@ tracks/6/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.416667, 0.541667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.416667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2(0, -12.75), Vector2(43.5, -12.75), Vector2(35.5, -12.75), Vector2(-8, -12.75), Vector2(-2, -12.75)]
+"values": [Vector2(-2, -12.75), Vector2(18, -29.75)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -107,10 +107,10 @@ tracks/8/path = NodePath(".:_attributes:is_invulnerable")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
+"times": PackedFloat32Array(0, 0.416667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -196,68 +196,89 @@ tracks/15/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/16/type = "method"
+tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath(".")
+tracks/16/path = NodePath("Attacks/AttackGrabPunch:visible")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0.252, 0.583333),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"grab_notify"
-}, {
-"args": [],
-"method": &"end_of_skin_animation"
-}]
+"update": 1,
+"values": [true, false]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath(".:_attributes:can_be_grabbed")
+tracks/17/path = NodePath("Attacks/AttackGrabPunch/GrabPunchShape:disabled")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false, true]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("AnimatedSprite2D/GrabBox:visible")
+tracks/18/path = NodePath(".:_attributes:can_be_grabbed")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [false]
 }
-tracks/19/type = "value"
+tracks/19/type = "method"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("AnimatedSprite2D/GrabBox/GrabShape:disabled")
+tracks/19/path = NodePath(".")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.498222),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
+"values": [{
+"args": ["throw_forward"],
+"method": &"end_of_skin_animation"
+}]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Positions/GrabPivot:position")
+tracks/20/path = NodePath("AnimatedSprite2D:flip_h")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.333333, 0.416667, 0.541667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(295, -241), Vector2(295, -241), Vector2(241, -297), Vector2(101, -299), Vector2(234, -364)]
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Attacks/AttackGrabPunch/GrabPunchShape:position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(138, -319)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Attacks/AttackGrabPunch/GrabPunchShape:rotation")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.412943]
 }
