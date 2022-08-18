@@ -226,7 +226,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint_string = QuiverState.HINT_ATTACK_STATE_LIST,
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",

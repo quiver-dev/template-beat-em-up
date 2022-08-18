@@ -63,7 +63,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint_string = QuiverState.HINT_NOT_ATTACK_STATE_LIST,
 	},
 	"message": {
 		backing_field = "_message",

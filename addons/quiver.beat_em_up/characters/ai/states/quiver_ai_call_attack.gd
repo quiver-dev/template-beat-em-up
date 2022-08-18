@@ -83,7 +83,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint_string = QuiverState.HINT_ATTACK_STATE_LIST,
 	},
 	"combo_hits_amount": {
 		backing_field = "_combo_hits_amount",
@@ -97,7 +97,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint_string = QuiverState.HINT_NOT_ATTACK_STATE_LIST,
 	},
 #	"": {
 #		backing_field = "",
