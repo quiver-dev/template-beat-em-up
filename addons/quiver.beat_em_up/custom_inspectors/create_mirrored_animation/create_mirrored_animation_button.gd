@@ -14,6 +14,10 @@ const META_MIRRORED_NAME = "mirrored_name"
 const META_OVERWRITE = "should_overwrite"
 
 const ERROR_NO_TRACK_FOUND = "No position, rotation or flip_h tracks found to be mirrored."
+const ERROR_FILE_EXISTS = (
+		"Target file already exists and overwriet is turned off.\n"
+		+ "Turn on Overwrite, or change the name of the animation to be saved."
+)
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
@@ -51,28 +55,31 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	_changed_report = ERROR_NO_TRACK_FOUND
-	var new_animation := animation.duplicate() as Animation
-	var total_tracks := new_animation.get_track_count()
-	for track_index in total_tracks:
-		var path := new_animation.track_get_path(track_index)
-		var property_subpath := path.get_concatenated_subnames()
-		if _is_mirrorable_property(property_subpath):
-			if _changed_report == ERROR_NO_TRACK_FOUND:
-				_changed_report = "Track: %s "%[path]
-			else:
-				_changed_report += "\nTrack: %s "%[path]
-			_mirror_track_values(new_animation, track_index, property_subpath)
+	var folder := animation.resource_path.get_base_dir()
+	var file_name := animation.get_meta(META_MIRRORED_NAME) as String
+	var new_path := folder.plus_file(file_name)
 	
-	if _changed_report != ERROR_NO_TRACK_FOUND:
-		var folder := animation.resource_path.get_base_dir()
-		var file_name := animation.get_meta(META_MIRRORED_NAME) as String
-		var new_path := folder.plus_file(file_name)
-		new_animation.resource_name = file_name.get_basename()
-		ResourceSaver.save(new_animation, new_path, ResourceSaver.FLAG_CHANGE_PATH)
-	
+	if ResourceLoader.exists(new_path) and not animation.get_meta(META_OVERWRITE):
+		_changed_report = ERROR_FILE_EXISTS
+	else:
+		var new_animation := animation.duplicate() as Animation
+		var total_tracks := new_animation.get_track_count()
+		for track_index in total_tracks:
+			var path := new_animation.track_get_path(track_index)
+			var property_subpath := path.get_concatenated_subnames()
+			if _is_mirrorable_property(property_subpath):
+				if _changed_report == ERROR_NO_TRACK_FOUND:
+					_changed_report = "Track: %s "%[path]
+				else:
+					_changed_report += "\nTrack: %s "%[path]
+				_mirror_track_values(new_animation, track_index, property_subpath)
+		
+		if _changed_report != ERROR_NO_TRACK_FOUND:
+			new_animation.resource_name = file_name.get_basename()
+			ResourceSaver.save(new_animation, new_path, ResourceSaver.FLAG_CHANGE_PATH)
+		
 	_report_label.text = _changed_report
 	_finished_popup.popup_centered(_finished_popup.min_size)
-	print("report: %s"%[_changed_report])
 
 
 func _is_mirrorable_property(property_name: String) -> bool:
