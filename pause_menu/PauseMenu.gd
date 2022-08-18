@@ -15,7 +15,6 @@ extends Control
 
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 @onready var _timescale_value := $PanelContainer/Content/TimeScaleLine/Value as Label
-@onready var _noah_throw := $PanelContainer/Content/ThrowVariation as CheckBox
 
 ### -----------------------------------------------------------------------------------------------
 
