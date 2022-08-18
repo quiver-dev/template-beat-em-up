@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=26 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
 [ext_resource type="AnimationLibrary" uid="uid://c6fsleghrve54" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmm0a2tnko2g6" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://c8j7ycyt3mx65" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
+[ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="4_vrxwg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
 [ext_resource type="Resource" uid="uid://dnddg0imisrgl" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
@@ -15,12 +16,17 @@
 [ext_resource type="Resource" uid="uid://m3xjcjtfhtd5" path="res://characters/playable/chad/resources/attacks/attack_grab_punch.tres" id="10_ph8u0"]
 [ext_resource type="Resource" uid="uid://gdndwi5w81a2" path="res://characters/playable/chad/resources/attacks/attack_suplex.tres" id="11_4bw6m"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6o40w"]
+_data = {
+"RESET": ExtResource("4_vrxwg")
+}
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_g3bel"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vwjju"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
-size = Vector2(142.5, 465.535)
+size = Vector2(149, 378.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51nq5"]
 size = Vector2(149, 353)
@@ -41,7 +47,6 @@ size = Vector2(390, 231.25)
 size = Vector2(285.095, 79.2264)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
-position = Vector2(0, 3)
 script = ExtResource("2_jvmk2")
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
@@ -53,20 +58,24 @@ metadata/_edit_horizontal_guides_ = [12.0, -233.0]
 metadata/_edit_vertical_guides_ = [154.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
+playback_process_mode = 0
 libraries = {
+"": SubResource("AnimationLibrary_6o40w"),
 "Chad": ExtResource("3_uxodg")
 }
 
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource("4_6ugt2")
+process_callback = 0
 parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_g3bel")
 parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeStateMachinePlayback_vwjju")
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
-position = Vector2(18, -231)
+position = Vector2(0, -190)
 frames = ExtResource("4_l5bf7")
-animation = &"grabbed"
+animation = &"idle"
+flip_h = true
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
 position = Vector2(5, 22)
@@ -78,8 +87,7 @@ metadata/collision_type = "player_hurt_box"
 
 [node name="HurtShape" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox" index="0"]
 modulate = Color(0, 0.0666667, 0.701961, 1)
-position = Vector2(-13.25, -20)
-rotation = -0.377976
+position = Vector2(0, -12.75)
 shape = SubResource("RectangleShape2D_75u0j")
 metadata/collision_type = "player_hurt_box"
 
@@ -133,6 +141,7 @@ animation = &"knockout_launch"
 flip_h = true
 
 [node name="GrabbedPivot" type="Position2D" parent="Positions" index="2"]
+visible = false
 position = Vector2(-26, -356)
 z_index = 99
 

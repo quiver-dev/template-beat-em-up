@@ -51,7 +51,6 @@ shape = SubResource("CapsuleShape2D_4uueb")
 metadata/collision_type = "default"
 
 [node name="ChadSkin" parent="." index="1" instance=ExtResource("2_1tk2w")]
-position = Vector2(0, 0)
 metadata/_edit_horizontal_guides_ = [-516.0, -281.0]
 
 [node name="StateMachine" parent="." index="2"]
@@ -91,16 +90,18 @@ skin_state = &"attack1"
 can_combo = true
 path_combo_state = "Ground/Combo2"
 path_next_state = "Ground/Move/Idle"
-should_enter_parent = true
-should_exit_parent = true
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = false
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("9_cce84")
 skin_state = &"attack2"
 can_combo = false
 path_next_state = "Ground/Move/Idle"
-should_enter_parent = true
-should_exit_parent = true
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = false
 
 [node name="Recovery" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_a7lbg")
@@ -135,8 +136,9 @@ script = ExtResource("9_cce84")
 skin_state = &"throw_forward"
 can_combo = false
 path_next_state = "Ground/Move/Idle"
-should_enter_parent = false
-should_exit_parent = true
+parent_should_enter = false
+parent_should_exit = true
+parent_should_process = null
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
 script = ExtResource("16_ekfnh")
@@ -144,8 +146,9 @@ alt_skin_state = &"throw_backward_noah"
 skin_state = &"throw_backward"
 can_combo = false
 path_next_state = "Ground/Grab/ThrowBackwardRecovery"
-should_enter_parent = false
-should_exit_parent = false
+parent_should_enter = false
+parent_should_exit = false
+parent_should_process = null
 
 [node name="ThrowBackwardRecovery" type="Node" parent="StateMachine/Ground/Grab" index="5"]
 script = ExtResource("16_1juox")
@@ -238,12 +241,20 @@ offset_right = 336.0
 offset_bottom = 23.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
-properties = PackedStringArray("velocity", "is_on_air")
+properties = PackedStringArray("velocity", "is_on_air", "position")
 
-[node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
+[node name="ChadSkin" type="Label" parent="DebugLabels" index="1"]
 offset_top = 23.0
 offset_right = 336.0
 offset_bottom = 46.0
+script = ExtResource("12_sub7a")
+path_reference = NodePath("../../ChadSkin")
+properties = PackedStringArray("position", "_debug_skin_position", "_debug_travel_path")
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="2"]
+offset_top = 46.0
+offset_right = 336.0
+offset_bottom = 69.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
