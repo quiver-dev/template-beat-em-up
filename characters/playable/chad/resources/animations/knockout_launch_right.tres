@@ -59,10 +59,10 @@ tracks/4/path = NodePath("AnimatedSprite2D/HurtBox:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.000961971),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(5, 22)]
+"values": [Vector2(0, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -86,7 +86,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-36.3525, -26.1104)]
+"values": [Vector2(-31.353, -4.11)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
