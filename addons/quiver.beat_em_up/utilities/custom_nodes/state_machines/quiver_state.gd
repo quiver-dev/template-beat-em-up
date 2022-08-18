@@ -30,6 +30,8 @@ signal state_finished
 #--- constants ------------------------------------------------------------------------------------
 
 const HINT_STATE_LIST = "QuiverStateList"
+const HINT_ATTACK_STATE_LIST = "QuiverStateAttackList"
+const HINT_NOT_ATTACK_STATE_LIST = "QuiverStateNotAttackList"
 const HINT_AI_STATE_LIST = "QuiverAiStateList"
 
 #--- public variables - order: export > normal var > onready --------------------------------------

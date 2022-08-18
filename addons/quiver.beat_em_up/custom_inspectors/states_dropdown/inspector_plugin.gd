@@ -9,9 +9,19 @@ extends EditorInspectorPlugin
 
 #--- constants ------------------------------------------------------------------------------------
 
-const QuiverPropertyStateDropDown = preload(
+const PropertyStateDropDown = preload(
 		"res://addons/quiver.beat_em_up/custom_inspectors/states_dropdown/"
 		+"state_dropdown_property.gd"
+)
+
+const PropertyAttackStateDropDown = preload(
+		"res://addons/quiver.beat_em_up/custom_inspectors/states_dropdown/"
+		+"attack_state_dropdown_property.gd"
+)
+
+const PropertyNotAttackStateDropDown = preload(
+		"res://addons/quiver.beat_em_up/custom_inspectors/states_dropdown/"
+		+"not_attack_state_dropdown_property.gd"
 )
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -42,10 +52,18 @@ func _parse_property(
 		return replace_built_in
 	
 	if QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_EDITOR, usage_flags):
-		if hint_string == QuiverState.HINT_STATE_LIST:
-			var property := QuiverPropertyStateDropDown.new()
+		var editor_property: EditorProperty = null
+		match hint_string:
+			QuiverState.HINT_STATE_LIST:
+				editor_property = PropertyStateDropDown.new()
+			QuiverState.HINT_ATTACK_STATE_LIST:
+				editor_property = PropertyAttackStateDropDown.new()
+			QuiverState.HINT_NOT_ATTACK_STATE_LIST:
+				editor_property = PropertyNotAttackStateDropDown.new()
+		
+		if editor_property != null:
 			replace_built_in = true
-			add_property_editor(name, property)
+			add_property_editor(name, editor_property)
 	
 	return replace_built_in
 
