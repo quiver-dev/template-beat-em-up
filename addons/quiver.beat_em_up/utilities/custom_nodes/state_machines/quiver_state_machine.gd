@@ -113,27 +113,6 @@ func transition_to(target_state_path: NodePath, msg: = {}) -> void:
 	state.enter(msg)
 	emit_signal("transitioned", target_state_path)
 
-
-func get_leaf_nodes_path_list(start_node: Node = self, node_list := []) -> Array:
-	var child_state_count: = 0
-	
-	for child in start_node.get_children():
-		# Bring this line back IF Cyclic Errors get fully fixed
-		#if not child is QuiverState or child is QuiverStateSequence:
-		if (
-				not QuiverCyclicHelper.is_quiver_state(child) 
-				or QuiverCyclicHelper.is_quiver_state_sequence(child)
-		):
-			continue
-		child_state_count += 1
-		# warning-ignore:return_value_discarded
-		get_leaf_nodes_path_list(child, node_list)
-	
-	if child_state_count == 0:
-		node_list.append(get_path_to(start_node))
-	
-	return node_list
-
 ### -----------------------------------------------------------------------------------------------
 
 
