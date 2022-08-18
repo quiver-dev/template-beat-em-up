@@ -70,15 +70,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func get_list_of_ai_states() -> Array:
-	var list := []
-	
-	for child in get_children():
-		if child is QuiverAiState or child is QuiverStateSequence:
-			list.append(get_path_to(child))
-	
-	return list
-
 ### -----------------------------------------------------------------------------------------------
 
 

@@ -67,15 +67,6 @@ func exit() -> void:
 	_current_state = null
 
 
-func get_list_of_ai_states() -> Array:
-	var list := ["Node not ready yet"]
-	if _state_machine != null:
-		return list
-	
-	list = _state_machine.get_list_of_ai_states()
-	return list
-
-
 func interrupt_state() -> void:
 	for child in get_children():
 		var state = child as QuiverState
