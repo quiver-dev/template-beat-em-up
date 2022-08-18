@@ -75,8 +75,26 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 
 
+func _can_be_attacked_by(attacker: QuiverAttributes) -> bool:
+	var value := false
+	if not character_attributes.is_invulnerable:
+		value = QuiverCombatSystem.is_in_same_lane_as(character_attributes, attacker)
+	return value
+
+
+func _can_be_grabbed_by(grabber: QuiverAttributes) -> bool:
+	var value := false
+	if (
+		not character_attributes.is_invulnerable 
+		and not character_attributes.has_superarmor
+		and character_attributes.can_be_grabbed
+	):
+		value = QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
+	return value
+
+
 func _handle_hit_box(hit_box: QuiverHitBox) -> void:
-	if QuiverCombatSystem.is_in_same_lane_as(character_attributes, hit_box.character_attributes):
+	if _can_be_attacked_by(hit_box.character_attributes):
 		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
 		var knockback: QuiverKnockback = QuiverKnockback.new(
 				hit_box.attack_data.knockback,
@@ -95,12 +113,8 @@ func _handle_wall_hit_box(wall_hit_box: WallHitBox) -> void:
 
 
 func _handle_grab_box(grab_box: QuiverGrabBox) -> void:
-	var grabber := grab_box.character_attributes
-	if (
-			character_attributes.can_be_grabbed
-			and QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
-	):
-		grabber.grab_requested.emit(character_attributes)
+	if _can_be_grabbed_by(grab_box.character_attributes):
+		grab_box.character_attributes.grab_requested.emit(character_attributes)
 
 
 func _get_treated_launch_vector(hit_box: QuiverHitBox) -> Vector2:

@@ -30,6 +30,8 @@ signal state_finished
 #--- constants ------------------------------------------------------------------------------------
 
 const HINT_STATE_LIST = "QuiverStateList"
+const HINT_ATTACK_STATE_LIST = "QuiverStateAttackList"
+const HINT_NOT_ATTACK_STATE_LIST = "QuiverStateNotAttackList"
 const HINT_AI_STATE_LIST = "QuiverAiStateList"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -102,16 +104,6 @@ func physics_process(_delta: float) -> void:
 ## [method _disconnect_signals] if you are connecting any signals to the state using the editor.
 func exit() -> void:
 	_disconnect_signals()
-
-
-func get_list_of_action_states() -> Array:
-	var list := ["Node not ready yet"]
-	if _state_machine == null:
-		return list
-	
-	list = _state_machine.get_leaf_nodes_path_list()
-	return list
-
 
 ### -----------------------------------------------------------------------------------------------
 

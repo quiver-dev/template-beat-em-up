@@ -66,6 +66,10 @@ func enter(msg: = {}) -> void:
 	_character._disable_collisions()
 
 
+func physics_process(delta: float) -> void:
+	get_parent().physics_process(delta)
+
+
 func exit() -> void:
 	super()
 	_ground_state.exit()

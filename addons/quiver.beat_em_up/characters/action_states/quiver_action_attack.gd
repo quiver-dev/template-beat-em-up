@@ -39,8 +39,14 @@ var _path_combo_state := "Ground/Attack/Combo2":
 var _path_next_state := "Ground/Move/Idle"
 var _should_enter_parent := true
 var _should_exit_parent := true
+var _should_process_parent := true
 
 var _should_combo := false
+var _auto_combo_amount := 0
+
+var _movement_is_enabled := false
+var _movement_speed := 0.0
+var _movement_direction := Vector2.ZERO
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -72,8 +78,9 @@ func enter(msg: = {}) -> void:
 	if _should_enter_parent:
 		get_parent().enter(msg)
 	
-	if msg.has("auto_combo") and msg.auto_combo and _can_combo:
+	if msg.has("auto_combo") and msg.auto_combo > 0 and _can_combo:
 		_should_combo = true
+		_auto_combo_amount = msg.auto_combo
 	else:
 		_should_combo = false
 		_state_machine.set_process_unhandled_input(_can_combo)
@@ -89,7 +96,22 @@ func unhandled_input(event: InputEvent) -> void:
 		attack()
 
 
+func physics_process(delta: float) -> void:
+	if _should_process_parent:
+		get_parent().physics_process(delta)
+	
+	if _movement_is_enabled:
+		if not _movement_direction.is_equal_approx(Vector2.ZERO):
+			_character.velocity = _movement_direction * _movement_speed
+		
+		_character.move_and_slide()
+
+
 func exit() -> void:
+	_auto_combo_amount = 0
+	if _movement_is_enabled:
+		_disable_movement()
+	
 	_state_machine.set_process_unhandled_input(true)
 	super()
 	if _should_exit_parent:
@@ -104,6 +126,13 @@ func attack() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _disable_movement() -> void:
+	_movement_direction = Vector2.ZERO
+	_movement_speed = 0.0
+	_movement_is_enabled = false
+	_character.velocity = Vector2.ZERO
+
+
 func _connect_signals() -> void:
 	get_parent()._connect_signals()
 	super()
@@ -113,6 +142,12 @@ func _connect_signals() -> void:
 				_skin.attack_input_frames_finished, _on_attack_input_frames_finished
 		)
 	
+	QuiverEditorHelper.connect_between(
+			_skin.attack_movement_started, _on_skin_attack_movement_started
+	)
+	QuiverEditorHelper.connect_between(
+			_skin.attack_movement_ended, _on_skin_attack_movement_ended
+	)
 	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
 
 
@@ -125,14 +160,35 @@ func _disconnect_signals() -> void:
 		)
 		
 		QuiverEditorHelper.disconnect_between(
-			_skin.skin_animation_finished, _on_skin_animation_finished
+				_skin.attack_movement_started, _on_skin_attack_movement_started
+		)
+		QuiverEditorHelper.disconnect_between(
+				_skin.attack_movement_ended, _on_skin_attack_movement_ended
+		)
+		
+		QuiverEditorHelper.disconnect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
 		)
 
 
 func _on_attack_input_frames_finished() -> void:
 	_state_machine.set_process_unhandled_input(false)
 	if _should_combo:
-		_state_machine.transition_to(_path_combo_state)
+		_auto_combo_amount -= 1
+		if _auto_combo_amount > 0:
+			_state_machine.transition_to(_path_combo_state, {auto_combo = _auto_combo_amount})
+		else:
+			_state_machine.transition_to(_path_combo_state)
+
+
+func _on_skin_attack_movement_started(p_direction: Vector2, p_speed: float) -> void:
+	_movement_direction = p_direction
+	_movement_speed = p_speed
+	_movement_is_enabled = true
+
+
+func _on_skin_attack_movement_ended() -> void:
+	_disable_movement()
 
 
 ## Connect the signal that marks the end of the attack to this function.
@@ -170,7 +226,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
+		hint_string = QuiverState.HINT_ATTACK_STATE_LIST,
 	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
@@ -179,14 +235,26 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
-	"should_enter_parent": {
+	"Parent State Settings":{
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_GROUP,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = "parent_"
+	},
+	"parent_should_enter": {
 		backing_field = "_should_enter_parent",
 		type = TYPE_BOOL,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 	},
-	"should_exit_parent": {
+	"parent_should_exit": {
 		backing_field = "_should_exit_parent",
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+	},
+	"parent_should_process": {
+		backing_field = "_should_process_parent",
 		type = TYPE_BOOL,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

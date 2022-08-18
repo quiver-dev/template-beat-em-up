@@ -120,7 +120,7 @@ func _handle_facing_target_node() -> void:
 		return
 	
 	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
-	_skin.scale.x = 1 if facing_direction >=0 else -1
+	_skin.skin_direction = 1 if facing_direction >=0 else -1
 
 
 func _handle_target_position() -> Vector2:

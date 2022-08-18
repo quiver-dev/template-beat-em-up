@@ -17,7 +17,6 @@ signal suplex_landed
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @onready var _suplex_landing := $Positions/SuplexLanding as Position2D
-@onready var _grab_reference := $Positions/GrabPivot as Position2D
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -38,10 +37,6 @@ func _ready() -> void:
 
 func get_suplex_landing_position() -> Vector2:
 	return _suplex_landing.global_position
-
-
-func get_grab_pivot() -> Position2D:
-	return _grab_reference
 
 
 func end_of_suplex() -> void:

@@ -33,23 +33,6 @@ func _ready() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func get_list_of_action_states() -> Array:
-	var list := ["Node not ready yet"]
-	if _actions == null:
-		return list
-	
-	list = _actions.get_leaf_nodes_path_list()
-	return list
-
-
-func get_list_of_ai_states() -> Array:
-	var list := ["Node not ready yet"]
-	if _state_machine == null:
-		return list
-	
-	list = _state_machine.get_list_of_ai_states()
-	return list
-
 ### -----------------------------------------------------------------------------------------------
 
 

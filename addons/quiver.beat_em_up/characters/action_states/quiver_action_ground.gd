@@ -71,20 +71,25 @@ func _disconnect_signals() -> void:
 	
 	if _attributes != null:
 		QuiverEditorHelper.disconnect_between(_attributes.hurt_requested, _on_hurt_requested)
-		QuiverEditorHelper.disconnect_between(_attributes.knockout_requested, _on_knockout_requested)
+		QuiverEditorHelper.disconnect_between(
+				_attributes.knockout_requested, _on_knockout_requested
+		)
 		QuiverEditorHelper.disconnect_between(_attributes.grabbed, _on_grabbed)
 
 
 func _on_hurt_requested(knockback: QuiverKnockback) -> void:
-	_state_machine.transition_to(_path_hurt, {hurt_type = knockback.hurt_type})
+	_state_machine.transition_to.call_deferred(_path_hurt, {hurt_type = knockback.hurt_type})
 
 
 func _on_knockout_requested(knockback: QuiverKnockback) -> void:
-	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
+	_state_machine.transition_to.call_deferred(
+			_path_knockout, 
+			{launch_vector = knockback.launch_vector}
+	)
 
 
 func _on_grabbed() -> void:
-	_state_machine.transition_to(_path_grabbed)
+	_state_machine.transition_to.call_deferred(_path_grabbed)
 
 ### -----------------------------------------------------------------------------------------------
 

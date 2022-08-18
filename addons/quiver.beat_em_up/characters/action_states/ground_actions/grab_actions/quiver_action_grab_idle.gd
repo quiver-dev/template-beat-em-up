@@ -70,7 +70,7 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_skin.transition_to(_skin_state)
 	
-	_release_action = "move_left" if _skin.scale.x == 1 else "move_right"
+	_release_action = "move_left" if _skin.skin_direction == 1 else "move_right"
 	_is_holding_backwards = Input.is_action_pressed(_release_action)
 
 

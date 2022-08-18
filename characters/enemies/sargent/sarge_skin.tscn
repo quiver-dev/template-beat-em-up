@@ -1,0 +1,181 @@
+[gd_scene load_steps=21 format=3 uid="uid://dn1vp8lg8eb48"]
+
+[ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_kelmx"]
+[ext_resource type="AnimationLibrary" uid="uid://clk5d836dt3jx" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
+[ext_resource type="Resource" uid="uid://pn2qrl0x1wj8" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_ajvg2"]
+[ext_resource type="SpriteFrames" uid="uid://0l8bwbsypux4" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
+[ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="3_pkfas"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cnc0xndpg4dlj" path="res://characters/enemies/sargent/resources/sarge_animation_tree_root.tres" id="4_i00o2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="7_7ybvf"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="8_kuwvm"]
+[ext_resource type="Resource" uid="uid://7jmw01vum05h" path="res://characters/enemies/sargent/resources/attacks/punch_1_attack_data.tres" id="9_ccdvn"]
+[ext_resource type="Resource" uid="uid://d200oya1xbpq" path="res://characters/enemies/sargent/resources/attacks/punch_2_attack_data.tres" id="10_dsxar"]
+[ext_resource type="Resource" uid="uid://1bul8w06kj1u" path="res://characters/enemies/sargent/resources/attacks/dash_attack_data.tres" id="11_vgfqt"]
+[ext_resource type="Resource" uid="uid://dx8erxlmvq4u8" path="res://characters/enemies/sargent/resources/attacks/punch_3_attack_data.tres" id="12_m2xtq"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mshsr"]
+_data = {
+"RESET": ExtResource("3_pkfas")
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ffbdk"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_s3dlm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrxa7"]
+resource_local_to_scene = true
+size = Vector2(210, 414)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiudb"]
+resource_local_to_scene = true
+size = Vector2(195, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_580mb"]
+resource_local_to_scene = true
+size = Vector2(314, 98.7822)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cm2p1"]
+resource_local_to_scene = true
+size = Vector2(159.327, 402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrdn4"]
+resource_local_to_scene = true
+size = Vector2(285, 86.436)
+
+[node name="SargeSkin" instance=ExtResource("1_kelmx")]
+_path_playback = "parameters/state_machine/playback"
+_attributes = ExtResource("2_ajvg2")
+has_grab = false
+path_grab_pivot = NodePath("Positions/GrabPivot")
+has_grabbed = true
+path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_mshsr"),
+"sarge": ExtResource("2_51vq1")
+}
+
+[node name="AnimationTree" parent="." index="1"]
+tree_root = ExtResource("4_i00o2")
+parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_ffbdk")
+parameters/state_machine/attack_1/blend_position = 1
+parameters/state_machine/attack_2/blend_position = 1
+parameters/state_machine/attack_3/blend_position = 1
+parameters/state_machine/die/blend_position = 1
+parameters/state_machine/grabbed/blend_position = 0
+parameters/state_machine/hurt_high/blend_position = 1
+parameters/state_machine/hurt_mid/blend_position = 1
+parameters/state_machine/idle/blend_position = 1
+parameters/state_machine/jump_falling/blend_position = 1
+parameters/state_machine/jump_impulse/blend_position = 1
+parameters/state_machine/jump_landing/blend_position = 1
+parameters/state_machine/jump_rising/blend_position = 1
+parameters/state_machine/knockout_bounce/blend_position = 1
+parameters/state_machine/knockout_falling/blend_position = 1
+parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeStateMachinePlayback_s3dlm")
+parameters/state_machine/knockout_ground/getting_up/blend_position = 0
+parameters/state_machine/knockout_ground/landed/blend_position = 0
+parameters/state_machine/knockout_launch/blend_position = 1
+parameters/state_machine/knockout_rising/blend_position = 1
+parameters/state_machine/turn/blend_position = 1
+parameters/state_machine/walk/blend_position = 1
+parameters/time_scale/scale = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -216)
+frames = ExtResource("3_b0w6d")
+animation = &"idle"
+
+[node name="QuiverHurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
+collision_layer = 8192
+collision_mask = 1280
+monitorable = false
+script = ExtResource("7_7ybvf")
+character_type = 1
+metadata/collision_type = "enemy_hurt_box"
+
+[node name="HurtArea" type="CollisionShape2D" parent="AnimatedSprite2D/QuiverHurtBox" index="0"]
+modulate = Color(0, 0.0666667, 0.701961, 1)
+position = Vector2(-10, 7)
+shape = SubResource("RectangleShape2D_jrxa7")
+metadata/collision_type = "enemy_hurt_box"
+
+[node name="Positions" type="Node2D" parent="." index="3"]
+
+[node name="GrabbedPivot" type="Position2D" parent="Positions" index="0"]
+position = Vector2(-14, -363)
+gizmo_extents = 25.0
+
+[node name="Attack" type="Node2D" parent="." index="4"]
+
+[node name="Punch1" type="Area2D" parent="Attack" index="0"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("9_ccdvn")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch1Area" type="CollisionShape2D" parent="Attack/Punch1" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(185.5, -338)
+shape = SubResource("RectangleShape2D_kiudb")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch2" type="Area2D" parent="Attack" index="1"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("10_dsxar")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch2Area" type="CollisionShape2D" parent="Attack/Punch2" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(253.534, -302.218)
+rotation = 0.209387
+shape = SubResource("RectangleShape2D_580mb")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="DashAttack" type="Area2D" parent="Attack" index="2"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("11_vgfqt")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="DashArea" type="CollisionShape2D" parent="Attack/DashAttack" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(57.5604, -243.126)
+rotation = -0.548782
+shape = SubResource("RectangleShape2D_cm2p1")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch3" type="Area2D" parent="Attack" index="3"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_kuwvm")
+character_type = 1
+_attack_data = ExtResource("12_m2xtq")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Punch3Area" type="CollisionShape2D" parent="Attack/Punch3" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(234.5, -302.218)
+rotation = 0.20944
+shape = SubResource("RectangleShape2D_jrdn4")
+disabled = true
+metadata/collision_type = "enemy_hit_box"

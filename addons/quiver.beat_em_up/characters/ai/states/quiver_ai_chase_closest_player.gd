@@ -52,21 +52,17 @@ func enter(msg: = {}) -> void:
 
 
 func exit() -> void:
+	super()
 	QuiverEditorHelper.disconnect_between(_actions.transitioned, _on_actions_transitioned)
 	QuiverEditorHelper.disconnect_between(_chase_timer.timeout, _on_chase_timer_timeout)
-	super()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _target_reached() -> void:
-	state_finished.emit()
-
-
 func _on_actions_transitioned(_path_state: String) -> void:
-	_target_reached()
+	state_finished.emit()
 
 
 func _on_chase_timer_timeout() -> void:
