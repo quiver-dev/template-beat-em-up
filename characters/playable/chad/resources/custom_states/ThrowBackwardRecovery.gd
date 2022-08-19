@@ -22,8 +22,7 @@ var SLIDE_FRICTION := 150
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _recovery_1: StringName
-var _recovery_2: StringName
+var _skin_state := &"throw_backward_recovery"
 var _path_next_state := "Ground/Move/Idle"
 
 var _friction_direction := 1
@@ -62,11 +61,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_skin.transition_to(_recovery_1)
-	QuiverEditorHelper.connect_between(
-			_skin.skin_animation_finished, 
-			_on_skin_animation_finished.bind(_recovery_1)
-	)
+	_skin.transition_to(_skin_state)
 	var next_position = _skin.get_suplex_landing_position()
 	
 	# I Have to wait two frames for the animation to update properly before changing position.
@@ -95,32 +90,34 @@ func exit() -> void:
 	_friction_direction = 1
 	_slide_direction = -1
 	_character.velocity.x = 0
-	
-	QuiverEditorHelper.disconnect_between(
-			_skin.skin_animation_finished, _on_skin_animation_finished
-	)
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_skin_animation_finished(phase_finished: StringName) -> void:
-	if phase_finished == _recovery_1:
-		_skin.transition_to(_recovery_2)
+func _connect_signals() -> void:
+	super()
+	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
+	QuiverEditorHelper.connect_between(_skin.sliding_stopped, _on_skin_sliding_stopped)
+
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _skin != null:
 		QuiverEditorHelper.disconnect_between(
 				_skin.skin_animation_finished, _on_skin_animation_finished
 		)
-		QuiverEditorHelper.connect_between(
-				_skin.skin_animation_finished, 
-				_on_skin_animation_finished.bind(_recovery_2)
-		)
-		_character.velocity.x = 0
-	elif phase_finished == _recovery_2:
-		QuiverEditorHelper.disconnect_between(
-				_skin.skin_animation_finished, _on_skin_animation_finished
-		)
-		_state_machine.transition_to(_path_next_state)
+		QuiverEditorHelper.disconnect_between(_skin.sliding_stopped, _on_skin_sliding_stopped)
+
+
+func _on_skin_sliding_stopped() -> void:
+	_character.velocity.x = 0
+
+
+func _on_skin_animation_finished() -> void:
+	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -147,33 +144,20 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_RANGE,
 		hint_string = "0,1000,50,or_greater",
 	},
+	"skin_state": {
+		backing_field = "_skin_state",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
 	"path_next_state": {
 		backing_field = "_path_next_state",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"Animation Sequence":{
-		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_GROUP,
-		hint_string = "anim_"
-	},
-	"anim_recovery_1": {
-		backing_field = "_recovery_1",
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
-	},
-	"anim_recovery_2": {
-		backing_field = "_recovery_2",
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 	},
 #	"": {
 #		backing_field = "",

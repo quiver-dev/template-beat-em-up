@@ -23,12 +23,16 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _skin_state: StringName
+var _walk_skin_state := &"walk"
+var _turn_skin_state := &"turn"
+var _turning_speed_modifier := 0.6
 var _path_next_state := "Ground/Move/Idle"
 
 var _target_node: Node2D = null
 var _fixed_position := Vector2.ONE * INF
 var _should_use_fixed := false
+
+var _is_turning := false
 
 @onready var _move_state := get_parent() as MoveState
 @onready var _squared_arrive = pow(ARRIVE_RANGE, 2)
@@ -65,7 +69,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func enter(msg: = {}) -> void:
 	super(msg)
 	_move_state.enter(msg)
-	_skin.transition_to(_skin_state)
+	_skin.transition_to(_walk_skin_state)
 	
 	if msg.has("target_node") and msg.target_node is Node2D:
 		_target_node = msg.target_node
@@ -99,6 +103,9 @@ func physics_process(delta: float) -> void:
 		state_finished.emit()
 		return
 	
+	if _is_turning:
+		_move_state._direction *= _turning_speed_modifier
+	
 	_move_state.physics_process(delta)
 
 
@@ -108,11 +115,21 @@ func exit() -> void:
 	_fixed_position = Vector2.ONE * INF
 	_target_node = null
 	_should_use_fixed = false
+	_is_turning = false
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _disconnect_signals() -> void:
+	super()
+	
+	if _skin != null:
+		QuiverEditorHelper.disconnect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
+
 
 func _handle_facing_target_node() -> void:
 	if not is_instance_valid(_target_node):
@@ -120,7 +137,11 @@ func _handle_facing_target_node() -> void:
 		return
 	
 	var facing_direction = sign((_target_node.global_position - _character.global_position).x)
-	_skin.skin_direction = 1 if facing_direction >=0 else -1
+	if facing_direction != 0 and facing_direction != _skin.skin_direction:
+		_skin.skin_direction = facing_direction
+		_skin.transition_to(_turn_skin_state)
+		_skin.skin_animation_finished.connect(_on_skin_animation_finished)
+		_is_turning = true
 
 
 func _handle_target_position() -> Vector2:
@@ -138,6 +159,12 @@ func _handle_target_position() -> Vector2:
 	
 	return target_position
 
+
+func _on_skin_animation_finished() -> void:
+	_skin.transition_to(_walk_skin_state)
+	_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+	_is_turning = false
+
 ### -----------------------------------------------------------------------------------------------
 
 ###################################################################################################
@@ -150,8 +177,8 @@ const CUSTOM_PROPERTIES = {
 		usage = PROPERTY_USAGE_CATEGORY,
 		hint = PROPERTY_HINT_NONE,
 	},
-	"skin_state": {
-		backing_field = "_skin_state",
+	"walk_skin_state": {
+		backing_field = "_walk_skin_state",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
@@ -164,6 +191,13 @@ const CUSTOM_PROPERTIES = {
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"turning_speed_modifier": {
+		backing_field = "_turning_speed_modifier",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0.1,1,0.01,or_greater"
 	},
 #	"": {
 #		backing_field = "",

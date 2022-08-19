@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=27 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
-[ext_resource type="AnimationLibrary" uid="uid://c6fsleghrve54" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
+[ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bmm0a2tnko2g6" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://c8j7ycyt3mx65" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 [ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="4_vrxwg"]
@@ -24,6 +24,8 @@ _data = {
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_g3bel"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vwjju"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xreyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
 size = Vector2(149, 378.5)
@@ -54,8 +56,8 @@ has_grab = true
 path_grab_pivot = NodePath("Positions/GrabPivot")
 has_grabbed = true
 path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
-metadata/_edit_horizontal_guides_ = [12.0, -233.0]
-metadata/_edit_vertical_guides_ = [154.0]
+metadata/_edit_vertical_guides_ = [-155.0]
+metadata/_edit_horizontal_guides_ = [10.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 playback_process_mode = 0
@@ -68,17 +70,44 @@ libraries = {
 tree_root = ExtResource("4_6ugt2")
 process_callback = 0
 parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_g3bel")
+parameters/state_machine/air_attack/blend_position = 1
+parameters/state_machine/attack1/blend_position = 1
+parameters/state_machine/attack2/blend_position = 1
+parameters/state_machine/die/blend_position = 1
+parameters/state_machine/falling/blend_position = 1
+parameters/state_machine/grab/blend_position = 1
+parameters/state_machine/grab_idle/blend_position = 1
+parameters/state_machine/grab_release/blend_position = 1
+parameters/state_machine/grabbed/blend_position = 1
+parameters/state_machine/hurt_high/blend_position = 1
+parameters/state_machine/hurt_mid/blend_position = 1
+parameters/state_machine/idle/blend_position = 1
+parameters/state_machine/jump/blend_position = 1
+parameters/state_machine/knockout_bounce/blend_position = 1
+parameters/state_machine/knockout_falling/blend_position = 1
 parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeStateMachinePlayback_vwjju")
+parameters/state_machine/knockout_ground/getting_up/blend_position = 1
+parameters/state_machine/knockout_ground/knockout_landed/blend_position = 1
+parameters/state_machine/knockout_launch/blend_position = 1
+parameters/state_machine/knockout_rising/blend_position = 1
+parameters/state_machine/landing/blend_position = 1
+parameters/state_machine/rising/blend_position = 1
+parameters/state_machine/throw_backward/blend_position = 1
+parameters/state_machine/throw_backward_noah/blend_position = 1
+parameters/state_machine/throw_backward_recovery/playback = SubResource("AnimationNodeStateMachinePlayback_xreyf")
+parameters/state_machine/throw_backward_recovery/getting_up/blend_position = 1
+parameters/state_machine/throw_backward_recovery/slide/blend_position = 1
+parameters/state_machine/throw_forward/blend_position = 1
+parameters/state_machine/turn/blend_position = 1
+parameters/state_machine/walk/blend_position = 1
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -190)
 frames = ExtResource("4_l5bf7")
 animation = &"idle"
-flip_h = true
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
-position = Vector2(5, 22)
 collision_layer = 4096
 collision_mask = 2560
 monitorable = false
@@ -109,7 +138,7 @@ metadata/collision_type = "player_grab_box"
 visible = false
 modulate = Color(1, 0.337255, 0.792157, 0.298039)
 frames = ExtResource("4_l5bf7")
-animation = &"knockout_launch"
+animation = &"turn_around"
 offset = Vector2(0, -190)
 
 [node name="Positions" type="Node2D" parent="." index="4"]
@@ -137,7 +166,7 @@ visible = false
 modulate = Color(1, 0.337255, 0.792157, 0.298039)
 position = Vector2(-94.6772, 118.685)
 frames = ExtResource("4_l5bf7")
-animation = &"knockout_launch"
+animation = &"turn_around"
 flip_h = true
 
 [node name="GrabbedPivot" type="Position2D" parent="Positions" index="2"]

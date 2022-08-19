@@ -26,7 +26,7 @@ signal knockout_requested(knockback: QuiverKnockback)
 signal wall_bounced
 signal grab_requested(grabbed_character: QuiverAttributes)
 signal grab_released
-signal grabbed
+signal grabbed(ground_level: float)
 signal grab_denied
 
 #--- enums ----------------------------------------------------------------------------------------
@@ -130,7 +130,8 @@ func _init() -> void:
 func _to_string() -> String:
 	var dict = {
 		resource_path = resource_path,
-		grabbed_offset = grabbed_offset.get_path() if grabbed_offset != null else "none"
+		grabbed_offset = grabbed_offset.get_path() if grabbed_offset != null else "none",
+		ground_level = ground_level,
 	}
 	var json := JSON.new()
 	return "QuiverAttributes: %s"%[json.stringify(dict, "\t")]

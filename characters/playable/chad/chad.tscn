@@ -69,7 +69,9 @@ path_attack_state = "Ground/Combo1"
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_jtgbp")
-skin_state = &"walk"
+walk_skin_state = &"walk"
+turn_skin_state = &"turn"
+turning_speed_modifier = 0.6
 path_idle_state = "Ground/Move/Idle"
 path_grabbing_state = "Ground/Grab/Grabbing"
 
@@ -138,7 +140,7 @@ can_combo = false
 path_next_state = "Ground/Move/Idle"
 parent_should_enter = false
 parent_should_exit = true
-parent_should_process = null
+parent_should_process = true
 
 [node name="ThrowBackward" type="Node" parent="StateMachine/Ground/Grab" index="4"]
 script = ExtResource("16_ekfnh")
@@ -148,15 +150,14 @@ can_combo = false
 path_next_state = "Ground/Grab/ThrowBackwardRecovery"
 parent_should_enter = false
 parent_should_exit = false
-parent_should_process = null
+parent_should_process = true
 
 [node name="ThrowBackwardRecovery" type="Node" parent="StateMachine/Ground/Grab" index="5"]
 script = ExtResource("16_1juox")
 _SLIDE_IMPULSE = 300
 _SLIDE_FRICTION = 150
+skin_state = &"throw_backward_recovery"
 path_next_state = "Ground/Move/Idle"
-anim_recovery_1 = &"throw_backward_recovery_1"
-anim_recovery_2 = &"throw_backward_recovery_2"
 
 [node name="Grabbed" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("15_556th")

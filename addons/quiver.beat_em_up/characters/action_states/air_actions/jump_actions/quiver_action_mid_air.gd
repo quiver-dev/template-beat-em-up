@@ -112,6 +112,7 @@ func physics_process(delta: float) -> void:
 	
 	_handle_mid_air_animation()
 	_jump_state.physics_process(delta)
+	_handle_facing_direction()
 
 
 func exit() -> void:
@@ -127,6 +128,12 @@ func _handle_mid_air_animation() -> void:
 		_skin.transition_to(_skin_state_rising)
 	else:
 		_skin.transition_to(_skin_state_falling)
+
+
+func _handle_facing_direction() -> void:
+	var facing_direction :int = sign(_character.velocity.x)
+	if facing_direction != 0 and facing_direction != _skin.skin_direction:
+		_skin.skin_direction = facing_direction
 
 
 func _should_apply_air_control(input_direction: float) -> bool:

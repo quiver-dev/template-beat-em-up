@@ -100,7 +100,7 @@ func _on_skin_animation_finished() -> void:
 
 
 func _on_skin_grab_frame_reached(ref_position: Position2D) -> void:
-	_grab_state.grab_target.grabbed.emit()
+	_grab_state.grab_target.grabbed.emit(_grab_state.grab_target.ground_level)
 	_grab_state.reparent_target_node_to(ref_position)
 	_grab_state.grab_pivot = ref_position
 	_adjust_grabbed_target_position(ref_position)

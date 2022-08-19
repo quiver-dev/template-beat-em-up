@@ -77,24 +77,29 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _can_be_attacked_by(attacker: QuiverAttributes) -> bool:
 	var value := false
+	
 	if not character_attributes.is_invulnerable:
 		value = QuiverCombatSystem.is_in_same_lane_as(character_attributes, attacker)
+	
 	return value
 
 
 func _can_be_grabbed_by(grabber: QuiverAttributes) -> bool:
 	var value := false
+	
 	if (
 		not character_attributes.is_invulnerable 
 		and not character_attributes.has_superarmor
 		and character_attributes.can_be_grabbed
 	):
 		value = QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
+	
 	return value
 
 
 func _handle_hit_box(hit_box: QuiverHitBox) -> void:
 	if _can_be_attacked_by(hit_box.character_attributes):
+		print("hit_box: %s"%[hit_box.get_path()])
 		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
 		var knockback: QuiverKnockback = QuiverKnockback.new(
 				hit_box.attack_data.knockback,
