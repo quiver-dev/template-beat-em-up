@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=62 format=3 uid="uid://c8j7ycyt3mx65"]
+[gd_resource type="SpriteFrames" load_steps=65 format=3 uid="uid://c8j7ycyt3mx65"]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
@@ -50,9 +50,12 @@
 [ext_resource type="Texture2D" uid="uid://duj7g0sf4gjwi" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_11.png" id="43_p2whc"]
 [ext_resource type="Texture2D" uid="uid://dwiek7t5gc1hh" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_12.png" id="44_wmxek"]
 [ext_resource type="Texture2D" uid="uid://idd2ro1mo4gl" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_13.png" id="45_uale8"]
+[ext_resource type="Texture2D" uid="uid://cgvymw1sklq0" path="res://characters/playable/chad/resources/sprites/turn_around/turnaround_00.png" id="50_dcevi"]
 [ext_resource type="Texture2D" uid="uid://ciw4ufx1m8vxx" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_04.png" id="50_nmows"]
+[ext_resource type="Texture2D" uid="uid://bisn0d5xq5ow1" path="res://characters/playable/chad/resources/sprites/turn_around/turnaround_01.png" id="51_5s74y"]
 [ext_resource type="Texture2D" uid="uid://dep3x756m6vqi" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_05.png" id="51_8njhy"]
 [ext_resource type="Texture2D" uid="uid://bn2g2ph0ooau8" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_06.png" id="52_gcp6t"]
+[ext_resource type="Texture2D" uid="uid://d1xe52egp2xnj" path="res://characters/playable/chad/resources/sprites/turn_around/turnaround_02.png" id="52_xtm6s"]
 [ext_resource type="Texture2D" uid="uid://cxcic60a6fi5r" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_07.png" id="53_visfg"]
 [ext_resource type="Texture2D" uid="uid://clah7bjekx0np" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_08.png" id="54_ttwba"]
 [ext_resource type="Texture2D" uid="uid://fnkskuadgaej" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_09.png" id="55_7efxf"]
@@ -187,6 +190,11 @@ animations = [{
 "frames": [ExtResource("40_h0xh0"), ExtResource("40_h0xh0"), ExtResource("41_pccww"), ExtResource("41_pccww"), ExtResource("42_f8jmx"), ExtResource("42_f8jmx"), ExtResource("43_p2whc"), ExtResource("43_p2whc"), ExtResource("44_wmxek"), ExtResource("44_wmxek"), ExtResource("45_uale8"), ExtResource("45_uale8")],
 "loop": false,
 "name": &"throw_forward",
+"speed": 24.0
+}, {
+"frames": [ExtResource("50_dcevi"), ExtResource("51_5s74y"), ExtResource("52_xtm6s")],
+"loop": false,
+"name": &"turn_around",
 "speed": 24.0
 }, {
 "frames": [ExtResource("6_ra0bq"), ExtResource("6_ra0bq"), ExtResource("7_n4s3j"), ExtResource("7_n4s3j"), ExtResource("7_n4s3j"), ExtResource("8_ytmlj"), ExtResource("8_ytmlj"), ExtResource("9_ur7d7"), ExtResource("9_ur7d7"), ExtResource("9_ur7d7"), ExtResource("10_vyrsa"), ExtResource("10_vyrsa"), ExtResource("11_5p56x"), ExtResource("11_5p56x"), ExtResource("12_sw7jw"), ExtResource("12_sw7jw"), ExtResource("12_sw7jw"), ExtResource("13_wlfmd"), ExtResource("13_wlfmd"), ExtResource("14_ujcpq"), ExtResource("14_ujcpq"), ExtResource("14_ujcpq"), ExtResource("15_bany5"), ExtResource("15_bany5"), ExtResource("16_wr7m3"), ExtResource("16_wr7m3"), ExtResource("17_j3734"), ExtResource("17_j3734"), ExtResource("17_j3734")],

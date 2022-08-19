@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=57 format=3 uid="uid://bec4th23gqkxd"]
+[gd_resource type="AnimationLibrary" load_steps=59 format=3 uid="uid://bec4th23gqkxd"]
 
 [ext_resource type="Animation" uid="uid://btquhprad5iru" path="res://characters/playable/chad/resources/animations/air_attack_right.tres" id="1_jgcla"]
 [ext_resource type="Animation" uid="uid://cog1iucyx4hyl" path="res://characters/playable/chad/resources/animations/attack1_right.tres" id="2_qtktm"]
@@ -55,7 +55,9 @@
 [ext_resource type="Animation" uid="uid://xk8c14l0m8tr" path="res://characters/playable/chad/resources/animations/throw_backward_recovery_3_left.tres" id="53_0s02p"]
 [ext_resource type="Animation" uid="uid://bs4425nym7xd5" path="res://characters/playable/chad/resources/animations/throw_forward_left.tres" id="54_gidmc"]
 [ext_resource type="Animation" uid="uid://513qytwixpr2" path="res://characters/playable/chad/resources/animations/walk_left.tres" id="55_ihi0c"]
+[ext_resource type="Animation" uid="uid://cq036701r5uh6" path="res://characters/playable/chad/resources/animations/turn_to_left.tres" id="55_r13dv"]
 [ext_resource type="Animation" uid="uid://barjq3mv17in2" path="res://characters/playable/chad/resources/animations/rising_left.tres" id="56_q1d5v"]
+[ext_resource type="Animation" uid="uid://ddsxiivpcxbqv" path="res://characters/playable/chad/resources/animations/turn_to_right.tres" id="58_adxe7"]
 
 [resource]
 _data = {
@@ -113,6 +115,8 @@ _data = {
 "throw_backward_right": ExtResource("22_iufhr"),
 "throw_forward_left": ExtResource("54_gidmc"),
 "throw_forward_right": ExtResource("27_0vnhv"),
+"turn_to_left": ExtResource("55_r13dv"),
+"turn_to_right": ExtResource("58_adxe7"),
 "walk_left": ExtResource("55_ihi0c"),
 "walk_right": ExtResource("28_qke1s")
 }
