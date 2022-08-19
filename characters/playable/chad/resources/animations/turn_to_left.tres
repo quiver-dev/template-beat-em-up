@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "turn_to_left"
-length = 0.25
+length = 0.166667
 step = 0.0416667
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -11,10 +11,10 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.25),
+"times": PackedFloat32Array(0.166667),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": ["turn_to_left"],
 "method": &"end_of_skin_animation"
 }]
 }
@@ -73,7 +73,7 @@ tracks/5/path = NodePath("AnimatedSprite2D:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = false
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.208333),
+"times": PackedFloat32Array(0, 0.125),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 2]

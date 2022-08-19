@@ -66,8 +66,9 @@ path_attack_state = "Ground/Attack1"
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_d1bnb")
-skin_state = &"walk"
+walk_skin_state = &"walk"
 path_next_state = "Ground/Move/IdleAi"
+turning_speed_modifier = 0.6
 
 [node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("7_t2y4d")

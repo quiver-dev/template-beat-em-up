@@ -19,9 +19,13 @@ const MoveState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _skin_state: StringName
+var _walk_skin_state := &"walk"
+var _turn_skin_state := &"turn"
 var _path_idle_state := "Ground/Move/Idle"
 var _path_grabbing_state := "Ground/Grab/Grabbing"
+var _turning_speed_modifier := 0.6
+
+var _is_turning := false
 
 @onready var _move_state := get_parent() as MoveState
 
@@ -59,7 +63,7 @@ func enter(msg: = {}) -> void:
 	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	super(msg)
 	_move_state.enter(msg)
-	_skin.transition_to(_skin_state)
+	_skin.transition_to(_walk_skin_state)
 	
 	_handle_facing_direction()
 
@@ -74,15 +78,19 @@ func physics_process(delta: float) -> void:
 	_move_state._direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	_handle_facing_direction()
 	
-	if _move_state._direction == Vector2.ZERO:
-		_state_machine.transition_to(_path_idle_state)
+	if _is_turning:
+		_move_state._direction *= _turning_speed_modifier
 	
 	_move_state.physics_process(delta)
+	
+	if _character.velocity.is_equal_approx(Vector2.ZERO):
+		_state_machine.transition_to(_path_idle_state)
 
 
 func exit() -> void:
 	super()
 	_move_state.exit()
+	_is_turning = false
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -91,8 +99,13 @@ func exit() -> void:
 
 func _handle_facing_direction() -> void:
 	var facing_direction :int = sign(_move_state._direction.x)
-	if facing_direction != 0:
+	if facing_direction != 0 and facing_direction != _skin.skin_direction:
 		_skin.skin_direction = facing_direction
+		_skin.transition_to(_turn_skin_state)
+		QuiverEditorHelper.connect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
+		_is_turning = true
 
 
 func _connect_signals() -> void:
@@ -106,10 +119,21 @@ func _disconnect_signals() -> void:
 	
 	if _attributes != null:
 		QuiverEditorHelper.disconnect_between(_attributes.grab_requested, _on_grab_requested)
+	
+	if _skin != null:
+		QuiverEditorHelper.disconnect_between(
+				_skin.skin_animation_finished, _on_skin_animation_finished
+		)
 
 
 func _on_grab_requested(grab_target: QuiverAttributes) -> void:
 	_state_machine.transition_to(_path_grabbing_state, {target = grab_target})
+
+
+func _on_skin_animation_finished() -> void:
+	_skin.transition_to(_walk_skin_state)
+	_skin.skin_animation_finished.disconnect(_on_skin_animation_finished)
+	_is_turning = false
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -124,13 +148,28 @@ const CUSTOM_PROPERTIES = {
 		usage = PROPERTY_USAGE_CATEGORY,
 		hint = PROPERTY_HINT_NONE,
 	},
-	"skin_state": {
-		backing_field = "_skin_state",
+	"walk_skin_state": {
+		backing_field = "_walk_skin_state",
 		type = TYPE_INT,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
 				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
+	"turn_skin_state": {
+		backing_field = "_turn_skin_state",
+		type = TYPE_INT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
+	"turning_speed_modifier": {
+		backing_field = "_turning_speed_modifier",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0.1,1,0.01,or_greater"
 	},
 	"path_idle_state": {
 		backing_field = "_path_idle_state",
