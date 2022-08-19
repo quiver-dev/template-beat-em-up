@@ -45,7 +45,6 @@ func end_of_suplex() -> void:
 
 
 func end_of_slide() -> void:
-	print("RODOU O END OF SLIDE")
 	sliding_stopped.emit()
 
 ### -----------------------------------------------------------------------------------------------
