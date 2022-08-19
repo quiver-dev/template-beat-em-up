@@ -78,8 +78,8 @@ func exit() -> void:
 func _handle_bounce() -> void:
 	_character.global_position.y = _attributes.ground_level
 	var bounce_direction = Vector2(
-			_character.velocity.reflect(Vector2.UP).x,
-			_air_state._skin_velocity_y
+			_character.velocity.x,
+			_air_state._skin_velocity_y * -1
 	).normalized()
 	
 	_air_state._skin_velocity_y = 0.0
