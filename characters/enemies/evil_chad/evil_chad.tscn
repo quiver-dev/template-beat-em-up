@@ -74,8 +74,9 @@ skin_state = &"idle"
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("2_py5s2")
 ARRIVE_RANGE = 30
-skin_state = &"walk"
+walk_skin_state = &"walk"
 path_next_state = "Ground/Move/Idle"
+turning_speed_modifier = 0.6
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("8_lnplq")

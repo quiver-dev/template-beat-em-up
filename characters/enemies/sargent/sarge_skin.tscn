@@ -79,7 +79,7 @@ parameters/state_machine/knockout_ground/landed/blend_position = 0
 parameters/state_machine/knockout_launch/blend_position = 1
 parameters/state_machine/knockout_rising/blend_position = 1
 parameters/state_machine/turn/blend_position = 1
-parameters/state_machine/walk/blend_position = 1
+parameters/state_machine/walk/blend_position = 0.476038
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
