@@ -37,7 +37,12 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_attributes.ground_level = _character.global_position.y
+	
+	if msg.has("ground_level"):
+		_attributes.ground_level = msg.ground_level
+	else:
+		_attributes.ground_level = _character.global_position.y
+	
 	_character.is_on_air = false
 
 
@@ -88,8 +93,8 @@ func _on_knockout_requested(knockback: QuiverKnockback) -> void:
 	)
 
 
-func _on_grabbed() -> void:
-	_state_machine.transition_to.call_deferred(_path_grabbed)
+func _on_grabbed(ground_level: float) -> void:
+	_state_machine.transition_to.call_deferred(_path_grabbed, {ground_level = ground_level})
 
 ### -----------------------------------------------------------------------------------------------
 

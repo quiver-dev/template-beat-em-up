@@ -87,10 +87,10 @@ func exit() -> void:
 
 
 func reparent_target_node_to(new_parent: Node2D) -> void:
-	var global_transform = grab_target_node.get_global_transform()
+	var global_position = grab_target_node.global_position
 	grab_target_node.get_parent().remove_child(grab_target_node)
 	new_parent.add_child(grab_target_node)
-	grab_target_node.global_transform = global_transform
+	grab_target_node.global_position = global_position
 
 ### -----------------------------------------------------------------------------------------------
 

@@ -84,7 +84,11 @@ func _decide_next_action(_last_state: StringName) -> void:
 func _connect_attributes_signals() -> void:
 	QuiverEditorHelper.connect_between(character_attributes.hurt_requested, _ai_interrupted)
 	QuiverEditorHelper.connect_between(character_attributes.knockout_requested, _ai_reset)
-	QuiverEditorHelper.connect_between(character_attributes.grabbed, _ai_interrupted)
+	QuiverEditorHelper.connect_between(character_attributes.grabbed, _ai_grabbed)
+
+
+func _ai_grabbed(_ground_level: float) -> void:
+	_interrupt_current_state(get_path_to(state))
 
 
 func _ai_interrupted(_knockback: QuiverKnockback = null) -> void:
