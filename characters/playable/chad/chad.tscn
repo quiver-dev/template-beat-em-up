@@ -156,9 +156,8 @@ parent_should_process = true
 script = ExtResource("16_1juox")
 _SLIDE_IMPULSE = 300
 _SLIDE_FRICTION = 150
+skin_state = &"throw_backward_recovery"
 path_next_state = "Ground/Move/Idle"
-anim_recovery_1 = &"throw_backward_recovery_1"
-anim_recovery_2 = &"throw_backward_recovery_2"
 
 [node name="Grabbed" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("15_556th")

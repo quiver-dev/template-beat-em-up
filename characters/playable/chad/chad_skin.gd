@@ -7,6 +7,7 @@ extends QuiverCharacterSkin
 #--- signals --------------------------------------------------------------------------------------
 
 signal suplex_landed
+signal sliding_stopped
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -41,6 +42,11 @@ func get_suplex_landing_position() -> Vector2:
 
 func end_of_suplex() -> void:
 	suplex_landed.emit()
+
+
+func end_of_slide() -> void:
+	print("RODOU O END OF SLIDE")
+	sliding_stopped.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
