@@ -1,0 +1,13 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=3 format=3 uid="uid://c3pcupwpobwd4"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_myp04"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_mkj3y"]
+
+[resource]
+graph_offset = Vector2(-448, 29)
+nodes/state_machine/node = SubResource("AnimationNodeStateMachine_myp04")
+nodes/state_machine/position = Vector2(-180, 140)
+nodes/time_scale/node = SubResource("AnimationNodeTimeScale_mkj3y")
+nodes/time_scale/position = Vector2(80, 140)
+node_connections = [&"output", 0, &"time_scale", &"time_scale", 0, &"state_machine"]

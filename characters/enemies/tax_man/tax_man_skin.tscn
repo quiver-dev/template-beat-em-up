@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://b54n5r8veeg0a"]
+
+[ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
+[ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://c3pcupwpobwd4" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
+[ext_resource type="SpriteFrames" uid="uid://8y5strh0gb62" path="res://characters/enemies/tax_man/resources/tax_man_sprite_frames.tres" id="4_2vvsa"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1gmi8"]
+
+[node name="TaxManSkin" instance=ExtResource("1_vkbuf")]
+skin_direction = -1
+_attributes = ExtResource("2_g54ht")
+has_grab = true
+path_grab_pivot = NodePath("Positions/GrabPivot")
+has_grabbed = true
+path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
+
+[node name="AnimationTree" parent="." index="1"]
+tree_root = ExtResource("3_l0y1t")
+parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_1gmi8")
+parameters/time_scale/scale = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+frames = ExtResource("4_2vvsa")
