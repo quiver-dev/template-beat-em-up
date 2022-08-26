@@ -1,0 +1,20 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dtrb5fqmkkyla"]
+
+[ext_resource type="Texture2D" uid="uid://dst83l73txqr8" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_24.png" id="1_mlhxu"]
+[ext_resource type="Texture2D" uid="uid://2ny2qdo7tglv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_25.png" id="2_8i68u"]
+[ext_resource type="Texture2D" uid="uid://cvwfw245qjg0a" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_26.png" id="3_c8rxi"]
+[ext_resource type="Texture2D" uid="uid://djftnnelwxvat" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_27.png" id="4_aocot"]
+[ext_resource type="Texture2D" uid="uid://b5jwwmw57am84" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_28.png" id="5_pg8it"]
+[ext_resource type="Texture2D" uid="uid://bd0digxwlq8lv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_29.png" id="6_tukgu"]
+[ext_resource type="Texture2D" uid="uid://bj8lddg51rnyg" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_30.png" id="7_q04yj"]
+[ext_resource type="Texture2D" uid="uid://ciy6qmost4b1l" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_31.png" id="8_yscmn"]
+[ext_resource type="Texture2D" uid="uid://ga34cif0l04l" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_32.png" id="9_euaqp"]
+[ext_resource type="Texture2D" uid="uid://cm2hyes7gbgd6" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_33.png" id="10_x78dx"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("1_mlhxu"), ExtResource("2_8i68u"), ExtResource("2_8i68u"), ExtResource("3_c8rxi"), ExtResource("3_c8rxi"), ExtResource("3_c8rxi"), ExtResource("4_aocot"), ExtResource("4_aocot"), ExtResource("5_pg8it"), ExtResource("5_pg8it"), ExtResource("6_tukgu"), ExtResource("6_tukgu"), ExtResource("7_q04yj"), ExtResource("8_yscmn"), ExtResource("8_yscmn"), ExtResource("9_euaqp"), ExtResource("9_euaqp"), ExtResource("9_euaqp"), ExtResource("10_x78dx"), ExtResource("10_x78dx"), null],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]

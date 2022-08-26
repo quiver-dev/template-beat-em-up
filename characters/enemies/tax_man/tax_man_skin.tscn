@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b54n5r8veeg0a"]
+[gd_scene load_steps=10 format=3 uid="uid://b1c5unvdyy4rx"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c3pcupwpobwd4" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
 [ext_resource type="SpriteFrames" uid="uid://8y5strh0gb62" path="res://characters/enemies/tax_man/resources/tax_man_sprite_frames.tres" id="4_2vvsa"]
+[ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
+[ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
+[ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
+[ext_resource type="SpriteFrames" uid="uid://yhmp6uwgolv4" path="res://characters/enemies/tax_man/resources/tax_man_explosion_sprite_frames.tres" id="29_l5cjv"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1gmi8"]
 
@@ -20,5 +24,31 @@ tree_root = ExtResource("3_l0y1t")
 parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_1gmi8")
 parameters/time_scale/scale = 1.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+[node name="Lightining" type="AnimatedSprite2D" parent="." index="2"]
+frames = ExtResource("4_6fblr")
+animation = &"back_lightning"
+
+[node name="Body" type="AnimatedSprite2D" parent="." index="3"]
 frames = ExtResource("4_2vvsa")
+animation = &"engage"
+frame = 41
+playing = true
+
+[node name="GroundLightining" type="AnimatedSprite2D" parent="Body" index="0"]
+show_behind_parent = true
+position = Vector2(118, 474)
+frames = ExtResource("6_nrudn")
+animation = &"area_attak"
+
+[node name="FrontLightining" type="AnimatedSprite2D" parent="." index="4"]
+visible = false
+frames = ExtResource("4_6fblr")
+animation = &"front_lightining"
+
+[node name="Smoke" type="AnimatedSprite2D" parent="." index="5"]
+frames = ExtResource("19_xm1w5")
+frame = 20
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." index="6"]
+frames = ExtResource("29_l5cjv")
+frame = 25

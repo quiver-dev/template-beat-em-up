@@ -1,3 +1,190 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://8y5strh0gb62"]
+[gd_resource type="SpriteFrames" load_steps=96 format=3 uid="uid://8y5strh0gb62"]
+
+[ext_resource type="Texture2D" uid="uid://bd8l4oplyyoxr" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_01.png" id="1_kkj0t"]
+[ext_resource type="Texture2D" uid="uid://w6ak5bf2s5yh" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_00.png" id="1_nuth2"]
+[ext_resource type="Texture2D" uid="uid://d2es5uhrtry2g" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack03.png" id="1_o8kgl"]
+[ext_resource type="Texture2D" uid="uid://8hh2rknw2fve" path="res://characters/enemies/tax_man/resources/sprites/knockout/injury_knockout_impact.png" id="1_uqj7m"]
+[ext_resource type="Texture2D" uid="uid://bhfocpuf8i55c" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_01.png" id="2_cslqp"]
+[ext_resource type="Texture2D" uid="uid://c21qxy2kp4d0i" path="res://characters/enemies/tax_man/resources/sprites/hurt/injury_small.png" id="2_lsaqr"]
+[ext_resource type="Texture2D" uid="uid://bsu55sus5lxni" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack04.png" id="2_ol4ld"]
+[ext_resource type="Texture2D" uid="uid://cslvv1bflncbp" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_02.png" id="2_w5pti"]
+[ext_resource type="Texture2D" uid="uid://741fpvfn8dgq" path="res://characters/enemies/tax_man/resources/sprites/hurt/injury_medium.png" id="3_5s2i0"]
+[ext_resource type="Texture2D" uid="uid://bokvvyer6qy7s" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_03.png" id="3_ji7ec"]
+[ext_resource type="Texture2D" uid="uid://bv04wfmj8f3nh" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack05.png" id="3_k0woc"]
+[ext_resource type="Texture2D" uid="uid://cfbu6kd8hob1i" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_02.png" id="3_qxtlo"]
+[ext_resource type="Texture2D" uid="uid://djr2oqxenbqbp" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack06.png" id="4_2tvc1"]
+[ext_resource type="Texture2D" uid="uid://bxg4grtinyl3j" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_04.png" id="4_wi2p7"]
+[ext_resource type="Texture2D" uid="uid://trhxlrjiimg3" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_03.png" id="4_y6bqa"]
+[ext_resource type="Texture2D" uid="uid://cb1d4eleedd8b" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack07.png" id="5_alsh4"]
+[ext_resource type="Texture2D" uid="uid://b0a8gx55ib5y7" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_04.png" id="5_nsdc3"]
+[ext_resource type="Texture2D" uid="uid://cm23bsjneyxgr" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_05.png" id="5_o2xgr"]
+[ext_resource type="Texture2D" uid="uid://uej7hdi2cact" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_05.png" id="6_2kyh4"]
+[ext_resource type="Texture2D" uid="uid://dlmhor20m2f1u" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack08.png" id="6_o5af7"]
+[ext_resource type="Texture2D" uid="uid://b07ivqymfqidu" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_06.png" id="6_p7vke"]
+[ext_resource type="Texture2D" uid="uid://c8j58rjjsn6xo" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_06.png" id="7_03806"]
+[ext_resource type="Texture2D" uid="uid://qu36owbuw6n1" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack09.png" id="7_isgfp"]
+[ext_resource type="Texture2D" uid="uid://csndt0jd6d2p0" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_07.png" id="8_4a04b"]
+[ext_resource type="Texture2D" uid="uid://b2cn5rlukic5p" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack10.png" id="8_nbmlg"]
+[ext_resource type="Texture2D" uid="uid://cm05dafkqkx8p" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack11.png" id="9_1ypal"]
+[ext_resource type="Texture2D" uid="uid://dtjhw5n7pfeo7" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_00.png" id="9_o8tlr"]
+[ext_resource type="Texture2D" uid="uid://0dxefquorr6o" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack12.png" id="10_2pt1o"]
+[ext_resource type="Texture2D" uid="uid://6a6htibrie0m" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_01.png" id="10_i1dxq"]
+[ext_resource type="Texture2D" uid="uid://d1ei7ot8neknn" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_02.png" id="11_obqa0"]
+[ext_resource type="Texture2D" uid="uid://cg7lsdulr1jkm" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack13.png" id="11_yct37"]
+[ext_resource type="Texture2D" uid="uid://dkcytvlj8qrcy" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_00.png" id="12_d5ven"]
+[ext_resource type="Texture2D" uid="uid://3jst81dgsh6s" path="res://characters/enemies/tax_man/resources/sprites/knockout/knock_out.png" id="12_mnpxl"]
+[ext_resource type="Texture2D" uid="uid://y2bpr3rqynpx" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack14.png" id="12_tt43o"]
+[ext_resource type="Texture2D" uid="uid://caatutbff8k0a" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_03.png" id="12_x2mm3"]
+[ext_resource type="Texture2D" uid="uid://da2nschlm81qn" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack16.png" id="13_7r3v7"]
+[ext_resource type="Texture2D" uid="uid://bubg782tagl1i" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_01.png" id="13_m8mnw"]
+[ext_resource type="Texture2D" uid="uid://b4ypjllesraxg" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_04.png" id="13_sh5di"]
+[ext_resource type="Texture2D" uid="uid://cf45nojkqmofu" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_05.png" id="14_jpcnv"]
+[ext_resource type="Texture2D" uid="uid://d2bjbi7s1uycr" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack17.png" id="14_m0o63"]
+[ext_resource type="Texture2D" uid="uid://dfac10rdagjel" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_02.png" id="14_sy5xo"]
+[ext_resource type="Texture2D" uid="uid://df3v0h468f7j4" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_01.png" id="15_117of"]
+[ext_resource type="Texture2D" uid="uid://cwlqsu0ri2li8" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_06.png" id="15_184uk"]
+[ext_resource type="Texture2D" uid="uid://bbsvxdu6rwbuc" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack18.png" id="15_aarkl"]
+[ext_resource type="Texture2D" uid="uid://b5k8lboqgonl8" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_04.png" id="15_r4lbl"]
+[ext_resource type="Texture2D" uid="uid://bmu6adni65020" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_01.png" id="16_3b72o"]
+[ext_resource type="Texture2D" uid="uid://di2mfp5ahhlr" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_07.png" id="16_nsx5o"]
+[ext_resource type="Texture2D" uid="uid://jwea56x0tb3o" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_03.png" id="16_um6wo"]
+[ext_resource type="Texture2D" uid="uid://cn81by7fxjonh" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_02.png" id="17_awbdt"]
+[ext_resource type="Texture2D" uid="uid://de5gxkjvkyrug" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_08.png" id="17_k2ce8"]
+[ext_resource type="Texture2D" uid="uid://bnn1sxf8s3tsq" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_04.png" id="17_nk7tj"]
+[ext_resource type="Texture2D" uid="uid://d2tebjumqidxw" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_03.png" id="18_2plrn"]
+[ext_resource type="Texture2D" uid="uid://dwl36y4o8ym54" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_09.png" id="18_370m7"]
+[ext_resource type="Texture2D" uid="uid://s8ut8rfyeuxq" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_08.png" id="18_r2biy"]
+[ext_resource type="Texture2D" uid="uid://cbxpki1bv2m0m" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_10.png" id="19_7p6kd"]
+[ext_resource type="Texture2D" uid="uid://binpv6mguityq" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_04.png" id="19_c7l8p"]
+[ext_resource type="Texture2D" uid="uid://37g3nl1wyjh8" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_03.png" id="19_yfnib"]
+[ext_resource type="Texture2D" uid="uid://ddupjpymybij7" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_05.png" id="20_4vnr3"]
+[ext_resource type="Texture2D" uid="uid://douvdmjge086t" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_11.png" id="20_agtoy"]
+[ext_resource type="Texture2D" uid="uid://cccki333c6qxm" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_04.png" id="20_d7vis"]
+[ext_resource type="Texture2D" uid="uid://df0fwaahk78qc" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_07.png" id="21_15sdg"]
+[ext_resource type="Texture2D" uid="uid://bnxlf80nslxay" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_05.png" id="21_h0dxg"]
+[ext_resource type="Texture2D" uid="uid://d0bk84t3873a6" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_12.png" id="21_vixnb"]
+[ext_resource type="Texture2D" uid="uid://co0kh3ouiv05u" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_13.png" id="22_633yf"]
+[ext_resource type="Texture2D" uid="uid://ctjyl8a27yp6w" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_08.png" id="22_osahp"]
+[ext_resource type="Texture2D" uid="uid://c4u5pcmqw5rkc" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_06.png" id="22_r6ikn"]
+[ext_resource type="Texture2D" uid="uid://mfvaq034066d" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_07.png" id="23_5x0s2"]
+[ext_resource type="Texture2D" uid="uid://burtdrj23q5ra" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_09.png" id="23_g8agn"]
+[ext_resource type="Texture2D" uid="uid://cdt1qeka5sdsh" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_14.png" id="23_yjcmk"]
+[ext_resource type="Texture2D" uid="uid://bsg1jtgvvbkom" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_08.png" id="24_3e8j6"]
+[ext_resource type="Texture2D" uid="uid://c2ah1jw7fw6rj" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_cycle_15.png" id="24_8u72l"]
+[ext_resource type="Texture2D" uid="uid://b30mff6mmnttv" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_10.png" id="24_8505m"]
+[ext_resource type="Texture2D" uid="uid://bhweo7yntd0un" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_09.png" id="25_fel3j"]
+[ext_resource type="Texture2D" uid="uid://bbtwhl7jd02pb" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_11.png" id="25_sbrq8"]
+[ext_resource type="Texture2D" uid="uid://dn06xhtk5wanq" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_12.png" id="26_ernhq"]
+[ext_resource type="Texture2D" uid="uid://dqt1bveo7x01l" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_10.png" id="26_p8gyj"]
+[ext_resource type="Texture2D" uid="uid://blrmdlixs8p3w" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_13.png" id="27_cvuhh"]
+[ext_resource type="Texture2D" uid="uid://cnef7ieldxts7" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_11.png" id="27_dtxjp"]
+[ext_resource type="Texture2D" uid="uid://da8ld8s3tcpx1" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/intro_wine_swirl_revised_00.png" id="28_c3l0n"]
+[ext_resource type="Texture2D" uid="uid://bgyxyimkduq2f" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_14.png" id="28_j2nvl"]
+[ext_resource type="Texture2D" uid="uid://b85emtrlmm3iv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_12.png" id="28_sy25f"]
+[ext_resource type="Texture2D" uid="uid://coiq6w0go6ns7" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/intro_wine_swirl_revised_08.png" id="29_lco4n"]
+[ext_resource type="Texture2D" uid="uid://dmk2g27x1udyi" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_13.png" id="29_ri2p6"]
+[ext_resource type="Texture2D" uid="uid://cw066wuxvsogo" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_14.png" id="30_bvmwv"]
+[ext_resource type="Texture2D" uid="uid://dvibdx3u2brls" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/intro_wine_swirl_revised_01.png" id="30_ek8up"]
+[ext_resource type="Texture2D" uid="uid://gsajx715gjtx" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/intro_wine_swirl_revised_02.png" id="31_4a5vw"]
+[ext_resource type="Texture2D" uid="uid://t5yf8ottt1io" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_15.png" id="31_bsyyr"]
+[ext_resource type="Texture2D" uid="uid://d2acgmufw0wyd" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_16.png" id="32_x4kqk"]
+[ext_resource type="Texture2D" uid="uid://cr4sl5qjxgmbl" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_00.png" id="48_fkggc"]
+[ext_resource type="Texture2D" uid="uid://bo51hux6od5ja" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_01.png" id="49_reu6x"]
+[ext_resource type="Texture2D" uid="uid://b8yr6bc2f4dt8" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_02.png" id="50_ojkcw"]
+[ext_resource type="Texture2D" uid="uid://b66du0abj1xnb" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_03.png" id="51_3s5ip"]
+[ext_resource type="Texture2D" uid="uid://kc2a40obkvmk" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_00.png" id="69_mqjcs"]
+[ext_resource type="Texture2D" uid="uid://dyrwt00v4kj04" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_01.png" id="70_q33a0"]
+[ext_resource type="Texture2D" uid="uid://q8xge2hdpm2t" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_02.png" id="71_1dmpu"]
 
 [resource]
+animations = [{
+"frames": [ExtResource("1_o8kgl"), ExtResource("1_o8kgl"), ExtResource("2_ol4ld"), ExtResource("2_ol4ld"), ExtResource("3_k0woc"), ExtResource("3_k0woc"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("2_ol4ld"), ExtResource("2_ol4ld"), ExtResource("2_ol4ld"), ExtResource("5_alsh4"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("2_ol4ld"), ExtResource("2_ol4ld"), ExtResource("2_ol4ld"), ExtResource("5_alsh4"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("2_ol4ld"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("5_alsh4"), ExtResource("4_2tvc1"), ExtResource("4_2tvc1"), ExtResource("6_o5af7"), ExtResource("7_isgfp"), ExtResource("7_isgfp"), ExtResource("7_isgfp"), ExtResource("8_nbmlg"), ExtResource("8_nbmlg"), ExtResource("9_1ypal"), ExtResource("9_1ypal"), ExtResource("10_2pt1o"), ExtResource("10_2pt1o"), ExtResource("11_yct37"), ExtResource("11_yct37"), ExtResource("12_tt43o"), ExtResource("12_tt43o"), ExtResource("12_tt43o"), ExtResource("12_tt43o"), ExtResource("12_tt43o"), ExtResource("12_tt43o"), ExtResource("12_tt43o"), ExtResource("13_7r3v7"), ExtResource("13_7r3v7"), ExtResource("14_m0o63"), ExtResource("14_m0o63"), ExtResource("15_aarkl")],
+"loop": false,
+"name": &"area_attack",
+"speed": 24.0
+}, {
+"frames": [ExtResource("16_3b72o"), ExtResource("16_3b72o"), ExtResource("17_awbdt"), ExtResource("17_awbdt"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("19_c7l8p"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("6_p7vke"), ExtResource("21_15sdg"), ExtResource("21_15sdg"), ExtResource("22_osahp"), ExtResource("23_g8agn"), ExtResource("23_g8agn"), ExtResource("23_g8agn"), ExtResource("24_8505m"), ExtResource("24_8505m"), ExtResource("24_8505m"), ExtResource("25_sbrq8"), ExtResource("25_sbrq8"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("27_cvuhh"), ExtResource("27_cvuhh"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl")],
+"loop": false,
+"name": &"combo_attack",
+"speed": 24.0
+}, {
+"frames": [ExtResource("15_117of"), ExtResource("15_117of"), ExtResource("15_117of"), ExtResource("15_117of"), ExtResource("15_117of"), ExtResource("16_um6wo"), ExtResource("16_um6wo"), ExtResource("16_um6wo"), ExtResource("16_um6wo"), ExtResource("17_nk7tj")],
+"loop": false,
+"name": &"dash_attack_begin",
+"speed": 24.0
+}, {
+"frames": [ExtResource("18_r2biy")],
+"loop": false,
+"name": &"dash_attack_end",
+"speed": 24.0
+}, {
+"frames": [ExtResource("19_yfnib"), ExtResource("19_yfnib"), ExtResource("19_yfnib"), ExtResource("19_yfnib"), ExtResource("19_yfnib"), ExtResource("20_d7vis"), ExtResource("20_d7vis"), ExtResource("21_h0dxg"), ExtResource("21_h0dxg"), ExtResource("20_d7vis"), ExtResource("20_d7vis"), ExtResource("21_h0dxg"), ExtResource("21_h0dxg"), ExtResource("20_d7vis"), ExtResource("20_d7vis"), ExtResource("21_h0dxg"), ExtResource("21_h0dxg"), ExtResource("20_d7vis"), ExtResource("20_d7vis"), ExtResource("21_h0dxg"), ExtResource("21_h0dxg"), ExtResource("20_d7vis"), ExtResource("20_d7vis"), ExtResource("22_r6ikn"), ExtResource("22_r6ikn"), ExtResource("22_r6ikn"), ExtResource("22_r6ikn"), ExtResource("22_r6ikn"), ExtResource("23_5x0s2"), ExtResource("23_5x0s2"), ExtResource("23_5x0s2"), ExtResource("23_5x0s2"), ExtResource("23_5x0s2"), ExtResource("23_5x0s2"), ExtResource("23_5x0s2"), ExtResource("24_3e8j6"), ExtResource("24_3e8j6"), ExtResource("24_3e8j6"), ExtResource("25_fel3j"), ExtResource("25_fel3j"), ExtResource("25_fel3j"), ExtResource("26_p8gyj"), ExtResource("26_p8gyj"), ExtResource("26_p8gyj"), ExtResource("27_dtxjp"), ExtResource("27_dtxjp"), ExtResource("27_dtxjp"), ExtResource("27_dtxjp"), ExtResource("27_dtxjp"), ExtResource("28_sy25f"), ExtResource("28_sy25f"), ExtResource("28_sy25f"), ExtResource("28_sy25f"), ExtResource("28_sy25f"), ExtResource("28_sy25f"), ExtResource("28_sy25f"), ExtResource("29_ri2p6"), ExtResource("29_ri2p6"), ExtResource("29_ri2p6"), ExtResource("30_bvmwv"), ExtResource("31_bsyyr"), ExtResource("31_bsyyr"), ExtResource("31_bsyyr"), ExtResource("32_x4kqk")],
+"loop": false,
+"name": &"death_explosion",
+"speed": 24.0
+}, {
+"frames": [ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("50_ojkcw"), ExtResource("50_ojkcw"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip")],
+"loop": false,
+"name": &"engage",
+"speed": 24.0
+}, {
+"frames": [ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("3_ji7ec"), ExtResource("3_ji7ec"), ExtResource("3_ji7ec"), ExtResource("4_wi2p7"), ExtResource("4_wi2p7"), ExtResource("4_wi2p7"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr")],
+"loop": false,
+"name": &"grab_reject",
+"speed": 24.0
+}, {
+"frames": [ExtResource("1_uqj7m")],
+"loop": true,
+"name": &"hurt_knockout",
+"speed": 24.0
+}, {
+"frames": [ExtResource("2_lsaqr")],
+"loop": false,
+"name": &"hurt_light",
+"speed": 24.0
+}, {
+"frames": [ExtResource("3_5s2i0")],
+"loop": false,
+"name": &"hurt_medium",
+"speed": 24.0
+}, {
+"frames": [ExtResource("1_nuth2"), ExtResource("1_nuth2"), ExtResource("1_nuth2"), ExtResource("2_cslqp"), ExtResource("2_cslqp"), ExtResource("2_cslqp"), ExtResource("3_qxtlo"), ExtResource("3_qxtlo"), ExtResource("3_qxtlo"), ExtResource("3_qxtlo"), ExtResource("4_y6bqa"), ExtResource("4_y6bqa"), ExtResource("4_y6bqa"), ExtResource("5_nsdc3"), ExtResource("5_nsdc3"), ExtResource("5_nsdc3"), ExtResource("6_2kyh4"), ExtResource("6_2kyh4"), ExtResource("6_2kyh4"), ExtResource("7_03806"), ExtResource("7_03806"), ExtResource("7_03806"), ExtResource("8_4a04b"), ExtResource("8_4a04b"), ExtResource("8_4a04b"), ExtResource("8_4a04b")],
+"loop": true,
+"name": &"idle",
+"speed": 24.0
+}, {
+"frames": [ExtResource("12_mnpxl")],
+"loop": true,
+"name": &"knockout_kneeled",
+"speed": 5.0
+}, {
+"frames": [ExtResource("12_d5ven"), ExtResource("12_d5ven"), ExtResource("12_d5ven"), ExtResource("12_d5ven"), ExtResource("12_d5ven"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("13_m8mnw"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("14_sy5xo"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl"), ExtResource("15_r4lbl")],
+"loop": false,
+"name": &"laughter",
+"speed": 24.0
+}, {
+"frames": [ExtResource("16_3b72o"), ExtResource("16_3b72o"), ExtResource("17_awbdt"), ExtResource("17_awbdt"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("18_2plrn"), ExtResource("19_c7l8p"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("20_4vnr3"), ExtResource("21_15sdg"), ExtResource("21_15sdg"), ExtResource("22_osahp"), ExtResource("23_g8agn"), ExtResource("23_g8agn"), ExtResource("23_g8agn"), ExtResource("24_8505m"), ExtResource("24_8505m"), ExtResource("24_8505m"), ExtResource("25_sbrq8"), ExtResource("25_sbrq8"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("26_ernhq"), ExtResource("27_cvuhh"), ExtResource("27_cvuhh"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl"), ExtResource("28_j2nvl")],
+"loop": false,
+"name": &"main_combo",
+"speed": 24.0
+}, {
+"frames": [ExtResource("69_mqjcs"), ExtResource("70_q33a0"), ExtResource("71_1dmpu")],
+"loop": false,
+"name": &"turn",
+"speed": 24.0
+}, {
+"frames": [ExtResource("9_o8tlr"), ExtResource("9_o8tlr"), ExtResource("10_i1dxq"), ExtResource("10_i1dxq"), ExtResource("11_obqa0"), ExtResource("11_obqa0"), ExtResource("12_x2mm3"), ExtResource("13_sh5di"), ExtResource("13_sh5di"), ExtResource("14_jpcnv"), ExtResource("15_184uk"), ExtResource("15_184uk"), ExtResource("16_nsx5o"), ExtResource("16_nsx5o"), ExtResource("17_k2ce8"), ExtResource("17_k2ce8"), ExtResource("18_370m7"), ExtResource("18_370m7"), ExtResource("19_7p6kd"), ExtResource("20_agtoy"), ExtResource("20_agtoy"), ExtResource("21_vixnb"), ExtResource("22_633yf"), ExtResource("22_633yf"), ExtResource("23_yjcmk"), ExtResource("23_yjcmk"), ExtResource("24_8u72l")],
+"loop": true,
+"name": &"walk",
+"speed": 24.0
+}, {
+"frames": [ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("28_c3l0n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n"), ExtResource("29_lco4n")],
+"loop": false,
+"name": &"wine_drink",
+"speed": 24.0
+}, {
+"frames": [ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw")],
+"loop": true,
+"name": &"wine_swirl",
+"speed": 24.0
+}]
