@@ -114,7 +114,8 @@ func _add_plugin_settings() -> void:
 				"hint_string": dict.hint_string,
 			})
 	
-	ProjectSettings.save()
+	if Engine.is_editor_hint():
+		ProjectSettings.save()
 
 
 func _remove_plugin_settings() -> void:
@@ -122,6 +123,7 @@ func _remove_plugin_settings() -> void:
 		if ProjectSettings.has_setting(setting):
 			ProjectSettings.set_setting(setting, null)
 	
-	ProjectSettings.save()
+	if Engine.is_editor_hint():
+		ProjectSettings.save()
 
 ### -----------------------------------------------------------------------------------------------
