@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1c5unvdyy4rx"]
+[gd_scene load_steps=17 format=3 uid="uid://b1c5unvdyy4rx"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
@@ -9,6 +9,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
 [ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
 [ext_resource type="SpriteFrames" uid="uid://yhmp6uwgolv4" path="res://characters/enemies/tax_man/resources/tax_man_explosion_sprite_frames.tres" id="29_l5cjv"]
 
@@ -23,6 +24,10 @@ _data = {
 shader = ExtResource("6_5x5ps")
 color = Color(0.12549, 0.0313726, 0.0196078, 1)
 effect_strength = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vd2w"]
+resource_local_to_scene = true
+size = Vector2(211, 518)
 
 [node name="TaxManSkin" instance=ExtResource("1_vkbuf")]
 position = Vector2(0, -10)
@@ -80,6 +85,20 @@ show_behind_parent = true
 position = Vector2(38, 474)
 frames = ExtResource("6_nrudn")
 animation = &"area_attak"
+
+[node name="QuiverHurtBox" type="Area2D" parent="Body" index="1"]
+collision_layer = 8192
+collision_mask = 1280
+monitorable = false
+script = ExtResource("10_r6q6q")
+character_type = 1
+metadata/collision_type = "enemy_hurt_box"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/QuiverHurtBox" index="0"]
+modulate = Color(0, 0.0666667, 0.701961, 1)
+position = Vector2(34.5, 3)
+shape = SubResource("RectangleShape2D_1vd2w")
+metadata/collision_type = "enemy_hurt_box"
 
 [node name="OnionGhost" type="AnimatedSprite2D" parent="." index="4"]
 visible = false

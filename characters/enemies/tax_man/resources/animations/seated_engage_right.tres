@@ -14,7 +14,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(1.75),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["seated_engage_right"],
+"args": ["seated_engage_left"],
 "method": &"end_of_skin_animation"
 }]
 }
@@ -125,6 +125,42 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Body/QuiverHurtBox/CollisionShape2D:shape:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.20833, 1.54167),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(280, 413), Vector2(229, 534), Vector2(198, 534)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Body/QuiverHurtBox/CollisionShape2D:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1.20833, 1.54167),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-131, 48.5), Vector2(61.5, -4), Vector2(46, -4)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Body/QuiverHurtBox/CollisionShape2D:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
 }
 metadata/mirrored_name = "seated_engage_right.tres"
 metadata/should_overwrite = true
