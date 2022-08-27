@@ -32,7 +32,7 @@ _global_script_classes=[{
 "base": "RefCounted",
 "class": &"QuiverBitwiseHelper",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_bitwise_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_bitwise_helper.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"QuiverCharacter",
@@ -42,7 +42,7 @@ _global_script_classes=[{
 "base": "RefCounted",
 "class": &"QuiverCharacterHelper",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_character_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_character_helper.gd"
 }, {
 "base": "Node2D",
 "class": &"QuiverCharacterSkin",
@@ -67,17 +67,17 @@ _global_script_classes=[{
 "base": "RefCounted",
 "class": &"QuiverCyclicHelper",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_cyclic_error_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_cyclic_error_helper.gd"
 }, {
 "base": "Resource",
 "class": &"QuiverDebugLogger",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_debug_logger.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_debug_logger.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverEditorHelper",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_editor_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_editor_helper.gd"
 }, {
 "base": "QuiverCharacter",
 "class": &"QuiverEnemyCharacter",
@@ -112,7 +112,7 @@ _global_script_classes=[{
 "base": "RefCounted",
 "class": &"QuiverMathHelper",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/quiver_math_helper.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_math_helper.gd"
 }, {
 "base": "Node",
 "class": &"QuiverState",
