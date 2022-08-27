@@ -105,7 +105,9 @@ func _disconnect_signals() -> void:
 	
 	if _attributes != null:
 		QuiverEditorHelper.disconnect_between(_attributes.hurt_requested, _on_hurt_requested)
-		QuiverEditorHelper.disconnect_between(_attributes.knockout_requested, _on_knockout_requested)
+		QuiverEditorHelper.disconnect_between(
+				_attributes.knockout_requested, _on_knockout_requested
+		)
 		QuiverEditorHelper.disconnect_between(_attributes.wall_bounced, _on_wall_bounced)
 
 
