@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://djv784w0ykmrn"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_fte7m"]
+
+[resource]
+script = ExtResource("1_fte7m")
+display_name = "Tax Man"
+health_max = 300.0
+speed_max = 600
+air_control = 0.6
+jump_force = -1200
+hit_lane_offset = 0
+is_invulnerable = false
+has_superarmor = false
+can_be_grabbed = true

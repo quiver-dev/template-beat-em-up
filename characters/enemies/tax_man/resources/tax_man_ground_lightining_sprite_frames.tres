@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://m1i3hrqtb05u"]
+
+[ext_resource type="Texture2D" uid="uid://dtwgd3bp8sw42" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/lightining_ball.png" id="1_37pkx"]
+[ext_resource type="Texture2D" uid="uid://c6n0xuvjxbbjr" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/lightining_ground.png" id="2_1q25d"]
+[ext_resource type="Texture2D" uid="uid://dy20wpynd154r" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/ground_lightining.png" id="3_j1oaf"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("1_37pkx"), ExtResource("2_1q25d")],
+"loop": true,
+"name": &"area_attak",
+"speed": 5.0
+}, {
+"frames": [ExtResource("3_j1oaf")],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]

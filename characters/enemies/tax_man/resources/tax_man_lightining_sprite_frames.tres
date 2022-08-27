@@ -1,0 +1,28 @@
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://bbjvw0xd36hmq"]
+
+[ext_resource type="Texture2D" uid="uid://bt4curetvjtwy" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_00.png" id="1_j6phl"]
+[ext_resource type="Texture2D" uid="uid://bt7u8nxg2gd3c" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_01.png" id="2_iq8b7"]
+[ext_resource type="Texture2D" uid="uid://cuqbtppg3d6xd" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_02.png" id="3_36qmi"]
+[ext_resource type="Texture2D" uid="uid://cutea3las7dt5" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_03.png" id="4_thbxr"]
+[ext_resource type="Texture2D" uid="uid://s5o82jakfk58" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_04.png" id="5_7ljtj"]
+[ext_resource type="Texture2D" uid="uid://bb8ib30k32b8a" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_05.png" id="6_oltvm"]
+[ext_resource type="Texture2D" uid="uid://dh0f08cl7agcu" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_06.png" id="7_ai08o"]
+[ext_resource type="Texture2D" uid="uid://c88xxyf8x2er5" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_07.png" id="8_etfon"]
+[ext_resource type="Texture2D" uid="uid://dcdh2stvvckg4" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/lightining_08.png" id="9_w353n"]
+[ext_resource type="Texture2D" uid="uid://cw08sau5p73fn" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/front_lightining_01.png" id="10_j8jtf"]
+[ext_resource type="Texture2D" uid="uid://bgr88fl238ovg" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/front_lightining_02.png" id="11_uukii"]
+[ext_resource type="Texture2D" uid="uid://b8h36j2hj5xod" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/front_lightining_03.png" id="12_0dwh4"]
+[ext_resource type="Texture2D" uid="uid://3kkfoldmm45v" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/lightining/front_lightining_04.png" id="13_aymyx"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("1_j6phl"), ExtResource("1_j6phl"), ExtResource("1_j6phl"), ExtResource("2_iq8b7"), ExtResource("2_iq8b7"), ExtResource("3_36qmi"), ExtResource("3_36qmi"), ExtResource("3_36qmi"), ExtResource("3_36qmi"), ExtResource("3_36qmi"), ExtResource("3_36qmi"), ExtResource("3_36qmi"), ExtResource("4_thbxr"), ExtResource("4_thbxr"), ExtResource("4_thbxr"), ExtResource("5_7ljtj"), ExtResource("6_oltvm"), ExtResource("6_oltvm"), ExtResource("6_oltvm"), ExtResource("7_ai08o"), ExtResource("7_ai08o"), ExtResource("8_etfon"), ExtResource("8_etfon"), ExtResource("8_etfon"), ExtResource("8_etfon"), ExtResource("8_etfon"), ExtResource("8_etfon"), ExtResource("9_w353n"), null, null],
+"loop": false,
+"name": &"back_lightning",
+"speed": 24.0
+}, {
+"frames": [ExtResource("10_j8jtf"), null, null, null, ExtResource("11_uukii"), ExtResource("12_0dwh4"), ExtResource("13_aymyx"), null],
+"loop": false,
+"name": &"front_lightining",
+"speed": 24.0
+}]
