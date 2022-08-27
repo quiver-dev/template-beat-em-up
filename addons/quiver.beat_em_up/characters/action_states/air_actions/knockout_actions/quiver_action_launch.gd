@@ -22,6 +22,8 @@ const KnockoutState = preload(
 var _skin_state_launch: StringName
 var _skin_state_rising: StringName
 var _path_next_state := "Air/Knockout/MidAir"
+## Value that will be passed to Engine.time_scale on the hit the player dies.
+var _death_slowdown_speed := 0.2
 
 @onready var _knockout_state := get_parent() as KnockoutState
 
@@ -79,6 +81,9 @@ func enter(msg: = {}) -> void:
 		_knockout_state._launch_charater(makeshift_launch_vector)
 	
 	_knockout_state._launch_count += 1
+	
+	if Engine.time_scale == 1.0 and _attributes.health_current <= 0:
+		Engine.time_scale = _death_slowdown_speed
 
 
 func physics_process(delta: float) -> void:
@@ -145,6 +150,13 @@ const CUSTOM_PROPERTIES = {
 		hint = PROPERTY_HINT_NONE,
 		hint_string = QuiverState.HINT_STATE_LIST,
 	},
+	"death_slowdown_speed": {
+		backing_field = "_death_slowdown_speed",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0.0,1.0,0.1",
+	},
 #	"": {
 #		backing_field = "",
 #		name = "",
@@ -165,6 +177,9 @@ func _get_property_list() -> Array:
 		var dict: Dictionary = CUSTOM_PROPERTIES[key]
 		if not dict.has("name"):
 			dict.name = key
+		
+		if key == "death_slowdown_speed" and not _character.is_in_group("players"):
+			add_property = false
 		
 		if add_property:
 			properties.append(dict)

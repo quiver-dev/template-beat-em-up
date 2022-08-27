@@ -35,6 +35,10 @@ func _ready() -> void:
 func enter(msg: = {}) -> void:
 	super(msg)
 	_skin.transition_to(_skin_state)
+	
+	if _character.is_in_group("players"):
+		var tween := get_tree().create_tween()
+		tween.tween_property(Engine, "time_scale", 1.0, 0.3)
 
 
 func exit() -> void:
@@ -59,6 +63,8 @@ func _disconnect_signals() -> void:
 
 
 func _on_skin_animation_finished() -> void:
+	if _character.is_in_group("players"):
+		Engine.time_scale = 1.0
 	_character.queue_free()
 	Events.player_died.emit()
 

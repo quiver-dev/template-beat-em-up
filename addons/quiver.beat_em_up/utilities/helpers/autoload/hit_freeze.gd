@@ -1,5 +1,4 @@
-class_name QuiverCombatSystem
-extends RefCounted
+extends Node
 
 ## Write your doc string for this file here
 
@@ -8,59 +7,43 @@ extends RefCounted
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum CharacterTypes {
-	PLAYERS,
-	ENEMIES,
-	BOUNCE_OBSTACLE,
-}
-
-enum HurtTypes {
-	MID,
-	HIGH
-}
-
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export_range(0, 60, 1, "or_greater" ) var freeze_frames := 3
+
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+var _frames_to_wait := 0
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _ready() -> void:
+	set_physics_process(false)
+	pass
+
+
+func _physics_process(_delta: float) -> void:
+	_frames_to_wait -= 1
+	print("frames_to_wait: %s"%[_frames_to_wait])
+	if _frames_to_wait <= 0:
+		get_tree().paused = false
+		set_physics_process(false)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-static func is_in_same_lane_as(defender: QuiverAttributes, attacker: QuiverAttributes) -> bool:
-	var lane_limits := defender.get_hit_lane_limits()
-	return lane_limits.is_value_inside_lane(attacker.ground_level)
-
-
-static func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> void:
-	if target.is_invulnerable:
-		return
-	target.health_current -= attack.attack_damage
-	HitFreeze.start()
-
-
-static func apply_knockback(
-		knockback: QuiverKnockback, 
-		target: QuiverAttributes
-) -> void:
-	if target.is_invulnerable:
-		return
-	
-	target.add_knockback(knockback.strength)
-	if target.should_knockout():
-		if not target.is_alive:
-			target.add_knockback(QuiverCyclicHelper.KnockbackStrength.MEDIUM)
-		target.knockout_requested.emit(knockback)
-	elif not target.has_superarmor:
-		target.hurt_requested.emit(knockback)
+func start(custom_wait := INF) -> void:
+	_frames_to_wait = freeze_frames if custom_wait == INF else custom_wait
+	if _frames_to_wait > 0:
+		get_tree().paused = true
+		set_physics_process(true)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -68,4 +51,3 @@ static func apply_knockback(
 ### Private Methods -------------------------------------------------------------------------------
 
 ### -----------------------------------------------------------------------------------------------
-

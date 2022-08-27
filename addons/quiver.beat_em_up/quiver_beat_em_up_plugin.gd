@@ -13,6 +13,10 @@ extends EditorPlugin
 
 const PATH_CUSTOM_INSPECTORS = "res://addons/quiver.beat_em_up/custom_inspectors/"
 
+const PATH_AUTOLOADS = {
+	"HitFreeze": "res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze.tscn",
+}
+
 var SETTINGS = {
 	QuiverCyclicHelper.SETTINGS_DEFAULT_HIT_LANE_SIZE:{
 			value = 60,
@@ -53,10 +57,12 @@ func _exit_tree() -> void:
 
 func _enable_plugin() -> void:
 	_add_plugin_settings()
+	_add_autoloads()
 
 
 func _disable_plugin() -> void:
 	_remove_plugin_settings()
+	_remove_autoloads()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -125,5 +131,15 @@ func _remove_plugin_settings() -> void:
 	
 	if Engine.is_editor_hint():
 		ProjectSettings.save()
+
+
+func _add_autoloads() -> void:
+	for key in PATH_AUTOLOADS:
+		add_autoload_singleton(key, PATH_AUTOLOADS[key])
+
+
+func _remove_autoloads() -> void:
+	for key in PATH_AUTOLOADS:
+		remove_autoload_singleton(key)
 
 ### -----------------------------------------------------------------------------------------------
