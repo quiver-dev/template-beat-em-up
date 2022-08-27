@@ -46,6 +46,7 @@ parameters/time_scale/scale = 1.0
 
 [node name="Lightining" type="AnimatedSprite2D" parent="." index="2"]
 visible = false
+position = Vector2(202, -512)
 frames = ExtResource("4_6fblr")
 animation = &"back_lightning"
 
@@ -58,7 +59,7 @@ animation = &"idle"
 [node name="GroundLightining" type="AnimatedSprite2D" parent="Body" index="0"]
 visible = false
 show_behind_parent = true
-position = Vector2(118, 474)
+position = Vector2(38, 474)
 frames = ExtResource("6_nrudn")
 animation = &"area_attak"
 
@@ -71,15 +72,21 @@ animation = &"engage"
 
 [node name="FrontLightining" type="AnimatedSprite2D" parent="." index="5"]
 visible = false
+position = Vector2(77, -551)
 frames = ExtResource("4_6fblr")
 animation = &"front_lightining"
 
 [node name="Smoke" type="AnimatedSprite2D" parent="." index="6"]
 visible = false
+position = Vector2(758, -747)
 frames = ExtResource("19_xm1w5")
-frame = 20
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
+position = Vector2(135, -486)
 frames = ExtResource("29_l5cjv")
-frame = 25
+
+[node name="Positions" type="Node2D" parent="." index="8"]
+
+[node name="ScorchSpawn" type="Position2D" parent="Positions" index="0"]
+position = Vector2(24, 160)

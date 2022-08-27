@@ -1,5 +1,6 @@
-[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://1bb5vwrmi3bs"]
+[gd_resource type="AnimationLibrary" load_steps=37 format=3 uid="uid://1bb5vwrmi3bs"]
 
+[ext_resource type="Animation" uid="uid://bwo5tj66v70tn" path="res://characters/enemies/tax_man/resources/animations/attack_combo_left.tres" id="1_jh2dp"]
 [ext_resource type="Animation" uid="uid://dd36hwvg62v0b" path="res://characters/enemies/tax_man/resources/animations/dash_attack_begin_left.tres" id="1_k7v2n"]
 [ext_resource type="Animation" uid="uid://b2l3oewq03ok5" path="res://characters/enemies/tax_man/resources/animations/dash_attack_end_left.tres" id="2_1oer0"]
 [ext_resource type="Animation" uid="uid://c8p4bjuprbcv0" path="res://characters/enemies/tax_man/resources/animations/grab_reject_left.tres" id="3_q0uoe"]
@@ -15,22 +16,63 @@
 [ext_resource type="Animation" uid="uid://o7boukiqxljp" path="res://characters/enemies/tax_man/resources/animations/seated_swirl_left.tres" id="13_s3bdj"]
 [ext_resource type="Animation" uid="uid://bkpmpiyufnunx" path="res://characters/enemies/tax_man/resources/animations/turn_left.tres" id="14_c6kta"]
 [ext_resource type="Animation" uid="uid://bgqgrnorrfuhh" path="res://characters/enemies/tax_man/resources/animations/walk_left.tres" id="15_a4hp4"]
+[ext_resource type="Animation" uid="uid://b5h5i174df11l" path="res://characters/enemies/tax_man/resources/animations/attack_area_left.tres" id="17_hnsx1"]
+[ext_resource type="Animation" uid="uid://bnd2f1ub5aoto" path="res://characters/enemies/tax_man/resources/animations/defeat_explosion_left.tres" id="18_rbrkx"]
+[ext_resource type="Animation" uid="uid://6bj3yshbpysp" path="res://characters/enemies/tax_man/resources/animations/attack_area_right.tres" id="19_bbg46"]
+[ext_resource type="Animation" uid="uid://ci3bjitalyxe5" path="res://characters/enemies/tax_man/resources/animations/attack_combo_right.tres" id="20_kisyw"]
+[ext_resource type="Animation" uid="uid://dv01kj6q3lmx0" path="res://characters/enemies/tax_man/resources/animations/dash_attack_begin_right.tres" id="21_vuck1"]
+[ext_resource type="Animation" uid="uid://d05xbimey3fek" path="res://characters/enemies/tax_man/resources/animations/defeat_explosion_right.tres" id="22_pnaqn"]
+[ext_resource type="Animation" uid="uid://cvjagjuu4dgym" path="res://characters/enemies/tax_man/resources/animations/grab_reject_right.tres" id="23_nrn52"]
+[ext_resource type="Animation" uid="uid://cxnhef3fj2k62" path="res://characters/enemies/tax_man/resources/animations/hurt_knockout_right.tres" id="24_merlt"]
+[ext_resource type="Animation" uid="uid://bne5db1auwihb" path="res://characters/enemies/tax_man/resources/animations/hurt_light_right.tres" id="25_dvtaq"]
+[ext_resource type="Animation" uid="uid://da6yu4pqoghid" path="res://characters/enemies/tax_man/resources/animations/hurt_medium_right.tres" id="26_rtjcj"]
+[ext_resource type="Animation" uid="uid://b7qvuw4yf7tes" path="res://characters/enemies/tax_man/resources/animations/idle_right.tres" id="27_mx7l2"]
+[ext_resource type="Animation" uid="uid://b6oqg35d8u4m8" path="res://characters/enemies/tax_man/resources/animations/knockout_kneeled_right.tres" id="28_7b8i7"]
+[ext_resource type="Animation" uid="uid://cqbop25qt2x5i" path="res://characters/enemies/tax_man/resources/animations/seated_drink_right.tres" id="29_vkja8"]
+[ext_resource type="Animation" uid="uid://dbb8tgb5qw7gd" path="res://characters/enemies/tax_man/resources/animations/seated_engage_right.tres" id="30_ciwm3"]
+[ext_resource type="Animation" uid="uid://gp3i641ytgb8" path="res://characters/enemies/tax_man/resources/animations/seated_laugh_right.tres" id="31_g74cv"]
+[ext_resource type="Animation" uid="uid://7la02phnok0b" path="res://characters/enemies/tax_man/resources/animations/seated_reveal_right.tres" id="32_6sox0"]
+[ext_resource type="Animation" uid="uid://2ym72kf1e7ed" path="res://characters/enemies/tax_man/resources/animations/seated_swirl_right.tres" id="33_otnra"]
+[ext_resource type="Animation" uid="uid://n3kkf5bdyswb" path="res://characters/enemies/tax_man/resources/animations/turn_right.tres" id="34_m14b3"]
+[ext_resource type="Animation" uid="uid://f4trq88kq0kb" path="res://characters/enemies/tax_man/resources/animations/walk_right.tres" id="35_cjncp"]
+[ext_resource type="Animation" uid="uid://t3qyvi1jqj0d" path="res://characters/enemies/tax_man/resources/animations/dash_attack_end_right.tres" id="36_bu778"]
 
 [resource]
 _data = {
+"attack_area_left": ExtResource("17_hnsx1"),
+"attack_area_right": ExtResource("19_bbg46"),
+"attack_combo_left": ExtResource("1_jh2dp"),
+"attack_combo_right": ExtResource("20_kisyw"),
 "dash_attack_begin_left": ExtResource("1_k7v2n"),
+"dash_attack_begin_right": ExtResource("21_vuck1"),
 "dash_attack_end_left": ExtResource("2_1oer0"),
+"dash_attack_end_right": ExtResource("36_bu778"),
+"defeat_explosion_left": ExtResource("18_rbrkx"),
+"defeat_explosion_right": ExtResource("22_pnaqn"),
 "grab_reject_left": ExtResource("3_q0uoe"),
+"grab_reject_right": ExtResource("23_nrn52"),
 "hurt_knockout_left": ExtResource("4_vv6e4"),
+"hurt_knockout_right": ExtResource("24_merlt"),
 "hurt_light_left": ExtResource("5_n2npe"),
+"hurt_light_right": ExtResource("25_dvtaq"),
 "hurt_medium_left": ExtResource("6_hd2tm"),
+"hurt_medium_right": ExtResource("26_rtjcj"),
 "idle_left": ExtResource("7_6y3w3"),
+"idle_right": ExtResource("27_mx7l2"),
 "knockout_kneeled_left": ExtResource("8_gkxm5"),
+"knockout_kneeled_right": ExtResource("28_7b8i7"),
 "seated_drink_left": ExtResource("9_ciawh"),
+"seated_drink_right": ExtResource("29_vkja8"),
 "seated_engage_left": ExtResource("10_2qbku"),
+"seated_engage_right": ExtResource("30_ciwm3"),
 "seated_laugh_left": ExtResource("11_35p4m"),
+"seated_laugh_right": ExtResource("31_g74cv"),
 "seated_reveal_left": ExtResource("12_2h3je"),
+"seated_reveal_right": ExtResource("32_6sox0"),
 "seated_swirl_left": ExtResource("13_s3bdj"),
+"seated_swirl_right": ExtResource("33_otnra"),
 "turn_left": ExtResource("14_c6kta"),
-"walk_left": ExtResource("15_a4hp4")
+"turn_right": ExtResource("34_m14b3"),
+"walk_left": ExtResource("15_a4hp4"),
+"walk_right": ExtResource("35_cjncp")
 }
