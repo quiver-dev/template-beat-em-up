@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c3pcupwpobwd4" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
-[ext_resource type="AnimationLibrary" uid="uid://1bb5vwrmi3bs" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
+[ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
 [ext_resource type="SpriteFrames" uid="uid://8y5strh0gb62" path="res://characters/enemies/tax_man/resources/tax_man_sprite_frames.tres" id="4_2vvsa"]
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
@@ -42,6 +42,24 @@ libraries = {
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource("3_l0y1t")
 parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_1gmi8")
+parameters/state_machine/attack_area/blend_position = -1
+parameters/state_machine/attack_combo/blend_position = -1
+parameters/state_machine/attack_dash_begin/blend_position = -1
+parameters/state_machine/attack_dash_end/blend_position = -1
+parameters/state_machine/death_explosion/blend_position = -1
+parameters/state_machine/grab_reject/blend_position = -1
+parameters/state_machine/hurt_knockout/blend_position = -1
+parameters/state_machine/hurt_light/blend_position = -1
+parameters/state_machine/hurt_medium/blend_position = -1
+parameters/state_machine/idle/blend_position = -1
+parameters/state_machine/knockour_kneeled/blend_position = -1
+parameters/state_machine/seated_drink/blend_position = -1
+parameters/state_machine/seated_engage/blend_position = -1
+parameters/state_machine/seated_laugh/blend_position = -1
+parameters/state_machine/seated_reveal/blend_position = -1
+parameters/state_machine/seated_swirl/blend_position = -1
+parameters/state_machine/turn/blend_position = -1
+parameters/state_machine/walk/blend_position = -1
 parameters/time_scale/scale = 1.0
 
 [node name="Lightining" type="AnimatedSprite2D" parent="." index="2"]

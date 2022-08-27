@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=37 format=3]
+[gd_resource type="AnimationLibrary" load_steps=37 format=3 uid="uid://b2ay847n6ik86"]
 
 [ext_resource type="Animation" uid="uid://bwo5tj66v70tn" path="res://characters/enemies/tax_man/resources/animations/attack_combo_left.tres" id="1_jh2dp"]
 [ext_resource type="Animation" uid="uid://dd36hwvg62v0b" path="res://characters/enemies/tax_man/resources/animations/dash_attack_begin_left.tres" id="1_k7v2n"]
@@ -33,7 +33,7 @@
 [ext_resource type="Animation" uid="uid://gp3i641ytgb8" path="res://characters/enemies/tax_man/resources/animations/seated_laugh_right.tres" id="31_g74cv"]
 [ext_resource type="Animation" uid="uid://7la02phnok0b" path="res://characters/enemies/tax_man/resources/animations/seated_reveal_right.tres" id="32_6sox0"]
 [ext_resource type="Animation" uid="uid://2ym72kf1e7ed" path="res://characters/enemies/tax_man/resources/animations/seated_swirl_right.tres" id="33_otnra"]
-[ext_resource type="Animation" path="res://characters/enemies/tax_man/resources/animations/turn_left.tres" id="34_m14b3"]
+[ext_resource type="Animation" uid="uid://n3kkf5bdyswb" path="res://characters/enemies/tax_man/resources/animations/turn_left.tres" id="34_m14b3"]
 [ext_resource type="Animation" uid="uid://f4trq88kq0kb" path="res://characters/enemies/tax_man/resources/animations/walk_right.tres" id="35_cjncp"]
 [ext_resource type="Animation" uid="uid://t3qyvi1jqj0d" path="res://characters/enemies/tax_man/resources/animations/dash_attack_end_right.tres" id="36_bu778"]
 
