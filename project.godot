@@ -173,6 +173,7 @@ config/version="0.3.0"
 [autoload]
 
 Events="*res://addons/quiver.beat_em_up/utilities/quiver_events.gd"
+HitFreeze="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze.tscn"
 
 [debug]
 
