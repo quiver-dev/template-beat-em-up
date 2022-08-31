@@ -39,6 +39,7 @@ height = 204.0
 Label/colors/font_color = Color(0.101961, 0.0117647, 0.415686, 1)
 
 [node name="Chad" groups=["players"] instance=ExtResource("1_aj842")]
+collision_mask = 14
 script = ExtResource("2_dwyxr")
 _attributes = ExtResource("3_ylsip")
 _path_skin = NodePath("ChadSkin")

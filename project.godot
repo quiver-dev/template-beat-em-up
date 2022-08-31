@@ -285,10 +285,11 @@ pause={
 
 [layer_names]
 
-2d_physics/layer_1="characters"
+2d_physics/layer_1="players"
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="screen_limits"
 2d_physics/layer_4="ceiling_limits"
+2d_physics/layer_5="enemies"
 2d_physics/layer_8="world_hit_boxes"
 2d_physics/layer_9="player_hit_boxes"
 2d_physics/layer_10="enemy_hit_boxes"

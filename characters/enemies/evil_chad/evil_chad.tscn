@@ -36,6 +36,8 @@ radius = 20.0
 height = 204.0
 
 [node name="EvilChad" groups=["enemies"] instance=ExtResource("1_4jcfv")]
+collision_layer = 17
+collision_mask = 14
 script = ExtResource("2_qirqt")
 _path_ai_state_machine = NodePath("AiStateMachine")
 _debug_draw_lane_limits = true

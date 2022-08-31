@@ -35,6 +35,8 @@ radius = 18.0
 height = 220.0
 
 [node name="Sarge" groups=["enemies"] instance=ExtResource("1_32xd3")]
+collision_layer = 16
+collision_mask = 14
 script = ExtResource("2_jbg4y")
 _path_ai_state_machine = NodePath("AiStateMachine")
 _debug_draw_lane_limits = false

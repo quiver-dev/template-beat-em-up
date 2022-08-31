@@ -19,6 +19,8 @@ radius = 18.0
 height = 278.0
 
 [node name="TaxMan" instance=ExtResource("1_pigv0")]
+collision_layer = 16
+collision_mask = 14
 _attributes = ExtResource("2_2rv6v")
 
 [node name="Skin" parent="." index="0" instance=ExtResource("3_0tid4")]
