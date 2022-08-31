@@ -209,6 +209,7 @@ script = ExtResource("19_jff31")
 skin_state_launch = &"knockout_launch"
 skin_state_rising = &"knockout_rising"
 path_next_state = "Air/Knockout/MidAir"
+death_slowdown_speed = 0.2
 
 [node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
 script = ExtResource("20_n08m6")

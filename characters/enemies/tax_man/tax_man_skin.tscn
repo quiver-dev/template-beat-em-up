@@ -274,5 +274,3 @@ position = Vector2(-287, -356)
 shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
-
-[node name="Node" type="Node" parent="." index="10"]
