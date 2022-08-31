@@ -1,9 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1c5unvdyy4rx"]
+[gd_scene load_steps=32 format=3 uid="uid://cyax8ahrme87s"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
-[ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://c3pcupwpobwd4" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cxpxjg6r0f7ki" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
 [ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
 [ext_resource type="SpriteFrames" uid="uid://8y5strh0gb62" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
@@ -37,6 +37,9 @@ effect_strength = 0.0
 resource_local_to_scene = true
 size = Vector2(211, 518)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmnd1"]
+size = Vector2(93, 416.75)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jf7kv"]
 size = Vector2(588, 1031)
 
@@ -58,12 +61,7 @@ size = Vector2(164, 370)
 
 [node name="TaxManSkin" instance=ExtResource("1_vkbuf")]
 position = Vector2(0, -10)
-skin_direction = -1
-_attributes = ExtResource("2_g54ht")
-has_grab = true
-path_grab_pivot = NodePath("Positions/GrabPivot")
-has_grabbed = true
-path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
+script = ExtResource("2_bwf0i")
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -126,6 +124,20 @@ modulate = Color(0, 0.0666667, 0.701961, 1)
 position = Vector2(34.5, 3)
 shape = SubResource("RectangleShape2D_1vd2w")
 metadata/collision_type = "enemy_hurt_box"
+
+[node name="DashObstacleDetector" type="Area2D" parent="Body" index="2"]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+metadata/collision_type = "custom"
+
+[node name="DashDetectorShape" type="CollisionShape2D" parent="Body/DashObstacleDetector" index="0"]
+visible = false
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(-204, -32.375)
+shape = SubResource("RectangleShape2D_gmnd1")
+disabled = true
+metadata/collision_type = "custom"
 
 [node name="OnionGhost" type="AnimatedSprite2D" parent="." index="4"]
 visible = false
@@ -274,3 +286,5 @@ position = Vector2(-287, -356)
 shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
+
+[connection signal="body_entered" from="Body/DashObstacleDetector" to="." method="_on_dash_obstacle_detector_body_entered"]

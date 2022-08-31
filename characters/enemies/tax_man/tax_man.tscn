@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfs5eol8cgnfy"]
+[gd_scene load_steps=16 format=3 uid="uid://cfs5eol8cgnfy"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
-[ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_2rv6v"]
-[ext_resource type="PackedScene" uid="uid://b1c5unvdyy4rx" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
+[ext_resource type="Resource" uid="uid://b5h70e60moyfu" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_2rv6v"]
+[ext_resource type="PackedScene" uid="uid://cyax8ahrme87s" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_kio4a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5ic7l"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_45ydq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="9_lavcn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="10_ptkg4"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="11_7kn5i"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/dash_attack_action.gd" id="11_f2uve"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/quiver_ai_state_machine.gd" id="12_fpjtv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="13_oq38d"]
 
@@ -24,6 +25,10 @@ collision_mask = 14
 _attributes = ExtResource("2_2rv6v")
 
 [node name="Skin" parent="." index="0" instance=ExtResource("3_0tid4")]
+has_grab = true
+path_grab_pivot = NodePath("Positions/GrabPivot")
+has_grabbed = true
+path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1"]
 modulate = Color(0, 0.6, 0.701961, 1)
@@ -88,13 +93,10 @@ parent_should_exit = true
 parent_should_process = true
 
 [node name="AttackDash" type="Node" parent="StateMachine/Ground" index="5"]
-script = ExtResource("10_ptkg4")
-skin_state = &"parameters/state_machine/attack_area"
-can_combo = false
-path_next_state = "Ground/Move/IdleAi"
-parent_should_enter = true
-parent_should_exit = true
-parent_should_process = true
+script = ExtResource("11_f2uve")
+dash_skin_state = &"attack_dash_begin"
+attack_skin_state = &"attack_dash_end"
+path_next_state = "Ground/Move/Idle"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("11_7kn5i")
@@ -112,3 +114,6 @@ use_range = false
 wait_time = 0.0
 min_wait = 3.0
 max_wait = 6.0
+
+[connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
+[connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
