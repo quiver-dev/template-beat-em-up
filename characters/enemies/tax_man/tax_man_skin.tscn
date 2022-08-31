@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1c5unvdyy4rx"]
+[gd_scene load_steps=30 format=3 uid="uid://b1c5unvdyy4rx"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
@@ -10,6 +10,13 @@
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="13_nokxb"]
+[ext_resource type="Resource" uid="uid://bjtuh8xbdj64a" path="res://characters/enemies/tax_man/resources/attacks/lightining_attack.tres" id="14_kc7ha"]
+[ext_resource type="Resource" uid="uid://dkaaoscp08m6e" path="res://characters/enemies/tax_man/resources/attacks/area_attack.tres" id="15_4lyjr"]
+[ext_resource type="Resource" uid="uid://cc7cqj03vhk0p" path="res://characters/enemies/tax_man/resources/attacks/combo1_attack.tres" id="16_ey7s6"]
+[ext_resource type="Resource" uid="uid://d3ilcnh4ibqkp" path="res://characters/enemies/tax_man/resources/attacks/combo2_attack.tres" id="17_rbk5w"]
+[ext_resource type="Resource" uid="uid://b4tidt0k74tjt" path="res://characters/enemies/tax_man/resources/attacks/combo3_attack.tres" id="18_ynnty"]
+[ext_resource type="Resource" uid="uid://xqvyoty7t4hm" path="res://characters/enemies/tax_man/resources/attacks/dash_attack.tres" id="19_io51d"]
 [ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
 [ext_resource type="SpriteFrames" uid="uid://yhmp6uwgolv4" path="res://characters/enemies/tax_man/resources/tax_man_explosion_sprite_frames.tres" id="29_l5cjv"]
 
@@ -28,6 +35,25 @@ effect_strength = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vd2w"]
 resource_local_to_scene = true
 size = Vector2(211, 518)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf7kv"]
+size = Vector2(588, 1031)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nfg2"]
+radius = 210.0
+height = 1360.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcfg8"]
+size = Vector2(228, 159.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xxs8"]
+size = Vector2(228, 159.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1bjp"]
+size = Vector2(292, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aca1f"]
+size = Vector2(164, 370)
 
 [node name="TaxManSkin" instance=ExtResource("1_vkbuf")]
 position = Vector2(0, -10)
@@ -127,3 +153,106 @@ frames = ExtResource("29_l5cjv")
 
 [node name="ScorchSpawn" type="Position2D" parent="Positions" index="0"]
 position = Vector2(24, 160)
+
+[node name="Attacks" type="Node2D" parent="." index="9"]
+
+[node name="Lightining" type="Area2D" parent="Attacks" index="0"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("14_kc7ha")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="LigthtiningShape" type="CollisionShape2D" parent="Attacks/Lightining" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(-62, -425.5)
+shape = SubResource("RectangleShape2D_jf7kv")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="AreaAttack" type="Area2D" parent="Attacks" index="1"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("15_4lyjr")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="AreaAttackShape" type="CollisionShape2D" parent="Attacks/AreaAttack" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_6nfg2")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="ComboHit1" type="Area2D" parent="Attacks" index="2"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("16_ey7s6")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="ComboHit1Shape" type="CollisionShape2D" parent="Attacks/ComboHit1" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(-254, -324.75)
+shape = SubResource("RectangleShape2D_bcfg8")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="ComboHit2" type="Area2D" parent="Attacks" index="3"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("17_rbk5w")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="ComboHit2Shape" type="CollisionShape2D" parent="Attacks/ComboHit2" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(-254, -324.75)
+shape = SubResource("RectangleShape2D_8xxs8")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="ComboHit3" type="Area2D" parent="Attacks" index="4"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("18_ynnty")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="ComboHit3Shape" type="CollisionShape2D" parent="Attacks/ComboHit3" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(-256, -392)
+shape = SubResource("RectangleShape2D_f1bjp")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="DashAttack" type="Area2D" parent="Attacks" index="5"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("19_io51d")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="DashAttackShape" type="CollisionShape2D" parent="Attacks/DashAttack" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(-287, -356)
+shape = SubResource("RectangleShape2D_aca1f")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
