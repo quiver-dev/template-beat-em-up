@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b1c5unvdyy4rx"]
+[gd_scene load_steps=31 format=3 uid="uid://b1c5unvdyy4rx"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Resource" uid="uid://djv784w0ykmrn" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_g54ht"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://b4tidt0k74tjt" path="res://characters/enemies/tax_man/resources/attacks/combo3_attack.tres" id="18_ynnty"]
 [ext_resource type="Resource" uid="uid://xqvyoty7t4hm" path="res://characters/enemies/tax_man/resources/attacks/dash_attack.tres" id="19_io51d"]
 [ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
+[ext_resource type="Resource" uid="uid://dfj4ujbiw3i45" path="res://characters/enemies/tax_man/resources/attacks/grab_reject_attack.tres" id="20_4qg1q"]
 [ext_resource type="SpriteFrames" uid="uid://yhmp6uwgolv4" path="res://characters/enemies/tax_man/resources/tax_man_explosion_sprite_frames.tres" id="29_l5cjv"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vjek0"]
@@ -256,3 +257,22 @@ position = Vector2(-287, -356)
 shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
+
+[node name="GrabReject" type="Area2D" parent="Attacks" index="6"]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+script = ExtResource("13_nokxb")
+character_type = 1
+_attack_data = ExtResource("20_4qg1q")
+metadata/collision_type = "enemy_hit_box"
+
+[node name="GrabRejectShape" type="CollisionShape2D" parent="Attacks/GrabReject" index="0"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(-287, -356)
+shape = SubResource("RectangleShape2D_aca1f")
+disabled = true
+metadata/collision_type = "enemy_hit_box"
+
+[node name="Node" type="Node" parent="." index="10"]
