@@ -61,8 +61,9 @@ func _on_resume_pressed() -> void:
 
 
 func _on_restart_pressed() -> void:
+	Events.characters_reseted.emit()
+	get_tree().reload_current_scene()
 	get_tree().paused = false
-	Events.player_died.emit()
 
 
 func _on_quit_pressed() -> void:

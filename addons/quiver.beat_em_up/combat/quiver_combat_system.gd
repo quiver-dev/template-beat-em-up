@@ -37,7 +37,8 @@ enum HurtTypes {
 
 static func is_in_same_lane_as(defender: QuiverAttributes, attacker: QuiverAttributes) -> bool:
 	var lane_limits := defender.get_hit_lane_limits()
-	return lane_limits.is_value_inside_lane(attacker.ground_level)
+	var value := lane_limits.is_value_inside_lane(attacker.ground_level)
+	return value
 
 
 static func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> void:
