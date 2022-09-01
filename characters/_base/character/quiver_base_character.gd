@@ -124,6 +124,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Method to be overridden for character that can't be grabbed.
+func can_deny_grabs() -> bool:
+	return false
+
 ### -----------------------------------------------------------------------------------------------
 
 

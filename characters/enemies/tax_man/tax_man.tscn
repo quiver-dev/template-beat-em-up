@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5ic7l"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_45ydq"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="7_ohh3m"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="9_lavcn"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/grab_reject.gd" id="9_55v5w"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="10_ptkg4"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/taxman_hurt.gd" id="11_6u64b"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="11_7kn5i"]
@@ -51,7 +51,7 @@ should_process_input = false
 script = ExtResource("4_kio4a")
 path_hurt = "Ground/Hurt"
 path_knockout = "Ground/Hurt"
-path_grabbed = "Ground/Grabbed"
+path_grabbed = "Ground/GrabReject"
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource("5_5ic7l")
@@ -69,8 +69,7 @@ script = ExtResource("7_ohh3m")
 skin_state = &"idle"
 
 [node name="GrabReject" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource("9_lavcn")
-escape_delay = 5.0
+script = ExtResource("9_55v5w")
 skin_state = &"grab_reject"
 path_next_state = "Ground/Move/IdleAi"
 
@@ -83,7 +82,16 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="3"]
+[node name="AttackRetaliate" type="Node" parent="StateMachine/Ground" index="3"]
+script = ExtResource("10_ptkg4")
+skin_state = &"grab_reject"
+can_combo = false
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = true
+
+[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("10_ptkg4")
 skin_state = &"attack_combo"
 can_combo = false
@@ -92,22 +100,22 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="4"]
+[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_f2uve")
 dash_skin_state = &"attack_dash_begin"
 attack_skin_state = &"attack_dash_end"
 path_next_state = "Ground/Move/IdleAi"
 
-[node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("11_6u64b")
 skin_state_hurt_light = &"hurt_light"
 skin_state_hurt_medium = &"hurt_medium"
 skin_state_hurt_knockout = &"hurt_knockout"
 path_knockout = "Ground/KnockoutKneeled"
-path_retaliate = "Ground/GrabReject"
+path_retaliate = "Ground/AttackRetaliate"
 path_idle = "Ground/Move/IdleAi"
 
-[node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
+[node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="7"]
 script = ExtResource("12_4lwgy")
 skin_state = &"knockout_kneeled"
 path_attack_area = "Ground/AttackArea"
@@ -133,5 +141,6 @@ max_wait = 6.0
 
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
+[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/GrabReject" method="_on_skin_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/Hurt" method="_on_skin_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/KnockoutKneeled" method="_on_skin_skin_animation_finished"]

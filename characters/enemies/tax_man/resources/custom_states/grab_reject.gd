@@ -1,35 +1,27 @@
 @tool
-class_name TaxManBoss
-extends QuiverEnemyCharacter
+extends QuiverCharacterState
 
 ## Write your doc string for this file here
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-signal phase_changed_to(phase: int)
-
 #--- enums ----------------------------------------------------------------------------------------
 
-enum TaxManPhases { PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_DIE}
-
 #--- constants ------------------------------------------------------------------------------------
+
+const GroundState = preload(
+		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
+)
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _phases_health_thresholds := {
-	TaxManPhases.PHASE_ONE: 1.00,
-	TaxManPhases.PHASE_TWO: 0.50,
-	TaxManPhases.PHASE_THREE: 0.15,
-	TaxManPhases.PHASE_DIE: 0.0,
-}
+var _skin_state := &"grab_reject"
+var _path_next_state := "Ground/Move/IdleAi"
 
-var _max_damage_in_one_combo := 0.1
-
-var _health_previous := 1.0
-var _current_cumulated_damage := 0.0
+@onready var _ground_state := get_parent() as GroundState
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -38,33 +30,46 @@ var _current_cumulated_damage := 0.0
 
 func _ready() -> void:
 	super()
-	
+	update_configuration_warnings()
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
 	
-	_health_previous = attributes.get_health_as_percentage()
+	if not get_parent() is GroundState:
+		warnings.append(
+				"This ActionState must be a child of Action GroundState or a state " 
+				+ "inheriting from it."
+		)
+	
+	return warnings
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func can_deny_grabs() -> bool:
-	return true
+func enter(msg: = {}) -> void:
+	_attributes.grab_denied.emit()
+	super(msg)
+	_ground_state.enter(msg)
+	_skin.transition_to(_skin_state)
+
+
+func exit() -> void:
+	super()
+	_ground_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _update_cumulated_damage() -> void:
-	_current_cumulated_damage += _health_previous - attributes.get_health_as_percentage()
-
-
-func _reset_cumulated_damage() -> void:
-	_current_cumulated_damage = 0.0
-	_health_previous = attributes.get_health_as_percentage()
+func _on_skin_skin_animation_finished() -> void:
+	_state_machine.transition_to(_path_next_state)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -73,24 +78,24 @@ func _reset_cumulated_damage() -> void:
 ###################################################################################################
 
 const CUSTOM_PROPERTIES = {
-	"max_damage_in_one_combo": {
-		backing_field = "_max_damage_in_one_combo",
-		type = TYPE_FLOAT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_RANGE,
-		hint_string = "0.0,1.0,0.01",
-	},
-	"Boss Phases Health Thresholds": {
+	"Grab Reject": {
 		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_GROUP,
-		hint_string = "health_threshold_",
+		usage = PROPERTY_USAGE_CATEGORY
 	},
-	"health_threshold_model": {
-		backing_field = "_phases_health_thresholds:%s",
-		type = TYPE_FLOAT,
+	"skin_state": {
+		backing_field = "_skin_state",
+		type = TYPE_STRING_NAME,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_RANGE,
-		hint_string = "0.0,1.0,0.01",
+		hint = PROPERTY_HINT_ENUM,
+		hint_string = \
+				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+	},
+	"path_next_state": {
+		backing_field = "_path_next_state",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_NOT_ATTACK_STATE_LIST,
 	},
 #	"": {
 #		backing_field = "",
@@ -113,16 +118,6 @@ func _get_property_list() -> Array:
 		if not dict.has("name"):
 			dict.name = key
 		
-		if key == "health_threshold_model":
-			add_property = false
-			for type in TaxManPhases.values():
-				var new_dict = dict.duplicate()
-				new_dict.name = new_dict.name.replace(
-						"model", 
-						TaxManPhases.keys()[type].to_lower()
-				)
-				properties.append(new_dict)
-		
 		if add_property:
 			properties.append(dict)
 	
@@ -132,12 +127,7 @@ func _get_property_list() -> Array:
 func _get(property: StringName):
 	var value
 	
-	if (property as String).begins_with("health_threshold_"):
-		var phase_type = (property as String).replace("health_threshold_", "").to_upper()
-		if not _phases_health_thresholds.has(TaxManPhases[phase_type]):
-			_phases_health_thresholds[TaxManPhases[phase_type]] = 0.0
-		value = _phases_health_thresholds[TaxManPhases[phase_type]]
-	elif property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
 		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
 	
 	return value
@@ -145,11 +135,8 @@ func _get(property: StringName):
 
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
-	if (property as String).begins_with("health_threshold_"):
-		var phase_type = (property as String).replace("health_threshold_", "").to_upper()
-		_phases_health_thresholds[TaxManPhases[phase_type]] = value
-		has_handled = true
-	elif property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
+	
+	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
 		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
 		has_handled = true
 	
