@@ -12,6 +12,14 @@ static func disable_all_processing(node: Node) -> void:
 	node.set_physics_process(false)
 
 
+## Enables all processing for the node.
+static func enable_all_processing(node: Node) -> void:
+	node.set_process_input(true)
+	node.set_process_unhandled_input(true)
+	node.set_process(true)
+	node.set_physics_process(true)
+
+
 ## Check if the node is the [code]current_scene[/code]. This is useful for having special 
 ## logic to test a scene running it on F6.
 static func is_standalone_run(node: Node) -> bool:

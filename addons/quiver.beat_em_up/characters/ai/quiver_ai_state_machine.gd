@@ -20,6 +20,11 @@ extends QuiverStateMachine
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export var disabled := false:
+	set(value):
+		disabled = value
+
+
 var character_attributes: QuiverAttributes = null:
 	set(value):
 		character_attributes = value
@@ -38,10 +43,12 @@ var _state_to_resume := NodePath()
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	super()
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
+	
+	if is_instance_valid(owner):
+		await owner.ready
 	
 	var owner_path := owner.get_path()
 	add_to_group(StringName(owner_path))
@@ -54,6 +61,13 @@ func _ready() -> void:
 		QuiverEditorHelper.connect_between(
 				child_state.state_finished, _decide_next_action.bind(child_state.name)
 		)
+	
+	if disabled:
+		QuiverEditorHelper.disable_all_processing(self)
+	else:
+		state = get_node(initial_state) as QuiverState
+		state.enter()
+		emit_signal("transitioned", get_path_to(state))
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -69,6 +83,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func transition_to(target_state_path: NodePath, msg: = {}) -> void:
+	if disabled:
+		return
+	else:
+		super(target_state_path, msg)
 
 ### -----------------------------------------------------------------------------------------------
 
