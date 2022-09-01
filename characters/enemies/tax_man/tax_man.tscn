@@ -1,15 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfs5eol8cgnfy"]
+[gd_scene load_steps=18 format=3 uid="uid://cfs5eol8cgnfy"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
 [ext_resource type="Resource" uid="uid://b5h70e60moyfu" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_2rv6v"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
 [ext_resource type="PackedScene" uid="uid://cyax8ahrme87s" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_kio4a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5ic7l"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_45ydq"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="7_ohh3m"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="8_0xqsk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_grabbed.gd" id="9_lavcn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="10_ptkg4"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/taxman_hurt.gd" id="11_6u64b"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="11_7kn5i"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/dash_attack_action.gd" id="11_f2uve"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/knockout_kneeled_action.gd" id="12_4lwgy"]
@@ -23,6 +24,9 @@ height = 278.0
 [node name="TaxMan" instance=ExtResource("1_pigv0")]
 collision_layer = 16
 collision_mask = 14
+script = ExtResource("2_wtxta")
+_path_ai_state_machine = NodePath("QuiverAiStateMachine")
+_debug_draw_lane_limits = false
 _attributes = ExtResource("2_2rv6v")
 
 [node name="Skin" parent="." index="0" instance=ExtResource("3_0tid4")]
@@ -90,10 +94,14 @@ attack_skin_state = &"attack_dash_end"
 path_next_state = "Ground/Move/IdleAi"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
-script = ExtResource("8_0xqsk")
-skin_state_mid = &"hurt_light"
-skin_state_high = &"hurt_medium"
-path_idle_state = "Ground/Move/IdleAi"
+script = ExtResource("11_6u64b")
+threshold_hurt_light = 0.05
+threshold_hurt_medium = 0.1
+skin_state_hurt_light = &"hurt_light"
+skin_state_hurt_medium = &"hurt_medium"
+skin_state_hurt_knockout = &"hurt_knockout"
+path_knockout = "Ground/KnockoutKneeled"
+path_idle = "Ground/Move/IdleAi"
 
 [node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("12_4lwgy")
@@ -110,6 +118,7 @@ script = ExtResource("12_fpjtv")
 ai_state_hurt = "Wait"
 ai_state_after_reset = "Wait"
 initial_state = NodePath("Wait")
+should_process_input = false
 
 [node name="Wait" type="Node" parent="QuiverAiStateMachine" index="0"]
 script = ExtResource("13_oq38d")
@@ -120,4 +129,5 @@ max_wait = 6.0
 
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
+[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/Hurt" method="_on_skin_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/KnockoutKneeled" method="_on_skin_skin_animation_finished"]
