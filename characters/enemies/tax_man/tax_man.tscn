@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfs5eol8cgnfy"]
+[gd_scene load_steps=17 format=3 uid="uid://cfs5eol8cgnfy"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
 [ext_resource type="Resource" uid="uid://b5h70e60moyfu" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="2_2rv6v"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="10_ptkg4"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="11_7kn5i"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/dash_attack_action.gd" id="11_f2uve"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/knockout_kneeled_action.gd" id="12_4lwgy"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/quiver_ai_state_machine.gd" id="12_fpjtv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="13_oq38d"]
 
@@ -58,19 +59,13 @@ turning_speed_modifier = 0.6
 script = ExtResource("7_ohh3m")
 skin_state = &"idle"
 
-[node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource("8_0xqsk")
-skin_state_mid = &"hurt_light"
-skin_state_high = &"hurt_medium"
-path_idle_state = "Ground/Move/IdleAi"
-
-[node name="GrabReject" type="Node" parent="StateMachine/Ground" index="2"]
+[node name="GrabReject" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("9_lavcn")
 escape_delay = 5.0
 skin_state = &"grab_reject"
 path_next_state = "Ground/Move/IdleAi"
 
-[node name="AttackArea" type="Node" parent="StateMachine/Ground" index="3"]
+[node name="AttackArea" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("10_ptkg4")
 skin_state = &"attack_area"
 can_combo = false
@@ -79,7 +74,7 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="4"]
+[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("10_ptkg4")
 skin_state = &"attack_combo"
 can_combo = false
@@ -88,11 +83,23 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="5"]
+[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_f2uve")
 dash_skin_state = &"attack_dash_begin"
 attack_skin_state = &"attack_dash_end"
 path_next_state = "Ground/Move/IdleAi"
+
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
+script = ExtResource("8_0xqsk")
+skin_state_mid = &"hurt_light"
+skin_state_high = &"hurt_medium"
+path_idle_state = "Ground/Move/IdleAi"
+
+[node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
+script = ExtResource("12_4lwgy")
+skin_state = &"knockout_kneeled"
+path_attack_area = "Ground/AttackArea"
+path_die = "DieAi"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("11_7kn5i")
@@ -113,3 +120,4 @@ max_wait = 6.0
 
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
+[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/KnockoutKneeled" method="_on_skin_skin_animation_finished"]
