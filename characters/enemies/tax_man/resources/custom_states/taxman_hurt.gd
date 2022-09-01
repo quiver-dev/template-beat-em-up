@@ -18,21 +18,17 @@ const GroundState = preload(
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _threshold_hurt_light := 0.05:
-	set(value):
-		_threshold_hurt_light = clamp(value, 0, _threshold_hurt_medium)
-var _threshold_hurt_medium := 0.10:
-	set(value):
-		_threshold_hurt_medium = clamp(value, _threshold_hurt_light, 1.0)
-
 var _skin_state_hurt_light := &"hurt_light"
 var _skin_state_hurt_medium := &"hurt_medium"
 var _skin_state_hurt_knockout := &"hurt_knockout"
 
 var _path_knockout := "Ground/KnockoutKneeled"
+var _path_retaliate := "Ground/GrabReject"
 var _path_idle := "Ground/Move/IdleAi"
 
 var _should_knockout := false
+
+var _tax_man: TaxManBoss = null
 
 @onready var _ground_state := get_parent() as GroundState
 
@@ -69,14 +65,31 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_ground_state.enter(msg)
 	
-	_character._update_cumulated_damage()
-	if _character._current_cumulated_damage <= _threshold_hurt_light:
-		_skin.transition_to(_skin_state_hurt_light)
-	elif _character._current_cumulated_damage <= _threshold_hurt_medium:
-		_skin.transition_to(_skin_state_hurt_medium)
-	else:
+	_tax_man._update_cumulated_damage()
+	
+	var threshold_hurt_medium = _tax_man._max_damage_in_one_combo
+	var threshold_hurt_light = threshold_hurt_medium / 2.0
+	var current_health := _attributes.get_health_as_percentage()
+	
+	if current_health <= 0.0:
 		_should_knockout = true
 		_skin.transition_to(_skin_state_hurt_knockout)
+	else:
+		for phase_type in _tax_man._phases_health_thresholds:
+			var value = _tax_man._phases_health_thresholds[phase_type]
+			if _tax_man._health_previous > value and _attributes.get_health_as_percentage() <= value:
+				_should_knockout = true
+				_skin.transition_to(_skin_state_hurt_knockout)
+				_tax_man.phase_changed_to.emit(phase_type)
+				break
+			
+		if not _should_knockout:
+			if _tax_man._current_cumulated_damage <=threshold_hurt_light:
+				_skin.transition_to(_skin_state_hurt_light)
+			elif _tax_man._current_cumulated_damage <= threshold_hurt_medium:
+				_skin.transition_to(_skin_state_hurt_medium)
+			else:
+				_skin.transition_to(_skin_state_hurt_knockout)
 
 
 func exit() -> void:
@@ -90,12 +103,20 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _on_owner_ready() -> void:
+	super()
+	_tax_man = _character as TaxManBoss
+
+
 func _on_skin_skin_animation_finished() -> void:
-	_character._reset_cumulated_damage()
 	if _should_knockout:
 		_state_machine.transition_to(_path_knockout)
+	elif _tax_man._current_cumulated_damage >= _tax_man._max_damage_in_one_combo:
+		_state_machine.transition_to(_path_retaliate)
 	else:
 		_state_machine.transition_to(_path_idle)
+	
+	_character._reset_cumulated_damage()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -107,25 +128,6 @@ const CUSTOM_PROPERTIES = {
 	"Tax Man Hurt State": {
 		type = TYPE_NIL,
 		usage = PROPERTY_USAGE_CATEGORY,
-	},
-	"Hurt Type Thresholds": {
-		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_GROUP,
-		hint_string = "threshold_",
-	},
-	"threshold_hurt_light": {
-		backing_field = "_threshold_hurt_light",
-		type = TYPE_FLOAT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = "",
-	},
-	"threshold_hurt_medium": {
-		backing_field = "_threshold_hurt_medium",
-		type = TYPE_FLOAT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = "",
 	},
 	"Skin States": {
 		type = TYPE_NIL,
@@ -166,6 +168,13 @@ const CUSTOM_PROPERTIES = {
 	},
 	"path_knockout": {
 		backing_field = "_path_knockout",
+		type = TYPE_STRING,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NONE,
+		hint_string = QuiverState.HINT_STATE_LIST,
+	},
+	"path_retaliate": {
+		backing_field = "_path_retaliate",
 		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NONE,

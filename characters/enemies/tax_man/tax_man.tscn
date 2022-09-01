@@ -25,6 +25,11 @@ height = 278.0
 collision_layer = 16
 collision_mask = 14
 script = ExtResource("2_wtxta")
+max_damage_in_one_combo = 0.1
+health_threshold_phase_one = 1.0
+health_threshold_phase_two = 0.5
+health_threshold_phase_three = 0.15
+health_threshold_phase_die = 0.0
 _path_ai_state_machine = NodePath("QuiverAiStateMachine")
 _debug_draw_lane_limits = false
 _attributes = ExtResource("2_2rv6v")
@@ -45,7 +50,7 @@ should_process_input = false
 [node name="Ground" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_kio4a")
 path_hurt = "Ground/Hurt"
-path_knockout = "Air/Knockout/Launch"
+path_knockout = "Ground/Hurt"
 path_grabbed = "Ground/Grabbed"
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
@@ -95,12 +100,11 @@ path_next_state = "Ground/Move/IdleAi"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_6u64b")
-threshold_hurt_light = 0.05
-threshold_hurt_medium = 0.1
 skin_state_hurt_light = &"hurt_light"
 skin_state_hurt_medium = &"hurt_medium"
 skin_state_hurt_knockout = &"hurt_knockout"
 path_knockout = "Ground/KnockoutKneeled"
+path_retaliate = "Ground/GrabReject"
 path_idle = "Ground/Move/IdleAi"
 
 [node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
@@ -111,7 +115,7 @@ path_die = "DieAi"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("11_7kn5i")
-skin_state = &"parameters/state_machine/death_explosion"
+skin_state = &"death_explosion"
 
 [node name="QuiverAiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource("12_fpjtv")

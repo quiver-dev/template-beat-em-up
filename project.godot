@@ -129,6 +129,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd"
 }, {
+"base": "QuiverEnemyCharacter",
+"class": &"TaxManBoss",
+"language": &"GDScript",
+"path": "res://characters/enemies/tax_man/tax_man.gd"
+}, {
 "base": "QuiverHitBox",
 "class": &"WallHitBox",
 "language": &"GDScript",
@@ -159,6 +164,7 @@ _global_script_class_icons={
 "QuiverState": "",
 "QuiverStateMachine": "",
 "QuiverStateSequence": "",
+"TaxManBoss": "",
 "WallHitBox": ""
 }
 
