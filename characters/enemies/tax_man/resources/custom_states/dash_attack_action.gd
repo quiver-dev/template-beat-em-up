@@ -17,7 +17,7 @@ extends QuiverCharacterState
 var _dash_skin_state := &"attack_dash_begin"
 var _attack_skin_state := &"attack_dash_end"
 
-var _path_next_state := "Ground/Move/Idle"
+var _path_next_state := "Ground/Move/IdleAi"
 
 var _movement_is_enabled := false
 var _movement_speed := 0.0
@@ -40,11 +40,12 @@ func _ready() -> void:
 ### Public Methods --------------------------------------------------------------------------------
 
 func enter(msg: = {}) -> void:
+	get_parent().enter(msg)
 	super(msg)
 	_skin.transition_to(_dash_skin_state)
 
 
-func physics_process(delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	if _movement_is_enabled:
 		if not _movement_direction.is_equal_approx(Vector2.ZERO):
 			_character.velocity = _movement_direction * _movement_speed
@@ -56,6 +57,7 @@ func exit() -> void:
 	if _movement_is_enabled:
 		_disable_movement()
 	super()
+	get_parent().exit()
 
 ### -----------------------------------------------------------------------------------------------
 

@@ -25,10 +25,6 @@ collision_mask = 14
 _attributes = ExtResource("2_2rv6v")
 
 [node name="Skin" parent="." index="0" instance=ExtResource("3_0tid4")]
-has_grab = true
-path_grab_pivot = NodePath("Positions/GrabPivot")
-has_grabbed = true
-path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1"]
 modulate = Color(0, 0.6, 0.701961, 1)
@@ -54,29 +50,29 @@ path_attack_state = "Ground/Combo1"
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_45ydq")
-walk_skin_state = &"parameters/state_machine/walk"
+walk_skin_state = &"walk"
 path_next_state = "Ground/Move/IdleAi"
 turning_speed_modifier = 0.6
 
 [node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("7_ohh3m")
-skin_state = &"parameters/state_machine/idle"
+skin_state = &"idle"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("8_0xqsk")
-skin_state_mid = &"parameters/state_machine/hurt_light"
-skin_state_high = &"parameters/state_machine/hurt_medium"
+skin_state_mid = &"hurt_light"
+skin_state_high = &"hurt_medium"
 path_idle_state = "Ground/Move/IdleAi"
 
 [node name="GrabReject" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("9_lavcn")
 escape_delay = 5.0
-skin_state = &"parameters/state_machine/grab_reject"
+skin_state = &"grab_reject"
 path_next_state = "Ground/Move/IdleAi"
 
 [node name="AttackArea" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("10_ptkg4")
-skin_state = &"parameters/state_machine/attack_area"
+skin_state = &"attack_area"
 can_combo = false
 path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
@@ -85,7 +81,7 @@ parent_should_process = true
 
 [node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("10_ptkg4")
-skin_state = &"parameters/state_machine/attack_combo"
+skin_state = &"attack_combo"
 can_combo = false
 path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
@@ -96,7 +92,7 @@ parent_should_process = true
 script = ExtResource("11_f2uve")
 dash_skin_state = &"attack_dash_begin"
 attack_skin_state = &"attack_dash_end"
-path_next_state = "Ground/Move/Idle"
+path_next_state = "Ground/Move/IdleAi"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("11_7kn5i")

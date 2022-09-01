@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "dash_attack_end_left"
-length = 0.125
+length = 0.208334
 step = 0.0416667
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -11,7 +11,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125),
+"times": PackedFloat32Array(0, 0.208333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -247,7 +247,7 @@ tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(93, 416.75)]
+"values": [Vector2(93, 497.75)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
@@ -259,7 +259,7 @@ tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-204, -32.375)]
+"values": [Vector2(-204, 8.125)]
 }
 metadata/mirrored_name = "dash_attack_end_right.tres"
 metadata/should_overwrite = true

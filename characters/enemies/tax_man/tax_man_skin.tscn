@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyax8ahrme87s"]
+[gd_scene load_steps=33 format=3 uid="uid://cyax8ahrme87s"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
+[ext_resource type="Resource" uid="uid://b5h70e60moyfu" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cxpxjg6r0f7ki" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
 [ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
@@ -62,6 +63,13 @@ size = Vector2(164, 370)
 [node name="TaxManSkin" instance=ExtResource("1_vkbuf")]
 position = Vector2(0, -10)
 script = ExtResource("2_bwf0i")
+skin_direction = -1
+_path_playback = "parameters/state_machine/playback"
+_attributes = ExtResource("3_b4sly")
+has_grab = false
+path_grab_pivot = NodePath("Positions/GrabPivot")
+has_grabbed = false
+path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -128,13 +136,13 @@ metadata/collision_type = "enemy_hurt_box"
 [node name="DashObstacleDetector" type="Area2D" parent="Body" index="2"]
 collision_layer = 0
 collision_mask = 7
-monitorable = false
+input_pickable = false
 metadata/collision_type = "custom"
 
 [node name="DashDetectorShape" type="CollisionShape2D" parent="Body/DashObstacleDetector" index="0"]
 visible = false
 modulate = Color(0, 0.6, 0.701961, 1)
-position = Vector2(-204, -32.375)
+position = Vector2(-204, 16.625)
 shape = SubResource("RectangleShape2D_gmnd1")
 disabled = true
 metadata/collision_type = "custom"
@@ -183,6 +191,7 @@ visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(-62, -425.5)
 shape = SubResource("RectangleShape2D_jf7kv")
+disabled = true
 metadata/collision_type = "enemy_hit_box"
 
 [node name="AreaAttack" type="Area2D" parent="Attacks" index="1"]

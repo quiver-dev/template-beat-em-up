@@ -182,7 +182,7 @@ tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(93, 416.75)]
+"values": [Vector2(93, 514.75)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -194,7 +194,7 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-204, -32.375)]
+"values": [Vector2(-204, 16.625)]
 }
 tracks/16/type = "method"
 tracks/16/imported = false
@@ -206,7 +206,7 @@ tracks/16/keys = {
 "times": PackedFloat32Array(0.208333),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [Vector2(-1, 0), 900.0],
+"args": [Vector2(-1, 0), 2700.0],
 "method": &"start_attack_movement"
 }]
 }
