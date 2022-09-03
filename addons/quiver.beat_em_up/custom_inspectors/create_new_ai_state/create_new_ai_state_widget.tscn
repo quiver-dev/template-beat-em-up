@@ -5,28 +5,39 @@
 [node name="CreateNewAiStateWidget" type="HBoxContainer"]
 offset_right = 253.0
 offset_bottom = 20.0
-script = ExtResource( "1_6x0wq" )
+script = ExtResource("1_6x0wq")
 
 [node name="OptionButton" type="OptionButton" parent="."]
-offset_right = 234.0
+offset_right = 318.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
-item_count = 5
+clip_text = true
+item_count = 10
 selected = 0
-popup/item_0/text = "Choose Character Action"
+popup/item_0/text = "Choose AI State"
 popup/item_0/id = 0
 popup/item_1/text = "quiver_ai_base_state"
 popup/item_1/id = 1
 popup/item_2/text = "quiver_ai_call_action"
 popup/item_2/id = 2
-popup/item_3/text = "quiver_ai_chase_closest_player"
+popup/item_3/text = "quiver_ai_call_attack"
 popup/item_3/id = 3
-popup/item_4/text = "quiver_ai_wait"
+popup/item_4/text = "quiver_ai_chase_closest_player"
 popup/item_4/id = 4
+popup/item_5/text = "quiver_ai_choose_random_behavior"
+popup/item_5/id = 5
+popup/item_6/text = "quiver_ai_go_to_position"
+popup/item_6/id = 6
+popup/item_7/text = "quiver_ai_wait"
+popup/item_7/id = 7
+popup/item_8/text = "quiver_ai_wait_for_state"
+popup/item_8/id = 8
+popup/item_9/text = "quiver_sequence_state"
+popup/item_9/id = 9
 
 [node name="Confirm" type="Button" parent="."]
-offset_left = 238.0
-offset_right = 277.0
+offset_left = 322.0
+offset_right = 361.0
 offset_bottom = 31.0
 disabled = true
 text = "Add"
