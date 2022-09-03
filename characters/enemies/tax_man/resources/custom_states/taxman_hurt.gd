@@ -75,21 +75,30 @@ func enter(msg: = {}) -> void:
 		_should_knockout = true
 		_skin.transition_to(_skin_state_hurt_knockout)
 	else:
+		var new_phase := -1
 		for phase_type in _tax_man._phases_health_thresholds:
-			var value = _tax_man._phases_health_thresholds[phase_type]
-			if _tax_man._health_previous > value and _attributes.get_health_as_percentage() <= value:
+			var threshold_value = _tax_man._phases_health_thresholds[phase_type]
+			if _has_changed_phase(threshold_value):
 				_should_knockout = true
-				_skin.transition_to(_skin_state_hurt_knockout)
-				_tax_man.phase_changed_to.emit(phase_type)
+				new_phase = phase_type
 				break
-			
-		if not _should_knockout:
+		
+		if _should_knockout:
+			_skin.transition_to(_skin_state_hurt_knockout)
+			_tax_man.phase_changed_to.emit(new_phase)
+		else:
 			if _tax_man._current_cumulated_damage <=threshold_hurt_light:
 				_skin.transition_to(_skin_state_hurt_light)
 			elif _tax_man._current_cumulated_damage <= threshold_hurt_medium:
 				_skin.transition_to(_skin_state_hurt_medium)
 			else:
 				_skin.transition_to(_skin_state_hurt_knockout)
+
+
+func _has_changed_phase(health_threshold: float) -> bool:
+	var had_not_crossed_threshold_yet := _tax_man._health_previous > health_threshold 
+	var is_below_threshold := _attributes.get_health_as_percentage() <= health_threshold
+	return had_not_crossed_threshold_yet and is_below_threshold
 
 
 func exit() -> void:
