@@ -27,6 +27,7 @@ var _debug_logger := QuiverDebugLogger.get_logger()
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
+	randomize()
 	_player_hud.set_player_attributes(_main_player.attributes)
 	QuiverEditorHelper.connect_between(Events.player_died, reload_prototype)
 	QuiverEditorHelper.connect_between(Events.enemy_defeated, _on_enemy_defeated, CONNECT_DEFERRED)
