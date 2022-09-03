@@ -67,9 +67,7 @@ skin_direction = -1
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("3_b4sly")
 has_grab = false
-path_grab_pivot = NodePath("Positions/GrabPivot")
 has_grabbed = false
-path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -295,5 +293,7 @@ position = Vector2(-287, -356)
 shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="10"]
 
 [connection signal="body_entered" from="Body/DashObstacleDetector" to="." method="_on_dash_obstacle_detector_body_entered"]

@@ -361,14 +361,10 @@ func _get_property_list() -> Array:
 		match key:
 			"path_grab_pivot":
 				if not _has_grab:
-					dict.usage = PROPERTY_USAGE_STORAGE
-				else:
-					dict.usage = CUSTOM_PROPERTIES[key].usage
+					add_property = false
 			"path_grabbed_pivot":
 				if not _has_grabbed:
-					dict.usage = PROPERTY_USAGE_STORAGE
-				else:
-					dict.usage = CUSTOM_PROPERTIES[key].usage
+					add_property = false
 		
 		if add_property:
 			properties.append(dict)
