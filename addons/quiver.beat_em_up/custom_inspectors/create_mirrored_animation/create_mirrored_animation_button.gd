@@ -57,7 +57,7 @@ func _on_button_pressed() -> void:
 	_changed_report = ERROR_NO_TRACK_FOUND
 	var folder := animation.resource_path.get_base_dir()
 	var file_name := animation.get_meta(META_MIRRORED_NAME) as String
-	var new_path := folder.plus_file(file_name)
+	var new_path := folder.path_join(file_name)
 	
 	if ResourceLoader.exists(new_path) and not animation.get_meta(META_OVERWRITE):
 		_changed_report = ERROR_FILE_EXISTS

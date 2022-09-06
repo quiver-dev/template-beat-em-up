@@ -276,7 +276,7 @@ func _handle_animation_node(
 				_animation_list.append(animation_name)
 			
 			var parameter_name = _get_actual_parameter_name(property_name)
-			property_path = property_path.plus_file(parameter_name)
+			property_path = property_path.path_join(parameter_name)
 			_find_all_animation_nodes_from(node, property_path)
 		_:
 			if node is AnimationRootNode:
@@ -285,7 +285,7 @@ func _handle_animation_node(
 
 func _filter_main_playback_path(animation_name: String, path: String) -> StringName:
 	var parameter_name = _get_actual_parameter_name(animation_name)
-	var full_path = path.plus_file(parameter_name)
+	var full_path = path.path_join(parameter_name)
 	var path_to_main_playback = _path_playback.replace("playback", "")
 	var value = full_path.replace(path_to_main_playback, "") as StringName
 	return value

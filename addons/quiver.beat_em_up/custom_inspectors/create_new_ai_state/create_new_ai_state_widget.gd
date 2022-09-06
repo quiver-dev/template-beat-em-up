@@ -62,10 +62,10 @@ func _scrap_ai_states_names(target_dictionary: Dictionary, path := BASE_FOLDER) 
 		while not file_name.is_empty():
 			if dir.current_is_dir(): 
 				target_dictionary[file_name] = {}
-				_scrap_ai_states_names(target_dictionary[file_name], path.plus_file(file_name))
+				_scrap_ai_states_names(target_dictionary[file_name], path.path_join(file_name))
 			elif file_name.ends_with(".gd"):
 				var key := file_name.trim_suffix(".gd")
-				target_dictionary[key] = path.plus_file(file_name)
+				target_dictionary[key] = path.path_join(file_name)
 			file_name = dir.get_next()
 	else:
 		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[

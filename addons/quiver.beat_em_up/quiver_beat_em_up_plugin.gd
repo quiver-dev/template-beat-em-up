@@ -94,7 +94,7 @@ func _add_custom_inspectors() -> void:
 
 func _load_custom_inspector_from(folder: String) -> void:
 	const PATH_SCRIPT = "inspector_plugin.gd"
-	var full_path := PATH_CUSTOM_INSPECTORS.plus_file(folder).plus_file(PATH_SCRIPT)
+	var full_path := PATH_CUSTOM_INSPECTORS.path_join(folder).path_join(PATH_SCRIPT)
 	if ResourceLoader.exists(full_path):
 		var custom_inspector := load(full_path).new() as EditorInspectorPlugin
 		add_inspector_plugin(custom_inspector)
