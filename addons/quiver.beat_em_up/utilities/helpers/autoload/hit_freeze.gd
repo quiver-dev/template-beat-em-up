@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	_frames_to_wait -= 1
-	print("frames_to_wait: %s"%[_frames_to_wait])
+#	print("frames_to_wait: %s"%[_frames_to_wait])
 	if _frames_to_wait <= 0:
 		get_tree().paused = false
 		set_physics_process(false)

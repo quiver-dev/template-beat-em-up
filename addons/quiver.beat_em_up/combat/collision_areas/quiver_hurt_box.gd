@@ -99,7 +99,7 @@ func _can_be_grabbed_by(grabber: QuiverAttributes) -> bool:
 
 func _handle_hit_box(hit_box: QuiverHitBox) -> void:
 	if _can_be_attacked_by(hit_box.character_attributes):
-		print("hit_box: %s"%[hit_box.get_path()])
+#		print("hit_box: %s"%[hit_box.get_path()])
 		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
 		var knockback: QuiverKnockback = QuiverKnockback.new(
 				hit_box.attack_data.knockback,
