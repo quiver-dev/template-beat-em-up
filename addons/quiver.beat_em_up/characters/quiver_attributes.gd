@@ -114,7 +114,7 @@ var knockback_amount := 0:
 var ground_level := 0.0
 
 var character_node: QuiverCharacter = null
-var grabbed_offset: Position2D = null
+var grabbed_offset: Marker2D = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 

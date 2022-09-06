@@ -1,5 +1,5 @@
 class_name QuiverEnemySpawner
-extends Position2D
+extends Marker2D
 
 ## Write your doc string for this file here
 

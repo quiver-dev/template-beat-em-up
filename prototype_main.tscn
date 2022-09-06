@@ -46,8 +46,11 @@ metadata/_edit_horizontal_guides_ = [-409.0]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlaceholderBG" type="Sprite2D" parent="BG"]
 position = Vector2(1811, 333)
@@ -129,41 +132,41 @@ position = Vector2(652, 850)
 
 [node name="Utilities" type="Node2D" parent="."]
 
-[node name="EnemySpawner" type="Position2D" parent="Utilities"]
+[node name="EnemySpawner" type="Marker2D" parent="Utilities"]
 position = Vector2(2212, 743)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
 possible_positions = [NodePath("../SpawnPosition1"), NodePath("../SpawnPosition2"), NodePath("../SpawnPosition3")]
 possible_enemies = [ExtResource("7_gtufp"), ExtResource("8_3uikh")]
 
-[node name="EnemySpawner2" type="Position2D" parent="Utilities"]
+[node name="EnemySpawner2" type="Marker2D" parent="Utilities"]
 position = Vector2(-421, 708)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
 possible_positions = [NodePath("../SpawnPosition4"), NodePath("../SpawnPosition5"), NodePath("../SpawnPosition6")]
 possible_enemies = [ExtResource("7_gtufp"), ExtResource("8_3uikh")]
 
-[node name="SpawnPosition1" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition1" type="Marker2D" parent="Utilities"]
 position = Vector2(1753, 509)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition2" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition2" type="Marker2D" parent="Utilities"]
 position = Vector2(1640, 726)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition3" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition3" type="Marker2D" parent="Utilities"]
 position = Vector2(1731, 955)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition4" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition4" type="Marker2D" parent="Utilities"]
 position = Vector2(173, 506)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition5" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition5" type="Marker2D" parent="Utilities"]
 position = Vector2(229, 718)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition6" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition6" type="Marker2D" parent="Utilities"]
 position = Vector2(151, 952)
 gizmo_extents = 50.0
 
@@ -174,6 +177,7 @@ position = Vector2(960, 540)
 layer = 2
 
 [node name="Label" type="Label" parent="HudLayer"]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -163.0
@@ -184,5 +188,10 @@ horizontal_alignment = 2
 script = ExtResource("3_lfeec")
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
+anchors_preset = -1
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_r1bdp")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
