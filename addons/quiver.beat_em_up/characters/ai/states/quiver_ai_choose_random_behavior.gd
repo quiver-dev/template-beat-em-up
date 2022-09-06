@@ -44,16 +44,6 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		_build_behavior_pool()
 		return
-	
-	var results := {}
-	for _index in range(100):
-		var state = _get_random_behavior_weighted() if _use_weights else _get_random_behavior()
-		if not results.has(state.name):
-			results[state.name] = 1
-		else:
-			results[state.name] += 1
-	
-	print("results: %s"%[results])
 
 
 func _get_configuration_warnings() -> PackedStringArray:
