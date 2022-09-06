@@ -82,7 +82,7 @@ func enter(msg: = {}) -> void:
 	
 	_knockout_state._launch_count += 1
 	
-	if Engine.time_scale == 1.0 and _attributes.health_current <= 0:
+	if _should_slow_motion():
 		Engine.time_scale = _death_slowdown_speed
 
 
@@ -109,6 +109,13 @@ func _disconnect_signals() -> void:
 		QuiverEditorHelper.disconnect_between(
 				_skin.skin_animation_finished, _on_skin_animation_finished
 		)
+
+
+func _should_slow_motion() -> bool:
+	var is_player := _character.is_in_group("players")
+	var is_normal_time := Engine.time_scale == 1.0 
+	var is_dead := _attributes.health_current <= 0
+	return is_player and is_dead and is_normal_time
 
 
 func _on_skin_animation_finished() -> void:
