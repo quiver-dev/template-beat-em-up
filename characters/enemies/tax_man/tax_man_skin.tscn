@@ -170,7 +170,7 @@ frames = ExtResource("29_l5cjv")
 
 [node name="Positions" type="Node2D" parent="." index="8"]
 
-[node name="ScorchSpawn" type="Position2D" parent="Positions" index="0"]
+[node name="ScorchSpawn" type="Marker2D" parent="Positions" index="0"]
 position = Vector2(24, 160)
 
 [node name="Attacks" type="Node2D" parent="." index="9"]

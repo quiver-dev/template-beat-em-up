@@ -74,7 +74,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	for child in get_children():
-		if not child is QuiverAiState and not child is QuiverStateSequence:
+		if (
+				not child is QuiverAiState 
+				and not child is QuiverStateSequence
+				and not (child is Node and child.get_script() == null)
+			):
 			warnings.append("%s is not a QuiverAiState or QuiverSequenceState"%[child.name])
 	
 	return warnings

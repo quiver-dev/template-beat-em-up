@@ -46,7 +46,6 @@ size = Vector2(285, 86.436)
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("2_ajvg2")
 has_grab = false
-path_grab_pivot = NodePath("Positions/GrabPivot")
 has_grabbed = true
 path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
 
@@ -103,7 +102,7 @@ metadata/collision_type = "enemy_hurt_box"
 
 [node name="Positions" type="Node2D" parent="." index="3"]
 
-[node name="GrabbedPivot" type="Position2D" parent="Positions" index="0"]
+[node name="GrabbedPivot" type="Marker2D" parent="Positions" index="0"]
 position = Vector2(-14, -363)
 gizmo_extents = 25.0
 

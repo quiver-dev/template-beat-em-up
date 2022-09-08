@@ -220,7 +220,7 @@ func _get_property_list() -> Array:
 				type = TYPE_FLOAT,
 				usage = PROPERTY_USAGE_EDITOR,
 				hint = PROPERTY_HINT_RANGE,
-				hint_string = "0.01,0.99,0.01" if _weights_by_child.size() > 1 else "1.0,1.0,0.0"
+				hint_string = "0.01,0.99,0.01" if _weights_by_child.size() > 1 else "1.0,1.0,1.0"
 			})
 	else:
 		properties.append({

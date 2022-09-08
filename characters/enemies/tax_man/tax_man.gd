@@ -11,7 +11,7 @@ signal phase_changed_to(phase: int)
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum TaxManPhases { PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_DIE}
+enum TaxManPhases { PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_DIE }
 
 #--- constants ------------------------------------------------------------------------------------
 
