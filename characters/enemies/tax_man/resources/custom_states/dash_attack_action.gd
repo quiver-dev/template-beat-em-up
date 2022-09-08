@@ -59,6 +59,10 @@ func exit() -> void:
 	super()
 	get_parent().exit()
 
+
+func is_attack_state() -> bool:
+	return true
+
 ### -----------------------------------------------------------------------------------------------
 
 
