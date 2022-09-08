@@ -58,7 +58,7 @@ const KNOCKBACK_BY_STRENGTH = {
 
 ## Character's jump force. The heavier the character more jump force they'll need to reach the
 ## same jump height as a lighter character.
-@export_range(0, 0, 1, "or_lesser") var jump_force := -1200
+@export_range(0, 0, 1, "or_less") var jump_force := -1200
 
 ## If you need to make the hit lanes broader or narrower for a specifi character you can use
 ## this property. Positive values will add to the default hit lane size defined in the Project

@@ -38,6 +38,6 @@ func _ready() -> void:
 func _on_skin_animation_finished() -> void:
 	_character.queue_free()
 	var enemy_defeated_event = Callable(Events, "emit_signal").bind("enemy_defeated")
-	QuiverEditorHelper.connect_between(tree_exited, enemy_defeated_event, CONNECT_ONESHOT)
+	QuiverEditorHelper.connect_between(tree_exited, enemy_defeated_event, CONNECT_ONE_SHOT)
 
 ### -----------------------------------------------------------------------------------------------

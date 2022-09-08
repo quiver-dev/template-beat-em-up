@@ -59,7 +59,7 @@ func _draw() -> void:
 
 
 func _process(delta: float) -> void:
-	update()
+	queue_redraw()
 
 
 func _get_configuration_warnings() -> PackedStringArray:
