@@ -95,7 +95,7 @@ func transition_to(target_state_path: NodePath, msg: = {}) -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _connect_child_ai_states(starting_node := self) -> void:
+func _connect_child_ai_states(starting_node: Node = self) -> void:
 	for child in starting_node.get_children():
 		if child is QuiverAiStateGroup:
 			_connect_child_ai_states(child)
@@ -136,6 +136,9 @@ func _ai_reset(_knockback: QuiverKnockback) -> void:
 
 
 func _interrupt_current_state(p_next_path: String) -> void:
+	if disabled:
+		return
+	
 	if state.has_method("interrupt_state"):
 		state.interrupt_state()
 	

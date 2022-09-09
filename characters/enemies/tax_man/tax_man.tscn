@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cfs5eol8cgnfy"]
+[gd_scene load_steps=30 format=3 uid="uid://c8p8hxg0j7j6l"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
 [ext_resource type="PackedScene" uid="uid://cyax8ahrme87s" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
-[ext_resource type="Resource" uid="uid://b5h70e60moyfu" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_3jl8s"]
+[ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_3jl8s"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_kio4a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5ic7l"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_45ydq"]
@@ -18,10 +18,16 @@
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_ai_state_machine.gd" id="15_ylsp3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_choose_random_behavior.gd" id="17_5k63d"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_position.gd" id="17_7i618"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_state_group.gd" id="18_jvunq"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="18_thg3o"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_chase_closest_player.gd" id="19_3m5ed"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_attack.gd" id="20_38efy"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_align_to_closest_player.gd" id="21_ghwwy"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="22_wmall"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/screen_positions_canvas_layer.gd" id="23_htygh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/screen_marker.gd" id="23_s6olh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="24_jvcip"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="25_7uuvm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
 radius = 18.0
@@ -129,33 +135,35 @@ path_die = "DieAi"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("11_7kn5i")
-skin_state = &"die"
+skin_state = &"death_explosion"
 
-[node name="QuiverAiStateMachine" type="Node" parent="." index="3"]
+[node name="AiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource("15_ylsp3")
 ai_state_hurt = "WaitForIdle"
-ai_state_after_reset = "Wait"
 initial_state = NodePath("Phase1/Wait")
 should_process_input = false
 
-[node name="GoToPosition" type="Node" parent="QuiverAiStateMachine" index="0"]
+[node name="GoToPosition" type="Node" parent="AiStateMachine" index="0"]
 script = ExtResource("17_7i618")
 path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
 
-[node name="WaitForIdle" type="Node" parent="QuiverAiStateMachine" index="1"]
+[node name="WaitForIdle" type="Node" parent="AiStateMachine" index="1"]
 script = ExtResource("22_wmall")
 path_ready_state = "Ground/Move/IdleAi"
 
-[node name="Phase1" type="Node" parent="QuiverAiStateMachine" index="2"]
+[node name="Phase1" type="Node" parent="AiStateMachine" index="2"]
+script = ExtResource("18_jvunq")
 
-[node name="Wait" type="Node" parent="QuiverAiStateMachine/Phase1" index="0"]
+[node name="Wait" type="Node" parent="AiStateMachine/Phase1" index="0"]
 script = ExtResource("13_oq38d")
 use_range = true
 wait_time = 0.0
 min_wait = 3.0
 max_wait = 6.0
 
-[node name="ChooseRandomAttack" type="Node" parent="QuiverAiStateMachine/Phase1" index="1"]
+[node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase1" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
 "ComboAttack": 1.40325,
@@ -163,39 +171,53 @@ _weights_by_child = {
 }
 allow_repeated = true
 
-[node name="ComboAttack" type="Node" parent="QuiverAiStateMachine/Phase1/ChooseRandomAttack" index="0"]
+[node name="ComboAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
 
-[node name="ChaseClosestPlayer" type="Node" parent="QuiverAiStateMachine/Phase1/ChooseRandomAttack/ComboAttack" index="0"]
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/ComboAttack" index="0"]
 script = ExtResource("19_3m5ed")
 _max_chase_time = 5.0
 path_follow_state = "Ground/Move/Follow"
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase1/ChooseRandomAttack/ComboAttack" index="1"]
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/ComboAttack" index="1"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackCombo"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[node name="DashAttack" type="Node" parent="QuiverAiStateMachine/Phase1/ChooseRandomAttack" index="1"]
+[node name="DashAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0"]
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0"]
+script = ExtResource("24_jvcip")
+_pool_positions = []
+_pool_nodes = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
+
+[node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="1"]
+script = ExtResource("21_ghwwy")
+_max_chase_time = 5.0
+path_follow_state = "Ground/Move/Follow"
+
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackDash"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[node name="Phase2" type="Node" parent="QuiverAiStateMachine" index="3"]
+[node name="Phase2" type="Node" parent="AiStateMachine" index="3"]
+script = ExtResource("18_jvunq")
 
-[node name="Wait" type="Node" parent="QuiverAiStateMachine/Phase2" index="0"]
+[node name="Wait" type="Node" parent="AiStateMachine/Phase2" index="0"]
 script = ExtResource("13_oq38d")
 use_range = true
 wait_time = 0.0
 min_wait = 2.0
 max_wait = 4.0
 
-[node name="ChooseRandomAttack" type="Node" parent="QuiverAiStateMachine/Phase2" index="1"]
+[node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
 "AreaAttack": 1.20646,
@@ -204,48 +226,68 @@ _weights_by_child = {
 }
 allow_repeated = true
 
-[node name="ComboAttack" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack" index="0"]
+[node name="ComboAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
 
-[node name="ChaseClosestPlayer" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack/ComboAttack" index="0"]
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/ComboAttack" index="0"]
 script = ExtResource("19_3m5ed")
 _max_chase_time = 5.0
 path_follow_state = "Ground/Move/Follow"
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack/ComboAttack" index="1"]
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/ComboAttack" index="1"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackCombo"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[node name="DashAttack" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack" index="1"]
+[node name="DashAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0"]
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0"]
+script = ExtResource("24_jvcip")
+_pool_positions = []
+_pool_nodes = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
+
+[node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="1"]
+script = ExtResource("21_ghwwy")
+_max_chase_time = 5.0
+path_follow_state = "Ground/Move/Follow"
+
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackDash"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[node name="AreaAttack" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack" index="2"]
+[node name="AreaAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="2"]
 script = ExtResource("18_thg3o")
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="0"]
+[node name="GoToPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="0"]
+script = ExtResource("17_7i618")
+path_follow_state = "Ground/Move/Follow"
+use_node = true
+fallback_node_path = NodePath("../../../../../ScreenPositions/ScreenCenter")
+
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="1"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackArea"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[node name="Phase3" type="Node" parent="QuiverAiStateMachine" index="4"]
+[node name="Phase3" type="Node" parent="AiStateMachine" index="4"]
+script = ExtResource("18_jvunq")
 
-[node name="Wait" type="Node" parent="QuiverAiStateMachine/Phase3" index="0"]
+[node name="Wait" type="Node" parent="AiStateMachine/Phase3" index="0"]
 script = ExtResource("13_oq38d")
 use_range = true
 wait_time = 0.0
 min_wait = 1.0
 max_wait = 2.0
 
-[node name="ChooseRandomAttack" type="Node" parent="QuiverAiStateMachine/Phase3" index="1"]
+[node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase3" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
 "ComboAttack": 0.703429,
@@ -253,30 +295,110 @@ _weights_by_child = {
 }
 allow_repeated = true
 
-[node name="ComboAttack" type="Node" parent="QuiverAiStateMachine/Phase3/ChooseRandomAttack" index="0"]
+[node name="ComboAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
 
-[node name="ChaseClosestPlayer" type="Node" parent="QuiverAiStateMachine/Phase3/ChooseRandomAttack/ComboAttack" index="0"]
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/ComboAttack" index="0"]
 script = ExtResource("19_3m5ed")
 _max_chase_time = 5.0
 path_follow_state = "Ground/Move/Follow"
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase3/ChooseRandomAttack/ComboAttack" index="1"]
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/ComboAttack" index="1"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackCombo"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[node name="DashAttack" type="Node" parent="QuiverAiStateMachine/Phase3/ChooseRandomAttack" index="1"]
+[node name="DashAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
-[node name="CallAttack" type="Node" parent="QuiverAiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0"]
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0"]
+script = ExtResource("24_jvcip")
+_pool_positions = []
+_pool_nodes = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
+
+[node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="1"]
+script = ExtResource("21_ghwwy")
+_max_chase_time = 5.0
+path_follow_state = "Ground/Move/Follow"
+
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackDash"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 
-[connection signal="phase_changed_to" from="." to="QuiverAiStateMachine" method="_on_tax_man_phase_changed_to"]
+[node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -562.0
+offset_right = 149.0
+offset_bottom = -522.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+offset_right = 248.0
+offset_bottom = 23.0
+script = ExtResource("25_7uuvm")
+path_reference = NodePath("../../StateMachine")
+properties = PackedStringArray("state_name")
+
+[node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+offset_top = 27.0
+offset_right = 248.0
+offset_bottom = 50.0
+script = ExtResource("25_7uuvm")
+path_reference = NodePath("../../AiStateMachine")
+properties = PackedStringArray("state_name")
+
+[node name="ScreenPositions" type="CanvasLayer" parent="." index="5"]
+layer = -1
+script = ExtResource("23_htygh")
+
+[node name="ScreenCenter" type="Control" parent="ScreenPositions" index="0"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_s6olh")
+
+[node name="DashAttackLeft" type="Control" parent="ScreenPositions" index="1"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_right = 250.0
+grow_vertical = 2
+script = ExtResource("23_s6olh")
+
+[node name="DashAttackRight" type="Control" parent="ScreenPositions" index="2"]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_right = -250.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("23_s6olh")
+
+[connection signal="phase_changed_to" from="." to="AiStateMachine" method="_on_tax_man_phase_changed_to"]
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/GrabReject" method="_on_skin_skin_animation_finished"]
