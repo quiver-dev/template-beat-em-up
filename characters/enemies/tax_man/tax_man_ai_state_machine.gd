@@ -63,10 +63,23 @@ func _on_tax_man_phase_changed_to(phase: int) -> void:
 		_:
 			_phase_path = "Phase1"
 	
-	_interrupt_current_state(_ai_state_after_reset)
+	_interrupt_current_state("%s/Wait"%[_phase_path])
 
 
 func _ai_reset(_knockback: QuiverKnockback) -> void:
 	_interrupt_current_state(get_path_to(state))
+
+### -----------------------------------------------------------------------------------------------
+
+###################################################################################################
+# Custom Inspector ################################################################################
+###################################################################################################
+
+static func _get_custom_properties() -> Dictionary:
+	var dict := super()
+	var success := dict.erase("ai_state_after_reset")
+	if not success:
+		push_error("Could not delete ai_state_after_reset from %s"%[dict])
+	return dict
 
 ### -----------------------------------------------------------------------------------------------
