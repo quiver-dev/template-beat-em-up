@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cakdrdpcl7j2l"]
 
-[ext_resource type="PackedScene" uid="uid://cfs5eol8cgnfy" path="res://characters/enemies/tax_man/tax_man.tscn" id="1_fg64k"]
+[ext_resource type="PackedScene" uid="uid://c8p8hxg0j7j6l" path="res://characters/enemies/tax_man/tax_man.tscn" id="1_fg64k"]
 [ext_resource type="Script" path="res://test_scenes/tax_man/tax_man_punch_bag_test.gd" id="1_s62f3"]
 [ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="2_8d3gw"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_avtoo"]
@@ -55,8 +55,14 @@ position = Vector2(1578, 823)
 skin_direction = 1
 debug_prints = true
 
-[node name="QuiverAiStateMachine" parent="Characters/TaxMan" index="3"]
+[node name="AiStateMachine" parent="Characters/TaxMan" index="3"]
 disabled = true
+
+[node name="StateMachine" parent="Characters/TaxMan/DebugLabels" index="0"]
+layout_mode = 2
+
+[node name="AiStateMachine" parent="Characters/TaxMan/DebugLabels" index="1"]
+layout_mode = 2
 
 [node name="Chad" parent="Characters" instance=ExtResource("2_8d3gw")]
 position = Vector2(1041, 688)
@@ -65,6 +71,7 @@ position = Vector2(1041, 688)
 layer = 2
 
 [node name="Label" type="Label" parent="HudLayer"]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -163.0
@@ -75,6 +82,10 @@ horizontal_alignment = 2
 script = ExtResource("3_avtoo")
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("5_638rv")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("6_w1xaj")]
 
