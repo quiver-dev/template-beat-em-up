@@ -53,14 +53,7 @@ func _ready() -> void:
 	var owner_path := owner.get_path()
 	add_to_group(StringName(owner_path))
 	
-	for child in get_children():
-		var child_state := child as QuiverState
-		if not is_instance_valid(child_state):
-			continue
-		
-		QuiverEditorHelper.connect_between(
-				child_state.state_finished, _decide_next_action.bind(child_state.name)
-		)
+	_connect_child_ai_states()
 	
 	if disabled:
 		QuiverEditorHelper.disable_all_processing(self)
@@ -77,9 +70,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 		if (
 				not child is QuiverAiState 
 				and not child is QuiverStateSequence
-				and not (child is Node and child.get_script() == null)
+				and not child is QuiverAiStateGroup
 			):
-			warnings.append("%s is not a QuiverAiState or QuiverSequenceState"%[child.name])
+			warnings.append(
+					"%s is not a QuiverAiState, QuiverAiStateGroup or QuiverSequenceState"
+					%[child.name]
+			)
 	
 	return warnings
 
@@ -98,6 +94,22 @@ func transition_to(target_state_path: NodePath, msg: = {}) -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _connect_child_ai_states(starting_node := self) -> void:
+	for child in starting_node.get_children():
+		if child is QuiverAiStateGroup:
+			_connect_child_ai_states(child)
+		elif child is QuiverState:
+			QuiverEditorHelper.connect_between(
+					child.state_finished, _decide_next_action.bind(child.name)
+			)
+		else:
+			push_warning(
+					"%s is a child of AiStateMachine but it is "%[child]
+					+"not any of its recognized nodes"
+			)
+			continue
+
 
 ## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] 
 ## signal
