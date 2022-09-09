@@ -46,7 +46,7 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_target = QuiverCharacterHelper.find_closest_player_to(_character)
 	if is_instance_valid(_target):
-		_actions.transition_to(_path_follow_state, {target_node = _target})
+		_chase_target()
 		QuiverEditorHelper.connect_between(_actions.transitioned, _on_actions_transitioned)
 		QuiverEditorHelper.connect_between(_chase_timer.timeout, _on_chase_timer_timeout)
 
@@ -60,6 +60,11 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _chase_target() -> void:
+	_actions.transition_to(_path_follow_state, {target_node = _target})
+	_chase_timer.start(max_chase_time)
+
 
 func _on_actions_transitioned(_path_state: String) -> void:
 	state_finished.emit()
