@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clwtqdyu7dmev"]
+[gd_scene load_steps=5 format=3 uid="uid://clwtqdyu7dmev"]
 
 [ext_resource type="Script" path="res://gameplay_hud/player_hud.gd" id="1_i2ajm"]
 
@@ -22,14 +22,11 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_6vg6u"]
-ProgressBar/styles/bg = SubResource("StyleBoxFlat_abo2o")
-ProgressBar/styles/fg = SubResource("StyleBoxFlat_tvend")
-
-[sub_resource type="Theme" id="Theme_iwr8p"]
-ProgressBar/styles/bg = SubResource("StyleBoxFlat_abo2o")
-ProgressBar/styles/fg = SubResource("StyleBoxFlat_tvend")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_abo2o")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_tvend")
 
 [node name="PlayerHud" type="VBoxContainer"]
+anchors_preset = -1
 anchor_right = 0.5
 offset_left = 50.0
 offset_top = 30.0
@@ -39,21 +36,23 @@ script = ExtResource("1_i2ajm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="CharacterName" type="Label" parent="."]
+layout_mode = 2
 offset_right = 860.0
 offset_bottom = 26.0
 text = "CHAD"
 
 [node name="LifeBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 offset_top = 26.0
 offset_right = 860.0
 offset_bottom = 56.0
 theme = SubResource("Theme_6vg6u")
 max_value = 1.0
 value = 0.5
-percent_visible = false
 
 [node name="EnemyContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 offset_top = 56.0
 offset_right = 860.0
 offset_bottom = 107.0
@@ -61,22 +60,24 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_right = 275
 
 [node name="Column" type="VBoxContainer" parent="EnemyContainer"]
+layout_mode = 2
 offset_left = 25.0
 offset_right = 585.0
 offset_bottom = 51.0
 theme_override_constants/separation = 0
 
 [node name="EnemyName" type="Label" parent="EnemyContainer/Column"]
+layout_mode = 2
 offset_right = 560.0
 offset_bottom = 26.0
 text = "CHAD"
 
 [node name="LifeBar" type="ProgressBar" parent="EnemyContainer/Column"]
 custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 offset_top = 26.0
 offset_right = 560.0
 offset_bottom = 51.0
-theme = SubResource("Theme_iwr8p")
+theme = SubResource("Theme_6vg6u")
 max_value = 1.0
 value = 0.5
-percent_visible = false
