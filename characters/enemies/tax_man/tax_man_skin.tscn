@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cyax8ahrme87s"]
+[gd_scene load_steps=34 format=3 uid="uid://cyax8ahrme87s"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
+[ext_resource type="Texture2D" uid="uid://iwtqurgemgtv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/grenade_pins.png" id="12_kopjc"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="13_nokxb"]
 [ext_resource type="Resource" uid="uid://bjtuh8xbdj64a" path="res://characters/enemies/tax_man/resources/attacks/lightining_attack.tres" id="14_kc7ha"]
 [ext_resource type="Resource" uid="uid://dkaaoscp08m6e" path="res://characters/enemies/tax_man/resources/attacks/area_attack.tres" id="15_4lyjr"]
@@ -145,35 +146,48 @@ shape = SubResource("RectangleShape2D_gmnd1")
 disabled = true
 metadata/collision_type = "custom"
 
-[node name="OnionGhost" type="AnimatedSprite2D" parent="." index="4"]
+[node name="GrenadePin1" type="Sprite2D" parent="." index="4"]
+visible = false
+position = Vector2(-385, -538)
+rotation = 0.700705
+texture = ExtResource("12_kopjc")
+
+[node name="GrenadePin2" type="Sprite2D" parent="." index="5"]
+visible = false
+position = Vector2(442, -414)
+rotation = -0.400736
+texture = ExtResource("12_kopjc")
+flip_h = true
+
+[node name="OnionGhost" type="AnimatedSprite2D" parent="." index="6"]
 visible = false
 modulate = Color(0.670588, 0.384314, 1, 0.435294)
 position = Vector2(48, -252)
 frames = ExtResource("4_2vvsa")
 animation = &"engage"
 
-[node name="FrontLightining" type="AnimatedSprite2D" parent="." index="5"]
+[node name="FrontLightining" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
 position = Vector2(77, -551)
 frames = ExtResource("4_6fblr")
 animation = &"front_lightining"
 
-[node name="Smoke" type="AnimatedSprite2D" parent="." index="6"]
+[node name="Smoke" type="AnimatedSprite2D" parent="." index="8"]
 visible = false
 position = Vector2(758, -747)
 frames = ExtResource("19_xm1w5")
 
-[node name="Explosion" type="AnimatedSprite2D" parent="." index="7"]
+[node name="Explosion" type="AnimatedSprite2D" parent="." index="9"]
 visible = false
 position = Vector2(135, -486)
 frames = ExtResource("29_l5cjv")
 
-[node name="Positions" type="Node2D" parent="." index="8"]
+[node name="Positions" type="Node2D" parent="." index="10"]
 
 [node name="ScorchSpawn" type="Marker2D" parent="Positions" index="0"]
 position = Vector2(24, 160)
 
-[node name="Attacks" type="Node2D" parent="." index="9"]
+[node name="Attacks" type="Node2D" parent="." index="11"]
 
 [node name="Lightining" type="Area2D" parent="Attacks" index="0"]
 collision_layer = 512
@@ -294,6 +308,6 @@ shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="10"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="12"]
 
 [connection signal="body_entered" from="Body/DashObstacleDetector" to="." method="_on_dash_obstacle_detector_body_entered"]
