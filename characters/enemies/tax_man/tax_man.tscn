@@ -337,10 +337,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -99.0
-offset_top = -562.0
-offset_right = 149.0
-offset_bottom = -522.0
+offset_left = 161.0
+offset_top = -311.0
+offset_right = 409.0
+offset_bottom = -234.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
@@ -350,7 +350,7 @@ offset_right = 248.0
 offset_bottom = 23.0
 script = ExtResource("25_7uuvm")
 path_reference = NodePath("../../StateMachine")
-properties = PackedStringArray("state_name")
+properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
 offset_top = 27.0
@@ -358,7 +358,15 @@ offset_right = 248.0
 offset_bottom = 50.0
 script = ExtResource("25_7uuvm")
 path_reference = NodePath("../../AiStateMachine")
-properties = PackedStringArray("state_name")
+properties = PackedStringArray("state_name", "_consecutive_hits")
+
+[node name="Wait" type="Label" parent="DebugLabels" index="2"]
+offset_top = 54.0
+offset_right = 248.0
+offset_bottom = 77.0
+script = ExtResource("27_dlvh8")
+path_reference = NodePath("")
+properties = PackedStringArray("time_left")
 
 [node name="ScreenPositions" type="CanvasLayer" parent="." index="5"]
 layer = -1
