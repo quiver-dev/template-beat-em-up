@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqxde5d3dnvo7"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="PackedScene" uid="uid://c8p8hxg0j7j6l" path="res://characters/enemies/tax_man/tax_man.tscn" id="1_fg64k"]
-[ext_resource type="Script" path="res://test_scenes/tax_man/tax_man_punch_bag_test.gd" id="1_s62f3"]
+[ext_resource type="Script" path="res://test_scenes/base_test.gd" id="1_s62f3"]
 [ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="2_8d3gw"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_avtoo"]
 [ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="5_638rv"]
