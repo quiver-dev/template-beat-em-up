@@ -98,7 +98,7 @@ func _on_skin_animation_finished() -> void:
 		_state_machine.transition_to(_path_air_mid_air)
 	else:
 		_has_landed = true
-		_state_machine.transition_to(_path_ground_recovery)
+		_knockout_state._air_state._handle_landing(_path_ground_recovery)
 
 ### -----------------------------------------------------------------------------------------------
 

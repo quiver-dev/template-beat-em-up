@@ -77,4 +77,10 @@ func _move_and_apply_gravity(delta: float) -> void:
 func _has_reached_ground() -> bool:
 	return _skin.position.y >= 0
 
+
+func _handle_landing(p_path: NodePath) -> void:
+	_skin.position.y = 0.0
+	_skin_velocity_y = 0.0
+	_state_machine.transition_to(p_path)
+
 ### -----------------------------------------------------------------------------------------------
