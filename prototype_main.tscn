@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://m51ca0yn87jx"]
+[gd_scene load_steps=17 format=3 uid="uid://m51ca0yn87jx"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="Texture2D" uid="uid://uwl1nm0n31yj" path="res://placeholder_bg.png" id="2_3vj1c"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="4_taqca"]
 [ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
 [ext_resource type="PackedScene" uid="uid://17g1nw34nb6s" path="res://characters/enemies/sargent/sarge.tscn" id="7_gtufp"]
-[ext_resource type="PackedScene" uid="uid://crv6c613w0n54" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="8_3uikh"]
 [ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]
@@ -137,14 +136,14 @@ position = Vector2(2212, 743)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
 possible_positions = [NodePath("../SpawnPosition1"), NodePath("../SpawnPosition2"), NodePath("../SpawnPosition3")]
-possible_enemies = [ExtResource("7_gtufp"), ExtResource("8_3uikh")]
+possible_enemies = [ExtResource("7_gtufp")]
 
 [node name="EnemySpawner2" type="Marker2D" parent="Utilities"]
 position = Vector2(-421, 708)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
 possible_positions = [NodePath("../SpawnPosition4"), NodePath("../SpawnPosition5"), NodePath("../SpawnPosition6")]
-possible_enemies = [ExtResource("7_gtufp"), ExtResource("8_3uikh")]
+possible_enemies = [ExtResource("7_gtufp")]
 
 [node name="SpawnPosition1" type="Marker2D" parent="Utilities"]
 position = Vector2(1753, 509)
@@ -172,6 +171,7 @@ gizmo_extents = 50.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+current = true
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -188,7 +188,6 @@ horizontal_alignment = 2
 script = ExtResource("3_lfeec")
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
-anchors_preset = -1
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_r1bdp")]
 layout_mode = 3
