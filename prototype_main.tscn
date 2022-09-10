@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd" id="4_ncwkl"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="4_taqca"]
 [ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
-[ext_resource type="PackedScene" uid="uid://17g1nw34nb6s" path="res://characters/enemies/sargent/sarge.tscn" id="7_gtufp"]
+[ext_resource type="PackedScene" uid="uid://bm3yq2bbfquni" path="res://characters/enemies/sargent/sarge.tscn" id="7_gtufp"]
 [ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]

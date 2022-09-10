@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=34 format=3 uid="uid://bm3yq2bbfquni"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_32xd3"]
 [ext_resource type="Resource" uid="uid://pn2qrl0x1wj8" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_3db7i"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_enemy_character.gd" id="2_jbg4y"]
 [ext_resource type="PackedScene" uid="uid://dn1vp8lg8eb48" path="res://characters/enemies/sargent/sarge_skin.tscn" id="3_wjp8o"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_302rx"]
+[ext_resource type="Script" path="res://characters/enemies/sargent/sarge_collision.gd" id="4_c0fp6"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_k2im7"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="6_3jnde"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_d1bnb"]
@@ -29,10 +30,14 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="25_gobfr"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="26_al3lo"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_attack.gd" id="28_wckwx"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="31_tgvee"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8yk3v"]
 radius = 18.0
 height = 220.0
+
+[sub_resource type="Theme" id="Theme_5gb4f"]
+Label/colors/font_color = Color(0.101961, 0.0117647, 0.415686, 1)
 
 [node name="Sarge" groups=["enemies"] instance=ExtResource("1_32xd3")]
 collision_layer = 16
@@ -48,6 +53,7 @@ modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(-38, -17)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8yk3v")
+script = ExtResource("4_c0fp6")
 metadata/collision_type = "default"
 
 [node name="SargeSkin" parent="." index="1" instance=ExtResource("3_wjp8o")]
@@ -200,6 +206,8 @@ max_wait = 6.0
 [node name="GoToPosition" type="Node" parent="AiStateMachine" index="1"]
 script = ExtResource("23_ho3tt")
 path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
 
 [node name="Attack" type="Node" parent="AiStateMachine" index="2"]
 script = ExtResource("23_meye2")
@@ -227,9 +235,35 @@ fallback_state_path = "Ground/Move/IdleAi"
 script = ExtResource("25_gobfr")
 use_range = true
 wait_time = 0.0
-min_wait = 3.0
-max_wait = 6.0
+min_wait = 1.0
+max_wait = 3.0
 
 [node name="WaitTillIdle" type="Node" parent="AiStateMachine" index="4"]
 script = ExtResource("26_al3lo")
 path_ready_state = "Ground/Move/IdleAi"
+
+[node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
+offset_left = -168.0
+offset_top = -442.0
+offset_right = 168.0
+offset_bottom = -392.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_5gb4f")
+theme_override_constants/separation = 0
+metadata/_edit_use_custom_anchors = true
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+offset_right = 336.0
+offset_bottom = 23.0
+script = ExtResource("31_tgvee")
+path_reference = NodePath("../../StateMachine")
+properties = PackedStringArray("state_name")
+
+[node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+offset_top = 23.0
+offset_right = 336.0
+offset_bottom = 46.0
+script = ExtResource("31_tgvee")
+path_reference = NodePath("../../AiStateMachine")
+properties = PackedStringArray("state_name")
