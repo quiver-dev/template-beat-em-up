@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 	
 	var message := PackedStringArray()
 	for property in properties:
-		var value = _reference_node.get(property)
+		var value = _reference_node.get_indexed(property)
 		if value is float:
 			value = "%0.2f"%[value]
 		message.append("%s.%s: %s"%[_reference_node.name, property, value])
