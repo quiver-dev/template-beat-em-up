@@ -14,6 +14,9 @@ extends QuiverAiStateMachine
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+@export var _max_consecutive_hits := 10
+
+var _consecutive_hits := 0
 var _phase_path := "Phase1"
 
 ### -----------------------------------------------------------------------------------------------
@@ -45,11 +48,13 @@ func _decide_next_action(last_state: StringName) -> void:
 		&"Wait":
 			transition_to("%s/ChooseRandomAttack"%[_phase_path])
 		&"ChooseRandomAttack":
+			_consecutive_hits = 0
 			transition_to("%s/Wait"%[_phase_path])
 		&"GoToPosition":
 			transition_to("%s/Wait"%[_phase_path])
 		&"WaitForIdle":
-			transition_to("%s/Wait"%[_phase_path])
+			character_attributes.is_invulnerable = false
+			transition_to(_state_to_resume)
 
 
 func _on_tax_man_phase_changed_to(phase: int) -> void:
@@ -63,11 +68,21 @@ func _on_tax_man_phase_changed_to(phase: int) -> void:
 		_:
 			_phase_path = "Phase1"
 	
+	_consecutive_hits = -1
 	_interrupt_current_state("%s/Wait"%[_phase_path])
 
 
 func _ai_reset(_knockback: QuiverKnockback) -> void:
 	_interrupt_current_state(get_path_to(state))
+
+
+func _interrupt_current_state(p_next_path: String) -> void:
+	_consecutive_hits += 1
+	if _consecutive_hits >= _max_consecutive_hits:
+		character_attributes.is_invulnerable = true
+		super("%s/ChooseRandomAttack"%[_phase_path])
+	else:
+		super(p_next_path)
 
 ### -----------------------------------------------------------------------------------------------
 

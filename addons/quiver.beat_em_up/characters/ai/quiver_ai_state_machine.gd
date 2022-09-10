@@ -47,11 +47,11 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		return
 	
-	if is_instance_valid(owner):
-		await owner.ready
-	
 	var owner_path := owner.get_path()
 	add_to_group(StringName(owner_path))
+	
+	if is_instance_valid(owner):
+		await owner.ready
 	
 	_connect_child_ai_states()
 	
@@ -142,7 +142,8 @@ func _interrupt_current_state(p_next_path: String) -> void:
 	if state.has_method("interrupt_state"):
 		state.interrupt_state()
 	
-	_state_to_resume = p_next_path
+	if p_next_path != _ai_state_hurt:
+		_state_to_resume = p_next_path
 	transition_to(_ai_state_hurt)
 
 ### -----------------------------------------------------------------------------------------------

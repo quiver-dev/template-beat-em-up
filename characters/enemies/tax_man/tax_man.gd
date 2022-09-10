@@ -26,6 +26,8 @@ var _phases_health_thresholds := {
 	TaxManPhases.PHASE_DIE: 0.0,
 }
 
+# Used by tax man's hurt state
+@warning_ignore(unused_private_class_variable)
 var _max_damage_in_one_combo := 0.1
 
 var _health_previous := 1.0

@@ -34,7 +34,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
-		
+
 
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(_reference_node):

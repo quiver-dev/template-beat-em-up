@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c8p8hxg0j7j6l"]
+[gd_scene load_steps=31 format=3 uid="uid://c8p8hxg0j7j6l"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/screen_marker.gd" id="23_s6olh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="24_jvcip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="25_7uuvm"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/wait_debug_label.gd" id="27_dlvh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
 radius = 18.0
@@ -72,6 +73,7 @@ path_attack_state = "Ground/Combo1"
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_45ydq")
+OFFSET_FROM_TARGET = 280
 walk_skin_state = &"walk"
 path_next_state = "Ground/Move/IdleAi"
 turning_speed_modifier = 0.6
@@ -158,10 +160,10 @@ script = ExtResource("18_jvunq")
 
 [node name="Wait" type="Node" parent="AiStateMachine/Phase1" index="0"]
 script = ExtResource("13_oq38d")
-use_range = true
-wait_time = 0.0
-min_wait = 3.0
-max_wait = 6.0
+use_range = false
+wait_time = 1.0
+min_wait = 1.0
+max_wait = 2.0
 
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase1" index="1"]
 script = ExtResource("17_5k63d")
@@ -191,7 +193,7 @@ script = ExtResource("18_thg3o")
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0"]
 script = ExtResource("24_jvcip")
 _pool_positions = []
-_pool_nodes = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+_pool_nodepaths = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -213,9 +215,9 @@ script = ExtResource("18_jvunq")
 [node name="Wait" type="Node" parent="AiStateMachine/Phase2" index="0"]
 script = ExtResource("13_oq38d")
 use_range = true
-wait_time = 0.0
-min_wait = 2.0
-max_wait = 4.0
+wait_time = 1.0
+min_wait = 0.5
+max_wait = 1.0
 
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
@@ -246,7 +248,7 @@ script = ExtResource("18_thg3o")
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0"]
 script = ExtResource("24_jvcip")
 _pool_positions = []
-_pool_nodes = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+_pool_nodepaths = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -284,8 +286,8 @@ script = ExtResource("18_jvunq")
 script = ExtResource("13_oq38d")
 use_range = true
 wait_time = 0.0
-min_wait = 1.0
-max_wait = 2.0
+min_wait = 0.2
+max_wait = 0.7
 
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase3" index="1"]
 script = ExtResource("17_5k63d")
@@ -315,7 +317,7 @@ script = ExtResource("18_thg3o")
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0"]
 script = ExtResource("24_jvcip")
 _pool_positions = []
-_pool_nodes = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+_pool_nodepaths = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -388,8 +390,8 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 250.0
-offset_right = 250.0
+offset_left = 300.0
+offset_right = 300.0
 grow_vertical = 2
 script = ExtResource("23_s6olh")
 
@@ -400,13 +402,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_right = -250.0
+offset_left = -300.0
+offset_right = -300.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("23_s6olh")
 
 [connection signal="phase_changed_to" from="." to="AiStateMachine" method="_on_tax_man_phase_changed_to"]
+[connection signal="phase_changed_to" from="." to="DebugLabels/Wait" method="_on_tax_man_phase_changed_to"]
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/GrabReject" method="_on_skin_skin_animation_finished"]

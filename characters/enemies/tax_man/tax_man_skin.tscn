@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
-[ext_resource type="Resource" uid="uid://b5h70e60moyfu" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
+[ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cxpxjg6r0f7ki" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
 [ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
