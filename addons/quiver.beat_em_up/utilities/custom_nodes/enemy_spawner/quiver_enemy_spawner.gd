@@ -99,6 +99,9 @@ func _on_enemy_died(p_instance_id: int) -> void:
 				enemy.attributes.health_depleted,
 				_on_enemy_died
 		)
+		
+		await enemy.tree_exited
+		
 		var success := _spawned_enemies.erase(p_instance_id)
 		if not success:
 			push_error("Failed to remove %s from %s"%[p_instance_id, _spawned_enemies])

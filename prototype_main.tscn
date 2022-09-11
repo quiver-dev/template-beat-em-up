@@ -195,7 +195,7 @@ script = ExtResource("4_ncwkl")
 spawn_waves = [[SubResource("Resource_xae3g")], [SubResource("Resource_lylwx"), SubResource("Resource_hvnw3")]]
 
 [node name="BossSpawner" type="Marker2D" parent="Utilities"]
-position = Vector2(-421, 708)
+position = Vector2(2252, 708)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
 spawn_waves = [[SubResource("Resource_djpmf")]]
