@@ -92,7 +92,7 @@ _global_script_classes=[{
 "base": "Marker2D",
 "class": &"QuiverEnemySpawner",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd"
 }, {
 "base": "Area2D",
 "class": &"QuiverGrabBox",
