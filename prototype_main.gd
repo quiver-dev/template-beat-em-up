@@ -15,11 +15,11 @@ extends Node2D
 @onready var _main_player := $Characters/Chad as QuiverCharacter
 @onready var _player_hud := $HudLayer/PlayerHud
 
-var _wave_count := 0
 var _debug_logger := QuiverDebugLogger.get_logger()
 
 @onready var _enemy_spawner_right := $Utilities/EnemySpawner as QuiverEnemySpawner
 @onready var _enemy_spawner_left := $Utilities/EnemySpawner2 as QuiverEnemySpawner
+@onready var _boss_spawner := $Utilities/BossSpawner as QuiverEnemySpawner
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -30,10 +30,9 @@ func _ready() -> void:
 	randomize()
 	_player_hud.set_player_attributes(_main_player.attributes)
 	QuiverEditorHelper.connect_between(Events.player_died, reload_prototype)
-	QuiverEditorHelper.connect_between(Events.enemy_defeated, _on_enemy_defeated, CONNECT_DEFERRED)
 	
 	_debug_logger.start_new_log()
-	_spawn_next_wave()
+	_enemy_spawner_right.spawn_current_wave()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -54,26 +53,25 @@ func reload_prototype() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _spawn_next_wave() -> void:
-	_debug_logger.log_message([get_path(), "Wave Starting", _wave_count])
-		
-	var wave_enemies = min(_wave_count + 1, 6)
-	if wave_enemies > 1:
-		var enemies_right = max(1, wave_enemies / 2)
-		var enemies_left = wave_enemies - enemies_right
-		_enemy_spawner_right.spawn_enemies(enemies_right)
-		if enemies_left > 0:
-			_enemy_spawner_left.spawn_enemies(enemies_left)
-	else:
-		_enemy_spawner_right.spawn_enemies(wave_enemies)
+func _on_enemy_spawner_wave_ended(wave_index: int) -> void:
+	if wave_index == 0:
+		_enemy_spawner_left.spawn_current_wave()
+
+
+func _on_enemy_spawner_all_waves_completed() -> void:
+	var is_finished := true
 	
-	_wave_count += 1
+	for spawner in [_enemy_spawner_right, _enemy_spawner_left]:
+		if not (spawner as QuiverEnemySpawner).is_completed:
+			is_finished = false
+			break
+	
+	if is_finished:
+		_boss_spawner.spawn_current_wave()
 
 
-func _on_enemy_defeated() -> void:
-	var current_enemies := get_tree().get_nodes_in_group("enemies")
-	if current_enemies.is_empty():
-		_spawn_next_wave()
+func _on_boss_spawner_all_waves_completed() -> void:
+	print("Congratulations!")
+	pass
 
 ### -----------------------------------------------------------------------------------------------
-
