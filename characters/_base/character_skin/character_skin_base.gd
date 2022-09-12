@@ -134,7 +134,7 @@ func _ready() -> void:
 func transition_to(anim_state: StringName) -> void:
 	var value_returned := _is_valid_state(anim_state)
 	if not value_returned:
-		push_error("%s is not a valid animation state."%[anim_state])
+		push_error("Skin: %s | %s is not a valid animation state."%[name, anim_state])
 		return
 	
 	_playback.travel(anim_state)
