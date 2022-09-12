@@ -115,7 +115,7 @@ const CUSTOM_PROPERTIES_LOCAL = {
 	},
 	"alt_skin_state": {
 		backing_field = "_skin_state_alt",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \

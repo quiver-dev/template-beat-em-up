@@ -166,7 +166,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"skin_state_rising": {
 		backing_field = "_skin_state_rising",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
@@ -174,7 +174,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"skin_state_falling": {
 		backing_field = "_skin_state_falling",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \

@@ -139,7 +139,7 @@ var _CUSTOM_PROPERTIES = {
 	},
 	"skin_state": {
 		backing_field = "_skin_state",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
@@ -154,7 +154,7 @@ var _CUSTOM_PROPERTIES = {
 	},
 	"end_condition": {
 		backing_field = "_end_condition",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = ",".join(EndConditions.keys()),

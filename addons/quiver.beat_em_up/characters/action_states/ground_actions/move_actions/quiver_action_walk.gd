@@ -150,7 +150,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"walk_skin_state": {
 		backing_field = "_walk_skin_state",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \
@@ -158,7 +158,7 @@ const CUSTOM_PROPERTIES = {
 	},
 	"turn_skin_state": {
 		backing_field = "_turn_skin_state",
-		type = TYPE_INT,
+		type = TYPE_STRING,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_ENUM,
 		hint_string = \

@@ -23,7 +23,8 @@ var _fall_modifier: float = \
 	set(value):
 		_debug_fall_modifier = value
 		ProjectSettings.set_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER, value)
-		ProjectSettings.save()
+		if Engine.is_editor_hint():
+			ProjectSettings.save()
 	get:
 		var value := _debug_fall_modifier
 		if ProjectSettings.has_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER):
