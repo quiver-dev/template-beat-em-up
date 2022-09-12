@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="5_7i6ya"]
 [ext_resource type="PackedScene" uid="uid://c6fsd7rck7j8f" path="res://characters/enemies/sargent/sarge.tscn" id="7_q6rl5"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="7_uetkd"]
-[ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man.tscn" id="9_vlo3i"]
+[ext_resource type="PackedScene" uid="uid://b37pgqu571dke" path="res://characters/enemies/tax_man/tax_man.tscn" id="9_vlo3i"]
 [ext_resource type="Theme" uid="uid://duq6rjpc3ffy5" path="res://theme_resources/theme_debug.tres" id="10_e5two"]
 [ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="10_r1bdp"]
 [ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="13_3aarp"]

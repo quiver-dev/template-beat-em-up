@@ -192,7 +192,7 @@ config/name="Template Beat Project"
 run/main_scene="res://prototype_main.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
-config/version="0.3.0"
+config/version="0.4.0"
 
 [autoload]
 
