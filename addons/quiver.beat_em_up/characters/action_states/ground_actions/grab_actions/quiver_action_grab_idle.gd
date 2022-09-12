@@ -15,7 +15,9 @@ const GrabState = preload(
 		+"quiver_action_grab.gd"
 )
 
-const ONE_SHOT_TIMER = preload("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
+# this is broken for exports on alpha 16
+#const ONE_SHOT_TIMER = preload("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
+@onready var ONE_SHOT_TIMER = load("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
