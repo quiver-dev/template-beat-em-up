@@ -185,7 +185,10 @@ func _get_property_list() -> Array:
 		if not dict.has("name"):
 			dict.name = key
 		
-		if key == "death_slowdown_speed" and not _character.is_in_group("players"):
+		if (
+				key == "death_slowdown_speed" 
+				and (is_instance_valid(_character) and not _character.is_in_group("players"))
+			):
 			add_property = false
 		
 		if add_property:
