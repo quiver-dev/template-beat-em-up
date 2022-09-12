@@ -24,8 +24,7 @@ var _options: OptionButton = null
 
 func _ready() -> void:
 	_node = get_edited_object()
-	
-	if _node is QuiverAiState or _node is QuiverStateSequence:
+	if _node is QuiverAiState or _node is QuiverStateSequence or _node is QuiverAiStateGroup:
 		_ai_state_machine = _node._state_machine as QuiverAiStateMachine
 	elif _node is QuiverAiStateMachine:
 		_ai_state_machine = _node as QuiverAiStateMachine
@@ -75,11 +74,26 @@ func _get_list_of_ai_states() -> Array:
 	if _ai_state_machine == null:
 		list = ["Not a child of an AiStateMachine"]
 	else:
-		for child in _ai_state_machine.get_children():
-			if child is QuiverAiState or child is QuiverStateSequence:
-				list.append(_ai_state_machine.get_path_to(child))
+		list = _get_leaf_nodes_path_list(_ai_state_machine)
 	
 	return list
+
+
+func _get_leaf_nodes_path_list(start_node: Node, node_list := []) -> Array:
+	if _should_add_leaf_node_to_list(start_node):
+		node_list.append(_ai_state_machine.get_path_to(start_node))
+	else:
+		for child in start_node.get_children():
+			# warning-ignore:return_value_discarded
+			_get_leaf_nodes_path_list(child, node_list)
+	
+	return node_list
+
+
+func _should_add_leaf_node_to_list(node: Node) -> bool:
+	var is_ai_state := node is QuiverAiState
+	var is_sequence_state := node is QuiverStateSequence
+	return is_ai_state or is_sequence_state
 
 
 func _on_options_item_selected(index: int) -> void:

@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://test_scenes/base_test.gd" id="1_dv3in"]
+[ext_resource type="PackedScene" uid="uid://c8p8hxg0j7j6l" path="res://characters/enemies/tax_man/tax_man.tscn" id="2_01cry"]
+[ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="3_hxscm"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="4_yu1bl"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="5_6me1s"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="6_rrjee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebte6"]
+size = Vector2(2212, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iusyd"]
+size = Vector2(2212, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6f4g"]
+size = Vector2(87, 2212)
+
+[node name="TaxManPunchBagTest" type="Node2D"]
+script = ExtResource("1_dv3in")
+
+[node name="ScreenLimits" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="Left" type="CollisionShape2D" parent="ScreenLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(-22, 537)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ebte6")
+one_way_collision = true
+metadata/collision_type = "default"
+
+[node name="Right" type="CollisionShape2D" parent="ScreenLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(1944, 537)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_iusyd")
+one_way_collision = true
+metadata/collision_type = "default"
+
+[node name="Bottom" type="CollisionShape2D" parent="ScreenLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(936, 1104)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e6f4g")
+metadata/collision_type = "default"
+
+[node name="Characters" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TaxMan" parent="Characters" instance=ExtResource("2_01cry")]
+position = Vector2(1578, 823)
+
+[node name="Skin" parent="Characters/TaxMan" index="0"]
+skin_direction = 1
+debug_prints = true
+
+[node name="StateMachine" parent="Characters/TaxMan/DebugLabels" index="0"]
+properties = PackedStringArray("state_name")
+
+[node name="Chad" parent="Characters" instance=ExtResource("3_hxscm")]
+position = Vector2(1041, 688)
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="HudLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -163.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "version: %s"
+horizontal_alignment = 2
+script = ExtResource("4_yu1bl")
+
+[node name="PauseMenu" parent="HudLayer" instance=ExtResource("5_6me1s")]
+
+[node name="PlayerHud" parent="HudLayer" instance=ExtResource("6_rrjee")]
+
+[editable path="Characters/TaxMan"]

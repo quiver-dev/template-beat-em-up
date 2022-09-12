@@ -62,7 +62,7 @@ func enter(msg: = {}) -> void:
 func physics_process(delta: float) -> void:
 	_air_state._move_and_apply_gravity(delta)
 	if _air_state._has_reached_ground():
-		_handle_landing()
+		_air_state._handle_landing(_path_landing)
 
 
 func exit() -> void:
@@ -74,12 +74,6 @@ func exit() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _handle_landing() -> void:
-	_skin.position.y = 0.0
-	_air_state._skin_velocity_y = 0.0
-	_state_machine.transition_to(_path_landing)
-
 
 func _connect_signals() -> void:
 	super()

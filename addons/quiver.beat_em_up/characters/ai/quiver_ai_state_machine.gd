@@ -20,6 +20,11 @@ extends QuiverStateMachine
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export var disabled := false:
+	set(value):
+		disabled = value
+
+
 var character_attributes: QuiverAttributes = null:
 	set(value):
 		character_attributes = value
@@ -38,7 +43,6 @@ var _state_to_resume := NodePath()
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	super()
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
@@ -46,22 +50,32 @@ func _ready() -> void:
 	var owner_path := owner.get_path()
 	add_to_group(StringName(owner_path))
 	
-	for child in get_children():
-		var child_state := child as QuiverState
-		if not is_instance_valid(child_state):
-			continue
-		
-		QuiverEditorHelper.connect_between(
-				child_state.state_finished, _decide_next_action.bind(child_state.name)
-		)
+	if is_instance_valid(owner):
+		await owner.ready
+	
+	_connect_child_ai_states()
+	
+	if disabled:
+		QuiverEditorHelper.disable_all_processing(self)
+	else:
+		state = get_node(initial_state) as QuiverState
+		state.enter()
+		emit_signal("transitioned", get_path_to(state))
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	for child in get_children():
-		if not child is QuiverAiState and not child is QuiverStateSequence:
-			warnings.append("%s is not a QuiverAiState or QuiverSequenceState"%[child.name])
+		if (
+				not child is QuiverAiState 
+				and not child is QuiverStateSequence
+				and not child is QuiverAiStateGroup
+			):
+			warnings.append(
+					"%s is not a QuiverAiState, QuiverAiStateGroup or QuiverSequenceState"
+					%[child.name]
+			)
 	
 	return warnings
 
@@ -70,10 +84,32 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func transition_to(target_state_path: NodePath, msg: = {}) -> void:
+	if disabled:
+		return
+	else:
+		super(target_state_path, msg)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _connect_child_ai_states(starting_node: Node = self) -> void:
+	for child in starting_node.get_children():
+		if child is QuiverAiStateGroup:
+			_connect_child_ai_states(child)
+		elif child is QuiverState:
+			QuiverEditorHelper.connect_between(
+					child.state_finished, _decide_next_action.bind(child.name)
+			)
+		else:
+			push_warning(
+					"%s is a child of AiStateMachine but it is "%[child]
+					+"not any of its recognized nodes"
+			)
+			continue
+
 
 ## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] 
 ## signal
@@ -100,10 +136,14 @@ func _ai_reset(_knockback: QuiverKnockback) -> void:
 
 
 func _interrupt_current_state(p_next_path: String) -> void:
+	if disabled:
+		return
+	
 	if state.has_method("interrupt_state"):
 		state.interrupt_state()
 	
-	_state_to_resume = p_next_path
+	if p_next_path != _ai_state_hurt:
+		_state_to_resume = p_next_path
 	transition_to(_ai_state_hurt)
 
 ### -----------------------------------------------------------------------------------------------
@@ -112,34 +152,35 @@ func _interrupt_current_state(p_next_path: String) -> void:
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-const CUSTOM_PROPERTIES = {
-	"AI State Machine":{
-		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_CATEGORY,
-		hint = PROPERTY_HINT_NONE,
-	},
-	"ai_state_hurt": {
-		backing_field = "_ai_state_hurt",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_AI_STATE_LIST,
-	},
-	"ai_state_after_reset": {
-		backing_field = "_ai_state_after_reset",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_AI_STATE_LIST,
-	},
-#	"": {
-#		backing_field = "",
-#		name = "",
-#		type = TYPE_NIL,
-#		usage = PROPERTY_USAGE_DEFAULT,
-#		hint = PROPERTY_HINT_NONE,
-#		hint_string = "",
-#	},
+static func _get_custom_properties() -> Dictionary:
+	return {
+		"AI State Machine":{
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY,
+			hint = PROPERTY_HINT_NONE,
+		},
+		"ai_state_hurt": {
+			backing_field = "_ai_state_hurt",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_AI_STATE_LIST,
+		},
+		"ai_state_after_reset": {
+			backing_field = "_ai_state_after_reset",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_AI_STATE_LIST,
+		},
+	#	"": {
+	#		backing_field = "",
+	#		name = "",
+	#		type = TYPE_NIL,
+	#		usage = PROPERTY_USAGE_DEFAULT,
+	#		hint = PROPERTY_HINT_NONE,
+	#		hint_string = "",
+	#	},
 }
 
 ### Custom Inspector built in functions -----------------------------------------------------------
@@ -147,9 +188,10 @@ const CUSTOM_PROPERTIES = {
 func _get_property_list() -> Array:
 	var properties: = []
 	
-	for key in CUSTOM_PROPERTIES:
+	var custom_properties := _get_custom_properties()
+	for key in custom_properties:
 		var add_property := true
-		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
 		
@@ -162,8 +204,9 @@ func _get_property_list() -> Array:
 func _get(property: StringName):
 	var value
 	
-	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("backing_field"):
+		value = get(custom_properties[property]["backing_field"])
 	
 	return value
 
@@ -171,8 +214,9 @@ func _get(property: StringName):
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
 	
-	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("backing_field"):
+		set(custom_properties[property]["backing_field"], value)
 		has_handled = true
 	
 	return has_handled

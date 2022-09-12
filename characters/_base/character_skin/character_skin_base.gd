@@ -25,7 +25,7 @@ signal attack_input_frames_finished
 
 ## emited by calling [method grab_notify] in grab animations, at the point the grab should 
 ## connect and link character who is grabbing to grabbed character
-signal grab_frame_reached(ref_position: Position2D)
+signal grab_frame_reached(ref_position: Marker2D)
 
 signal attack_movement_started(direction: Vector2, speed: float)
 signal attack_movement_ended
@@ -101,8 +101,8 @@ var _animation_list := []
 
 @onready var _animation_tree := get_node(_path_animation_tree) as AnimationTree
 @onready var _playback := _animation_tree.get(_path_playback) as AnimationNodeStateMachinePlayback
-@onready var _grab_pivot := get_node(_path_grab_pivot) as Position2D if _has_grab else null
-@onready var _grabbed_pivot := get_node(_path_grabbed_pivot) as Position2D if _has_grabbed else null
+@onready var _grab_pivot := get_node(_path_grab_pivot) as Marker2D if _has_grab else null
+@onready var _grabbed_pivot := get_node(_path_grabbed_pivot) as Marker2D if _has_grabbed else null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -276,7 +276,7 @@ func _handle_animation_node(
 				_animation_list.append(animation_name)
 			
 			var parameter_name = _get_actual_parameter_name(property_name)
-			property_path = property_path.plus_file(parameter_name)
+			property_path = property_path.path_join(parameter_name)
 			_find_all_animation_nodes_from(node, property_path)
 		_:
 			if node is AnimationRootNode:
@@ -285,7 +285,7 @@ func _handle_animation_node(
 
 func _filter_main_playback_path(animation_name: String, path: String) -> StringName:
 	var parameter_name = _get_actual_parameter_name(animation_name)
-	var full_path = path.plus_file(parameter_name)
+	var full_path = path.path_join(parameter_name)
 	var path_to_main_playback = _path_playback.replace("playback", "")
 	var value = full_path.replace(path_to_main_playback, "") as StringName
 	return value
@@ -321,7 +321,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_NODE_PATH,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
-		hint_string = "Position2D",
+		hint_string = "Marker2D",
 	},
 	"has_grabbed": {
 		backing_field = "_has_grabbed",
@@ -335,7 +335,7 @@ const CUSTOM_PROPERTIES = {
 		type = TYPE_NODE_PATH,
 		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
-		hint_string = "Position2D",
+		hint_string = "Marker2D",
 	},
 #	"": {
 #		backing_field = "",
@@ -361,14 +361,10 @@ func _get_property_list() -> Array:
 		match key:
 			"path_grab_pivot":
 				if not _has_grab:
-					dict.usage = PROPERTY_USAGE_STORAGE
-				else:
-					dict.usage = CUSTOM_PROPERTIES[key].usage
+					add_property = false
 			"path_grabbed_pivot":
 				if not _has_grabbed:
-					dict.usage = PROPERTY_USAGE_STORAGE
-				else:
-					dict.usage = CUSTOM_PROPERTIES[key].usage
+					add_property = false
 		
 		if add_property:
 			properties.append(dict)

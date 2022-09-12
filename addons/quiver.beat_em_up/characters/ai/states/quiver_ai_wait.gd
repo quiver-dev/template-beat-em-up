@@ -67,6 +67,8 @@ func enter(msg: = {}) -> void:
 func exit() -> void:
 	super()
 	QuiverEditorHelper.disconnect_between(_wait_timer.timeout, _on_wait_timer_timeout)
+	if not _wait_timer.is_stopped():
+		_wait_timer.stop()
 
 ### -----------------------------------------------------------------------------------------------
 

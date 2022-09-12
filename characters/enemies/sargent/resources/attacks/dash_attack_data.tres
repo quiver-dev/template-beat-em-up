@@ -7,4 +7,4 @@ script = ExtResource("1_qfl1s")
 attack_damage = 2.0
 hurt_type = 1
 knockback = 2
-launch_angle = 15.0
+launch_angle = 90.0

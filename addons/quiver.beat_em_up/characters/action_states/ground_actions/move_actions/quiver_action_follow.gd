@@ -31,6 +31,7 @@ var _path_next_state := "Ground/Move/Idle"
 var _target_node: Node2D = null
 var _fixed_position := Vector2.ONE * INF
 var _should_use_fixed := false
+var _should_use_only_y := false
 
 var _is_turning := false
 
@@ -71,8 +72,12 @@ func enter(msg: = {}) -> void:
 	_move_state.enter(msg)
 	_skin.transition_to(_walk_skin_state)
 	
-	if msg.has("target_node") and msg.target_node is Node2D:
-		_target_node = msg.target_node
+	if msg.has("use_only_y"):
+		_should_use_only_y = msg.use_only_y
+	
+	if msg.has("target_node"): 
+		if msg.target_node is Node2D:
+			_target_node = msg.target_node
 	elif msg.has("target_position") and msg.target_position is Vector2:
 		_target_node = QuiverCharacterHelper.find_closest_player_to(_character)
 		_fixed_position = msg.target_position
@@ -115,6 +120,7 @@ func exit() -> void:
 	_fixed_position = Vector2.ONE * INF
 	_target_node = null
 	_should_use_fixed = false
+	_should_use_only_y = false
 	_is_turning = false
 
 ### -----------------------------------------------------------------------------------------------
@@ -152,10 +158,13 @@ func _handle_target_position() -> Vector2:
 			if _target_node.is_on_air:
 				target_position.y = _attributes.ground_level
 		
-		if _character.global_position.x >= target_position.x:
-			target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
-		else:
-			target_position += Vector2.LEFT * OFFSET_FROM_TARGET
+			if _character.global_position.x >= target_position.x:
+				target_position += Vector2.RIGHT * OFFSET_FROM_TARGET
+			else:
+				target_position += Vector2.LEFT * OFFSET_FROM_TARGET
+	
+	if _should_use_only_y:
+		target_position.x = _character.global_position.x
 	
 	return target_position
 

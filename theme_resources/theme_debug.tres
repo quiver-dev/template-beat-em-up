@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://duq6rjpc3ffy5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y8v3"]
+bg_color = Color(0.8, 0.8, 0.8, 0.7)
+
+[resource]
+Label/colors/font_color = Color(0.101961, 0.0117647, 0.415686, 1)
+Label/font_sizes/font_size = 18
+Label/styles/normal = SubResource("StyleBoxFlat_3y8v3")
+VBoxContainer/constants/separation = 0

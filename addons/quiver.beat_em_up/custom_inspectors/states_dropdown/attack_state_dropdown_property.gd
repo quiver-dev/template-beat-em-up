@@ -33,7 +33,8 @@ const AttackState = preload(
 ### Private Methods -------------------------------------------------------------------------------
 
 func _should_add_leaf_node_to_list(node: Node) -> bool:
-	var value = node is AttackState
-	return value
+	var is_attack = node is AttackState 
+	var is_custom_attack = node.has_method("is_attack_state") and node.is_attack_state()
+	return is_attack or is_custom_attack
 
 ### -----------------------------------------------------------------------------------------------

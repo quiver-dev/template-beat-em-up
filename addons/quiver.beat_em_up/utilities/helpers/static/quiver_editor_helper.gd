@@ -12,6 +12,14 @@ static func disable_all_processing(node: Node) -> void:
 	node.set_physics_process(false)
 
 
+## Enables all processing for the node.
+static func enable_all_processing(node: Node) -> void:
+	node.set_process_input(true)
+	node.set_process_unhandled_input(true)
+	node.set_process(true)
+	node.set_physics_process(true)
+
+
 ## Check if the node is the [code]current_scene[/code]. This is useful for having special 
 ## logic to test a scene running it on F6.
 static func is_standalone_run(node: Node) -> bool:
@@ -71,15 +79,16 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 ## Custom Inspector ################################################################################
 ####################################################################################################
 #
-#const CUSTOM_PROPERTIES = {
-##	"": {
-##		backing_field = "",
-##		name = "",
-##		type = TYPE_NIL,
-##		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-##		hint = PROPERTY_HINT_NONE,
-##		hint_string = "",
-##	},
+#func _get_custom_properties() -> Dictionary:
+#	return {
+##		"": {
+##			backing_field = "",
+##			name = "",
+##			type = TYPE_NIL,
+##			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+##			hint = PROPERTY_HINT_NONE,
+##			hint_string = "",
+##		},
 #}
 #
 #### Custom Inspector built in functions -----------------------------------------------------------
@@ -87,12 +96,13 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 #func _get_property_list() -> Array:
 #	var properties: = []
 #	
-#	for key in CUSTOM_PROPERTIES:
+#	var custom_properties := _get_custom_properties()
+#	for key in custom_properties:
 #		var add_property := true
-#		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+#		var dict: Dictionary = custom_properties[key]
 #		if not dict.has("name"):
 #			dict.name = key
-#		
+#	
 #		if add_property:
 #			properties.append(dict)
 #	
@@ -102,8 +112,9 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 #func _get(property: StringName):
 #	var value
 #	
-#	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-#		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+#	var custom_properties := _get_custom_properties()
+#	if property in custom_properties and custom_properties[property].has("backing_field"):
+#		value = get(custom_properties[property]["backing_field"])
 #	
 #	return value
 #
@@ -111,8 +122,9 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 #func _set(property: StringName, value) -> bool:
 #	var has_handled: = false
 #	
-#	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-#		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+#	var custom_properties := _get_custom_properties()
+#	if property in custom_properties and custom_properties[property].has("backing_field"):
+#		set(custom_properties[property]["backing_field"], value)
 #		has_handled = true
 #	
 #	return has_handled

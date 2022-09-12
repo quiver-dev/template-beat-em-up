@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay_ui/hud/player_hud.gd" id="1_i2ajm"]
+
+[node name="PlayerHud" type="VBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = 50.0
+offset_top = 30.0
+offset_right = -50.0
+theme_type_variation = &"LifeBars"
+script = ExtResource("1_i2ajm")
+metadata/_edit_use_custom_anchors = true
+
+[node name="CharacterName" type="Label" parent="."]
+offset_right = 860.0
+offset_bottom = 31.0
+theme_type_variation = &"HudCharName"
+text = "CHAD"
+
+[node name="LifeBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 30)
+offset_top = 31.0
+offset_right = 860.0
+offset_bottom = 61.0
+theme_type_variation = &"LifeBars"
+max_value = 1.0
+value = 0.5
+
+[node name="EnemyContainer" type="MarginContainer" parent="."]
+offset_top = 61.0
+offset_right = 860.0
+offset_bottom = 117.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 275
+
+[node name="Column" type="VBoxContainer" parent="EnemyContainer"]
+offset_left = 25.0
+offset_right = 585.0
+offset_bottom = 56.0
+theme_override_constants/separation = 0
+
+[node name="EnemyName" type="Label" parent="EnemyContainer/Column"]
+offset_right = 560.0
+offset_bottom = 31.0
+theme_type_variation = &"HudCharName"
+text = "CHAD"
+
+[node name="LifeBar" type="ProgressBar" parent="EnemyContainer/Column"]
+custom_minimum_size = Vector2(0, 25)
+offset_top = 31.0
+offset_right = 560.0
+offset_bottom = 56.0
+theme_type_variation = &"LifeBars"
+max_value = 1.0
+value = 0.5

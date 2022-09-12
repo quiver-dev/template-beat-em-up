@@ -154,14 +154,11 @@ func _register_incomming_connections() -> void:
 ## [method enter] method.
 func _connect_signals() -> void:
 	for dict in _incoming_connections:
-		if not dict.has_all(["signal", "callable", "flags", "binds"]):
+		if not dict.has_all(["signal", "callable", "flags"]):
 			push_error("Invalid source in dict: %s"%[dict])
 			continue
 		
-		if dict["binds"].is_empty():
-			dict["signal"].connect(dict["callable"], dict.flags)
-		else:
-			dict["signal"].connect(dict["callable"].bind(dict["binds"]), dict.flags)
+		dict["signal"].connect(dict["callable"], dict.flags)
 
 
 ## Disconnects all signals saved in [member _incoming_connection]. Usually called in the 

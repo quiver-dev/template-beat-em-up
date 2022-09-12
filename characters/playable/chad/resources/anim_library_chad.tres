@@ -1,7 +1,7 @@
 [gd_resource type="AnimationLibrary" load_steps=59 format=3 uid="uid://bec4th23gqkxd"]
 
-[ext_resource type="Animation" uid="uid://btquhprad5iru" path="res://characters/playable/chad/resources/animations/air_attack_right.tres" id="1_jgcla"]
-[ext_resource type="Animation" uid="uid://cog1iucyx4hyl" path="res://characters/playable/chad/resources/animations/attack1_right.tres" id="2_qtktm"]
+[ext_resource type="Animation" uid="uid://d1gfwdual010n" path="res://characters/playable/chad/resources/animations/air_attack_right.tres" id="1_jgcla"]
+[ext_resource type="Animation" uid="uid://8v2r2tyxi5r1" path="res://characters/playable/chad/resources/animations/attack1_right.tres" id="2_qtktm"]
 [ext_resource type="Animation" uid="uid://b6tt1r7v70pia" path="res://characters/playable/chad/resources/animations/attack2_right.tres" id="3_btu6m"]
 [ext_resource type="Animation" uid="uid://bdam1ybbgvwy7" path="res://characters/playable/chad/resources/animations/die_right.tres" id="4_i5tkq"]
 [ext_resource type="Animation" uid="uid://c5ot4n8v7jghl" path="res://characters/playable/chad/resources/animations/falling_right.tres" id="5_wb2lw"]
@@ -10,7 +10,7 @@
 [ext_resource type="Animation" uid="uid://cnnbw7sdbm3hs" path="res://characters/playable/chad/resources/animations/grabbed_right.tres" id="10_5ty8j"]
 [ext_resource type="Animation" uid="uid://crqm6giy4n8gj" path="res://characters/playable/chad/resources/animations/hurt_high_right.tres" id="11_yimt6"]
 [ext_resource type="Animation" uid="uid://n1iiq1shupv3" path="res://characters/playable/chad/resources/animations/hurt_mid_right.tres" id="12_5xeon"]
-[ext_resource type="Animation" uid="uid://cqnai3hk58q2x" path="res://characters/playable/chad/resources/animations/grab_idle_right.tres" id="12_um3us"]
+[ext_resource type="Animation" uid="uid://b00mglkkknn13" path="res://characters/playable/chad/resources/animations/grab_idle_right.tres" id="12_um3us"]
 [ext_resource type="Animation" uid="uid://bas87watx67xp" path="res://characters/playable/chad/resources/animations/idle_right.tres" id="13_au6o7"]
 [ext_resource type="Animation" uid="uid://ti8trwf2fogq" path="res://characters/playable/chad/resources/animations/grab_release_right.tres" id="13_mdg57"]
 [ext_resource type="Animation" uid="uid://bhk6m2enqae8i" path="res://characters/playable/chad/resources/animations/jump_right.tres" id="14_tu0qv"]

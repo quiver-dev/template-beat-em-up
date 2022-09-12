@@ -42,7 +42,7 @@ func _parse_property(
 			and hint_type == PROPERTY_HINT_ENUM 
 	):
 		if hint_string.begins_with("ExternalEnum"):
-			var options_dict = str2var(hint_string.replace("ExternalEnum", ""))
+			var options_dict = str_to_var(hint_string.replace("ExternalEnum", ""))
 			if options_dict != null and options_dict is Dictionary:
 				var property := ExternalEnumProperty.new()
 				property.external_property = (

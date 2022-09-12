@@ -34,7 +34,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
-		
+
 
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(_reference_node):
@@ -43,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 	
 	var message := PackedStringArray()
 	for property in properties:
-		var value = _reference_node.get(property)
+		var value = _reference_node.get_indexed(property)
 		if value is float:
 			value = "%0.2f"%[value]
 		message.append("%s.%s: %s"%[_reference_node.name, property, value])

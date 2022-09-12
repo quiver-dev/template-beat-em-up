@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://djv784w0ykmrn"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bjbxqlhg6r7fw"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_fte7m"]
 
 [resource]
 script = ExtResource("1_fte7m")
 display_name = "Tax Man"
-health_max = 300.0
+health_max = 1200.0
 speed_max = 600
 air_control = 0.6
 jump_force = -1200

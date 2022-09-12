@@ -1,16 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://m51ca0yn87jx"]
+[gd_scene load_steps=28 format=3 uid="uid://mvrem76tqrtp"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="Texture2D" uid="uid://uwl1nm0n31yj" path="res://placeholder_bg.png" id="2_3vj1c"]
-[ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
+[ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="2_l2dst"]
 [ext_resource type="Script" path="res://level/obstacles/WallHitBox.gd" id="3_4xx38"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_lfeec"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd" id="4_ncwkl"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd" id="4_ncwkl"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="4_taqca"]
-[ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
-[ext_resource type="PackedScene" uid="uid://17g1nw34nb6s" path="res://characters/enemies/sargent/sarge.tscn" id="7_gtufp"]
-[ext_resource type="PackedScene" uid="uid://crv6c613w0n54" path="res://characters/enemies/evil_chad/evil_chad.tscn" id="8_3uikh"]
-[ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="5_7i6ya"]
+[ext_resource type="PackedScene" uid="uid://c6fsd7rck7j8f" path="res://characters/enemies/sargent/sarge.tscn" id="7_q6rl5"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="7_uetkd"]
+[ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man.tscn" id="9_vlo3i"]
+[ext_resource type="Theme" uid="uid://duq6rjpc3ffy5" path="res://theme_resources/theme_debug.tres" id="10_e5two"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="10_r1bdp"]
+[ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="13_3aarp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]
 size = Vector2(2212, 87)
@@ -38,6 +41,55 @@ hurt_type = 1
 knockback = 0
 launch_angle = 0
 
+[sub_resource type="Resource" id="Resource_0md3h"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("7_q6rl5")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition2")
+
+[sub_resource type="Resource" id="Resource_ccgvl"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("7_q6rl5")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition1")
+
+[sub_resource type="Resource" id="Resource_r1paw"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("7_q6rl5")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition3")
+
+[sub_resource type="Resource" id="Resource_xae3g"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("7_q6rl5")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition5")
+
+[sub_resource type="Resource" id="Resource_lylwx"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("7_q6rl5")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition4")
+
+[sub_resource type="Resource" id="Resource_hvnw3"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("7_q6rl5")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition6")
+
+[sub_resource type="Resource" id="Resource_djpmf"]
+script = ExtResource("7_uetkd")
+_enemy_scene = ExtResource("9_vlo3i")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("../SpawnPosition2")
+
 [node name="PrototypeMain" type="Node2D"]
 script = ExtResource("1_wp06a")
 metadata/_edit_horizontal_guides_ = [-409.0]
@@ -46,8 +98,11 @@ metadata/_edit_horizontal_guides_ = [-409.0]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlaceholderBG" type="Sprite2D" parent="BG"]
 position = Vector2(1811, 333)
@@ -129,56 +184,63 @@ position = Vector2(652, 850)
 
 [node name="Utilities" type="Node2D" parent="."]
 
-[node name="EnemySpawner" type="Position2D" parent="Utilities"]
+[node name="EnemySpawner" type="Marker2D" parent="Utilities"]
 position = Vector2(2212, 743)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
-possible_positions = [NodePath("../SpawnPosition1"), NodePath("../SpawnPosition2"), NodePath("../SpawnPosition3")]
-possible_enemies = [ExtResource("7_gtufp"), ExtResource("8_3uikh")]
+spawn_waves = [[SubResource("Resource_0md3h")], [SubResource("Resource_0md3h")], [SubResource("Resource_ccgvl"), SubResource("Resource_r1paw")]]
 
-[node name="EnemySpawner2" type="Position2D" parent="Utilities"]
+[node name="EnemySpawner2" type="Marker2D" parent="Utilities"]
 position = Vector2(-421, 708)
 gizmo_extents = 20.0
 script = ExtResource("4_ncwkl")
-possible_positions = [NodePath("../SpawnPosition4"), NodePath("../SpawnPosition5"), NodePath("../SpawnPosition6")]
-possible_enemies = [ExtResource("7_gtufp"), ExtResource("8_3uikh")]
+spawn_waves = [[SubResource("Resource_xae3g")], [SubResource("Resource_lylwx"), SubResource("Resource_hvnw3")]]
 
-[node name="SpawnPosition1" type="Position2D" parent="Utilities"]
+[node name="BossSpawner" type="Marker2D" parent="Utilities"]
+position = Vector2(2252, 708)
+gizmo_extents = 20.0
+script = ExtResource("4_ncwkl")
+spawn_waves = [[SubResource("Resource_djpmf")]]
+
+[node name="SpawnPosition1" type="Marker2D" parent="Utilities"]
 position = Vector2(1753, 509)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition2" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition2" type="Marker2D" parent="Utilities"]
 position = Vector2(1640, 726)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition3" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition3" type="Marker2D" parent="Utilities"]
 position = Vector2(1731, 955)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition4" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition4" type="Marker2D" parent="Utilities"]
 position = Vector2(173, 506)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition5" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition5" type="Marker2D" parent="Utilities"]
 position = Vector2(229, 718)
 gizmo_extents = 50.0
 
-[node name="SpawnPosition6" type="Position2D" parent="Utilities"]
+[node name="SpawnPosition6" type="Marker2D" parent="Utilities"]
 position = Vector2(151, 952)
 gizmo_extents = 50.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+current = true
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="Label" type="Label" parent="HudLayer"]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -163.0
-offset_bottom = 26.0
+offset_left = -98.0
+offset_bottom = 29.0
 grow_horizontal = 0
+theme = ExtResource("10_e5two")
 text = "version: %s"
 horizontal_alignment = 2
 script = ExtResource("3_lfeec")
@@ -186,3 +248,10 @@ script = ExtResource("3_lfeec")
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_r1bdp")]
+
+[node name="EndScreen" parent="HudLayer" instance=ExtResource("13_3aarp")]
+
+[connection signal="all_waves_completed" from="Utilities/EnemySpawner" to="." method="_on_enemy_spawner_all_waves_completed"]
+[connection signal="wave_ended" from="Utilities/EnemySpawner" to="." method="_on_enemy_spawner_wave_ended"]
+[connection signal="all_waves_completed" from="Utilities/EnemySpawner2" to="." method="_on_enemy_spawner_all_waves_completed"]
+[connection signal="all_waves_completed" from="Utilities/BossSpawner" to="." method="_on_boss_spawner_all_waves_completed"]

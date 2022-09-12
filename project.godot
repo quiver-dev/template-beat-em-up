@@ -9,10 +9,20 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Control",
+"class": &"EndScreen",
+"language": &"GDScript",
+"path": "res://gameplay_ui/end_screen/end_screen.gd"
+}, {
 "base": "QuiverState",
 "class": &"QuiverAiState",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_base_state.gd"
+}, {
+"base": "Node",
+"class": &"QuiverAiStateGroup",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_state_group.gd"
 }, {
 "base": "QuiverStateMachine",
 "class": &"QuiverAiStateMachine",
@@ -84,10 +94,10 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/characters/quiver_enemy_character.gd"
 }, {
-"base": "Position2D",
+"base": "Marker2D",
 "class": &"QuiverEnemySpawner",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_enemy_spawner.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd"
 }, {
 "base": "Area2D",
 "class": &"QuiverGrabBox",
@@ -129,13 +139,25 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd"
 }, {
+"base": "Resource",
+"class": &"SpawnData",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd"
+}, {
+"base": "QuiverEnemyCharacter",
+"class": &"TaxManBoss",
+"language": &"GDScript",
+"path": "res://characters/enemies/tax_man/tax_man.gd"
+}, {
 "base": "QuiverHitBox",
 "class": &"WallHitBox",
 "language": &"GDScript",
 "path": "res://level/obstacles/WallHitBox.gd"
 }]
 _global_script_class_icons={
+"EndScreen": "",
 "QuiverAiState": "",
+"QuiverAiStateGroup": "",
 "QuiverAiStateMachine": "",
 "QuiverAttackData": "",
 "QuiverAttributes": "",
@@ -159,6 +181,8 @@ _global_script_class_icons={
 "QuiverState": "",
 "QuiverStateMachine": "",
 "QuiverStateSequence": "",
+"SpawnData": "",
+"TaxManBoss": "",
 "WallHitBox": ""
 }
 
@@ -192,6 +216,10 @@ window/stretch/aspect="keep_height"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/quiver.beat_em_up/plugin.cfg")
+
+[gui]
+
+theme/custom="res://theme_resources/theme_template.tres"
 
 [input]
 
@@ -285,10 +313,11 @@ pause={
 
 [layer_names]
 
-2d_physics/layer_1="characters"
+2d_physics/layer_1="players"
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="screen_limits"
 2d_physics/layer_4="ceiling_limits"
+2d_physics/layer_5="enemies"
 2d_physics/layer_8="world_hit_boxes"
 2d_physics/layer_9="player_hit_boxes"
 2d_physics/layer_10="enemy_hit_boxes"

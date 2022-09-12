@@ -17,7 +17,7 @@ signal sliding_stopped
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _suplex_landing := $Positions/SuplexLanding as Position2D
+@onready var _suplex_landing := $Positions/SuplexLanding as Marker2D
 
 ### -----------------------------------------------------------------------------------------------
 

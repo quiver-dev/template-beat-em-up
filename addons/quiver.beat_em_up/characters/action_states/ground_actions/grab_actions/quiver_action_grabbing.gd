@@ -67,7 +67,7 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _adjust_grabbed_target_position(ref_position: Position2D) -> void:
+func _adjust_grabbed_target_position(ref_position: Marker2D) -> void:
 	var grab_target_offset = _grab_state.grab_target.grabbed_offset
 	var new_position = ref_position.global_position
 	if is_instance_valid(grab_target_offset):
@@ -99,11 +99,12 @@ func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_next_state)
 
 
-func _on_skin_grab_frame_reached(ref_position: Position2D) -> void:
+func _on_skin_grab_frame_reached(ref_position: Marker2D) -> void:
 	_grab_state.grab_target.grabbed.emit(_grab_state.grab_target.ground_level)
-	_grab_state.reparent_target_node_to(ref_position)
-	_grab_state.grab_pivot = ref_position
-	_adjust_grabbed_target_position(ref_position)
+	if not _grab_state.grab_target_node.can_deny_grabs():
+		_grab_state.reparent_target_node_to(ref_position)
+		_grab_state.grab_pivot = ref_position
+		_adjust_grabbed_target_position(ref_position)
 
 ### -----------------------------------------------------------------------------------------------
 

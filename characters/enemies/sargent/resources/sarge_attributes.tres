@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://pn2qrl0x1wj8"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://llubu8lgbc5o"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_s4idg"]
 
 [resource]
 script = ExtResource("1_s4idg")
 display_name = "Sargent"
-health_max = 50.0
+health_max = 100.0
 speed_max = 400
 air_control = 0.6
 jump_force = -1200

@@ -21,7 +21,7 @@ const SCENE_WIDGET = preload(
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var editor_plugin: EditorPlugin = null
-var undo_redo: UndoRedo = null
+var undo_redo: EditorUndoRedoManager = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 

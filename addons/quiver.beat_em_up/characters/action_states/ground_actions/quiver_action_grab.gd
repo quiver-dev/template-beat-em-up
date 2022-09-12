@@ -18,7 +18,7 @@ const GroundState = preload(
 
 var grab_target: QuiverAttributes = null
 var grab_target_node: QuiverCharacter = null
-var grab_pivot: Position2D = null
+var grab_pivot: Marker2D = null
 var original_parent: Node = null
 
 #--- private variables - order: export > normal var > onready -------------------------------------
