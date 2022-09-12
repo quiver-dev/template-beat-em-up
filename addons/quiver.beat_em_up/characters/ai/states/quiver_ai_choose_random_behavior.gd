@@ -172,10 +172,29 @@ func _normalize_weights() -> void:
 		_weights_by_child[child_name] = _weights_by_child[child_name] / actual_weight * max_weight
 
 
-func _on_child_entered_tree(_node: Node) -> void:
+func _on_child_entered_tree(node: Node) -> void:
+	_build_behavior_pool()
+	notify_property_list_changed()
+	_child_nodes[node.name] = node
+	QuiverEditorHelper.connect_between(node.tree_exited, _on_node_removed)
+	QuiverEditorHelper.connect_between(node.renamed, _on_node_renamed.bind(node, node.name))
+
+
+func _on_node_removed() -> void:
 	_build_behavior_pool()
 	notify_property_list_changed()
 
+
+func _on_node_renamed(node: Node, old_name: StringName) -> void:
+	if _child_nodes.has(old_name):
+		_child_nodes[node.name] = _child_nodes[old_name]
+		_child_nodes.erase(old_name)
+	
+	if _weights_by_child.has(old_name):
+		_weights_by_child[node.name] = _weights_by_child[old_name]
+		_weights_by_child.erase(old_name)
+	
+	notify_property_list_changed()
 
 func _on_chosen_state_state_finished() -> void:
 	QuiverEditorHelper.disconnect_between(
