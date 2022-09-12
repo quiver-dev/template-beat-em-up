@@ -12,14 +12,16 @@ extends Node2D
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+var _debug_logger := QuiverDebugLogger.get_logger()
+
 @onready var _main_player := $Characters/Chad as QuiverCharacter
 @onready var _player_hud := $HudLayer/PlayerHud
-
-var _debug_logger := QuiverDebugLogger.get_logger()
 
 @onready var _enemy_spawner_right := $Utilities/EnemySpawner as QuiverEnemySpawner
 @onready var _enemy_spawner_left := $Utilities/EnemySpawner2 as QuiverEnemySpawner
 @onready var _boss_spawner := $Utilities/BossSpawner as QuiverEnemySpawner
+
+@onready var _end_screen := $HudLayer/EndScreen as EndScreen
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -29,7 +31,7 @@ var _debug_logger := QuiverDebugLogger.get_logger()
 func _ready() -> void:
 	randomize()
 	_player_hud.set_player_attributes(_main_player.attributes)
-	QuiverEditorHelper.connect_between(Events.player_died, reload_prototype)
+	QuiverEditorHelper.connect_between(Events.player_died, _on_Events_player_died)
 	
 	_debug_logger.start_new_log()
 	_enemy_spawner_right.spawn_current_wave()
@@ -71,7 +73,10 @@ func _on_enemy_spawner_all_waves_completed() -> void:
 
 
 func _on_boss_spawner_all_waves_completed() -> void:
-	print("Congratulations!")
-	pass
+	_end_screen.open_end_screen(true)
+
+
+func _on_Events_player_died() -> void:
+	_end_screen.open_end_screen(false)
 
 ### -----------------------------------------------------------------------------------------------

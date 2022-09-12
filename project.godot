@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Control",
+"class": &"EndScreen",
+"language": &"GDScript",
+"path": "res://gameplay_ui/end_screen/end_screen.gd"
+}, {
 "base": "QuiverState",
 "class": &"QuiverAiState",
 "language": &"GDScript",
@@ -150,6 +155,7 @@ _global_script_classes=[{
 "path": "res://level/obstacles/WallHitBox.gd"
 }]
 _global_script_class_icons={
+"EndScreen": "",
 "QuiverAiState": "",
 "QuiverAiStateGroup": "",
 "QuiverAiStateMachine": "",

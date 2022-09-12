@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cv53ddkw3732w"]
+[gd_scene load_steps=28 format=3 uid="uid://cv53ddkw3732w"]
 
 [ext_resource type="Script" path="res://prototype_main.gd" id="1_wp06a"]
 [ext_resource type="Texture2D" uid="uid://uwl1nm0n31yj" path="res://placeholder_bg.png" id="2_3vj1c"]
@@ -8,11 +8,12 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd" id="4_ncwkl"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="4_taqca"]
 [ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="5_7i6ya"]
-[ext_resource type="PackedScene" uid="uid://bm3yq2bbfquni" path="res://characters/enemies/sargent/sarge.tscn" id="7_q6rl5"]
+[ext_resource type="PackedScene" uid="uid://4ct3bqix1yr4" path="res://characters/enemies/sargent/sarge.tscn" id="7_q6rl5"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="7_uetkd"]
 [ext_resource type="PackedScene" uid="uid://c8p8hxg0j7j6l" path="res://characters/enemies/tax_man/tax_man.tscn" id="9_vlo3i"]
 [ext_resource type="Theme" uid="uid://f4uqiip585px" path="res://theme_debug.tres" id="10_e5two"]
 [ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
+[ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="13_3aarp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]
 size = Vector2(2212, 87)
@@ -247,8 +248,8 @@ script = ExtResource("3_lfeec")
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("5_7i6ya")]
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_r1bdp")]
-grow_horizontal = 2
-grow_vertical = 2
+
+[node name="EndScreen" parent="HudLayer" instance=ExtResource("13_3aarp")]
 
 [connection signal="all_waves_completed" from="Utilities/EnemySpawner" to="." method="_on_enemy_spawner_all_waves_completed"]
 [connection signal="wave_ended" from="Utilities/EnemySpawner" to="." method="_on_enemy_spawner_wave_ended"]
