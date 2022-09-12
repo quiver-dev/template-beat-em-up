@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bm3yq2bbfquni" path="res://characters/enemies/sargent/sarge.tscn" id="7_q6rl5"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="7_uetkd"]
 [ext_resource type="PackedScene" uid="uid://c8p8hxg0j7j6l" path="res://characters/enemies/tax_man/tax_man.tscn" id="9_vlo3i"]
+[ext_resource type="Theme" uid="uid://f4uqiip585px" path="res://theme_debug.tres" id="10_e5two"]
 [ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="10_r1bdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xrdj"]
@@ -235,9 +236,10 @@ layer = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -163.0
-offset_bottom = 26.0
+offset_left = -98.0
+offset_bottom = 29.0
 grow_horizontal = 0
+theme = ExtResource("10_e5two")
 text = "version: %s"
 horizontal_alignment = 2
 script = ExtResource("3_lfeec")

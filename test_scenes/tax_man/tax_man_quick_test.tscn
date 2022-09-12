@@ -56,14 +56,7 @@ skin_direction = 1
 debug_prints = true
 
 [node name="StateMachine" parent="Characters/TaxMan/DebugLabels" index="0"]
-layout_mode = 2
 properties = PackedStringArray("state_name")
-
-[node name="AiStateMachine" parent="Characters/TaxMan/DebugLabels" index="1"]
-layout_mode = 2
-
-[node name="Wait" parent="Characters/TaxMan/DebugLabels" index="2"]
-layout_mode = 2
 
 [node name="Chad" parent="Characters" instance=ExtResource("3_hxscm")]
 position = Vector2(1041, 688)
@@ -83,8 +76,6 @@ horizontal_alignment = 2
 script = ExtResource("4_yu1bl")
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("5_6me1s")]
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("6_rrjee")]
 

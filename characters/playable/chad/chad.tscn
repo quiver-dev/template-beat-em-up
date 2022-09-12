@@ -30,13 +30,11 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="21_knrf0"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd" id="22_twsvw"]
+[ext_resource type="Theme" uid="uid://f4uqiip585px" path="res://theme_debug.tres" id="30_iwktm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
 height = 204.0
-
-[sub_resource type="Theme" id="Theme_qfd1g"]
-Label/colors/font_color = Color(0.101961, 0.0117647, 0.415686, 1)
 
 [node name="Chad" groups=["players"] instance=ExtResource("1_aj842")]
 collision_mask = 14
@@ -235,29 +233,31 @@ offset_right = 168.0
 offset_bottom = -392.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_qfd1g")
-theme_override_constants/separation = 0
+theme = ExtResource("30_iwktm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="Chad" type="Label" parent="DebugLabels" index="0"]
+layout_mode = 2
 offset_right = 336.0
-offset_bottom = 23.0
+offset_bottom = 26.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
 properties = PackedStringArray("velocity", "is_on_air", "attributes:ground_level")
 
 [node name="ChadSkin" type="Label" parent="DebugLabels" index="1"]
-offset_top = 23.0
+layout_mode = 2
+offset_top = 26.0
 offset_right = 336.0
-offset_bottom = 46.0
+offset_bottom = 52.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../../ChadSkin")
 properties = PackedStringArray("position", "_debug_skin_position")
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="2"]
-offset_top = 46.0
+layout_mode = 2
+offset_top = 52.0
 offset_right = 336.0
-offset_bottom = 69.0
+offset_bottom = 78.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
