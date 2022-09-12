@@ -211,6 +211,10 @@ window/stretch/aspect="keep_height"
 
 enabled=PackedStringArray("res://addons/quiver.beat_em_up/plugin.cfg")
 
+[gui]
+
+theme/custom="res://theme_template.tres"
+
 [input]
 
 ui_accept={

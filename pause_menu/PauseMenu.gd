@@ -9,11 +9,14 @@ extends Control
 
 #--- constants ------------------------------------------------------------------------------------
 
+const TEXT_TIMESCALE_VALUE = "%0.2f"
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @onready var _animator := $AnimationPlayer as AnimationPlayer
+@onready var _timescale_slider := $PanelContainer/Content/TimeScaleLine/Slider as HSlider
 @onready var _timescale_value := $PanelContainer/Content/TimeScaleLine/Value as Label
 
 ### -----------------------------------------------------------------------------------------------
@@ -50,6 +53,11 @@ func close_pause_menu() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+# called by open animation
+func _update_time_scale_value() -> void:
+	_timescale_slider.value = Engine.time_scale
+	_timescale_value.text = TEXT_TIMESCALE_VALUE%[Engine.time_scale]
+
 
 # Called by close animation
 func _unpause() -> void:
@@ -72,7 +80,7 @@ func _on_quit_pressed() -> void:
 
 func _on_slider_value_changed(value: float) -> void:
 	Engine.time_scale = value
-	_timescale_value.text = "%0.2f"%[value]
+	_timescale_value.text = TEXT_TIMESCALE_VALUE%[value]
 
 
 func _on_throw_variation_toggled(button_pressed: bool) -> void:

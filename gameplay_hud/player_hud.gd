@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func set_player_attributes(p_attributes: QuiverAttributes) -> void:
 	_attributes_player_character = p_attributes
-	_player_character_name.text = _attributes_player_character.display_name
+	_player_character_name.text = _attributes_player_character.display_name.to_upper()
 	_player_life_bar.value = _attributes_player_character.get_health_as_percentage()
 	
 	QuiverEditorHelper.connect_between(
@@ -58,7 +58,7 @@ func set_enemy_attribute(p_attributes: QuiverAttributes) -> void:
 	_disconnect_enemy_attribute_signals()
 	
 	_attributes_current_enemy = p_attributes
-	_enemy_name.text = _attributes_current_enemy.display_name
+	_enemy_name.text = _attributes_current_enemy.display_name.to_upper()
 	_enemy_life_bar.value = _attributes_current_enemy.get_health_as_percentage()
 	_enemy_block.show()
 	
