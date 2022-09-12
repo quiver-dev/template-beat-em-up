@@ -219,7 +219,7 @@ enabled=PackedStringArray("res://addons/quiver.beat_em_up/plugin.cfg")
 
 [gui]
 
-theme/custom="res://theme_template.tres"
+theme/custom="res://theme_resources/theme_template.tres"
 
 [input]
 

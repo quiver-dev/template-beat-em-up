@@ -1,4 +1,4 @@
-[gd_resource type="Animation" format=3 uid="uid://btquhprad5iru"]
+[gd_resource type="Animation" format=3 uid="uid://d1gfwdual010n"]
 
 [resource]
 resource_name = "air_attack_right"
@@ -183,3 +183,5 @@ tracks/14/keys = {
 "update": 1,
 "values": [0.294481]
 }
+metadata/mirrored_name = "air_attack_left.tres"
+metadata/should_overwrite = true

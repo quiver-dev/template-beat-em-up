@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=141 format=3 uid="uid://bmm0a2tnko2g6"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=141 format=3 uid="uid://hd7rkku2e12u"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3sxcf"]
 animation = &"Chad/air_attack_right"

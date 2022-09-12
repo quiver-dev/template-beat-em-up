@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt2sbfr7ucv21"]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://test_scenes/base_test.gd" id="1_jv86j"]
-[ext_resource type="PackedScene" path="res://characters/playable/chad/chad.tscn" id="2_6ewoc"]
+[ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="2_6ewoc"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_ke1uh"]
-[ext_resource type="PackedScene" path="res://pause_menu/PauseMenu.tscn" id="4_sokup"]
-[ext_resource type="PackedScene" path="res://gameplay_hud/player_hud.tscn" id="5_rv8r8"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="4_sokup"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="5_rv8r8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebte6"]
 size = Vector2(2212, 87)

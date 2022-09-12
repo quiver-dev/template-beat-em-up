@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjlpun4pyy80a"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://pause_menu/PauseMenu.gd" id="1_nnmou"]
+[ext_resource type="Script" path="res://gameplay_ui/pause_menu/PauseMenu.gd" id="1_nnmou"]
 
 [sub_resource type="Animation" id="Animation_o5ytk"]
 resource_name = "EDITOR"

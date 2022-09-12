@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw4snmd7blk7h"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://test_scenes/base_test.gd" id="1_dv3in"]
 [ext_resource type="PackedScene" uid="uid://c8p8hxg0j7j6l" path="res://characters/enemies/tax_man/tax_man.tscn" id="2_01cry"]
 [ext_resource type="PackedScene" uid="uid://cxk8g4d6w5t7d" path="res://characters/playable/chad/chad.tscn" id="3_hxscm"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="4_yu1bl"]
-[ext_resource type="PackedScene" uid="uid://bjlpun4pyy80a" path="res://pause_menu/PauseMenu.tscn" id="5_6me1s"]
-[ext_resource type="PackedScene" uid="uid://clwtqdyu7dmev" path="res://gameplay_hud/player_hud.tscn" id="6_rrjee"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="5_6me1s"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="6_rrjee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebte6"]
 size = Vector2(2212, 87)
