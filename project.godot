@@ -189,7 +189,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Template Beat Project"
-run/main_scene="res://prototype_main.tscn"
+run/main_scene="res://level/base_level.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
 config/version="0.4.1"

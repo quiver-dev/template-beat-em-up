@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://bx1gwn58wcfis"]
+
+[ext_resource type="Script" path="res://level/background_elements/sidewalk/sidewalk.gd" id="3_e10a6"]
+[ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://level/background_elements/pavement/street_revised_straight.png" id="4_yujqe"]
+[ext_resource type="Texture2D" uid="uid://da8pj2nyq60s5" path="res://level/background_elements/sidewalk/sidewalk_1_50.png" id="5_tvwoh"]
+[ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="6_3eepl"]
+[ext_resource type="Theme" uid="uid://cy7rmhwiua2uf" path="res://theme_resources/theme_debug.tres" id="7_xfnxr"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="8_cladr"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="9_klapv"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="10_e2fvk"]
+[ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="11_opwfh"]
+
+[node name="BaseLevel" type="Node2D"]
+metadata/_edit_vertical_guides_ = []
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Pavement" type="Node2D" parent="Background"]
+position = Vector2(-317, 593)
+script = ExtResource("3_e10a6")
+texture_variations = [ExtResource("4_yujqe")]
+offset = Vector2(-480, 0)
+length = 2
+
+[node name="SideWalk" type="Node2D" parent="Background"]
+position = Vector2(-252, 518)
+script = ExtResource("3_e10a6")
+texture_variations = [ExtResource("5_tvwoh")]
+offset = Vector2(-73, 0)
+length = 7
+
+[node name="Level" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Characters" type="Node2D" parent="Level"]
+y_sort_enabled = true
+
+[node name="Chad" parent="Level/Characters" instance=ExtResource("6_3eepl")]
+position = Vector2(652, 850)
+
+[node name="Camera2D" type="Camera2D" parent="Level/Characters/Chad"]
+offset = Vector2(0, -100)
+current = true
+limit_left = 0
+limit_top = -200
+limit_right = 3470
+limit_bottom = 1180
+drag_vertical_offset = -1.0
+
+[node name="Objects" type="Node2D" parent="Level"]
+
+[node name="Foreground" type="Node2D" parent="."]
+
+[node name="Utilities" type="Node2D" parent="."]
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="HudLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_bottom = 29.0
+grow_horizontal = 0
+theme = ExtResource("7_xfnxr")
+text = "version: %s"
+horizontal_alignment = 2
+script = ExtResource("8_cladr")
+
+[node name="PlayerHud" parent="HudLayer" instance=ExtResource("9_klapv")]
+
+[node name="PauseMenu" parent="HudLayer" instance=ExtResource("10_e2fvk")]
+
+[node name="EndScreen" parent="HudLayer" instance=ExtResource("11_opwfh")]
