@@ -75,6 +75,11 @@ _global_script_classes=[{
 "path": "res://addons/quiver.beat_em_up/combat/quiver_combat_system.gd"
 }, {
 "base": "RefCounted",
+"class": &"QuiverCustomOverlay",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/quiver_custom_overlay.gd"
+}, {
+"base": "RefCounted",
 "class": &"QuiverCyclicHelper",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_cyclic_error_helper.gd"
@@ -173,6 +178,7 @@ _global_script_class_icons={
 "QuiverCharacterState": "",
 "QuiverCollisionTypes": "",
 "QuiverCombatSystem": "",
+"QuiverCustomOverlay": "",
 "QuiverCyclicHelper": "",
 "QuiverDebugLogger": "",
 "QuiverEditorHelper": "",

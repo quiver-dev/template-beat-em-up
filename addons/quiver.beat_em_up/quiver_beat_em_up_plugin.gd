@@ -7,11 +7,6 @@ extends EditorPlugin
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum HandleSides {
-	LEFT,
-	RIGHT
-}
-
 #--- constants ------------------------------------------------------------------------------------
 
 const COLOR_GODOT_ORANGE = Color("ff786b")
@@ -20,6 +15,7 @@ const INVALID_HANDLE = -1
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 const PATH_CUSTOM_INSPECTORS = "res://addons/quiver.beat_em_up/custom_inspectors/"
+const PATH_CUSTOM_OVERLAYS = "res://addons/quiver.beat_em_up/custom_overlays/"
 
 const PATH_AUTOLOADS = {
 	"HitFreeze": "res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze.tscn",
@@ -48,143 +44,19 @@ var SETTINGS = {
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _sprite_repeater: SpriteRepeater = null
-var _sprite_repeater_rect := Rect2()
-var _sprite_repeater_handles: = {} 
-var _dragged_handle := INVALID_HANDLE
 var _loaded_inspectors := {}
+var _loaded_overlays := []
+
+var _current_overlay_handler: QuiverCustomOverlay = null
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _handles(object) -> bool:
-	var value := false
-	
-	if object is SpriteRepeater:
-		value = true
-	
-	return value
-
-
-func _edit(object) -> void:
-	_sprite_repeater = object as SpriteRepeater
-
-
-func _make_visible(visible: bool) -> void:
-	if visible:
-		update_overlays()
-	else:
-		_sprite_repeater = null
-		update_overlays()
-
-
-func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
-	if not (is_instance_valid(_sprite_repeater) and _sprite_repeater.is_inside_tree()):
-		return
-	
-	_sprite_repeater_rect = _calculate_sprite_repeater_rect()
-	viewport_control.draw_rect(_sprite_repeater_rect, COLOR_GODOT_ORANGE, false, 1.0)
-	
-	_sprite_repeater_handles = _calculate_sprite_repeater_handles()
-	for handle in _sprite_repeater_handles.values():
-		viewport_control.draw_rect(handle, COLOR_GODOT_ORANGE, true, 1.0)
-		viewport_control.draw_rect(handle, Color.WHITE, false, 1.0)
-
-
-func _forward_canvas_gui_input(event: InputEvent) -> bool:
-	var has_handled := false
-	if not (is_instance_valid(_sprite_repeater) and _sprite_repeater.visible):
-		return has_handled
-	
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if _dragged_handle == INVALID_HANDLE and event.is_pressed():
-			for key in _sprite_repeater_handles:
-				var handle := _sprite_repeater_handles[key] as Rect2
-				if handle.has_point(event.position):
-					_dragged_handle = key
-					has_handled = true
-					break
-		elif _dragged_handle != INVALID_HANDLE and not event.is_pressed():
-			_drag_to(event)
-			_dragged_handle = INVALID_HANDLE
-			has_handled = true
-	elif _dragged_handle != INVALID_HANDLE and event is InputEventMouseMotion:
-		_drag_to(event)
-		update_overlays()
-		has_handled = true
-	
-	if event.is_action_pressed("ui_cancel"):
-		_dragged_handle = INVALID_HANDLE
-		has_handled = true
-	
-	return has_handled
-
-
-func _calculate_sprite_repeater_rect() -> Rect2:
-	var rect := Rect2()
-	var editor_transform := \
-			_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
-	
-	rect.position = editor_transform * (_sprite_repeater.position + _sprite_repeater.offset)
-	
-	var total_size_x = _sprite_repeater.main_texture.get_size().x * _sprite_repeater.length
-	var total_separation = _sprite_repeater.separation * (_sprite_repeater.length - 1)
-	rect.size = editor_transform.get_scale() * Vector2(
-			total_size_x + total_separation,
-			_sprite_repeater.main_texture.get_size().y
-	)
-	
-	return rect
-
-
-func _calculate_sprite_repeater_handles() -> Dictionary:
-	var editor_transform := \
-			_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
-	
-	var handle_size := Vector2(10, _sprite_repeater_rect.size.y)
-	var left_handle_start := _sprite_repeater_rect.position - Vector2.RIGHT * handle_size.x
-	var right_handle_start := \
-			_sprite_repeater_rect.position + Vector2(_sprite_repeater_rect.size.x, 0)
-	
-	var handles = {
-			HandleSides.LEFT: Rect2(left_handle_start, handle_size),
-			HandleSides.RIGHT: Rect2(right_handle_start, handle_size)
-	}
-	
-	return handles
-
-
-func _drag_to(event: InputEventMouse) -> void:
-	if _dragged_handle == INVALID_HANDLE:
-		return
-	
-	var editor_transform := \
-			_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
-	
-	var handle := _sprite_repeater_handles[_dragged_handle] as Rect2
-	if _dragged_handle == HandleSides.RIGHT:
-		var distance := event.position.x - _sprite_repeater_rect.position.x
-		var base_distance := _sprite_repeater_rect.size.x / float(_sprite_repeater.length)
-		var value := round(distance / base_distance) as float
-		_sprite_repeater.length = max(1, value)
-	elif _dragged_handle == HandleSides.LEFT:
-		var distance := _sprite_repeater_rect.end.x - event.position.x
-		var base_distance := _sprite_repeater_rect.size.x / float(_sprite_repeater.length)
-		var value := max(1, round(distance / base_distance)) as float
-		
-		var local_end := editor_transform.affine_inverse() * _sprite_repeater_rect.end
-		var local_size := (
-				_sprite_repeater.main_texture.get_size().x * value 
-				+ _sprite_repeater.separation * (value-1)
-		)
-		_sprite_repeater.length = value
-		_sprite_repeater.position.x = local_end.x - local_size
-
-
 func _enter_tree() -> void:
 	_add_custom_inspectors()
+	_add_custom_overlays()
 
 
 func _exit_tree() -> void:
@@ -199,6 +71,52 @@ func _enable_plugin() -> void:
 func _disable_plugin() -> void:
 	_remove_plugin_settings()
 	_remove_autoloads()
+
+
+func _handles(object) -> bool:
+	var value := false
+	
+	for overlay in _loaded_overlays:
+		_current_overlay_handler = overlay
+		value = _current_overlay_handler.handles(object)
+		if value:
+			break
+	
+	if not value:
+		_current_overlay_handler = null
+	
+	return value
+
+
+func _edit(object) -> void:
+	if _current_overlay_handler == null:
+		return
+	
+	_current_overlay_handler.edit(object)
+
+
+func _make_visible(visible: bool) -> void:
+	if _current_overlay_handler == null:
+		return
+	
+	_current_overlay_handler.make_visible(visible)
+
+
+func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
+	if _current_overlay_handler == null:
+		return
+	
+	_current_overlay_handler.forward_canvas_draw_over_viewport(viewport_control)
+
+
+func _forward_canvas_gui_input(event: InputEvent) -> bool:
+	var has_handled := false
+	if _current_overlay_handler == null:
+		return has_handled
+	
+	has_handled = _current_overlay_handler.forward_canvas_gui_input(event)
+	return has_handled
+
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -243,6 +161,30 @@ func _load_custom_inspector_from(folder: String) -> void:
 func _remove_custom_inspectors() -> void:
 	for inspector in _loaded_inspectors.values():
 		remove_inspector_plugin(inspector)
+
+
+func _add_custom_overlays() -> void:
+	var dir := Directory.new()
+	var error := dir.open(PATH_CUSTOM_OVERLAYS)
+	
+	if error == OK:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while not file_name.is_empty():
+			if file_name.ends_with(".gd"): 
+				var script := load(PATH_CUSTOM_OVERLAYS.path_join(file_name)) as GDScript
+				var object := script.new() as QuiverCustomOverlay
+				if object != null:
+					object.main_plugin = self
+					_loaded_overlays.append(object)
+				
+			file_name = dir.get_next()
+	else:
+		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
+			error, PATH_CUSTOM_INSPECTORS
+		]
+		push_error(error_msg)
+
 
 
 func _add_plugin_settings() -> void:
