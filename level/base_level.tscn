@@ -25,10 +25,10 @@ separation = -480
 variation_textures = []
 
 [node name="SideWalk" type="Node2D" parent="Background"]
-position = Vector2(224.616, 461)
+position = Vector2(224.617, 461)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("5_tvwoh")
-length = 9
+length = 6
 separation = -73
 variation_textures = []
 
