@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bx1gwn58wcfis"]
+[gd_scene load_steps=11 format=3 uid="uid://bx1gwn58wcfis"]
 
 [ext_resource type="Script" path="res://level/background_elements/sidewalk/sidewalk.gd" id="3_e10a6"]
+[ext_resource type="Texture2D" uid="uid://b5run74rg37nf" path="res://icon.png" id="4_7ne27"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://level/background_elements/pavement/street_revised_straight.png" id="4_yujqe"]
 [ext_resource type="Texture2D" uid="uid://da8pj2nyq60s5" path="res://level/background_elements/sidewalk/sidewalk_1_50.png" id="5_tvwoh"]
 [ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="6_3eepl"]
@@ -16,18 +17,24 @@ metadata/_edit_vertical_guides_ = []
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Pavement" type="Node2D" parent="Background"]
-position = Vector2(-317, 593)
+position = Vector2(-316.998, 593)
 script = ExtResource("3_e10a6")
-texture_variations = [ExtResource("4_yujqe")]
-offset = Vector2(-480, 0)
+main_texture = ExtResource("4_yujqe")
 length = 2
+separation = -480
+variation_textures = []
 
 [node name="SideWalk" type="Node2D" parent="Background"]
-position = Vector2(-252, 518)
+position = Vector2(224.616, 461)
 script = ExtResource("3_e10a6")
-texture_variations = [ExtResource("5_tvwoh")]
-offset = Vector2(-73, 0)
-length = 7
+main_texture = ExtResource("5_tvwoh")
+length = 9
+separation = -73
+variation_textures = []
+
+[node name="Sprite2d" type="Sprite2D" parent="Background"]
+position = Vector2(15, -6)
+texture = ExtResource("4_7ne27")
 
 [node name="Level" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -36,7 +43,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Chad" parent="Level/Characters" instance=ExtResource("6_3eepl")]
-position = Vector2(652, 850)
+position = Vector2(536, 827)
 
 [node name="Camera2D" type="Camera2D" parent="Level/Characters/Chad"]
 offset = Vector2(0, -100)

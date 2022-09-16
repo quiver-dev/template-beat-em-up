@@ -1,4 +1,5 @@
 @tool
+class_name SpriteRepeater
 extends Node2D
 
 ## Write your doc string for this file here
@@ -12,15 +13,22 @@ extends Node2D
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var texture_variations: Array[Texture2D]
+@export var main_texture: Texture2D = null
 @export var offset := Vector2.ZERO:
 	set(value):
 		offset = value
 		queue_redraw()
-@export var length := 5:
+@export_range(1,1,1,"or_greater") var length := 1:
 	set(value):
 		length = value
 		queue_redraw()
+@export var separation := 0:
+	set(value):
+		separation = value
+		queue_redraw()
+
+@export_group("Texture Variations", "variation_")
+@export var variation_textures: Array[Texture2D]
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -34,13 +42,14 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	if texture_variations.size() == 0:
-		return
-
+	var texture = main_texture
+	
 	for index in length:
-		var random_index := randi() % texture_variations.size()
-		var texture := texture_variations[random_index] as Texture2D
-		var draw_position = Vector2((texture.get_size().x + offset.x) * index, offset.y)
+		var draw_position = Vector2(
+				(texture.get_size().x + separation) * index + offset.x, 
+				offset.y
+		)
+		
 		draw_texture(texture, draw_position)
 	pass
 
