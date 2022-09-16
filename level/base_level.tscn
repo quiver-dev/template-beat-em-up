@@ -20,12 +20,11 @@ metadata/_edit_vertical_guides_ = []
 position = Vector2(-316.998, 593)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("4_yujqe")
-length = 2
 separation = -480
 variation_textures = []
 
 [node name="SideWalk" type="Node2D" parent="Background"]
-position = Vector2(224.617, 461)
+position = Vector2(166.117, 497.5)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("5_tvwoh")
 length = 6

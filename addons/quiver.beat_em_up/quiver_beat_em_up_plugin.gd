@@ -77,12 +77,17 @@ func _handles(object) -> bool:
 	var value := false
 	
 	for overlay in _loaded_overlays:
-		_current_overlay_handler = overlay
-		value = _current_overlay_handler.handles(object)
+		
+		value = (overlay as QuiverCustomOverlay).handles(object)
 		if value:
+			if _current_overlay_handler != null and _current_overlay_handler != overlay:
+				_current_overlay_handler.make_visible(false)
+			
+			_current_overlay_handler = overlay
 			break
 	
-	if not value:
+	if not value and _current_overlay_handler != null:
+		_current_overlay_handler.make_visible(false)
 		_current_overlay_handler = null
 	
 	return value
