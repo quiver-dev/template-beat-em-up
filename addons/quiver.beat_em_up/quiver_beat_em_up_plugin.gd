@@ -116,10 +116,18 @@ func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 
 func _forward_canvas_gui_input(event: InputEvent) -> bool:
 	var has_handled := false
-	if _current_overlay_handler == null:
-		return has_handled
+	if _current_overlay_handler != null:
+		has_handled = _current_overlay_handler.forward_canvas_gui_input(event)
 	
-	has_handled = _current_overlay_handler.forward_canvas_gui_input(event)
+	if not has_handled:
+		for overlay in _loaded_overlays:
+			if overlay == _current_overlay_handler:
+				continue
+			
+			has_handled = overlay.forward_canvas_gui_input(event)
+			if has_handled:
+				break
+	
 	return has_handled
 
 

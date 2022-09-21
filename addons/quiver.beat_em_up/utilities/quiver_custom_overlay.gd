@@ -16,7 +16,10 @@ extends RefCounted
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var main_plugin: EditorPlugin = null
+var main_plugin: EditorPlugin = null:
+	set(value):
+		main_plugin = value
+		_on_main_plugin_set()
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -78,6 +81,10 @@ func forward_3d_gui_input(viewport_camera: Camera3D, event: InputEvent) -> int:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _on_main_plugin_set() -> void:
+	pass
+
 
 func _push_override_error(method_name: String, script_path: String) -> void:
 	var msg := "%s at %s expects to be overriden by a child class. It doesn nothing on its own"%[
