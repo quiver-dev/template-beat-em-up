@@ -26,6 +26,8 @@ var _rect := Rect2()
 var _handles: = {} 
 var _dragged_handle := INVALID_HANDLE
 
+var _undo_redo: EditorUndoRedoManager = null
+
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -76,6 +78,12 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+
+func _on_main_plugin_set() -> void:
+	_undo_redo = main_plugin.get_undo_redo()
+	pass
+
+
 func _drag_handles(event: InputEvent) -> bool:
 	var has_handled := false
 	
@@ -92,6 +100,12 @@ func _drag_handles(event: InputEvent) -> bool:
 	
 	if event.is_action_pressed("ui_cancel"):
 		_dragged_handle = INVALID_HANDLE
+		
+		_undo_redo.commit_action()
+		var undo_redo_id = _undo_redo.get_object_history_id(_sprite_repeater)
+		_undo_redo.get_history_undo_redo(undo_redo_id).undo()
+		
+		main_plugin.update_overlays()
 		has_handled = true
 	
 	return has_handled
@@ -104,6 +118,12 @@ func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
 		var handle := _handles[key] as Rect2
 		if handle.has_point(event.position):
 			_dragged_handle = key
+			_undo_redo.create_action(
+					"Move SpriteRepeater Handle", UndoRedo.MERGE_DISABLE, _sprite_repeater
+			)
+			_undo_redo.add_undo_property(_sprite_repeater, "length", _sprite_repeater.length)
+			_undo_redo.add_undo_property(_sprite_repeater, "position", _sprite_repeater.position)
+			_undo_redo.add_undo_method(main_plugin, "update_overlays")
 			has_handled = true
 			break
 	
@@ -112,6 +132,10 @@ func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
 
 func _stop_dragging_released_handle(event: InputEventMouseButton) -> void:
 	_drag_to(event)
+	_undo_redo.add_do_property(_sprite_repeater, "length", _sprite_repeater.length)
+	_undo_redo.add_do_property(_sprite_repeater, "position", _sprite_repeater.position)
+	_undo_redo.add_do_method(main_plugin, "update_overlays")
+	_undo_redo.commit_action(false)
 	_dragged_handle = INVALID_HANDLE
 
 
