@@ -26,8 +26,6 @@ var _rect := Rect2()
 var _handles: = {} 
 var _dragged_handle := INVALID_HANDLE
 
-var _all_sprite_repeaters: Array[SpriteRepeater] = []
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -39,7 +37,7 @@ var _all_sprite_repeaters: Array[SpriteRepeater] = []
 ### Public Methods --------------------------------------------------------------------------------
 
 func handles(object) -> bool:
-	return object is SpriteRepeater or not _all_sprite_repeaters.is_empty()
+	return object is SpriteRepeater
 
 
 func edit(object) -> void:
@@ -67,11 +65,9 @@ func forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 
 func forward_canvas_gui_input(event: InputEvent) -> bool:
 	var has_handled := false
+	
 	if is_instance_valid(_sprite_repeater) and _sprite_repeater.visible:
 		has_handled = _handle_drag_handles(event)
-	
-	if not has_handled and event is InputEventMouseButton:
-		has_handled = _handle_select_click(event)
 	
 	return has_handled
 
@@ -105,48 +101,6 @@ func _handle_drag_handles(event: InputEvent) -> bool:
 		has_handled = true
 	
 	return has_handled
-
-
-func _handle_select_click(event: InputEventMouseButton) -> bool:
-	var has_handled := false
-	
-	if event != null and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		for node in _all_sprite_repeaters:
-			if not node.visible:
-				continue
-			
-			var rect = _calculate_sprite_repeater_rect(node)
-			if rect.has_point(event.position):
-				main_plugin.get_editor_interface().edit_node(node)
-				has_handled = true
-				break
-	
-	return has_handled
-
-
-func _on_main_plugin_set() -> void:
-	main_plugin.get_tree().node_added.connect(_on_node_added)
-	main_plugin.get_tree().node_removed.connect(_on_node_removed)
-
-
-func _on_node_added(node: Node) -> void:
-	if not node is SpriteRepeater:
-		return
-	
-	_all_sprite_repeaters.append(node)
-	_all_sprite_repeaters.sort_custom(_sort_nodes_by_greater)
-	
-
-
-func _sort_nodes_by_greater(a: Node, b: Node) -> bool:
-	return a.is_greater_than(b)
-
-
-func _on_node_removed(node: Node) -> void:
-	if not node is SpriteRepeater:
-		return
-	
-	_all_sprite_repeaters.erase(node)
 
 
 func _calculate_sprite_repeater_rect(node: SpriteRepeater) -> Rect2:
