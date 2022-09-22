@@ -67,7 +67,7 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 	var has_handled := false
 	
 	if is_instance_valid(_sprite_repeater) and _sprite_repeater.visible:
-		has_handled = _handle_drag_handles(event)
+		has_handled = _drag_handles(event)
 	
 	return has_handled
 
@@ -76,20 +76,14 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _handle_drag_handles(event: InputEvent) -> bool:
+func _drag_handles(event: InputEvent) -> bool:
 	var has_handled := false
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if _dragged_handle == INVALID_HANDLE and event.is_pressed():
-			for key in _handles:
-				var handle := _handles[key] as Rect2
-				if handle.has_point(event.position):
-					_dragged_handle = key
-					has_handled = true
-					break
+			has_handled = _start_dragging_clicked_handle(event)
 		elif _dragged_handle != INVALID_HANDLE and not event.is_pressed():
-			_drag_to(event)
-			_dragged_handle = INVALID_HANDLE
+			_stop_dragging_released_handle(event)
 			has_handled = true
 	elif _dragged_handle != INVALID_HANDLE and event is InputEventMouseMotion:
 		_drag_to(event)
@@ -101,6 +95,24 @@ func _handle_drag_handles(event: InputEvent) -> bool:
 		has_handled = true
 	
 	return has_handled
+
+
+func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
+	var has_handled := false
+	
+	for key in _handles:
+		var handle := _handles[key] as Rect2
+		if handle.has_point(event.position):
+			_dragged_handle = key
+			has_handled = true
+			break
+	
+	return has_handled
+
+
+func _stop_dragging_released_handle(event: InputEventMouseButton) -> void:
+	_drag_to(event)
+	_dragged_handle = INVALID_HANDLE
 
 
 func _calculate_sprite_repeater_rect(node: SpriteRepeater) -> Rect2:
@@ -140,26 +152,31 @@ func _drag_to(event: InputEventMouse) -> void:
 	if _dragged_handle == INVALID_HANDLE:
 		return
 	
-	var editor_transform := \
-			_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
-	
-	var handle := _handles[_dragged_handle] as Rect2
+	_calculate_dragged_length(event)
+	_calculate_dragged_position()
+
+
+func _calculate_dragged_length(event: InputEventMouse) -> void:
+	var distance := 0.0
 	if _dragged_handle == HandleSides.RIGHT:
-		var distance := event.position.x - _rect.position.x
-		var base_distance := _rect.size.x / float(_sprite_repeater.length)
-		var value := round(distance / base_distance) as float
-		_sprite_repeater.length = max(1, value)
+		distance = event.position.x - _rect.position.x
 	elif _dragged_handle == HandleSides.LEFT:
-		var distance := _rect.end.x - event.position.x
-		var base_distance := _rect.size.x / float(_sprite_repeater.length)
-		var value := max(1, round(distance / base_distance)) as float
-		
+		distance = _rect.end.x - event.position.x
+	
+	var base_distance := _rect.size.x / float(_sprite_repeater.length)
+	var value := round(distance / base_distance) as float
+	_sprite_repeater.length = max(1, value)
+
+
+func _calculate_dragged_position() -> void:
+	if _dragged_handle == HandleSides.LEFT:
+		var editor_transform := \
+				_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
 		var local_end := editor_transform.affine_inverse() * _rect.end
 		var local_size := (
-				_sprite_repeater.main_texture.get_size().x * value 
-				+ _sprite_repeater.separation * (value-1)
+				_sprite_repeater.main_texture.get_size().x * _sprite_repeater.length 
+				+ _sprite_repeater.separation * (_sprite_repeater.length-1)
 		)
-		_sprite_repeater.length = value
 		_sprite_repeater.position.x = local_end.x - local_size
 
 ### -----------------------------------------------------------------------------------------------
