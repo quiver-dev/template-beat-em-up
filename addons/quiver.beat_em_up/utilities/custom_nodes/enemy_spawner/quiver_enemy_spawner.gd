@@ -121,33 +121,6 @@ func _on_enemy_died(p_instance_id: int) -> void:
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-func _get_custom_properties() -> Dictionary:
-	return {
-		"Waves": {
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_CATEGORY
-		},
-		"waves_model": {
-			name = "wave_%s",
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "wave_%s_",
-		},
-		"wave_enemy_model": {
-			name = "wave_%s_%s",
-			type = TYPE_OBJECT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-#		"": {
-#			backing_field = "",
-#			name = "",
-#			type = TYPE_NIL,
-#			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-#			hint = PROPERTY_HINT_NONE,
-#			hint_string = "",
-#		},
-}
-
 ### Custom Inspector built in functions -----------------------------------------------------------
 
 func _get_property_list() -> Array:
