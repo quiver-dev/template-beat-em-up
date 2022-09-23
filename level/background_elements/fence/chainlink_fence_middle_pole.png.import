@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csrtqwj7lif6f"
-path="res://.godot/imported/chainlink_fence_revised__03.png-48d9b3076b4bcd45bd63d8b1d4d5794b.ctex"
+uid="uid://1cocp0o1ua5f"
+path="res://.godot/imported/chainlink_fence_middle_pole.png-24bdd2b9ffee2baf4277b7a6d4a57c00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/background_elements/fence/chainlink_fence_revised__03.png"
-dest_files=["res://.godot/imported/chainlink_fence_revised__03.png-48d9b3076b4bcd45bd63d8b1d4d5794b.ctex"]
+source_file="res://level/background_elements/fence/chainlink_fence_middle_pole.png"
+dest_files=["res://.godot/imported/chainlink_fence_middle_pole.png-24bdd2b9ffee2baf4277b7a6d4a57c00.ctex"]
 
 [params]
 
