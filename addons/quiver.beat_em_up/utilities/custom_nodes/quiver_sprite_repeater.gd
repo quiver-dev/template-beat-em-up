@@ -75,20 +75,9 @@ func _draw() -> void:
 		_create_random_sequence()
 		notify_property_list_changed()
 	
-	if cap_left != null:
-		draw_texture(cap_left, cap_left_offset)
-	
-	for index in _texture_sequence.size():
-		var texture := _textures[_texture_sequence[index]]
-		var draw_position = Vector2(
-				(texture.get_size().x + separation) * index + offset.x, 
-				offset.y
-		)
-		
-		draw_texture(texture, draw_position)
-	
-	if cap_right != null:
-		draw_texture(cap_right, cap_right_offset)
+	_draw_left_cap()
+	_draw_main_body()
+	_draw_right_cap()
 
 
 func _process(_delta: float) -> void:
@@ -118,10 +107,65 @@ func _process(_delta: float) -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func get_rect_on_editor() -> Rect2:
+	var rect := Rect2()
+	var editor_transform := get_viewport_transform() * get_canvas_transform()
+	
+	rect.position = editor_transform * (position + offset)
+	
+	var total_size_x = main_texture.get_size().x * length
+	var total_separation = separation * (length - 1)
+	rect.size = editor_transform.get_scale() * scale * Vector2(
+			total_size_x + total_separation,
+			main_texture.get_size().y
+	)
+	
+	return rect
+
+
+func get_rect() -> Rect2:
+	var rect := Rect2()
+	
+	rect.position = position + offset
+	
+	var total_size_x = main_texture.get_size().x * length
+	var total_separation = separation * (length - 1)
+	rect.size = scale * Vector2(
+			total_size_x + total_separation,
+			main_texture.get_size().y
+	)
+	
+	return rect
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _draw_left_cap() -> void:
+	if cap_left != null:
+		draw_texture(cap_left, offset + cap_left_offset)
+
+
+func _draw_main_body() -> void:
+	for index in _texture_sequence.size():
+		var texture := _textures[_texture_sequence[index]]
+		var draw_position = Vector2(
+				(texture.get_size().x + separation) * index + offset.x, 
+				offset.y
+		)
+		
+		draw_texture(texture, draw_position)
+
+
+func _draw_right_cap() -> void:
+	if cap_right != null:
+		var draw_position = Vector2(
+				(main_texture.get_size().x + separation) * length + offset.x + cap_right_offset.x, 
+				offset.y + cap_right_offset.y
+		)
+		draw_texture(cap_right, draw_position)
+
 
 func _create_random_sequence() -> void:
 	_texture_sequence.clear()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceb6ve5jiso8"]
+[gd_scene load_steps=19 format=3 uid="uid://ceb6ve5jiso8"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="3_e10a6"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://level/background_elements/sidewalk/sidewalk_revised_0.png" id="3_hdunx"]
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://level/background_elements/pavement/street_revised_curved.png" id="3_wiwrp"]
-[ext_resource type="Texture2D" uid="uid://b5run74rg37nf" path="res://icon.png" id="4_7ne27"]
 [ext_resource type="Texture2D" uid="uid://iq7d0847x83h" path="res://level/background_elements/sidewalk/sidewalk_revised_1.png" id="4_het56"]
 [ext_resource type="Texture2D" uid="uid://d2tan12hotr8u" path="res://level/background_elements/sidewalk/sidewalk_curve_50.png" id="4_vi761"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://level/background_elements/pavement/street_revised_straight.png" id="4_yujqe"]
@@ -11,9 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="6_3eepl"]
 [ext_resource type="Theme" uid="uid://cy7rmhwiua2uf" path="res://theme_resources/theme_debug.tres" id="7_xfnxr"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="8_cladr"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd" id="9_4rdpb"]
 [ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="9_klapv"]
+[ext_resource type="Texture2D" uid="uid://dtc4d05g37g73" path="res://level/background_elements/fence/chainlink_fence_revised__00.png" id="10_amnym"]
 [ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="10_e2fvk"]
+[ext_resource type="Texture2D" uid="uid://bfsf12el1igux" path="res://level/background_elements/fence/chainlink_fence_revised__01.png" id="11_i1xjk"]
+[ext_resource type="Texture2D" uid="uid://1cocp0o1ua5f" path="res://level/background_elements/fence/chainlink_fence_middle_pole.png" id="11_mwm18"]
 [ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="11_opwfh"]
+[ext_resource type="Texture2D" uid="uid://dji2wpv6hk84w" path="res://level/background_elements/fence/chainlink_fence_revised__02.png" id="12_nddgb"]
 
 [node name="BaseLevel" type="Node2D"]
 scale = Vector2(1.00181, 1.00254)
@@ -22,34 +26,43 @@ metadata/_edit_vertical_guides_ = []
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Pavement" type="Node2D" parent="Background"]
-position = Vector2(-193.649, 423.923)
-scale = Vector2(1, 0.978112)
+position = Vector2(1151.92, 416)
+scale = Vector2(2, 2)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("4_yujqe")
-length = 3
 separation = -480
 cap_left = ExtResource("3_wiwrp")
 cap_left_offset = Vector2(-583, 0)
 variation_textures = []
 variations_weights = [1.0]
-texture_sequence = [0, 0, 0]
+texture_sequence = [0]
 
 [node name="SideWalk" type="Node2D" parent="Background"]
-position = Vector2(-325.79, 315.2)
+position = Vector2(474.276, 308.217)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("3_hdunx")
-length = 28
+length = 25
 separation = -99
 cap_left = ExtResource("4_vi761")
 cap_left_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("4_het56"), ExtResource("5_6kghm")]
 variations_weights = [2.23724, 0.38344, 0.379316]
-texture_sequence = [0, 0, 0, 2, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 2, 0]
+texture_sequence = [0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
 
-[node name="Sprite2d" type="Sprite2D" parent="Background"]
-position = Vector2(889.39, 615.437)
-texture = ExtResource("4_7ne27")
-centered = false
+[node name="QuiverFence" type="Node2D" parent="Background"]
+position = Vector2(545.014, -150.617)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("9_4rdpb")
+pole_texture = ExtResource("11_mwm18")
+pole_distance = 15
+main_texture = ExtResource("10_amnym")
+length = 105
+cap_left = ExtResource("11_i1xjk")
+cap_left_offset = Vector2(-124, 0)
+cap_right = ExtResource("12_nddgb")
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 [node name="Level" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -16,6 +16,7 @@ enum HandleSides {
 
 const COLOR_GODOT_ORANGE = Color("ff786b")
 const INVALID_HANDLE = -1
+const INVALID_VECTOR = Vector2(INF, INF)
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
@@ -26,6 +27,7 @@ var _rect := Rect2()
 var _handles: = {} 
 var _dragged_handle := INVALID_HANDLE
 
+var _starting_local_end := INVALID_VECTOR
 var _undo_redo: EditorUndoRedoManager = null
 
 ### -----------------------------------------------------------------------------------------------
@@ -56,7 +58,7 @@ func forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 	if not (is_instance_valid(_sprite_repeater) and _sprite_repeater.is_inside_tree()):
 		return
 	
-	_rect = _calculate_sprite_repeater_rect(_sprite_repeater)
+	_rect = _sprite_repeater.get_rect_on_editor()
 	viewport_control.draw_rect(_rect, COLOR_GODOT_ORANGE, false, 1.0)
 	
 	_handles = _calculate_sprite_repeater_handles()
@@ -117,6 +119,10 @@ func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
 		var handle := _handles[key] as Rect2
 		if handle.has_point(event.position):
 			_dragged_handle = key
+			if _dragged_handle == HandleSides.LEFT:
+				_starting_local_end = _sprite_repeater.get_rect().end
+			else:
+				_starting_local_end = INVALID_VECTOR
 			_undo_redo.create_action(
 					"Move QuiverSpriteRepeater Handle", UndoRedo.MERGE_DISABLE, _sprite_repeater
 			)
@@ -137,22 +143,6 @@ func _stop_dragging_released_handle(event: InputEventMouseButton) -> void:
 	_undo_redo.add_do_method(main_plugin, "update_overlays")
 	_undo_redo.commit_action(false)
 	_dragged_handle = INVALID_HANDLE
-
-
-func _calculate_sprite_repeater_rect(node: SpriteRepeater) -> Rect2:
-	var rect := Rect2()
-	var editor_transform := node.get_viewport_transform() * node.get_canvas_transform()
-	
-	rect.position = editor_transform * (node.position + node.offset)
-	
-	var total_size_x = node.main_texture.get_size().x * node.length
-	var total_separation = node.separation * (node.length - 1)
-	rect.size = editor_transform.get_scale() * Vector2(
-			total_size_x + total_separation,
-			node.main_texture.get_size().y
-	)
-	
-	return rect
 
 
 func _calculate_sprite_repeater_handles() -> Dictionary:
@@ -193,14 +183,8 @@ func _calculate_dragged_length(event: InputEventMouse) -> void:
 
 
 func _calculate_dragged_position() -> void:
-	if _dragged_handle == HandleSides.LEFT:
-		var editor_transform := \
-				_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
-		var local_end := editor_transform.affine_inverse() * _rect.end
-		var local_size := (
-				_sprite_repeater.main_texture.get_size().x * _sprite_repeater.length 
-				+ _sprite_repeater.separation * (_sprite_repeater.length-1)
-		)
-		_sprite_repeater.position.x = local_end.x - local_size
+	if _dragged_handle == HandleSides.LEFT and _starting_local_end != INVALID_VECTOR:
+		var current_size := _sprite_repeater.get_rect().size
+		_sprite_repeater.position.x = _starting_local_end.x - current_size.x
 
 ### -----------------------------------------------------------------------------------------------
