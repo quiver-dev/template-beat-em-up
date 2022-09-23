@@ -104,6 +104,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd"
 }, {
+"base": "QuiverSpriteRepeater",
+"class": &"QuiverFence",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd"
+}, {
 "base": "Area2D",
 "class": &"QuiverGrabBox",
 "language": &"GDScript",
@@ -129,6 +134,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_math_helper.gd"
 }, {
+"base": "Node2D",
+"class": &"QuiverSpriteRepeater",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd"
+}, {
 "base": "Node",
 "class": &"QuiverState",
 "language": &"GDScript",
@@ -148,11 +158,6 @@ _global_script_classes=[{
 "class": &"SpawnData",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd"
-}, {
-"base": "Node2D",
-"class": &"SpriteRepeater",
-"language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd"
 }, {
 "base": "QuiverEnemyCharacter",
 "class": &"TaxManBoss",
@@ -184,16 +189,17 @@ _global_script_class_icons={
 "QuiverEditorHelper": "",
 "QuiverEnemyCharacter": "",
 "QuiverEnemySpawner": "",
+"QuiverFence": "",
 "QuiverGrabBox": "",
 "QuiverHitBox": "",
 "QuiverHurtBox": "",
 "QuiverKnockback": "",
 "QuiverMathHelper": "",
+"QuiverSpriteRepeater": "",
 "QuiverState": "",
 "QuiverStateMachine": "",
 "QuiverStateSequence": "",
 "SpawnData": "",
-"SpriteRepeater": "",
 "TaxManBoss": "",
 "WallHitBox": ""
 }

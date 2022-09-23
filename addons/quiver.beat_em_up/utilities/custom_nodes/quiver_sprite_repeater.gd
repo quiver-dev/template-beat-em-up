@@ -1,5 +1,5 @@
 @tool
-class_name SpriteRepeater
+class_name QuiverSpriteRepeater
 extends Node2D
 
 ## Write your doc string for this file here

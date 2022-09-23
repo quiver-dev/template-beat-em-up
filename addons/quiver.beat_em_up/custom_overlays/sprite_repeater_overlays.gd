@@ -21,7 +21,7 @@ const INVALID_HANDLE = -1
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _sprite_repeater: SpriteRepeater = null
+var _sprite_repeater: QuiverSpriteRepeater = null
 var _rect := Rect2()
 var _handles: = {} 
 var _dragged_handle := INVALID_HANDLE
@@ -39,11 +39,11 @@ var _undo_redo: EditorUndoRedoManager = null
 ### Public Methods --------------------------------------------------------------------------------
 
 func handles(object) -> bool:
-	return object is SpriteRepeater
+	return object is QuiverSpriteRepeater
 
 
 func edit(object) -> void:
-	_sprite_repeater = object as SpriteRepeater
+	_sprite_repeater = object as QuiverSpriteRepeater
 
 
 func make_visible(visible: bool) -> void:
@@ -77,7 +77,6 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
 
 func _on_main_plugin_set() -> void:
 	_undo_redo = main_plugin.get_undo_redo()
@@ -119,11 +118,12 @@ func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
 		if handle.has_point(event.position):
 			_dragged_handle = key
 			_undo_redo.create_action(
-					"Move SpriteRepeater Handle", UndoRedo.MERGE_DISABLE, _sprite_repeater
+					"Move QuiverSpriteRepeater Handle", UndoRedo.MERGE_DISABLE, _sprite_repeater
 			)
 			_undo_redo.add_undo_property(_sprite_repeater, "length", _sprite_repeater.length)
 			_undo_redo.add_undo_property(_sprite_repeater, "position", _sprite_repeater.position)
 			_undo_redo.add_undo_method(main_plugin, "update_overlays")
+			
 			has_handled = true
 			break
 	
