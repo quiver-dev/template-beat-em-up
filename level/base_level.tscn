@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bx1gwn58wcfis"]
+[gd_scene load_steps=13 format=3 uid="uid://bx1gwn58wcfis"]
 
 [ext_resource type="Script" path="res://level/background_elements/sidewalk/sidewalk.gd" id="3_e10a6"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://level/background_elements/sidewalk/sidewalk_revised_0.png" id="3_hdunx"]
 [ext_resource type="Texture2D" uid="uid://b5run74rg37nf" path="res://icon.png" id="4_7ne27"]
+[ext_resource type="Texture2D" uid="uid://iq7d0847x83h" path="res://level/background_elements/sidewalk/sidewalk_revised_1.png" id="4_het56"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://level/background_elements/pavement/street_revised_straight.png" id="4_yujqe"]
+[ext_resource type="Texture2D" uid="uid://ctvhqu3sfy08v" path="res://level/background_elements/sidewalk/sidewalk_revised_2.png" id="5_6kghm"]
 [ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="6_3eepl"]
 [ext_resource type="Theme" uid="uid://cy7rmhwiua2uf" path="res://theme_resources/theme_debug.tres" id="7_xfnxr"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="8_cladr"]
@@ -25,14 +27,18 @@ main_texture = ExtResource("4_yujqe")
 length = 3
 separation = -480
 variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0]
 
 [node name="SideWalk" type="Node2D" parent="Background"]
-position = Vector2(-116.789, 329.164)
+position = Vector2(-325.79, 329.164)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("3_hdunx")
-length = 7
+length = 28
 separation = -99
-variation_textures = []
+variation_textures = [ExtResource("4_het56"), ExtResource("5_6kghm")]
+variations_weights = [2.23724, 0.38344, 0.379316]
+texture_sequence = [2, 0, 0, 0, 0, 2, 0, 0, 2, 0, 1, 2, 0, 0, 0, 1, 0, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0]
 
 [node name="Sprite2d" type="Sprite2D" parent="Background"]
 position = Vector2(889.39, 615.437)
