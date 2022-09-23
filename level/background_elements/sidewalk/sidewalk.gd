@@ -30,6 +30,24 @@ extends Node2D
 		separation = value
 		queue_redraw()
 
+@export_group("Cap Textures", "cap_")
+@export var cap_left: Texture2D = null:
+	set(value):
+		cap_left = value
+		queue_redraw()
+@export var cap_left_offset := Vector2.ZERO:
+	set(value):
+		cap_left_offset = value
+		queue_redraw()
+@export var cap_right: Texture2D = null:
+	set(value):
+		cap_right = value
+		queue_redraw()
+@export var cap_right_offset := Vector2.ZERO:
+	set(value):
+		cap_right_offset = value
+		queue_redraw()
+
 @export_group("Texture Variations", "variation_")
 @export var variation_textures: Array[Texture2D] = []
 
@@ -45,7 +63,8 @@ var _texture_sequence: Array[int] = []
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	pass
+	if not Engine.is_editor_hint():
+		QuiverEditorHelper.disable_all_processing(self)
 
 
 func _draw() -> void:
@@ -56,6 +75,9 @@ func _draw() -> void:
 		_create_random_sequence()
 		notify_property_list_changed()
 	
+	if cap_left != null:
+		draw_texture(cap_left, cap_left_offset)
+	
 	for index in _texture_sequence.size():
 		var texture := _textures[_texture_sequence[index]]
 		var draw_position = Vector2(
@@ -64,13 +86,14 @@ func _draw() -> void:
 		)
 		
 		draw_texture(texture, draw_position)
-	pass
+	
+	if cap_right != null:
+		draw_texture(cap_right, cap_right_offset)
 
 
 func _process(_delta: float) -> void:
-	# This is a "hack" because adding setters to Array[Texture2D] is broken and trying
-	# to add it as an advanced exports is impossible, couldn't figure out how to do typed
-	# arrays in it, and the instructions I found in the documentation didn't work
+	# This is a "hack" because adding setters to Array[Texture2D] is broken 
+	# https://github.com/godotengine/godot/issues/58285
 	var should_redraw := false
 	
 	if _textures.is_empty() or _textures.size() != variation_textures.size() + 1:
