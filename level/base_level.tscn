@@ -1,5 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://ceb6ve5jiso8"]
 
+[ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://level/background_elements/skyboxes/area_1_skybox_1_0.png" id="1_dcycc"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="3_e10a6"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://level/background_elements/sidewalk/sidewalk_revised_0.png" id="3_hdunx"]
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://level/background_elements/pavement/street_revised_curved.png" id="3_wiwrp"]
@@ -25,8 +26,19 @@ metadata/_edit_vertical_guides_ = []
 
 [node name="Background" type="Node2D" parent="."]
 
+[node name="QuiverSpriteRepeater" type="Node2D" parent="Background"]
+position = Vector2(-10, -454)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("3_e10a6")
+main_texture = ExtResource("1_dcycc")
+length = 2
+separation = -4
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0]
+
 [node name="Pavement" type="Node2D" parent="Background"]
-position = Vector2(1151.92, 416)
+position = Vector2(1104, 416)
 scale = Vector2(2, 2)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("4_yujqe")
@@ -38,7 +50,7 @@ variations_weights = [1.0]
 texture_sequence = [0]
 
 [node name="SideWalk" type="Node2D" parent="Background"]
-position = Vector2(474.276, 308.217)
+position = Vector2(426.363, 308.217)
 script = ExtResource("3_e10a6")
 main_texture = ExtResource("3_hdunx")
 length = 25
@@ -50,7 +62,7 @@ variations_weights = [2.23724, 0.38344, 0.379316]
 texture_sequence = [0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
 
 [node name="QuiverFence" type="Node2D" parent="Background"]
-position = Vector2(545.014, -150.617)
+position = Vector2(497.1, -150.617)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("9_4rdpb")
 pole_texture = ExtResource("11_mwm18")
