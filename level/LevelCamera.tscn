@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfjl02rgdhwj1"]
+
+[ext_resource type="Script" path="res://level/LevelCamera.gd" id="1_8o7d7"]
+[ext_resource type="Script" path="res://level/obstacles/WallHitBox.gd" id="2_hftxj"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="3_wxtax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f0jd"]
+size = Vector2(1160, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvifd"]
+size = Vector2(1160, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivd0r"]
+size = Vector2(2000, 80)
+
+[sub_resource type="Resource" id="Resource_oq3rk"]
+script = ExtResource("3_wxtax")
+attack_damage = 5.0
+hurt_type = 1
+knockback = 0
+launch_angle = 0
+
+[sub_resource type="Resource" id="Resource_k1w4a"]
+script = ExtResource("3_wxtax")
+attack_damage = 5.0
+hurt_type = 1
+knockback = 0
+launch_angle = 0
+
+[node name="LevelCamera" type="Camera2D"]
+offset = Vector2(0, -100)
+current = true
+limit_left = 0
+limit_top = -200
+limit_bottom = 1180
+drag_vertical_offset = -1.0
+script = ExtResource("1_8o7d7")
+
+[node name="ScreenLimits" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="Left" type="CollisionShape2D" parent="ScreenLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(-40, 540)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_3f0jd")
+one_way_collision = true
+metadata/collision_type = "default"
+
+[node name="RemoteTransform2d" type="RemoteTransform2D" parent="ScreenLimits/Left"]
+remote_path = NodePath("../../../LeftBounce/LeftBounceShape")
+
+[node name="Right" type="CollisionShape2D" parent="ScreenLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(1960, 540)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_gvifd")
+one_way_collision = true
+metadata/collision_type = "default"
+
+[node name="RemoteTransform2d" type="RemoteTransform2D" parent="ScreenLimits/Right"]
+remote_path = NodePath("../../../RightBounce/RightBounceShape")
+
+[node name="Bottom" type="CollisionShape2D" parent="ScreenLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(960, 1120)
+shape = SubResource("RectangleShape2D_ivd0r")
+metadata/collision_type = "default"
+
+[node name="RightBounce" type="Area2D" parent="."]
+position = Vector2(1937, 537)
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_hftxj")
+_attack_data = SubResource("Resource_oq3rk")
+metadata/collision_type = "world_hit_box"
+
+[node name="RightBounceShape" type="CollisionShape2D" parent="RightBounce"]
+modulate = Color(1, 0.0666667, 0.403922, 1)
+position = Vector2(23, 3)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_gvifd")
+metadata/collision_type = "world_hit_box"
+
+[node name="LeftBounce" type="Area2D" parent="."]
+position = Vector2(-12, 537)
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_hftxj")
+_attack_data = SubResource("Resource_k1w4a")
+metadata/collision_type = "world_hit_box"
+
+[node name="LeftBounceShape" type="CollisionShape2D" parent="LeftBounce"]
+modulate = Color(1, 0.0666667, 0.403922, 1)
+position = Vector2(-28, 3)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_3f0jd")
+metadata/collision_type = "world_hit_box"

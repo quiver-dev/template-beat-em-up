@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ceb6ve5jiso8"]
+[gd_scene load_steps=22 format=3 uid="uid://ceb6ve5jiso8"]
 
 [ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://level/background_elements/skyboxes/area_1_skybox_1_0.png" id="1_dcycc"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="3_e10a6"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://1cocp0o1ua5f" path="res://level/background_elements/fence/chainlink_fence_middle_pole.png" id="11_mwm18"]
 [ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="11_opwfh"]
 [ext_resource type="Texture2D" uid="uid://dji2wpv6hk84w" path="res://level/background_elements/fence/chainlink_fence_revised__02.png" id="12_nddgb"]
+[ext_resource type="PackedScene" uid="uid://dfjl02rgdhwj1" path="res://level/LevelCamera.tscn" id="15_ue4us"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i42si"]
+size = Vector2(87, 5867.68)
 
 [node name="BaseLevel" type="Node2D"]
 scale = Vector2(1.00181, 1.00254)
@@ -85,16 +89,26 @@ y_sort_enabled = true
 [node name="Chad" parent="Level/Characters" instance=ExtResource("6_3eepl")]
 position = Vector2(536, 827)
 
-[node name="Camera2D" type="Camera2D" parent="Level/Characters/Chad"]
-offset = Vector2(0, -100)
-current = true
-limit_left = 0
-limit_top = -200
-limit_right = 3470
-limit_bottom = 1180
-drag_vertical_offset = -1.0
+[node name="LevelCamera" parent="Level/Characters/Chad" instance=ExtResource("15_ue4us")]
+limit_right = 4000
+editor_draw_limits = true
 
 [node name="Objects" type="Node2D" parent="Level"]
+
+[node name="Colisions" type="Node2D" parent="Level"]
+
+[node name="CeilingLimits" type="StaticBody2D" parent="Level/Colisions"]
+modulate = Color(0, 0.6, 0.701961, 0.4)
+collision_layer = 8
+collision_mask = 17
+
+[node name="Top" type="CollisionShape2D" parent="Level/Colisions/CeilingLimits"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(2767.84, 379.007)
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_i42si")
+metadata/collision_type = "default"
 
 [node name="Foreground" type="Node2D" parent="."]
 
