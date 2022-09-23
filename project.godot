@@ -152,7 +152,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"SpriteRepeater",
 "language": &"GDScript",
-"path": "res://level/background_elements/sidewalk/sidewalk.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd"
 }, {
 "base": "QuiverEnemyCharacter",
 "class": &"TaxManBoss",
