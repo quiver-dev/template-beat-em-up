@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfjl02rgdhwj1"]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource type="Script" path="res://level/LevelCamera.gd" id="1_8o7d7"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/level_camera/quiver_level_camera.gd" id="1_8o7d7"]
 [ext_resource type="Script" path="res://level/obstacles/WallHitBox.gd" id="2_hftxj"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="3_wxtax"]
 
@@ -37,6 +37,7 @@ drag_vertical_offset = -1.0
 script = ExtResource("1_8o7d7")
 
 [node name="ScreenLimits" type="StaticBody2D" parent="."]
+visible = false
 collision_layer = 4
 
 [node name="Left" type="CollisionShape2D" parent="ScreenLimits"]
@@ -68,6 +69,7 @@ shape = SubResource("RectangleShape2D_ivd0r")
 metadata/collision_type = "default"
 
 [node name="RightBounce" type="Area2D" parent="."]
+visible = false
 position = Vector2(1937, 537)
 collision_layer = 256
 collision_mask = 0
@@ -84,6 +86,7 @@ shape = SubResource("RectangleShape2D_gvifd")
 metadata/collision_type = "world_hit_box"
 
 [node name="LeftBounce" type="Area2D" parent="."]
+visible = false
 position = Vector2(-12, 537)
 collision_layer = 256
 collision_mask = 0

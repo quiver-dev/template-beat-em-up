@@ -1,3 +1,4 @@
+class_name QuiverLevelCamera
 extends Camera2D
 
 ## Write your doc string for this file here
@@ -27,6 +28,8 @@ extends Camera2D
 	_limit_right,
 	_limit_bottom,
 ]
+
+var _zoom_tween: Tween
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -64,7 +67,19 @@ func _process(_delta: float) -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-
+func delimitate_room(
+		p_limit_left: int, p_limit_top: int, p_limit_right: int, p_limit_bottom: int,
+		p_zoom: float, p_zoom_duration := 0.3
+) -> void:
+	limit_left = p_limit_left
+	limit_top = p_limit_top
+	limit_right = p_limit_right
+	limit_bottom = p_limit_bottom
+	
+	if _zoom_tween:
+		_zoom_tween.kill()
+	_zoom_tween = create_tween()
+	_zoom_tween.tween_property(self, "zoom", Vector2.ONE * p_zoom, p_zoom_duration)
 
 ### -----------------------------------------------------------------------------------------------
 

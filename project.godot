@@ -109,6 +109,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd"
 }, {
+"base": "ReferenceRect",
+"class": &"QuiverFightRoom",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_figth_room.gd"
+}, {
 "base": "Area2D",
 "class": &"QuiverGrabBox",
 "language": &"GDScript",
@@ -128,6 +133,11 @@ _global_script_classes=[{
 "class": &"QuiverKnockback",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/combat/quiver_knockback_struct.gd"
+}, {
+"base": "Camera2D",
+"class": &"QuiverLevelCamera",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/level_camera/quiver_level_camera.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverMathHelper",
@@ -190,10 +200,12 @@ _global_script_class_icons={
 "QuiverEnemyCharacter": "",
 "QuiverEnemySpawner": "",
 "QuiverFence": "",
+"QuiverFightRoom": "",
 "QuiverGrabBox": "",
 "QuiverHitBox": "",
 "QuiverHurtBox": "",
 "QuiverKnockback": "",
+"QuiverLevelCamera": "",
 "QuiverMathHelper": "",
 "QuiverSpriteRepeater": "",
 "QuiverState": "",
