@@ -17,7 +17,7 @@ extends ReferenceRect
 @export var limit_left := 0: set = _set_limit_left
 @export var limit_top := 0: set = _set_limit_top
 @export var limit_right := 0: set = _set_limit_right
-@export var limit_bottom := 0
+@export var limit_bottom := 0: set = _set_limit_bottom
 
 @export_range(0.1, 3.0, 0.01, "or_greater") var zoom := 1.0:
 	set(value):
@@ -59,12 +59,19 @@ var _preview_camera := false:
 		_preview_camera = value
 		queue_redraw()
 var _preview_after_color := Color.TEAL
-var _preview_after_room := false:
+var _preview_after_room := true:
 	set(value):
 		_preview_after_room = value
 		queue_redraw()
 
 var _ignore_setters := false
+var _backup_room := {
+	left = 0,
+	top = 0,
+	rigth = 0,
+	bottom = 0,
+	zoom = 1.0
+}
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -119,6 +126,12 @@ func setup_fight_room() -> void:
 		_push_no_valid_camera_error()
 		return
 	
+	if not after_fight_use_new_room:
+		_backup_room.left = camera2D.limit_left
+		_backup_room.top = camera2D.limit_top
+		_backup_room.right = camera2D.limit_right
+		_backup_room.bottom = camera2D.limit_bottom
+		_backup_room.zoom = camera2D.zoom.x
 	camera2D.delimitate_room(limit_left, limit_top, limit_right, limit_bottom, zoom, zoom_duration)
 
 
@@ -128,11 +141,17 @@ func setup_after_fight_room() -> void:
 		_push_no_valid_camera_error()
 		return
 	
-	camera2D.delimitate_room(
-			after_fight_limit_left, after_fight_limit_top, 
-			after_fight_limit_right, after_fight_limit_bottom, 
-			after_fight_zoom, after_fight_zoom_duration
-	)
+	if after_fight_use_new_room:
+		camera2D.delimitate_room(
+				after_fight_limit_left, after_fight_limit_top, 
+				after_fight_limit_right, after_fight_limit_bottom, 
+				after_fight_zoom, after_fight_zoom_duration
+		)
+	else:
+		camera2D.delimitate_room(
+				_backup_room.left, _backup_room.top, _backup_room.right, _backup_room.bottom,
+				_backup_room.zoom, zoom_duration
+		)
 
 ### -----------------------------------------------------------------------------------------------
 
