@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=100 format=3 uid="uid://cs3o3hkq5dman"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=100 format=3 uid="uid://cuot5b8oiutsp"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mdx0l"]
 animation = &"sarge/punch_1_right"

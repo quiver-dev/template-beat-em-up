@@ -221,12 +221,6 @@ func _get_property_list() -> Array:
 	
 	if _use_weights:
 		properties.append({
-			name = "allow_repeated",
-			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_STORAGE
-		})
-		
-		properties.append({
 			name = "Weight Settings",
 			type = TYPE_NIL,
 			usage = PROPERTY_USAGE_GROUP,

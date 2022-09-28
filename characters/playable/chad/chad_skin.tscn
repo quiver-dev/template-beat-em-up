@@ -8,7 +8,7 @@
 [ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="4_vrxwg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
-[ext_resource type="Resource" uid="uid://2y8q23tepqkd" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
+[ext_resource type="Resource" uid="uid://ximirharcccw" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_grab_box.gd" id="7_a6aw4"]
 [ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
 [ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/attack_punch2.tres" id="9_cutyj"]

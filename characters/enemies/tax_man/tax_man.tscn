@@ -28,7 +28,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/screen_marker.gd" id="23_s6olh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="24_jvcip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="25_7uuvm"]
-[ext_resource type="Theme" uid="uid://duq6rjpc3ffy5" path="res://theme_resources/theme_debug.tres" id="26_sum7q"]
+[ext_resource type="Theme" uid="uid://cy7rmhwiua2uf" path="res://theme_resources/theme_debug.tres" id="26_sum7q"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/wait_debug_label.gd" id="27_dlvh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
@@ -173,7 +173,6 @@ _weights_by_child = {
 "ComboAttack": 1.40325,
 "DashAttack": 0.596751
 }
-allow_repeated = true
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
@@ -228,7 +227,6 @@ _weights_by_child = {
 "ComboAttack": 0.59407,
 "DashAttack": 1.19947
 }
-allow_repeated = true
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
@@ -297,7 +295,6 @@ _weights_by_child = {
 "ComboAttack": 0.703429,
 "DashAttack": 1.29657
 }
-allow_repeated = true
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
@@ -351,6 +348,7 @@ theme = ExtResource("26_sum7q")
 alignment = 1
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+layout_mode = 2
 offset_right = 248.0
 offset_bottom = 26.0
 script = ExtResource("25_7uuvm")
@@ -358,6 +356,7 @@ path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+layout_mode = 2
 offset_top = 26.0
 offset_right = 248.0
 offset_bottom = 52.0
@@ -366,6 +365,7 @@ path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="Wait" type="Label" parent="DebugLabels" index="2"]
+layout_mode = 2
 offset_top = 52.0
 offset_right = 248.0
 offset_bottom = 78.0
