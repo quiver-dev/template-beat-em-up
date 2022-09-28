@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdv436i82wdj4"
-path="res://.godot/imported/street_revised_curved.png-0f54c95eaa56e7a66cedec96e3f18ecd.ctex"
+uid="uid://egjhs2885c00"
+path="res://.godot/imported/area_1_skybox_1_0.png-7328b6b08bf8e46c04e2a76fd66d58b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/background_elements/pavement/street_revised_curved.png"
-dest_files=["res://.godot/imported/street_revised_curved.png-0f54c95eaa56e7a66cedec96e3f18ecd.ctex"]
+source_file="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_0.png"
+dest_files=["res://.godot/imported/area_1_skybox_1_0.png-7328b6b08bf8e46c04e2a76fd66d58b9.ctex"]
 
 [params]
 

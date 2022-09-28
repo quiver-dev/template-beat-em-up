@@ -1,0 +1,141 @@
+[gd_scene load_steps=23 format=3 uid="uid://bg001wshah5gv"]
+
+[ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
+[ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_0.png" id="3_usn8u"]
+[ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://stages/stage_01/background_elements/pavement/street_revised_straight.png" id="4_0uw5r"]
+[ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="5_rhqxk"]
+[ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_0.png" id="6_e0uvm"]
+[ext_resource type="Texture2D" uid="uid://d2tan12hotr8u" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_curve_50.png" id="7_412kv"]
+[ext_resource type="Texture2D" uid="uid://iq7d0847x83h" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_1.png" id="8_fsw4y"]
+[ext_resource type="Texture2D" uid="uid://ctvhqu3sfy08v" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_2.png" id="9_7km5a"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd" id="10_u6nh0"]
+[ext_resource type="Texture2D" uid="uid://1cocp0o1ua5f" path="res://stages/stage_01/background_elements/fence/chainlink_fence_middle_pole.png" id="11_4ptr3"]
+[ext_resource type="Texture2D" uid="uid://dtc4d05g37g73" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__00.png" id="12_ec2s5"]
+[ext_resource type="Texture2D" uid="uid://bfsf12el1igux" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__01.png" id="13_725xq"]
+[ext_resource type="Texture2D" uid="uid://dji2wpv6hk84w" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__02.png" id="14_62tf3"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_figth_room.gd" id="17_cjfi2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd" id="18_5ae2i"]
+[ext_resource type="PackedScene" uid="uid://c6fsd7rck7j8f" path="res://characters/enemies/sargent/sarge.tscn" id="19_etsee"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="20_smh3p"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_player_detector.gd" id="21_ge31n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aax3r"]
+size = Vector2(87, 5867.68)
+
+[sub_resource type="Resource" id="Resource_o2tqf"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 1
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e5ecd"]
+b = Vector2(0, 1080)
+
+[node name="Stage_01" instance=ExtResource("1_4lqd3")]
+
+[node name="Sky" type="Node2D" parent="Background" index="0"]
+position = Vector2(-10, -454)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("2_0ledp")
+main_texture = ExtResource("3_usn8u")
+length = 2
+separation = -4
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0]
+
+[node name="Pavement" type="Node2D" parent="Background" index="1"]
+position = Vector2(1104, 416)
+scale = Vector2(2, 2)
+script = ExtResource("2_0ledp")
+main_texture = ExtResource("4_0uw5r")
+separation = -480
+cap_left = ExtResource("5_rhqxk")
+cap_left_offset = Vector2(-583, 0)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0]
+
+[node name="SideWalk" type="Node2D" parent="Background" index="2"]
+position = Vector2(426.363, 308.217)
+script = ExtResource("2_0ledp")
+main_texture = ExtResource("6_e0uvm")
+length = 22
+separation = -99
+cap_left = ExtResource("7_412kv")
+cap_left_offset = Vector2(-451, 9)
+variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
+variations_weights = [1.0, 1.0, 1.0]
+texture_sequence = [1, 0, 1, 1, 0, 2, 0, 0, 0, 0, 1, 1, 2, 1, 0, 1, 2, 1, 2, 2, 2, 0]
+
+[node name="QuiverFence" type="Node2D" parent="Background" index="3"]
+position = Vector2(497.1, -150.617)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("10_u6nh0")
+pole_texture = ExtResource("11_4ptr3")
+pole_distance = 15
+main_texture = ExtResource("12_ec2s5")
+length = 90
+cap_left = ExtResource("13_725xq")
+cap_left_offset = Vector2(-124, 0)
+cap_right = ExtResource("14_62tf3")
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+[node name="CeilingLimits" type="StaticBody2D" parent="Level/Colisions" index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
+collision_layer = 8
+collision_mask = 17
+
+[node name="Top" type="CollisionShape2D" parent="Level/Colisions/CeilingLimits" index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(2767.84, 379.007)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_aax3r")
+metadata/collision_type = "default"
+
+[node name="FightRoom" type="ReferenceRect" parent="Utilities" index="0"]
+offset_left = 943.0
+offset_top = -280.0
+offset_right = 2863.0
+offset_bottom = 1200.0
+border_width = 10.0
+script = ExtResource("17_cjfi2")
+limit_left = 943
+limit_top = -280
+limit_right = 2863
+limit_bottom = 1200
+_after_fight_use_new_room = true
+_after_fight_limit_left = 943
+_after_fight_limit_top = -280
+_after_fight_limit_right = 5442
+_after_fight_limit_bottom = 1200
+_after_fight_zoom = 1.0
+_after_fight_transition_duration = 0.8
+preview_camera = true
+preview_camera_color = Color(0.294118, 0, 0.509804, 1)
+preview_after_room = true
+preview_after_color = Color(0, 0.501961, 0.501961, 1)
+
+[node name="QuiverEnemySpawner" type="Marker2D" parent="Utilities" index="1"]
+position = Vector2(2569, 697)
+script = ExtResource("18_5ae2i")
+path_spawn_parent = NodePath("../../Level/Characters")
+spawn_waves = [[SubResource("Resource_o2tqf")]]
+
+[node name="PlayerDetector" type="Area2D" parent="Utilities" index="2"]
+position = Vector2(1224, 268)
+collision_layer = 0
+monitorable = false
+script = ExtResource("21_ge31n")
+path_fight_room = NodePath("../FightRoom")
+paths_enemy_spawners = [NodePath("../QuiverEnemySpawner")]
+metadata/collision_type = "player_detector"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/PlayerDetector" index="0"]
+modulate = Color(1, 1, 0, 1)
+shape = SubResource("SegmentShape2D_e5ecd")
+metadata/collision_type = "player_detector"
+
+[connection signal="all_waves_completed" from="Utilities/QuiverEnemySpawner" to="Utilities/FightRoom" method="setup_after_fight_room"]

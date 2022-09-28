@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2tan12hotr8u"
-path="res://.godot/imported/sidewalk_curve_50.png-d76a7f0690ac809254a1735e26fc1deb.ctex"
+uid="uid://dji2wpv6hk84w"
+path="res://.godot/imported/chainlink_fence_revised__02.png-c8822c6bf3e7aa1f4901af3e19b486c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/background_elements/sidewalk/sidewalk_curve_50.png"
-dest_files=["res://.godot/imported/sidewalk_curve_50.png-d76a7f0690ac809254a1735e26fc1deb.ctex"]
+source_file="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__02.png"
+dest_files=["res://.godot/imported/chainlink_fence_revised__02.png-c8822c6bf3e7aa1f4901af3e19b486c9.ctex"]
 
 [params]
 

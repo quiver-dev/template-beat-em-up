@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpx5oim35rvcq"
-path="res://.godot/imported/street_revised_straight.png-7b43db6010cf5833d9446d5d1eff0524.ctex"
+uid="uid://bdv436i82wdj4"
+path="res://.godot/imported/street_revised_curved.png-ee7911616a0614a2581363bae5f3d925.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/background_elements/pavement/street_revised_straight.png"
-dest_files=["res://.godot/imported/street_revised_straight.png-7b43db6010cf5833d9446d5d1eff0524.ctex"]
+source_file="res://stages/stage_01/background_elements/pavement/street_revised_curved.png"
+dest_files=["res://.godot/imported/street_revised_curved.png-ee7911616a0614a2581363bae5f3d925.ctex"]
 
 [params]
 

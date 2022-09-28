@@ -182,7 +182,7 @@ _global_script_classes=[{
 "base": "QuiverHitBox",
 "class": &"WallHitBox",
 "language": &"GDScript",
-"path": "res://level/obstacles/WallHitBox.gd"
+"path": "res://stages/_base/obstacles/WallHitBox.gd"
 }]
 _global_script_class_icons={
 "EndScreen": "",
@@ -225,7 +225,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Template Beat Project"
-run/main_scene="res://level/base_level.tscn"
+run/main_scene="res://stages/stage_01/stage_01.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 config/icon="res://icon.png"
 config/version="0.4.1"
@@ -244,8 +244,9 @@ shapes/collision/contact_color=Color(0.5, 0.5, 0.5, 0.8)
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/resizable=false
+window/size/window_width_override=960
+window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 

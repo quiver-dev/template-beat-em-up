@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfsf12el1igux"
-path="res://.godot/imported/chainlink_fence_revised__01.png-39b9a9c25cef59075b19cfe901ff1dfd.ctex"
+uid="uid://dpx5oim35rvcq"
+path="res://.godot/imported/street_revised_straight.png-5cfbda2ef92cea1cf81a1da462f68ffe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/background_elements/fence/chainlink_fence_revised__01.png"
-dest_files=["res://.godot/imported/chainlink_fence_revised__01.png-39b9a9c25cef59075b19cfe901ff1dfd.ctex"]
+source_file="res://stages/stage_01/background_elements/pavement/street_revised_straight.png"
+dest_files=["res://.godot/imported/street_revised_straight.png-5cfbda2ef92cea1cf81a1da462f68ffe.ctex"]
 
 [params]
 
