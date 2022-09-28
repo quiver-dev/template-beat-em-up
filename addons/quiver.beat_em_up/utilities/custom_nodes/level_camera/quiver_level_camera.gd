@@ -29,7 +29,7 @@ extends Camera2D
 	_limit_bottom,
 ]
 
-var _zoom_tween: Tween
+var _tween: Tween
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	for limit in _collision_limits:
 		var half_collision_width := collision_width * Vector2.ONE /2.0
-		var half_size := get_viewport_rect().size / 2.0 + half_collision_width
+		var half_size := get_viewport_rect().size / zoom / 2.0 + half_collision_width
 		var target_position := get_screen_center_position()
 		if limit == _limit_left:
 			target_position.x = maxf(
@@ -61,6 +61,9 @@ func _process(_delta: float) -> void:
 			)
 		
 		limit.global_position = target_position
+	
+	if _tween and _tween.is_running():
+		_update_collision_limits_length()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -69,17 +72,17 @@ func _process(_delta: float) -> void:
 
 func delimitate_room(
 		p_limit_left: int, p_limit_top: int, p_limit_right: int, p_limit_bottom: int,
-		p_zoom: float, p_zoom_duration := 0.3
+		p_zoom: float, p_duration := 0.3
 ) -> void:
-	limit_left = p_limit_left
-	limit_top = p_limit_top
-	limit_right = p_limit_right
-	limit_bottom = p_limit_bottom
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	
-	if _zoom_tween:
-		_zoom_tween.kill()
-	_zoom_tween = create_tween()
-	_zoom_tween.tween_property(self, "zoom", Vector2.ONE * p_zoom, p_zoom_duration)
+	_tween.tween_property(self, "zoom", Vector2.ONE * p_zoom, p_duration)
+	_tween.tween_property(self, "limit_left", p_limit_left, p_duration)
+	_tween.tween_property(self, "limit_top", p_limit_top, p_duration)
+	_tween.tween_property(self, "limit_right", p_limit_right, p_duration)
+	_tween.tween_property(self, "limit_bottom", p_limit_bottom, p_duration)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -98,11 +101,11 @@ func _update_collision_limits_length() -> void:
 	if not is_inside_tree():
 		await self.ready
 	
-	var rect := get_viewport_rect()
+	var rect_size := get_viewport_rect().size / zoom
 	for limit in _collision_limits:
 		if limit == _limit_bottom:
-			(limit.shape as RectangleShape2D).size.x = rect.size.x + collision_width
+			(limit.shape as RectangleShape2D).size.x = rect_size.x + collision_width
 		else:
-			(limit.shape as RectangleShape2D).size.x = rect.size.y + collision_width
+			(limit.shape as RectangleShape2D).size.x = rect_size.y + collision_width
 
 ### -----------------------------------------------------------------------------------------------

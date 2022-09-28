@@ -21,9 +21,12 @@ extends ReferenceRect
 
 @export_range(0.1, 3.0, 0.01, "or_greater") var zoom := 1.0:
 	set(value):
-		zoom = value
+		if _ignore_setters:
+			zoom = value
+		else:
+			zoom = _handle_zoom(value)
 		queue_redraw()
-@export_range(0.0, 3.0, 0.01, "or_greater") var zoom_duration := 0.3
+@export_range(0.0, 3.0, 0.01, "or_greater") var transition_duration := 0.8
 
 var after_fight_use_new_room := false:
 	set(value):
@@ -49,12 +52,12 @@ var after_fight_limit_bottom := 0:
 		after_fight_limit_bottom = value
 		queue_redraw()
 var after_fight_zoom := 1.0
-var after_fight_zoom_duration := 0.3
+var after_fight_transition_duration := 0.8
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _preview_camera_color := Color.INDIGO
-var _preview_camera := false:
+var _preview_camera := true:
 	set(value):
 		_preview_camera = value
 		queue_redraw()
@@ -132,7 +135,9 @@ func setup_fight_room() -> void:
 		_backup_room.right = camera2D.limit_right
 		_backup_room.bottom = camera2D.limit_bottom
 		_backup_room.zoom = camera2D.zoom.x
-	camera2D.delimitate_room(limit_left, limit_top, limit_right, limit_bottom, zoom, zoom_duration)
+	camera2D.delimitate_room(
+			limit_left, limit_top, limit_right, limit_bottom, zoom, transition_duration
+	)
 
 
 func setup_after_fight_room() -> void:
@@ -145,12 +150,12 @@ func setup_after_fight_room() -> void:
 		camera2D.delimitate_room(
 				after_fight_limit_left, after_fight_limit_top, 
 				after_fight_limit_right, after_fight_limit_bottom, 
-				after_fight_zoom, after_fight_zoom_duration
+				after_fight_zoom, after_fight_transition_duration
 		)
 	else:
 		camera2D.delimitate_room(
 				_backup_room.left, _backup_room.top, _backup_room.right, _backup_room.bottom,
-				_backup_room.zoom, zoom_duration
+				_backup_room.zoom, transition_duration
 		)
 
 ### -----------------------------------------------------------------------------------------------
@@ -197,7 +202,14 @@ func _update_limits() -> void:
 	limit_bottom = rect.end.y
 	limit_left = rect.position.x
 	limit_top = rect.position.y
+	zoom = _handle_zoom(zoom)
 	_ignore_setters = false
+
+
+func _handle_zoom(value: float) -> float:
+	var limits_size := Vector2(limit_right - limit_left, limit_bottom - limit_top)
+	var max_zoom := _get_default_resolution() / limits_size
+	return max(max_zoom.x, max_zoom.y, value)
 
 
 func _set_limit_left(value: int) -> void:
@@ -307,8 +319,8 @@ func _get_custom_properties() -> Dictionary:
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0.0,3.0,0.01,or_greater",
 		},
-		"_after_fight_zoom_duration": {
-			backing_field = "after_fight_zoom_duration",
+		"_after_fight_transition_duration": {
+			backing_field = "after_fight_transition_duration",
 			type = TYPE_FLOAT,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_RANGE,
