@@ -193,7 +193,7 @@ limit_bottom = 1200
 _after_fight_use_new_room = true
 _after_fight_limit_left = 943
 _after_fight_limit_top = -280
-_after_fight_limit_right = 5986
+_after_fight_limit_right = 5763
 _after_fight_limit_bottom = 1200
 _after_fight_zoom = 1.0
 _after_fight_transition_duration = 0.8
@@ -223,21 +223,20 @@ shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
 [node name="FightRoom2" type="ReferenceRect" parent="Utilities" index="1"]
-offset_left = 3110.0
-offset_top = -404.0
-offset_right = 5990.0
-offset_bottom = 1291.0
+offset_left = 3200.0
+offset_top = -280.0
+offset_right = 5899.0
+offset_bottom = 1195.0
 script = ExtResource("17_cjfi2")
-limit_left = 3110
-limit_top = -404
-limit_right = 5990
-limit_bottom = 1291
-zoom = 0.666667
+limit_left = 3200
+limit_top = -280
+limit_right = 5899
+limit_bottom = 1195
 _after_fight_use_new_room = true
-_after_fight_limit_left = 3110
+_after_fight_limit_left = 3200
 _after_fight_limit_top = -280
-_after_fight_limit_right = 8342
-_after_fight_limit_bottom = 1200
+_after_fight_limit_right = 8083
+_after_fight_limit_bottom = 1195
 _after_fight_zoom = 1.0
 _after_fight_transition_duration = 0.8
 preview_camera = true
@@ -246,7 +245,7 @@ preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
 [node name="PlayerDetector2" type="Area2D" parent="Utilities/FightRoom2" index="0"]
-position = Vector2(1457, 697)
+position = Vector2(1301, 585)
 collision_layer = 0
 monitorable = false
 script = ExtResource("21_ge31n")
@@ -260,39 +259,40 @@ shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
 [node name="EnemySpawner1" type="Marker2D" parent="Utilities/FightRoom2" index="1" groups=["fight_2_spawner"]]
-position = Vector2(2959, 1162)
+position = Vector2(2931, 1030)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_pqjax")], [SubResource("Resource_g811p"), SubResource("Resource_to3fe")]]
 
 [node name="Marker2d" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner1" index="0"]
-position = Vector2(-527, -165)
+position = Vector2(-815, -93)
 
 [node name="Marker2d2" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner1" index="1"]
-position = Vector2(-457, 209)
+position = Vector2(-745, 281)
 
 [node name="EnemySpawner2" type="Marker2D" parent="Utilities/FightRoom2" index="2" groups=["fight_2_spawner"]]
-position = Vector2(-89, 1162)
+position = Vector2(-169, 1062)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_66t8k")], [SubResource("Resource_wo8vf"), SubResource("Resource_u8ptc")]]
 
 [node name="Marker2d" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner2" index="0"]
-position = Vector2(591, 197)
+position = Vector2(875, 217)
 
 [node name="Marker2d2" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner2" index="1"]
-position = Vector2(432, -178)
+position = Vector2(716, -158)
 
 [node name="FightRoom3" type="ReferenceRect" parent="Utilities" index="2"]
 offset_left = 6450.0
-offset_top = -280.0
-offset_right = 9330.0
+offset_top = -404.0
+offset_right = 9138.0
 offset_bottom = 1200.0
 script = ExtResource("17_cjfi2")
 limit_left = 6450
-limit_top = -280
-limit_right = 9330
+limit_top = -404
+limit_right = 9138
 limit_bottom = 1200
+zoom = 0.714286
 _after_fight_use_new_room = false
 _after_fight_transition_duration = 0.8
 preview_camera = true
@@ -301,7 +301,7 @@ preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
 [node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom3" index="0"]
-position = Vector2(695, 710)
+position = Vector2(687, 562)
 collision_layer = 0
 monitorable = false
 script = ExtResource("21_ge31n")
@@ -319,6 +319,12 @@ position = Vector2(2118, 979)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_ihlmd")]]
+
+[node name="DashPositionLeft" type="Marker2D" parent="Utilities/FightRoom3" index="2" groups=["tax_man_dash_positions"]]
+position = Vector2(212, 1120)
+
+[node name="DashPositionRight" type="Marker2D" parent="Utilities/FightRoom3" index="3" groups=["tax_man_dash_positions"]]
+position = Vector2(2496, 1120)
 
 [connection signal="all_waves_completed" from="Utilities/FightRoom1/QuiverEnemySpawner" to="Utilities/FightRoom1" method="setup_after_fight_room"]
 [connection signal="all_waves_completed" from="Utilities/FightRoom2/EnemySpawner1" to="." method="_on_fight_2_spawner_all_waves_completed"]

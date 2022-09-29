@@ -15,10 +15,9 @@ extends "res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_pos
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export_category("Go To Closest Position")
-@export var _pool_positions: Array[Vector2] = []
-@export var _pool_nodepaths: Array[NodePath] = []
+@export var pool_positions: Array[Vector2] = []
+@export var pool_nodes: Array[Node] = []
 
-var _pool_nodes := []
 var _pool := []
 
 ### -----------------------------------------------------------------------------------------------
@@ -31,9 +30,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
-	
-	for nodepath in _pool_nodepaths:
-		_pool_nodes.append(get_node(nodepath))
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -44,8 +40,8 @@ func enter(msg: = {}) -> void:
 	if msg.has("custom_pool"):
 		_pool = msg.custom_pool
 	else:
-		_pool.append_array(_pool_positions)
-		_pool.append_array(_pool_nodes)
+		_pool.append_array(pool_positions)
+		_pool.append_array(pool_nodes)
 	
 	if not _pool.is_empty():
 		msg = _find_closest_target()
