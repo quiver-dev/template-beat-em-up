@@ -1,5 +1,4 @@
-class_name BaseStage
-extends Node2D
+extends BaseStage
 
 ## Write your doc string for this file here
 
@@ -14,11 +13,7 @@ extends Node2D
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _debug_logger := QuiverDebugLogger.get_logger()
-
-@onready var _main_player := $Level/Characters/Chad as QuiverCharacter
-@onready var _player_hud := $HudLayer/PlayerHud
-@onready var _end_screen := $HudLayer/EndScreen as EndScreen
+@onready var _fight_room_2 := $Utilities/FightRoom2 as QuiverFightRoom
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -26,32 +21,32 @@ var _debug_logger := QuiverDebugLogger.get_logger()
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	randomize()
-	_player_hud.set_player_attributes(_main_player.attributes)
-	QuiverEditorHelper.connect_between(Events.player_died, _on_Events_player_died)
-	
-	_debug_logger.start_new_log()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_restart"):
-		reload_prototype()
+	super()
+	pass
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func reload_prototype() -> void:
-	Events.characters_reseted.emit()
-	get_tree().reload_current_scene()
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_Events_player_died() -> void:
-	_end_screen.open_end_screen(false)
+func _on_fight_2_spawner_all_waves_completed() -> void:
+	var has_completed_all_waves := true
+	
+	for spawner in get_tree().get_nodes_in_group("fight_2_spawner"):
+		if not (spawner as QuiverEnemySpawner).is_completed:
+			has_completed_all_waves = false
+			break
+	
+	if has_completed_all_waves:
+		_fight_room_2.setup_after_fight_room()
+
+
+func _on_boss_spawner_all_waves_completed() -> void:
+	_end_screen.open_end_screen(true)
 
 ### -----------------------------------------------------------------------------------------------

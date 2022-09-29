@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"BaseStage",
+"language": &"GDScript",
+"path": "res://stages/_base/base_stage.gd"
+}, {
 "base": "Control",
 "class": &"EndScreen",
 "language": &"GDScript",
@@ -185,6 +190,7 @@ _global_script_classes=[{
 "path": "res://stages/_base/obstacles/WallHitBox.gd"
 }]
 _global_script_class_icons={
+"BaseStage": "",
 "EndScreen": "",
 "QuiverAiState": "",
 "QuiverAiStateGroup": "",

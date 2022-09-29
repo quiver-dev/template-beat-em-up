@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bg001wshah5gv"]
+[gd_scene load_steps=32 format=3 uid="uid://bg001wshah5gv"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
+[ext_resource type="Script" path="res://stages/stage_01/stage_01.gd" id="2_08exp"]
 [ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_0.png" id="3_usn8u"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://stages/stage_01/background_elements/pavement/street_revised_straight.png" id="4_0uw5r"]
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="5_rhqxk"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd" id="18_5ae2i"]
 [ext_resource type="PackedScene" uid="uid://c6fsd7rck7j8f" path="res://characters/enemies/sargent/sarge.tscn" id="19_etsee"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="20_smh3p"]
+[ext_resource type="PackedScene" uid="uid://b37pgqu571dke" path="res://characters/enemies/tax_man/tax_man.tscn" id="20_uvj7e"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_player_detector.gd" id="21_ge31n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aax3r"]
@@ -31,42 +33,91 @@ _spawn_mode = 1
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e5ecd"]
 b = Vector2(0, 1080)
 
+[sub_resource type="Resource" id="Resource_pqjax"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("Marker2d")
+
+[sub_resource type="Resource" id="Resource_g811p"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("Marker2d")
+
+[sub_resource type="Resource" id="Resource_to3fe"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("Marker2d2")
+
+[sub_resource type="Resource" id="Resource_66t8k"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("Marker2d")
+
+[sub_resource type="Resource" id="Resource_wo8vf"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("Marker2d")
+
+[sub_resource type="Resource" id="Resource_u8ptc"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("19_etsee")
+_spawn_mode = 0
+_use_vector2 = false
+_target_node_path = NodePath("Marker2d2")
+
+[sub_resource type="Resource" id="Resource_ihlmd"]
+script = ExtResource("20_smh3p")
+_enemy_scene = ExtResource("20_uvj7e")
+_spawn_mode = 1
+
 [node name="Stage_01" instance=ExtResource("1_4lqd3")]
+script = ExtResource("2_08exp")
 
 [node name="Sky" type="Node2D" parent="Background" index="0"]
 position = Vector2(-10, -454)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("3_usn8u")
-length = 2
+length = 4
 separation = -4
 variation_textures = []
 variations_weights = [1.0]
-texture_sequence = [0, 0]
+texture_sequence = [0, 0, 0, 0]
 
 [node name="Pavement" type="Node2D" parent="Background" index="1"]
 position = Vector2(1104, 416)
 scale = Vector2(2, 2)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("4_0uw5r")
+length = 3
 separation = -480
 cap_left = ExtResource("5_rhqxk")
 cap_left_offset = Vector2(-583, 0)
 variation_textures = []
 variations_weights = [1.0]
-texture_sequence = [0]
+texture_sequence = [0, 0, 0]
 
 [node name="SideWalk" type="Node2D" parent="Background" index="2"]
 position = Vector2(426.363, 308.217)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("6_e0uvm")
-length = 22
+length = 43
 separation = -99
 cap_left = ExtResource("7_412kv")
 cap_left_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
 variations_weights = [1.0, 1.0, 1.0]
-texture_sequence = [1, 0, 1, 1, 0, 2, 0, 0, 0, 0, 1, 1, 2, 1, 0, 1, 2, 1, 2, 2, 2, 0]
+texture_sequence = [2, 2, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 1, 0, 0, 1, 2, 1, 0, 1, 0, 2, 1, 0, 2, 0, 2, 0, 1, 2, 0, 1, 2, 0]
 
 [node name="QuiverFence" type="Node2D" parent="Background" index="3"]
 position = Vector2(497.1, -150.617)
@@ -83,6 +134,21 @@ variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+[node name="QuiverFence2" type="Node2D" parent="Background" index="4"]
+position = Vector2(5553.6, -150.617)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("10_u6nh0")
+pole_texture = ExtResource("11_4ptr3")
+pole_distance = 15
+main_texture = ExtResource("12_ec2s5")
+length = 55
+cap_left = ExtResource("13_725xq")
+cap_left_offset = Vector2(-124, 0)
+cap_right = ExtResource("14_62tf3")
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 [node name="CeilingLimits" type="StaticBody2D" parent="Level/Colisions" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
 collision_layer = 8
@@ -95,7 +161,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_aax3r")
 metadata/collision_type = "default"
 
-[node name="FightRoom" type="ReferenceRect" parent="Utilities" index="0"]
+[node name="FightRoom1" type="ReferenceRect" parent="Utilities" index="0"]
 offset_left = 943.0
 offset_top = -280.0
 offset_right = 2863.0
@@ -109,7 +175,7 @@ limit_bottom = 1200
 _after_fight_use_new_room = true
 _after_fight_limit_left = 943
 _after_fight_limit_top = -280
-_after_fight_limit_right = 5442
+_after_fight_limit_right = 5986
 _after_fight_limit_bottom = 1200
 _after_fight_zoom = 1.0
 _after_fight_transition_duration = 0.8
@@ -118,24 +184,125 @@ preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
-[node name="QuiverEnemySpawner" type="Marker2D" parent="Utilities" index="1"]
-position = Vector2(2569, 697)
+[node name="QuiverEnemySpawner" type="Marker2D" parent="Utilities/FightRoom1" index="0"]
+position = Vector2(1645, 921)
 script = ExtResource("18_5ae2i")
-path_spawn_parent = NodePath("../../Level/Characters")
+path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_o2tqf")]]
 
-[node name="PlayerDetector" type="Area2D" parent="Utilities" index="2"]
-position = Vector2(1224, 268)
+[node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom1" index="1"]
+position = Vector2(281, 548)
 collision_layer = 0
 monitorable = false
 script = ExtResource("21_ge31n")
-path_fight_room = NodePath("../FightRoom")
+path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../QuiverEnemySpawner")]
 metadata/collision_type = "player_detector"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/PlayerDetector" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom1/PlayerDetector" index="0"]
 modulate = Color(1, 1, 0, 1)
 shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
-[connection signal="all_waves_completed" from="Utilities/QuiverEnemySpawner" to="Utilities/FightRoom" method="setup_after_fight_room"]
+[node name="FightRoom2" type="ReferenceRect" parent="Utilities" index="1"]
+offset_left = 3110.0
+offset_top = -404.0
+offset_right = 5990.0
+offset_bottom = 1291.0
+script = ExtResource("17_cjfi2")
+limit_left = 3110
+limit_top = -404
+limit_right = 5990
+limit_bottom = 1291
+zoom = 0.666667
+_after_fight_use_new_room = true
+_after_fight_limit_left = 3110
+_after_fight_limit_top = -280
+_after_fight_limit_right = 8342
+_after_fight_limit_bottom = 1200
+_after_fight_zoom = 1.0
+_after_fight_transition_duration = 0.8
+preview_camera = true
+preview_camera_color = Color(0.294118, 0, 0.509804, 1)
+preview_after_room = true
+preview_after_color = Color(0, 0.501961, 0.501961, 1)
+
+[node name="PlayerDetector2" type="Area2D" parent="Utilities/FightRoom2" index="0"]
+position = Vector2(1457, 697)
+collision_layer = 0
+monitorable = false
+script = ExtResource("21_ge31n")
+path_fight_room = NodePath("..")
+paths_enemy_spawners = [NodePath("../EnemySpawner1"), NodePath("../EnemySpawner2")]
+metadata/collision_type = "player_detector"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom2/PlayerDetector2" index="0"]
+modulate = Color(1, 1, 0, 1)
+shape = SubResource("SegmentShape2D_e5ecd")
+metadata/collision_type = "player_detector"
+
+[node name="EnemySpawner1" type="Marker2D" parent="Utilities/FightRoom2" index="1" groups=["fight_2_spawner"]]
+position = Vector2(2959, 1162)
+script = ExtResource("18_5ae2i")
+path_spawn_parent = NodePath("../../../Level/Characters")
+spawn_waves = [[SubResource("Resource_pqjax")], [SubResource("Resource_g811p"), SubResource("Resource_to3fe")]]
+
+[node name="Marker2d" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner1" index="0"]
+position = Vector2(-527, -165)
+
+[node name="Marker2d2" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner1" index="1"]
+position = Vector2(-457, 209)
+
+[node name="EnemySpawner2" type="Marker2D" parent="Utilities/FightRoom2" index="2" groups=["fight_2_spawner"]]
+position = Vector2(-89, 1162)
+script = ExtResource("18_5ae2i")
+path_spawn_parent = NodePath("../../../Level/Characters")
+spawn_waves = [[SubResource("Resource_66t8k")], [SubResource("Resource_wo8vf"), SubResource("Resource_u8ptc")]]
+
+[node name="Marker2d" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner2" index="0"]
+position = Vector2(591, 197)
+
+[node name="Marker2d2" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner2" index="1"]
+position = Vector2(432, -178)
+
+[node name="FightRoom3" type="ReferenceRect" parent="Utilities" index="2"]
+offset_left = 6450.0
+offset_top = -280.0
+offset_right = 9330.0
+offset_bottom = 1200.0
+script = ExtResource("17_cjfi2")
+limit_left = 6450
+limit_top = -280
+limit_right = 9330
+limit_bottom = 1200
+_after_fight_use_new_room = false
+_after_fight_transition_duration = 0.8
+preview_camera = true
+preview_camera_color = Color(0.294118, 0, 0.509804, 1)
+preview_after_room = true
+preview_after_color = Color(0, 0.501961, 0.501961, 1)
+
+[node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom3" index="0"]
+position = Vector2(695, 710)
+collision_layer = 0
+monitorable = false
+script = ExtResource("21_ge31n")
+path_fight_room = NodePath("..")
+paths_enemy_spawners = [NodePath("../BossSpawner")]
+metadata/collision_type = "player_detector"
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom3/PlayerDetector" index="0"]
+modulate = Color(1, 1, 0, 1)
+shape = SubResource("SegmentShape2D_e5ecd")
+metadata/collision_type = "player_detector"
+
+[node name="BossSpawner" type="Marker2D" parent="Utilities/FightRoom3" index="1"]
+position = Vector2(2118, 979)
+script = ExtResource("18_5ae2i")
+path_spawn_parent = NodePath("../../../Level/Characters")
+spawn_waves = [[SubResource("Resource_ihlmd")]]
+
+[connection signal="all_waves_completed" from="Utilities/FightRoom1/QuiverEnemySpawner" to="Utilities/FightRoom1" method="setup_after_fight_room"]
+[connection signal="all_waves_completed" from="Utilities/FightRoom2/EnemySpawner1" to="." method="_on_fight_2_spawner_all_waves_completed"]
+[connection signal="all_waves_completed" from="Utilities/FightRoom2/EnemySpawner2" to="." method="_on_fight_2_spawner_all_waves_completed"]
+[connection signal="all_waves_completed" from="Utilities/FightRoom3/BossSpawner" to="." method="_on_boss_spawner_all_waves_completed"]
