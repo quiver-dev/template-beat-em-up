@@ -1,4 +1,5 @@
 @tool
+class_name QuiverDebugPropertyLabel
 extends Label
 
 ## Write your doc string for this file here
@@ -16,7 +17,7 @@ extends Label
 	set(value):
 		path_reference = value
 		update_configuration_warnings()
-@export var properties: PackedStringArray = []:
+@export var properties: PackedStringArray:
 	set(value):
 		properties = value
 		update_configuration_warnings()

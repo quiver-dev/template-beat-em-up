@@ -255,6 +255,7 @@ metadata/collision_type = "player_detector"
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom2/PlayerDetector2" index="0"]
 modulate = Color(1, 1, 0, 1)
+position = Vector2(-242, 0)
 shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 

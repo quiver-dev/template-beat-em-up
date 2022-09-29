@@ -94,6 +94,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_debug_logger.gd"
 }, {
+"base": "Label",
+"class": &"QuiverDebugPropertyLabel",
+"language": &"GDScript",
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd"
+}, {
 "base": "RefCounted",
 "class": &"QuiverEditorHelper",
 "language": &"GDScript",
@@ -207,6 +212,7 @@ _global_script_class_icons={
 "QuiverCustomOverlay": "",
 "QuiverCyclicHelper": "",
 "QuiverDebugLogger": "",
+"QuiverDebugPropertyLabel": "",
 "QuiverEditorHelper": "",
 "QuiverEnemyCharacter": "",
 "QuiverEnemySpawner": "",

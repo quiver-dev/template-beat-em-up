@@ -66,7 +66,7 @@ func _process(_delta: float) -> void:
 
 func delimitate_room(
 		p_limit_left: int, p_limit_top: int, p_limit_right: int, p_limit_bottom: int,
-		p_zoom: float, p_duration := 0.3
+		p_zoom: float, p_duration: float
 ) -> void:
 	if _tween:
 		_tween.kill()

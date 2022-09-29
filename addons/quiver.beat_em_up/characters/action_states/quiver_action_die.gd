@@ -62,7 +62,8 @@ func _on_skin_animation_finished() -> void:
 	if _character.is_in_group("players"):
 		# This was activated in the knockout launch state the player died.
 		Engine.time_scale = 1.0
-	_character.queue_free()
+	else:
+		_character.queue_free()
 	Events.player_died.emit()
 
 ### -----------------------------------------------------------------------------------------------

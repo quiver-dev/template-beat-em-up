@@ -168,8 +168,8 @@ max_wait = 2.0
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase1" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"ComboAttack": 0.101885,
-"DashAttack": 1.89812
+"ComboAttack": 1.40816,
+"DashAttack": 0.591838
 }
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="0"]
@@ -191,6 +191,8 @@ script = ExtResource("18_thg3o")
 
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
+pool_positions = []
+pool_nodes = []
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -219,9 +221,9 @@ max_wait = 1.0
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"AreaAttack": 1.20646,
-"ComboAttack": 0.59407,
-"DashAttack": 1.19947
+"AreaAttack": 0.604577,
+"ComboAttack": 1.19207,
+"DashAttack": 1.20335
 }
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="0"]
@@ -243,6 +245,8 @@ script = ExtResource("18_thg3o")
 
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
+pool_positions = []
+pool_nodes = []
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -308,6 +312,8 @@ script = ExtResource("18_thg3o")
 
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
+pool_positions = []
+pool_nodes = []
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -339,13 +345,15 @@ theme = ExtResource("26_sum7q")
 alignment = 1
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+layout_mode = 2
 offset_right = 248.0
 offset_bottom = 26.0
 script = ExtResource("25_7uuvm")
 path_reference = NodePath("../../StateMachine")
-properties = PackedStringArray("state_name", "_consecutive_hits")
+properties = PackedStringArray("state_name")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+layout_mode = 2
 offset_top = 26.0
 offset_right = 248.0
 offset_bottom = 52.0
@@ -354,6 +362,7 @@ path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="Wait" type="Label" parent="DebugLabels" index="2"]
+layout_mode = 2
 offset_top = 52.0
 offset_right = 248.0
 offset_bottom = 78.0
