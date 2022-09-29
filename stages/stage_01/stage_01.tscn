@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bg001wshah5gv"]
+[gd_scene load_steps=33 format=3 uid="uid://bg001wshah5gv"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -22,8 +22,11 @@
 [ext_resource type="PackedScene" uid="uid://b37pgqu571dke" path="res://characters/enemies/tax_man/tax_man.tscn" id="20_uvj7e"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_player_detector.gd" id="21_ge31n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aax3r"]
-size = Vector2(87, 5867.68)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hwab5"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7qd0i"]
+distance = 80.0
 
 [sub_resource type="Resource" id="Resource_o2tqf"]
 script = ExtResource("20_smh3p")
@@ -149,16 +152,31 @@ variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+[node name="Colisions" parent="Level" index="2"]
+visible = true
+
 [node name="CeilingLimits" type="StaticBody2D" parent="Level/Colisions" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(733, 414)
 collision_layer = 8
 collision_mask = 17
 
 [node name="Top" type="CollisionShape2D" parent="Level/Colisions/CeilingLimits" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
-position = Vector2(2767.84, 379.007)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_aax3r")
+shape = SubResource("WorldBoundaryShape2D_hwab5")
+metadata/collision_type = "default"
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="Level/Colisions/CeilingLimits" index="1"]
+polygon = PackedVector2Array(0, 0, -324, 2, -500, 21, -594, 52, -715, 113, -766, 156, -761, -97, -144, -91)
+
+[node name="BottomLimit" type="StaticBody2D" parent="Level/Colisions" index="1"]
+position = Vector2(-29, 113)
+collision_layer = 4
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Level/Colisions/BottomLimit" index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(126, 1090)
+shape = SubResource("WorldBoundaryShape2D_7qd0i")
 metadata/collision_type = "default"
 
 [node name="FightRoom1" type="ReferenceRect" parent="Utilities" index="0"]
@@ -185,7 +203,7 @@ preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
 [node name="QuiverEnemySpawner" type="Marker2D" parent="Utilities/FightRoom1" index="0"]
-position = Vector2(1645, 921)
+position = Vector2(1649, 1370)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_o2tqf")]]
