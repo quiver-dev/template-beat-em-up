@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdubxg1sltsho"]
+
+[ext_resource type="Script" path="res://stages/_base/base_stage.gd" id="1_l8sat"]
+[ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="15_n533k"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/level_camera/quiver_level_camera.tscn" id="16_hjekt"]
+[ext_resource type="Theme" uid="uid://eclai8uhh1wh" path="res://theme_resources/theme_debug.tres" id="22_p6usr"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="23_d32wv"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="24_l458o"]
+[ext_resource type="PackedScene" path="res://gameplay_ui/pause_menu/PauseMenu.tscn" id="25_acd3u"]
+[ext_resource type="PackedScene" uid="uid://d23ux8ibhj1dl" path="res://gameplay_ui/end_screen/end_screen.tscn" id="26_nk1mq"]
+
+[node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_l8sat")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Level" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Characters" type="Node2D" parent="Level"]
+y_sort_enabled = true
+
+[node name="Chad" parent="Level/Characters" instance=ExtResource("15_n533k")]
+position = Vector2(536, 827)
+
+[node name="LevelCamera" parent="Level/Characters/Chad" instance=ExtResource("16_hjekt")]
+limit_top = -280
+limit_bottom = 1200
+editor_draw_limits = true
+
+[node name="Objects" type="Node2D" parent="Level"]
+
+[node name="Colisions" type="Node2D" parent="Level"]
+visible = false
+
+[node name="Foreground" type="Node2D" parent="."]
+
+[node name="Utilities" type="Node2D" parent="."]
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="HudLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -98.0
+offset_bottom = 29.0
+grow_horizontal = 0
+theme = ExtResource("22_p6usr")
+text = "version: %s"
+horizontal_alignment = 2
+script = ExtResource("23_d32wv")
+
+[node name="PlayerHud" parent="HudLayer" instance=ExtResource("24_l458o")]
+
+[node name="PauseMenu" parent="HudLayer" instance=ExtResource("25_acd3u")]
+
+[node name="EndScreen" parent="HudLayer" instance=ExtResource("26_nk1mq")]

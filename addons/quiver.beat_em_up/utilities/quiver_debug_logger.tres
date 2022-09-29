@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bu3hccexh0fof"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://e7n4anxb7xi0"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_debug_logger.gd" id="1_epjbq"]
 

@@ -15,6 +15,8 @@ enum TaxManPhases { PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_DIE }
 
 #--- constants ------------------------------------------------------------------------------------
 
+const QuiverAiGoToClosestPosition := preload("res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd")
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -46,6 +48,7 @@ func _ready() -> void:
 		return
 	
 	_health_previous = attributes.get_health_as_percentage()
+	_populate_dash_positions_from_stage()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -59,6 +62,20 @@ func can_deny_grabs() -> bool:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _populate_dash_positions_from_stage() -> void:
+	var possible_positions := get_tree().get_nodes_in_group("tax_man_dash_positions")
+	assert(\
+			not possible_positions.is_empty(), \
+			"Found no dash marker nodes for taxman in current stage."\
+			+ ' Add some nodes to the group "tax_man_dash_positions"'\
+	)
+	var dash_position_states := get_tree().get_nodes_in_group("tm_dash_position_states")
+	for node in dash_position_states:
+		var state := node as QuiverAiGoToClosestPosition
+		if state != null:
+			state.pool_nodes = possible_positions
+
 
 func _update_cumulated_damage() -> void:
 	_current_cumulated_damage += _health_previous - attributes.get_health_as_percentage()

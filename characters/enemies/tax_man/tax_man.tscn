@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b37pgqu571dke"]
+[gd_scene load_steps=30 format=3 uid="uid://b37pgqu571dke"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
@@ -24,11 +24,9 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_attack.gd" id="20_38efy"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_align_to_closest_player.gd" id="21_ghwwy"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="22_wmall"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/screen_positions_canvas_layer.gd" id="23_htygh"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/screen_marker.gd" id="23_s6olh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="24_jvcip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="25_7uuvm"]
-[ext_resource type="Theme" uid="uid://duq6rjpc3ffy5" path="res://theme_resources/theme_debug.tres" id="26_sum7q"]
+[ext_resource type="Theme" uid="uid://eclai8uhh1wh" path="res://theme_resources/theme_debug.tres" id="26_sum7q"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/wait_debug_label.gd" id="27_dlvh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
@@ -170,10 +168,9 @@ max_wait = 2.0
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase1" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"ComboAttack": 1.40325,
-"DashAttack": 0.596751
+"ComboAttack": 1.40816,
+"DashAttack": 0.591838
 }
-allow_repeated = true
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
@@ -192,10 +189,10 @@ fallback_state_path = "Ground/Move/IdleAi"
 [node name="DashAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
-[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0"]
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
-_pool_positions = []
-_pool_nodepaths = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+pool_positions = []
+pool_nodes = []
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -224,11 +221,10 @@ max_wait = 1.0
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"AreaAttack": 1.20646,
-"ComboAttack": 0.59407,
-"DashAttack": 1.19947
+"AreaAttack": 0.604577,
+"ComboAttack": 1.19207,
+"DashAttack": 1.20335
 }
-allow_repeated = true
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
@@ -247,10 +243,10 @@ fallback_state_path = "Ground/Move/IdleAi"
 [node name="DashAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
-[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0"]
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
-_pool_positions = []
-_pool_nodepaths = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+pool_positions = []
+pool_nodes = []
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -269,11 +265,10 @@ fallback_state_path = "Ground/Move/IdleAi"
 [node name="AreaAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="2"]
 script = ExtResource("18_thg3o")
 
-[node name="GoToPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="0"]
-script = ExtResource("17_7i618")
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="0"]
+script = ExtResource("19_3m5ed")
+_max_chase_time = 5.0
 path_follow_state = "Ground/Move/Follow"
-use_node = true
-fallback_node_path = NodePath("../../../../../ScreenPositions/ScreenCenter")
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="1"]
 script = ExtResource("20_38efy")
@@ -297,7 +292,6 @@ _weights_by_child = {
 "ComboAttack": 0.703429,
 "DashAttack": 1.29657
 }
-allow_repeated = true
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="0"]
 script = ExtResource("18_thg3o")
@@ -316,10 +310,10 @@ fallback_state_path = "Ground/Move/IdleAi"
 [node name="DashAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
-[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0"]
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
-_pool_positions = []
-_pool_nodepaths = [NodePath("../../../../../ScreenPositions/DashAttackLeft"), NodePath("../../../../../ScreenPositions/DashAttackRight")]
+pool_positions = []
+pool_nodes = []
 path_follow_state = "Ground/Move/Follow"
 use_node = false
 fallback_position = Vector2(inf, inf)
@@ -351,13 +345,15 @@ theme = ExtResource("26_sum7q")
 alignment = 1
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+layout_mode = 2
 offset_right = 248.0
 offset_bottom = 26.0
 script = ExtResource("25_7uuvm")
 path_reference = NodePath("../../StateMachine")
-properties = PackedStringArray("state_name", "_consecutive_hits")
+properties = PackedStringArray("state_name")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+layout_mode = 2
 offset_top = 26.0
 offset_right = 248.0
 offset_bottom = 52.0
@@ -366,50 +362,13 @@ path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="Wait" type="Label" parent="DebugLabels" index="2"]
+layout_mode = 2
 offset_top = 52.0
 offset_right = 248.0
 offset_bottom = 78.0
 script = ExtResource("27_dlvh8")
 path_reference = NodePath("")
 properties = PackedStringArray("time_left")
-
-[node name="ScreenPositions" type="CanvasLayer" parent="." index="5"]
-layer = -1
-script = ExtResource("23_htygh")
-
-[node name="ScreenCenter" type="Control" parent="ScreenPositions" index="0"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("23_s6olh")
-
-[node name="DashAttackLeft" type="Control" parent="ScreenPositions" index="1"]
-layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 300.0
-offset_right = 300.0
-grow_vertical = 2
-script = ExtResource("23_s6olh")
-
-[node name="DashAttackRight" type="Control" parent="ScreenPositions" index="2"]
-layout_mode = 3
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_right = -300.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("23_s6olh")
 
 [connection signal="phase_changed_to" from="." to="AiStateMachine" method="_on_tax_man_phase_changed_to"]
 [connection signal="phase_changed_to" from="." to="DebugLabels/Wait" method="_on_tax_man_phase_changed_to"]

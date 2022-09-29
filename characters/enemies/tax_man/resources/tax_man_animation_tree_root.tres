@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=90 format=3 uid="uid://tmtk1seql8tk"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=90 format=3 uid="uid://bdjjsiwleeavm"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gghh2"]
 animation = &"tax_man/attack_area_right"

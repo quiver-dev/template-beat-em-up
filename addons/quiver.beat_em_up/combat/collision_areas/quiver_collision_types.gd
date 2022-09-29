@@ -84,6 +84,14 @@ const PRESETS = {
 		"collision_mask": 0,
 		"character_type": QuiverCombatSystem.CharacterTypes.BOUNCE_OBSTACLE,
 	},
+	"player_detector": { 
+		META_KEY: "player_detector",
+		"modulate": Color("ffff00"),
+		"monitoring": true,
+		"monitorable": false,
+		"collision_layer": 0,
+		"collision_mask": 1,
+	},
 	"custom": {
 		META_KEY: "custom",
 		"modulate": Color("0099b3"),

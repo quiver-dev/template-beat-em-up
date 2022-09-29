@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uwl1nm0n31yj"
-path="res://.godot/imported/placeholder_bg.png-de4678e355ed40d9710cd76dc2ab1beb.ctex"
+uid="uid://d2tan12hotr8u"
+path="res://.godot/imported/sidewalk_curve_50.png-8ec8c553e41d1e86ec7f3bb8b5c1ef33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholder_bg.png"
-dest_files=["res://.godot/imported/placeholder_bg.png-de4678e355ed40d9710cd76dc2ab1beb.ctex"]
+source_file="res://stages/stage_01/background_elements/sidewalk/sidewalk_curve_50.png"
+dest_files=["res://.godot/imported/sidewalk_curve_50.png-8ec8c553e41d1e86ec7f3bb8b5c1ef33.ctex"]
 
 [params]
 

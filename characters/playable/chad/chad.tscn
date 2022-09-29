@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_aj842"]
 [ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
-[ext_resource type="Resource" uid="uid://pr3gbheb7kdw" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
+[ext_resource type="Resource" uid="uid://chi2yfq5yt81k" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5sh7r"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="6_jtgbp"]
@@ -30,7 +30,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_n08m6"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="21_knrf0"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd" id="22_twsvw"]
-[ext_resource type="Theme" uid="uid://duq6rjpc3ffy5" path="res://theme_resources/theme_debug.tres" id="30_iwktm"]
+[ext_resource type="Theme" uid="uid://eclai8uhh1wh" path="res://theme_resources/theme_debug.tres" id="30_iwktm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uueb"]
 radius = 20.0
@@ -244,20 +244,11 @@ script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
 properties = PackedStringArray("velocity", "is_on_air", "attributes:ground_level")
 
-[node name="ChadSkin" type="Label" parent="DebugLabels" index="1"]
+[node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
 layout_mode = 2
 offset_top = 26.0
 offset_right = 336.0
 offset_bottom = 52.0
-script = ExtResource("12_sub7a")
-path_reference = NodePath("../../ChadSkin")
-properties = PackedStringArray("position", "_debug_skin_position")
-
-[node name="StateMachine" type="Label" parent="DebugLabels" index="2"]
-layout_mode = 2
-offset_top = 52.0
-offset_right = 336.0
-offset_bottom = 78.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")

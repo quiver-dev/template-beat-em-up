@@ -9,9 +9,13 @@ extends EditorPlugin
 
 #--- constants ------------------------------------------------------------------------------------
 
+const COLOR_GODOT_ORANGE = Color("ff786b")
+const INVALID_HANDLE = -1
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 const PATH_CUSTOM_INSPECTORS = "res://addons/quiver.beat_em_up/custom_inspectors/"
+const PATH_CUSTOM_OVERLAYS = "res://addons/quiver.beat_em_up/custom_overlays/"
 
 const PATH_AUTOLOADS = {
 	"HitFreeze": "res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze.tscn",
@@ -41,6 +45,9 @@ var SETTINGS = {
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _loaded_inspectors := {}
+var _loaded_overlays := []
+
+var _current_overlay_handler: QuiverCustomOverlay = null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -49,6 +56,7 @@ var _loaded_inspectors := {}
 
 func _enter_tree() -> void:
 	_add_custom_inspectors()
+	_add_custom_overlays()
 
 
 func _exit_tree() -> void:
@@ -63,6 +71,56 @@ func _enable_plugin() -> void:
 func _disable_plugin() -> void:
 	_remove_plugin_settings()
 	_remove_autoloads()
+
+
+func _handles(object) -> bool:
+	var value := false
+	
+	for overlay in _loaded_overlays:
+		
+		value = (overlay as QuiverCustomOverlay).handles(object)
+		if value:
+			if _current_overlay_handler != null and _current_overlay_handler != overlay:
+				_current_overlay_handler.make_visible(false)
+			
+			_current_overlay_handler = overlay
+			break
+	
+	if not value and _current_overlay_handler != null:
+		_current_overlay_handler.make_visible(false)
+		_current_overlay_handler = null
+	
+	return value
+
+
+func _edit(object) -> void:
+	if _current_overlay_handler == null:
+		return
+	
+	_current_overlay_handler.edit(object)
+
+
+func _make_visible(visible: bool) -> void:
+	if _current_overlay_handler == null:
+		return
+	
+	_current_overlay_handler.make_visible(visible)
+
+
+func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
+	if _current_overlay_handler == null:
+		return
+	
+	_current_overlay_handler.forward_canvas_draw_over_viewport(viewport_control)
+
+
+func _forward_canvas_gui_input(event: InputEvent) -> bool:
+	var has_handled := false
+	
+	if _current_overlay_handler != null:
+		has_handled = _current_overlay_handler.forward_canvas_gui_input(event)
+	
+	return has_handled
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -107,6 +165,30 @@ func _load_custom_inspector_from(folder: String) -> void:
 func _remove_custom_inspectors() -> void:
 	for inspector in _loaded_inspectors.values():
 		remove_inspector_plugin(inspector)
+
+
+func _add_custom_overlays() -> void:
+	var dir := Directory.new()
+	var error := dir.open(PATH_CUSTOM_OVERLAYS)
+	
+	if error == OK:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while not file_name.is_empty():
+			if file_name.ends_with(".gd"): 
+				var script := load(PATH_CUSTOM_OVERLAYS.path_join(file_name)) as GDScript
+				var object := script.new() as QuiverCustomOverlay
+				if object != null:
+					object.main_plugin = self
+					_loaded_overlays.append(object)
+				
+			file_name = dir.get_next()
+	else:
+		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
+			error, PATH_CUSTOM_INSPECTORS
+		]
+		push_error(error_msg)
+
 
 
 func _add_plugin_settings() -> void:
