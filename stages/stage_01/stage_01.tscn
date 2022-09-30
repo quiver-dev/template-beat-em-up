@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bg001wshah5gv"]
+[gd_scene load_steps=33 format=3 uid="uid://bn06au4uiw6kx"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dtc4d05g37g73" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__00.png" id="12_ec2s5"]
 [ext_resource type="Texture2D" uid="uid://bfsf12el1igux" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__01.png" id="13_725xq"]
 [ext_resource type="Texture2D" uid="uid://dji2wpv6hk84w" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__02.png" id="14_62tf3"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_figth_room.gd" id="17_cjfi2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fight_room.gd" id="17_cjfi2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd" id="18_5ae2i"]
 [ext_resource type="PackedScene" uid="uid://c6fsd7rck7j8f" path="res://characters/enemies/sargent/sarge.tscn" id="19_etsee"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="20_smh3p"]
@@ -152,28 +152,25 @@ variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[node name="Colisions" parent="Level" index="2"]
-visible = true
-
-[node name="CeilingLimits" type="StaticBody2D" parent="Level/Colisions" index="0"]
+[node name="CeilingLimits" type="StaticBody2D" parent="Level/Collisions" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(733, 414)
 collision_layer = 8
 collision_mask = 17
 
-[node name="Top" type="CollisionShape2D" parent="Level/Colisions/CeilingLimits" index="0"]
+[node name="Top" type="CollisionShape2D" parent="Level/Collisions/CeilingLimits" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
 shape = SubResource("WorldBoundaryShape2D_hwab5")
 metadata/collision_type = "default"
 
-[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="Level/Colisions/CeilingLimits" index="1"]
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="Level/Collisions/CeilingLimits" index="1"]
 polygon = PackedVector2Array(0, 0, -324, 2, -500, 21, -594, 52, -715, 113, -766, 156, -761, -97, -144, -91)
 
-[node name="BottomLimit" type="StaticBody2D" parent="Level/Colisions" index="1"]
+[node name="BottomLimit" type="StaticBody2D" parent="Level/Collisions" index="1"]
 position = Vector2(-29, 113)
 collision_layer = 4
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Level/Colisions/BottomLimit" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Level/Collisions/BottomLimit" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(126, 1090)
 shape = SubResource("WorldBoundaryShape2D_7qd0i")

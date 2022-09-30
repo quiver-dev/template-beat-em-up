@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://stages/_base/base_stage.gd" id="1_l8sat"]
 [ext_resource type="PackedScene" uid="uid://bw73udc68acbk" path="res://characters/playable/chad/chad.tscn" id="15_n533k"]
-[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/level_camera/quiver_level_camera.tscn" id="16_hjekt"]
+[ext_resource type="PackedScene" uid="uid://dcmun55g3ualx" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/level_camera/quiver_level_camera.tscn" id="16_hjekt"]
 [ext_resource type="Theme" uid="uid://eclai8uhh1wh" path="res://theme_resources/theme_debug.tres" id="22_p6usr"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="23_d32wv"]
 [ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_hud.tscn" id="24_l458o"]
@@ -30,7 +30,7 @@ editor_draw_limits = true
 
 [node name="Objects" type="Node2D" parent="Level"]
 
-[node name="Colisions" type="Node2D" parent="Level"]
+[node name="Collisions" type="Node2D" parent="Level"]
 visible = false
 
 [node name="Foreground" type="Node2D" parent="."]

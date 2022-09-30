@@ -122,7 +122,7 @@ _global_script_classes=[{
 "base": "ReferenceRect",
 "class": &"QuiverFightRoom",
 "language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_figth_room.gd"
+"path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fight_room.gd"
 }, {
 "base": "Area2D",
 "class": &"QuiverGrabBox",
