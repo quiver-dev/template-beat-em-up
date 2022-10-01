@@ -179,6 +179,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd"
 }, {
+"base": "Sprite2D",
+"class": &"SkyBox",
+"language": &"GDScript",
+"path": "res://stages/_base/skyboxes/skybox.gd"
+}, {
+"base": "Resource",
+"class": &"SkyBoxExtraTextureData",
+"language": &"GDScript",
+"path": "res://stages/_base/skyboxes/skybox_extra_texture_data.gd"
+}, {
 "base": "Resource",
 "class": &"SpawnData",
 "language": &"GDScript",
@@ -229,6 +239,8 @@ _global_script_class_icons={
 "QuiverState": "",
 "QuiverStateMachine": "",
 "QuiverStateSequence": "",
+"SkyBox": "",
+"SkyBoxExtraTextureData": "",
 "SpawnData": "",
 "TaxManBoss": "",
 "WallHitBox": ""

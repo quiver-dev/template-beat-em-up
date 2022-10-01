@@ -1,12 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://u6qo65bdmiq2"]
+[gd_scene load_steps=21 format=3 uid="uid://ca6iowcjexjvn"]
 
 [ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_0.png" id="1_f6u5w"]
-[ext_resource type="Shader" path="res://stages/stage_01/background_elements/skyboxes/gradient_map.gdshader" id="1_vpob3"]
+[ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="1_vpob3"]
 [ext_resource type="Texture2D" uid="uid://d204xxt3ynf3w" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_1.png" id="2_mvoff"]
-[ext_resource type="Script" path="res://stages/stage_01/background_elements/skyboxes/skybox.gd" id="2_tgyol"]
+[ext_resource type="Script" path="res://stages/_base/skyboxes/skybox.gd" id="2_tgyol"]
 [ext_resource type="Texture2D" uid="uid://cagmug6l4do2d" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_2.png" id="3_w15ne"]
 [ext_resource type="Texture2D" uid="uid://crhmtrragtcys" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_3.png" id="4_i5v0l"]
 [ext_resource type="Texture2D" uid="uid://byws334rpqvi0" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_5.png" id="5_wwtyb"]
+[ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_extra_texture_data.gd" id="8_eudom"]
 
 [sub_resource type="Gradient" id="Gradient_qs8id"]
 offsets = PackedFloat32Array(0, 0.259, 0.571, 0.71, 0.972)
@@ -42,6 +43,26 @@ colors = PackedColorArray(0.0268908, 0.00952381, 0.0347339, 1, 0.376471, 0.13333
 offsets = PackedFloat32Array(0.29653, 0.488959, 0.70347, 0.892744, 1)
 colors = PackedColorArray(0.135455, 0.0656743, 0.398438, 1, 0.249902, 0.0809874, 0.550781, 1, 0.282583, 0.180845, 0.726451, 1, 0.372949, 0.339148, 0.660156, 1, 0.415679, 0.525154, 0.835938, 1)
 
+[sub_resource type="Resource" id="Resource_5lxln"]
+script = ExtResource("8_eudom")
+speed = 60
+color_mode = 1
+
+[sub_resource type="Resource" id="Resource_luhn3"]
+script = ExtResource("8_eudom")
+speed = 40
+color_mode = 1
+
+[sub_resource type="Resource" id="Resource_stf5x"]
+script = ExtResource("8_eudom")
+speed = 40
+color_mode = 1
+
+[sub_resource type="Resource" id="Resource_e3nkg"]
+script = ExtResource("8_eudom")
+speed = 10
+color_mode = 1
+
 [node name="Skybox" type="Sprite2D"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_3tgxg")
@@ -50,42 +71,12 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 5760, 540)
 script = ExtResource("2_tgyol")
-gradients = [SubResource("Gradient_8ykcn"), SubResource("Gradient_05nkt"), SubResource("Gradient_xqygs"), SubResource("Gradient_b27pn"), SubResource("Gradient_81enn")]
-cloud1_speed = 15.0
-cloud2_speed = 30.0
-cloud3_speed = 60.0
-cloud4_speed = 120.0
-
-[node name="Cloud1" type="Sprite2D" parent="."]
-texture_repeat = 2
-use_parent_material = true
-texture = ExtResource("2_mvoff")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 5760, 540)
-
-[node name="Cloud2" type="Sprite2D" parent="."]
-texture_repeat = 2
-use_parent_material = true
-texture = ExtResource("3_w15ne")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 5760, 540)
-
-[node name="Cloud3" type="Sprite2D" parent="."]
-visible = false
-texture_repeat = 2
-use_parent_material = true
-texture = ExtResource("4_i5v0l")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 5760, 540)
-
-[node name="Cloud4" type="Sprite2D" parent="."]
-visible = false
-texture_repeat = 2
-use_parent_material = true
-texture = ExtResource("5_wwtyb")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 5760, 540)
+is_playing = false
+_gradients = [SubResource("Gradient_8ykcn"), SubResource("Gradient_05nkt"), SubResource("Gradient_xqygs"), SubResource("Gradient_b27pn"), SubResource("Gradient_81enn")]
+extra_textures = [ExtResource("2_mvoff"), ExtResource("3_w15ne"), ExtResource("4_i5v0l"), ExtResource("5_wwtyb")]
+extra_textures_data = {
+4117513665940559565: SubResource("Resource_5lxln"),
+4785992317269572441: SubResource("Resource_luhn3"),
+5981265806675957122: SubResource("Resource_stf5x"),
+9107773377900830858: SubResource("Resource_e3nkg")
+}
