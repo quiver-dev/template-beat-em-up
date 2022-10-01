@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://u6qo65bdmiq2"]
+[gd_scene load_steps=16 format=3 uid="uid://u6qo65bdmiq2"]
 
 [ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_0.png" id="1_f6u5w"]
 [ext_resource type="Shader" path="res://stages/stage_01/background_elements/skyboxes/gradient_map.gdshader" id="1_vpob3"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://byws334rpqvi0" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_5.png" id="5_wwtyb"]
 
 [sub_resource type="Gradient" id="Gradient_qs8id"]
-offsets = PackedFloat32Array(0.258675, 0.570978, 0.709779, 0.971609)
-colors = PackedColorArray(0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
+offsets = PackedFloat32Array(0, 0.259, 0.571, 0.71, 0.972)
+colors = PackedColorArray(0, 0.0912482, 0.219512, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fbtva"]
 gradient = SubResource("Gradient_qs8id")
@@ -22,66 +22,25 @@ shader_parameter/gradient = SubResource("GradientTexture1D_fbtva")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
 
-[sub_resource type="Animation" id="Animation_dgybh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/gradient:gradient:offsets")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedFloat32Array(0.258675, 0.570978, 0.709779, 0.971609)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/gradient:gradient:colors")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedColorArray(0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)]
-}
+[sub_resource type="Gradient" id="Gradient_8ykcn"]
+offsets = PackedFloat32Array(0, 0.259, 0.571, 0.71, 0.972)
+colors = PackedColorArray(0, 0.0912482, 0.219512, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
 
-[sub_resource type="Animation" id="Animation_7any3"]
-resource_name = "sunset"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/gradient:gradient:offsets")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.7, 5.5, 7, 8.2, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [PackedFloat32Array(0, 0.258675, 0.570978, 0.709779, 0.971609), PackedFloat32Array(0, 0.258675, 0.435331, 0.656151, 0.971609), PackedFloat32Array(0, 0.258675, 0.719243, 0.84858, 0.971609), PackedFloat32Array(0, 0.309148, 0.466877, 0.883281, 1), PackedFloat32Array(0.29653, 0.488959, 0.70347, 0.892744, 1), PackedFloat32Array(0.29653, 0.488959, 0.70347, 0.892744, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/gradient:gradient:colors")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.7, 5.5, 7, 8.2, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [PackedColorArray(0, 0.0912482, 0.219512, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1), PackedColorArray(0, 0.0456241, 0.109756, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1), PackedColorArray(0, 0.0557628, 0.134146, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1), PackedColorArray(0.0268908, 0.00952381, 0.0347339, 1, 0.376471, 0.133333, 0.486275, 1, 0.490196, 0.247059, 0.8, 1, 0.972549, 0.639216, 0.580392, 1, 0.997048, 0.928841, 0.961117, 1), PackedColorArray(0.135455, 0.0656743, 0.398438, 1, 0.249902, 0.0809874, 0.550781, 1, 0.282583, 0.180845, 0.726451, 1, 0.372949, 0.339148, 0.660156, 1, 0.415679, 0.525154, 0.835938, 1), PackedColorArray(0.135455, 0.0656743, 0.398438, 1, 0.249902, 0.0809874, 0.550781, 1, 0.282583, 0.180845, 0.726451, 1, 0.372949, 0.339148, 0.660156, 1, 0.415679, 0.525154, 0.835938, 1)]
-}
+[sub_resource type="Gradient" id="Gradient_05nkt"]
+offsets = PackedFloat32Array(0, 0.259, 0.435, 0.656, 0.972)
+colors = PackedColorArray(0, 0.0456241, 0.109756, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0g5ad"]
-_data = {
-"RESET": SubResource("Animation_dgybh"),
-"sunset": SubResource("Animation_7any3")
-}
+[sub_resource type="Gradient" id="Gradient_xqygs"]
+offsets = PackedFloat32Array(0, 0.258675, 0.719243, 0.84858, 0.971609)
+colors = PackedColorArray(0, 0.0557628, 0.134146, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
+
+[sub_resource type="Gradient" id="Gradient_b27pn"]
+offsets = PackedFloat32Array(0, 0.309148, 0.466877, 0.883281, 1)
+colors = PackedColorArray(0.0268908, 0.00952381, 0.0347339, 1, 0.376471, 0.133333, 0.486275, 1, 0.490196, 0.247059, 0.8, 1, 0.972549, 0.639216, 0.580392, 1, 0.997048, 0.928841, 0.961117, 1)
+
+[sub_resource type="Gradient" id="Gradient_81enn"]
+offsets = PackedFloat32Array(0.29653, 0.488959, 0.70347, 0.892744, 1)
+colors = PackedColorArray(0.135455, 0.0656743, 0.398438, 1, 0.249902, 0.0809874, 0.550781, 1, 0.282583, 0.180845, 0.726451, 1, 0.372949, 0.339148, 0.660156, 1, 0.415679, 0.525154, 0.835938, 1)
 
 [node name="Skybox" type="Sprite2D"]
 texture_repeat = 2
@@ -91,7 +50,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 5760, 540)
 script = ExtResource("2_tgyol")
-is_playing = false
+gradients = [SubResource("Gradient_8ykcn"), SubResource("Gradient_05nkt"), SubResource("Gradient_xqygs"), SubResource("Gradient_b27pn"), SubResource("Gradient_81enn")]
 cloud1_speed = 15.0
 cloud2_speed = 30.0
 cloud3_speed = 60.0
@@ -130,8 +89,3 @@ texture = ExtResource("5_wwtyb")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 5760, 540)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_0g5ad")
-}
