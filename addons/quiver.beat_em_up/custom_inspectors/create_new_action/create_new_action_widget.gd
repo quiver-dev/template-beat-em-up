@@ -51,9 +51,8 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _scrap_action_names(target_dictionary: Dictionary, path := BASE_FOLDER) -> void:
-	var dir := Directory.new()
-	var error := dir.open(path)
-	if error == OK:
+	var dir := DirAccess.open(path)
+	if dir != null:
 		dir.list_dir_begin()
 		var file_name := dir.get_next()
 		while not file_name.is_empty():
@@ -66,7 +65,7 @@ func _scrap_action_names(target_dictionary: Dictionary, path := BASE_FOLDER) -> 
 			file_name = dir.get_next()
 	else:
 		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
-			error, BASE_FOLDER
+			DirAccess.get_open_error(), BASE_FOLDER
 		]
 		push_error(path)
 

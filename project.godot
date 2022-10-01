@@ -238,7 +238,7 @@ _global_script_class_icons={
 
 config/name="Template Beat Project"
 run/main_scene="res://stages/stage_01/stage_01.tscn"
-config/features=PackedStringArray("4.0", "Vulkan Clustered")
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 config/version="0.5.0"
 

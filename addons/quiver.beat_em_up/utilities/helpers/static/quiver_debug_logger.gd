@@ -34,15 +34,17 @@ func _init() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE and not _current_log.is_empty():
-		var dir := Directory.new()
-		if not dir.dir_exists("user://debug_log/"):
-			dir.make_dir_recursive("user://debug_log/")
+		if not DirAccess.dir_exists_absolute("user://debug_log/"):
+			DirAccess.make_dir_absolute("user://debug_log/")
 		
 		# Improve this later to make it properly with all the error checks
-		var file = File.new()
-		file.open(_current_log_file, File.WRITE)
-		file.store_string("\n".join(_current_log))
-		file.close()
+		var file := FileAccess.open(_current_log_file, FileAccess.WRITE)
+		if file != null:
+			file.store_string("\n".join(_current_log))
+		else:
+			push_error("Unable to create file at: %s | Error: %s"%[
+					_current_log_file, FileAccess.get_open_error()
+			])
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -78,11 +80,10 @@ func log_message(msg: PackedStringArray) -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _clear_old_logs() -> void:
-	var dir := Directory.new()
 	var files := PackedStringArray()
-	if dir.dir_exists("user://debug_log/"):
-		var error := dir.open("user://debug_log/")
-		if error == OK:
+	if DirAccess.dir_exists_absolute("user://debug_log/"):
+		var dir := DirAccess.open("user://debug_log/")
+		if dir != null:
 			files = dir.get_files()
 			
 			if files.size() > max_logs:
@@ -90,7 +91,10 @@ func _clear_old_logs() -> void:
 					var file_path := files[index]
 					dir.remove(file_path)
 		else:
-			push_error("Could not open user://debug_log/ Error Code: %s"%[error])
+			push_error(
+					"Could not open user://debug_log/ Error Code: %s"%[
+					DirAccess.get_open_error()
+			])
 
 
 func _is_logging_enabled() -> bool:

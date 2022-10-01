@@ -133,10 +133,9 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _add_custom_inspectors() -> void:
-	var dir := Directory.new()
-	var error := dir.open(PATH_CUSTOM_INSPECTORS)
+	var dir := DirAccess.open(PATH_CUSTOM_INSPECTORS)
 	
-	if error == OK:
+	if dir != null:
 		dir.list_dir_begin()
 		var folder_name := dir.get_next()
 		while not folder_name.is_empty():
@@ -145,7 +144,7 @@ func _add_custom_inspectors() -> void:
 			folder_name = dir.get_next()
 	else:
 		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
-			error, PATH_CUSTOM_INSPECTORS
+			DirAccess.get_open_error(), PATH_CUSTOM_INSPECTORS
 		]
 		push_error(error_msg)
 
@@ -168,10 +167,9 @@ func _remove_custom_inspectors() -> void:
 
 
 func _add_custom_overlays() -> void:
-	var dir := Directory.new()
-	var error := dir.open(PATH_CUSTOM_OVERLAYS)
+	var dir := DirAccess.open(PATH_CUSTOM_OVERLAYS)
 	
-	if error == OK:
+	if dir != null:
 		dir.list_dir_begin()
 		var file_name := dir.get_next()
 		while not file_name.is_empty():
@@ -185,7 +183,7 @@ func _add_custom_overlays() -> void:
 			file_name = dir.get_next()
 	else:
 		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
-			error, PATH_CUSTOM_INSPECTORS
+			DirAccess.get_open_error(), PATH_CUSTOM_INSPECTORS
 		]
 		push_error(error_msg)
 
