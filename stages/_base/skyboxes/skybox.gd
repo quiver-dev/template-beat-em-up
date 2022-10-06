@@ -38,8 +38,14 @@ var _extra_textures: Array:
 		if is_inside_tree():
 			_reset_extra_nodes()
 
+var _total_transitions := 1:
+	set(value):
+		_total_transitions = value
+		_reset_transitions_data()
+		notify_property_list_changed()
+var _gradient_transitions_data: Array = []
+# Dictionary in the format of { texture_resource_uid: SkyBoxExtraTextureData }
 var _extra_textures_data: Dictionary = {}
-@export var _gradients: Array[Gradient]
 
 var _tween_main: Tween
 var _tween_motion: Tween
@@ -63,6 +69,7 @@ func _ready() -> void:
 		if dict.name == "test_data":
 			print(JSON.stringify(dict, "\t"))
 	_reset_extra_nodes()
+	_setup_all_gradient_transitioners()
 	
 	if is_playing:
 		play_animations()
@@ -86,24 +93,18 @@ func _process(delta: float) -> void:
 func play_animations() -> void:
 	set_process(true)
 	_reset_clouds()
-	_reset_colors_to(0)
+	_gradient_transitions_data[0]._reset_colors_to_from()
 	
-	if _tween_main:
-		_tween_main.kill()
-	_tween_main = create_tween()
-	
-	for index in _gradients.size():
-		var next_index := mini(index + 1, _gradients.size() - 1)
-		if next_index > index:
-			_tween_main.tween_callback(
-					_animate_gradients.bind(_gradients[index], _gradients[next_index], 1.0)
-			).set_delay(1.0)
+	for data in _gradient_transitions_data:
+		var transition_data := data as GradientTransitioner
+		transition_data.animate_gradient()
+		await transition_data.transition_finished
 
 
 func stop_animations() -> void:
 	set_process(false)
 	_reset_clouds()
-	_reset_colors_to(0)
+	_gradient_transitions_data[0]._reset_colors_to_from()
 	if _tween_main:
 		_tween_main.kill()
 
@@ -111,44 +112,6 @@ func stop_animations() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-func _animate_gradients(gradient1: Gradient, gradient2: Gradient, duration: float) -> void:
-	if gradient1.get_point_count() != gradient2.get_point_count():
-		push_error(
-				"Gradients must have the same amount of points to be animated!"
-				+ "Gradient1: %s x Gradient2: %s"%[
-						gradient1.get_point_count(), gradient2.get_point_count()
-				]
-		)
-		return
-	
-	var point_count := gradient1.get_point_count()
-	_resize_shader_gradient(point_count)
-	
-	if _tween_colors:
-		_tween_colors.kill()
-	_tween_colors = create_tween().set_parallel()
-	
-	for index in point_count:
-		var color_offset1 := gradient1.get_offset(index)
-		var color_offset2 := gradient2.get_offset(index)
-		var color1 := gradient1.get_color(index)
-		var color2 := gradient2.get_color(index)
-		_tween_colors.tween_method(
-				_animate_gradient_offset.bind(index), color_offset1, color_offset2, duration
-		)
-		_tween_colors.tween_method(
-				_animate_gradient_color.bind(index), color1, color2, duration
-		)
-
-
-func _animate_gradient_offset(p_offset: float, index: int) -> void:
-	_shader_gradient.set_offset(index, p_offset)
-
-
-func _animate_gradient_color(p_color: Color, index: int) -> void:
-	_shader_gradient.set_color(index, p_color)
-
 
 func _reset_extra_nodes() -> void:
 	if not is_inside_tree():
@@ -207,79 +170,33 @@ func _reset_clouds() -> void:
 		extra_data.reset_sprite_region()
 
 
-func _reset_colors_to(p_index: int) -> void:
-	if p_index >= _gradients.size():
-		push_error("invalid gradient index: %s | gradients size: %s"%[p_index, _gradients.size()])
-		return
+func _reset_transitions_data() -> void:
+	_gradient_transitions_data.resize(_total_transitions)
+	for index in _total_transitions:
+		if _gradient_transitions_data[index] == null:
+			var data := GradientTransitioner.new()
+			if index > 1:
+				var prev_data := _gradient_transitions_data[index - 1] as GradientTransitioner
+				data.from = prev_data.to
+			_gradient_transitions_data[index] = data
 	
-	var gradient := _gradients[p_index] as Gradient
-	var gradient_points := gradient.get_point_count()
-	_resize_shader_gradient(gradient_points)
-	
-	for index in gradient_points:
-		_shader_gradient.set_color(index, gradient.get_color(index))
-		_shader_gradient.set_offset(index, gradient.get_offset(index))
-
-
-func _resize_shader_gradient(p_size) -> void:
-	if p_size != _shader_gradient.get_point_count():
-		_shader_gradient.offsets.resize(p_size)
-		_shader_gradient.colors.resize(p_size)
+	notify_property_list_changed()
 
 
 func _is_invalid_node(node: Node) -> bool:
 	return not is_instance_valid(node)
+
+
+func _setup_all_gradient_transitioners() -> void:
+	for data in _gradient_transitions_data:
+		var transition_data := data as GradientTransitioner
+		transition_data.setup_transitioner(_shader_gradient, self)
 
 ### -----------------------------------------------------------------------------------------------
 
 ###################################################################################################
 # Custom Inspector ################################################################################
 ###################################################################################################
-
-func _get_custom_properties() -> Dictionary:
-	var properties := {
-		"extra_textures": {
-			backing_field = "_extra_textures",
-			type = TYPE_ARRAY,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_TYPE_STRING,
-			hint_string = "%s/%s:Texture2D"%[TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE],
-		},
-		"extra_textures_data": {
-			backing_field = "_extra_textures_data",
-			type = TYPE_ARRAY,
-			usage = PROPERTY_USAGE_STORAGE,
-			hint = PROPERTY_HINT_NONE,
-			hint_string = "",
-		},
-#		"": {
-#			backing_field = "",
-#			name = "",
-#			type = TYPE_NIL,
-#			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-#			hint = PROPERTY_HINT_NONE,
-#			hint_string = "",
-#		},
-	}
-	
-	if not _extra_textures_data.is_empty():
-		for index in _extra_textures.size():
-			var uid := ResourceLoader.get_resource_uid(_extra_textures[index].resource_path)
-			var extra_data := _extra_textures_data[uid] as SkyBoxExtraTextureData
-			var sub_properties := extra_data._get_custom_properties() as Dictionary
-			
-			for key in sub_properties:
-				var new_key = "extra_textures_data/%s/%s"%[index, key]
-				var sub_dict := sub_properties[key] as Dictionary
-				sub_dict["usage"] = PROPERTY_USAGE_EDITOR
-				sub_dict["get_callable"] = \
-						_get_dict_sub_property.bind(_extra_textures_data, uid, key)
-				sub_dict["set_callable"] = \
-						_set_dict_sub_property.bind(_extra_textures_data, uid, key)
-				sub_dict.erase("backing_field")
-				properties[new_key] = sub_dict
-		
-	return properties
 
 ### Custom Inspector built in functions -----------------------------------------------------------
 
@@ -330,6 +247,85 @@ func _set(property: StringName, value) -> bool:
 
 ### Custom Inspector private functions ------------------------------------------------------------
 
+func _get_custom_properties() -> Dictionary:
+	var properties := {}
+	properties["extra_textures"] = {
+			backing_field = "_extra_textures",
+			type = TYPE_ARRAY,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_TYPE_STRING,
+			hint_string = "%s/%s:Texture2D"%[TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE],
+	}
+	properties["extra_textures_data"] = {
+			backing_field = "_extra_textures_data",
+			type = TYPE_ARRAY,
+			usage = PROPERTY_USAGE_STORAGE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = "",
+	}
+	properties["gradient_transitions_data"] = {
+			backing_field = "_gradient_transitions_data",
+			type = TYPE_ARRAY,
+			usage = PROPERTY_USAGE_STORAGE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = "",
+	}
+	
+	if not _extra_textures_data.is_empty():
+		for index in _extra_textures.size():
+			var uid := ResourceLoader.get_resource_uid(_extra_textures[index].resource_path)
+			var extra_data := _extra_textures_data[uid] as SkyBoxExtraTextureData
+			var sub_properties := extra_data._get_custom_properties() as Dictionary
+			
+			for key in sub_properties:
+				var new_key = "extra_textures_data/%s/%s"%[index, key]
+				var sub_dict := sub_properties[key] as Dictionary
+				sub_dict["usage"] = PROPERTY_USAGE_EDITOR
+				sub_dict["get_callable"] = \
+						_get_dict_sub_property.bind(_extra_textures_data, uid, key)
+				sub_dict["set_callable"] = \
+						_set_dict_sub_property.bind(_extra_textures_data, uid, key)
+				sub_dict.erase("backing_field")
+				properties[new_key] = sub_dict
+	
+	properties["gradient_transitions/total_transition"] = {
+			backing_field = "_total_transitions",
+			type = TYPE_INT,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0,1,1,or_greater",
+	}
+	
+	var transition_properties: Array = \
+		GradientTransitioner.new().get_property_list().filter(_is_exported_variable)
+	for g_index in _total_transitions:
+		for index in transition_properties.size():
+			var prop_dict := transition_properties[index].duplicate() as Dictionary
+			var property_name := prop_dict.name as String
+			var new_key = "gradient_transitions/%s/%s"%[g_index, property_name]
+			prop_dict["name"] = new_key
+			prop_dict["usage"] = PROPERTY_USAGE_EDITOR
+			prop_dict["get_callable"] = \
+					_get_array_sub_property.bind(
+							_gradient_transitions_data, g_index, property_name
+					)
+			prop_dict["set_callable"] = \
+					_set_array_sub_property.bind(
+							_gradient_transitions_data, g_index, property_name
+					)
+			properties[new_key] = prop_dict
+	
+	return properties
+
+
+func _is_exported_variable(prop_dict: Dictionary) -> bool:
+	var is_property_dict := prop_dict.has("usage") and prop_dict.has("hint")
+	var has_script_flag := \
+			QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_SCRIPT_VARIABLE, prop_dict.usage)
+	var is_not_private := prop_dict.hint > 0 as bool
+	return is_property_dict and has_script_flag and is_not_private
+
+
 func _set_dict_sub_property(
 		value: Variant, dict: Dictionary, key: Variant, property: StringName
 ) -> void:
@@ -340,6 +336,19 @@ func _get_dict_sub_property(
 		dict: Dictionary, key: Variant, property: StringName
 ) -> Variant:
 	var value = dict[key][property]
+	return value
+
+
+func _set_array_sub_property(
+		value: Variant, array: Array, index: int, property: StringName
+) -> void:
+	array[index][property] = value
+
+
+func _get_array_sub_property(
+		array: Array, index: int, property: StringName
+) -> Variant:
+	var value = array[index][property]
 	return value
 
 ### -----------------------------------------------------------------------------------------------
