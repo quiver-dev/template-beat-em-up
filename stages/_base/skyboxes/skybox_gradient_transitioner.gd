@@ -49,7 +49,7 @@ func setup_transitioner(p_gradient: Gradient, p_node: Node) -> void:
 
 
 func animate_gradient() -> void:
-	if is_setup_valid():
+	if not is_setup_valid():
 		push_error(
 				"Trying to animate gradient transition without targets. "
 				+"Run setup_transitioner first"

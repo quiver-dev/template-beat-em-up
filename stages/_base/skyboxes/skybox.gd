@@ -65,9 +65,6 @@ func _ready() -> void:
 #		QuiverEditorHelper.disable_all_processing(self)
 #		return
 	
-	for dict in get_property_list():
-		if dict.name == "test_data":
-			print(JSON.stringify(dict, "\t"))
 	_reset_extra_nodes()
 	_setup_all_gradient_transitioners()
 	
@@ -271,23 +268,42 @@ func _get_custom_properties() -> Dictionary:
 			hint_string = "",
 	}
 	
+	_resgister_extra_textures_properties(properties)
+	_register_gradient_transition_properties(properties)
+	
+	return properties
+
+
+func _is_exported_variable(prop_dict: Dictionary) -> bool:
+	var is_property_dict := prop_dict.has("usage") and prop_dict.has("hint")
+	var has_script_flag := \
+			QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_SCRIPT_VARIABLE, prop_dict.usage)
+	var is_not_private := prop_dict.hint > 0 as bool
+	return is_property_dict and has_script_flag and is_not_private
+
+
+func _resgister_extra_textures_properties(properties: Dictionary) -> void:
+	var extra_textures_properties: Array = \
+		SkyBoxExtraTextureData.new().get_property_list().filter(_is_exported_variable)
 	if not _extra_textures_data.is_empty():
 		for index in _extra_textures.size():
 			var uid := ResourceLoader.get_resource_uid(_extra_textures[index].resource_path)
 			var extra_data := _extra_textures_data[uid] as SkyBoxExtraTextureData
-			var sub_properties := extra_data._get_custom_properties() as Dictionary
 			
-			for key in sub_properties:
-				var new_key = "extra_textures_data/%s/%s"%[index, key]
-				var sub_dict := sub_properties[key] as Dictionary
-				sub_dict["usage"] = PROPERTY_USAGE_EDITOR
-				sub_dict["get_callable"] = \
-						_get_dict_sub_property.bind(_extra_textures_data, uid, key)
-				sub_dict["set_callable"] = \
-						_set_dict_sub_property.bind(_extra_textures_data, uid, key)
-				sub_dict.erase("backing_field")
-				properties[new_key] = sub_dict
-	
+			for p_index in extra_textures_properties.size():
+				var prop_dict := extra_textures_properties[p_index].duplicate() as Dictionary
+				var property_name := prop_dict.name as String
+				var new_key = "extra_textures_data/%s/%s"%[index, property_name]
+				prop_dict["name"] = new_key
+				prop_dict["usage"] = PROPERTY_USAGE_EDITOR
+				prop_dict["get_callable"] = \
+						_get_dict_sub_property.bind(_extra_textures_data, uid, property_name)
+				prop_dict["set_callable"] = \
+						_set_dict_sub_property.bind(_extra_textures_data, uid, property_name)
+				properties[new_key] = prop_dict
+
+
+func _register_gradient_transition_properties(properties: Dictionary) -> void:
 	properties["gradient_transitions/total_transition"] = {
 			backing_field = "_total_transitions",
 			type = TYPE_INT,
@@ -314,16 +330,6 @@ func _get_custom_properties() -> Dictionary:
 							_gradient_transitions_data, g_index, property_name
 					)
 			properties[new_key] = prop_dict
-	
-	return properties
-
-
-func _is_exported_variable(prop_dict: Dictionary) -> bool:
-	var is_property_dict := prop_dict.has("usage") and prop_dict.has("hint")
-	var has_script_flag := \
-			QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_SCRIPT_VARIABLE, prop_dict.usage)
-	var is_not_private := prop_dict.hint > 0 as bool
-	return is_property_dict and has_script_flag and is_not_private
 
 
 func _set_dict_sub_property(
