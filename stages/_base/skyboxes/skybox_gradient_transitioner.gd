@@ -96,6 +96,10 @@ func animate_gradient() -> void:
 				_animate_gradient_color.bind(index), from_color, to_color, duration
 		)
 
+
+func reset_transition() -> void:
+	_update_target_gradient(from)
+
 ### -----------------------------------------------------------------------------------------------
 
 

@@ -56,7 +56,7 @@ colors = PackedColorArray(0, 0.0456241, 0.109756, 1, 0, 0.415686, 1, 1, 0.192556
 script = ExtResource("9_65dxk")
 from = SubResource("Gradient_8ykcn")
 to = SubResource("Gradient_05nkt")
-duration = 2.0
+duration = 10.0
 debug_preview = 0.0
 
 [sub_resource type="Gradient" id="Gradient_xqygs"]
@@ -67,7 +67,7 @@ colors = PackedColorArray(0, 0.0557628, 0.134146, 1, 0, 0.415686, 1, 1, 0.192556
 script = ExtResource("9_65dxk")
 from = SubResource("Gradient_05nkt")
 to = SubResource("Gradient_xqygs")
-duration = 8.0
+duration = 60.0
 debug_preview = 0.0
 
 [sub_resource type="Gradient" id="Gradient_b27pn"]
@@ -78,7 +78,7 @@ colors = PackedColorArray(0.0268908, 0.00952381, 0.0347339, 1, 0.376471, 0.13333
 script = ExtResource("9_65dxk")
 from = SubResource("Gradient_xqygs")
 to = SubResource("Gradient_b27pn")
-duration = 5.0
+duration = 10.0
 debug_preview = 0.0
 
 [sub_resource type="Gradient" id="Gradient_81enn"]
@@ -89,7 +89,7 @@ colors = PackedColorArray(0.135455, 0.0656743, 0.398438, 1, 0.249902, 0.0809874,
 script = ExtResource("9_65dxk")
 from = SubResource("Gradient_b27pn")
 to = SubResource("Gradient_81enn")
-duration = 3.0
+duration = 5.0
 debug_preview = 0.0
 
 [node name="Skybox" type="Sprite2D"]

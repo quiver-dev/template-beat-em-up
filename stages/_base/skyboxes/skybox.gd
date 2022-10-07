@@ -19,7 +19,7 @@ const SCENE_EXTRA := preload("res://stages/_base/skyboxes/extra_texture.tscn")
 	set(value):
 		is_playing = value
 		
-		if is_inside_tree():
+		if is_inside_tree() and (not Engine.is_editor_hint() or get_tree().edited_scene_root == self):
 			if is_playing:
 				play_animations()
 			else:
@@ -61,16 +61,12 @@ var _all_clouds: Array[Sprite2D] = []
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-#	if Engine.is_editor_hint():
-#		QuiverEditorHelper.disable_all_processing(self)
-#		return
-	
 	item_rect_changed.connect(_resize_all_extra_nodes)
 	
 	_reset_extra_nodes()
 	_setup_all_gradient_transitioners()
 	
-	if is_playing:
+	if is_playing and (not Engine.is_editor_hint() or get_tree().edited_scene_root == self):
 		play_animations()
 	else:
 		stop_animations()
@@ -102,6 +98,7 @@ func play_animations() -> void:
 func stop_animations() -> void:
 	set_process(false)
 	_reset_clouds()
+	_gradient_transitions_data[0].reset_transition()
 	if _tween_main:
 		_tween_main.kill()
 
