@@ -13,8 +13,7 @@ signal color_mode_changed
 
 enum ColorMode {
 	NONE,
-	PARENT,
-	GRADIENT_MAP
+	PARENT
 }
 
 #--- constants ------------------------------------------------------------------------------------
@@ -71,11 +70,6 @@ func apply_color_mode_on_sprite(should_emit_signal := true) -> void:
 		ColorMode.PARENT:
 			sprite.use_parent_material = true
 			sprite.material = null
-		ColorMode.GRADIENT_MAP:
-			sprite.use_parent_material = false
-			var new_material := ShaderMaterial.new()
-			new_material.shader = SHADER_GRADIENT_MAP
-			sprite.material = new_material
 		_:
 			should_emit_signal = false
 			push_error("Unknown ColorMode: %s"%[color_mode])

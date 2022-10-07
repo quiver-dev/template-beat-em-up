@@ -16,8 +16,19 @@ signal transition_finished
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var from: Gradient = null
-@export var to: Gradient = null
+@export var from: Gradient = null:
+	set(value):
+		from = value
+		QuiverEditorHelper.connect_between(from.changed, _update_target_gradient.bind(from))
+		if is_setup_valid():
+			_update_target_gradient(from)
+@export var to: Gradient = null:
+	set(value):
+		to = value
+		QuiverEditorHelper.connect_between(to.changed, _update_target_gradient.bind(to))
+		if is_setup_valid():
+			print("CHANGED FROM SETTER")
+			_update_target_gradient(to)
 @export_range(0.0,300.0,0.1,"or_greater") var duration := 1.0 
 @export_range(0.0,1.0,0.01) var debug_preview := 0.0:
 	set(value):
@@ -90,15 +101,6 @@ func animate_gradient() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _reset_colors_to_from() -> void:
-	var gradient_points := from.get_point_count()
-	_resize_target_gradient(gradient_points)
-	
-	for index in gradient_points:
-		_target_gradient.set_color(index, from.get_color(index))
-		_target_gradient.set_offset(index, from.get_offset(index))
-
-
 func _resize_target_gradient(p_size: int) -> void:
 	var target_point_size := _target_gradient.get_point_count()
 	if p_size > target_point_size:
@@ -128,6 +130,22 @@ func is_setup_valid() -> bool:
 
 
 func _preview_animation_at(progress: float) -> void:
+	if not is_setup_valid():
+		push_error(
+				"Trying to animate gradient transition without targets. "
+				+"Run setup_transitioner first"
+		)
+		return 
+	
+	if from.get_point_count() != to.get_point_count():
+		push_error(
+				"Gradients must have the same amount of points to be animated!"
+				+ "Gradient1: %s x Gradient2: %s"%[
+						from.get_point_count(), to.get_point_count()
+				]
+		)
+		return
+	
 	var point_count := from.get_point_count()
 	_resize_target_gradient(point_count)
 	for index in point_count:
@@ -137,5 +155,22 @@ func _preview_animation_at(progress: float) -> void:
 		var to_color := to.get_color(index)
 		_animate_gradient_offset(lerp(from_offset, to_offset, progress), index)
 		_animate_gradient_color(from_color.lerp(to_color, progress), index)
+
+
+func _update_target_gradient(updated_gradient: Gradient) -> void:
+	if not is_setup_valid():
+		push_error(
+				"Trying to animate gradient transition without targets. "
+				+"Run setup_transitioner first"
+		)
+		return 
+	
+	var point_count := updated_gradient.get_point_count()
+	_resize_target_gradient(point_count)
+	for index in point_count:
+		var updated_offset := updated_gradient.get_offset(index)
+		var updated_color := updated_gradient.get_color(index)
+		_target_gradient.set_offset(index, updated_offset)
+		_target_gradient.set_color(index, updated_color)
 
 ### -----------------------------------------------------------------------------------------------

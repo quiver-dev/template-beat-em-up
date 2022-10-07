@@ -65,6 +65,8 @@ func _ready() -> void:
 #		QuiverEditorHelper.disable_all_processing(self)
 #		return
 	
+	item_rect_changed.connect(_resize_all_extra_nodes)
+	
 	_reset_extra_nodes()
 	_setup_all_gradient_transitioners()
 	
@@ -90,7 +92,6 @@ func _process(delta: float) -> void:
 func play_animations() -> void:
 	set_process(true)
 	_reset_clouds()
-	_gradient_transitions_data[0]._reset_colors_to_from()
 	
 	for data in _gradient_transitions_data:
 		var transition_data := data as GradientTransitioner
@@ -101,7 +102,6 @@ func play_animations() -> void:
 func stop_animations() -> void:
 	set_process(false)
 	_reset_clouds()
-	_gradient_transitions_data[0]._reset_colors_to_from()
 	if _tween_main:
 		_tween_main.kill()
 
@@ -158,6 +158,13 @@ func _is_deleted_extra_texture(uid: int, found_uids: Array[int]) -> bool:
 	return not uid in found_uids
 
 
+func _resize_all_extra_nodes() -> void:
+	for child in get_children():
+		if child.scene_file_path == SCENE_EXTRA.resource_path:
+			var extra_sprite := child as Sprite2D
+			extra_sprite.region_rect = region_rect
+
+
 func _reset_clouds() -> void:
 	if _all_clouds.any(_is_invalid_node):
 		return
@@ -176,8 +183,6 @@ func _reset_transitions_data() -> void:
 				var prev_data := _gradient_transitions_data[index - 1] as GradientTransitioner
 				data.from = prev_data.to
 			_gradient_transitions_data[index] = data
-	
-	notify_property_list_changed()
 
 
 func _is_invalid_node(node: Node) -> bool:
