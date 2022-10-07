@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_gradient_transitioner.gd" id="9_65dxk"]
 
 [sub_resource type="Gradient" id="Gradient_qs8id"]
-offsets = PackedFloat32Array(0, 0.285, 0.466877, 0.883281, 1)
-colors = PackedColorArray(0.0268908, 0.00952381, 0.0347339, 1, 0.376471, 0.133333, 0.486275, 1, 0.490196, 0.247059, 0.8, 1, 0.972549, 0.639216, 0.580392, 1, 0.997048, 0.928841, 0.961117, 1)
+offsets = PackedFloat32Array(0, 0.259, 0.571, 0.71, 0.972)
+colors = PackedColorArray(0, 0.0912482, 0.219512, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fbtva"]
 gradient = SubResource("Gradient_qs8id")

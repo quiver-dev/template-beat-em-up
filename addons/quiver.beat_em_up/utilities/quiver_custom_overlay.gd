@@ -14,6 +14,8 @@ extends RefCounted
 
 #--- constants ------------------------------------------------------------------------------------
 
+const COLOR_GODOT_ORANGE = Color("ff786b")
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var main_plugin: EditorPlugin = null:
