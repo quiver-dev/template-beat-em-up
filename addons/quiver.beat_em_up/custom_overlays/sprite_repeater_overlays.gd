@@ -14,7 +14,6 @@ enum HandleSides {
 
 #--- constants ------------------------------------------------------------------------------------
 
-const COLOR_GODOT_ORANGE = Color("ff786b")
 const INVALID_HANDLE = -1
 const INVALID_VECTOR = Vector2(INF, INF)
 

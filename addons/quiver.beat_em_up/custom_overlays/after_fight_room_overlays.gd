@@ -33,7 +33,6 @@ var _rect := Rect2()
 var _handles: = {} 
 var _dragged_handle := INVALID_HANDLE
 
-var _starting_local_end := INVALID_VECTOR
 var _undo_redo: EditorUndoRedoManager = null
 
 ### -----------------------------------------------------------------------------------------------

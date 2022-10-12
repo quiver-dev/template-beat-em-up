@@ -19,6 +19,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://gameplay_ui/end_screen/end_screen.gd"
 }, {
+"base": "Resource",
+"class": &"GradientTransitioner",
+"language": &"GDScript",
+"path": "res://stages/_base/skyboxes/skybox_gradient_transitioner.gd"
+}, {
 "base": "QuiverState",
 "class": &"QuiverAiState",
 "language": &"GDScript",
@@ -179,6 +184,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd"
 }, {
+"base": "Sprite2D",
+"class": &"SkyBox",
+"language": &"GDScript",
+"path": "res://stages/_base/skyboxes/skybox.gd"
+}, {
+"base": "Resource",
+"class": &"SkyBoxExtraTextureData",
+"language": &"GDScript",
+"path": "res://stages/_base/skyboxes/skybox_extra_texture_data.gd"
+}, {
 "base": "Resource",
 "class": &"SpawnData",
 "language": &"GDScript",
@@ -197,6 +212,7 @@ _global_script_classes=[{
 _global_script_class_icons={
 "BaseStage": "",
 "EndScreen": "",
+"GradientTransitioner": "",
 "QuiverAiState": "",
 "QuiverAiStateGroup": "",
 "QuiverAiStateMachine": "",
@@ -229,6 +245,8 @@ _global_script_class_icons={
 "QuiverState": "",
 "QuiverStateMachine": "",
 "QuiverStateSequence": "",
+"SkyBox": "",
+"SkyBoxExtraTextureData": "",
 "SpawnData": "",
 "TaxManBoss": "",
 "WallHitBox": ""
@@ -339,7 +357,7 @@ move_down={
 attack={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 jump={

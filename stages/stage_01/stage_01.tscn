@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
 [ext_resource type="Script" path="res://stages/stage_01/stage_01.gd" id="2_08exp"]
-[ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://stages/stage_01/background_elements/skyboxes/area_1_skybox_1_0.png" id="3_usn8u"]
+[ext_resource type="PackedScene" uid="uid://ca6iowcjexjvn" path="res://stages/stage_01/background_elements/skyboxes/skybox.tscn" id="3_pnjnx"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://stages/stage_01/background_elements/pavement/street_revised_straight.png" id="4_0uw5r"]
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="5_rhqxk"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_0.png" id="6_e0uvm"]
@@ -86,16 +86,11 @@ _spawn_mode = 1
 [node name="Stage_01" instance=ExtResource("1_4lqd3")]
 script = ExtResource("2_08exp")
 
-[node name="Sky" type="Node2D" parent="Background" index="0"]
-position = Vector2(-10, -454)
-scale = Vector2(1.5, 1.5)
-script = ExtResource("2_0ledp")
-main_texture = ExtResource("3_usn8u")
-length = 4
-separation = -4
-variation_textures = []
-variations_weights = [1.0]
-texture_sequence = [0, 0, 0, 0]
+[node name="Skybox" parent="Background" index="0" instance=ExtResource("3_pnjnx")]
+position = Vector2(-21, -429)
+scale = Vector2(1.40556, 1.40556)
+region_rect = Rect2(0, 0, 6710.29, 540)
+is_playing = true
 
 [node name="Pavement" type="Node2D" parent="Background" index="1"]
 position = Vector2(1104, 416)
@@ -208,6 +203,7 @@ spawn_waves = [[SubResource("Resource_o2tqf")]]
 [node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom1" index="1"]
 position = Vector2(281, 548)
 collision_layer = 0
+monitoring = false
 monitorable = false
 script = ExtResource("21_ge31n")
 path_fight_room = NodePath("..")
@@ -244,6 +240,7 @@ preview_after_color = Color(0, 0.501961, 0.501961, 1)
 [node name="PlayerDetector2" type="Area2D" parent="Utilities/FightRoom2" index="0"]
 position = Vector2(1301, 585)
 collision_layer = 0
+monitoring = false
 monitorable = false
 script = ExtResource("21_ge31n")
 path_fight_room = NodePath("..")
@@ -282,14 +279,14 @@ position = Vector2(716, -158)
 
 [node name="FightRoom3" type="ReferenceRect" parent="Utilities" index="2"]
 offset_left = 6450.0
-offset_top = -404.0
+offset_top = -320.0
 offset_right = 9138.0
-offset_bottom = 1200.0
+offset_bottom = 1199.0
 script = ExtResource("17_cjfi2")
 limit_left = 6450
-limit_top = -404
+limit_top = -320
 limit_right = 9138
-limit_bottom = 1200
+limit_bottom = 1199
 zoom = 0.714286
 _after_fight_use_new_room = false
 _after_fight_transition_duration = 0.8

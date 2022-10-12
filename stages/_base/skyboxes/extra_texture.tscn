@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ct1le7y4afb0y"]
+
+[node name="ExtraTexture0" type="Sprite2D"]
+texture_repeat = 2
+use_parent_material = true
+centered = false
+region_enabled = true

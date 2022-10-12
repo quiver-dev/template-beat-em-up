@@ -81,6 +81,7 @@ func _draw() -> void:
 
 
 func _process(_delta: float) -> void:
+	# TODO: REMOVE ME
 	# This is a "hack" because adding setters to Array[Texture2D] is broken 
 	# https://github.com/godotengine/godot/issues/58285
 	var should_redraw := false
