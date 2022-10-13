@@ -47,6 +47,7 @@ var _undo_redo: EditorUndoRedoManager = null
 ### Public Methods --------------------------------------------------------------------------------
 
 func handles(object) -> bool:
+	print("object: %s | %s"%[object, object.name if "name" in object else null])
 	return object is Sprite2D
 
 
@@ -162,44 +163,85 @@ func _drag_to(event: InputEventMouse) -> void:
 	var editor_transform := \
 			_sprite.get_viewport_transform() * _sprite.get_canvas_transform()
 	var dragged_local_position = (editor_transform.affine_inverse() * event.position).round()
+	var new_values := _calculate_sprite_values_after_drag(dragged_local_position)
+	
+	_sprite.region_rect.size = new_values.region_size
+	_sprite.global_position = new_values.position
+
+
+func _calculate_sprite_values_after_drag(drag_position: Vector2) -> Dictionary:
 	var sprite_size := _sprite.region_rect.size * _sprite.scale
+	var centered_offset := sprite_size / 2.0 if _sprite.centered else Vector2.ZERO
+	
+	var new_values := {
+		region_size = _sprite.region_rect.size,
+		position = _sprite.global_position
+	}
 	match _dragged_handle:
 		HandlePoints.TOP_LEFT:
-			var bottom_right = _sprite.global_position + sprite_size
-			_sprite.region_rect.size = bottom_right - dragged_local_position
-			_sprite.region_rect.size /= _sprite.scale
-			_sprite.position = dragged_local_position
+			var bottom_right := _sprite.global_position + sprite_size
+			if _sprite.centered:
+				bottom_right = _sprite.global_position + centered_offset
+			new_values.region_size = (bottom_right - drag_position) / _sprite.scale
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position = _sprite.global_position - delta_size/2.0 if _sprite.centered \
+					else drag_position
 		HandlePoints.TOP:
-			var bottom = _sprite.global_position + sprite_size * Vector2(0.5, 1.0)
-			_sprite.region_rect.size.y = bottom.y - dragged_local_position.y
-			_sprite.region_rect.size.y /= _sprite.scale.y
-			_sprite.position.y = dragged_local_position.y
+			var bottom := _sprite.global_position + sprite_size * Vector2(0.5, 1.0)
+			if _sprite.centered:
+				bottom = _sprite.global_position + centered_offset * Vector2(0.5, 1.0)
+			new_values.region_size.y = (bottom.y - drag_position.y) / _sprite.scale.y
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position.y = _sprite.global_position.y - delta_size.y / 2.0 \
+					if _sprite.centered else drag_position.y
 		HandlePoints.TOP_RIGHT:
 			var bottom_left := _sprite.global_position + sprite_size * Vector2(0, 1.0)
-			_sprite.region_rect.size = (dragged_local_position - bottom_left).abs()
-			_sprite.region_rect.size /= _sprite.scale
-			_sprite.position.y = dragged_local_position.y
+			if _sprite.centered:
+				bottom_left = _sprite.global_position + centered_offset * Vector2(-1.0, 1.0)
+			new_values.region_size = (drag_position - bottom_left).abs() / _sprite.scale
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position = _sprite.global_position + delta_size / Vector2(2.0, -2.0) \
+					if _sprite.centered else Vector2(_sprite.global_position.x, drag_position.y)
 		HandlePoints.RIGHT:
-			_sprite.region_rect.size.x = dragged_local_position.x - _sprite.global_position.x
-			_sprite.region_rect.size.x /= _sprite.scale.x
+			var final_position = drag_position + centered_offset
+			new_values.region_size.x = \
+					(final_position.x - _sprite.global_position.x) / _sprite.scale.x
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position.x = _sprite.global_position.x + delta_size.x / 2.0 \
+					if _sprite.centered else _sprite.global_position.x
 		HandlePoints.BOTTOM_RIGHT:
-			_sprite.region_rect.size = (dragged_local_position - _sprite.global_position)
-			_sprite.region_rect.size /= _sprite.scale
+			var final_position = drag_position + centered_offset
+			new_values.region_size = (final_position - _sprite.global_position) / _sprite.scale
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position = _sprite.global_position + delta_size / 2.0 \
+					if _sprite.centered else _sprite.global_position
 		HandlePoints.BOTTOM:
-			_sprite.region_rect.size.y = dragged_local_position.y - _sprite.global_position.y
-			_sprite.region_rect.size.y /= _sprite.scale.y
+			var final_position = drag_position + centered_offset
+			new_values.region_size.y = \
+					(final_position.y - _sprite.global_position.y) / _sprite.scale.y
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position.y = _sprite.global_position.y + delta_size.y / 2.0 \
+					if _sprite.centered else _sprite.global_position.y
 		HandlePoints.BOTTOM_LEFT:
 			var top_right := _sprite.global_position + sprite_size * Vector2(1.0, 0)
-			_sprite.region_rect.size = (top_right - dragged_local_position).abs()
-			_sprite.region_rect.size /= _sprite.scale
-			_sprite.position.x = dragged_local_position.x
+			if _sprite.centered:
+				top_right = _sprite.global_position + centered_offset * Vector2(1.0, -1.0)
+			new_values.region_size = (top_right - drag_position).abs() / _sprite.scale
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position = _sprite.global_position + delta_size / Vector2(-2.0, 2.0) \
+					if _sprite.centered else Vector2(drag_position.x, _sprite.global_position.y)
 		HandlePoints.LEFT:
-			var right := _sprite.global_position + sprite_size * Vector2(1.0, 0.5)
-			_sprite.region_rect.size.x = right.x - dragged_local_position.x
-			_sprite.region_rect.size.x /= _sprite.scale.x
-			_sprite.position.x = dragged_local_position.x
+			var right := _sprite.global_position + sprite_size * Vector2(1.0, 0.5) 
+			if _sprite.centered:
+				right = _sprite.global_position + centered_offset * Vector2(1.0, 0.5)
+			new_values.region_size.x = (right.x - drag_position.x) / _sprite.scale.x
+			var delta_size: Vector2 = new_values.region_size - _sprite.region_rect.size
+			new_values.position.x = _sprite.global_position.x - delta_size.x /2.0 \
+					if _sprite.centered else drag_position.x
 		_:
 			print(_dragged_handle)
+	
+	return new_values
 
 
 func _calculate_region_rect_handles() -> Dictionary:
@@ -207,9 +249,10 @@ func _calculate_region_rect_handles() -> Dictionary:
 			_sprite.get_viewport_transform() * _sprite.get_canvas_transform()
 	
 	var handles = {}
-	var sprite_begin := editor_transform * (_sprite.position + _sprite.offset)
+	var sprite_begin := editor_transform * (_sprite.global_position + _sprite.offset)
 	if _sprite.centered:
-		sprite_begin -= editor_transform * (_sprite.region_rect.size / 2.0 * _sprite.scale)
+		sprite_begin -= \
+				editor_transform.get_scale() * (_sprite.region_rect.size / 2.0 * _sprite.scale)
 		
 	var sprite_size := editor_transform.get_scale() * _sprite.region_rect.size * _sprite.scale
 	
