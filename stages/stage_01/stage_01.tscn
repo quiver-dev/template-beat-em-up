@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bj8jxleaqbiwl"]
+[gd_scene load_steps=36 format=3 uid="uid://bj8jxleaqbiwl"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ca6iowcjexjvn" path="res://stages/stage_01/background_elements/skyboxes/skybox.tscn" id="3_pnjnx"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://stages/stage_01/background_elements/pavement/street_revised_straight.png" id="4_0uw5r"]
 [ext_resource type="PackedScene" uid="uid://bmsrokuaoo4d" path="res://stages/stage_01/background_elements/buildings/chicken_king/chicken_king.tscn" id="4_8mlpl"]
+[ext_resource type="PackedScene" uid="uid://00xm0owmrag3" path="res://stages/stage_01/background_elements/decorations/lanterns.tscn" id="5_aembi"]
+[ext_resource type="PackedScene" uid="uid://dnb56dd8w8wmt" path="res://stages/stage_01/background_elements/decorations/christmas_lights.tscn" id="5_cl8vk"]
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="5_rhqxk"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_0.png" id="6_e0uvm"]
 [ext_resource type="Texture2D" uid="uid://d2tan12hotr8u" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_curve_50.png" id="7_412kv"]
@@ -95,6 +97,14 @@ is_playing = true
 
 [node name="ChickenKing" parent="Background" index="1" instance=ExtResource("4_8mlpl")]
 position = Vector2(1419, 553)
+
+[node name="ChristmasLights" parent="Background/ChickenKing" index="5" instance=ExtResource("5_cl8vk")]
+position = Vector2(-543, -623)
+scale = Vector2(1.49074, 1.49074)
+
+[node name="Lanterns" parent="Background/ChickenKing" index="6" instance=ExtResource("5_aembi")]
+position = Vector2(-574, -862)
+scale = Vector2(1.40444, 1.40444)
 
 [node name="Pavement" type="Node2D" parent="Background" index="2"]
 position = Vector2(568, 659)
