@@ -47,7 +47,6 @@ var _undo_redo: EditorUndoRedoManager = null
 ### Public Methods --------------------------------------------------------------------------------
 
 func handles(object) -> bool:
-	print("object: %s | %s"%[object, object.name if "name" in object else null])
 	return object is Sprite2D
 
 
