@@ -127,9 +127,9 @@ func get_global_rect() -> Rect2:
 	var total_separation = separation * (length - 1)
 	var total_size := main_texture.get_size()
 	if is_vertical:
-		total_size.y *= length
+		total_size.y = total_size.y * length + total_separation
 	else:
-		total_size.x *= length
+		total_size.x = total_size.x * length + total_separation
 	
 	rect.size = global_scale * total_size
 	
