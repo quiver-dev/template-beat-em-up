@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bj8jxleaqbiwl"]
+[gd_scene load_steps=46 format=3 uid="uid://bj8jxleaqbiwl"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="5_rhqxk"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_0.png" id="6_e0uvm"]
 [ext_resource type="Texture2D" uid="uid://d2tan12hotr8u" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_curve_50.png" id="7_412kv"]
+[ext_resource type="Texture2D" uid="uid://d34upd6axohpi" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_body.png" id="7_gqe74"]
+[ext_resource type="Texture2D" uid="uid://dqgwlg6ha1ime" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_exit.png" id="8_erudj"]
 [ext_resource type="Texture2D" uid="uid://iq7d0847x83h" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_1.png" id="8_fsw4y"]
 [ext_resource type="Texture2D" uid="uid://ctvhqu3sfy08v" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_2.png" id="9_7km5a"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd" id="10_u6nh0"]
@@ -37,7 +39,7 @@ colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 
 resource_local_to_scene = true
 gradient = SubResource("Gradient_qf2sq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xr6q6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_feo00"]
 resource_local_to_scene = true
 shader = ExtResource("5_iqlbw")
 shader_parameter/gradient = SubResource("GradientTexture1D_cjnlv")
@@ -54,7 +56,7 @@ colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0
 resource_local_to_scene = true
 gradient = SubResource("Gradient_146d0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c04sm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tha1w"]
 resource_local_to_scene = true
 shader = ExtResource("5_iqlbw")
 shader_parameter/gradient = SubResource("GradientTexture1D_xgjbb")
@@ -139,21 +141,51 @@ offset_bottom = 561.0
 color = Color(0, 0, 0, 1)
 
 [node name="BrickWall" parent="Background" index="2" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_xr6q6")
-position = Vector2(429, -55)
-region_rect = Rect2(0, 0, 916, 1244)
+material = SubResource("ShaderMaterial_feo00")
+position = Vector2(420, 12)
+scale = Vector2(0.5, 0.5)
+region_rect = Rect2(0, 0, 1788, 2200)
+
+[node name="QuiverSpriteRepeater" type="Node2D" parent="Background/BrickWall" index="0"]
+position = Vector2(812, -1144)
+z_index = 1
+script = ExtResource("2_0ledp")
+is_vertical = true
+main_texture = ExtResource("7_gqe74")
+length = 3
+separation = -38
+cap_end = ExtResource("8_erudj")
+cap_end_offset = Vector2(7, -21)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0]
 
 [node name="BrickWall2" parent="Background" index="3" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_c04sm")
-position = Vector2(1468, -46)
-region_rect = Rect2(0, 0, 916, 1244)
+material = SubResource("ShaderMaterial_tha1w")
+position = Vector2(1454.2, 10.4047)
+scale = Vector2(0.5, 0.5)
+region_rect = Rect2(0, 0, 1842.37, 2225.62)
 color_darkest = Color(0.0392157, 0.027451, 0.14902, 1)
 color_shadow = Color(0.243137, 0.227451, 0.34902, 1)
 color_base = Color(0.380392, 0.368627, 0.486275, 1)
 color_highlights = Color(0.631373, 0.619608, 0.737255, 1)
 
+[node name="QuiverSpriteRepeater2" type="Node2D" parent="Background/BrickWall2" index="0"]
+position = Vector2(819.6, -1156.81)
+z_index = 1
+script = ExtResource("2_0ledp")
+is_vertical = true
+main_texture = ExtResource("7_gqe74")
+length = 3
+separation = -38
+cap_end = ExtResource("8_erudj")
+cap_end_offset = Vector2(7, -21)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0]
+
 [node name="ChickenKing" parent="Background" index="4" instance=ExtResource("4_8mlpl")]
-position = Vector2(2855, 553)
+position = Vector2(2564, 553)
 
 [node name="ChristmasLights" parent="Background/ChickenKing" index="5" instance=ExtResource("5_cl8vk")]
 position = Vector2(-543, -623)
@@ -169,8 +201,8 @@ script = ExtResource("2_0ledp")
 main_texture = ExtResource("4_0uw5r")
 length = 5
 separation = -480
-cap_left = ExtResource("5_rhqxk")
-cap_left_offset = Vector2(-583, 0)
+cap_begin = ExtResource("5_rhqxk")
+cap_begin_offset = Vector2(-583, 0)
 variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0, 0, 0]
@@ -181,41 +213,41 @@ script = ExtResource("2_0ledp")
 main_texture = ExtResource("6_e0uvm")
 length = 43
 separation = -99
-cap_left = ExtResource("7_412kv")
-cap_left_offset = Vector2(-451, 9)
+cap_begin = ExtResource("7_412kv")
+cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
 variations_weights = [1.0, 1.0, 1.0]
 texture_sequence = [2, 2, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 1, 0, 0, 1, 2, 1, 0, 1, 0, 2, 1, 0, 2, 0, 2, 0, 1, 2, 0, 1, 2, 0]
 
 [node name="QuiverFence" type="Node2D" parent="Background" index="7"]
-position = Vector2(2060, 82.383)
+position = Vector2(3237.5, 82.383)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("10_u6nh0")
 pole_texture = ExtResource("11_4ptr3")
 pole_distance = 15
 main_texture = ExtResource("12_ec2s5")
-length = 60
-cap_left = ExtResource("13_725xq")
-cap_left_offset = Vector2(-124, 0)
-cap_right = ExtResource("14_62tf3")
+length = 45
+cap_begin = ExtResource("13_725xq")
+cap_begin_offset = Vector2(-124, 0)
+cap_end = ExtResource("14_62tf3")
 variation_textures = []
 variations_weights = [1.0]
-texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 [node name="QuiverFence2" type="Node2D" parent="Background" index="8"]
-position = Vector2(5566.6, 82.383)
+position = Vector2(5959.6, 82.383)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("10_u6nh0")
 pole_texture = ExtResource("11_4ptr3")
 pole_distance = 15
 main_texture = ExtResource("12_ec2s5")
-length = 55
-cap_left = ExtResource("13_725xq")
-cap_left_offset = Vector2(-124, 0)
-cap_right = ExtResource("14_62tf3")
+length = 45
+cap_begin = ExtResource("13_725xq")
+cap_begin_offset = Vector2(-124, 0)
+cap_end = ExtResource("14_62tf3")
 variation_textures = []
 variations_weights = [1.0]
-texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 [node name="Chad" parent="Level/Characters" index="0"]
 position = Vector2(824, 800)
