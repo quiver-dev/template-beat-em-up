@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bj8jxleaqbiwl"]
+[gd_scene load_steps=50 format=3 uid="uid://bj8jxleaqbiwl"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -17,8 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://dqgwlg6ha1ime" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_exit.png" id="8_erudj"]
 [ext_resource type="Texture2D" uid="uid://iq7d0847x83h" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_1.png" id="8_fsw4y"]
 [ext_resource type="Texture2D" uid="uid://ctvhqu3sfy08v" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_2.png" id="9_7km5a"]
+[ext_resource type="Texture2D" uid="uid://gndch3lv12s5" path="res://stages/stage_01/background_elements/buildings/windows/standard/windows_1_3_50.png" id="9_r3hf1"]
+[ext_resource type="Texture2D" uid="uid://ccfpi6frhepgd" path="res://stages/stage_01/background_elements/buildings/doors/door_2_revised_50.png" id="10_5iloq"]
+[ext_resource type="Texture2D" uid="uid://sblsgjraucxi" path="res://stages/stage_01/background_elements/buildings/doors/door_1_revised_new_50.png" id="10_gbajp"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd" id="10_u6nh0"]
 [ext_resource type="Texture2D" uid="uid://1cocp0o1ua5f" path="res://stages/stage_01/background_elements/fence/chainlink_fence_middle_pole.png" id="11_4ptr3"]
+[ext_resource type="Texture2D" uid="uid://mq2ks7r5sjkk" path="res://stages/stage_01/background_elements/buildings/doors/door_3_50.png" id="11_liclh"]
 [ext_resource type="Texture2D" uid="uid://dtc4d05g37g73" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__00.png" id="12_ec2s5"]
 [ext_resource type="Texture2D" uid="uid://bfsf12el1igux" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__01.png" id="13_725xq"]
 [ext_resource type="Texture2D" uid="uid://dji2wpv6hk84w" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__02.png" id="14_62tf3"]
@@ -126,6 +130,7 @@ _spawn_mode = 1
 
 [node name="Stage_01" instance=ExtResource("1_4lqd3")]
 script = ExtResource("2_08exp")
+metadata/_edit_horizontal_guides_ = [-390.0]
 
 [node name="Skybox" parent="Background" index="0" instance=ExtResource("3_pnjnx")]
 position = Vector2(-8, -444)
@@ -140,14 +145,17 @@ offset_right = 1014.0
 offset_bottom = 561.0
 color = Color(0, 0, 0, 1)
 
-[node name="BrickWall" parent="Background" index="2" instance=ExtResource("4_8ntk5")]
+[node name="BrickBuilding1" type="Node2D" parent="Background" index="2"]
+
+[node name="BrickWall" parent="Background/BrickBuilding1" index="0" instance=ExtResource("4_8ntk5")]
 material = SubResource("ShaderMaterial_feo00")
 position = Vector2(420, 12)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 1788, 2200)
 
-[node name="QuiverSpriteRepeater" type="Node2D" parent="Background/BrickWall" index="0"]
-position = Vector2(812, -1144)
+[node name="Pipe" type="Node2D" parent="Background/BrickBuilding1" index="1"]
+position = Vector2(826, -560)
+scale = Vector2(0.5, 0.5)
 z_index = 1
 script = ExtResource("2_0ledp")
 is_vertical = true
@@ -160,18 +168,41 @@ variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0]
 
-[node name="BrickWall2" parent="Background" index="3" instance=ExtResource("4_8ntk5")]
+[node name="Windows" type="Node2D" parent="Background/BrickBuilding1" index="2"]
+position = Vector2(-412, -366)
+script = ExtResource("2_0ledp")
+main_texture = ExtResource("9_r3hf1")
+length = 2
+separation = 180
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0]
+
+[node name="Door1" type="Sprite2D" parent="Background/BrickBuilding1" index="3"]
+position = Vector2(217, 355)
+texture = ExtResource("10_5iloq")
+
+[node name="Door2" type="Sprite2D" parent="Background/BrickBuilding1" index="4"]
+position = Vector2(618, 355)
+texture = ExtResource("11_liclh")
+
+[node name="Sprite2d" type="Sprite2D" parent="Background/BrickBuilding1" index="5"]
+
+[node name="BrickBuilding2" type="Node2D" parent="Background" index="3"]
+
+[node name="BrickWall2" parent="Background/BrickBuilding2" index="0" instance=ExtResource("4_8ntk5")]
 material = SubResource("ShaderMaterial_tha1w")
-position = Vector2(1454.2, 10.4047)
+position = Vector2(1454.2, 13.5)
 scale = Vector2(0.5, 0.5)
-region_rect = Rect2(0, 0, 1842.37, 2225.62)
+region_rect = Rect2(0, 0, 1842.37, 2206)
 color_darkest = Color(0.0392157, 0.027451, 0.14902, 1)
 color_shadow = Color(0.243137, 0.227451, 0.34902, 1)
 color_base = Color(0.380392, 0.368627, 0.486275, 1)
 color_highlights = Color(0.631373, 0.619608, 0.737255, 1)
 
-[node name="QuiverSpriteRepeater2" type="Node2D" parent="Background/BrickWall2" index="0"]
-position = Vector2(819.6, -1156.81)
+[node name="Pipe" type="Node2D" parent="Background/BrickBuilding2" index="1"]
+position = Vector2(1864, -564.905)
+scale = Vector2(0.5, 0.5)
 z_index = 1
 script = ExtResource("2_0ledp")
 is_vertical = true
@@ -183,6 +214,21 @@ cap_end_offset = Vector2(7, -21)
 variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0]
+
+[node name="Windows" type="Node2D" parent="Background/BrickBuilding2" index="2"]
+position = Vector2(1043, -360)
+script = ExtResource("2_0ledp")
+is_vertical = true
+main_texture = ExtResource("9_r3hf1")
+length = 2
+separation = 100
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0]
+
+[node name="Door" type="Sprite2D" parent="Background/BrickBuilding2" index="3"]
+position = Vector2(1746, 335)
+texture = ExtResource("10_gbajp")
 
 [node name="ChickenKing" parent="Background" index="4" instance=ExtResource("4_8mlpl")]
 position = Vector2(2564, 553)
@@ -278,6 +324,9 @@ modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(126, 1090)
 shape = SubResource("WorldBoundaryShape2D_7qd0i")
 metadata/collision_type = "default"
+
+[node name="Utilities" parent="." index="3"]
+visible = false
 
 [node name="FightRoom1" type="ReferenceRect" parent="Utilities" index="0"]
 offset_left = 943.0
