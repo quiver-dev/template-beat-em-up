@@ -39,6 +39,7 @@ visible = false
 z_index = 25
 
 [node name="Utilities" type="Node2D" parent="."]
+z_index = 30
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 layer = 2

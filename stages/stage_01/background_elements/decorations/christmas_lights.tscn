@@ -6,6 +6,21 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o6l4p"]
 blend_mode = 1
 
+[sub_resource type="Animation" id="Animation_wlbk8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChristmasLights2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.701961)]
+}
+
 [sub_resource type="Animation" id="Animation_o532e"]
 resource_name = "loop"
 loop_mode = 1
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.701961), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_wlbk8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ChristmasLights2:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.701961)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bm8ar"]
@@ -56,6 +56,7 @@ texture = ExtResource("2_0v5x8")
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "loop"
 libraries = {
 "": SubResource("AnimationLibrary_bm8ar")
 }
