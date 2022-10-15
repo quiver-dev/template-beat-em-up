@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bj8jxleaqbiwl"]
+[gd_scene load_steps=67 format=3 uid="uid://b0e2thyq3nrop"]
 
 [ext_resource type="PackedScene" uid="uid://cdubxg1sltsho" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="5_iqlbw"]
 [ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="5_rhqxk"]
 [ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_0.png" id="6_e0uvm"]
+[ext_resource type="Texture2D" uid="uid://c7fphss6j8oey" path="res://stages/stage_01/background_elements/buildings/cityscape_00.png" id="6_rfrov"]
 [ext_resource type="Texture2D" uid="uid://d2tan12hotr8u" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_curve_50.png" id="7_412kv"]
 [ext_resource type="Texture2D" uid="uid://d34upd6axohpi" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_body.png" id="7_gqe74"]
 [ext_resource type="Texture2D" uid="uid://dqgwlg6ha1ime" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_exit.png" id="8_erudj"]
@@ -38,7 +39,15 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="20_smh3p"]
 [ext_resource type="PackedScene" uid="uid://b37pgqu571dke" path="res://characters/enemies/tax_man/tax_man.tscn" id="20_uvj7e"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_player_detector.gd" id="21_ge31n"]
+[ext_resource type="Texture2D" uid="uid://10s4duduxokp" path="res://stages/stage_01/background_elements/vending_machines/vending_machines_clean_separated_yellow_50.png" id="28_f64gi"]
+[ext_resource type="Texture2D" uid="uid://d2ayfbynawa4b" path="res://stages/stage_01/background_elements/vending_machines/vending_machine_tags_separated_3_50.png" id="29_70lla"]
+[ext_resource type="Texture2D" uid="uid://b1t7e4lf2fjru" path="res://stages/stage_01/background_elements/buildings/windows/narrow/window_2.png" id="30_5joav"]
+[ext_resource type="Texture2D" uid="uid://c1nig7r42sdk6" path="res://stages/stage_01/background_elements/vending_machines/vending_machines_clean_separated_red_50.png" id="30_8bcgp"]
 [ext_resource type="PackedScene" uid="uid://u3gukw56uaso" path="res://stages/stage_01/background_elements/street_poles/lamp_poles/lamp_pole.tscn" id="31_n3xtr"]
+[ext_resource type="Texture2D" uid="uid://ckx7onkorw05s" path="res://stages/stage_01/background_elements/street_poles/telephone_pole_revised_1_50.png" id="34_wrols"]
+[ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="36_84oqi"]
+[ext_resource type="Texture2D" uid="uid://64cy35dxtdah" path="res://stages/stage_01/background_elements/street_poles/post_box/postbox_tagged.png" id="39_n2yay"]
+[ext_resource type="Texture2D" uid="uid://wgg3w6gnvakg" path="res://stages/stage_01/background_elements/street_poles/post_box/postbox_clean.png" id="40_fyh1w"]
 
 [sub_resource type="Gradient" id="Gradient_qf2sq"]
 resource_local_to_scene = true
@@ -50,7 +59,7 @@ colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 
 resource_local_to_scene = true
 gradient = SubResource("Gradient_qf2sq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_38ep5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opvjg"]
 resource_local_to_scene = true
 shader = ExtResource("5_iqlbw")
 shader_parameter/gradient = SubResource("GradientTexture1D_cjnlv")
@@ -67,7 +76,7 @@ colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0
 resource_local_to_scene = true
 gradient = SubResource("Gradient_146d0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvdtt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_862pf"]
 resource_local_to_scene = true
 shader = ExtResource("5_iqlbw")
 shader_parameter/gradient = SubResource("GradientTexture1D_xgjbb")
@@ -79,6 +88,11 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7qd0i"]
 distance = 80.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_juikt"]
+shader = ExtResource("36_84oqi")
+shader_parameter/color = Color(0.121569, 0, 0.247059, 1)
+shader_parameter/effect_strength = 0.747
 
 [sub_resource type="Resource" id="Resource_o2tqf"]
 script = ExtResource("20_smh3p")
@@ -137,7 +151,6 @@ _spawn_mode = 1
 
 [node name="Stage_01" instance=ExtResource("1_4lqd3")]
 script = ExtResource("2_08exp")
-metadata/_edit_horizontal_guides_ = [-390.0]
 
 [node name="DayCycleModulate" type="CanvasModulate" parent="." index="0"]
 color = Color(1, 0.972549, 0.917647, 1)
@@ -147,12 +160,25 @@ _color_sunset = Color(0.776471, 0.458824, 0.407843, 1)
 _color_night = Color(0.278431, 0.211765, 0.478431, 1)
 _preview_time = 2
 
-[node name="Skybox" parent="Background/SkyboxLayer" index="0" instance=ExtResource("3_pnjnx")]
+[node name="SkyboxLayer" parent="Background" index="0"]
+follow_viewport_enabled = false
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="Background/SkyboxLayer" index="0"]
+motion_scale = Vector2(0.1, 1)
+
+[node name="Skybox" parent="Background/SkyboxLayer/ParallaxLayer1" index="0" instance=ExtResource("3_pnjnx")]
 position = Vector2(-8, -444)
 scale = Vector2(1.86482, 1.86482)
-region_rect = Rect2(0, 0, 6710.29, 540)
 script = ExtResource("5_hj50d")
 is_playing = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/SkyboxLayer" index="1"]
+motion_scale = Vector2(0.65, 1)
+
+[node name="Sprite2d" type="Sprite2D" parent="Background/SkyboxLayer/ParallaxLayer2" index="0"]
+position = Vector2(3730, 35.25)
+scale = Vector2(0.678503, 0.678503)
+texture = ExtResource("6_rfrov")
 
 [node name="ColorRect" type="ColorRect" parent="Background" index="1"]
 offset_left = 989.0
@@ -161,16 +187,40 @@ offset_right = 1142.0
 offset_bottom = 561.0
 color = Color(0, 0, 0, 1)
 
-[node name="BrickBuilding1" type="Node2D" parent="Background" index="2"]
+[node name="SideWalk2" type="Node2D" parent="Background" index="2"]
+position = Vector2(1842.36, 482.217)
+script = ExtResource("2_0ledp")
+main_texture = ExtResource("6_e0uvm")
+length = 36
+separation = -99
+cap_begin_offset = Vector2(-451, 9)
+variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
+variations_weights = [1.0, 1.0, 1.0]
+texture_sequence = [2, 2, 1, 0, 0, 2, 1, 1, 2, 2, 1, 1, 1, 0, 2, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 2, 1, 2, 1, 0, 1, 2, 1, 0, 0, 2]
+
+[node name="Pavement" type="Node2D" parent="Background" index="3"]
+position = Vector2(568, 650)
+script = ExtResource("2_0ledp")
+main_texture = ExtResource("4_0uw5r")
+length = 5
+separation = -480
+cap_begin = ExtResource("5_rhqxk")
+cap_begin_offset = Vector2(-583, 0)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0]
+
+[node name="BrickBuilding1" type="Node2D" parent="Background" index="4"]
+position = Vector2(514, 565)
 
 [node name="BrickWall" parent="Background/BrickBuilding1" index="0" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_38ep5")
-position = Vector2(509.5, 12)
+material = SubResource("ShaderMaterial_opvjg")
+position = Vector2(-4.5, -550)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 2146, 2200)
 
 [node name="Pipe" type="Node2D" parent="Background/BrickBuilding1" index="1"]
-position = Vector2(1003, -560)
+position = Vector2(489, -1122)
 scale = Vector2(0.5, 0.5)
 z_index = 1
 script = ExtResource("2_0ledp")
@@ -185,7 +235,7 @@ variations_weights = [1.0]
 texture_sequence = [0, 0, 0]
 
 [node name="Windows" type="Node2D" parent="Background/BrickBuilding1" index="2"]
-position = Vector2(-284, -470)
+position = Vector2(-798, -1032)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("9_37nkk")
 length = 2
@@ -195,11 +245,11 @@ variations_weights = [1.0]
 texture_sequence = [0, 0]
 
 [node name="Door1" type="Sprite2D" parent="Background/BrickBuilding1" index="3"]
-position = Vector2(217, 355)
+position = Vector2(-297, -207)
 texture = ExtResource("10_5iloq")
 
 [node name="Door2" type="Sprite2D" parent="Background/BrickBuilding1" index="4"]
-position = Vector2(680, 355)
+position = Vector2(166, -207)
 texture = ExtResource("11_liclh")
 
 [node name="AnimePoster" type="Sprite2D" parent="Background/BrickBuilding1/Door2" index="0"]
@@ -215,37 +265,22 @@ texture = ExtResource("13_r4xmg")
 [node name="LoveYourselSign" parent="Background/BrickBuilding1/Door2" index="2" instance=ExtResource("14_h8n7k")]
 position = Vector2(-9, -385)
 
-[node name="Fence1" type="Node2D" parent="Background" index="3"]
+[node name="Fence1" type="Node2D" parent="Background" index="5"]
 position = Vector2(3222, 22.383)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("10_u6nh0")
 pole_texture = ExtResource("11_4ptr3")
 pole_distance = 15
 main_texture = ExtResource("12_ec2s5")
-length = 45
+length = 75
 cap_begin = ExtResource("13_725xq")
 cap_begin_offset = Vector2(-124, 0)
 cap_end = ExtResource("14_62tf3")
 variation_textures = []
 variations_weights = [1.0]
-texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[node name="Fence2" type="Node2D" parent="Background" index="4"]
-position = Vector2(5855.6, 22.383)
-scale = Vector2(0.5, 0.5)
-script = ExtResource("10_u6nh0")
-pole_texture = ExtResource("11_4ptr3")
-pole_distance = 15
-main_texture = ExtResource("12_ec2s5")
-length = 45
-cap_begin = ExtResource("13_725xq")
-cap_begin_offset = Vector2(-124, 0)
-cap_end = ExtResource("14_62tf3")
-variation_textures = []
-variations_weights = [1.0]
-texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-[node name="ChickenKing" parent="Background" index="5" instance=ExtResource("4_8mlpl")]
+[node name="ChickenKing" parent="Background" index="6" instance=ExtResource("4_8mlpl")]
 position = Vector2(2572, 505)
 
 [node name="ChristmasLights" parent="Background/ChickenKing" index="5" instance=ExtResource("5_cl8vk")]
@@ -256,22 +291,26 @@ scale = Vector2(1.49074, 1.49074)
 position = Vector2(-574, -862)
 scale = Vector2(1.40444, 1.40444)
 
-[node name="SideWalk2" type="Node2D" parent="Background" index="6"]
-position = Vector2(1842.36, 482.217)
-script = ExtResource("2_0ledp")
-main_texture = ExtResource("6_e0uvm")
-length = 36
-separation = -99
-cap_begin_offset = Vector2(-451, 9)
-variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
-texture_sequence = [2, 2, 1, 0, 0, 2, 1, 1, 2, 2, 1, 1, 1, 0, 2, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 2, 1, 2, 1, 0, 1, 2, 1, 0, 0, 2]
+[node name="VendingMachine3" type="Sprite2D" parent="Background" index="7"]
+position = Vector2(3880.25, 375.856)
+scale = Vector2(1.21205, 1.21205)
+texture = ExtResource("28_f64gi")
 
-[node name="BrickBuilding2" type="Node2D" parent="Background" index="7"]
+[node name="VendingMachine2" type="Sprite2D" parent="Background" index="8"]
+position = Vector2(3737.25, 374.856)
+scale = Vector2(1.21205, 1.21205)
+texture = ExtResource("29_70lla")
+
+[node name="VendingMachine" type="Sprite2D" parent="Background" index="9"]
+position = Vector2(3553.25, 374.856)
+scale = Vector2(1.21205, 1.21205)
+texture = ExtResource("30_8bcgp")
+
+[node name="BrickBuilding2" type="Node2D" parent="Background" index="10"]
 position = Vector2(96, 0)
 
 [node name="BrickWall2" parent="Background/BrickBuilding2" index="0" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_yvdtt")
+material = SubResource("ShaderMaterial_862pf")
 position = Vector2(1454.2, 13.5)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 1842.37, 2206)
@@ -310,19 +349,11 @@ texture_sequence = [0, 0]
 position = Vector2(1746, 335)
 texture = ExtResource("10_gbajp")
 
-[node name="Pavement" type="Node2D" parent="Background" index="8"]
-position = Vector2(568, 650)
-script = ExtResource("2_0ledp")
-main_texture = ExtResource("4_0uw5r")
-length = 5
-separation = -480
-cap_begin = ExtResource("5_rhqxk")
-cap_begin_offset = Vector2(-583, 0)
-variation_textures = []
-variations_weights = [1.0]
-texture_sequence = [0, 0, 0, 0, 0]
+[node name="NarrowWindow" type="Sprite2D" parent="Background/BrickBuilding2" index="4"]
+position = Vector2(1746, -213)
+texture = ExtResource("30_5joav")
 
-[node name="SideWalk" type="Node2D" parent="Background" index="9"]
+[node name="SideWalk" type="Node2D" parent="Background" index="11"]
 position = Vector2(439.363, 541.217)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("6_e0uvm")
@@ -334,16 +365,33 @@ variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
 variations_weights = [1.0, 1.0, 1.0]
 texture_sequence = [2, 2, 0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 1, 0, 0, 1, 1, 1, 2, 0, 1, 1, 0, 0, 1, 2, 1, 0, 1, 0, 2, 1, 0, 2, 0, 2, 0, 1, 2, 0, 1, 2, 0]
 
-[node name="LighPole" parent="Background/SideWalk" index="0" instance=ExtResource("31_n3xtr")]
+[node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk" index="0"]
+position = Vector2(911.637, -522.217)
+texture = ExtResource("34_wrols")
 
-[node name="LighPole3" parent="Background/SideWalk" index="1" instance=ExtResource("31_n3xtr")]
-position = Vector2(2830, -458.217)
+[node name="TelefonePole2" type="Sprite2D" parent="Background/SideWalk" index="1"]
+position = Vector2(5091.64, -522.217)
+texture = ExtResource("34_wrols")
 
-[node name="LighPole4" parent="Background/SideWalk" index="2" instance=ExtResource("31_n3xtr")]
-position = Vector2(4921.64, -458.217)
+[node name="LighPole" parent="Background/SideWalk" index="2" instance=ExtResource("31_n3xtr")]
+position = Vector2(840.637, -458.217)
 
-[node name="LighPole5" parent="Background/SideWalk" index="3" instance=ExtResource("31_n3xtr")]
-position = Vector2(7013.64, -458.217)
+[node name="LighPole3" parent="Background/SideWalk" index="3" instance=ExtResource("31_n3xtr")]
+position = Vector2(2934, -458.217)
+
+[node name="LighPole4" parent="Background/SideWalk" index="4" instance=ExtResource("31_n3xtr")]
+position = Vector2(5025.64, -458.217)
+
+[node name="LighPole5" parent="Background/SideWalk" index="5" instance=ExtResource("31_n3xtr")]
+position = Vector2(7117.64, -458.217)
+
+[node name="Postbox1" type="Sprite2D" parent="Background/SideWalk" index="6"]
+position = Vector2(961.637, -57.217)
+texture = ExtResource("39_n2yay")
+
+[node name="Postbox2" type="Sprite2D" parent="Background/SideWalk" index="7"]
+position = Vector2(3978.64, -57.217)
+texture = ExtResource("40_fyh1w")
 
 [node name="Chad" parent="Level/Characters" index="0"]
 position = Vector2(824, 800)
@@ -374,6 +422,18 @@ modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(126, 1090)
 shape = SubResource("WorldBoundaryShape2D_7qd0i")
 metadata/collision_type = "default"
+
+[node name="TelefonePole3" type="Sprite2D" parent="Foreground" index="0"]
+material = SubResource("ShaderMaterial_juikt")
+position = Vector2(803, 281)
+scale = Vector2(2, 2)
+texture = ExtResource("34_wrols")
+
+[node name="TelefonePole4" type="Sprite2D" parent="Foreground" index="1"]
+material = SubResource("ShaderMaterial_juikt")
+position = Vector2(6633, 281)
+scale = Vector2(2, 2)
+texture = ExtResource("34_wrols")
 
 [node name="FightRoom1" type="ReferenceRect" parent="Utilities" index="0"]
 offset_left = 943.0
@@ -407,6 +467,7 @@ spawn_waves = [[SubResource("Resource_o2tqf")]]
 [node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom1" index="1"]
 position = Vector2(281, 548)
 collision_layer = 0
+monitoring = false
 monitorable = false
 script = ExtResource("21_ge31n")
 path_fight_room = NodePath("..")
@@ -441,10 +502,12 @@ preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
 [node name="PlayerDetector2" type="Area2D" parent="Utilities/FightRoom2" index="0"]
-position = Vector2(1301, 585)
+position = Vector2(1292, 585)
 collision_layer = 0
+monitoring = false
 monitorable = false
 script = ExtResource("21_ge31n")
+is_one_shot = false
 path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../EnemySpawner1"), NodePath("../EnemySpawner2")]
 metadata/collision_type = "player_detector"
@@ -500,8 +563,10 @@ preview_after_color = Color(0, 0.501961, 0.501961, 1)
 [node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom3" index="0"]
 position = Vector2(687, 562)
 collision_layer = 0
+monitoring = false
 monitorable = false
 script = ExtResource("21_ge31n")
+is_one_shot = false
 path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../BossSpawner")]
 metadata/collision_type = "player_detector"
