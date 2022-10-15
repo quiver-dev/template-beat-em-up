@@ -43,8 +43,10 @@ var _total_transitions := 1:
 		_total_transitions = value
 		_reset_transitions_data()
 		notify_property_list_changed()
+
+## Array of GradientTransitioners
 var _gradient_transitions_data: Array = []
-# Dictionary in the format of { texture_resource_uid: SkyBoxExtraTextureData }
+## Dictionary in the format of { texture_resource_uid: SkyBoxExtraTextureData }
 var _extra_textures_data: Dictionary = {}
 
 var _tween_main: Tween
@@ -92,6 +94,7 @@ func play_animations() -> void:
 	for data in _gradient_transitions_data:
 		var transition_data := data as GradientTransitioner
 		transition_data.animate_gradient()
+		
 		await transition_data.transition_finished
 
 

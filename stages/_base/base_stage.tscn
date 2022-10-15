@@ -15,6 +15,10 @@ script = ExtResource("1_l8sat")
 [node name="Background" type="Node2D" parent="."]
 z_index = 5
 
+[node name="SkyboxLayer" type="CanvasLayer" parent="Background"]
+layer = -1
+follow_viewport_enabled = true
+
 [node name="Level" type="Node2D" parent="."]
 z_index = 15
 y_sort_enabled = true
