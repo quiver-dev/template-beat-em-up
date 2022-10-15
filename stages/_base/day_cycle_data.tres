@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cf424fk4f5263"]
+
+[ext_resource type="Script" path="res://stages/_base/day_cycle_data.gd" id="1_ldtut"]
+
+[resource]
+script = ExtResource("1_ldtut")
+sunset_transition = 0.0
+sunrise_transition = 0.0
