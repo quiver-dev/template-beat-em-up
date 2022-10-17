@@ -40,6 +40,12 @@ var SETTINGS = {
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0.0,2.0,0.01,or_greater"
 	},
+	QuiverCyclicHelper.SETTINGS_DISABLE_PLAYER_DETECTOR: {
+			value = false,
+			type = TYPE_BOOL,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = "",
+	}
 }
 
 #--- private variables - order: export > normal var > onready -------------------------------------

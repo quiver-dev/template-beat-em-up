@@ -36,6 +36,13 @@ func _ready() -> void:
 		QuiverEditorHelper.disable_all_processing(self)
 		QuiverCollisionTypes.apply_preset_to(QuiverCollisionTypes.PRESETS.player_detector, self)
 		return
+	elif (
+			OS.has_feature("editor") 
+			and ProjectSettings.has_setting(QuiverCyclicHelper.SETTINGS_DISABLE_PLAYER_DETECTOR)
+			and ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_DISABLE_PLAYER_DETECTOR)
+		):
+		monitoring = false
+		return
 	
 	if is_instance_valid(fight_room):
 		QuiverEditorHelper.connect_between(player_detected, fight_room.setup_fight_room)
