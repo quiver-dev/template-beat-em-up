@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi8ko14io2ng4"]
+
+[ext_resource type="Texture2D" uid="uid://ckp5txxn4jyw7" path="res://stages/stage_01/background_elements/buildings/walls/stone_wall/area_2_stonewall.png" id="1_fmv67"]
+
+[node name="StoneWall" type="Sprite2D"]
+texture_repeat = 2
+texture = ExtResource("1_fmv67")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 689, 799)
