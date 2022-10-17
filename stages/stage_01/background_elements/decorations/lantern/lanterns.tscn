@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://00xm0owmrag3"]
+[gd_scene load_steps=7 format=3 uid="uid://cl26je7j1tm2g"]
 
-[ext_resource type="Texture2D" uid="uid://ot8vr2fu8n7l" path="res://stages/stage_01/background_elements/decorations/pngs/lanterns_1_50.png" id="1_djk2h"]
-[ext_resource type="Texture2D" uid="uid://bvpevd2ij0rpo" path="res://stages/stage_01/background_elements/decorations/pngs/lanterns_2_50.png" id="2_l6vjl"]
+[ext_resource type="Texture2D" uid="uid://ot8vr2fu8n7l" path="res://stages/stage_01/background_elements/decorations/lantern/lanterns_1_50.png" id="1_djk2h"]
+[ext_resource type="Texture2D" uid="uid://bvpevd2ij0rpo" path="res://stages/stage_01/background_elements/decorations/lantern/lanterns_2_50.png" id="2_l6vjl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ko5ap"]
 blend_mode = 1

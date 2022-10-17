@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnb56dd8w8wmt"]
+[gd_scene load_steps=7 format=3 uid="uid://bgjhhowmcl3j"]
 
-[ext_resource type="Texture2D" uid="uid://blofsl7ycu33j" path="res://stages/stage_01/background_elements/decorations/pngs/christmas_lights_1_50.png" id="1_oswu4"]
-[ext_resource type="Texture2D" uid="uid://bs7acr3bordyg" path="res://stages/stage_01/background_elements/decorations/pngs/christams_lights_2_50.png" id="2_0v5x8"]
+[ext_resource type="Texture2D" uid="uid://blofsl7ycu33j" path="res://stages/stage_01/background_elements/decorations/christmas_lights/christmas_lights_1_50.png" id="1_oswu4"]
+[ext_resource type="Texture2D" uid="uid://bs7acr3bordyg" path="res://stages/stage_01/background_elements/decorations/christmas_lights/christams_lights_2_50.png" id="2_0v5x8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o6l4p"]
 blend_mode = 1

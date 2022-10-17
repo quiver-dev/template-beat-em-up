@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs7acr3bordyg"
-path="res://.godot/imported/christams_lights_2_50.png-b5425a8a634b3b848888c8ff875f9240.ctex"
+uid="uid://ct0e5tvx2qiq6"
+path="res://.godot/imported/area_2_bamboo1_2.png-e300c6e4c8b1cba5612f35c5eff880eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stages/stage_01/background_elements/decorations/pngs/christams_lights_2_50.png"
-dest_files=["res://.godot/imported/christams_lights_2_50.png-b5425a8a634b3b848888c8ff875f9240.ctex"]
+source_file="res://stages/stage_01/background_elements/decorations/area_2_bamboo1_2.png"
+dest_files=["res://.godot/imported/area_2_bamboo1_2.png-e300c6e4c8b1cba5612f35c5eff880eb.ctex"]
 
 [params]
 

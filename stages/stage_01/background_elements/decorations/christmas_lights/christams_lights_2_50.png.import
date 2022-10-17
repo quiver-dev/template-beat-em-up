@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blofsl7ycu33j"
-path="res://.godot/imported/christmas_lights_1_50.png-c872f3010f3faa975dbc378297b78b34.ctex"
+uid="uid://bs7acr3bordyg"
+path="res://.godot/imported/christams_lights_2_50.png-da6756a4326e33ffdaafda1b6ecd3909.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stages/stage_01/background_elements/decorations/pngs/christmas_lights_1_50.png"
-dest_files=["res://.godot/imported/christmas_lights_1_50.png-c872f3010f3faa975dbc378297b78b34.ctex"]
+source_file="res://stages/stage_01/background_elements/decorations/christmas_lights/christams_lights_2_50.png"
+dest_files=["res://.godot/imported/christams_lights_2_50.png-da6756a4326e33ffdaafda1b6ecd3909.ctex"]
 
 [params]
 

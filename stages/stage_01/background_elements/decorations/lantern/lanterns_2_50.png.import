@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ot8vr2fu8n7l"
-path="res://.godot/imported/lanterns_1_50.png-1c6da46adc402035e38a535dc9ce49a6.ctex"
+uid="uid://bvpevd2ij0rpo"
+path="res://.godot/imported/lanterns_2_50.png-1bfff7e61cdfe1b9eac13286ec2f4ee9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stages/stage_01/background_elements/decorations/pngs/lanterns_1_50.png"
-dest_files=["res://.godot/imported/lanterns_1_50.png-1c6da46adc402035e38a535dc9ce49a6.ctex"]
+source_file="res://stages/stage_01/background_elements/decorations/lantern/lanterns_2_50.png"
+dest_files=["res://.godot/imported/lanterns_2_50.png-1bfff7e61cdfe1b9eac13286ec2f4ee9.ctex"]
 
 [params]
 
