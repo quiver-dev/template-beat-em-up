@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://5qjhb6ofp7me"]
+
+[ext_resource type="Texture2D" uid="uid://c4jvwiedaique" path="res://stages/stage_01/background_elements/buildings/chicken_king/pngs/chicken_king_billboard.png" id="1_afu3b"]
+[ext_resource type="Texture2D" uid="uid://74ke1uedy0t4" path="res://stages/stage_01/background_elements/buildings/chicken_king/pngs/spot_lights.png" id="2_8xxtv"]
+[ext_resource type="Shader" path="res://stages/stage_01/hard_light.gdshader" id="3_lql4b"]
+[ext_resource type="Texture2D" uid="uid://db75knkd2jlnd" path="res://stages/stage_01/background_elements/buildings/chicken_king/pngs/spot_lights_pin_light.png" id="4_islvs"]
+[ext_resource type="Texture2D" uid="uid://bweaxct2spy6s" path="res://stages/stage_01/background_elements/buildings/chicken_king/pngs/spot_lights_wite_light.png" id="5_pmojt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tapoo"]
+shader = ExtResource("3_lql4b")
+
+[sub_resource type="Animation" id="Animation_wl4x2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLightsHardLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLightsWhiteLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fg2wb"]
+resource_name = "loop"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLightsHardLight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLightsWhiteLight:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxnk8"]
+_data = {
+"RESET": SubResource("Animation_wl4x2"),
+"loop": SubResource("Animation_fg2wb")
+}
+
+[node name="ChickenKingBillboard" type="Sprite2D"]
+texture = ExtResource("1_afu3b")
+
+[node name="SpotLights" type="Sprite2D" parent="."]
+position = Vector2(-2, 259)
+texture = ExtResource("2_8xxtv")
+
+[node name="SpotLightsHardLight" type="Sprite2D" parent="SpotLights"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_tapoo")
+position = Vector2(0, -47)
+texture = ExtResource("4_islvs")
+
+[node name="SpotLightsWhiteLight" type="Sprite2D" parent="SpotLights"]
+show_behind_parent = true
+position = Vector2(6, -101)
+texture = ExtResource("5_pmojt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpotLights"]
+autoplay = "loop"
+libraries = {
+"": SubResource("AnimationLibrary_sxnk8")
+}

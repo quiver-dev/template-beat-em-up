@@ -9,13 +9,17 @@ extends QuiverCustomOverlay
 
 enum HandleSides {
 	LEFT,
-	RIGHT
+	RIGHT,
+	TOP,
+	BOTTOM,
 }
 
 #--- constants ------------------------------------------------------------------------------------
 
 const INVALID_HANDLE = -1
 const INVALID_VECTOR = Vector2(INF, INF)
+
+const HANDLE_THICKNESS = 10
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
@@ -57,7 +61,7 @@ func forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 	if not (is_instance_valid(_sprite_repeater) and _sprite_repeater.is_inside_tree()):
 		return
 	
-	_rect = _sprite_repeater.get_rect_on_editor()
+	_rect = _sprite_repeater.get_global_rect_on_editor()
 	viewport_control.draw_rect(_rect, COLOR_GODOT_ORANGE, false, 1.0)
 	
 	_handles = _calculate_sprite_repeater_handles()
@@ -118,10 +122,11 @@ func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
 		var handle := _handles[key] as Rect2
 		if handle.has_point(event.position):
 			_dragged_handle = key
-			if _dragged_handle == HandleSides.LEFT:
-				_starting_local_end = _sprite_repeater.get_rect().end
+			if _dragged_handle == HandleSides.LEFT or _dragged_handle == HandleSides.TOP:
+				_starting_local_end = _sprite_repeater.get_global_rect().end
 			else:
 				_starting_local_end = INVALID_VECTOR
+			
 			_undo_redo.create_action(
 					"Move QuiverSpriteRepeater Handle", UndoRedo.MERGE_DISABLE, _sprite_repeater
 			)
@@ -148,16 +153,26 @@ func _calculate_sprite_repeater_handles() -> Dictionary:
 	var editor_transform := \
 			_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
 	
-	var handle_size := Vector2(10, _rect.size.y)
-	var left_handle_start := _rect.position - Vector2.RIGHT * handle_size.x
-	var right_handle_start := \
-			_rect.position + Vector2(_rect.size.x, 0)
+	var handles := {}
 	
-	var handles = {
-			HandleSides.LEFT: Rect2(left_handle_start, handle_size),
-			HandleSides.RIGHT: Rect2(right_handle_start, handle_size)
-	}
-	
+	if _sprite_repeater.is_vertical:
+		var handle_size := Vector2(_rect.size.x, HANDLE_THICKNESS)
+		var top_handle_start := _rect.position + Vector2.UP * handle_size.y
+		var bottom_handle_start := _rect.position + Vector2.DOWN * _rect.size.y
+		handles = {
+				HandleSides.TOP: Rect2(top_handle_start, handle_size),
+				HandleSides.BOTTOM: Rect2(bottom_handle_start, handle_size)
+		}
+	else:
+		var handle_size := Vector2(HANDLE_THICKNESS, _rect.size.y)
+		var left_handle_start := _rect.position + Vector2.LEFT * handle_size.x
+		var right_handle_start := \
+				_rect.position + Vector2(_rect.size.x, 0)
+		handles = {
+				HandleSides.LEFT: Rect2(left_handle_start, handle_size),
+				HandleSides.RIGHT: Rect2(right_handle_start, handle_size)
+		}
+		
 	return handles
 
 
@@ -171,19 +186,42 @@ func _drag_to(event: InputEventMouse) -> void:
 
 func _calculate_dragged_length(event: InputEventMouse) -> void:
 	var distance := 0.0
-	if _dragged_handle == HandleSides.RIGHT:
-		distance = event.position.x - _rect.position.x
-	elif _dragged_handle == HandleSides.LEFT:
-		distance = _rect.end.x - event.position.x
+	var base_distance := _rect.size / float(_sprite_repeater.length)
+	var value := 1.0
+	match _dragged_handle:
+		HandleSides.RIGHT:
+			distance = event.position.x - _rect.position.x
+			value = round(distance / base_distance.x)
+		HandleSides.LEFT:
+			distance = _rect.end.x - event.position.x
+			value = round(distance / base_distance.x)
+		HandleSides.TOP:
+			distance = _rect.end.y - event.position.y
+			value = round(distance / base_distance.y)
+		HandleSides.BOTTOM:
+			distance = event.position.y - _rect.position.y
+			value = round(distance / base_distance.y)
+		_:
+			push_error("Undefined handle: %s. Possible values: %s"%[
+					_dragged_handle, HandleSides.keys()
+			])
 	
-	var base_distance := _rect.size.x / float(_sprite_repeater.length)
-	var value := round(distance / base_distance) as float
 	_sprite_repeater.length = max(1, value)
 
 
 func _calculate_dragged_position() -> void:
-	if _dragged_handle == HandleSides.LEFT and _starting_local_end != INVALID_VECTOR:
-		var current_size := _sprite_repeater.get_rect().size
-		_sprite_repeater.position.x = _starting_local_end.x - current_size.x
+	if _starting_local_end != INVALID_VECTOR:
+		var current_size := _sprite_repeater.get_global_rect().size
+		match _dragged_handle:
+			HandleSides.LEFT:
+				_sprite_repeater.global_position.x = _starting_local_end.x - current_size.x
+			HandleSides.TOP:
+				_sprite_repeater.global_position.y = _starting_local_end.y - current_size.y
+			_:
+				push_error(
+						"Either an unimplemented Handle or _starting_local_end is not invalid " 
+						+ "when it should be. _dragged_handle: %s _starting_local_end: %s"
+						%[_dragged_handle, _starting_local_end]
+				)
 
 ### -----------------------------------------------------------------------------------------------

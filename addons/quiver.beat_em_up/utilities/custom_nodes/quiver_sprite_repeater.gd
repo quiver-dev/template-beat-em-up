@@ -12,7 +12,10 @@ extends Node2D
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------
-
+@export var is_vertical := false:
+	set(value):
+		is_vertical = value
+		update_configuration_warnings()
 @export var main_texture: Texture2D = null:
 	set(value):
 		main_texture = value
@@ -31,21 +34,21 @@ extends Node2D
 		queue_redraw()
 
 @export_group("Cap Textures", "cap_")
-@export var cap_left: Texture2D = null:
+@export var cap_begin: Texture2D = null:
 	set(value):
-		cap_left = value
+		cap_begin = value
 		queue_redraw()
-@export var cap_left_offset := Vector2.ZERO:
+@export var cap_begin_offset := Vector2.ZERO:
 	set(value):
-		cap_left_offset = value
+		cap_begin_offset = value
 		queue_redraw()
-@export var cap_right: Texture2D = null:
+@export var cap_end: Texture2D = null:
 	set(value):
-		cap_right = value
+		cap_end = value
 		queue_redraw()
-@export var cap_right_offset := Vector2.ZERO:
+@export var cap_end_offset := Vector2.ZERO:
 	set(value):
-		cap_right_offset = value
+		cap_end_offset = value
 		queue_redraw()
 
 @export_group("Texture Variations", "variation_")
@@ -75,9 +78,9 @@ func _draw() -> void:
 		_create_random_sequence()
 		notify_property_list_changed()
 	
-	_draw_left_cap()
+	_draw_cap_begin()
 	_draw_main_body()
-	_draw_right_cap()
+	_draw_cap_end()
 
 
 func _process(_delta: float) -> void:
@@ -108,33 +111,27 @@ func _process(_delta: float) -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func get_rect_on_editor() -> Rect2:
-	var rect := Rect2()
+func get_global_rect_on_editor() -> Rect2:
+	var rect := get_global_rect()
 	var editor_transform := get_viewport_transform() * get_canvas_transform()
-	
-	rect.position = editor_transform * (position + offset)
-	
-	var total_size_x = main_texture.get_size().x * length
-	var total_separation = separation * (length - 1)
-	rect.size = editor_transform.get_scale() * scale * Vector2(
-			total_size_x + total_separation,
-			main_texture.get_size().y
-	)
-	
+	rect.position = editor_transform * rect.position
+	rect.size = editor_transform.get_scale() * rect.size
 	return rect
 
 
-func get_rect() -> Rect2:
+func get_global_rect() -> Rect2:
 	var rect := Rect2()
 	
-	rect.position = position + offset
+	rect.position = global_position + offset
 	
-	var total_size_x = main_texture.get_size().x * length
 	var total_separation = separation * (length - 1)
-	rect.size = scale * Vector2(
-			total_size_x + total_separation,
-			main_texture.get_size().y
-	)
+	var total_size := main_texture.get_size()
+	if is_vertical:
+		total_size.y = total_size.y * length + total_separation
+	else:
+		total_size.x = total_size.x * length + total_separation
+	
+	rect.size = global_scale * total_size
 	
 	return rect
 
@@ -143,29 +140,33 @@ func get_rect() -> Rect2:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _draw_left_cap() -> void:
-	if cap_left != null:
-		draw_texture(cap_left, offset + cap_left_offset)
+func _draw_cap_begin() -> void:
+	if cap_begin != null:
+		draw_texture(cap_begin, offset + cap_begin_offset)
 
 
 func _draw_main_body() -> void:
 	for index in _texture_sequence.size():
 		var texture := _textures[_texture_sequence[index]]
-		var draw_position = Vector2(
-				(texture.get_size().x + separation) * index + offset.x, 
-				offset.y
-		)
+		var draw_position := offset
+		if is_vertical:
+			draw_position.y = (texture.get_size().y + separation) * index + offset.y
+		else:
+			draw_position.x = (texture.get_size().x + separation) * index + offset.x
 		
 		draw_texture(texture, draw_position)
 
 
-func _draw_right_cap() -> void:
-	if cap_right != null:
-		var draw_position = Vector2(
-				(main_texture.get_size().x + separation) * length + offset.x + cap_right_offset.x, 
-				offset.y + cap_right_offset.y
-		)
-		draw_texture(cap_right, draw_position)
+func _draw_cap_end() -> void:
+	if cap_end != null:
+		var draw_position := offset + cap_end_offset
+		var size := main_texture.get_size()
+		if is_vertical:
+			draw_position.y = (size.y + separation) * length + offset.y + cap_end_offset.y
+		else:
+			draw_position.x = (size.x + separation) * length + offset.x + cap_end_offset.x
+		
+		draw_texture(cap_end, draw_position)
 
 
 func _create_random_sequence() -> void:

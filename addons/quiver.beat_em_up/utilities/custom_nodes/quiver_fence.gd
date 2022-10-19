@@ -38,12 +38,19 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var msgs := PackedStringArray()
+	if is_vertical:
+		msgs.append("QuiverFence has no implementation for is_vertical")
+	return msgs
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func get_rect_on_editor() -> Rect2:
+func get_global_rect_on_editor() -> Rect2:
 	var rect := Rect2()
 	var editor_transform := get_viewport_transform() * get_canvas_transform()
 	
@@ -61,7 +68,7 @@ func get_rect_on_editor() -> Rect2:
 	return rect
 
 
-func get_rect() -> Rect2:
+func get_global_rect() -> Rect2:
 	var rect := Rect2()
 	
 	rect.position = position + offset
@@ -117,8 +124,8 @@ func _should_draw_pole(index, current_pole) -> bool:
 	)
 
 
-func _draw_right_cap() -> void:
-	if cap_right != null:
-		draw_texture(cap_right, _draw_position)
+func _draw_cap_end() -> void:
+	if cap_end != null:
+		draw_texture(cap_end, _draw_position + cap_end_offset)
 
 ### -----------------------------------------------------------------------------------------------

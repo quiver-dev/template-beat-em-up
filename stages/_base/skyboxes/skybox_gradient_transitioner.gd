@@ -8,6 +8,7 @@ extends Resource
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
+signal transition_started
 signal transition_finished
 
 #--- enums ----------------------------------------------------------------------------------------
@@ -82,6 +83,8 @@ func animate_gradient() -> void:
 	if _tween:
 		_tween.kill()
 	_tween = _target_node.create_tween().set_parallel()
+	
+	transition_started.emit()
 	_tween.finished.connect(_emit_finished)
 	
 	for index in point_count:
