@@ -117,7 +117,7 @@ func _connect_signals() -> void:
 func _disconnect_signals() -> void:
 	super()
 	
-	if _attributes != null:
+	if _attributes != null and _state_machine.has_node(_path_grabbing_state):
 		QuiverEditorHelper.disconnect_between(_attributes.grab_requested, _on_grab_requested)
 	
 	if _skin != null:

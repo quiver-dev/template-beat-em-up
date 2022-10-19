@@ -24,7 +24,7 @@ signal skin_animation_finished
 signal attack_input_frames_finished
 
 ## emited by calling [method grab_notify] in grab animations, at the point the grab should 
-## connect and link character who is grabbing to grabbed character
+## connect and link the character who is grabbing to grabbed character
 signal grab_frame_reached(ref_position: Marker2D)
 
 signal attack_movement_started(direction: Vector2, speed: float)
