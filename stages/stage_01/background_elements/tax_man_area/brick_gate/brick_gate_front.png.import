@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n6gavgela6ti"
-path="res://.godot/imported/tax_man_doors_2.png-38c0a9020ca5e6abea4f6ab8d41352da.ctex"
+uid="uid://mlxuohwa50qd"
+path="res://.godot/imported/brick_gate_front.png-800355967beb4d803be20b332240106d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stages/stage_01/background_elements/tax_man_area/tax_man_doors_2.png"
-dest_files=["res://.godot/imported/tax_man_doors_2.png-38c0a9020ca5e6abea4f6ab8d41352da.ctex"]
+source_file="res://stages/stage_01/background_elements/tax_man_area/brick_gate/brick_gate_front.png"
+dest_files=["res://.godot/imported/brick_gate_front.png-800355967beb4d803be20b332240106d.ctex"]
 
 [params]
 
