@@ -12,4 +12,4 @@ jump_force = -1200
 hit_lane_offset = 0
 is_invulnerable = false
 has_superarmor = false
-can_be_grabbed = false
+can_be_grabbed = true

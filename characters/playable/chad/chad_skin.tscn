@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=20 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
-[ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
 [ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dlfxsc1icfbdd" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://c8j7ycyt3mx65" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
@@ -37,7 +36,6 @@ size = Vector2(222, 91)
 size = Vector2(285.095, 79.2264)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
-script = ExtResource("2_jvmk2")
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
 has_grab = false
