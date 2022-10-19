@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwhqw068qykav"]
+
+[ext_resource type="Texture2D" uid="uid://dt1bn64h1o4s4" path="res://stages/stage_01/background_elements/gates/tori_gate/tori_gate_back.png" id="1_vb7rm"]
+[ext_resource type="Texture2D" uid="uid://eot6j1vb6jqh" path="res://stages/stage_01/background_elements/gates/tori_gate/tori_gate_front.png" id="2_hw1c3"]
+
+[node name="ToriGate" type="Node2D"]
+self_modulate = Color(0.341176, 0.32549, 0.14902, 0.541176)
+scale = Vector2(0.75, 0.75)
+y_sort_enabled = true
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(-220, -96)
+texture = ExtResource("1_vb7rm")
+offset = Vector2(-83, -954)
+
+[node name="Back2" type="Sprite2D" parent="."]
+position = Vector2(254.667, 368)
+texture = ExtResource("2_hw1c3")
+offset = Vector2(-91, -1037)
+
+[node name="StaticBody2d" type="StaticBody2D" parent="."]
+position = Vector2(-220, -96)
+collision_layer = 2
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
+polygon = PackedVector2Array(-130.667, -60, -88, -5.33334, 80, -2.66667, 30.6667, -62.6667)
+
+[node name="CollisionPolygon2d2" type="CollisionPolygon2D" parent="StaticBody2d"]
+position = Vector2(460, 468)
+polygon = PackedVector2Array(-130.667, -60, -88, -5.33334, 108, -4, 45.3333, -62.6667)

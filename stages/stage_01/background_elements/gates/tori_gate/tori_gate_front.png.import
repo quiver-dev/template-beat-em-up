@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk0a1skp8g3rr"
-path="res://.godot/imported/tori_gate.png-141cbb6aaa2b3fea79db14588804e872.ctex"
+uid="uid://eot6j1vb6jqh"
+path="res://.godot/imported/tori_gate_front.png-5cf653d1f110e91d9df1a145c760d2e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stages/stage_01/background_elements/decorations/tori_gate.png"
-dest_files=["res://.godot/imported/tori_gate.png-141cbb6aaa2b3fea79db14588804e872.ctex"]
+source_file="res://stages/stage_01/background_elements/gates/tori_gate/tori_gate_front.png"
+dest_files=["res://.godot/imported/tori_gate_front.png-5cf653d1f110e91d9df1a145c760d2e6.ctex"]
 
 [params]
 
