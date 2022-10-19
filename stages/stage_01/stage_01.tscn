@@ -26,12 +26,12 @@
 [ext_resource type="Texture2D" uid="uid://bvnsmsil71bnt" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_tree_leftside.png" id="8_r4uty"]
 [ext_resource type="Texture2D" uid="uid://ctvhqu3sfy08v" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_2.png" id="9_7km5a"]
 [ext_resource type="Texture2D" uid="uid://d326gpsqdber" path="res://stages/stage_01/background_elements/buildings/windows/standard/windows_1_1_50.png" id="9_37nkk"]
-[ext_resource type="Texture2D" uid="uid://d4mmsjxgmf3gc" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_wall_gate.png" id="9_co4mw"]
 [ext_resource type="Texture2D" uid="uid://y3mkbcs03dy" path="res://stages/stage_01/background_elements/buildings/foster_mart/area_2_foster_mart_store_all.png" id="9_hqdgr"]
 [ext_resource type="Texture2D" uid="uid://clhyfh86x3q45" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_tree_rightside.png" id="9_nsd75"]
 [ext_resource type="Texture2D" uid="uid://gndch3lv12s5" path="res://stages/stage_01/background_elements/buildings/windows/standard/windows_1_3_50.png" id="9_r3hf1"]
 [ext_resource type="Texture2D" uid="uid://ccfpi6frhepgd" path="res://stages/stage_01/background_elements/buildings/doors/door_2_revised_50.png" id="10_5iloq"]
 [ext_resource type="Texture2D" uid="uid://sblsgjraucxi" path="res://stages/stage_01/background_elements/buildings/doors/door_1_revised_new_50.png" id="10_gbajp"]
+[ext_resource type="PackedScene" uid="uid://beq6o4qcjiuys" path="res://stages/stage_01/background_elements/tax_man_area/brick_gate/dirty_brick_wall_gate.tscn" id="10_nq7xs"]
 [ext_resource type="Texture2D" uid="uid://k1o6b34fd3cm" path="res://stages/stage_01/background_elements/buildings/foster_mart/area_2_rocks_revised.png" id="10_oy6ry"]
 [ext_resource type="Texture2D" uid="uid://dt36h10hb1mpc" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_floor_chess.png" id="10_t7pvb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd" id="10_u6nh0"]
@@ -65,9 +65,9 @@
 [ext_resource type="Texture2D" uid="uid://64cy35dxtdah" path="res://stages/stage_01/background_elements/street_poles/post_box/postbox_tagged.png" id="39_n2yay"]
 [ext_resource type="Texture2D" uid="uid://wgg3w6gnvakg" path="res://stages/stage_01/background_elements/street_poles/post_box/postbox_clean.png" id="40_fyh1w"]
 [ext_resource type="Texture2D" uid="uid://dh7tejawvukva" path="res://stages/stage_01/background_elements/street_poles/metal_post.png" id="50_pgs7w"]
-[ext_resource type="Texture2D" uid="uid://bk0a1skp8g3rr" path="res://stages/stage_01/background_elements/decorations/tori_gate.png" id="51_rtqpd"]
 [ext_resource type="Texture2D" uid="uid://dx5n25lg03m3j" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_black_marble.png" id="56_t2mje"]
-[ext_resource type="Texture2D" uid="uid://bwrpook0qwymw" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_throne_revised.png" id="61_t5m8t"]
+[ext_resource type="PackedScene" uid="uid://bq5fuuqbl8loh" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_throne.tscn" id="60_60ghw"]
+[ext_resource type="PackedScene" uid="uid://cwhqw068qykav" path="res://stages/stage_01/background_elements/gates/tori_gate/tori_gate.tscn" id="60_mx5oi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe6v1"]
 shader = ExtResource("10_yubb3")
@@ -82,7 +82,7 @@ colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 
 resource_local_to_scene = true
 gradient = SubResource("Gradient_qf2sq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsfq3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6f5y"]
 resource_local_to_scene = true
 shader = ExtResource("5_iqlbw")
 shader_parameter/gradient = SubResource("GradientTexture1D_cjnlv")
@@ -99,7 +99,7 @@ colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0
 resource_local_to_scene = true
 gradient = SubResource("Gradient_146d0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1o34"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h3i2"]
 resource_local_to_scene = true
 shader = ExtResource("5_iqlbw")
 shader_parameter/gradient = SubResource("GradientTexture1D_xgjbb")
@@ -225,19 +225,14 @@ position = Vector2(16077, 366)
 scale = Vector2(1.0194, 1.0194)
 texture = ExtResource("9_nsd75")
 
-[node name="DirtyBrickWallGate" type="Sprite2D" parent="Background" index="5"]
-position = Vector2(11357, 317)
-z_index = 2
-texture = ExtResource("9_co4mw")
-
-[node name="TaxManWindows" type="Sprite2D" parent="Background" index="6"]
+[node name="TaxManWindows" type="Sprite2D" parent="Background" index="5"]
 modulate = Color(1, 1, 1, 0.5)
 material = SubResource("ShaderMaterial_fe6v1")
 position = Vector2(13754.8, 259.75)
 scale = Vector2(1.0194, 1.0194)
 texture = ExtResource("8_p47g0")
 
-[node name="MarbleGround" type="Sprite2D" parent="Background" index="7"]
+[node name="MarbleGround" type="Sprite2D" parent="Background" index="6"]
 position = Vector2(13251, 820)
 z_index = 1
 texture = ExtResource("56_t2mje")
@@ -278,7 +273,7 @@ texture = ExtResource("37_lr1et")
 position = Vector2(2779, -457)
 texture = ExtResource("37_lr1et")
 
-[node name="SideWalk3" type="Node2D" parent="Background" index="8"]
+[node name="SideWalk3" type="Node2D" parent="Background" index="7"]
 position = Vector2(9308.36, 424.217)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("6_e0uvm")
@@ -286,26 +281,26 @@ length = 6
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
+variations_weights = [1.0]
 texture_sequence = [2, 2, 2, 1, 0, 2]
 
-[node name="FireTiger" type="Sprite2D" parent="Background" index="9"]
+[node name="FireTiger" type="Sprite2D" parent="Background" index="8"]
 position = Vector2(9104, 110)
 texture = ExtResource("7_hm5qt")
 
-[node name="JavaBean" type="Sprite2D" parent="Background" index="10"]
+[node name="JavaBean" type="Sprite2D" parent="Background" index="9"]
 position = Vector2(8470, 110)
 texture = ExtResource("8_mhqwt")
 
-[node name="FosterMart" type="Sprite2D" parent="Background" index="11"]
+[node name="FosterMart" type="Sprite2D" parent="Background" index="10"]
 position = Vector2(7467, 110)
 texture = ExtResource("9_hqdgr")
 
-[node name="Rocks" type="Sprite2D" parent="Background" index="12"]
+[node name="Rocks" type="Sprite2D" parent="Background" index="11"]
 position = Vector2(6583, 364)
 texture = ExtResource("10_oy6ry")
 
-[node name="FosterMartSign" type="Sprite2D" parent="Background" index="13"]
+[node name="FosterMartSign" type="Sprite2D" parent="Background" index="12"]
 position = Vector2(6583, 206)
 texture = ExtResource("11_184aj")
 
@@ -314,7 +309,7 @@ position = Vector2(-140, -107)
 z_index = -1
 texture = ExtResource("9_nsd75")
 
-[node name="Pavement" type="Node2D" parent="Background" index="14"]
+[node name="Pavement" type="Node2D" parent="Background" index="13"]
 position = Vector2(568, 650)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("4_0uw5r")
@@ -341,11 +336,11 @@ position = Vector2(9216, -12)
 texture = ExtResource("19_tfj0g")
 centered = false
 
-[node name="BrickBuilding1" type="Node2D" parent="Background" index="15"]
+[node name="BrickBuilding1" type="Node2D" parent="Background" index="14"]
 position = Vector2(514, 565)
 
 [node name="BrickWall" parent="Background/BrickBuilding1" index="0" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_hsfq3")
+material = SubResource("ShaderMaterial_w6f5y")
 position = Vector2(-4.5, -550)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 2146, 2200)
@@ -396,7 +391,7 @@ texture = ExtResource("13_r4xmg")
 [node name="LoveYourselSign" parent="Background/BrickBuilding1/Door2" index="2" instance=ExtResource("14_h8n7k")]
 position = Vector2(-9, -385)
 
-[node name="Fence1" type="Node2D" parent="Background" index="16"]
+[node name="Fence1" type="Node2D" parent="Background" index="15"]
 position = Vector2(3222, 22.383)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("10_u6nh0")
@@ -411,7 +406,7 @@ variation_textures = []
 variations_weights = [1.0]
 texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[node name="ChickenKing" parent="Background" index="17" instance=ExtResource("4_8mlpl")]
+[node name="ChickenKing" parent="Background" index="16" instance=ExtResource("4_8mlpl")]
 position = Vector2(2572, 505)
 
 [node name="ChristmasLights" parent="Background/ChickenKing" index="5" instance=ExtResource("5_cl8vk")]
@@ -427,7 +422,7 @@ position = Vector2(635, -509)
 z_index = -1
 texture = ExtResource("8_r4uty")
 
-[node name="SideWalk2" type="Node2D" parent="Background" index="18"]
+[node name="SideWalk2" type="Node2D" parent="Background" index="17"]
 position = Vector2(1842.36, 482.217)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("6_e0uvm")
@@ -435,7 +430,7 @@ length = 42
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
+variations_weights = [1.0]
 texture_sequence = [2, 1, 2, 2, 1, 0, 0, 2, 0, 1, 2, 2, 0, 2, 2, 1, 0, 2, 0, 2, 2, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 2, 1, 2, 0, 0, 1, 1]
 
 [node name="BambooVase1" type="Sprite2D" parent="Background/SideWalk2" index="0"]
@@ -446,26 +441,26 @@ texture = ExtResource("37_lr1et")
 position = Vector2(7620.64, -215.217)
 texture = ExtResource("37_lr1et")
 
-[node name="VendingMachine3" type="Sprite2D" parent="Background" index="19"]
+[node name="VendingMachine3" type="Sprite2D" parent="Background" index="18"]
 position = Vector2(3880.25, 375.856)
 scale = Vector2(1.21205, 1.21205)
 texture = ExtResource("28_f64gi")
 
-[node name="VendingMachine2" type="Sprite2D" parent="Background" index="20"]
+[node name="VendingMachine2" type="Sprite2D" parent="Background" index="19"]
 position = Vector2(3737.25, 374.856)
 scale = Vector2(1.21205, 1.21205)
 texture = ExtResource("29_70lla")
 
-[node name="VendingMachine" type="Sprite2D" parent="Background" index="21"]
+[node name="VendingMachine" type="Sprite2D" parent="Background" index="20"]
 position = Vector2(3553.25, 374.856)
 scale = Vector2(1.21205, 1.21205)
 texture = ExtResource("30_8bcgp")
 
-[node name="BrickBuilding2" type="Node2D" parent="Background" index="22"]
+[node name="BrickBuilding2" type="Node2D" parent="Background" index="21"]
 position = Vector2(96, 0)
 
 [node name="BrickWall2" parent="Background/BrickBuilding2" index="0" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_r1o34")
+material = SubResource("ShaderMaterial_7h3i2")
 position = Vector2(1454.2, 13.5)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 1842.37, 2206)
@@ -508,7 +503,7 @@ texture = ExtResource("10_gbajp")
 position = Vector2(1746, -213)
 texture = ExtResource("30_5joav")
 
-[node name="SideWalk" type="Node2D" parent="Background" index="23"]
+[node name="SideWalk" type="Node2D" parent="Background" index="22"]
 position = Vector2(439.363, 541.217)
 script = ExtResource("2_0ledp")
 main_texture = ExtResource("6_e0uvm")
@@ -517,7 +512,7 @@ separation = -99
 cap_begin = ExtResource("7_412kv")
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
+variations_weights = [1.0]
 texture_sequence = [1, 0, 1, 2, 1, 0, 0, 2, 0, 1, 2, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 2, 0, 1, 0, 0, 0, 2, 1, 0, 1, 2, 1, 0, 1, 0, 1, 1, 2, 0, 0, 0]
 
 [node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk" index="0"]
@@ -577,6 +572,16 @@ position = Vector2(824, 800)
 [node name="LevelCamera" parent="Level/Characters/Chad" index="4"]
 limit_right = 16070
 
+[node name="ToriGate" parent="Level/Objects" index="0" instance=ExtResource("60_mx5oi")]
+position = Vector2(10233, 790.5)
+
+[node name="TaxManThrone" parent="Level/Objects" index="1" instance=ExtResource("60_60ghw")]
+position = Vector2(15615, 763)
+scale = Vector2(0.75, 0.75)
+offset = Vector2(-21.332, -303)
+
+[node name="DirtyBrickWallGate" parent="Level/Objects" index="2" instance=ExtResource("10_nq7xs")]
+
 [node name="Collisions" parent="Level" index="2"]
 visible = true
 
@@ -596,7 +601,7 @@ metadata/collision_type = "default"
 polygon = PackedVector2Array(0, 0, -324, 2, -500, 21, -594, 52, -715, 113, -766, 156, -761, -97, -144, -91)
 
 [node name="CollisionPolygon2d2" type="CollisionPolygon2D" parent="Level/Collisions/CeilingLimits" index="2"]
-polygon = PackedVector2Array(9997, 86, 10062, 81, 10133, -75, 11238, -76, 11351, -100, 11374, -170, 14938, -175, 15003, -99, 15160, -81, 15251, -13, 15337, -6, 15934, 576, 16079, 514, 15257, -292, 14909, -287, 11126, -266, 10051, -201, 9853, -88)
+polygon = PackedVector2Array(10116, -76, 11238, -76, 11351, -100, 11374, -170, 14938, -175, 15003, -99, 15639, 554, 16079, 514, 15257, -292, 14909, -287, 11126, -266, 10051, -146)
 
 [node name="BottomLimit" type="StaticBody2D" parent="Level/Collisions" index="1"]
 position = Vector2(-29, 91)
@@ -607,18 +612,6 @@ modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(8411.5, 1081.5)
 shape = SubResource("RectangleShape2D_taxjp")
 metadata/collision_type = "default"
-
-[node name="ToriGate" type="Sprite2D" parent="Level" index="3"]
-position = Vector2(10233, 790.5)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("51_rtqpd")
-offset = Vector2(0, -750)
-
-[node name="TaxManThrone" type="Sprite2D" parent="Level" index="4"]
-position = Vector2(15566, 791)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("61_t5m8t")
-offset = Vector2(0, -195)
 
 [node name="TelefonePole3" type="Sprite2D" parent="Foreground" index="0"]
 material = SubResource("ShaderMaterial_juikt")

@@ -48,16 +48,17 @@ offset = Vector2(135, -321.999)
 
 [node name="StaticBody2d" type="StaticBody2D" parent="."]
 collision_layer = 2
+collision_mask = 17
 
 [node name="CollisionBackWall" type="CollisionPolygon2D" parent="StaticBody2d"]
-polygon = PackedVector2Array(-574, -549, -332, -304, -228, -308, -553, -618, -616, -614)
+polygon = PackedVector2Array(-574, -549, -340, -309, -318, -303, -243.748, -307.125, -238.828, -318.328, -553, -618, -616, -614)
 
 [node name="CollisionEntrance" type="CollisionPolygon2D" parent="StaticBody2d"]
 polygon = PackedVector2Array(-332, -304, -228, -308, 96, 5, -11, 14)
 
 [node name="CollisionFrontWall" type="CollisionPolygon2D" parent="StaticBody2d"]
 position = Vector2(617, 600)
-polygon = PackedVector2Array(-515, -497, -429, -499, -548, -610, -619, -606)
+polygon = PackedVector2Array(-515, -497, -429, -499, -544.939, -607.145, -553, -610, -611, -607, -613, -603, -612, -598, -608, -594)
 
 [node name="LeftArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -65,7 +66,7 @@ monitorable = false
 metadata/collision_type = "player_detector"
 
 [node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="LeftArea"]
-polygon = PackedVector2Array(-617, -632, 148, 125, -1004, 128, -1595, -634)
+polygon = PackedVector2Array(-617, -632, 148, 125, -393, 123, -1155, -634)
 
 [node name="RightArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -74,7 +75,7 @@ metadata/collision_type = "player_detector"
 
 [node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="RightArea"]
 position = Vector2(1220, 0)
-polygon = PackedVector2Array(-804, -658, -7, 121, -1038, 113, -1799, -640)
+polygon = PackedVector2Array(-512, -658, 314, 121, -1038, 113, -1799, -640)
 
 [connection signal="body_entered" from="LeftArea" to="." method="_on_left_area_body_entered"]
 [connection signal="body_entered" from="RightArea" to="." method="_on_right_area_body_entered"]
