@@ -1,7 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=59 format=3 uid="uid://0l8bwbsypux4"]
+[gd_resource type="SpriteFrames" load_steps=58 format=3 uid="uid://0l8bwbsypux4"]
 
 [ext_resource type="Texture2D" uid="uid://c2guwppp2v744" path="res://characters/enemies/sargent/resources/sprites/idle/idle_00.png" id="1_8vii6"]
-[ext_resource type="Texture2D" uid="uid://cl1ffkx8bp83t" path="res://characters/enemies/sargent/resources/sprites/grabbed/grabbed_00.png" id="1_bu0f8"]
 [ext_resource type="Texture2D" uid="uid://bpc7bmkwxtvvc" path="res://characters/enemies/sargent/resources/sprites/hurt/injury_01.png" id="1_lq04a"]
 [ext_resource type="Texture2D" uid="uid://bivmut4fun3h6" path="res://characters/enemies/sargent/resources/sprites/idle/idle_01.png" id="2_6p8f3"]
 [ext_resource type="Texture2D" uid="uid://bywcurwy7863i" path="res://characters/enemies/sargent/resources/sprites/hurt/injury_00.png" id="2_10lik"]
@@ -61,11 +60,6 @@
 
 [resource]
 animations = [{
-"frames": [ExtResource("1_bu0f8")],
-"loop": false,
-"name": &"grabbed",
-"speed": 24.0
-}, {
 "frames": [ExtResource("1_lq04a")],
 "loop": false,
 "name": &"hurt_high",

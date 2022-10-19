@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b37pgqu571dke"]
+[gd_scene load_steps=29 format=3 uid="uid://b37pgqu571dke"]
 
 [ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_pigv0"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="5_5ic7l"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="6_45ydq"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="7_ohh3m"]
-[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/grab_reject.gd" id="9_55v5w"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="10_ptkg4"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/taxman_hurt.gd" id="11_6u64b"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="11_7kn5i"]
@@ -26,7 +25,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="22_wmall"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="24_jvcip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="25_7uuvm"]
-[ext_resource type="Theme" uid="uid://eclai8uhh1wh" path="res://theme_resources/theme_debug.tres" id="26_sum7q"]
+[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://theme_resources/theme_debug.tres" id="26_sum7q"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/wait_debug_label.gd" id="27_dlvh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
@@ -81,12 +80,7 @@ turning_speed_modifier = 0.6
 script = ExtResource("7_ohh3m")
 skin_state = &"idle"
 
-[node name="GrabReject" type="Node" parent="StateMachine/Ground" index="1"]
-script = ExtResource("9_55v5w")
-skin_state = &"grab_reject"
-path_next_state = "Ground/Move/IdleAi"
-
-[node name="AttackArea" type="Node" parent="StateMachine/Ground" index="2"]
+[node name="AttackArea" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("10_ptkg4")
 skin_state = &"attack_area"
 can_combo = false
@@ -95,7 +89,7 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackRetaliate" type="Node" parent="StateMachine/Ground" index="3"]
+[node name="AttackRetaliate" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("10_ptkg4")
 skin_state = &"grab_reject"
 can_combo = false
@@ -104,7 +98,7 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="4"]
+[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("10_ptkg4")
 skin_state = &"attack_combo"
 can_combo = false
@@ -113,13 +107,13 @@ parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
-[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="5"]
+[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_f2uve")
 dash_skin_state = &"attack_dash_begin"
 attack_skin_state = &"attack_dash_end"
 path_next_state = "Ground/Move/IdleAi"
 
-[node name="Hurt" type="Node" parent="StateMachine/Ground" index="6"]
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_6u64b")
 skin_state_hurt_light = &"hurt_light"
 skin_state_hurt_medium = &"hurt_medium"
@@ -128,7 +122,7 @@ path_knockout = "Ground/KnockoutKneeled"
 path_retaliate = "Ground/AttackRetaliate"
 path_idle = "Ground/Move/IdleAi"
 
-[node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="7"]
+[node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("12_4lwgy")
 skin_state = &"knockout_kneeled"
 path_attack_area = "Ground/AttackArea"
@@ -169,7 +163,7 @@ max_wait = 2.0
 script = ExtResource("17_5k63d")
 _weights_by_child = {
 "ComboAttack": 1.40816,
-"DashAttack": 0.591838
+"DashAttack": 0.591839
 }
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="0"]
@@ -221,7 +215,7 @@ max_wait = 1.0
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"AreaAttack": 0.604577,
+"AreaAttack": 0.604578,
 "ComboAttack": 1.19207,
 "DashAttack": 1.20335
 }
@@ -374,6 +368,5 @@ properties = PackedStringArray("time_left")
 [connection signal="phase_changed_to" from="." to="DebugLabels/Wait" method="_on_tax_man_phase_changed_to"]
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
-[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/GrabReject" method="_on_skin_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/Hurt" method="_on_skin_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/KnockoutKneeled" method="_on_skin_skin_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=90 format=3 uid="uid://ccthcaakgim08"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=84 format=3 uid="uid://ccthcaakgim08"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gghh2"]
 animation = &"tax_man/attack_area_right"
@@ -59,18 +59,6 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_i7xi1")
 blend_point_0/pos = 0.1
 blend_point_1/node = SubResource("AnimationNodeAnimation_ooyic")
 blend_point_1/pos = -0.1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1pqa0"]
-animation = &"tax_man/grab_reject_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rkfo"]
-animation = &"tax_man/grab_reject_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fw51o"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_1pqa0")
-blend_point_0/pos = -0.1
-blend_point_1/node = SubResource("AnimationNodeAnimation_3rkfo")
-blend_point_1/pos = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n26d0"]
 animation = &"tax_man/hurt_knockout_right"
@@ -256,10 +244,6 @@ blend_point_1/pos = -0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mp4fi"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yx3d8"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wibwk"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_otiwv"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kwks4"]
@@ -280,8 +264,6 @@ blend_point_1/pos = -0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vydsg"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dg4vn"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_myp04"]
 states/Start/position = Vector2(198, 83)
 states/attack_area/node = SubResource("AnimationNodeBlendSpace1D_c4ia5")
@@ -294,8 +276,6 @@ states/attack_dash_end/node = SubResource("AnimationNodeBlendSpace1D_roylf")
 states/attack_dash_end/position = Vector2(436, 311)
 states/death_explosion/node = SubResource("AnimationNodeBlendSpace1D_b24e1")
 states/death_explosion/position = Vector2(882, -104)
-states/grab_reject/node = SubResource("AnimationNodeBlendSpace1D_fw51o")
-states/grab_reject/position = Vector2(226, -38)
 states/hurt_knockout/node = SubResource("AnimationNodeBlendSpace1D_wsq35")
 states/hurt_knockout/position = Vector2(436, -194)
 states/hurt_light/node = SubResource("AnimationNodeBlendSpace1D_jrtbq")
@@ -320,8 +300,8 @@ states/turn/node = SubResource("AnimationNodeBlendSpace1D_8xlto")
 states/turn/position = Vector2(649, 165)
 states/walk/node = SubResource("AnimationNodeBlendSpace1D_0u6n3")
 states/walk/position = Vector2(649, 83)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_x84fc"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_wv2i1"), "walk", "turn", SubResource("AnimationNodeStateMachineTransition_20eni"), "turn", "walk", SubResource("AnimationNodeStateMachineTransition_spun3"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_dd4ll"), "idle", "attack_combo", SubResource("AnimationNodeStateMachineTransition_1ai0q"), "attack_combo", "idle", SubResource("AnimationNodeStateMachineTransition_1yn1p"), "attack_dash_begin", "idle", SubResource("AnimationNodeStateMachineTransition_y53u0"), "idle", "attack_dash_begin", SubResource("AnimationNodeStateMachineTransition_jb1lu"), "attack_dash_begin", "attack_dash_end", SubResource("AnimationNodeStateMachineTransition_6dd37"), "attack_dash_end", "attack_dash_begin", SubResource("AnimationNodeStateMachineTransition_ku2a2"), "idle", "hurt_light", SubResource("AnimationNodeStateMachineTransition_uymdu"), "hurt_light", "idle", SubResource("AnimationNodeStateMachineTransition_qg18d"), "hurt_light", "hurt_medium", SubResource("AnimationNodeStateMachineTransition_3wpth"), "hurt_medium", "hurt_light", SubResource("AnimationNodeStateMachineTransition_p4exn"), "hurt_medium", "hurt_knockout", SubResource("AnimationNodeStateMachineTransition_g2sph"), "hurt_knockout", "knockout_kneeled", SubResource("AnimationNodeStateMachineTransition_2cr3w"), "knockout_kneeled", "attack_area", SubResource("AnimationNodeStateMachineTransition_qjutj"), "attack_area", "idle", SubResource("AnimationNodeStateMachineTransition_kh3hu"), "knockout_kneeled", "death_explosion", SubResource("AnimationNodeStateMachineTransition_mp4fi"), "idle", "grab_reject", SubResource("AnimationNodeStateMachineTransition_yx3d8"), "grab_reject", "idle", SubResource("AnimationNodeStateMachineTransition_wibwk"), "Start", "seated_reveal", SubResource("AnimationNodeStateMachineTransition_otiwv"), "seated_reveal", "seated_swirl", SubResource("AnimationNodeStateMachineTransition_kwks4"), "seated_swirl", "seated_drink", SubResource("AnimationNodeStateMachineTransition_p4n8e"), "seated_drink", "seated_swirl", SubResource("AnimationNodeStateMachineTransition_b8iot"), "seated_drink", "seated_laugh", SubResource("AnimationNodeStateMachineTransition_smtcy"), "seated_swirl", "seated_laugh", SubResource("AnimationNodeStateMachineTransition_kbaxl"), "seated_laugh", "seated_swirl", SubResource("AnimationNodeStateMachineTransition_vqqnx"), "seated_drink", "seated_engage", SubResource("AnimationNodeStateMachineTransition_xwpvm"), "seated_swirl", "seated_engage", SubResource("AnimationNodeStateMachineTransition_p1x06"), "seated_engage", "idle", SubResource("AnimationNodeStateMachineTransition_vydsg"), "hurt_knockout", "grab_reject", SubResource("AnimationNodeStateMachineTransition_dg4vn")]
-graph_offset = Vector2(-98, -269)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_x84fc"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_wv2i1"), "walk", "turn", SubResource("AnimationNodeStateMachineTransition_20eni"), "turn", "walk", SubResource("AnimationNodeStateMachineTransition_spun3"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_dd4ll"), "idle", "attack_combo", SubResource("AnimationNodeStateMachineTransition_1ai0q"), "attack_combo", "idle", SubResource("AnimationNodeStateMachineTransition_1yn1p"), "attack_dash_begin", "idle", SubResource("AnimationNodeStateMachineTransition_y53u0"), "idle", "attack_dash_begin", SubResource("AnimationNodeStateMachineTransition_jb1lu"), "attack_dash_begin", "attack_dash_end", SubResource("AnimationNodeStateMachineTransition_6dd37"), "attack_dash_end", "attack_dash_begin", SubResource("AnimationNodeStateMachineTransition_ku2a2"), "idle", "hurt_light", SubResource("AnimationNodeStateMachineTransition_uymdu"), "hurt_light", "idle", SubResource("AnimationNodeStateMachineTransition_qg18d"), "hurt_light", "hurt_medium", SubResource("AnimationNodeStateMachineTransition_3wpth"), "hurt_medium", "hurt_light", SubResource("AnimationNodeStateMachineTransition_p4exn"), "hurt_medium", "hurt_knockout", SubResource("AnimationNodeStateMachineTransition_g2sph"), "hurt_knockout", "knockout_kneeled", SubResource("AnimationNodeStateMachineTransition_2cr3w"), "knockout_kneeled", "attack_area", SubResource("AnimationNodeStateMachineTransition_qjutj"), "attack_area", "idle", SubResource("AnimationNodeStateMachineTransition_kh3hu"), "knockout_kneeled", "death_explosion", SubResource("AnimationNodeStateMachineTransition_mp4fi"), "Start", "seated_reveal", SubResource("AnimationNodeStateMachineTransition_otiwv"), "seated_reveal", "seated_swirl", SubResource("AnimationNodeStateMachineTransition_kwks4"), "seated_swirl", "seated_drink", SubResource("AnimationNodeStateMachineTransition_p4n8e"), "seated_drink", "seated_swirl", SubResource("AnimationNodeStateMachineTransition_b8iot"), "seated_drink", "seated_laugh", SubResource("AnimationNodeStateMachineTransition_smtcy"), "seated_swirl", "seated_laugh", SubResource("AnimationNodeStateMachineTransition_kbaxl"), "seated_laugh", "seated_swirl", SubResource("AnimationNodeStateMachineTransition_vqqnx"), "seated_drink", "seated_engage", SubResource("AnimationNodeStateMachineTransition_xwpvm"), "seated_swirl", "seated_engage", SubResource("AnimationNodeStateMachineTransition_p1x06"), "seated_engage", "idle", SubResource("AnimationNodeStateMachineTransition_vydsg")]
+graph_offset = Vector2(-246, -244)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_mkj3y"]
 
