@@ -1,20 +1,17 @@
-[gd_scene load_steps=27 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=21 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad_skin.gd" id="2_jvmk2"]
 [ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://b4tnitb65xxby" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://dlfxsc1icfbdd" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://c8j7ycyt3mx65" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 [ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="4_vrxwg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
-[ext_resource type="Resource" uid="uid://ximirharcccw" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_grab_box.gd" id="7_a6aw4"]
+[ext_resource type="Resource" uid="uid://c6fl3lwjri6qi" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
 [ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
 [ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/attack_punch2.tres" id="9_cutyj"]
 [ext_resource type="Resource" uid="uid://hc8n1g3pof68" path="res://characters/playable/chad/resources/attacks/attack_air_kick.tres" id="10_556uq"]
-[ext_resource type="Resource" uid="uid://m3xjcjtfhtd5" path="res://characters/playable/chad/resources/attacks/attack_grab_punch.tres" id="10_ph8u0"]
-[ext_resource type="Resource" uid="uid://gdndwi5w81a2" path="res://characters/playable/chad/resources/attacks/attack_suplex.tres" id="11_4bw6m"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6o40w"]
 _data = {
@@ -30,20 +27,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
 size = Vector2(149, 378.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_51nq5"]
-size = Vector2(149, 353)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_once2"]
 size = Vector2(144, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcrug"]
 size = Vector2(222, 91)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_67shm"]
-size = Vector2(351.57, 99.9884)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5eyoc"]
-size = Vector2(390, 231.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0e1l"]
 size = Vector2(285.095, 79.2264)
@@ -52,10 +40,8 @@ size = Vector2(285.095, 79.2264)
 script = ExtResource("2_jvmk2")
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
-has_grab = true
-path_grab_pivot = NodePath("Positions/GrabPivot")
-has_grabbed = true
-path_grabbed_pivot = NodePath("Positions/GrabbedPivot")
+has_grab = false
+has_grabbed = false
 metadata/_edit_vertical_guides_ = [-155.0]
 metadata/_edit_horizontal_guides_ = [10.0]
 
@@ -120,79 +106,7 @@ position = Vector2(0, -12.75)
 shape = SubResource("RectangleShape2D_75u0j")
 metadata/collision_type = "player_hurt_box"
 
-[node name="GrabBox" type="Area2D" parent="AnimatedSprite2D" index="1"]
-visible = false
-collision_layer = 1024
-collision_mask = 0
-monitoring = false
-script = ExtResource("7_a6aw4")
-metadata/collision_type = "player_grab_box"
-
-[node name="GrabShape" type="CollisionShape2D" parent="AnimatedSprite2D/GrabBox" index="0"]
-modulate = Color(1, 0.623529, 0, 1)
-shape = SubResource("RectangleShape2D_51nq5")
-disabled = true
-metadata/collision_type = "player_grab_box"
-
-[node name="onion_ghost" type="AnimatedSprite2D" parent="." index="3"]
-visible = false
-modulate = Color(1, 0.337255, 0.792157, 0.298039)
-frames = ExtResource("4_l5bf7")
-animation = &"turn_around"
-offset = Vector2(0, -190)
-
-[node name="Positions" type="Node2D" parent="." index="4"]
-
-[node name="SuplexLanding" type="Marker2D" parent="Positions" index="0"]
-position = Vector2(-735, 0)
-
-[node name="GrabPivot" type="Marker2D" parent="Positions" index="1"]
-position = Vector2(295, -241)
-
-[node name="ColorRect2" type="ColorRect" parent="Positions/GrabPivot" index="0"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.968627, 0.113725, 1)
-
-[node name="onion_ghost2" type="AnimatedSprite2D" parent="Positions/GrabPivot" index="1"]
-visible = false
-modulate = Color(1, 0.337255, 0.792157, 0.298039)
-position = Vector2(-94.6772, 118.685)
-frames = ExtResource("4_l5bf7")
-animation = &"turn_around"
-flip_h = true
-
-[node name="GrabbedPivot" type="Marker2D" parent="Positions" index="2"]
-visible = false
-position = Vector2(-26, -356)
-z_index = 99
-
-[node name="ColorRect" type="ColorRect" parent="Positions/GrabbedPivot" index="0"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.0235294, 0.00784314, 1)
-
-[node name="Attacks" type="Node2D" parent="." index="5"]
+[node name="Attacks" type="Node2D" parent="." index="3"]
 
 [node name="Attack1" type="Area2D" parent="Attacks" index="0"]
 visible = false
@@ -228,42 +142,7 @@ shape = SubResource("RectangleShape2D_tcrug")
 disabled = true
 metadata/collision_type = "player_hit_box"
 
-[node name="AttackGrabPunch" type="Area2D" parent="Attacks" index="2"]
-visible = false
-modulate = Color(1, 0.2, 0.101961, 1)
-collision_layer = 256
-collision_mask = 0
-monitoring = false
-script = ExtResource("5_f1o2m")
-_attack_data = ExtResource("10_ph8u0")
-metadata/collision_type = "player_hit_box"
-
-[node name="GrabPunchShape" type="CollisionShape2D" parent="Attacks/AttackGrabPunch" index="0"]
-modulate = Color(1, 0.2, 0.101961, 1)
-position = Vector2(138, -319)
-rotation = -0.412943
-shape = SubResource("RectangleShape2D_67shm")
-disabled = true
-metadata/collision_type = "player_hit_box"
-
-[node name="AttackSuplex" type="Area2D" parent="Attacks" index="3"]
-visible = false
-modulate = Color(1, 0.2, 0.101961, 1)
-collision_layer = 256
-collision_mask = 0
-monitoring = false
-script = ExtResource("5_f1o2m")
-_attack_data = ExtResource("11_4bw6m")
-metadata/collision_type = "player_hit_box"
-
-[node name="SuplexShape" type="CollisionShape2D" parent="Attacks/AttackSuplex" index="0"]
-modulate = Color(1, 0.2, 0.101961, 1)
-position = Vector2(-505, -124)
-shape = SubResource("RectangleShape2D_5eyoc")
-disabled = true
-metadata/collision_type = "player_hit_box"
-
-[node name="AttackAir" type="Area2D" parent="Attacks" index="4"]
+[node name="AttackAir" type="Area2D" parent="Attacks" index="2"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256

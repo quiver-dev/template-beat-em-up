@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=65 format=3 uid="uid://c8j7ycyt3mx65"]
+[gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://c8j7ycyt3mx65"]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
@@ -34,36 +34,9 @@
 [ext_resource type="Texture2D" uid="uid://q67xqn1rkws2" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_02.png" id="31_jaglq"]
 [ext_resource type="Texture2D" uid="uid://fj5wwrsd2nw" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_03.png" id="32_2hkrc"]
 [ext_resource type="Texture2D" uid="uid://vbixjb2cw834" path="res://characters/playable/chad/resources/sprites/knock_out/knockout_04.png" id="33_j15rn"]
-[ext_resource type="Texture2D" uid="uid://c4dt1hb0lq6n5" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_02.png" id="34_ujyh1"]
-[ext_resource type="Texture2D" uid="uid://isd822rjfr6q" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_03.png" id="35_lpn1d"]
-[ext_resource type="Texture2D" uid="uid://bvnlte3vlwcrm" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_04.png" id="36_3l4gn"]
-[ext_resource type="Texture2D" uid="uid://jcm3ytaksxjk" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_05.png" id="37_y0i2a"]
-[ext_resource type="Texture2D" uid="uid://c4ju4vaaent3p" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_06.png" id="38_lymac"]
-[ext_resource type="Texture2D" uid="uid://dfjydw7d0bwym" path="res://characters/playable/chad/resources/sprites/grab_moves/grab/grabpunch_07.png" id="39_lt7v8"]
-[ext_resource type="Texture2D" uid="uid://ctvmtk4lmokac" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_08.png" id="40_h0xh0"]
-[ext_resource type="Texture2D" uid="uid://qp3yxyhw4y4e" path="res://characters/playable/chad/resources/sprites/grab_moves/release/grabthrowaway_07.png" id="40_y4lir"]
-[ext_resource type="Texture2D" uid="uid://c1ptqughiupmx" path="res://characters/playable/chad/resources/sprites/grab_moves/release/grabthrowaway_08.png" id="41_4a260"]
-[ext_resource type="Texture2D" uid="uid://jomiqdhjxa41" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_09.png" id="41_pccww"]
-[ext_resource type="Texture2D" uid="uid://c2xwk5hx087tl" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_10.png" id="42_f8jmx"]
-[ext_resource type="Texture2D" uid="uid://b8agfsy1gk8hi" path="res://characters/playable/chad/resources/sprites/grab_moves/release/grabthrowaway_09.png" id="42_ns8xk"]
-[ext_resource type="Texture2D" uid="uid://7m811rypm73c" path="res://characters/playable/chad/resources/sprites/grab_moves/release/grabthrowaway_10.png" id="43_ow42a"]
-[ext_resource type="Texture2D" uid="uid://duj7g0sf4gjwi" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_11.png" id="43_p2whc"]
-[ext_resource type="Texture2D" uid="uid://dwiek7t5gc1hh" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_12.png" id="44_wmxek"]
-[ext_resource type="Texture2D" uid="uid://idd2ro1mo4gl" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_forward/grabpunch_13.png" id="45_uale8"]
 [ext_resource type="Texture2D" uid="uid://cgvymw1sklq0" path="res://characters/playable/chad/resources/sprites/turn_around/turnaround_00.png" id="50_dcevi"]
-[ext_resource type="Texture2D" uid="uid://ciw4ufx1m8vxx" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_04.png" id="50_nmows"]
 [ext_resource type="Texture2D" uid="uid://bisn0d5xq5ow1" path="res://characters/playable/chad/resources/sprites/turn_around/turnaround_01.png" id="51_5s74y"]
-[ext_resource type="Texture2D" uid="uid://dep3x756m6vqi" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_05.png" id="51_8njhy"]
-[ext_resource type="Texture2D" uid="uid://bn2g2ph0ooau8" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_06.png" id="52_gcp6t"]
 [ext_resource type="Texture2D" uid="uid://d1xe52egp2xnj" path="res://characters/playable/chad/resources/sprites/turn_around/turnaround_02.png" id="52_xtm6s"]
-[ext_resource type="Texture2D" uid="uid://cxcic60a6fi5r" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_07.png" id="53_visfg"]
-[ext_resource type="Texture2D" uid="uid://clah7bjekx0np" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_08.png" id="54_ttwba"]
-[ext_resource type="Texture2D" uid="uid://fnkskuadgaej" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_09.png" id="55_7efxf"]
-[ext_resource type="Texture2D" uid="uid://sfr003j4d7t3" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_10.png" id="56_kkctt"]
-[ext_resource type="Texture2D" uid="uid://k6fvlhlrfs2f" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_11.png" id="57_y6wq6"]
-[ext_resource type="Texture2D" uid="uid://cm362ig6w42m1" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_13.png" id="58_84aai"]
-[ext_resource type="Texture2D" uid="uid://elk8n3ipe1oo" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_12.png" id="59_dx0hd"]
-[ext_resource type="Texture2D" uid="uid://ccdabvwfkqf" path="res://characters/playable/chad/resources/sprites/grab_moves/throw_backwards/grabthrow_rivised_14.png" id="60_yq5ua"]
 
 [resource]
 animations = [{
@@ -85,26 +58,6 @@ animations = [{
 "frames": [ExtResource("25_bqngl")],
 "loop": false,
 "name": &"falling",
-"speed": 24.0
-}, {
-"frames": [ExtResource("34_ujyh1"), ExtResource("34_ujyh1"), ExtResource("34_ujyh1"), ExtResource("35_lpn1d"), ExtResource("35_lpn1d"), ExtResource("36_3l4gn"), ExtResource("36_3l4gn"), ExtResource("36_3l4gn"), ExtResource("37_y0i2a"), ExtResource("37_y0i2a"), ExtResource("38_lymac"), ExtResource("38_lymac"), ExtResource("38_lymac"), ExtResource("39_lt7v8")],
-"loop": false,
-"name": &"grab",
-"speed": 24.0
-}, {
-"frames": [ExtResource("39_lt7v8")],
-"loop": false,
-"name": &"grab_idle",
-"speed": 24.0
-}, {
-"frames": [ExtResource("40_y4lir"), ExtResource("40_y4lir"), ExtResource("40_y4lir"), ExtResource("41_4a260"), ExtResource("41_4a260"), ExtResource("42_ns8xk"), ExtResource("42_ns8xk"), ExtResource("42_ns8xk"), ExtResource("43_ow42a"), ExtResource("43_ow42a")],
-"loop": false,
-"name": &"grab_release",
-"speed": 24.0
-}, {
-"frames": [ExtResource("29_i7rbs")],
-"loop": false,
-"name": &"grabbed",
 "speed": 24.0
 }, {
 "frames": [ExtResource("27_fdxwh")],
@@ -160,36 +113,6 @@ animations = [{
 "frames": [ExtResource("22_c167v")],
 "loop": false,
 "name": &"rising",
-"speed": 24.0
-}, {
-"frames": [ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("51_8njhy"), ExtResource("51_8njhy"), ExtResource("52_gcp6t"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("54_ttwba"), ExtResource("54_ttwba")],
-"loop": false,
-"name": &"throw_backwards",
-"speed": 24.0
-}, {
-"frames": [ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("50_nmows"), ExtResource("51_8njhy"), ExtResource("51_8njhy"), ExtResource("51_8njhy"), ExtResource("51_8njhy"), ExtResource("51_8njhy"), ExtResource("52_gcp6t"), ExtResource("52_gcp6t"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("53_visfg"), ExtResource("54_ttwba"), ExtResource("54_ttwba"), ExtResource("54_ttwba"), ExtResource("54_ttwba"), ExtResource("54_ttwba")],
-"loop": false,
-"name": &"throw_backwards_noah",
-"speed": 24.0
-}, {
-"frames": [ExtResource("55_7efxf"), ExtResource("55_7efxf"), ExtResource("55_7efxf"), ExtResource("55_7efxf"), ExtResource("55_7efxf"), ExtResource("56_kkctt"), ExtResource("56_kkctt"), ExtResource("56_kkctt"), ExtResource("56_kkctt"), ExtResource("56_kkctt")],
-"loop": false,
-"name": &"throw_backwards_recovery_1",
-"speed": 24.0
-}, {
-"frames": [ExtResource("57_y6wq6")],
-"loop": true,
-"name": &"throw_backwards_recovery_2",
-"speed": 24.0
-}, {
-"frames": [ExtResource("59_dx0hd"), ExtResource("59_dx0hd"), ExtResource("58_84aai"), ExtResource("58_84aai"), ExtResource("60_yq5ua")],
-"loop": false,
-"name": &"throw_backwards_recovery_3",
-"speed": 24.0
-}, {
-"frames": [ExtResource("40_h0xh0"), ExtResource("40_h0xh0"), ExtResource("41_pccww"), ExtResource("41_pccww"), ExtResource("42_f8jmx"), ExtResource("42_f8jmx"), ExtResource("43_p2whc"), ExtResource("43_p2whc"), ExtResource("44_wmxek"), ExtResource("44_wmxek"), ExtResource("45_uale8"), ExtResource("45_uale8")],
-"loop": false,
-"name": &"throw_forward",
 "speed": 24.0
 }, {
 "frames": [ExtResource("50_dcevi"), ExtResource("51_5s74y"), ExtResource("52_xtm6s")],
