@@ -29,6 +29,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://stages/_base/skyboxes/skybox_gradient_transitioner.gd"
 }, {
+"base": "Control",
+"class": &"HowToPlay",
+"language": &"GDScript",
+"path": "res://how_to_play/how_to_play.gd"
+}, {
 "base": "QuiverState",
 "class": &"QuiverAiState",
 "language": &"GDScript",
@@ -219,6 +224,7 @@ _global_script_class_icons={
 "DayCycleData": "",
 "EndScreen": "",
 "GradientTransitioner": "",
+"HowToPlay": "",
 "QuiverAiState": "",
 "QuiverAiStateGroup": "",
 "QuiverAiStateMachine": "",
@@ -282,7 +288,6 @@ shapes/collision/contact_color=Color(0.5, 0.5, 0.5, 0.8)
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
 window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"

@@ -1,25 +1,26 @@
+class_name HowToPlay
 extends Control
 
 ## Write your doc string for this file here
 
+signal how_to_play_closed
+
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
-
-signal transition_started
 
 #--- enums ----------------------------------------------------------------------------------------
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GAMEPLAY_SCENE = "res://stages/stage_01/stage_01.tscn"
+const FADE_DURATION = 0.3
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _how_to_play := $HowToPlay as HowToPlay
-@onready var _animator := $AnimationPlayer as AnimationPlayer
-@onready var _start_button := $MenuButtons/Start as Button
+var _tween: Tween
+
+@onready var _back := $Panel/MainColumn/Back as Button
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -27,35 +28,43 @@ const GAMEPLAY_SCENE = "res://stages/stage_01/stage_01.tscn"
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	BackgroundLoader.load_resource(GAMEPLAY_SCENE)
-	ScreenTransitions.fade_out_transition()
-	_start_button.grab_focus()
+	hide()
+	modulate.a = 0.0
+	if QuiverEditorHelper.is_standalone_run(self):
+		open_how_to_play()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func open_how_to_play() -> void:
+	show()
+	_back.grab_focus()
+	if _tween:
+		_tween.kill()
+	_tween = create_tween()
+	_tween.tween_property(self, "modulate:a", 1.0, FADE_DURATION)
+
+
+func close_how_to_play() -> void:
+	if _tween:
+		_tween.kill()
+	_tween = create_tween()
+	_tween.tween_property(self, "modulate:a", 0.0, FADE_DURATION)
+	_tween.tween_callback(_on_close_finished)
+
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_start_pressed() -> void:
-	_animator.play("game_started")
-	await transition_started
-	ScreenTransitions.transition_to_scene(GAMEPLAY_SCENE)
+func _on_close_finished() -> void:
+	hide()
+	how_to_play_closed.emit()
 
 
-func _start_transition() -> void:
-	transition_started.emit()
-
-
-func _on_how_to_play_pressed() -> void:
-	_how_to_play.open_how_to_play()
-
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
+func _on_back_pressed() -> void:
+	close_how_to_play()
 
 ### -----------------------------------------------------------------------------------------------
