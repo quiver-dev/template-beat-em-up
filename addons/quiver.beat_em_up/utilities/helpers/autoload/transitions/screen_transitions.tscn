@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://gelnbc2b13u5"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.gd" id="1_7okro"]
+[ext_resource type="Shader" path="res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.gdshader" id="1_l4pkw"]
+[ext_resource type="Texture2D" uid="uid://jiypbvvm3mw6" path="res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/game_transition_mask.png" id="2_6ok31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_row67"]
+shader = ExtResource("1_l4pkw")
+shader_parameter/cutoff = 0.0
+shader_parameter/mask = ExtResource("2_6ok31")
+shader_parameter/smooth_size = 0.212
+
+[sub_resource type="Animation" id="Animation_xlay8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s3auf"]
+resource_name = "fade_in_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.25, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_7qk76"]
+resource_name = "fade_out_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.25, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mw47k"]
+_data = {
+"RESET": SubResource("Animation_xlay8"),
+"fade_in_transition": SubResource("Animation_s3auf"),
+"fade_out_transition": SubResource("Animation_7qk76")
+}
+
+[node name="ScreenTransitions" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+script = ExtResource("1_7okro")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_row67")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mw47k")
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+value = 0.5
