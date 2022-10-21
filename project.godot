@@ -268,8 +268,10 @@ config/version="0.5.0"
 
 [autoload]
 
+BackgroundLoader="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/background_loader/background_loader.tscn"
 Events="*res://addons/quiver.beat_em_up/utilities/quiver_events.gd"
-HitFreeze="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze.tscn"
+HitFreeze="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze/hit_freeze.tscn"
+ScreenTransitions="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.tscn"
 
 [debug]
 
