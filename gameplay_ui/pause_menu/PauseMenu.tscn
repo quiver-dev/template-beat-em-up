@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://ddrajabgyar7r"]
 
+[ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_ix3c8"]
 [ext_resource type="Script" path="res://gameplay_ui/pause_menu/PauseMenu.gd" id="1_nnmou"]
 
 [sub_resource type="Animation" id="Animation_o5ytk"]
@@ -173,6 +174,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_force_pass_scroll_events = false
+theme = ExtResource("1_ix3c8")
 script = ExtResource("1_nnmou")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -199,37 +201,40 @@ metadata/_edit_layout_mode = 1
 layout_mode = 2
 offset_left = 25.0
 offset_top = 25.0
-offset_right = 509.0
-offset_bottom = 396.0
+offset_right = 575.0
+offset_bottom = 513.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_right = 484.0
-offset_bottom = 91.0
-theme_type_variation = &"HeaderMedium"
-text = "Paused"
+offset_right = 550.0
+offset_bottom = 140.0
+theme_type_variation = &"HeaderLarge"
+text = "PAUSED"
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 95.0
-offset_right = 484.0
-offset_bottom = 148.0
+offset_top = 144.0
+offset_right = 550.0
+offset_bottom = 227.0
+theme_type_variation = &"PauseButtons"
 text = "Resume"
 
 [node name="Restart" type="Button" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 152.0
-offset_right = 484.0
-offset_bottom = 205.0
+offset_top = 231.0
+offset_right = 550.0
+offset_bottom = 314.0
+theme_type_variation = &"PauseButtons"
 text = "Restart
 "
 
 [node name="TimeScaleLine" type="HBoxContainer" parent="PanelContainer/Content"]
+visible = false
 layout_mode = 2
 offset_top = 209.0
-offset_right = 484.0
+offset_right = 350.0
 offset_bottom = 257.0
 
 [node name="Label" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
@@ -242,37 +247,39 @@ text = "time scale"
 layout_mode = 2
 offset_left = 161.0
 offset_top = 16.0
-offset_right = 435.0
+offset_right = 301.0
 offset_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 1.0
+max_value = 2.0
 step = 0.01
 value = 1.0
 
 [node name="Value" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
 layout_mode = 2
-offset_left = 439.0
-offset_right = 484.0
+offset_left = 305.0
+offset_right = 350.0
 offset_bottom = 48.0
 text = "1.0"
 
-[node name="ThrowVariation" type="CheckBox" parent="PanelContainer/Content"]
+[node name="QuitToMainMenu" type="Button" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 261.0
-offset_right = 484.0
-offset_bottom = 314.0
-text = "Use Longer Throw Backwards"
+offset_top = 318.0
+offset_right = 550.0
+offset_bottom = 401.0
+theme_type_variation = &"PauseButtons"
+text = "Quit to main menu"
 
 [node name="Quit" type="Button" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 318.0
-offset_right = 484.0
-offset_bottom = 371.0
+offset_top = 405.0
+offset_right = 550.0
+offset_bottom = 488.0
+theme_type_variation = &"PauseButtons"
 text = "Quit"
 
 [connection signal="pressed" from="PanelContainer/Content/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/Content/Restart" to="." method="_on_restart_pressed"]
 [connection signal="value_changed" from="PanelContainer/Content/TimeScaleLine/Slider" to="." method="_on_slider_value_changed"]
-[connection signal="toggled" from="PanelContainer/Content/ThrowVariation" to="." method="_on_throw_variation_toggled"]
+[connection signal="pressed" from="PanelContainer/Content/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
 [connection signal="pressed" from="PanelContainer/Content/Quit" to="." method="_on_quit_pressed"]
