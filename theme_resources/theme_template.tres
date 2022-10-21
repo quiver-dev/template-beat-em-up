@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dwt1c0b2tvhig"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwt1c0b2tvhig"]
+
+[ext_resource type="StyleBox" uid="uid://dnu44uladwm6h" path="res://theme_resources/default_empty_stylebox.tres" id="1_25e22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abo2o"]
 bg_color = Color(0, 0, 0, 1)
@@ -24,7 +26,7 @@ content_margin_left = 25.0
 content_margin_top = 25.0
 content_margin_right = 25.0
 content_margin_bottom = 25.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.1, 0.1, 0.1, 0.9)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -33,12 +35,38 @@ corner_detail = 5
 
 [resource]
 default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 0.45098, 0.447059, 1)
+Button/colors/font_hover_color = Color(1, 0.45098, 0.447059, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 40
+Button/font_sizes/font_size = 80
+Button/styles/disabled = ExtResource("1_25e22")
+Button/styles/focus = ExtResource("1_25e22")
+Button/styles/hover = ExtResource("1_25e22")
+Button/styles/normal = ExtResource("1_25e22")
+Button/styles/pressed = ExtResource("1_25e22")
 EndScreen/constants/separation = 50
 EndScreen/font_sizes/font_size = 64
 HeaderLarge/base_type = &"Label"
 HeaderLarge/colors/font_color = Color(1, 1, 1, 1)
-HeaderLarge/font_sizes/font_size = 124
+HeaderLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+HeaderLarge/constants/outline_size = 80
+HeaderLarge/font_sizes/font_size = 100
+HeaderMedium/base_type = &"Label"
+HeaderMedium/colors/font_outline_color = Color(0, 0, 0, 1)
+HeaderMedium/constants/outline_size = 30
 HeaderMedium/font_sizes/font_size = 64
+HowToPlayButtons/base_type = &"Button"
+HowToPlayButtons/colors/font_color = Color(1, 1, 1, 1)
+HowToPlayButtons/colors/font_focus_color = Color(1, 0.45098, 0.447059, 1)
+HowToPlayButtons/colors/font_hover_color = Color(1, 0.45098, 0.447059, 1)
+HowToPlayButtons/colors/font_hover_pressed_color = Color(1, 0.45098, 0.447059, 1)
+HowToPlayButtons/colors/font_pressed_color = Color(1, 0.745098, 0.486275, 1)
+HowToPlayButtons/constants/outline_size = 28
+HowToPlayButtons/font_sizes/font_size = 52
+HowToPlayLabels/base_type = &"Label"
+HowToPlayLabels/font_sizes/font_size = 38
 HudCharName/base_type = &"Label"
 HudCharName/colors/font_outline_color = Color(0, 0, 0, 1)
 HudCharName/constants/outline_size = 16
@@ -49,3 +77,7 @@ LifeBars/font_sizes/font_size = 16
 LifeBars/styles/background = SubResource("StyleBoxFlat_abo2o")
 LifeBars/styles/fill = SubResource("StyleBoxFlat_tvend")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_i4s1v")
+PauseButtons/base_type = &"Button"
+PauseButtons/font_sizes/font_size = 60
+TabContainer/styles/panel = ExtResource("1_25e22")
+TabContainer/styles/tabbar_background = ExtResource("1_25e22")

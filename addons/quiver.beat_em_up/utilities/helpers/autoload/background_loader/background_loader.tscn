@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl4o03cc2ti4c"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/helpers/autoload/background_loader/background_loader.gd" id="1_hfbjx"]
+
+[node name="BackgroundLoader" type="Node"]
+script = ExtResource("1_hfbjx")

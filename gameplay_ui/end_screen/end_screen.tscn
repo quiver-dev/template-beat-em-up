@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d23ux8ibhj1dl"]
+[gd_scene load_steps=7 format=3 uid="uid://d23ux8ibhj1dl"]
 
+[ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_2dr55"]
 [ext_resource type="Script" path="res://gameplay_ui/end_screen/end_screen.gd" id="1_ll1aa"]
 
 [sub_resource type="Animation" id="Animation_8g40m"]
@@ -115,6 +116,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2dr55")
 script = ExtResource("1_ll1aa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -124,7 +126,6 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -133,7 +134,6 @@ grow_vertical = 2
 color = Color(0.05, 0.08, 0.26, 0.6)
 
 [node name="Title" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -150,7 +150,6 @@ text = "Congratulations!"
 horizontal_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -165,17 +164,15 @@ grow_vertical = 2
 theme_type_variation = &"EndScreen"
 
 [node name="Replay" type="Button" parent="Buttons"]
-layout_mode = 2
-offset_right = 215.0
-offset_bottom = 96.0
+offset_right = 207.0
+offset_bottom = 88.0
 theme_type_variation = &"EndScreen"
 text = "Replay"
 
 [node name="Quit" type="Button" parent="Buttons"]
-layout_mode = 2
-offset_left = 265.0
-offset_right = 407.0
-offset_bottom = 96.0
+offset_left = 257.0
+offset_right = 391.0
+offset_bottom = 88.0
 theme_type_variation = &"EndScreen"
 text = "Quit"
 

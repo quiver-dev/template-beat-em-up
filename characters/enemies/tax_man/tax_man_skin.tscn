@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://tmtk1seql8tk" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://ccthcaakgim08" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
 [ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
 [ext_resource type="SpriteFrames" uid="uid://8y5strh0gb62" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
@@ -32,8 +32,8 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lpimj"]
 shader = ExtResource("6_5x5ps")
-color = Color(0.12549, 0.0313726, 0.0196078, 1)
-effect_strength = 0.0
+shader_parameter/color = Color(0.12549, 0.0313726, 0.0196078, 1)
+shader_parameter/effect_strength = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vd2w"]
 resource_local_to_scene = true
@@ -84,7 +84,6 @@ parameters/state_machine/attack_combo/blend_position = -1
 parameters/state_machine/attack_dash_begin/blend_position = -1
 parameters/state_machine/attack_dash_end/blend_position = -1
 parameters/state_machine/death_explosion/blend_position = -1
-parameters/state_machine/grab_reject/blend_position = -1
 parameters/state_machine/hurt_knockout/blend_position = -1
 parameters/state_machine/hurt_light/blend_position = -1
 parameters/state_machine/hurt_medium/blend_position = -1

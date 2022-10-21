@@ -1,0 +1,397 @@
+[gd_scene load_steps=15 format=3 uid="uid://c7ssfflrw1qvh"]
+
+[ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_0xtes"]
+[ext_resource type="Texture2D" uid="uid://dgru1cbuc5jyy" path="res://main_menu/pngs/bg.png" id="1_3ligk"]
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_xf06u"]
+[ext_resource type="Texture2D" uid="uid://bw7uu55i3kn3g" path="res://main_menu/pngs/paint_spray.png" id="2_uw08o"]
+[ext_resource type="Texture2D" uid="uid://c458txd7nffgy" path="res://main_menu/pngs/tax_man.png" id="3_mg0gr"]
+[ext_resource type="Texture2D" uid="uid://cmihodax0beki" path="res://main_menu/pngs/sarge.png" id="4_3eqwa"]
+[ext_resource type="Texture2D" uid="uid://cbb080fgbbibm" path="res://main_menu/pngs/chad.png" id="5_0rlna"]
+[ext_resource type="Texture2D" uid="uid://go8x140wwobw" path="res://main_menu/pngs/logo.png" id="6_xunx4"]
+[ext_resource type="PackedScene" uid="uid://b8o7l7qide3e1" path="res://how_to_play/how_to_play.tscn" id="9_ohwlc"]
+
+[sub_resource type="Animation" id="Animation_bamca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1081, 128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuArt/PaintSpray:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(472, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuArt/Sarge:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1976, 222)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuArt/TaxMan:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2424, 118)]
+}
+
+[sub_resource type="Animation" id="Animation_7vv4q"]
+resource_name = "game_started"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(1081, 128), Vector2(353, 128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuArt/PaintSpray:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(472, 0), Vector2(-240, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuArt/Sarge:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1976, 222), Vector2(968, 222)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuArt/TaxMan:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(2424, 118), Vector2(1416, 118)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_start_transition"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_mjh83"]
+resource_name = "intro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(825, 128), Vector2(825, 128), Vector2(1081, 128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuArt/PaintSpray:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-64, 0), Vector2(472, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuArt/Sarge:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1976, 222)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuArt/TaxMan:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2424, 118)]
+}
+
+[sub_resource type="Animation" id="Animation_lefyg"]
+resource_name = "main_state"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1081, 128)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuArt/PaintSpray:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(472, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuArt/Sarge:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1976, 222)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuArt/TaxMan:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2424, 118)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xoxv8"]
+_data = {
+"RESET": SubResource("Animation_bamca"),
+"game_started": SubResource("Animation_7vv4q"),
+"intro": SubResource("Animation_mjh83"),
+"main_state": SubResource("Animation_lefyg")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0xtes")
+script = ExtResource("1_xf06u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "intro"
+libraries = {
+"": SubResource("AnimationLibrary_xoxv8")
+}
+
+[node name="MenuArt" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="TextureRect" parent="MenuArt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3ligk")
+
+[node name="PaintSpray" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
+offset_left = 472.0
+offset_right = 2655.0
+offset_bottom = 1080.0
+texture = ExtResource("2_uw08o")
+
+[node name="TaxMan" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
+offset_left = 2424.0
+offset_top = 118.0
+offset_right = 2929.01
+offset_bottom = 1079.0
+texture = ExtResource("3_mg0gr")
+
+[node name="Sarge" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
+offset_left = 1976.0
+offset_top = 222.0
+offset_right = 2824.0
+offset_bottom = 1079.0
+texture = ExtResource("4_3eqwa")
+
+[node name="Chad" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 1080.0
+texture = ExtResource("5_0rlna")
+
+[node name="Logo" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
+offset_top = 468.0
+offset_right = 1920.0
+offset_bottom = 1064.0
+texture = ExtResource("6_xunx4")
+
+[node name="MenuButtons" type="ReferenceRect" parent="."]
+layout_mode = 0
+offset_left = 1081.0
+offset_top = 128.0
+offset_right = 1779.99
+offset_bottom = 529.0
+border_color = Color(0.00784314, 0, 1, 1)
+
+[node name="Start" type="Button" parent="MenuButtons"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 502.0
+offset_bottom = 119.0
+text = "START GAME"
+alignment = 0
+
+[node name="HowToPlay" type="Button" parent="MenuButtons"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 141.0
+offset_right = 679.0
+offset_bottom = 259.0
+text = "HOW TO PLAY"
+alignment = 0
+
+[node name="Quit" type="Button" parent="MenuButtons"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 281.0
+offset_right = 494.0
+offset_bottom = 399.0
+text = "QUIT"
+alignment = 0
+
+[node name="HowToPlay" parent="." instance=ExtResource("9_ohwlc")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MenuButtons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuButtons/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="MenuButtons/Quit" to="." method="_on_quit_pressed"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://wfrr5obonn88"]
 
+[ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_2vgld"]
 [ext_resource type="Script" path="res://gameplay_ui/hud/player_hud.gd" id="1_i2ajm"]
 
 [node name="PlayerHud" type="VBoxContainer"]
@@ -8,18 +9,21 @@ anchor_right = 0.5
 offset_left = 50.0
 offset_top = 30.0
 offset_right = -50.0
+theme = ExtResource("1_2vgld")
 theme_type_variation = &"LifeBars"
 script = ExtResource("1_i2ajm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="CharacterName" type="Label" parent="."]
+layout_mode = 2
 offset_right = 860.0
 offset_bottom = 31.0
 theme_type_variation = &"HudCharName"
 text = "CHAD"
 
 [node name="LifeBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2i(0, 30)
+layout_mode = 2
 offset_top = 31.0
 offset_right = 860.0
 offset_bottom = 61.0
@@ -28,6 +32,7 @@ max_value = 1.0
 value = 0.5
 
 [node name="EnemyContainer" type="MarginContainer" parent="."]
+layout_mode = 2
 offset_top = 61.0
 offset_right = 860.0
 offset_bottom = 117.0
@@ -35,19 +40,22 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_right = 275
 
 [node name="Column" type="VBoxContainer" parent="EnemyContainer"]
+layout_mode = 2
 offset_left = 25.0
 offset_right = 585.0
 offset_bottom = 56.0
 theme_override_constants/separation = 0
 
 [node name="EnemyName" type="Label" parent="EnemyContainer/Column"]
+layout_mode = 2
 offset_right = 560.0
 offset_bottom = 31.0
 theme_type_variation = &"HudCharName"
 text = "CHAD"
 
 [node name="LifeBar" type="ProgressBar" parent="EnemyContainer/Column"]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2i(0, 25)
+layout_mode = 2
 offset_top = 31.0
 offset_right = 560.0
 offset_bottom = 56.0

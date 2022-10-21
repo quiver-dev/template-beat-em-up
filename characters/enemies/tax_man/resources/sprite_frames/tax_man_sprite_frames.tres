@@ -1,23 +1,18 @@
-[gd_resource type="SpriteFrames" load_steps=96 format=3 uid="uid://8y5strh0gb62"]
+[gd_resource type="SpriteFrames" load_steps=91 format=3 uid="uid://8y5strh0gb62"]
 
-[ext_resource type="Texture2D" uid="uid://bd8l4oplyyoxr" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_01.png" id="1_kkj0t"]
 [ext_resource type="Texture2D" uid="uid://w6ak5bf2s5yh" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_00.png" id="1_nuth2"]
 [ext_resource type="Texture2D" uid="uid://d2es5uhrtry2g" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack03.png" id="1_o8kgl"]
 [ext_resource type="Texture2D" uid="uid://8hh2rknw2fve" path="res://characters/enemies/tax_man/resources/sprites/knockout/injury_knockout_impact.png" id="1_uqj7m"]
 [ext_resource type="Texture2D" uid="uid://bhfocpuf8i55c" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_01.png" id="2_cslqp"]
 [ext_resource type="Texture2D" uid="uid://c21qxy2kp4d0i" path="res://characters/enemies/tax_man/resources/sprites/hurt/injury_small.png" id="2_lsaqr"]
 [ext_resource type="Texture2D" uid="uid://bsu55sus5lxni" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack04.png" id="2_ol4ld"]
-[ext_resource type="Texture2D" uid="uid://cslvv1bflncbp" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_02.png" id="2_w5pti"]
 [ext_resource type="Texture2D" uid="uid://741fpvfn8dgq" path="res://characters/enemies/tax_man/resources/sprites/hurt/injury_medium.png" id="3_5s2i0"]
-[ext_resource type="Texture2D" uid="uid://bokvvyer6qy7s" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_03.png" id="3_ji7ec"]
 [ext_resource type="Texture2D" uid="uid://bv04wfmj8f3nh" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack05.png" id="3_k0woc"]
 [ext_resource type="Texture2D" uid="uid://cfbu6kd8hob1i" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_02.png" id="3_qxtlo"]
 [ext_resource type="Texture2D" uid="uid://djr2oqxenbqbp" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack06.png" id="4_2tvc1"]
-[ext_resource type="Texture2D" uid="uid://bxg4grtinyl3j" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_04.png" id="4_wi2p7"]
 [ext_resource type="Texture2D" uid="uid://trhxlrjiimg3" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_03.png" id="4_y6bqa"]
 [ext_resource type="Texture2D" uid="uid://cb1d4eleedd8b" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack07.png" id="5_alsh4"]
 [ext_resource type="Texture2D" uid="uid://b0a8gx55ib5y7" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_04.png" id="5_nsdc3"]
-[ext_resource type="Texture2D" uid="uid://cm23bsjneyxgr" path="res://characters/enemies/tax_man/resources/sprites/grab_reject/grab_reject_05.png" id="5_o2xgr"]
 [ext_resource type="Texture2D" uid="uid://uej7hdi2cact" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_05.png" id="6_2kyh4"]
 [ext_resource type="Texture2D" uid="uid://dlmhor20m2f1u" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack08.png" id="6_o5af7"]
 [ext_resource type="Texture2D" uid="uid://b07ivqymfqidu" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/main_combo_06.png" id="6_p7vke"]
@@ -126,11 +121,6 @@ animations = [{
 "frames": [ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("50_ojkcw"), ExtResource("50_ojkcw"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip")],
 "loop": false,
 "name": &"engage",
-"speed": 24.0
-}, {
-"frames": [ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("1_kkj0t"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("2_w5pti"), ExtResource("3_ji7ec"), ExtResource("3_ji7ec"), ExtResource("3_ji7ec"), ExtResource("4_wi2p7"), ExtResource("4_wi2p7"), ExtResource("4_wi2p7"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr"), ExtResource("5_o2xgr")],
-"loop": false,
-"name": &"grab_reject",
 "speed": 24.0
 }, {
 "frames": [ExtResource("1_uqj7m")],

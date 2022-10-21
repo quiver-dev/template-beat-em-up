@@ -9,11 +9,14 @@ extends Control
 
 #--- constants ------------------------------------------------------------------------------------
 
+const PATH_MAIN_MENU = "res://main_menu/main_menu.tscn"
 const TEXT_TIMESCALE_VALUE = "%0.2f"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
+
+var _main_menu: PackedScene = null
 
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 @onready var _timescale_slider := $PanelContainer/Content/TimeScaleLine/Slider as HSlider
@@ -25,7 +28,7 @@ const TEXT_TIMESCALE_VALUE = "%0.2f"
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	pass
+	BackgroundLoader.load_resource(PATH_MAIN_MENU)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -83,7 +86,8 @@ func _on_slider_value_changed(value: float) -> void:
 	_timescale_value.text = TEXT_TIMESCALE_VALUE%[value]
 
 
-func _on_throw_variation_toggled(button_pressed: bool) -> void:
-	Events.debug_throw_change_requested.emit(button_pressed)
+func _on_quit_to_main_menu_pressed() -> void:
+	ScreenTransitions.transition_to_scene(PATH_MAIN_MENU)
+	get_tree().paused = false
 
 ### -----------------------------------------------------------------------------------------------

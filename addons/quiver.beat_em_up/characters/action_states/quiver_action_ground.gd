@@ -68,7 +68,8 @@ func _connect_signals() -> void:
 	
 	QuiverEditorHelper.connect_between(_attributes.hurt_requested, _on_hurt_requested)
 	QuiverEditorHelper.connect_between(_attributes.knockout_requested, _on_knockout_requested)
-	QuiverEditorHelper.connect_between(_attributes.grabbed, _on_grabbed)
+	if _state_machine.has_node(_path_grabbed):
+		QuiverEditorHelper.connect_between(_attributes.grabbed, _on_grabbed)
 
 
 func _disconnect_signals() -> void:
