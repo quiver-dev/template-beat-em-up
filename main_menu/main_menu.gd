@@ -17,9 +17,10 @@ const GAMEPLAY_SCENE = "res://stages/stage_01/stage_01.tscn"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+@onready var _button_how_to_play := $MenuButtons/HowToPlay as Button
+@onready var _button_start := $MenuButtons/Start as Button
 @onready var _how_to_play := $HowToPlay as HowToPlay
 @onready var _animator := $AnimationPlayer as AnimationPlayer
-@onready var _start_button := $MenuButtons/Start as Button
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ const GAMEPLAY_SCENE = "res://stages/stage_01/stage_01.tscn"
 func _ready() -> void:
 	BackgroundLoader.load_resource(GAMEPLAY_SCENE)
 	ScreenTransitions.fade_out_transition()
-	_start_button.grab_focus()
+	_button_start.grab_focus()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -57,5 +58,10 @@ func _on_how_to_play_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_how_to_play_how_to_play_closed() -> void:
+	_button_how_to_play.grab_focus()
+	pass
 
 ### -----------------------------------------------------------------------------------------------

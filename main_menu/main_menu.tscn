@@ -395,3 +395,4 @@ layout_mode = 1
 [connection signal="pressed" from="MenuButtons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MenuButtons/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="MenuButtons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="how_to_play_closed" from="HowToPlay" to="." method="_on_how_to_play_how_to_play_closed"]

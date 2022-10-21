@@ -72,6 +72,12 @@ layout_mode = 2
 offset_left = 361.0
 offset_right = 600.0
 offset_bottom = 72.0
+focus_neighbor_left = NodePath("../Controller")
+focus_neighbor_top = NodePath("../../../../Back")
+focus_neighbor_right = NodePath("../Controller")
+focus_neighbor_bottom = NodePath("../../../../Back")
+focus_next = NodePath("../Controller")
+focus_previous = NodePath("../../../../Back")
 theme_type_variation = &"HowToPlayButtons"
 toggle_mode = true
 button_pressed = true
@@ -84,6 +90,12 @@ layout_mode = 2
 offset_left = 650.0
 offset_right = 904.0
 offset_bottom = 72.0
+focus_neighbor_left = NodePath("../Keyboard")
+focus_neighbor_top = NodePath("../../../../Back")
+focus_neighbor_right = NodePath("../Keyboard")
+focus_neighbor_bottom = NodePath("../../../../Back")
+focus_next = NodePath("../../../../Back")
+focus_previous = NodePath("../Keyboard")
 theme_type_variation = &"HowToPlayButtons"
 toggle_mode = true
 button_group = ExtResource("3_pgl7h")
@@ -99,6 +111,7 @@ tabs_visible = false
 script = ExtResource("3_e8lqy")
 
 [node name="Keyboard" type="VBoxContainer" parent="Panel/MainColumn/Content/Column/ControlersTabs"]
+visible = false
 layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,7 +156,6 @@ text = "Esc - Pause Menu"
 horizontal_alignment = 1
 
 [node name="Controller" type="VBoxContainer" parent="Panel/MainColumn/Content/Column/ControlersTabs"]
-visible = false
 layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,34 +167,34 @@ theme_override_constants/separation = 10
 [node name="Label2" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
 layout_mode = 2
 offset_right = 1266.0
-offset_bottom = 91.0
+offset_bottom = 56.0
 theme_type_variation = &"HowToPlayLabels"
 text = "Left Analog Stick  - Move"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
 layout_mode = 2
-offset_top = 95.0
+offset_top = 66.0
 offset_right = 1266.0
-offset_bottom = 186.0
+offset_bottom = 122.0
 theme_type_variation = &"HowToPlayLabels"
 text = "X (Xbox), Square (Sony) - Attack"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
 layout_mode = 2
-offset_top = 190.0
+offset_top = 132.0
 offset_right = 1266.0
-offset_bottom = 281.0
+offset_bottom = 188.0
 theme_type_variation = &"HowToPlayLabels"
 text = "A (Xbox), X (Sony) - Jump"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
 layout_mode = 2
-offset_top = 285.0
+offset_top = 198.0
 offset_right = 1266.0
-offset_bottom = 376.0
+offset_bottom = 254.0
 theme_type_variation = &"HowToPlayLabels"
 text = "Menu, Options - Pause Menu"
 horizontal_alignment = 1

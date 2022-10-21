@@ -18,6 +18,8 @@ const TEXT_TIMESCALE_VALUE = "%0.2f"
 
 var _main_menu: PackedScene = null
 
+@onready var _button_resume := $PanelContainer/Content/Resume as Button
+@onready var _how_to_play := $HowToPlay as HowToPlay
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 @onready var _timescale_slider := $PanelContainer/Content/TimeScaleLine/Slider as HSlider
 @onready var _timescale_value := $PanelContainer/Content/TimeScaleLine/Value as Label
@@ -45,6 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func open_pause_menu() -> void:
 	get_tree().paused = true
+	_button_resume.grab_focus()
 	_animator.play("open")
 
 
@@ -89,5 +92,13 @@ func _on_slider_value_changed(value: float) -> void:
 func _on_quit_to_main_menu_pressed() -> void:
 	ScreenTransitions.transition_to_scene(PATH_MAIN_MENU)
 	get_tree().paused = false
+
+
+func _on_how_to_play_pressed() -> void:
+	_how_to_play.open_how_to_play()
+
+
+func _on_how_to_play_how_to_play_closed() -> void:
+	_button_resume.grab_focus()
 
 ### -----------------------------------------------------------------------------------------------

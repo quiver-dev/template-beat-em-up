@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddrajabgyar7r"]
+[gd_scene load_steps=9 format=3 uid="uid://ddrajabgyar7r"]
 
 [ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_ix3c8"]
 [ext_resource type="Script" path="res://gameplay_ui/pause_menu/PauseMenu.gd" id="1_nnmou"]
+[ext_resource type="PackedScene" uid="uid://b8o7l7qide3e1" path="res://how_to_play/how_to_play.tscn" id="3_rxfeb"]
 
 [sub_resource type="Animation" id="Animation_o5ytk"]
 resource_name = "EDITOR"
@@ -183,7 +184,6 @@ libraries = {
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -198,15 +198,13 @@ grow_vertical = 2
 metadata/_edit_layout_mode = 1
 
 [node name="Content" type="VBoxContainer" parent="PanelContainer"]
-layout_mode = 2
 offset_left = 25.0
 offset_top = 25.0
 offset_right = 575.0
-offset_bottom = 513.0
+offset_bottom = 600.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/Content"]
-layout_mode = 2
 offset_right = 550.0
 offset_bottom = 140.0
 theme_type_variation = &"HeaderLarge"
@@ -214,7 +212,6 @@ text = "PAUSED"
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="PanelContainer/Content"]
-layout_mode = 2
 offset_top = 144.0
 offset_right = 550.0
 offset_bottom = 227.0
@@ -222,7 +219,6 @@ theme_type_variation = &"PauseButtons"
 text = "Resume"
 
 [node name="Restart" type="Button" parent="PanelContainer/Content"]
-layout_mode = 2
 offset_top = 231.0
 offset_right = 550.0
 offset_bottom = 314.0
@@ -230,21 +226,25 @@ theme_type_variation = &"PauseButtons"
 text = "Restart
 "
 
+[node name="HowToPlay" type="Button" parent="PanelContainer/Content"]
+offset_top = 318.0
+offset_right = 550.0
+offset_bottom = 401.0
+theme_type_variation = &"PauseButtons"
+text = "How To Play"
+
 [node name="TimeScaleLine" type="HBoxContainer" parent="PanelContainer/Content"]
 visible = false
-layout_mode = 2
 offset_top = 209.0
 offset_right = 350.0
 offset_bottom = 257.0
 
 [node name="Label" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
-layout_mode = 2
 offset_right = 157.0
 offset_bottom = 48.0
 text = "time scale"
 
 [node name="Slider" type="HSlider" parent="PanelContainer/Content/TimeScaleLine"]
-layout_mode = 2
 offset_left = 161.0
 offset_top = 16.0
 offset_right = 301.0
@@ -256,30 +256,32 @@ step = 0.01
 value = 1.0
 
 [node name="Value" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
-layout_mode = 2
 offset_left = 305.0
 offset_right = 350.0
 offset_bottom = 48.0
 text = "1.0"
 
 [node name="QuitToMainMenu" type="Button" parent="PanelContainer/Content"]
-layout_mode = 2
-offset_top = 318.0
-offset_right = 550.0
-offset_bottom = 401.0
-theme_type_variation = &"PauseButtons"
-text = "Quit to main menu"
-
-[node name="Quit" type="Button" parent="PanelContainer/Content"]
-layout_mode = 2
 offset_top = 405.0
 offset_right = 550.0
 offset_bottom = 488.0
 theme_type_variation = &"PauseButtons"
+text = "Quit to main menu"
+
+[node name="Quit" type="Button" parent="PanelContainer/Content"]
+offset_top = 492.0
+offset_right = 550.0
+offset_bottom = 575.0
+theme_type_variation = &"PauseButtons"
 text = "Quit"
+
+[node name="HowToPlay" parent="." instance=ExtResource("3_rxfeb")]
+visible = false
 
 [connection signal="pressed" from="PanelContainer/Content/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/Content/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="value_changed" from="PanelContainer/Content/TimeScaleLine/Slider" to="." method="_on_slider_value_changed"]
 [connection signal="pressed" from="PanelContainer/Content/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
 [connection signal="pressed" from="PanelContainer/Content/Quit" to="." method="_on_quit_pressed"]
+[connection signal="how_to_play_closed" from="HowToPlay" to="." method="_on_how_to_play_how_to_play_closed"]
