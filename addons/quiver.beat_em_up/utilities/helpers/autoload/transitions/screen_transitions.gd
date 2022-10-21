@@ -48,6 +48,7 @@ func transition_to_scene(path: String, should_start_loading := false) -> void:
 		push_error("Could not transition to %s | error: %s"%[
 			path, error
 		])
+	call_deferred("fade_out_transition")
 
 
 func fade_in_transition(duration: = 1.0) -> void:
