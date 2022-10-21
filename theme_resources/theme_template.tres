@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dwt1c0b2tvhig"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwt1c0b2tvhig"]
+
+[ext_resource type="StyleBox" uid="uid://dnu44uladwm6h" path="res://theme_resources/default_empty_stylebox.tres" id="1_25e22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abo2o"]
 bg_color = Color(0, 0, 0, 1)
@@ -33,11 +35,24 @@ corner_detail = 5
 
 [resource]
 default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 0.45098, 0.447059, 1)
+Button/colors/font_hover_color = Color(1, 0.45098, 0.447059, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 40
+Button/font_sizes/font_size = 80
+Button/styles/disabled = ExtResource("1_25e22")
+Button/styles/focus = ExtResource("1_25e22")
+Button/styles/hover = ExtResource("1_25e22")
+Button/styles/normal = ExtResource("1_25e22")
+Button/styles/pressed = ExtResource("1_25e22")
 EndScreen/constants/separation = 50
 EndScreen/font_sizes/font_size = 64
 HeaderLarge/base_type = &"Label"
 HeaderLarge/colors/font_color = Color(1, 1, 1, 1)
-HeaderLarge/font_sizes/font_size = 124
+HeaderLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+HeaderLarge/constants/outline_size = 80
+HeaderLarge/font_sizes/font_size = 100
 HeaderMedium/font_sizes/font_size = 64
 HudCharName/base_type = &"Label"
 HudCharName/colors/font_outline_color = Color(0, 0, 0, 1)
@@ -49,3 +64,5 @@ LifeBars/font_sizes/font_size = 16
 LifeBars/styles/background = SubResource("StyleBoxFlat_abo2o")
 LifeBars/styles/fill = SubResource("StyleBoxFlat_tvend")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_i4s1v")
+PauseButtons/base_type = &"Button"
+PauseButtons/font_sizes/font_size = 60
