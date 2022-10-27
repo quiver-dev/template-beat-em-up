@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crxaiuqocbq4x"
-path="res://.godot/imported/idle_04.png-ebeec507329c6df461fe728993d15238.ctex"
+uid="uid://di7l4gifv0uop"
+path="res://.godot/imported/walk_06.png-2f9c119452bedfd7a7efbd06d08d5abd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/sargent/resources/sprites/idle/idle_04.png"
-dest_files=["res://.godot/imported/idle_04.png-ebeec507329c6df461fe728993d15238.ctex"]
+source_file="res://characters/enemies/sargent/resources/sprites/walk/walk_06.png"
+dest_files=["res://.godot/imported/walk_06.png-2f9c119452bedfd7a7efbd06d08d5abd.ctex"]
 
 [params]
 

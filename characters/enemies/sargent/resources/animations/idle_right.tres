@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "idle_right"
-length = 1.20833
+length = 1.33333
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
@@ -60,10 +60,10 @@ tracks/4/path = NodePath("AnimatedSprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = false
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.16667),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 28]
+"values": [0, 3]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -75,7 +75,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [false]
+"values": [true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false

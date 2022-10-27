@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "walk_left"
-length = 1.20833
+length = 1.58333
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
@@ -60,10 +60,10 @@ tracks/4/path = NodePath("AnimatedSprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = false
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.16667),
+"times": PackedFloat32Array(0, 1.54167),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 28]
+"values": [0, 37]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -99,7 +99,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(200, 499)]
+"values": [Vector2(200, 447)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -111,5 +111,5 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(22, -9.5)]
+"values": [Vector2(22, 16.5)]
 }

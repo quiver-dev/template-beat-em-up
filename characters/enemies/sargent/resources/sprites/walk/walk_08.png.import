@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djuu48uc368yu"
-path="res://.godot/imported/walk_cycle_revised_09.png-e963cb0519b009984da8d0b037135f69.ctex"
+uid="uid://ggdxwvs1upyd"
+path="res://.godot/imported/walk_08.png-1f3d427b891e390979099023cae552c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/sargent/resources/sprites/walk/walk_cycle_revised_09.png"
-dest_files=["res://.godot/imported/walk_cycle_revised_09.png-e963cb0519b009984da8d0b037135f69.ctex"]
+source_file="res://characters/enemies/sargent/resources/sprites/walk/walk_08.png"
+dest_files=["res://.godot/imported/walk_08.png-1f3d427b891e390979099023cae552c3.ctex"]
 
 [params]
 
