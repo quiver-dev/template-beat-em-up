@@ -40,7 +40,7 @@ _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
 has_grab = false
 has_grabbed = false
-metadata/_edit_vertical_guides_ = [-141.0]
+metadata/_edit_vertical_guides_ = [-141.0, 140.0]
 metadata/_edit_horizontal_guides_ = [14.0, -445.0, -390.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
