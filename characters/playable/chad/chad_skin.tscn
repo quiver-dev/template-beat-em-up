@@ -33,13 +33,15 @@ size = Vector2(144, 52)
 size = Vector2(222, 91)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0e1l"]
-size = Vector2(285.095, 79.2264)
+size = Vector2(261.336, 79.2264)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("6_iqdvs")
 has_grab = false
 has_grabbed = false
+metadata/_edit_vertical_guides_ = [-141.0]
+metadata/_edit_horizontal_guides_ = [14.0, -445.0, -390.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 playback_process_mode = 0
@@ -151,7 +153,7 @@ metadata/collision_type = "player_hit_box"
 [node name="AttackAirShape" type="CollisionShape2D" parent="Attacks/AttackAir" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(187, -254)
-rotation = 0.294481
+rotation = -0.294481
 shape = SubResource("RectangleShape2D_e0e1l")
 disabled = true
 metadata/collision_type = "player_hit_box"

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfrmbi5a0smva"
-path="res://.godot/imported/jumpkick1_04.png-e1559e88e98ae4c94ecbfda8330d8074.ctex"
+path="res://.godot/imported/air_attack_00.png-a875160da97231778ce136a148decb47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/chad/resources/sprites/air_attack/jumpkick1_04.png"
-dest_files=["res://.godot/imported/jumpkick1_04.png-e1559e88e98ae4c94ecbfda8330d8074.ctex"]
+source_file="res://characters/playable/chad/resources/sprites/air_attack/air_attack_00.png"
+dest_files=["res://.godot/imported/air_attack_00.png-a875160da97231778ce136a148decb47.ctex"]
 
 [params]
 
