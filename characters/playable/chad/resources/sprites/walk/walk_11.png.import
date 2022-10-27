@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0gc258c1wb8b"
-path="res://.godot/imported/walkcycle_02.png-e9f5bde648506591bbe37dbad809db4e.ctex"
+uid="uid://bv5edst2ca6jb"
+path="res://.godot/imported/walk_11.png-4c07dc8c3d435e5021563fa5f8379cbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/chad/resources/sprites/walk/walkcycle_02.png"
-dest_files=["res://.godot/imported/walkcycle_02.png-e9f5bde648506591bbe37dbad809db4e.ctex"]
+source_file="res://characters/playable/chad/resources/sprites/walk/walk_11.png"
+dest_files=["res://.godot/imported/walk_11.png-4c07dc8c3d435e5021563fa5f8379cbb.ctex"]
 
 [params]
 
