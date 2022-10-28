@@ -1,10 +1,10 @@
-[gd_resource type="SpriteFrames" load_steps=39 format=3]
+[gd_resource type="SpriteFrames" load_steps=38 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bvsjy8xgk4cnx" path="res://characters/playable/chad/resources/sprites/idle/idle_00.png" id="1_wrqq6"]
 [ext_resource type="Texture2D" uid="uid://dgc8iftho5l60" path="res://characters/playable/chad/resources/sprites/idle/idle_01.png" id="2_1xc7n"]
 [ext_resource type="Texture2D" uid="uid://b44mkiid6nke1" path="res://characters/playable/chad/resources/sprites/idle/idle_02.png" id="3_5djqb"]
-[ext_resource type="Texture2D" uid="uid://doy7ui6dy85q5" path="res://characters/playable/chad/resources/sprites/punches/1punch_01.png" id="5_m1p1s"]
-[ext_resource type="Texture2D" uid="uid://dpvkqbbeuqrlx" path="res://characters/playable/chad/resources/sprites/punches/1punch_02.png" id="6_6r71h"]
+[ext_resource type="Texture2D" uid="uid://doy7ui6dy85q5" path="res://characters/playable/chad/resources/sprites/punches/punch1_00.png" id="3_48agj"]
+[ext_resource type="Texture2D" uid="uid://dpvkqbbeuqrlx" path="res://characters/playable/chad/resources/sprites/punches/punch1_01.png" id="4_oi4qv"]
 [ext_resource type="Texture2D" uid="uid://eqnijrnpafm5" path="res://characters/playable/chad/resources/sprites/walk/walk_00.png" id="6_ra0bq"]
 [ext_resource type="Texture2D" uid="uid://djal1tttw34iv" path="res://characters/playable/chad/resources/sprites/walk/walk_01.png" id="7_n4s3j"]
 [ext_resource type="Texture2D" uid="uid://0gc258c1wb8b" path="res://characters/playable/chad/resources/sprites/walk/walk_02.png" id="8_ytmlj"]
@@ -18,10 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://dlsdi7mi362ox" path="res://characters/playable/chad/resources/sprites/walk/walk_09.png" id="15_bany5"]
 [ext_resource type="Texture2D" uid="uid://xwc6l54otrc8" path="res://characters/playable/chad/resources/sprites/walk/walk_10.png" id="16_wr7m3"]
 [ext_resource type="Texture2D" uid="uid://bv5edst2ca6jb" path="res://characters/playable/chad/resources/sprites/walk/walk_11.png" id="17_j3734"]
-[ext_resource type="Texture2D" uid="uid://dqjdbs6bjijxn" path="res://characters/playable/chad/resources/sprites/punches/2punch_04.png" id="19_y1ame"]
-[ext_resource type="Texture2D" uid="uid://ckuht4pw416lo" path="res://characters/playable/chad/resources/sprites/punches/2punch_05.png" id="20_7jacw"]
+[ext_resource type="Texture2D" uid="uid://dqjdbs6bjijxn" path="res://characters/playable/chad/resources/sprites/punches/punch2_00.png" id="19_y1ame"]
+[ext_resource type="Texture2D" uid="uid://ckuht4pw416lo" path="res://characters/playable/chad/resources/sprites/punches/punch2_01.png" id="20_7jacw"]
 [ext_resource type="Texture2D" uid="uid://cfrmbi5a0smva" path="res://characters/playable/chad/resources/sprites/air_attack/air_attack_00.png" id="21_mbplx"]
-[ext_resource type="Texture2D" uid="uid://c453g5dmv1t1t" path="res://characters/playable/chad/resources/sprites/punches/2punch_02.png" id="21_nnpkm"]
 [ext_resource type="Texture2D" uid="uid://bw7ulkf8jdiyj" path="res://characters/playable/chad/resources/sprites/jump/jump_03.png" id="22_c167v"]
 [ext_resource type="Texture2D" uid="uid://b5orlh65nx7bg" path="res://characters/playable/chad/resources/sprites/air_attack/air_attack_01.png" id="22_o0cvf"]
 [ext_resource type="Texture2D" uid="uid://ddisqyo4a10um" path="res://characters/playable/chad/resources/sprites/jump/jump_01.png" id="23_trcrx"]
@@ -46,12 +45,12 @@ animations = [{
 "name": &"air_attack",
 "speed": 24.0
 }, {
-"frames": [ExtResource("5_m1p1s"), ExtResource("5_m1p1s"), ExtResource("5_m1p1s"), ExtResource("5_m1p1s"), ExtResource("6_6r71h"), ExtResource("6_6r71h")],
+"frames": [ExtResource("3_48agj"), ExtResource("3_48agj"), ExtResource("3_48agj"), ExtResource("3_48agj"), ExtResource("4_oi4qv"), ExtResource("4_oi4qv")],
 "loop": false,
 "name": &"attack_1",
 "speed": 24.0
 }, {
-"frames": [ExtResource("19_y1ame"), ExtResource("19_y1ame"), ExtResource("19_y1ame"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("21_nnpkm"), ExtResource("21_nnpkm"), ExtResource("6_6r71h")],
+"frames": [ExtResource("19_y1ame"), ExtResource("19_y1ame"), ExtResource("19_y1ame"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("20_7jacw"), ExtResource("4_oi4qv"), ExtResource("4_oi4qv"), ExtResource("4_oi4qv")],
 "loop": true,
 "name": &"attack_2",
 "speed": 24.0

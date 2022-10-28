@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c453g5dmv1t1t"
-path="res://.godot/imported/2punch_02.png-1a621007f7826d40cba1be46d562c5b4.ctex"
+uid="uid://doy7ui6dy85q5"
+path="res://.godot/imported/punch1_00.png-006a818855b0bb001a0dc577da951e69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/playable/chad/resources/sprites/punches/2punch_02.png"
-dest_files=["res://.godot/imported/2punch_02.png-1a621007f7826d40cba1be46d562c5b4.ctex"]
+source_file="res://characters/playable/chad/resources/sprites/punches/punch1_00.png"
+dest_files=["res://.godot/imported/punch1_00.png-006a818855b0bb001a0dc577da951e69.ctex"]
 
 [params]
 
