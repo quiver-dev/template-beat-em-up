@@ -49,10 +49,10 @@ tracks/3/path = NodePath("AnimatedSprite2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -260)]
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -233), Vector2(0, -232)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -109,10 +109,10 @@ tracks/8/path = NodePath("AnimatedSprite2D/QuiverHurtBox/HurtArea:shape:size")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(205, 521), Vector2(196, 521)]
+"values": [Vector2(194, 444), Vector2(166, 444), Vector2(158, 447)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -121,8 +121,8 @@ tracks/9/path = NodePath("AnimatedSprite2D/QuiverHurtBox/HurtArea:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(-26.5, -2.5), Vector2(-8, -2.5)]
+"values": [Vector2(-29, -10), Vector2(-16, -1), Vector2(-8, -2.5)]
 }

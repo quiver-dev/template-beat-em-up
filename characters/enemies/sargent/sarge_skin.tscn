@@ -47,6 +47,8 @@ _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("2_ajvg2")
 has_grab = false
 has_grabbed = false
+metadata/_edit_vertical_guides_ = [177.0, -99.0, -177.0, 100.0]
+metadata/_edit_horizontal_guides_ = [9.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
