@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://80j4calgxm0h"
-path="res://.godot/imported/jump_11.png-36820a6f4f0c311bd28b4ead03b0f358.ctex"
+uid="uid://luwsn7rymffc"
+path="res://.godot/imported/jump_05.png-9771c90324a735b5623c497107a1e51b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/sargent/resources/sprites/jump/jump_11.png"
-dest_files=["res://.godot/imported/jump_11.png-36820a6f4f0c311bd28b4ead03b0f358.ctex"]
+source_file="res://characters/enemies/sargent/resources/sprites/jump/jump_05.png"
+dest_files=["res://.godot/imported/jump_05.png-9771c90324a735b5623c497107a1e51b.ctex"]
 
 [params]
 
