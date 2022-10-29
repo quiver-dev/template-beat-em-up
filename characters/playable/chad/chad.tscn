@@ -91,13 +91,23 @@ parent_should_process = false
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("9_cce84")
 skin_state = &"attack2"
+can_combo = true
+path_combo_state = "Ground/Combo3"
+path_next_state = "Ground/Move/Idle"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = false
+
+[node name="Combo3" type="Node" parent="StateMachine/Ground" index="4"]
+script = ExtResource("9_cce84")
+skin_state = &"attack3"
 can_combo = false
 path_next_state = "Ground/Move/Idle"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = false
 
-[node name="Recovery" type="Node" parent="StateMachine/Ground" index="4"]
+[node name="Recovery" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_a7lbg")
 skin_state = &"knockout_ground"
 path_idle_state = "Ground/Move/Idle"

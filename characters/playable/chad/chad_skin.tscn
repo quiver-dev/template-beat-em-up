@@ -61,6 +61,7 @@ parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayba
 parameters/state_machine/air_attack/blend_position = 1
 parameters/state_machine/attack1/blend_position = 1
 parameters/state_machine/attack2/blend_position = 1
+parameters/state_machine/attack3/blend_position = 1
 parameters/state_machine/die/blend_position = 1
 parameters/state_machine/falling/blend_position = 1
 parameters/state_machine/grab/blend_position = 1
