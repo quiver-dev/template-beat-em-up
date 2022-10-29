@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=39 format=3 uid="uid://bec4th23gqkxd"]
+[gd_resource type="AnimationLibrary" load_steps=41 format=3 uid="uid://bec4th23gqkxd"]
 
 [ext_resource type="Animation" uid="uid://brhmu83bx0auc" path="res://characters/playable/chad/resources/animations/air_attack_right.tres" id="1_jgcla"]
 [ext_resource type="Animation" uid="uid://cu73cdb616u4s" path="res://characters/playable/chad/resources/animations/attack1_right.tres" id="2_qtktm"]
@@ -24,8 +24,10 @@
 [ext_resource type="Animation" uid="uid://b3ov4284rttwv" path="res://characters/playable/chad/resources/animations/die_left.tres" id="32_i63wn"]
 [ext_resource type="Animation" uid="uid://rntvxkuomu4l" path="res://characters/playable/chad/resources/animations/falling_left.tres" id="33_2bi3r"]
 [ext_resource type="Animation" uid="uid://bu87lq2r2t6ku" path="res://characters/playable/chad/resources/animations/getting_up_left.tres" id="34_033ig"]
+[ext_resource type="Animation" uid="uid://bi1lshmt37cm6" path="res://characters/playable/chad/resources/animations/attack3_right.tres" id="39_r3mhj"]
 [ext_resource type="Animation" uid="uid://c0rtccrfdqcl8" path="res://characters/playable/chad/resources/animations/hurt_high_left.tres" id="39_stgrd"]
 [ext_resource type="Animation" uid="uid://ckgdiawpqood8" path="res://characters/playable/chad/resources/animations/hurt_mid_left.tres" id="40_3erv8"]
+[ext_resource type="Animation" uid="uid://c8j0i82ttmh2l" path="res://characters/playable/chad/resources/animations/attack3_left.tres" id="40_wlalm"]
 [ext_resource type="Animation" uid="uid://cjfriyeiq3jj1" path="res://characters/playable/chad/resources/animations/idle_left.tres" id="41_mryln"]
 [ext_resource type="Animation" uid="uid://pn1c35qgs0na" path="res://characters/playable/chad/resources/animations/jump_left.tres" id="42_ltrfp"]
 [ext_resource type="Animation" uid="uid://crx78rxsq2246" path="res://characters/playable/chad/resources/animations/knockout_bounce_left.tres" id="43_f4qat"]
@@ -47,6 +49,8 @@ _data = {
 "attack1_right": ExtResource("2_qtktm"),
 "attack2_left": ExtResource("31_l68i0"),
 "attack2_right": ExtResource("3_btu6m"),
+"attack3_left": ExtResource("40_wlalm"),
+"attack3_right": ExtResource("39_r3mhj"),
 "die_left": ExtResource("32_i63wn"),
 "die_right": ExtResource("4_i5tkq"),
 "falling_left": ExtResource("33_2bi3r"),

@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=22 format=3 uid="uid://dfgyw305iprys"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dlfxsc1icfbdd" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
-[ext_resource type="SpriteFrames" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
+[ext_resource type="SpriteFrames" uid="uid://cxc0fddn51ogf" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
 [ext_resource type="Animation" uid="uid://dtfet3rtkyrec" path="res://characters/playable/chad/resources/animations/RESET.tres" id="4_vrxwg"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
 [ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/attack_punch2.tres" id="9_cutyj"]
 [ext_resource type="Resource" uid="uid://hc8n1g3pof68" path="res://characters/playable/chad/resources/attacks/attack_air_kick.tres" id="10_556uq"]
+[ext_resource type="Resource" path="res://characters/playable/chad/resources/attacks/attack_punch3.tres" id="11_7yi7m"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6o40w"]
 _data = {
@@ -31,6 +32,9 @@ size = Vector2(144, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcrug"]
 size = Vector2(222, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo5ct"]
+size = Vector2(161, 329.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0e1l"]
 size = Vector2(261.336, 79.2264)
@@ -140,7 +144,24 @@ shape = SubResource("RectangleShape2D_tcrug")
 disabled = true
 metadata/collision_type = "player_hit_box"
 
-[node name="AttackAir" type="Area2D" parent="Attacks" index="2"]
+[node name="Attack3" type="Area2D" parent="Attacks" index="2"]
+visible = false
+modulate = Color(1, 0.2, 0.101961, 1)
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("5_f1o2m")
+_attack_data = ExtResource("11_7yi7m")
+metadata/collision_type = "player_hit_box"
+
+[node name="Attack3Shape" type="CollisionShape2D" parent="Attacks/Attack3" index="0"]
+modulate = Color(1, 0.2, 0.101961, 1)
+position = Vector2(96.5, -389.25)
+shape = SubResource("RectangleShape2D_vo5ct")
+disabled = true
+metadata/collision_type = "player_hit_box"
+
+[node name="AttackAir" type="Area2D" parent="Attacks" index="3"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 collision_layer = 256
