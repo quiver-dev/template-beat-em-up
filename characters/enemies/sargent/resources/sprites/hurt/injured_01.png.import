@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpc7bmkwxtvvc"
-path="res://.godot/imported/injury_01.png-11b7ff8a45304a0d69aed26677a3c5f1.ctex"
+path="res://.godot/imported/injured_01.png-ac2dcf14dd917be2b4faafabfc01fd89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/sargent/resources/sprites/hurt/injury_01.png"
-dest_files=["res://.godot/imported/injury_01.png-11b7ff8a45304a0d69aed26677a3c5f1.ctex"]
+source_file="res://characters/enemies/sargent/resources/sprites/hurt/injured_01.png"
+dest_files=["res://.godot/imported/injured_01.png-ac2dcf14dd917be2b4faafabfc01fd89.ctex"]
 
 [params]
 

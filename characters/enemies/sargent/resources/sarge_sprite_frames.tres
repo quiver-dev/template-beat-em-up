@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=57 format=3]
 
 [ext_resource type="Texture2D" uid="uid://c2guwppp2v744" path="res://characters/enemies/sargent/resources/sprites/idle/idle_00.png" id="1_8vii6"]
-[ext_resource type="Texture2D" uid="uid://bpc7bmkwxtvvc" path="res://characters/enemies/sargent/resources/sprites/hurt/injury_01.png" id="1_lq04a"]
+[ext_resource type="Texture2D" uid="uid://bpc7bmkwxtvvc" path="res://characters/enemies/sargent/resources/sprites/hurt/injured_01.png" id="1_lq04a"]
 [ext_resource type="Texture2D" uid="uid://bivmut4fun3h6" path="res://characters/enemies/sargent/resources/sprites/idle/idle_01.png" id="2_6p8f3"]
-[ext_resource type="Texture2D" uid="uid://bywcurwy7863i" path="res://characters/enemies/sargent/resources/sprites/hurt/injury_00.png" id="2_10lik"]
+[ext_resource type="Texture2D" uid="uid://bywcurwy7863i" path="res://characters/enemies/sargent/resources/sprites/hurt/injured_00.png" id="2_10lik"]
 [ext_resource type="Texture2D" uid="uid://d2sgc6ps3df02" path="res://characters/enemies/sargent/resources/sprites/idle/idle_02.png" id="3_57uuc"]
 [ext_resource type="Texture2D" uid="uid://2im8lfd07y6s" path="res://characters/enemies/sargent/resources/sprites/idle/idle_03.png" id="4_y52hy"]
 [ext_resource type="Texture2D" uid="uid://luwsn7rymffc" path="res://characters/enemies/sargent/resources/sprites/jump/jump_06.png" id="6_fk3yi"]
