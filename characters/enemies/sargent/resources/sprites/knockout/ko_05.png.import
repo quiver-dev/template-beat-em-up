@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://db458rkyay3yv"
-path="res://.godot/imported/knockout_05.png-4e1357fc2ca16f779ae4579e594fde93.ctex"
+path="res://.godot/imported/ko_05.png-c477989f7dc47b6852eca83262d7c8d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/sargent/resources/sprites/knockout/knockout_05.png"
-dest_files=["res://.godot/imported/knockout_05.png-4e1357fc2ca16f779ae4579e594fde93.ctex"]
+source_file="res://characters/enemies/sargent/resources/sprites/knockout/ko_05.png"
+dest_files=["res://.godot/imported/ko_05.png-c477989f7dc47b6852eca83262d7c8d8.ctex"]
 
 [params]
 

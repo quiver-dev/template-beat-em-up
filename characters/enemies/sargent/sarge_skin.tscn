@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_kelmx"]
 [ext_resource type="AnimationLibrary" uid="uid://dbbhof0f3tyc5" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
 [ext_resource type="Resource" uid="uid://llubu8lgbc5o" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_ajvg2"]
-[ext_resource type="SpriteFrames" uid="uid://b86wwr3ds18nf" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
+[ext_resource type="SpriteFrames" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="3_pkfas"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dgp3tbstqr8i5" path="res://characters/enemies/sargent/resources/sarge_animation_tree_root.tres" id="4_i00o2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="7_7ybvf"]
@@ -48,7 +48,7 @@ _attributes = ExtResource("2_ajvg2")
 has_grab = false
 has_grabbed = false
 metadata/_edit_vertical_guides_ = [177.0, -99.0, -177.0, 100.0]
-metadata/_edit_horizontal_guides_ = [9.0]
+metadata/_edit_horizontal_guides_ = [9.0, -274.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {

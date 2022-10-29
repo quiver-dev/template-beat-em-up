@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgnyugc27484h"
-path="res://.godot/imported/knockout_03.png-0d6dd3739d13d2a71ff2e199dbd8dd9f.ctex"
+uid="uid://bqd0macjfu3ir"
+path="res://.godot/imported/ko_01.png-6188a045e97ef63a2d69fbb8bd433aaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/sargent/resources/sprites/knockout/knockout_03.png"
-dest_files=["res://.godot/imported/knockout_03.png-0d6dd3739d13d2a71ff2e199dbd8dd9f.ctex"]
+source_file="res://characters/enemies/sargent/resources/sprites/knockout/ko_01.png"
+dest_files=["res://.godot/imported/ko_01.png-6188a045e97ef63a2d69fbb8bd433aaf.ctex"]
 
 [params]
 

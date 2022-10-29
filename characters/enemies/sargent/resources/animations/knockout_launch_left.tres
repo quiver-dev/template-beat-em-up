@@ -14,7 +14,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.0833333),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["knockout_launch_left"],
+"args": ["knockout_launch_right"],
 "method": &"end_of_skin_animation"
 }]
 }
@@ -52,7 +52,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -290)]
+"values": [Vector2(0, -261)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -124,7 +124,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(-9.623, -10.601)]
+"values": [Vector2(-9.62298, -10.6011)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -152,3 +152,5 @@ tracks/11/keys = {
 "method": &"_enable_wall_bounce_collisions"
 }]
 }
+metadata/mirrored_name = "knockout_launch_left.tres"
+metadata/should_overwrite = true
