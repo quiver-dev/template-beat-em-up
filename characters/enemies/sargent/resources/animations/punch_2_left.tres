@@ -17,7 +17,7 @@ tracks/0/keys = {
 "args": [],
 "method": &"end_of_input_frames"
 }, {
-"args": ["punch_2_left"],
+"args": ["punch_2_right"],
 "method": &"end_of_skin_animation"
 }]
 }
@@ -163,7 +163,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(314, 98.7822)]
+"values": [Vector2(289.027, 85.6137)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -175,7 +175,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-253.534, -302.218)]
+"values": [Vector2(-242.689, -311.254)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -187,7 +187,7 @@ tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.20944]
+"values": [-0.209387]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -261,3 +261,5 @@ tracks/20/keys = {
 "update": 1,
 "values": [true]
 }
+metadata/mirrored_name = "punch_2_left.tres"
+metadata/should_overwrite = true
