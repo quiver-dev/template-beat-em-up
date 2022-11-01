@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=96 format=3 uid="uid://dp685c3c21u3x"]
+[gd_resource type="SpriteFrames" load_steps=96 format=3]
 
 [ext_resource type="Texture2D" uid="uid://w6ak5bf2s5yh" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_00.png" id="1_nuth2"]
 [ext_resource type="Texture2D" uid="uid://d2es5uhrtry2g" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack03.png" id="1_o8kgl"]
@@ -76,9 +76,9 @@
 [ext_resource type="Texture2D" uid="uid://b8yr6bc2f4dt8" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_02.png" id="50_ojkcw"]
 [ext_resource type="Texture2D" uid="uid://b66du0abj1xnb" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_03.png" id="51_3s5ip"]
 [ext_resource type="Texture2D" uid="uid://clpitgausd4h6" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_02_blur.png" id="68_yb5qu"]
-[ext_resource type="Texture2D" uid="uid://kc2a40obkvmk" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_00.png" id="69_mqjcs"]
+[ext_resource type="Texture2D" uid="uid://kc2a40obkvmk" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_02.png" id="69_mqjcs"]
 [ext_resource type="Texture2D" uid="uid://dyrwt00v4kj04" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_01.png" id="70_q33a0"]
-[ext_resource type="Texture2D" uid="uid://q8xge2hdpm2t" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_02.png" id="71_1dmpu"]
+[ext_resource type="Texture2D" uid="uid://q8xge2hdpm2t" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_00.png" id="71_1dmpu"]
 [ext_resource type="Texture2D" uid="uid://dtjhw5n7pfeo7" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_00.png" id="72_j0irj"]
 [ext_resource type="Texture2D" uid="uid://6a6htibrie0m" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_01.png" id="73_0piov"]
 [ext_resource type="Texture2D" uid="uid://d1ei7ot8neknn" path="res://characters/enemies/tax_man/resources/sprites/walk/walk_02.png" id="74_4eiyg"]

@@ -6,7 +6,7 @@
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://ccthcaakgim08" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
 [ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
-[ext_resource type="SpriteFrames" uid="uid://dp685c3c21u3x" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
+[ext_resource type="SpriteFrames" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
@@ -69,6 +69,8 @@ _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("3_b4sly")
 has_grab = false
 has_grabbed = false
+metadata/_edit_vertical_guides_ = [-229.0, 217.0]
+metadata/_edit_horizontal_guides_ = [21.0]
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
