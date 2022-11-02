@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=96 format=3 uid="uid://dusarsoh1d8um"]
+[gd_resource type="SpriteFrames" load_steps=95 format=3]
 
 [ext_resource type="Texture2D" uid="uid://w6ak5bf2s5yh" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_00.png" id="1_nuth2"]
 [ext_resource type="Texture2D" uid="uid://d2es5uhrtry2g" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack03.png" id="1_o8kgl"]
@@ -73,8 +73,7 @@
 [ext_resource type="Texture2D" uid="uid://d2acgmufw0wyd" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_16.png" id="32_x4kqk"]
 [ext_resource type="Texture2D" uid="uid://cr4sl5qjxgmbl" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_00.png" id="48_fkggc"]
 [ext_resource type="Texture2D" uid="uid://bo51hux6od5ja" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_01.png" id="49_reu6x"]
-[ext_resource type="Texture2D" uid="uid://b8yr6bc2f4dt8" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_02.png" id="50_ojkcw"]
-[ext_resource type="Texture2D" uid="uid://b66du0abj1xnb" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_03.png" id="51_3s5ip"]
+[ext_resource type="Texture2D" uid="uid://b66du0abj1xnb" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_02.png" id="51_3s5ip"]
 [ext_resource type="Texture2D" uid="uid://clpitgausd4h6" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_02_blur.png" id="68_yb5qu"]
 [ext_resource type="Texture2D" uid="uid://kc2a40obkvmk" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_02.png" id="69_mqjcs"]
 [ext_resource type="Texture2D" uid="uid://dyrwt00v4kj04" path="res://characters/enemies/tax_man/resources/sprites/turn/turnaround_01.png" id="70_q33a0"]
@@ -123,7 +122,7 @@ animations = [{
 "name": &"death_explosion",
 "speed": 24.0
 }, {
-"frames": [ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("50_ojkcw"), ExtResource("50_ojkcw"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip")],
+"frames": [ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("48_fkggc"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("49_reu6x"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip"), ExtResource("51_3s5ip")],
 "loop": false,
 "name": &"engage",
 "speed": 24.0
