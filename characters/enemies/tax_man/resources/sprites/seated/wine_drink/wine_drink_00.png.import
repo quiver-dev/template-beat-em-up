@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5k8lboqgonl8"
-path="res://.godot/imported/laughter_04.png-dc50370f1a26f3e73c00fadeb918539b.ctex"
+uid="uid://da8ld8s3tcpx1"
+path="res://.godot/imported/wine_drink_00.png-7616a2fb813e934205522434428674a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_04.png"
-dest_files=["res://.godot/imported/laughter_04.png-dc50370f1a26f3e73c00fadeb918539b.ctex"]
+source_file="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/wine_drink_00.png"
+dest_files=["res://.godot/imported/wine_drink_00.png-7616a2fb813e934205522434428674a2.ctex"]
 
 [params]
 

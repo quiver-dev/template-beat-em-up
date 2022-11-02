@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da8ld8s3tcpx1"
-path="res://.godot/imported/intro_wine_swirl_revised_00.png-f39a8a53d8c53699d7adb71d4b886832.ctex"
+uid="uid://gsajx715gjtx"
+path="res://.godot/imported/wine_swirl_01.png-ed70ef48a4cc0907c6fbe56b5339a01a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/intro_wine_swirl_revised_00.png"
-dest_files=["res://.godot/imported/intro_wine_swirl_revised_00.png-f39a8a53d8c53699d7adb71d4b886832.ctex"]
+source_file="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/wine_swirl_01.png"
+dest_files=["res://.godot/imported/wine_swirl_01.png-ed70ef48a4cc0907c6fbe56b5339a01a.ctex"]
 
 [params]
 

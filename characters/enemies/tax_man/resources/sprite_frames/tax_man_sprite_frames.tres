@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=96 format=3]
+[gd_resource type="SpriteFrames" load_steps=96 format=3 uid="uid://dusarsoh1d8um"]
 
 [ext_resource type="Texture2D" uid="uid://w6ak5bf2s5yh" path="res://characters/enemies/tax_man/resources/sprites/idle/idle_00.png" id="1_nuth2"]
 [ext_resource type="Texture2D" uid="uid://d2es5uhrtry2g" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack03.png" id="1_o8kgl"]
@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dfac10rdagjel" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_02.png" id="14_sy5xo"]
 [ext_resource type="Texture2D" uid="uid://df3v0h468f7j4" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_01.png" id="15_117of"]
 [ext_resource type="Texture2D" uid="uid://bbsvxdu6rwbuc" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/area_attack18.png" id="15_aarkl"]
-[ext_resource type="Texture2D" uid="uid://b5k8lboqgonl8" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_04.png" id="15_r4lbl"]
+[ext_resource type="Texture2D" uid="uid://b5k8lboqgonl8" path="res://characters/enemies/tax_man/resources/sprites/seated/laughing/laughter_03.png" id="15_r4lbl"]
 [ext_resource type="Texture2D" uid="uid://bmu6adni65020" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_01.png" id="16_8a82a"]
 [ext_resource type="Texture2D" uid="uid://jwea56x0tb3o" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_03.png" id="16_um6wo"]
 [ext_resource type="Texture2D" uid="uid://bnn1sxf8s3tsq" path="res://characters/enemies/tax_man/resources/sprites/attacks/dash_attack/dash_attack_04.png" id="17_nk7tj"]
@@ -59,16 +59,16 @@
 [ext_resource type="Texture2D" uid="uid://dn06xhtk5wanq" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_12.png" id="27_5pv22"]
 [ext_resource type="Texture2D" uid="uid://cnef7ieldxts7" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_11.png" id="27_dtxjp"]
 [ext_resource type="Texture2D" uid="uid://blrmdlixs8p3w" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_13.png" id="28_14ufy"]
-[ext_resource type="Texture2D" uid="uid://da8ld8s3tcpx1" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/intro_wine_swirl_revised_00.png" id="28_c3l0n"]
+[ext_resource type="Texture2D" uid="uid://da8ld8s3tcpx1" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/wine_drink_00.png" id="28_c3l0n"]
 [ext_resource type="Texture2D" uid="uid://dmvlclx81rgcc" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_11_blur.png" id="28_gcjak"]
 [ext_resource type="Texture2D" uid="uid://b85emtrlmm3iv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_12.png" id="28_sy25f"]
 [ext_resource type="Texture2D" uid="uid://bgyxyimkduq2f" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_14.png" id="29_52r8y"]
-[ext_resource type="Texture2D" uid="uid://coiq6w0go6ns7" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/intro_wine_swirl_revised_08.png" id="29_lco4n"]
+[ext_resource type="Texture2D" uid="uid://coiq6w0go6ns7" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_drink/wine_drink_01.png" id="29_lco4n"]
 [ext_resource type="Texture2D" uid="uid://dmk2g27x1udyi" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_13.png" id="29_ri2p6"]
 [ext_resource type="Texture2D" uid="uid://brgcrvk45xgiv" path="res://characters/enemies/tax_man/resources/sprites/attacks/combo_sequence/attack_12_blur.png" id="29_w7a2b"]
 [ext_resource type="Texture2D" uid="uid://cw066wuxvsogo" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_14.png" id="30_bvmwv"]
-[ext_resource type="Texture2D" uid="uid://dvibdx3u2brls" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/intro_wine_swirl_revised_01.png" id="30_ek8up"]
-[ext_resource type="Texture2D" uid="uid://gsajx715gjtx" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/intro_wine_swirl_revised_02.png" id="31_4a5vw"]
+[ext_resource type="Texture2D" uid="uid://dvibdx3u2brls" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/wine_swirl_00.png" id="30_ek8up"]
+[ext_resource type="Texture2D" uid="uid://gsajx715gjtx" path="res://characters/enemies/tax_man/resources/sprites/seated/wine_swirl/wine_swirl_01.png" id="31_4a5vw"]
 [ext_resource type="Texture2D" uid="uid://t5yf8ottt1io" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_15.png" id="31_bsyyr"]
 [ext_resource type="Texture2D" uid="uid://d2acgmufw0wyd" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/tax_man/grenade_death_16.png" id="32_x4kqk"]
 [ext_resource type="Texture2D" uid="uid://cr4sl5qjxgmbl" path="res://characters/enemies/tax_man/resources/sprites/seated/engage/engage_00.png" id="48_fkggc"]
@@ -178,8 +178,8 @@ animations = [{
 "name": &"wine_drink",
 "speed": 24.0
 }, {
-"frames": [ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("30_ek8up"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw"), ExtResource("31_4a5vw")],
+"frames": [ExtResource("30_ek8up"), ExtResource("31_4a5vw")],
 "loop": true,
 "name": &"wine_swirl",
-"speed": 24.0
+"speed": 3.0
 }]
