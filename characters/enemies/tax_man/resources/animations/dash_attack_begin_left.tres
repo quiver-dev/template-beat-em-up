@@ -2,8 +2,8 @@
 
 [resource]
 resource_name = "dash_attack_begin_left"
-length = 0.416667
-step = 0.0416667
+length = 0.833333
+step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,7 +50,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0, -255)]
+"values": [Vector2(816, -431)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -71,7 +71,7 @@ tracks/5/path = NodePath("Body:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = false
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.375),
+"times": PackedFloat32Array(0, 0.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 9]
@@ -119,10 +119,10 @@ tracks/9/path = NodePath("Body/QuiverHurtBox/HurtBoxShape:shape:size")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.208334, 0.375, 0.406744),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(236, 341), Vector2(247, 464), Vector2(265, 507), Vector2(265, 422)]
+"values": [Vector2(230, 507), Vector2(229, 358), Vector2(230, 507)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -131,10 +131,10 @@ tracks/10/path = NodePath("Body/QuiverHurtBox/HurtBoxShape:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.208334, 0.375, 0.406744),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(22, 91.5), Vector2(-30.5, 30), Vector2(-21.5, 8.5), Vector2(-21.5, -34)]
+"values": [Vector2(-812, 174.5), Vector2(-862.5, 249), Vector2(-812, 174.5)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -182,7 +182,7 @@ tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(93, 514.75)]
+"values": [Vector2(663, 514.75)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
@@ -194,7 +194,7 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-204, 16.625)]
+"values": [Vector2(-1265.5, 175)]
 }
 tracks/16/type = "method"
 tracks/16/imported = false
@@ -203,7 +203,7 @@ tracks/16/path = NodePath(".")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0.208333),
+"times": PackedFloat32Array(0.166667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [Vector2(-1, 0), 2700.0],
