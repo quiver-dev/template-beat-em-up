@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cyax8ahrme87s"]
+[gd_scene load_steps=44 format=3 uid="uid://cyax8ahrme87s"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
@@ -11,16 +11,24 @@
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
+[ext_resource type="Texture2D" uid="uid://h7d3gctevfx2" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0065.png" id="11_8rinb"]
+[ext_resource type="Texture2D" uid="uid://dh2pp7d5q53st" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0066.png" id="12_caly6"]
 [ext_resource type="Texture2D" uid="uid://iwtqurgemgtv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/grenade_pins.png" id="12_kopjc"]
+[ext_resource type="Texture2D" uid="uid://baw8ykf8r632t" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0067.png" id="13_53e8q"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="13_nokxb"]
 [ext_resource type="Resource" uid="uid://bjtuh8xbdj64a" path="res://characters/enemies/tax_man/resources/attacks/lightining_attack.tres" id="14_kc7ha"]
+[ext_resource type="Texture2D" uid="uid://bq0y3fthxsfy4" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0068.png" id="14_kq4yh"]
 [ext_resource type="Resource" uid="uid://dkaaoscp08m6e" path="res://characters/enemies/tax_man/resources/attacks/area_attack.tres" id="15_4lyjr"]
 [ext_resource type="Resource" uid="uid://cc7cqj03vhk0p" path="res://characters/enemies/tax_man/resources/attacks/combo1_attack.tres" id="16_ey7s6"]
 [ext_resource type="Resource" uid="uid://d3ilcnh4ibqkp" path="res://characters/enemies/tax_man/resources/attacks/combo2_attack.tres" id="17_rbk5w"]
 [ext_resource type="Resource" uid="uid://b4tidt0k74tjt" path="res://characters/enemies/tax_man/resources/attacks/combo3_attack.tres" id="18_ynnty"]
 [ext_resource type="Resource" uid="uid://xqvyoty7t4hm" path="res://characters/enemies/tax_man/resources/attacks/dash_attack.tres" id="19_io51d"]
+[ext_resource type="Texture2D" uid="uid://c2k7o2f7glcpw" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0080.png" id="19_uh20d"]
 [ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
 [ext_resource type="Resource" uid="uid://dfj4ujbiw3i45" path="res://characters/enemies/tax_man/resources/attacks/grab_reject_attack.tres" id="20_4qg1q"]
+[ext_resource type="Texture2D" uid="uid://dj310p15yegge" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0081.png" id="20_usexs"]
+[ext_resource type="Texture2D" uid="uid://c2eajaku8begs" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0082.png" id="21_j3vsw"]
+[ext_resource type="Texture2D" uid="uid://da78hj46w51k6" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0083.png" id="22_vbi8g"]
 [ext_resource type="SpriteFrames" uid="uid://yhmp6uwgolv4" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_explosion_sprite_frames.tres" id="29_l5cjv"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vjek0"]
@@ -35,12 +43,28 @@ shader = ExtResource("6_5x5ps")
 shader_parameter/color = Color(0.12549, 0.0313726, 0.0196078, 1)
 shader_parameter/effect_strength = 0.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_cktw8"]
+animations = [{
+"frames": [ExtResource("11_8rinb"), ExtResource("12_caly6"), ExtResource("13_53e8q"), ExtResource("14_kq4yh")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vd2w"]
 resource_local_to_scene = true
 size = Vector2(211, 518)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmnd1"]
 size = Vector2(93, 416.75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3w2t"]
+animations = [{
+"frames": [ExtResource("19_uh20d"), ExtResource("20_usexs"), ExtResource("21_j3vsw"), ExtResource("22_vbi8g")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jf7kv"]
 size = Vector2(588, 1031)
@@ -104,7 +128,7 @@ parameters/time_scale/scale = 1.0
 visible = false
 position = Vector2(202, -512)
 frames = ExtResource("4_6fblr")
-animation = &"back_lightning"
+animation = &"back_lightning_explosion"
 
 [node name="Body" type="AnimatedSprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_lpimj")
@@ -118,6 +142,10 @@ show_behind_parent = true
 position = Vector2(38, 474)
 frames = ExtResource("6_nrudn")
 animation = &"area_attak"
+
+[node name="Smoke" type="AnimatedSprite2D" parent="Body/GroundLightining" index="0"]
+visible = false
+frames = SubResource("SpriteFrames_cktw8")
 
 [node name="QuiverHurtBox" type="Area2D" parent="Body" index="1"]
 collision_layer = 8192
@@ -171,24 +199,37 @@ animation = &"engage"
 visible = false
 position = Vector2(77, -551)
 frames = ExtResource("4_6fblr")
-animation = &"front_lightining"
+animation = &"front_lightining_explostion"
 
-[node name="Smoke" type="AnimatedSprite2D" parent="." index="8"]
+[node name="SmokeVertical" type="AnimatedSprite2D" parent="." index="8"]
 visible = false
 position = Vector2(758, -747)
 frames = ExtResource("19_xm1w5")
+animation = &"vertical_grenade"
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." index="9"]
 visible = false
 position = Vector2(135, -486)
 frames = ExtResource("29_l5cjv")
+animation = &"grenade"
 
-[node name="Positions" type="Node2D" parent="." index="10"]
+[node name="Coins" type="AnimatedSprite2D" parent="." index="10"]
+visible = false
+position = Vector2(62, -211)
+frames = SubResource("SpriteFrames_q3w2t")
+
+[node name="SmokeHorizontal" type="AnimatedSprite2D" parent="." index="11"]
+visible = false
+position = Vector2(62, -211)
+frames = ExtResource("19_xm1w5")
+animation = &"horizontal"
+
+[node name="Positions" type="Node2D" parent="." index="12"]
 
 [node name="ScorchSpawn" type="Marker2D" parent="Positions" index="0"]
 position = Vector2(24, 160)
 
-[node name="Attacks" type="Node2D" parent="." index="11"]
+[node name="Attacks" type="Node2D" parent="." index="13"]
 
 [node name="Lightining" type="Area2D" parent="Attacks" index="0"]
 collision_layer = 512
