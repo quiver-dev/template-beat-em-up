@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://m1i3hrqtb05u"]
 
-[ext_resource type="Texture2D" uid="uid://dtwgd3bp8sw42" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/lightining_ball.png" id="1_37pkx"]
-[ext_resource type="Texture2D" uid="uid://c6n0xuvjxbbjr" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/lightining_ground.png" id="2_1q25d"]
+[ext_resource type="Texture2D" uid="uid://dgke85els8qml" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/ground_lightning/area_attack_0061.png" id="1_vwm12"]
+[ext_resource type="Texture2D" uid="uid://c0dc0pg2dxar" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/ground_lightning/area_attack_0064.png" id="2_f3cgi"]
 [ext_resource type="Texture2D" uid="uid://cbajjelxlyfio" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning/grenade_finisher0063.png" id="3_pnflu"]
 [ext_resource type="Texture2D" uid="uid://bfrf1lpgsungq" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning/grenade_finisher0064.png" id="4_o3akd"]
 [ext_resource type="Texture2D" uid="uid://u8qc2m5sfh5h" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning/grenade_finisher0065.png" id="5_q502g"]
@@ -10,7 +10,7 @@
 
 [resource]
 animations = [{
-"frames": [ExtResource("1_37pkx"), ExtResource("2_1q25d")],
+"frames": [ExtResource("1_vwm12"), ExtResource("1_vwm12"), ExtResource("1_vwm12"), ExtResource("2_f3cgi"), null],
 "loop": true,
 "name": &"area_attak",
 "speed": 5.0
