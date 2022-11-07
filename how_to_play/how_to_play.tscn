@@ -28,7 +28,6 @@ grow_vertical = 2
 script = ExtResource("1_tpvd0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,7 +42,6 @@ grow_vertical = 2
 texture = ExtResource("2_gkwt5")
 
 [node name="Panel" type="PanelContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,26 +56,22 @@ grow_vertical = 2
 theme = ExtResource("1_0p5ps")
 
 [node name="MainColumn" type="VBoxContainer" parent="Panel"]
-layout_mode = 2
 offset_left = 12.0
 offset_top = 170.0
 offset_right = 1462.0
 offset_bottom = 826.0
 
 [node name="TitleContainer" type="MarginContainer" parent="Panel/MainColumn"]
-layout_mode = 2
 offset_right = 1450.0
 theme_override_constants/margin_top = -170
 
 [node name="TextureRect" type="TextureRect" parent="Panel/MainColumn/TitleContainer"]
-layout_mode = 2
 offset_top = -170.0
 offset_right = 1450.0
 texture = ExtResource("4_2qv2r")
 stretch_mode = 3
 
 [node name="Content" type="MarginContainer" parent="Panel/MainColumn"]
-layout_mode = 2
 offset_top = 4.0
 offset_right = 1450.0
 offset_bottom = 578.0
@@ -85,20 +79,17 @@ theme_override_constants/margin_top = 70
 theme_override_constants/margin_bottom = 70
 
 [node name="Column" type="VBoxContainer" parent="Panel/MainColumn/Content"]
-layout_mode = 2
 offset_top = 70.0
 offset_right = 1450.0
 offset_bottom = 504.0
 theme_override_constants/separation = 15
 
 [node name="TabButtons" type="HBoxContainer" parent="Panel/MainColumn/Content/Column"]
-layout_mode = 2
 offset_right = 1450.0
 offset_bottom = 101.0
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MainColumn/Content/Column/TabButtons"]
-layout_mode = 2
 offset_left = 265.0
 offset_right = 732.0
 offset_bottom = 101.0
@@ -108,7 +99,6 @@ theme_override_constants/margin_right = -25
 theme_override_constants/margin_bottom = -100
 
 [node name="Keyboard" type="TextureButton" parent="Panel/MainColumn/Content/Column/TabButtons/MarginContainer"]
-layout_mode = 2
 offset_left = -350.0
 offset_top = -95.0
 offset_right = 492.0
@@ -134,7 +124,6 @@ mask_normal = ExtResource("9_uilti")
 mask_hover = ExtResource("11_u6vce")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Panel/MainColumn/Content/Column/TabButtons"]
-layout_mode = 2
 offset_left = 736.0
 offset_right = 1184.0
 offset_bottom = 101.0
@@ -144,7 +133,6 @@ theme_override_constants/margin_right = -350
 theme_override_constants/margin_bottom = -100
 
 [node name="Controller" type="TextureButton" parent="Panel/MainColumn/Content/Column/TabButtons/MarginContainer2"]
-layout_mode = 2
 offset_left = -5.0
 offset_top = -95.0
 offset_right = 798.0
@@ -169,7 +157,6 @@ mask_normal = ExtResource("14_xkm1a")
 mask_hover = ExtResource("15_hxcaw")
 
 [node name="ControlersTabs" type="TabContainer" parent="Panel/MainColumn/Content/Column"]
-layout_mode = 2
 offset_top = 116.0
 offset_right = 1450.0
 offset_bottom = 434.0
@@ -177,7 +164,6 @@ tabs_visible = false
 script = ExtResource("3_e8lqy")
 
 [node name="Keyboard" type="VBoxContainer" parent="Panel/MainColumn/Content/Column/ControlersTabs"]
-layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -186,7 +172,6 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="Label2" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
-layout_mode = 2
 offset_right = 1450.0
 offset_bottom = 72.0
 theme_type_variation = &"HowToPlayLabels"
@@ -194,7 +179,6 @@ text = "Arrow keys  - Move"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
-layout_mode = 2
 offset_top = 82.0
 offset_right = 1450.0
 offset_bottom = 154.0
@@ -203,7 +187,6 @@ text = "X - Attack"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
-layout_mode = 2
 offset_top = 164.0
 offset_right = 1450.0
 offset_bottom = 236.0
@@ -212,7 +195,6 @@ text = "C - Jump"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
-layout_mode = 2
 offset_top = 246.0
 offset_right = 1450.0
 offset_bottom = 318.0
@@ -222,7 +204,6 @@ horizontal_alignment = 1
 
 [node name="Controller" type="VBoxContainer" parent="Panel/MainColumn/Content/Column/ControlersTabs"]
 visible = false
-layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -231,7 +212,6 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="Label2" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
-layout_mode = 2
 offset_right = 1266.0
 offset_bottom = 56.0
 theme_type_variation = &"HowToPlayLabels"
@@ -239,7 +219,6 @@ text = "Left Analog Stick  - Move"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
-layout_mode = 2
 offset_top = 66.0
 offset_right = 1266.0
 offset_bottom = 122.0
@@ -248,7 +227,6 @@ text = "X (Xbox), Square (Sony) - Attack"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
-layout_mode = 2
 offset_top = 132.0
 offset_right = 1266.0
 offset_bottom = 188.0
@@ -257,7 +235,6 @@ text = "A (Xbox), X (Sony) - Jump"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Controller"]
-layout_mode = 2
 offset_top = 198.0
 offset_right = 1266.0
 offset_bottom = 254.0
@@ -266,7 +243,6 @@ text = "Menu, Options - Pause Menu"
 horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="Panel/MainColumn"]
-layout_mode = 2
 offset_top = 582.0
 offset_right = 1450.0
 offset_bottom = 656.0

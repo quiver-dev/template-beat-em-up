@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ddrajabgyar7r"]
+[gd_scene load_steps=38 format=3]
 
 [ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_ix3c8"]
 [ext_resource type="Script" path="res://gameplay_ui/pause_menu/PauseMenu.gd" id="1_nnmou"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8o7l7qide3e1" path="res://how_to_play/how_to_play.tscn" id="3_rxfeb"]
 [ext_resource type="Texture2D" uid="uid://uwk0ebe8cds5" path="res://gameplay_ui/pause_menu/pngs/title.png" id="4_2ql16"]
 [ext_resource type="Texture2D" uid="uid://d2sw0aoua81cx" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_normal.png" id="5_4v04h"]
-[ext_resource type="Script" path="res://gameplay_ui/pause_menu/DoubleMaskMarginContainer.gd" id="5_huo1k"]
+[ext_resource type="Script" path="res://theme_resources/DoubleMaskMarginContainer.gd" id="5_huo1k"]
 [ext_resource type="Texture2D" uid="uid://dr5jruvipbkoy" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_pressed.png" id="6_it42n"]
 [ext_resource type="Texture2D" uid="uid://y0nnoyaeiueg" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_hover.png" id="7_4kn8k"]
 [ext_resource type="BitMap" uid="uid://g3vtioweju5h" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_mask_normal.png" id="8_2wc67"]
