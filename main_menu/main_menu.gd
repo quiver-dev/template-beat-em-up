@@ -17,8 +17,8 @@ const GAMEPLAY_SCENE = "res://stages/stage_01/stage_01.tscn"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _button_how_to_play := $MenuButtons/HowToPlay as Button
-@onready var _button_start := $MenuButtons/Start as Button
+@onready var _button_how_to_play := $MenuButtons/HowToPlay as TextureButton
+@onready var _button_start := $MenuButtons/Start as TextureButton
 @onready var _how_to_play := $HowToPlay as HowToPlay
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 
