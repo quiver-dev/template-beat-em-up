@@ -60,22 +60,27 @@ theme = ExtResource("1_0p5ps")
 [node name="MainColumn" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
 offset_left = 12.0
-offset_top = 11.8759
+offset_top = 170.0
 offset_right = 1462.0
-offset_bottom = 783.876
+offset_bottom = 826.0
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MainColumn"]
+[node name="TitleContainer" type="MarginContainer" parent="Panel/MainColumn"]
 layout_mode = 2
 offset_right = 1450.0
-offset_bottom = 116.0
+theme_override_constants/margin_top = -170
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MainColumn/TitleContainer"]
+layout_mode = 2
+offset_top = -170.0
+offset_right = 1450.0
 texture = ExtResource("4_2qv2r")
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Content" type="MarginContainer" parent="Panel/MainColumn"]
 layout_mode = 2
-offset_top = 120.0
+offset_top = 4.0
 offset_right = 1450.0
-offset_bottom = 694.0
+offset_bottom = 578.0
 theme_override_constants/margin_top = 70
 theme_override_constants/margin_bottom = 70
 
@@ -262,9 +267,15 @@ horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="Panel/MainColumn"]
 layout_mode = 2
-offset_top = 698.0
+offset_top = 582.0
 offset_right = 1450.0
-offset_bottom = 772.0
+offset_bottom = 656.0
+focus_neighbor_left = NodePath("../Content/Column/TabButtons/MarginContainer/Keyboard")
+focus_neighbor_top = NodePath("../Content/Column/TabButtons/MarginContainer/Keyboard")
+focus_neighbor_right = NodePath("../Content/Column/TabButtons/MarginContainer2/Controller")
+focus_neighbor_bottom = NodePath("../Content/Column/TabButtons/MarginContainer2/Controller")
+focus_next = NodePath("../Content/Column/TabButtons/MarginContainer/Keyboard")
+focus_previous = NodePath("../Content/Column/TabButtons/MarginContainer2/Controller")
 theme_type_variation = &"PauseButtons"
 text = "Back
 "
