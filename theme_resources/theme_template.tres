@@ -26,7 +26,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3g3ei"]
 texture = ExtResource("2_cdss6")
 margin_left = 12.0
-margin_top = 11.8759
+margin_top = 170.0
 margin_right = 12.0
 margin_bottom = 12.0
 region_rect = Rect2(0, 0, 1631, 905)

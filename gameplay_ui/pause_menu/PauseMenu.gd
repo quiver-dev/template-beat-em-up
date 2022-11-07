@@ -18,7 +18,7 @@ const TEXT_TIMESCALE_VALUE = "%0.2f"
 
 var _main_menu: PackedScene = null
 
-@onready var _button_resume := $PanelContainer/Content/Resume as Button
+@onready var _button_resume := $PanelContainer/Content/ResumeContainer/Resume as TextureButton
 @onready var _how_to_play := $HowToPlay as HowToPlay
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 @onready var _timescale_slider := $PanelContainer/Content/TimeScaleLine/Slider as HSlider
