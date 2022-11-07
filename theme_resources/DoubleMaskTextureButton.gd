@@ -1,3 +1,4 @@
+class_name DoubleMaskTextureButton
 extends TextureButton
 
 ## Write your doc string for this file here

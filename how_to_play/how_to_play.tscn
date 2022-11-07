@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8o7l7qide3e1"]
+[gd_scene load_steps=18 format=3 uid="uid://b8o7l7qide3e1"]
 
 [ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_0p5ps"]
 [ext_resource type="Script" path="res://how_to_play/how_to_play.gd" id="1_tpvd0"]
 [ext_resource type="Script" path="res://how_to_play/tab_button.gd" id="2_41wgy"]
+[ext_resource type="Texture2D" uid="uid://d1km5hwxdeda5" path="res://theme_resources/pngs/menu_color_stripes.png" id="2_gkwt5"]
 [ext_resource type="Script" path="res://how_to_play/input_type_tabs.gd" id="3_e8lqy"]
 [ext_resource type="ButtonGroup" uid="uid://m7noppbbpd3h" path="res://how_to_play/how_to_play_button_group.tres" id="3_pgl7h"]
+[ext_resource type="Texture2D" uid="uid://bp64o1r6jckos" path="res://how_to_play/pngs/title.png" id="4_2qv2r"]
+[ext_resource type="Texture2D" uid="uid://cskrdtqbif821" path="res://how_to_play/pngs/buttons/keyboard_normal.png" id="6_5txnh"]
+[ext_resource type="Texture2D" uid="uid://bnvgo8wkesuj0" path="res://how_to_play/pngs/buttons/keyboard_pressed.png" id="7_x1jxk"]
+[ext_resource type="Texture2D" uid="uid://bl3348r1djtsd" path="res://how_to_play/pngs/buttons/keyboard_hover.png" id="8_u15p6"]
+[ext_resource type="BitMap" uid="uid://cd4dben3cm618" path="res://how_to_play/pngs/buttons/keyboard_mask_normal.png" id="9_uilti"]
+[ext_resource type="BitMap" uid="uid://duj2lkrv7ttvm" path="res://how_to_play/pngs/buttons/keyboard_mask_big.png" id="11_u6vce"]
+[ext_resource type="Texture2D" uid="uid://d03jk54k8a6ot" path="res://how_to_play/pngs/buttons/controller_normal.png" id="12_ngdaj"]
+[ext_resource type="Texture2D" uid="uid://bih68tog8ny5o" path="res://how_to_play/pngs/buttons/controller_pressed.png" id="13_bvoog"]
+[ext_resource type="Texture2D" uid="uid://dtjhbehpx50fb" path="res://how_to_play/pngs/buttons/controller_hover.png" id="14_n5l8x"]
+[ext_resource type="BitMap" uid="uid://b8q4kjld2bi2g" path="res://how_to_play/pngs/buttons/controller_mask_normal.png" id="14_xkm1a"]
+[ext_resource type="BitMap" uid="uid://dlfuipw3f0og1" path="res://how_to_play/pngs/buttons/controller_mask_big.png" id="15_hxcaw"]
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3
@@ -15,6 +27,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tpvd0")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1201.0
+offset_top = -168.5
+offset_right = 1201.0
+offset_bottom = 168.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gkwt5")
+
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -22,96 +49,129 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -658.0
-offset_top = -302.0
-offset_right = 658.0
-offset_bottom = 303.0
+offset_left = -737.0
+offset_top = -380.0
+offset_right = 737.0
+offset_bottom = 381.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0p5ps")
 
 [node name="MainColumn" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 1291.0
-offset_bottom = 688.0
+offset_left = 12.0
+offset_top = 11.8759
+offset_right = 1462.0
+offset_bottom = 783.876
 
-[node name="Title" type="Label" parent="Panel/MainColumn"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MainColumn"]
 layout_mode = 2
-offset_right = 1266.0
-offset_bottom = 91.0
-theme_type_variation = &"HeaderMedium"
-text = "HOW TO PLAY!"
-horizontal_alignment = 1
+offset_right = 1450.0
+offset_bottom = 116.0
+texture = ExtResource("4_2qv2r")
+stretch_mode = 5
 
 [node name="Content" type="MarginContainer" parent="Panel/MainColumn"]
 layout_mode = 2
-offset_top = 95.0
-offset_right = 1266.0
-offset_bottom = 576.0
+offset_top = 120.0
+offset_right = 1450.0
+offset_bottom = 694.0
 theme_override_constants/margin_top = 70
 theme_override_constants/margin_bottom = 70
 
 [node name="Column" type="VBoxContainer" parent="Panel/MainColumn/Content"]
 layout_mode = 2
 offset_top = 70.0
-offset_right = 1266.0
-offset_bottom = 411.0
+offset_right = 1450.0
+offset_bottom = 504.0
 theme_override_constants/separation = 15
 
 [node name="TabButtons" type="HBoxContainer" parent="Panel/MainColumn/Content/Column"]
 layout_mode = 2
-offset_right = 1266.0
-offset_bottom = 72.0
-theme_override_constants/separation = 50
+offset_right = 1450.0
+offset_bottom = 101.0
 alignment = 1
 
-[node name="Keyboard" type="Button" parent="Panel/MainColumn/Content/Column/TabButtons"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MainColumn/Content/Column/TabButtons"]
 layout_mode = 2
-offset_left = 361.0
-offset_right = 600.0
-offset_bottom = 72.0
-focus_neighbor_left = NodePath("../Controller")
-focus_neighbor_top = NodePath("../../../../Back")
-focus_neighbor_right = NodePath("../Controller")
-focus_neighbor_bottom = NodePath("../../../../Back")
-focus_next = NodePath("../Controller")
-focus_previous = NodePath("../../../../Back")
+offset_left = 265.0
+offset_right = 732.0
+offset_bottom = 101.0
+theme_override_constants/margin_left = -350
+theme_override_constants/margin_top = -95
+theme_override_constants/margin_right = -25
+theme_override_constants/margin_bottom = -100
+
+[node name="Keyboard" type="TextureButton" parent="Panel/MainColumn/Content/Column/TabButtons/MarginContainer"]
+layout_mode = 2
+offset_left = -350.0
+offset_top = -95.0
+offset_right = 492.0
+offset_bottom = 201.0
+focus_neighbor_left = NodePath("../../MarginContainer2/Controller")
+focus_neighbor_top = NodePath("../../../../../Back")
+focus_neighbor_right = NodePath("../../MarginContainer2/Controller")
+focus_neighbor_bottom = NodePath("../../../../../Back")
+focus_next = NodePath("../../MarginContainer2/Controller")
+focus_previous = NodePath("../../../../../Back")
 theme_type_variation = &"HowToPlayButtons"
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("3_pgl7h")
-text = "Keyboard"
+texture_normal = ExtResource("6_5txnh")
+texture_pressed = ExtResource("7_x1jxk")
+texture_hover = ExtResource("8_u15p6")
+texture_focused = ExtResource("8_u15p6")
+texture_click_mask = ExtResource("9_uilti")
 script = ExtResource("2_41wgy")
+custom_index = 0
+mask_normal = ExtResource("9_uilti")
+mask_hover = ExtResource("11_u6vce")
 
-[node name="Controller" type="Button" parent="Panel/MainColumn/Content/Column/TabButtons"]
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MainColumn/Content/Column/TabButtons"]
 layout_mode = 2
-offset_left = 650.0
-offset_right = 904.0
-offset_bottom = 72.0
-focus_neighbor_left = NodePath("../Keyboard")
-focus_neighbor_top = NodePath("../../../../Back")
-focus_neighbor_right = NodePath("../Keyboard")
-focus_neighbor_bottom = NodePath("../../../../Back")
-focus_next = NodePath("../../../../Back")
-focus_previous = NodePath("../Keyboard")
+offset_left = 736.0
+offset_right = 1184.0
+offset_bottom = 101.0
+theme_override_constants/margin_left = -5
+theme_override_constants/margin_top = -95
+theme_override_constants/margin_right = -350
+theme_override_constants/margin_bottom = -100
+
+[node name="Controller" type="TextureButton" parent="Panel/MainColumn/Content/Column/TabButtons/MarginContainer2"]
+layout_mode = 2
+offset_left = -5.0
+offset_top = -95.0
+offset_right = 798.0
+offset_bottom = 201.0
+focus_neighbor_left = NodePath("../../MarginContainer/Keyboard")
+focus_neighbor_top = NodePath("../../../../../Back")
+focus_neighbor_right = NodePath("../../MarginContainer/Keyboard")
+focus_neighbor_bottom = NodePath("../../../../../Back")
+focus_next = NodePath("../../../../../Back")
+focus_previous = NodePath("../../MarginContainer/Keyboard")
 theme_type_variation = &"HowToPlayButtons"
 toggle_mode = true
 button_group = ExtResource("3_pgl7h")
-text = "Controller"
+texture_normal = ExtResource("12_ngdaj")
+texture_pressed = ExtResource("13_bvoog")
+texture_hover = ExtResource("14_n5l8x")
+texture_focused = ExtResource("14_n5l8x")
+texture_click_mask = ExtResource("14_xkm1a")
 script = ExtResource("2_41wgy")
+custom_index = 1
+mask_normal = ExtResource("14_xkm1a")
+mask_hover = ExtResource("15_hxcaw")
 
 [node name="ControlersTabs" type="TabContainer" parent="Panel/MainColumn/Content/Column"]
 layout_mode = 2
-offset_top = 87.0
-offset_right = 1266.0
-offset_bottom = 341.0
+offset_top = 116.0
+offset_right = 1450.0
+offset_bottom = 434.0
 tabs_visible = false
 script = ExtResource("3_e8lqy")
 
 [node name="Keyboard" type="VBoxContainer" parent="Panel/MainColumn/Content/Column/ControlersTabs"]
-visible = false
 layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,40 +182,41 @@ theme_override_constants/separation = 10
 
 [node name="Label2" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
 layout_mode = 2
-offset_right = 1266.0
-offset_bottom = 56.0
+offset_right = 1450.0
+offset_bottom = 72.0
 theme_type_variation = &"HowToPlayLabels"
 text = "Arrow keys  - Move"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
 layout_mode = 2
-offset_top = 66.0
-offset_right = 1266.0
-offset_bottom = 122.0
+offset_top = 82.0
+offset_right = 1450.0
+offset_bottom = 154.0
 theme_type_variation = &"HowToPlayLabels"
 text = "X - Attack"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
 layout_mode = 2
-offset_top = 132.0
-offset_right = 1266.0
-offset_bottom = 188.0
+offset_top = 164.0
+offset_right = 1450.0
+offset_bottom = 236.0
 theme_type_variation = &"HowToPlayLabels"
 text = "C - Jump"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Panel/MainColumn/Content/Column/ControlersTabs/Keyboard"]
 layout_mode = 2
-offset_top = 198.0
-offset_right = 1266.0
-offset_bottom = 254.0
+offset_top = 246.0
+offset_right = 1450.0
+offset_bottom = 318.0
 theme_type_variation = &"HowToPlayLabels"
 text = "Esc - Pause Menu"
 horizontal_alignment = 1
 
 [node name="Controller" type="VBoxContainer" parent="Panel/MainColumn/Content/Column/ControlersTabs"]
+visible = false
 layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,19 +262,13 @@ horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="Panel/MainColumn"]
 layout_mode = 2
-offset_top = 580.0
-offset_right = 1266.0
-offset_bottom = 663.0
-focus_neighbor_left = NodePath("../Content/Column/TabButtons/Controller")
-focus_neighbor_top = NodePath("../Content/Column/TabButtons/Controller")
-focus_neighbor_right = NodePath("../Content/Column/TabButtons/Keyboard")
-focus_neighbor_bottom = NodePath("../Content/Column/TabButtons/Keyboard")
-focus_next = NodePath("../Content/Column/TabButtons/Keyboard")
-focus_previous = NodePath("../Content/Column/TabButtons/Controller")
+offset_top = 698.0
+offset_right = 1450.0
+offset_bottom = 772.0
 theme_type_variation = &"PauseButtons"
 text = "Back
 "
 
-[connection signal="tab_pressed" from="Panel/MainColumn/Content/Column/TabButtons/Keyboard" to="Panel/MainColumn/Content/Column/ControlersTabs" method="_on_tab_pressed"]
-[connection signal="tab_pressed" from="Panel/MainColumn/Content/Column/TabButtons/Controller" to="Panel/MainColumn/Content/Column/ControlersTabs" method="_on_tab_pressed"]
+[connection signal="tab_pressed" from="Panel/MainColumn/Content/Column/TabButtons/MarginContainer/Keyboard" to="Panel/MainColumn/Content/Column/ControlersTabs" method="_on_tab_pressed"]
+[connection signal="tab_pressed" from="Panel/MainColumn/Content/Column/TabButtons/MarginContainer2/Controller" to="Panel/MainColumn/Content/Column/ControlersTabs" method="_on_tab_pressed"]
 [connection signal="pressed" from="Panel/MainColumn/Back" to="." method="_on_back_pressed"]

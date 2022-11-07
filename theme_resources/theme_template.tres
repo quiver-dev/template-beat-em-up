@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwt1c0b2tvhig"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dwt1c0b2tvhig"]
 
 [ext_resource type="StyleBox" uid="uid://dnu44uladwm6h" path="res://theme_resources/default_empty_stylebox.tres" id="1_25e22"]
+[ext_resource type="Texture2D" uid="uid://c2b6cv28pcwd5" path="res://theme_resources/pngs/panel_bg.png" id="2_cdss6"]
+[ext_resource type="FontFile" uid="uid://ckjqrrw4bf4k7" path="res://theme_resources/impact.ttf" id="3_0s3rl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abo2o"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,19 +23,16 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4s1v"]
-content_margin_left = 25.0
-content_margin_top = 25.0
-content_margin_right = 25.0
-content_margin_bottom = 25.0
-bg_color = Color(0.1, 0.1, 0.1, 0.9)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3g3ei"]
+texture = ExtResource("2_cdss6")
+margin_left = 12.0
+margin_top = 11.8759
+margin_right = 12.0
+margin_bottom = 12.0
+region_rect = Rect2(0, 0, 1631, 905)
 
 [resource]
+default_font = ExtResource("3_0s3rl")
 default_font_size = 32
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(1, 0.45098, 0.447059, 1)
@@ -66,7 +65,7 @@ HowToPlayButtons/colors/font_pressed_color = Color(1, 0.745098, 0.486275, 1)
 HowToPlayButtons/constants/outline_size = 28
 HowToPlayButtons/font_sizes/font_size = 52
 HowToPlayLabels/base_type = &"Label"
-HowToPlayLabels/font_sizes/font_size = 38
+HowToPlayLabels/font_sizes/font_size = 56
 HudCharName/base_type = &"Label"
 HudCharName/colors/font_outline_color = Color(0, 0, 0, 1)
 HudCharName/constants/outline_size = 16
@@ -76,7 +75,7 @@ LifeBars/constants/separation = 0
 LifeBars/font_sizes/font_size = 16
 LifeBars/styles/background = SubResource("StyleBoxFlat_abo2o")
 LifeBars/styles/fill = SubResource("StyleBoxFlat_tvend")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_i4s1v")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_3g3ei")
 PauseButtons/base_type = &"Button"
 PauseButtons/font_sizes/font_size = 60
 TabContainer/styles/panel = ExtResource("1_25e22")

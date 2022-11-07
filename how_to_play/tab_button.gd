@@ -1,4 +1,4 @@
-extends Button
+extends DoubleMaskTextureButton
 
 ## Write your doc string for this file here
 
@@ -11,7 +11,11 @@ signal tab_pressed(index: int)
 
 #--- constants ------------------------------------------------------------------------------------
 
+const INVALID_CUSTOM_INDEX = -1
+
 #--- public variables - order: export > normal var > onready --------------------------------------
+
+@export var custom_index := INVALID_CUSTOM_INDEX
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -21,7 +25,8 @@ signal tab_pressed(index: int)
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _pressed() -> void:
-	tab_pressed.emit(get_index())
+	var index := get_index() if custom_index == INVALID_CUSTOM_INDEX else custom_index
+	tab_pressed.emit(index)
 
 ### -----------------------------------------------------------------------------------------------
 
