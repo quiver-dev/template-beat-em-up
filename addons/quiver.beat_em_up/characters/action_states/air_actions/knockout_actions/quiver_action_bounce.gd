@@ -69,7 +69,7 @@ func enter(msg: = {}) -> void:
 
 func exit() -> void:
 	super()
-	if _has_landed:
+	if _has_landed or not _attributes.is_alive:
 		_knockout_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
