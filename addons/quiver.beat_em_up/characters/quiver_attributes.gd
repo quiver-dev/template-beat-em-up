@@ -44,6 +44,8 @@ const KNOCKBACK_BY_STRENGTH = {
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 @export var display_name := ""
+@export var profile_texture: Texture2D = null
+@export var life_bar_gradient := GradientTexture1D.new()
 
 ## Max health for the character, when their life bar is full.
 @export_range(0, 1, 1, "or_greater") var health_max := 100

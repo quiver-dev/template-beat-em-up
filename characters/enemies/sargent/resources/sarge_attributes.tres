@@ -1,10 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://llubu8lgbc5o"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://llubu8lgbc5o"]
 
+[ext_resource type="Texture2D" uid="uid://dniavd10tv6nn" path="res://characters/enemies/sargent/resources/sarge_lifebar_gradient.tres" id="1_i8vys"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_s4idg"]
+[ext_resource type="Texture2D" uid="uid://cnpjp4lmv2quw" path="res://characters/enemies/sargent/resources/sprites/health_bar_revised_all_sarge.png" id="2_obkr6"]
 
 [resource]
 script = ExtResource("1_s4idg")
 display_name = "Sargent"
+profile_texture = ExtResource("2_obkr6")
+life_bar_gradient = ExtResource("1_i8vys")
 health_max = 100.0
 speed_max = 400
 air_control = 0.6
