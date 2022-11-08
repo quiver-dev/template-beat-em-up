@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://ccthcaakgim08" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
-[ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
+[ext_resource type="AnimationLibrary" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
 [ext_resource type="SpriteFrames" uid="uid://rrn5345j7lyc" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
@@ -115,6 +115,7 @@ parameters/state_machine/hurt_light/blend_position = -1
 parameters/state_machine/hurt_medium/blend_position = -1
 parameters/state_machine/idle/blend_position = -1
 parameters/state_machine/knockout_kneeled/blend_position = 0
+parameters/state_machine/retaliate/blend_position = -0.440625
 parameters/state_machine/seated_drink/blend_position = -1
 parameters/state_machine/seated_engage/blend_position = -1
 parameters/state_machine/seated_laugh/blend_position = -1
@@ -193,7 +194,7 @@ visible = false
 modulate = Color(0.670588, 0.384314, 1, 0.435294)
 position = Vector2(48, -252)
 frames = ExtResource("4_2vvsa")
-animation = &"engage"
+animation = &"slap"
 
 [node name="FrontLightining" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
@@ -334,7 +335,7 @@ shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
 
-[node name="GrabReject" type="Area2D" parent="Attacks" index="6"]
+[node name="Retaliate" type="Area2D" parent="Attacks" index="6"]
 collision_layer = 512
 collision_mask = 0
 monitoring = false
@@ -343,7 +344,7 @@ character_type = 1
 _attack_data = ExtResource("20_4qg1q")
 metadata/collision_type = "enemy_hit_box"
 
-[node name="GrabRejectShape" type="CollisionShape2D" parent="Attacks/GrabReject" index="0"]
+[node name="RetaliateShape" type="CollisionShape2D" parent="Attacks/Retaliate" index="0"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(-287, -356)

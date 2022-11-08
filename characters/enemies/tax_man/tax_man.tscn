@@ -91,7 +91,7 @@ parent_should_process = true
 
 [node name="AttackRetaliate" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("10_ptkg4")
-skin_state = &"grab_reject"
+skin_state = &"retaliate"
 can_combo = false
 path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true

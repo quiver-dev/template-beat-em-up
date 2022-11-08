@@ -1,9 +1,9 @@
-[gd_resource type="AnimationLibrary" load_steps=37 format=3 uid="uid://b2ay847n6ik86"]
+[gd_resource type="AnimationLibrary" load_steps=37 format=3]
 
 [ext_resource type="Animation" uid="uid://bwo5tj66v70tn" path="res://characters/enemies/tax_man/resources/animations/attack_combo_left.tres" id="1_jh2dp"]
 [ext_resource type="Animation" uid="uid://dd36hwvg62v0b" path="res://characters/enemies/tax_man/resources/animations/dash_attack_begin_left.tres" id="1_k7v2n"]
 [ext_resource type="Animation" uid="uid://b2l3oewq03ok5" path="res://characters/enemies/tax_man/resources/animations/dash_attack_end_left.tres" id="2_1oer0"]
-[ext_resource type="Animation" uid="uid://c8p4bjuprbcv0" path="res://characters/enemies/tax_man/resources/animations/grab_reject_left.tres" id="3_q0uoe"]
+[ext_resource type="Animation" uid="uid://c8p4bjuprbcv0" path="res://characters/enemies/tax_man/resources/animations/retaliate_left.tres" id="3_q0uoe"]
 [ext_resource type="Animation" uid="uid://b6ll52e4e7l4" path="res://characters/enemies/tax_man/resources/animations/hurt_knockout_left.tres" id="4_vv6e4"]
 [ext_resource type="Animation" uid="uid://dym17ivv43ng0" path="res://characters/enemies/tax_man/resources/animations/hurt_light_left.tres" id="5_n2npe"]
 [ext_resource type="Animation" uid="uid://fwyrrxd23b4l" path="res://characters/enemies/tax_man/resources/animations/hurt_medium_left.tres" id="6_hd2tm"]
@@ -22,7 +22,7 @@
 [ext_resource type="Animation" uid="uid://ci3bjitalyxe5" path="res://characters/enemies/tax_man/resources/animations/attack_combo_right.tres" id="20_kisyw"]
 [ext_resource type="Animation" uid="uid://dv01kj6q3lmx0" path="res://characters/enemies/tax_man/resources/animations/dash_attack_begin_right.tres" id="21_vuck1"]
 [ext_resource type="Animation" uid="uid://d05xbimey3fek" path="res://characters/enemies/tax_man/resources/animations/defeat_explosion_right.tres" id="22_pnaqn"]
-[ext_resource type="Animation" uid="uid://cvjagjuu4dgym" path="res://characters/enemies/tax_man/resources/animations/grab_reject_right.tres" id="23_nrn52"]
+[ext_resource type="Animation" uid="uid://cvjagjuu4dgym" path="res://characters/enemies/tax_man/resources/animations/retaliate_right.tres" id="23_nrn52"]
 [ext_resource type="Animation" uid="uid://cxnhef3fj2k62" path="res://characters/enemies/tax_man/resources/animations/hurt_knockout_right.tres" id="24_merlt"]
 [ext_resource type="Animation" uid="uid://bne5db1auwihb" path="res://characters/enemies/tax_man/resources/animations/hurt_light_right.tres" id="25_dvtaq"]
 [ext_resource type="Animation" uid="uid://da6yu4pqoghid" path="res://characters/enemies/tax_man/resources/animations/hurt_medium_right.tres" id="26_rtjcj"]
@@ -49,8 +49,6 @@ _data = {
 "dash_attack_end_right": ExtResource("36_bu778"),
 "defeat_explosion_left": ExtResource("18_rbrkx"),
 "defeat_explosion_right": ExtResource("22_pnaqn"),
-"grab_reject_left": ExtResource("3_q0uoe"),
-"grab_reject_right": ExtResource("23_nrn52"),
 "hurt_knockout_left": ExtResource("4_vv6e4"),
 "hurt_knockout_right": ExtResource("24_merlt"),
 "hurt_light_left": ExtResource("5_n2npe"),
@@ -61,6 +59,8 @@ _data = {
 "idle_right": ExtResource("27_mx7l2"),
 "knockout_kneeled_left": ExtResource("8_gkxm5"),
 "knockout_kneeled_right": ExtResource("28_7b8i7"),
+"retaliate_left": ExtResource("3_q0uoe"),
+"retaliate_right": ExtResource("23_nrn52"),
 "seated_drink_left": ExtResource("9_ciawh"),
 "seated_drink_right": ExtResource("29_vkja8"),
 "seated_engage_left": ExtResource("10_2qbku"),
