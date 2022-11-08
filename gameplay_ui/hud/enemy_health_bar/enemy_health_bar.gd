@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends QuiverLifeBar
 
 ## Write your doc string for this file here
 
@@ -13,38 +13,43 @@ extends VBoxContainer
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _player_life_bar := $PlayerLifeBar as QuiverLifeBar
-@onready var _enemy_life_bar := $EnemyHealthBar as QuiverLifeBar
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
-
-func _ready() -> void:
-	QuiverEditorHelper.connect_between(Events.enemy_data_sent, _on_Events_enemy_data_sent)
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func set_player_attributes(p_attributes: QuiverAttributes) -> void:
-	_player_life_bar.attributes = p_attributes
-
-
-func set_enemy_attribute(p_attributes: QuiverAttributes) -> void:
-	_enemy_life_bar.attributes = p_attributes
+func _ready() -> void:
+	super()
+	if attributes == null:
+		hide()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_Events_enemy_data_sent(p_enemy: QuiverAttributes, p_player: QuiverAttributes) -> void:
-	if _player_life_bar.attributes != p_player:
-		return
-	_enemy_life_bar.attributes = p_enemy
+func _update_lifebar_visuals() -> void:
+	super()
+	show()
+
+
+func _reset_lifebar_visuals() -> void:
+	super()
+	hide()
+
+
+func _on_health_changed() -> void:
+	if is_instance_valid(attributes):
+		super()
+
+
+func _on_health_depleted() -> void:
+	_progress.value = 0
+	attributes = null
 
 ### -----------------------------------------------------------------------------------------------
-

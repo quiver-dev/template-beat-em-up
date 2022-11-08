@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="1_5vwca"]
+[ext_resource type="Texture2D" uid="uid://c6nkyms2syhae" path="res://gameplay_ui/hud/player_health_bar/pngs/health_bar_base.png" id="2_407v3"]
+[ext_resource type="Script" path="res://gameplay_ui/hud/player_health_bar/heath_bar.gd" id="3_6xonp"]
+[ext_resource type="Texture2D" uid="uid://dpf7r7ecvk7h2" path="res://gameplay_ui/hud/player_health_bar/pngs/heart_icon.png" id="4_q3o2l"]
+[ext_resource type="Texture2D" uid="uid://bd5givokq2om3" path="res://gameplay_ui/hud/player_health_bar/pngs/health_bar_under.png" id="5_00mk8"]
+[ext_resource type="Texture2D" uid="uid://cqfeogfy70knc" path="res://gameplay_ui/hud/player_health_bar/pngs/health_bar_progress.png" id="6_r2lmd"]
+
+[sub_resource type="Gradient" id="Gradient_h6r38"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rw4s5"]
+gradient = SubResource("Gradient_h6r38")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvk5h"]
+resource_local_to_scene = true
+shader = ExtResource("1_5vwca")
+shader_parameter/gradient = SubResource("GradientTexture1D_rw4s5")
+shader_parameter/is_active = true
+shader_parameter/show_grayscale = false
+
+[node name="HeathBarBase" type="TextureRect"]
+material = SubResource("ShaderMaterial_kvk5h")
+offset_right = 864.0
+offset_bottom = 128.0
+texture = ExtResource("2_407v3")
+stretch_mode = 2
+script = ExtResource("3_6xonp")
+
+[node name="Profile" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 179.0
+offset_bottom = 123.0
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HeartIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 10.0
+offset_right = 246.0
+offset_bottom = 55.0
+texture = ExtResource("4_q3o2l")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 247.0
+offset_right = 864.0
+offset_bottom = 60.0
+max_value = 1.0
+step = 0.01
+texture_under = ExtResource("5_00mk8")
+texture_progress = ExtResource("6_r2lmd")
