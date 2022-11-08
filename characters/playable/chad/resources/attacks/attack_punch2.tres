@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_6u5jb")
-attack_damage = 20.0
+attack_damage = 15.0
 hurt_type = 1
-knockback = 3
+knockback = 1
 launch_angle = 30
