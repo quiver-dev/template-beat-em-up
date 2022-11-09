@@ -99,7 +99,7 @@ func physics_process(delta: float) -> void:
 	
 	var is_in_same_lane := true 
 	if not _should_use_fixed and _target_node is QuiverCharacter:
-		is_in_same_lane = QuiverCombatSystem.is_in_same_lane_as(
+		is_in_same_lane = CombatSystem.is_in_same_lane_as(
 				_attributes, _target_node.attributes
 		)
 	

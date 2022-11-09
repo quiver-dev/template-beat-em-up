@@ -95,11 +95,6 @@ _global_script_classes=[{
 "path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_collision_types.gd"
 }, {
 "base": "RefCounted",
-"class": &"QuiverCombatSystem",
-"language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/combat/quiver_combat_system.gd"
-}, {
-"base": "RefCounted",
 "class": &"QuiverCustomOverlay",
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/quiver_custom_overlay.gd"
@@ -242,7 +237,6 @@ _global_script_class_icons={
 "QuiverCharacterSkin": "",
 "QuiverCharacterState": "",
 "QuiverCollisionTypes": "",
-"QuiverCombatSystem": "",
 "QuiverCustomOverlay": "",
 "QuiverCyclicHelper": "",
 "QuiverDebugPropertyLabel": "",
@@ -284,6 +278,7 @@ QuiverDebugLogger="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/de
 Events="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/quiver_events.gd"
 BackgroundLoader="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/background_loader/background_loader.tscn"
 HitFreeze="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze/hit_freeze.tscn"
+CombatSystem="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/quiver_combat_system.gd"
 ScreenTransitions="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.tscn"
 
 [debug]

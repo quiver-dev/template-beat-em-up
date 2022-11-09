@@ -24,6 +24,7 @@ const PATH_AUTOLOADS = [
 	["Events", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/quiver_events.gd"],
 	["BackgroundLoader", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/background_loader/background_loader.tscn"],
 	["HitFreeze", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze/hit_freeze.tscn"],
+	["CombatSystem", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/quiver_combat_system.gd"],
 	["ScreenTransitions", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.tscn"],
 ]
 
@@ -229,13 +230,18 @@ func _remove_plugin_settings() -> void:
 func _add_autoloads() -> void:
 	for autoload_data in PATH_AUTOLOADS:
 		var autoload_name = autoload_data[0]
-		var path = autoload_data[1]
-		add_autoload_singleton(autoload_name, path)
+		if not ProjectSettings.has_setting("autoload/%s"%[autoload_name]):
+			var path = autoload_data[1]
+			add_autoload_singleton(autoload_name, path)
 
 
 func _remove_autoloads() -> void:
 	for autoload_data in PATH_AUTOLOADS:
 		var autoload_name = autoload_data[0]
-		remove_autoload_singleton(autoload_name)
+		if ProjectSettings.has_setting("autoload/%s"%[autoload_name]):
+			var original_path := autoload_data[1] as String
+			var current_path := ProjectSettings.get_setting("autoload/%s"%[autoload_name]) as String
+			if "*%s"%[original_path] == current_path:
+				remove_autoload_singleton(autoload_name)
 
 ### -----------------------------------------------------------------------------------------------

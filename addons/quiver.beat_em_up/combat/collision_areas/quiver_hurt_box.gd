@@ -13,8 +13,8 @@ extends Area2D
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var character_type: QuiverCombatSystem.CharacterTypes = \
-		QuiverCombatSystem.CharacterTypes.PLAYERS:
+@export var character_type: CombatSystem.CharacterTypes = \
+		CombatSystem.CharacterTypes.PLAYERS:
 	set(value):
 		character_type = value 
 		_handle_character_type_presets()
@@ -79,7 +79,7 @@ func _can_be_attacked_by(attacker: QuiverAttributes) -> bool:
 	var value := false
 	
 	if not character_attributes.is_invulnerable:
-		value = QuiverCombatSystem.is_in_same_lane_as(character_attributes, attacker)
+		value = CombatSystem.is_in_same_lane_as(character_attributes, attacker)
 	
 	return value
 
@@ -92,7 +92,7 @@ func _can_be_grabbed_by(grabber: QuiverAttributes) -> bool:
 		and not character_attributes.has_superarmor
 		and character_attributes.can_be_grabbed
 	):
-		value = QuiverCombatSystem.is_in_same_lane_as(character_attributes, grabber)
+		value = CombatSystem.is_in_same_lane_as(character_attributes, grabber)
 	
 	return value
 
@@ -100,20 +100,20 @@ func _can_be_grabbed_by(grabber: QuiverAttributes) -> bool:
 func _handle_hit_box(hit_box: QuiverHitBox) -> void:
 	if _can_be_attacked_by(hit_box.character_attributes):
 #		print("hit_box: %s"%[hit_box.get_path()])
-		QuiverCombatSystem.apply_damage(hit_box.attack_data, character_attributes)
+		CombatSystem.apply_damage(hit_box.attack_data, character_attributes)
 		var knockback: QuiverKnockback = QuiverKnockback.new(
 				hit_box.attack_data.knockback,
 				hit_box.attack_data.hurt_type,
 				_get_treated_launch_vector(hit_box)
 		)
-		QuiverCombatSystem.apply_knockback(knockback, character_attributes)
+		CombatSystem.apply_knockback(knockback, character_attributes)
 		
-		if hit_box.character_type == QuiverCombatSystem.CharacterTypes.PLAYERS:
+		if hit_box.character_type == CombatSystem.CharacterTypes.PLAYERS:
 			Events.enemy_data_sent.emit(character_attributes, hit_box.character_attributes)
 
 
 func _handle_wall_hit_box(wall_hit_box: WallHitBox) -> void: 
-	QuiverCombatSystem.apply_damage(wall_hit_box.attack_data, character_attributes)
+	CombatSystem.apply_damage(wall_hit_box.attack_data, character_attributes)
 	character_attributes.wall_bounced.emit()
 
 
@@ -148,16 +148,16 @@ func _handle_character_type_presets() -> void:
 	
 	var target_collision_type := ""
 	match character_type:
-		QuiverCombatSystem.CharacterTypes.PLAYERS:
+		CombatSystem.CharacterTypes.PLAYERS:
 			target_collision_type = "player_hurt_box"
-		QuiverCombatSystem.CharacterTypes.ENEMIES:
+		CombatSystem.CharacterTypes.ENEMIES:
 			target_collision_type = "enemy_hurt_box"
-		QuiverCombatSystem.CharacterTypes.BOUNCE_OBSTACLE:
+		CombatSystem.CharacterTypes.BOUNCE_OBSTACLE:
 			push_error("Bounce Obstacles is currently icompatible with hurt boxes")
 		_:
 			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
 					character_type,
-					QuiverCombatSystem.CharacterTypes.keys()
+					CombatSystem.CharacterTypes.keys()
 			])
 			return
 	
