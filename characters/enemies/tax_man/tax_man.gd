@@ -8,6 +8,9 @@ extends QuiverEnemyCharacter
 #--- signals --------------------------------------------------------------------------------------
 
 signal phase_changed_to(phase: int)
+signal tax_man_revealed
+signal tax_man_laughed
+signal tax_man_engaged
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -18,6 +21,17 @@ enum TaxManPhases { PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_DIE }
 const QuiverAiGoToClosestPosition := preload("res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd")
 
 #--- public variables - order: export > normal var > onready --------------------------------------
+
+@export var should_start_seated := false:
+	set(value):
+		should_start_seated = value
+		if not is_inside_tree():
+			await ready
+		
+		if should_start_seated:
+			get_tree().call_group("tax_man_preview", "set_seated_preview")
+		else:
+			get_tree().call_group("tax_man_preview", "set_standing_preview")
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -49,6 +63,12 @@ func _ready() -> void:
 	
 	_health_previous = attributes.get_health_as_percentage()
 	_populate_dash_positions_from_stage()
+	
+	var players := get_tree().get_nodes_in_group("players")
+	for node in players:
+		var player = node as QuiverCharacter
+		player.attributes.health_changed.connect(_on_player_hurt)
+		player.attributes.health_depleted.connect(_on_player_hurt)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -84,6 +104,10 @@ func _update_cumulated_damage() -> void:
 func _reset_cumulated_damage() -> void:
 	_current_cumulated_damage = 0.0
 	_health_previous = attributes.get_health_as_percentage()
+
+
+func _on_player_hurt() -> void:
+	tax_man_laughed.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

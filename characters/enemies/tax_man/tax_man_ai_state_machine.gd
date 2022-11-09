@@ -53,6 +53,8 @@ func _decide_next_action(last_state: StringName) -> void:
 		&"GoToPosition":
 			transition_to("%s/Wait"%[_phase_path])
 		&"WaitForIdle":
+			if _state_to_resume.is_empty():
+				_state_to_resume = "%s/Wait"%[_phase_path]
 			character_attributes.is_invulnerable = false
 			transition_to(_state_to_resume)
 

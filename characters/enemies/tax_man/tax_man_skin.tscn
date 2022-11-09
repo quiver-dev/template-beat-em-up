@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cyax8ahrme87s"]
+[gd_scene load_steps=45 format=3 uid="uid://dwpmxxw1us778"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/steated_preview.gd" id="10_sp0k2"]
 [ext_resource type="Texture2D" uid="uid://h7d3gctevfx2" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0065.png" id="11_8rinb"]
 [ext_resource type="Texture2D" uid="uid://dh2pp7d5q53st" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0066.png" id="12_caly6"]
 [ext_resource type="Texture2D" uid="uid://iwtqurgemgtv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/grenade_pins.png" id="12_kopjc"]
@@ -41,7 +42,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lpimj"]
 shader = ExtResource("6_5x5ps")
 shader_parameter/color = Color(0.12549, 0.0313726, 0.0196078, 1)
-shader_parameter/effect_strength = 0.0
+shader_parameter/effect_strength = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cktw8"]
 animations = [{
@@ -96,11 +97,12 @@ has_grabbed = false
 metadata/_edit_vertical_guides_ = [-229.0, 217.0, 196.0]
 metadata/_edit_horizontal_guides_ = [21.0, -139.0]
 
-[node name="AnimationPlayer" parent="." index="0"]
+[node name="AnimationPlayer" parent="." index="0" groups=["tax_man_preview"]]
 libraries = {
 "": SubResource("AnimationLibrary_vjek0"),
 "tax_man": ExtResource("3_o8ek5")
 }
+script = ExtResource("10_sp0k2")
 
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource("3_l0y1t")
