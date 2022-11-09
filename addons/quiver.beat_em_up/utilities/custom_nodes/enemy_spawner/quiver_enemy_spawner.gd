@@ -28,8 +28,6 @@ var _spawn_waves: Array = []
 var _current_wave := 0
 var _spawned_enemies := {}
 
-var _marker_nodes := {}
-
 @onready var _spawn_parent := get_node_or_null(path_spawn_parent) as Node2D
 
 ### -----------------------------------------------------------------------------------------------
@@ -41,8 +39,6 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		QuiverEditorHelper.disable_all_processing(self)
 		return
-	
-	_populate_marker_nodes()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -56,13 +52,18 @@ func spawn_current_wave() -> void:
 	for item in _spawn_waves[_current_wave]:
 		var spawn_data := item as SpawnData
 		var enemy := spawn_data.enemy_scene.instantiate() as QuiverEnemyCharacter
-		_spawn_enemy(enemy)
+		var enemy_position := spawn_data.get_spawn_position(self)
 		
-		if spawn_data.spawn_mode == SpawnData.SpawnMode.WALK_TO_POSITION:
-			var target_position = _marker_nodes[spawn_data.target_node_path].global_position
-			if spawn_data.use_vector2:
-				target_position = spawn_data.target_position
-			enemy.spawn_ground_to_position(target_position)
+		match spawn_data.spawn_mode:
+			SpawnData.SpawnMode.IN_PLACE:
+				_spawn_enemy(enemy, enemy_position)
+			SpawnData.SpawnMode.WALK_TO_POSITION:
+				_spawn_enemy(enemy, global_position)
+				enemy.spawn_ground_to_position(enemy_position)
+			_:
+				push_error("Unknown spawn_mode: %s | Possible modes: %s"%[
+					spawn_data.spawn_mode, SpawnData.SpawnMode.keys()
+				])
 	
 	wave_started.emit(_current_wave)
 
@@ -71,16 +72,8 @@ func spawn_current_wave() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _populate_marker_nodes() -> void:
-	for wave in _spawn_waves:
-		for item in wave:
-			var spawn_data := item as SpawnData
-			if spawn_data.spawn_mode == SpawnData.SpawnMode.WALK_TO_POSITION:
-				_marker_nodes[spawn_data.target_node_path] = get_node(spawn_data.target_node_path)
-
-
-func _spawn_enemy(enemy: QuiverEnemyCharacter) -> void:
-	enemy.global_position = global_position
+func _spawn_enemy(enemy: QuiverEnemyCharacter, p_position: Vector2) -> void:
+	enemy.global_position = p_position
 	_spawn_parent.add_child(enemy, true)
 	
 	var instance_id := enemy.get_instance_id()
@@ -187,7 +180,6 @@ func _set(property: StringName, value) -> bool:
 
 
 ### Custom Inspector Private Methods --------------------------------------------------------------
-
 
 func _set_spawn_waves(value: Array) -> void:
 	_spawn_waves = value
