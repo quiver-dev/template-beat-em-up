@@ -1,7 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cysw3sprm2a73"]
-
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_debug_logger.gd" id="1_epjbq"]
-
-[resource]
-script = ExtResource("1_epjbq")
-max_logs = 5

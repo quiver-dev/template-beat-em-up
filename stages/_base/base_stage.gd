@@ -14,8 +14,6 @@ extends Node2D
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _debug_logger := QuiverDebugLogger.get_logger()
-
 @onready var _main_player := $Level/Characters/Chad as QuiverCharacter
 @onready var _player_hud := $HudLayer/PlayerHud
 @onready var _end_screen := $HudLayer/EndScreen as EndScreen
@@ -29,8 +27,6 @@ func _ready() -> void:
 	randomize()
 	_player_hud.set_player_attributes(_main_player.attributes)
 	QuiverEditorHelper.connect_between(Events.player_died, _on_Events_player_died)
-	
-	_debug_logger.start_new_log()
 
 
 func _unhandled_input(event: InputEvent) -> void:

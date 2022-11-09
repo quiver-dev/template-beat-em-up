@@ -45,8 +45,6 @@ var state_name: NodePath = INVALID_NODEPATH
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _debug_logger := QuiverDebugLogger.get_logger()
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -106,10 +104,10 @@ func transition_to(target_state_path: NodePath, msg: = {}) -> void:
 		push_error("%s is not a QuiverState type node"%[target_state_path])
 		return
 	
-	_debug_logger.log_message([get_path(), "Exiting State", get_path_to(state)])
+	QuiverDebugLogger.log_message([get_path(), "Exiting State", get_path_to(state)])
 	state.exit()
 	state = target_state
-	_debug_logger.log_message([get_path(), "Entering State", get_path_to(state)])
+	QuiverDebugLogger.log_message([get_path(), "Entering State", target_state_path])
 	state.enter(msg)
 	emit_signal("transitioned", target_state_path)
 

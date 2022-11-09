@@ -1,5 +1,4 @@
-class_name QuiverDebugLogger
-extends Resource
+extends Node
 
 # Simple class to log
 
@@ -28,43 +27,18 @@ var _current_log_file := ""
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
-func _init() -> void:
+func _ready() -> void:
 	_clear_old_logs()
+	_start_new_log()
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE and not _current_log.is_empty():
-		if not DirAccess.dir_exists_absolute("user://debug_log/"):
-			DirAccess.make_dir_absolute("user://debug_log/")
-		
-		# Improve this later to make it properly with all the error checks
-		var file := FileAccess.open(_current_log_file, FileAccess.WRITE)
-		if file != null:
-			file.store_string("\n".join(_current_log))
-		else:
-			push_error("Unable to create file at: %s | Error: %s"%[
-					_current_log_file, FileAccess.get_open_error()
-			])
+func _exit_tree() -> void:
+	_flush_log_to_file()
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-static func get_logger() -> QuiverDebugLogger:
-	var value := load("res://addons/quiver.beat_em_up/utilities/quiver_debug_logger.tres") \
-			as QuiverDebugLogger
-	return value
-
-
-func start_new_log() -> void:
-	if not _is_logging_enabled():
-		return
-	
-	var file_path = LOG_FILE if OS.has_feature("debug") else RELEASE_LOG_FILE
-	var date_time := Time.get_datetime_string_from_system().replace(":", "-")
-	_current_log_file = file_path%[date_time]
-
 
 func log_message(msg: PackedStringArray) -> void:
 	if not _is_logging_enabled() or not _has_created_log_file():
@@ -79,15 +53,30 @@ func log_message(msg: PackedStringArray) -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+func _start_new_log() -> void:
+	if not _is_logging_enabled():
+		return
+	
+	var file_path = LOG_FILE if OS.has_feature("debug") else RELEASE_LOG_FILE
+	var date_time := Time.get_datetime_string_from_system().replace(":", "-")
+	_current_log_file = file_path%[date_time]
+	
+	if not DirAccess.dir_exists_absolute(LOG_FOLDER):
+		DirAccess.make_dir_absolute(LOG_FOLDER)
+	
+	if not FileAccess.file_exists(_current_log_file):
+		FileAccess.open(_current_log_file, FileAccess.WRITE)
+
+
 func _clear_old_logs() -> void:
 	var files := PackedStringArray()
-	if DirAccess.dir_exists_absolute("user://debug_log/"):
-		var dir := DirAccess.open("user://debug_log/")
+	if DirAccess.dir_exists_absolute(LOG_FOLDER):
+		var dir := DirAccess.open(LOG_FOLDER)
 		if dir != null:
 			files = dir.get_files()
 			
 			if files.size() > max_logs:
-				for index in range(files.size()-max_logs):
+				for index in range(files.size()-max_logs+1):
 					var file_path := files[index]
 					dir.remove(file_path)
 		else:
@@ -97,11 +86,30 @@ func _clear_old_logs() -> void:
 			])
 
 
+func _flush_log_to_file() -> void:
+	if _current_log.is_empty():
+		return
+	
+	var file := FileAccess.open(_current_log_file, FileAccess.READ_WRITE)
+	if file != null:
+		file.seek_end()
+		file.store_string("\n".join(_current_log) + "\n")
+		_current_log.clear()
+	else:
+		push_error("Unable to create file at: %s | Error: %s"%[
+				_current_log_file, FileAccess.get_open_error()
+		])
+
+
 func _is_logging_enabled() -> bool:
 	return ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_LOGGING) and OS.is_debug_build()
 
 
 func _has_created_log_file() -> bool:
 	return not _current_log_file.is_empty()
+
+
+func _on_flush_log_timer_timeout() -> void:
+	_flush_log_to_file()
 
 ### -----------------------------------------------------------------------------------------------
