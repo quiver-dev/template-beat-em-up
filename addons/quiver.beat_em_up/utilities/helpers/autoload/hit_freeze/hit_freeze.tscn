@@ -1,8 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://c7p6cb1g0cfw6"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze/hit_freeze.gd" id="1_swv6u"]
 
 [node name="HitFreeze" type="Node"]
 process_mode = 3
 script = ExtResource("1_swv6u")
-freeze_frames = 3.0

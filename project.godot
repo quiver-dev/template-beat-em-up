@@ -109,11 +109,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_cyclic_error_helper.gd"
 }, {
-"base": "Resource",
-"class": &"QuiverDebugLogger",
-"language": &"GDScript",
-"path": "res://addons/quiver.beat_em_up/utilities/helpers/static/quiver_debug_logger.gd"
-}, {
 "base": "Label",
 "class": &"QuiverDebugPropertyLabel",
 "language": &"GDScript",
@@ -250,7 +245,6 @@ _global_script_class_icons={
 "QuiverCombatSystem": "",
 "QuiverCustomOverlay": "",
 "QuiverCyclicHelper": "",
-"QuiverDebugLogger": "",
 "QuiverDebugPropertyLabel": "",
 "QuiverEditorHelper": "",
 "QuiverEnemyCharacter": "",
@@ -286,8 +280,9 @@ config/version="0.5.0"
 
 [autoload]
 
+QuiverDebugLogger="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/debug_logger/quiver_debug_logger.tscn"
+Events="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/quiver_events.gd"
 BackgroundLoader="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/background_loader/background_loader.tscn"
-Events="*res://addons/quiver.beat_em_up/utilities/quiver_events.gd"
 HitFreeze="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze/hit_freeze.tscn"
 ScreenTransitions="*res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.tscn"
 
@@ -300,6 +295,7 @@ shapes/collision/contact_color=Color(0.5, 0.5, 0.5, 0.8)
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/resizable=false
 window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
@@ -425,4 +421,4 @@ pause={
 beat_em_up/default_hit_lane_size=60
 beat_em_up/logging_enabled=true
 beat_em_up/fall_gravity_modifier=2.5
-beat_em_up/disable_player_detector_on_editor=true
+beat_em_up/disable_player_detector_on_editor=false

@@ -17,9 +17,15 @@ const INVALID_HANDLE = -1
 const PATH_CUSTOM_INSPECTORS = "res://addons/quiver.beat_em_up/custom_inspectors/"
 const PATH_CUSTOM_OVERLAYS = "res://addons/quiver.beat_em_up/custom_overlays/"
 
-const PATH_AUTOLOADS = {
-	"HitFreeze": "res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze.tscn",
-}
+# This is an Array of Arrays instead of a Dictionary so that the order here is preserverd,
+# and the autoloads are added in the same sequence.
+const PATH_AUTOLOADS = [
+	["QuiverDebugLogger", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/debug_logger/quiver_debug_logger.tscn"],
+	["Events", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/quiver_events.gd"],
+	["BackgroundLoader", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/background_loader/background_loader.tscn"],
+	["HitFreeze", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/hit_freeze/hit_freeze.tscn"],
+	["ScreenTransitions", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.tscn"],
+]
 
 var SETTINGS = {
 	QuiverCyclicHelper.SETTINGS_DEFAULT_HIT_LANE_SIZE:{
@@ -35,7 +41,7 @@ var SETTINGS = {
 			hint_string = "",
 	},
 	QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER: {
-			value = 1.0,
+			value = 2.5,
 			type = TYPE_FLOAT,
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0.0,2.0,0.01,or_greater"
@@ -221,12 +227,15 @@ func _remove_plugin_settings() -> void:
 
 
 func _add_autoloads() -> void:
-	for key in PATH_AUTOLOADS:
-		add_autoload_singleton(key, PATH_AUTOLOADS[key])
+	for autoload_data in PATH_AUTOLOADS:
+		var autoload_name = autoload_data[0]
+		var path = autoload_data[1]
+		add_autoload_singleton(autoload_name, path)
 
 
 func _remove_autoloads() -> void:
-	for key in PATH_AUTOLOADS:
-		remove_autoload_singleton(key)
+	for autoload_data in PATH_AUTOLOADS:
+		var autoload_name = autoload_data[0]
+		remove_autoload_singleton(autoload_name)
 
 ### -----------------------------------------------------------------------------------------------
