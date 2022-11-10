@@ -44,6 +44,10 @@ func set_enemy_attribute(p_attributes: QuiverAttributes) -> void:
 func _on_Events_enemy_data_sent(p_enemy: QuiverAttributes, p_player: QuiverAttributes) -> void:
 	if _player_life_bar.attributes != p_player:
 		return
+	
+	if p_enemy != null and not p_enemy.is_alive:
+		return
+	
 	_enemy_life_bar.attributes = p_enemy
 
 ### -----------------------------------------------------------------------------------------------

@@ -11,7 +11,7 @@
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rw4s5"]
 gradient = SubResource("Gradient_h6r38")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhqke"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_voam2"]
 resource_local_to_scene = true
 shader = ExtResource("4_nvlcn")
 shader_parameter/gradient = SubResource("GradientTexture1D_rw4s5")
@@ -23,7 +23,7 @@ shader_parameter/show_grayscale = false
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fwij3"]
 gradient = SubResource("Gradient_bvxqj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i1tre"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svnrn"]
 resource_local_to_scene = true
 shader = ExtResource("4_nvlcn")
 shader_parameter/gradient = SubResource("GradientTexture1D_fwij3")
@@ -43,11 +43,11 @@ script = ExtResource("1_i2ajm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="PlayerLifeBar" parent="." instance=ExtResource("3_1cvt2")]
-material = SubResource("ShaderMaterial_yhqke")
+material = SubResource("ShaderMaterial_voam2")
 layout_mode = 2
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("5_23ki3")]
-material = SubResource("ShaderMaterial_i1tre")
+material = SubResource("ShaderMaterial_svnrn")
 layout_mode = 2
 offset_top = 128.0
 offset_bottom = 224.0
