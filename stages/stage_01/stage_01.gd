@@ -24,7 +24,7 @@ extends BaseStage
 
 func _ready() -> void:
 	super()
-	_tax_man.attributes.health_depleted.connect(_on_tax_man_health_depleted)
+	_tax_man.tree_exited.connect(_on_tax_man_tree_exited)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ func _on_fight_2_spawner_all_waves_completed() -> void:
 		_fight_room_2.setup_after_fight_room()
 
 
-func _on_tax_man_health_depleted() -> void:
+func _on_tax_man_tree_exited() -> void:
 	_end_screen.open_end_screen(true)
 
 
