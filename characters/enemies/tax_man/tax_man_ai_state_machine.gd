@@ -57,21 +57,35 @@ func _decide_next_action(last_state: StringName) -> void:
 				_state_to_resume = "%s/Wait"%[_phase_path]
 			character_attributes.is_invulnerable = false
 			transition_to(_state_to_resume)
+		_:
+			push_error("Unindentified last_state: %s"%[last_state])
 
 
 func _on_tax_man_phase_changed_to(phase: int) -> void:
+	var next_state := ""
+	var msg := {}
 	match phase:
 		TaxManBoss.TaxManPhases.PHASE_TWO:
 			_phase_path = "Phase2"
+			next_state = "Phase2/ChooseRandomAttack"
+			msg = {chosen_state = "AreaAttack"}
 		TaxManBoss.TaxManPhases.PHASE_THREE:
 			_phase_path = "Phase3"
+			next_state = "Phase3/ChooseRandomAttack"
+			msg = {chosen_state = "AreaAttack"}
 		TaxManBoss.TaxManPhases.PHASE_DIE:
 			_phase_path = "Dead"
+			next_state = "WaitForIdle"
 		_:
 			_phase_path = "Phase1"
+			next_state = "Phase1/Wait"
 	
 	_consecutive_hits = -1
-	_interrupt_current_state("%s/Wait"%[_phase_path])
+	
+	if state.has_method("interrupt_state"):
+		state.interrupt_state()
+	
+	transition_to(next_state, msg)
 
 
 func _ai_reset(_knockback: QuiverKnockback) -> void:

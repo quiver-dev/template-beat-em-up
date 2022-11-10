@@ -81,6 +81,7 @@ func enter(msg: = {}) -> void:
 			if _has_changed_phase(threshold_value):
 				_should_knockout = true
 				new_phase = phase_type
+				_character._reset_cumulated_damage()
 				break
 		
 		if _should_knockout:
@@ -96,9 +97,9 @@ func enter(msg: = {}) -> void:
 
 
 func _has_changed_phase(health_threshold: float) -> bool:
-	var had_not_crossed_threshold_yet := _tax_man._health_previous > health_threshold 
+	var has_not_crossed_threshold_yet := _tax_man._health_previous > health_threshold
 	var is_below_threshold := _attributes.get_health_as_percentage() <= health_threshold
-	return had_not_crossed_threshold_yet and is_below_threshold
+	return has_not_crossed_threshold_yet and is_below_threshold
 
 
 func exit() -> void:

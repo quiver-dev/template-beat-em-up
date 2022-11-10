@@ -231,9 +231,9 @@ max_wait = 1.0
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"AreaAttack": 0.604578,
-"ComboAttack": 1.19207,
-"DashAttack": 1.20335
+"AreaAttack": 0.60801,
+"ComboAttack": 1.19884,
+"DashAttack": 1.19315
 }
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="0"]
@@ -299,8 +299,9 @@ max_wait = 0.7
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase3" index="1"]
 script = ExtResource("17_5k63d")
 _weights_by_child = {
-"ComboAttack": 0.703429,
-"DashAttack": 1.29657
+"AreaAttack": 0.892048,
+"ComboAttack": 0.608847,
+"DashAttack": 1.49911
 }
 
 [node name="ComboAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="0"]
@@ -336,6 +337,20 @@ path_follow_state = "Ground/Move/Follow"
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
 attack_state_path = "Ground/AttackDash"
+combo_hits_amount = 1
+fallback_state_path = "Ground/Move/IdleAi"
+
+[node name="AreaAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="2"]
+script = ExtResource("18_thg3o")
+
+[node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/AreaAttack" index="0"]
+script = ExtResource("19_3m5ed")
+_max_chase_time = 5.0
+path_follow_state = "Ground/Move/Follow"
+
+[node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/AreaAttack" index="1"]
+script = ExtResource("20_38efy")
+attack_state_path = "Ground/AttackArea"
 combo_hits_amount = 1
 fallback_state_path = "Ground/Move/IdleAi"
 

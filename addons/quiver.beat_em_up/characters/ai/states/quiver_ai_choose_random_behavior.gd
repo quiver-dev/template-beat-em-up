@@ -69,7 +69,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	if _use_weights:
+	
+	if msg.has("chosen_state"):
+		_chosen_state = get_node(msg["chosen_state"]) as QuiverState
+	elif _use_weights:
 		_chosen_state = _get_random_behavior_weighted()
 	else:
 		_chosen_state = _get_random_behavior()
