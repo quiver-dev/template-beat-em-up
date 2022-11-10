@@ -82,8 +82,6 @@ var attributes: QuiverAttributes = null:
 	get:
 		return attributes
 
-@export var debug_prints := false
-
 # Grab Settings
 var _has_grab := true:
 	set(value):
@@ -163,8 +161,10 @@ func grab_notify() -> void:
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
 ## [signal skin_animation_finished)]
 func end_of_skin_animation(_animation_name := "") -> void:
-	if debug_prints and not _animation_name.is_empty():
-		print("anim name: %s"%[_animation_name])
+	# I'm leabing this here because sometimes chad will freez in the middle of a combo
+	# And I'm suspecting the bug in godot 4 with method tracks not being called at the end of 	
+	# animations when using the AnimationTree is still happening.
+	QuiverDebugLogger.log_message([get_path(), "end of skin animation", _animation_name])
 	
 	if not _playback.get_travel_path().is_empty():
 		return
