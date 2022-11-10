@@ -42,7 +42,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lpimj"]
 shader = ExtResource("6_5x5ps")
 shader_parameter/color = Color(0.12549, 0.0313726, 0.0196078, 1)
-shader_parameter/effect_strength = 1.0
+shader_parameter/effect_strength = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cktw8"]
 animations = [{
