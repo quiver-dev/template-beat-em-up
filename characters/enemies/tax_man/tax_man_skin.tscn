@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://b4tidt0k74tjt" path="res://characters/enemies/tax_man/resources/attacks/combo3_attack.tres" id="18_ynnty"]
 [ext_resource type="Resource" uid="uid://xqvyoty7t4hm" path="res://characters/enemies/tax_man/resources/attacks/dash_attack.tres" id="19_io51d"]
 [ext_resource type="Texture2D" uid="uid://c2k7o2f7glcpw" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0080.png" id="19_uh20d"]
-[ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
+[ext_resource type="SpriteFrames" uid="uid://c144gv4rqyhdq" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
 [ext_resource type="Resource" uid="uid://dfj4ujbiw3i45" path="res://characters/enemies/tax_man/resources/attacks/grab_reject_attack.tres" id="20_4qg1q"]
 [ext_resource type="Texture2D" uid="uid://dj310p15yegge" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0081.png" id="20_usexs"]
 [ext_resource type="Texture2D" uid="uid://c2eajaku8begs" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0082.png" id="21_j3vsw"]

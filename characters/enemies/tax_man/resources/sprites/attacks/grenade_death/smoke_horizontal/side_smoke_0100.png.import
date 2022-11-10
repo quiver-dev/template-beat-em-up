@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwyvaw602ne1"
-path="res://.godot/imported/grenade_finisher0100.png-c44d0acb4b1f78acf2d7eeb219a9b594.ctex"
+path="res://.godot/imported/side_smoke_0100.png-c742a68f4b217541a3f103e02a2e3878.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0100.png"
-dest_files=["res://.godot/imported/grenade_finisher0100.png-c44d0acb4b1f78acf2d7eeb219a9b594.ctex"]
+source_file="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/side_smoke_0100.png"
+dest_files=["res://.godot/imported/side_smoke_0100.png-c742a68f4b217541a3f103e02a2e3878.ctex"]
 
 [params]
 

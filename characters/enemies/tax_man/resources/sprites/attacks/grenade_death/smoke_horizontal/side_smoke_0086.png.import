@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqhvaw2smu7oo"
-path="res://.godot/imported/grenade_finisher0092.png-9f5ab27d8a503d4154ca25e8daeabafa.ctex"
+uid="uid://cuu50jo0kpdtb"
+path="res://.godot/imported/side_smoke_0086.png-2d0409a6296b02cb988c9dd43e9846f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0092.png"
-dest_files=["res://.godot/imported/grenade_finisher0092.png-9f5ab27d8a503d4154ca25e8daeabafa.ctex"]
+source_file="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/side_smoke_0086.png"
+dest_files=["res://.godot/imported/side_smoke_0086.png-2d0409a6296b02cb988c9dd43e9846f4.ctex"]
 
 [params]
 
