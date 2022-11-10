@@ -32,7 +32,7 @@ func _ready() -> void:
 	var actual_initial_state = seated_initial_state if owner.should_start_seated else initial_state
 	state = get_node(actual_initial_state) as QuiverState
 	state.enter()
-	emit_signal("transitioned", get_path_to(state))
+	transitioned.emit(get_path_to(state))
 	pass
 
 ### -----------------------------------------------------------------------------------------------

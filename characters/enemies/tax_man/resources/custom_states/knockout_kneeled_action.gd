@@ -41,6 +41,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	if not get_parent() is GroundState:
+		@warning_ignore(return_value_discarded)
 		warnings.append(
 				"This ActionState must be a child of Action GroundState or a state " 
 				+ "inheriting from it."

@@ -44,7 +44,7 @@ var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
 
 func _ready() -> void:
 	_on_twilight_changed()
-	_day_cycle_data.twilight_changed.connect(_on_twilight_changed)
+	QuiverEditorHelper.connect_between(_day_cycle_data.twilight_changed, _on_twilight_changed)
 
 ### -----------------------------------------------------------------------------------------------
 

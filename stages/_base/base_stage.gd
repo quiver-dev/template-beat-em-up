@@ -40,7 +40,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func reload_prototype() -> void:
 	Events.characters_reseted.emit()
-	get_tree().reload_current_scene()
+	var error := get_tree().reload_current_scene()
+	if error != OK:
+		push_error("Failed to reload current scene. Error %s"%[error])
 
 ### -----------------------------------------------------------------------------------------------
 

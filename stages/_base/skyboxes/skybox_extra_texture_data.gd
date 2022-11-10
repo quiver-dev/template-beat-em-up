@@ -37,7 +37,6 @@ var sprite: Sprite2D = null:
 	set(value):
 		color_mode = value
 		apply_color_mode_on_sprite()
-var _gradient_dict := {}
 
 ### -----------------------------------------------------------------------------------------------
 

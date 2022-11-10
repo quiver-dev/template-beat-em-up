@@ -38,6 +38,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	if properties.is_empty():
+		@warning_ignore(return_value_discarded)
 		warnings.append("properties array is empty, this Debug Label has nothing to show.")
 	
 	return warnings

@@ -36,10 +36,19 @@ func _ready() -> void:
 	_night_to_sunrise = gradient_transitions_array[4] as GradientTransitioner
 	_sunrise_to_day = gradient_transitions_array[5] as GradientTransitioner
 	
-	_day_to_sunset.transition_started.connect(_on_day_to_sunset_started)
-	_sunset_to_night.transition_started.connect(_on_sunset_to_night_started)
-	_night_to_sunrise.transition_started.connect(_on_night_to_sunrise_started)
-	_sunrise_to_day.transition_started.connect(_on_sunrise_to_day_started)
+	
+	QuiverEditorHelper.connect_between(
+			_day_to_sunset.transition_started,_on_day_to_sunset_started
+	)
+	QuiverEditorHelper.connect_between(
+			_sunset_to_night.transition_started,_on_sunset_to_night_started
+	)
+	QuiverEditorHelper.connect_between(
+			_night_to_sunrise.transition_started,_on_night_to_sunrise_started
+	)
+	QuiverEditorHelper.connect_between(
+			_sunrise_to_day.transition_started,_on_sunrise_to_day_started
+	)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -56,6 +65,7 @@ func _on_day_to_sunset_started() -> void:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
 	_day_cycle_data.twilight_transition = 0
+	@warning_ignore(return_value_discarded)
 	_tween_twilight.tween_property(
 			_day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration
 	)
@@ -66,8 +76,10 @@ func _on_sunset_to_night_started() -> void:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
 	_day_cycle_data.twilight_transition = 0.5
+	@warning_ignore(return_value_discarded)
 	_tween_twilight.tween_property(
-			_day_cycle_data, "twilight_transition", 1.0, _sunset_to_night.duration)
+			_day_cycle_data, "twilight_transition", 1.0, _sunset_to_night.duration
+	)
 
 
 func _on_night_to_sunrise_started() -> void:
@@ -75,7 +87,10 @@ func _on_night_to_sunrise_started() -> void:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
 	_day_cycle_data.twilight_transition = 1.0
-	_tween_twilight.tween_property(_day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration)
+	@warning_ignore(return_value_discarded)
+	_tween_twilight.tween_property(
+			_day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration
+	)
 
 
 func _on_sunrise_to_day_started() -> void:
@@ -83,6 +98,9 @@ func _on_sunrise_to_day_started() -> void:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
 	_day_cycle_data.twilight_transition = 0.5
-	_tween_twilight.tween_property(_day_cycle_data, "twilight_transition", 0.0, _sunset_to_night.duration)
+	@warning_ignore(return_value_discarded)
+	_tween_twilight.tween_property(
+			_day_cycle_data, "twilight_transition", 0.0, _sunset_to_night.duration
+	)
 
 ### -----------------------------------------------------------------------------------------------

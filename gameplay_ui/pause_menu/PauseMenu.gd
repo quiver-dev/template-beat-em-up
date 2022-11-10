@@ -16,8 +16,6 @@ const TEXT_TIMESCALE_VALUE = "%0.2f"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _main_menu: PackedScene = null
-
 @onready var _button_resume := $PanelContainer/Content/ResumeContainer/Resume as TextureButton
 @onready var _how_to_play := $HowToPlay as HowToPlay
 @onready var _animator := $AnimationPlayer as AnimationPlayer
@@ -75,8 +73,11 @@ func _on_resume_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	Events.characters_reseted.emit()
-	get_tree().reload_current_scene()
-	get_tree().paused = false
+	var error := get_tree().reload_current_scene()
+	if error == OK:
+		get_tree().paused = false
+	else:
+		push_error("Failed to reload current scene. Error %s"%[error])
 
 
 func _on_quit_pressed() -> void:

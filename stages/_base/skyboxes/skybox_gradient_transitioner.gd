@@ -85,16 +85,18 @@ func animate_gradient() -> void:
 	_tween = _target_node.create_tween().set_parallel()
 	
 	transition_started.emit()
-	_tween.finished.connect(_emit_finished)
+	QuiverEditorHelper.connect_between(_tween.finished, _emit_finished)
 	
 	for index in point_count:
 		var from_offset := from.get_offset(index)
 		var to_offset := to.get_offset(index)
 		var from_color := from.get_color(index)
 		var to_color := to.get_color(index)
+		@warning_ignore(return_value_discarded)
 		_tween.tween_method(
 				_animate_gradient_offset.bind(index), from_offset, to_offset, duration
 		)
+		@warning_ignore(return_value_discarded)
 		_tween.tween_method(
 				_animate_gradient_color.bind(index), from_color, to_color, duration
 		)

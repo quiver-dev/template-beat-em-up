@@ -47,8 +47,6 @@ var _total_transitions := 1:
 
 
 @export var gradient_transitions_array : Array[GradientTransitioner]
-## Array of GradientTransitioners
-var _gradient_transitions_data: Array = []
 ## Dictionary in the format of { texture_resource_uid: SkyBoxExtraTextureData }
 var _extra_textures_data: Dictionary = {}
 
@@ -65,7 +63,7 @@ var _shader_gradient: Gradient = null
 
 func _ready() -> void:
 	_restore_shader_params()
-	item_rect_changed.connect(_resize_all_extra_nodes)
+	QuiverEditorHelper.connect_between(item_rect_changed, _resize_all_extra_nodes)
 	
 	_reset_extra_nodes()
 	_setup_all_gradient_transitioners()
@@ -103,6 +101,7 @@ func _play_gradients() -> void:
 	var delay := gradient_transitions_array.back().duration as float
 	for data in gradient_transitions_array:
 		var transition_data := data as GradientTransitioner
+		@warning_ignore(return_value_discarded)
 		_tween.tween_callback(transition_data.animate_gradient).set_delay(delay)
 		delay = transition_data.duration
 
@@ -173,7 +172,9 @@ func _clear_unused_data(found_uids: Array[int]) -> void:
 	var uids := _extra_textures_data.keys()
 	var unused_data_uid := uids.filter(_is_deleted_extra_texture.bind(found_uids))
 	for key in unused_data_uid:
-		_extra_textures_data.erase(key)
+		var success := _extra_textures_data.erase(key)
+		if not success:
+			push_error("Failed to remove key %s from data: %s"%[key, _extra_textures_data])
 
 
 func _is_deleted_extra_texture(uid: int, found_uids: Array[int]) -> bool:
@@ -194,17 +195,6 @@ func _reset_clouds() -> void:
 	for value in _extra_textures_data.values():
 		var extra_data := value as SkyBoxExtraTextureData
 		extra_data.reset_sprite_region()
-
-#
-#func _reset_transitions_data() -> void:
-#	_gradient_transitions_data.resize(_total_transitions)
-#	for index in _total_transitions:
-#		if _gradient_transitions_data[index] == null:
-#			var data := GradientTransitioner.new()
-#			if index > 1:
-#				var prev_data := _gradient_transitions_data[index - 1] as GradientTransitioner
-#				data.from = prev_data.to
-#			_gradient_transitions_data[index] = data
 
 
 func _is_invalid_node(node: Node) -> bool:
@@ -306,7 +296,6 @@ func _resgister_extra_textures_properties(properties: Dictionary) -> void:
 	if not _extra_textures_data.is_empty():
 		for index in _extra_textures.size():
 			var uid := ResourceLoader.get_resource_uid(_extra_textures[index].resource_path)
-			var extra_data := _extra_textures_data[uid] as SkyBoxExtraTextureData
 			
 			for p_index in extra_textures_properties.size():
 				var prop_dict := extra_textures_properties[p_index].duplicate() as Dictionary

@@ -51,8 +51,11 @@ func open_end_screen(is_victory: bool) -> void:
 
 func _on_replay_pressed() -> void:
 	Events.characters_reseted.emit()
-	get_tree().reload_current_scene()
-	get_tree().paused = false
+	var error := get_tree().reload_current_scene()
+	if error == OK:
+		get_tree().paused = false
+	else:
+		push_error("Failed to reload current scene. Error %s"%[error])
 
 
 func _on_quit_pressed() -> void:

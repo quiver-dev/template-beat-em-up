@@ -24,7 +24,7 @@ extends BaseStage
 
 func _ready() -> void:
 	super()
-	_tax_man.tree_exited.connect(_on_tax_man_tree_exited)
+	QuiverEditorHelper.connect_between(_tax_man.tree_exited, _on_tax_man_tree_exited)
 
 ### -----------------------------------------------------------------------------------------------
 

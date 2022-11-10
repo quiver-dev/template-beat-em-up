@@ -109,12 +109,15 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	if _attributes == null:
+		@warning_ignore(return_value_discarded)
 		warnings.append(INVALID_ATTRIBUTES)
 	
 	if _path_skin.is_empty() or _skin == null:
+		@warning_ignore(return_value_discarded)
 		warnings.append(INVALID_SKIN)
 	
 	if _path_collision.is_empty() or _collision == null:
+		@warning_ignore(return_value_discarded)
 		warnings.append(INVALID_COLLISION)
 	
 	return warnings

@@ -81,48 +81,46 @@ colors = PackedColorArray(1, 1, 1, 1, 0.884488, 0.884488, 0.884488, 1, 0.0976562
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rxt3w"]
 gradient = SubResource("Gradient_q1rff")
-width = 1500
+width = 1400
 height = 500
 fill = 1
 fill_from = Vector2(0.603352, 0.349693)
-fill_to = Vector2(0.916201, 0.892638)
+fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_qf2sq"]
+[sub_resource type="Gradient" id="Gradient_u7412"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_cjnlv"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pyrbe"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_qf2sq")
+gradient = SubResource("Gradient_u7412")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tyvsr"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
-shader_parameter/gradient = SubResource("GradientTexture1D_cjnlv")
+shader_parameter/gradient = SubResource("GradientTexture1D_pyrbe")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
 
-[sub_resource type="Gradient" id="Gradient_146d0"]
+[sub_resource type="Gradient" id="Gradient_pygxm"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xgjbb"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5hvmd"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_146d0")
+gradient = SubResource("Gradient_pygxm")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsgfr"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
-shader_parameter/gradient = SubResource("GradientTexture1D_xgjbb")
+shader_parameter/gradient = SubResource("GradientTexture1D_5hvmd")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
-polygon = PackedVector2Array(-407, -1543, 1345, 185, 125, 193, -443, 193)
+polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yptx8"]
 size = Vector2(10097, 104)
@@ -266,9 +264,10 @@ _target_node_path = NodePath("../GuardPos2")
 [node name="Stage_01" instance=ExtResource("1_4lqd3")]
 script = ExtResource("2_08exp")
 metadata/_edit_horizontal_guides_ = [791.0]
+metadata/_edit_vertical_guides_ = [10969.0]
 
 [node name="DayCycleModulate" type="CanvasModulate" parent="." index="0"]
-color = Color(1, 0.972549, 0.917647, 1)
+color = Color(0.278431, 0.211765, 0.478431, 1)
 script = ExtResource("3_uswky")
 _color_day = Color(1, 0.972549, 0.917647, 1)
 _color_sunset = Color(0.776471, 0.458824, 0.407843, 1)
@@ -285,6 +284,7 @@ motion_scale = Vector2(0, 1)
 position = Vector2(-8, -444)
 scale = Vector2(1.86482, 1.86482)
 script = ExtResource("5_hj50d")
+is_playing = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/SkyboxLayer" index="1"]
 motion_scale = Vector2(0.65, 1)
@@ -364,9 +364,7 @@ position = Vector2(2779, -457)
 texture = ExtResource("37_lr1et")
 
 [node name="TaxManRoomLight" type="PointLight2D" parent="Background" index="7"]
-position = Vector2(13619, 396)
-enabled = false
-energy = 0.0
+position = Vector2(13827, 396)
 texture = SubResource("GradientTexture2D_rxt3w")
 texture_scale = 4.0
 script = ExtResource("16_rlks8")
@@ -379,7 +377,7 @@ length = 6
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0]
+variations_weights = [1.0, 1.0, 1.0]
 texture_sequence = [2, 2, 2, 1, 0, 2]
 
 [node name="FireTiger" type="Sprite2D" parent="Background" index="9"]
@@ -438,10 +436,14 @@ centered = false
 position = Vector2(514, 565)
 
 [node name="BrickWall" parent="Background/BrickBuilding1" index="0" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_tyvsr")
+material = SubResource("ShaderMaterial_jq4kj")
 position = Vector2(-4.5, -550)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 2146, 2200)
+color_darkest = Color(0.0823529, 0.027451, 0.027451, 1)
+color_shadow = Color(0.505882, 0.137255, 0.121569, 1)
+color_base = Color(0.596078, 0.313726, 0.188235, 1)
+color_highlights = Color(0.745098, 0.572549, 0.411765, 1)
 
 [node name="Pipe" type="Node2D" parent="Background/BrickBuilding1" index="1"]
 position = Vector2(489, -1122)
@@ -528,7 +530,7 @@ length = 42
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0]
+variations_weights = [1.0, 1.0, 1.0]
 texture_sequence = [2, 1, 2, 2, 1, 0, 0, 2, 0, 1, 2, 2, 0, 2, 2, 1, 0, 2, 0, 2, 2, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 2, 1, 2, 0, 0, 1, 1]
 
 [node name="BambooVase1" type="Sprite2D" parent="Background/SideWalk2" index="0"]
@@ -558,7 +560,7 @@ texture = ExtResource("30_8bcgp")
 position = Vector2(96, 0)
 
 [node name="BrickWall2" parent="Background/BrickBuilding2" index="0" instance=ExtResource("4_8ntk5")]
-material = SubResource("ShaderMaterial_tsgfr")
+material = SubResource("ShaderMaterial_o8ik0")
 position = Vector2(1454.2, 13.5)
 scale = Vector2(0.5, 0.5)
 region_rect = Rect2(0, 0, 1842.37, 2206)
@@ -610,7 +612,7 @@ separation = -99
 cap_begin = ExtResource("7_412kv")
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0]
+variations_weights = [1.0, 1.0, 1.0]
 texture_sequence = [1, 0, 1, 2, 1, 0, 0, 2, 0, 1, 2, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 2, 0, 1, 0, 0, 0, 2, 1, 0, 1, 2, 1, 0, 1, 0, 1, 1, 2, 0, 0, 0]
 
 [node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk" index="0"]
@@ -635,6 +637,14 @@ position = Vector2(7117.64, -458.217)
 
 [node name="LampPole5" parent="Background/SideWalk" index="6" instance=ExtResource("31_n3xtr")]
 position = Vector2(9201.64, -458.217)
+
+[node name="LampLight" parent="Background/SideWalk/LampPole5" index="0"]
+enabled = true
+energy = 1.0
+
+[node name="LightSprite" parent="Background/SideWalk/LampPole5" index="1"]
+visible = true
+modulate = Color(1, 1, 1, 1)
 
 [node name="Postbox1" type="Sprite2D" parent="Background/SideWalk" index="7"]
 position = Vector2(961.637, -57.217)
@@ -997,3 +1007,5 @@ visible = false
 [connection signal="all_waves_completed" from="Utilities/FightRoom3/QuiverEnemySpawner" to="Utilities/FightRoom3" method="setup_after_fight_room"]
 [connection signal="player_detected" from="Utilities/FightRoom4/Fight4PlayerDetector" to="." method="_on_fight_4_player_detector_player_detected"]
 [connection signal="all_waves_completed" from="Utilities/FightRoom4/Fight4Spawner" to="." method="_on_fight_4_spawner_all_waves_completed"]
+
+[editable path="Background/SideWalk/LampPole5"]
