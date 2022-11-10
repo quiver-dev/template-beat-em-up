@@ -12,6 +12,7 @@ extends Sprite2D
 #--- constants ------------------------------------------------------------------------------------
 
 const SCENE_EXTRA := preload("res://stages/_base/skyboxes/extra_texture.tscn")
+const DEFAULT_TEXTURE1D = preload("res://stages/stage_01/background_elements/skyboxes/skybox_default_texture1d.tres")
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
@@ -53,9 +54,9 @@ var _extra_textures_data: Dictionary = {}
 
 var _tween: Tween
 
-var _shader_gradient := material.get_shader_parameter("gradient").gradient as Gradient
-
 var _all_clouds: Array[Sprite2D] = []
+
+var _shader_gradient: Gradient = null
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -63,6 +64,7 @@ var _all_clouds: Array[Sprite2D] = []
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
+	_restore_shader_params()
 	item_rect_changed.connect(_resize_all_extra_nodes)
 	
 	_reset_extra_nodes()
@@ -116,6 +118,19 @@ func stop_animations() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+## This is a hack that for some reason is needed in the exported version because of a bug where 
+## all values from shader parameters loaded from tscns are lost, even though when running from 
+## the editor everything is fine.
+func _restore_shader_params() -> void:
+	var shader_material = (material as ShaderMaterial)
+	var texture_1D := DEFAULT_TEXTURE1D.duplicate(true)
+	shader_material.set_shader_parameter("gradient", texture_1D)
+	shader_material.set_shader_parameter("is_active", true)
+	shader_material.set_shader_parameter("show_grayscale", false)
+	
+	_shader_gradient = texture_1D.gradient as Gradient
+
 
 func _reset_extra_nodes() -> void:
 	if not is_inside_tree():

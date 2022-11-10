@@ -1,0 +1,7 @@
+[gd_resource type="Gradient" format=3]
+
+[resource]
+resource_local_to_scene = true
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
+colors = PackedColorArray(0, 0, 0, 1, 0.662745, 0.662745, 0.662745, 1, 0.827451, 0.827451, 0.827451, 1, 1, 1, 1, 1)
