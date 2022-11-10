@@ -7,8 +7,7 @@ extends Resource
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-signal sunset_changed
-signal sunrise_changed
+signal twilight_changed
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -16,15 +15,10 @@ signal sunrise_changed
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export_range(0.0, 1.0, 0.01) var sunset_transition := 0.0:
+@export_range(0.0, 1.0, 0.01) var twilight_transition := 0.0:
 	set(value):
-		sunset_transition = value
-		sunset_changed.emit()
-
-@export_range(0.0, 1.0, 0.01) var sunrise_transition := 0.0:
-	set(value):
-		sunrise_transition = value
-		sunrise_changed.emit()
+		twilight_transition = value
+		twilight_changed.emit()
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 

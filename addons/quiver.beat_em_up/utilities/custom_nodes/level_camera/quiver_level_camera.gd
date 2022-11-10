@@ -46,11 +46,11 @@ func _process(_delta: float) -> void:
 		var half_size := get_viewport_rect().size / zoom / 2.0 + half_collision_width
 		var target_position := get_screen_center_position()
 		if limit == _limit_left:
-			target_position.x = maxf(
+			target_position.x = minf(
 					limit_left - half_collision_width.x , target_position.x - half_size.x
 			)
 		elif limit == _limit_right:
-			target_position.x = minf(
+			target_position.x = maxf(
 					limit_right + half_collision_width.x, target_position.x + half_size.x
 			)
 		

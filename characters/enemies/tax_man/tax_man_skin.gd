@@ -45,11 +45,7 @@ func _ready() -> void:
 
 func _on_dash_obstacle_detector_body_entered(body: Node2D) -> void:
 	if body is PhysicsBody2D:
-		if _body_is_player(body):
-			if QuiverCombatSystem.is_in_same_lane_as(attributes, body.attributes):
-				dash_attack_succeeded.emit()
-		else:
-			dash_attack_failed.emit()
+		dash_attack_succeeded.emit()
 
 
 func _body_is_player(body: PhysicsBody2D):

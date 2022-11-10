@@ -13,8 +13,8 @@ extends Area2D
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export var character_type: QuiverCombatSystem.CharacterTypes = \
-		QuiverCombatSystem.CharacterTypes.PLAYERS:
+@export var character_type: CombatSystem.CharacterTypes = \
+		CombatSystem.CharacterTypes.PLAYERS:
 	set(value):
 		character_type = value 
 		_handle_character_type_presets()
@@ -67,14 +67,14 @@ func _handle_character_type_presets() -> void:
 	
 	var target_collision_type := ""
 	match character_type:
-		QuiverCombatSystem.CharacterTypes.PLAYERS:
+		CombatSystem.CharacterTypes.PLAYERS:
 			target_collision_type = "player_grab_box"
-		QuiverCombatSystem.CharacterTypes.ENEMIES:
+		CombatSystem.CharacterTypes.ENEMIES:
 			target_collision_type = "enemy_grab_box"
 		_:
 			push_error("Unimplemented CharacterType: %s. Possible types: %s"%[
 					character_type,
-					QuiverCombatSystem.CharacterTypes.keys()
+					CombatSystem.CharacterTypes.keys()
 			])
 			return
 	

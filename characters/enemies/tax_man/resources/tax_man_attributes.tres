@@ -1,10 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bjbxqlhg6r7fw"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bjbxqlhg6r7fw"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_fte7m"]
+[ext_resource type="Texture2D" uid="uid://cbq4toxts5yvs" path="res://characters/enemies/tax_man/resources/tax_man_lifebar_gradient.tres" id="1_ppsjt"]
+[ext_resource type="Texture2D" uid="uid://d0tc7hki5otdm" path="res://characters/enemies/tax_man/resources/sprites/health_bar_revised_all_tax_man.png" id="2_5jwrp"]
 
 [resource]
 script = ExtResource("1_fte7m")
 display_name = "Tax Man"
+profile_texture = ExtResource("2_5jwrp")
+life_bar_gradient = ExtResource("1_ppsjt")
 health_max = 600.0
 speed_max = 600
 air_control = 0.6

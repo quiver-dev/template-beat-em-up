@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://3hpc7r8lm4y1"]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/helpers/autoload/debug_logger/quiver_debug_logger.gd" id="1_sq5ue"]
+
+[node name="QuiverDebugLogger" type="Node"]
+script = ExtResource("1_sq5ue")
+
+[node name="FlushLogTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="FlushLogTimer" to="." method="_on_flush_log_timer_timeout"]

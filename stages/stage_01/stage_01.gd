@@ -14,6 +14,8 @@ extends BaseStage
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @onready var _fight_room_2 := $Utilities/FightRoom2 as QuiverFightRoom
+@onready var _tax_man := %TaxMan as TaxManBoss
+@onready var _fight_5 := %FightRoom5 as QuiverFightRoom
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -22,7 +24,7 @@ extends BaseStage
 
 func _ready() -> void:
 	super()
-	pass
+	_tax_man.tree_exited.connect(_on_tax_man_tree_exited)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -46,7 +48,16 @@ func _on_fight_2_spawner_all_waves_completed() -> void:
 		_fight_room_2.setup_after_fight_room()
 
 
-func _on_boss_spawner_all_waves_completed() -> void:
+func _on_tax_man_tree_exited() -> void:
 	_end_screen.open_end_screen(true)
+
+
+func _on_fight_4_player_detector_player_detected() -> void:
+	_tax_man.tax_man_revealed.emit()
+
+
+func _on_fight_4_spawner_all_waves_completed() -> void:
+	_tax_man.tax_man_engaged.emit()
+	_fight_5.setup_fight_room()
 
 ### -----------------------------------------------------------------------------------------------

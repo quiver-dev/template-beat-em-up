@@ -1,8 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddrajabgyar7r"]
+[gd_scene load_steps=38 format=3 uid="uid://ybodq3hs6b0o"]
 
 [ext_resource type="Theme" uid="uid://dwt1c0b2tvhig" path="res://theme_resources/theme_template.tres" id="1_ix3c8"]
 [ext_resource type="Script" path="res://gameplay_ui/pause_menu/PauseMenu.gd" id="1_nnmou"]
+[ext_resource type="Texture2D" uid="uid://d1km5hwxdeda5" path="res://theme_resources/pngs/menu_color_stripes.png" id="3_34eht"]
 [ext_resource type="PackedScene" uid="uid://b8o7l7qide3e1" path="res://how_to_play/how_to_play.tscn" id="3_rxfeb"]
+[ext_resource type="Texture2D" uid="uid://uwk0ebe8cds5" path="res://gameplay_ui/pause_menu/pngs/title.png" id="4_2ql16"]
+[ext_resource type="Texture2D" uid="uid://d2sw0aoua81cx" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_normal.png" id="5_4v04h"]
+[ext_resource type="Script" path="res://theme_resources/DoubleMaskMarginContainer.gd" id="5_huo1k"]
+[ext_resource type="Texture2D" uid="uid://dr5jruvipbkoy" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_pressed.png" id="6_it42n"]
+[ext_resource type="Texture2D" uid="uid://y0nnoyaeiueg" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_hover.png" id="7_4kn8k"]
+[ext_resource type="BitMap" uid="uid://g3vtioweju5h" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_mask_normal.png" id="8_2wc67"]
+[ext_resource type="Script" path="res://theme_resources/DoubleMaskTextureButton.gd" id="9_od0qp"]
+[ext_resource type="BitMap" uid="uid://cgmngbq3ewe36" path="res://gameplay_ui/pause_menu/pngs/buttons/resume_mask_big.png" id="10_jy0rq"]
+[ext_resource type="Texture2D" uid="uid://ldayfdi122qs" path="res://gameplay_ui/pause_menu/pngs/buttons/restart_normal.png" id="11_a6jyr"]
+[ext_resource type="Texture2D" uid="uid://4cevig5i8foe" path="res://gameplay_ui/pause_menu/pngs/buttons/restart_pressed.png" id="12_42huj"]
+[ext_resource type="Texture2D" uid="uid://dlanys6bpionb" path="res://gameplay_ui/pause_menu/pngs/buttons/restart_hover.png" id="13_2j11h"]
+[ext_resource type="BitMap" uid="uid://dhfh1tj2dqpdg" path="res://gameplay_ui/pause_menu/pngs/buttons/restart_mask_normal.png" id="14_e3b6x"]
+[ext_resource type="BitMap" uid="uid://cq87tas28kiue" path="res://gameplay_ui/pause_menu/pngs/buttons/restart_mask_big.png" id="15_slsbs"]
+[ext_resource type="Texture2D" uid="uid://bdknlj6f31yxc" path="res://gameplay_ui/pause_menu/pngs/buttons/how_to_play_normal.png" id="16_or3ng"]
+[ext_resource type="Texture2D" uid="uid://q3sk1fp6krb" path="res://gameplay_ui/pause_menu/pngs/buttons/how_to_play_pressed.png" id="17_2646g"]
+[ext_resource type="Texture2D" uid="uid://cv7toitrlpyim" path="res://gameplay_ui/pause_menu/pngs/buttons/how_to_play_hover.png" id="18_6dgcq"]
+[ext_resource type="BitMap" uid="uid://cuwewhr3ypipj" path="res://gameplay_ui/pause_menu/pngs/buttons/how_to_play_mask_normal.png" id="19_f8fwb"]
+[ext_resource type="BitMap" uid="uid://dxymwgdbphjn2" path="res://gameplay_ui/pause_menu/pngs/buttons/how_to_play_mask_big.png" id="20_sno52"]
+[ext_resource type="Texture2D" uid="uid://d2hn5e3eoixe2" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_to_main_normal.png" id="21_kgdup"]
+[ext_resource type="Texture2D" uid="uid://bvuxvyqqt4d0x" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_to_main_pressed.png" id="22_hm3s5"]
+[ext_resource type="Texture2D" uid="uid://b6p2xxwdnkunf" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_to_main_hover.png" id="23_ey1hy"]
+[ext_resource type="BitMap" uid="uid://dg0fv77f23abu" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_to_main_mask_normal.png" id="24_6bcge"]
+[ext_resource type="BitMap" uid="uid://f8mpdgj4sggk" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_to_main_mask_big.png" id="25_x4yi2"]
+[ext_resource type="Texture2D" uid="uid://dcogkaqvot5yr" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_normal.png" id="26_i4vot"]
+[ext_resource type="Texture2D" uid="uid://cl16a47x4b4aj" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_pressed.png" id="27_3qi3l"]
+[ext_resource type="Texture2D" uid="uid://b844gyrlhn4nj" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_hover.png" id="28_xyac7"]
+[ext_resource type="BitMap" uid="uid://c54ps7mf67b0b" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_mask_normal.png" id="29_svse4"]
+[ext_resource type="BitMap" uid="uid://c3n1563und8fe" path="res://gameplay_ui/pause_menu/pngs/buttons/quit_mask_big.png" id="30_uc2xg"]
 
 [sub_resource type="Animation" id="Animation_o5ytk"]
 resource_name = "EDITOR"
@@ -26,6 +55,18 @@ tracks/1/path = NodePath("PanelContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stripes:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -57,6 +98,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stripes:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4ua1p"]
@@ -100,6 +153,18 @@ tracks/2/keys = {
 "method": &"_unpause"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stripes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0pjgj"]
 resource_name = "open"
@@ -131,29 +196,41 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer/Content/Resume")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"grab_focus"
-}]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"_update_time_scale_value"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stripes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer/Content/ResumeContainer/Resume")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
 }]
 }
 
@@ -183,55 +260,211 @@ libraries = {
 "": SubResource("AnimationLibrary_6fsw4")
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Stripes" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -123.0
-offset_right = 200.0
-offset_bottom = 123.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_34eht")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2i(0, 640)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -286.0
+offset_right = 431.0
+offset_bottom = 286.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_layout_mode = 1
 
+[node name="TitleContainer" type="Control" parent="PanelContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 170.0
+offset_right = 849.0
+offset_bottom = 628.0
+
+[node name="Title" type="TextureRect" parent="PanelContainer/TitleContainer"]
+offset_top = -142.0
+offset_right = 837.0
+offset_bottom = -26.0
+texture = ExtResource("4_2ql16")
+stretch_mode = 3
+
 [node name="Content" type="VBoxContainer" parent="PanelContainer"]
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 575.0
-offset_bottom = 600.0
+offset_left = 12.0
+offset_top = 170.0
+offset_right = 849.0
+offset_bottom = 628.0
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/Content"]
-offset_right = 550.0
-offset_bottom = 140.0
-theme_type_variation = &"HeaderLarge"
-text = "PAUSED"
-horizontal_alignment = 1
+[node name="ResumeContainer" type="MarginContainer" parent="PanelContainer/Content"]
+offset_top = 36.0
+offset_right = 837.0
+offset_bottom = 124.0
+theme_override_constants/margin_top = -70
+theme_override_constants/margin_bottom = -70
+script = ExtResource("5_huo1k")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("Resume")
 
-[node name="Resume" type="Button" parent="PanelContainer/Content"]
-offset_top = 144.0
-offset_right = 550.0
-offset_bottom = 227.0
+[node name="Resume" type="TextureButton" parent="PanelContainer/Content/ResumeContainer"]
+offset_top = -70.0
+offset_right = 837.0
+offset_bottom = 158.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../QuitContainer/Quit")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../RestartContainer/Restart")
+focus_next = NodePath("../../RestartContainer/Restart")
+focus_previous = NodePath("../../QuitContainer/Quit")
 theme_type_variation = &"PauseButtons"
-text = "Resume"
+texture_normal = ExtResource("5_4v04h")
+texture_pressed = ExtResource("6_it42n")
+texture_hover = ExtResource("7_4kn8k")
+texture_focused = ExtResource("7_4kn8k")
+texture_click_mask = ExtResource("8_2wc67")
+script = ExtResource("9_od0qp")
+mask_normal = ExtResource("8_2wc67")
+mask_hover = ExtResource("10_jy0rq")
 
-[node name="Restart" type="Button" parent="PanelContainer/Content"]
-offset_top = 231.0
-offset_right = 550.0
-offset_bottom = 314.0
-theme_type_variation = &"PauseButtons"
-text = "Restart
-"
+[node name="RestartContainer" type="MarginContainer" parent="PanelContainer/Content"]
+offset_top = 128.0
+offset_right = 837.0
+offset_bottom = 212.0
+theme_override_constants/margin_top = -75
+theme_override_constants/margin_bottom = -40
+script = ExtResource("5_huo1k")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("Restart")
 
-[node name="HowToPlay" type="Button" parent="PanelContainer/Content"]
-offset_top = 318.0
-offset_right = 550.0
-offset_bottom = 401.0
+[node name="Restart" type="TextureButton" parent="PanelContainer/Content/RestartContainer"]
+offset_top = -75.0
+offset_right = 837.0
+offset_bottom = 124.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ResumeContainer/Resume")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../HowContainter/HowToPlay")
+focus_next = NodePath("../../HowContainter/HowToPlay")
+focus_previous = NodePath("../../ResumeContainer/Resume")
+texture_normal = ExtResource("11_a6jyr")
+texture_pressed = ExtResource("12_42huj")
+texture_hover = ExtResource("13_2j11h")
+texture_focused = ExtResource("13_2j11h")
+texture_click_mask = ExtResource("14_e3b6x")
+script = ExtResource("9_od0qp")
+mask_normal = ExtResource("14_e3b6x")
+mask_hover = ExtResource("15_slsbs")
+
+[node name="HowContainter" type="MarginContainer" parent="PanelContainer/Content"]
+offset_top = 216.0
+offset_right = 837.0
+offset_bottom = 286.0
+theme_override_constants/margin_top = -145
+theme_override_constants/margin_bottom = -60
+script = ExtResource("5_huo1k")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("HowToPlay")
+
+[node name="HowToPlay" type="TextureButton" parent="PanelContainer/Content/HowContainter"]
+offset_top = -145.0
+offset_right = 837.0
+offset_bottom = 130.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../RestartContainer/Restart")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../QuitMainContainer/QuitToMainMenu")
+focus_next = NodePath("../../QuitMainContainer/QuitToMainMenu")
+focus_previous = NodePath("../../RestartContainer/Restart")
 theme_type_variation = &"PauseButtons"
-text = "How To Play"
+texture_normal = ExtResource("16_or3ng")
+texture_pressed = ExtResource("17_2646g")
+texture_hover = ExtResource("18_6dgcq")
+texture_focused = ExtResource("18_6dgcq")
+texture_click_mask = ExtResource("19_f8fwb")
+script = ExtResource("9_od0qp")
+mask_normal = ExtResource("19_f8fwb")
+mask_hover = ExtResource("20_sno52")
+
+[node name="QuitMainContainer" type="MarginContainer" parent="PanelContainer/Content"]
+offset_top = 290.0
+offset_right = 837.0
+offset_bottom = 336.0
+theme_override_constants/margin_top = -235
+theme_override_constants/margin_bottom = -160
+script = ExtResource("5_huo1k")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("QuitToMainMenu")
+
+[node name="QuitToMainMenu" type="TextureButton" parent="PanelContainer/Content/QuitMainContainer"]
+offset_top = -235.0
+offset_right = 837.0
+offset_bottom = 206.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../HowContainter/HowToPlay")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../QuitContainer/Quit")
+focus_next = NodePath("../../QuitContainer/Quit")
+focus_previous = NodePath("../../HowContainter/HowToPlay")
+theme_type_variation = &"PauseButtons"
+texture_normal = ExtResource("21_kgdup")
+texture_pressed = ExtResource("22_hm3s5")
+texture_hover = ExtResource("23_ey1hy")
+texture_focused = ExtResource("23_ey1hy")
+texture_click_mask = ExtResource("24_6bcge")
+script = ExtResource("9_od0qp")
+mask_normal = ExtResource("24_6bcge")
+mask_hover = ExtResource("25_x4yi2")
+
+[node name="QuitContainer" type="MarginContainer" parent="PanelContainer/Content"]
+offset_top = 340.0
+offset_right = 837.0
+offset_bottom = 422.0
+theme_override_constants/margin_top = -230
+theme_override_constants/margin_bottom = -70
+script = ExtResource("5_huo1k")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("Quit")
+
+[node name="Quit" type="TextureButton" parent="PanelContainer/Content/QuitContainer"]
+offset_top = -230.0
+offset_right = 837.0
+offset_bottom = 152.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../QuitMainContainer/QuitToMainMenu")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ResumeContainer/Resume")
+focus_next = NodePath("../../ResumeContainer/Resume")
+focus_previous = NodePath("../../QuitMainContainer/QuitToMainMenu")
+theme_type_variation = &"PauseButtons"
+texture_normal = ExtResource("26_i4vot")
+texture_pressed = ExtResource("27_3qi3l")
+texture_hover = ExtResource("28_xyac7")
+texture_focused = ExtResource("28_xyac7")
+texture_click_mask = ExtResource("29_svse4")
+script = ExtResource("9_od0qp")
+mask_normal = ExtResource("29_svse4")
+mask_hover = ExtResource("30_uc2xg")
 
 [node name="TimeScaleLine" type="HBoxContainer" parent="PanelContainer/Content"]
 visible = false
@@ -261,27 +494,13 @@ offset_right = 350.0
 offset_bottom = 48.0
 text = "1.0"
 
-[node name="QuitToMainMenu" type="Button" parent="PanelContainer/Content"]
-offset_top = 405.0
-offset_right = 550.0
-offset_bottom = 488.0
-theme_type_variation = &"PauseButtons"
-text = "Quit to main menu"
-
-[node name="Quit" type="Button" parent="PanelContainer/Content"]
-offset_top = 492.0
-offset_right = 550.0
-offset_bottom = 575.0
-theme_type_variation = &"PauseButtons"
-text = "Quit"
-
 [node name="HowToPlay" parent="." instance=ExtResource("3_rxfeb")]
 visible = false
 
-[connection signal="pressed" from="PanelContainer/Content/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="PanelContainer/Content/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="PanelContainer/Content/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/ResumeContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/RestartContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/HowContainter/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/QuitMainContainer/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
+[connection signal="pressed" from="PanelContainer/Content/QuitContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="PanelContainer/Content/TimeScaleLine/Slider" to="." method="_on_slider_value_changed"]
-[connection signal="pressed" from="PanelContainer/Content/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
-[connection signal="pressed" from="PanelContainer/Content/Quit" to="." method="_on_quit_pressed"]
 [connection signal="how_to_play_closed" from="HowToPlay" to="." method="_on_how_to_play_how_to_play_closed"]

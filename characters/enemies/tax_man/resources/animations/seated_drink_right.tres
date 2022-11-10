@@ -73,10 +73,10 @@ tracks/5/path = NodePath("Body:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.375),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2(-319, -293)]
+"values": [Vector2(-319, -293), Vector2(-318, -297)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -161,6 +161,18 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Body/QuiverHurtBox/HurtBoxShape:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 metadata/mirrored_name = "seated_drink_right.tres"
 metadata/should_overwrite = true

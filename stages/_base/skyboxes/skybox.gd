@@ -41,17 +41,17 @@ var _extra_textures: Array:
 var _total_transitions := 1:
 	set(value):
 		_total_transitions = value
-		_reset_transitions_data()
+#		_reset_transitions_data()
 		notify_property_list_changed()
 
+
+@export var gradient_transitions_array : Array[GradientTransitioner]
 ## Array of GradientTransitioners
 var _gradient_transitions_data: Array = []
 ## Dictionary in the format of { texture_resource_uid: SkyBoxExtraTextureData }
 var _extra_textures_data: Dictionary = {}
 
-var _tween_main: Tween
-var _tween_motion: Tween
-var _tween_colors: Tween
+var _tween: Tween
 
 var _shader_gradient := material.get_shader_parameter("gradient").gradient as Gradient
 
@@ -90,20 +90,27 @@ func _process(delta: float) -> void:
 func play_animations() -> void:
 	set_process(true)
 	_reset_clouds()
+	_play_gradients()
+
+
+func _play_gradients() -> void:
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_loops()
 	
-	for data in _gradient_transitions_data:
+	var delay := gradient_transitions_array.back().duration as float
+	for data in gradient_transitions_array:
 		var transition_data := data as GradientTransitioner
-		transition_data.animate_gradient()
-		
-		await transition_data.transition_finished
+		_tween.tween_callback(transition_data.animate_gradient).set_delay(delay)
+		delay = transition_data.duration
 
 
 func stop_animations() -> void:
 	set_process(false)
 	_reset_clouds()
-	_gradient_transitions_data[0].reset_transition()
-	if _tween_main:
-		_tween_main.kill()
+	gradient_transitions_array[0].reset_transition()
+	if _tween:
+		_tween.kill()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -173,16 +180,16 @@ func _reset_clouds() -> void:
 		var extra_data := value as SkyBoxExtraTextureData
 		extra_data.reset_sprite_region()
 
-
-func _reset_transitions_data() -> void:
-	_gradient_transitions_data.resize(_total_transitions)
-	for index in _total_transitions:
-		if _gradient_transitions_data[index] == null:
-			var data := GradientTransitioner.new()
-			if index > 1:
-				var prev_data := _gradient_transitions_data[index - 1] as GradientTransitioner
-				data.from = prev_data.to
-			_gradient_transitions_data[index] = data
+#
+#func _reset_transitions_data() -> void:
+#	_gradient_transitions_data.resize(_total_transitions)
+#	for index in _total_transitions:
+#		if _gradient_transitions_data[index] == null:
+#			var data := GradientTransitioner.new()
+#			if index > 1:
+#				var prev_data := _gradient_transitions_data[index - 1] as GradientTransitioner
+#				data.from = prev_data.to
+#			_gradient_transitions_data[index] = data
 
 
 func _is_invalid_node(node: Node) -> bool:
@@ -190,7 +197,7 @@ func _is_invalid_node(node: Node) -> bool:
 
 
 func _setup_all_gradient_transitioners() -> void:
-	for data in _gradient_transitions_data:
+	for data in gradient_transitions_array:
 		var transition_data := data as GradientTransitioner
 		transition_data.setup_transitioner(_shader_gradient, self)
 
@@ -265,16 +272,7 @@ func _get_custom_properties() -> Dictionary:
 			hint = PROPERTY_HINT_NONE,
 			hint_string = "",
 	}
-	properties["gradient_transitions_data"] = {
-			backing_field = "_gradient_transitions_data",
-			type = TYPE_ARRAY,
-			usage = PROPERTY_USAGE_STORAGE,
-			hint = PROPERTY_HINT_NONE,
-			hint_string = "",
-	}
-	
 	_resgister_extra_textures_properties(properties)
-	_register_gradient_transition_properties(properties)
 	
 	return properties
 
@@ -307,36 +305,6 @@ func _resgister_extra_textures_properties(properties: Dictionary) -> void:
 						_set_dict_sub_property.bind(_extra_textures_data, uid, property_name)
 				properties[new_key] = prop_dict
 
-
-func _register_gradient_transition_properties(properties: Dictionary) -> void:
-	properties["gradient_transitions/total_transition"] = {
-			backing_field = "_total_transitions",
-			type = TYPE_INT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0,1,1,or_greater",
-	}
-	
-	var transition_properties: Array = \
-		GradientTransitioner.new().get_property_list().filter(_is_exported_variable)
-	for g_index in _total_transitions:
-		for index in transition_properties.size():
-			var prop_dict := transition_properties[index].duplicate() as Dictionary
-			var property_name := prop_dict.name as String
-			var new_key = "gradient_transitions/%s/%s"%[g_index, property_name]
-			prop_dict["name"] = new_key
-			prop_dict["usage"] = PROPERTY_USAGE_EDITOR
-			prop_dict["get_callable"] = \
-					_get_array_sub_property.bind(
-							_gradient_transitions_data, g_index, property_name
-					)
-			prop_dict["set_callable"] = \
-					_set_array_sub_property.bind(
-							_gradient_transitions_data, g_index, property_name
-					)
-			properties[new_key] = prop_dict
-
-
 func _set_dict_sub_property(
 		value: Variant, dict: Dictionary, key: Variant, property: StringName
 ) -> void:
@@ -347,19 +315,6 @@ func _get_dict_sub_property(
 		dict: Dictionary, key: Variant, property: StringName
 ) -> Variant:
 	var value = dict[key][property]
-	return value
-
-
-func _set_array_sub_property(
-		value: Variant, array: Array, index: int, property: StringName
-) -> void:
-	array[index][property] = value
-
-
-func _get_array_sub_property(
-		array: Array, index: int, property: StringName
-) -> Variant:
-	var value = array[index][property]
 	return value
 
 ### -----------------------------------------------------------------------------------------------

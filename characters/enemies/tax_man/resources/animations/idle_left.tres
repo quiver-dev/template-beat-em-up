@@ -320,7 +320,7 @@ tracks/25/keys = {
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("Attacks/GrabReject/GrabRejectShape:visible")
+tracks/26/path = NodePath("Attacks/Retaliate/RetaliateShape:visible")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
@@ -332,7 +332,7 @@ tracks/26/keys = {
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("Attacks/GrabReject/GrabRejectShape:disabled")
+tracks/27/path = NodePath("Attacks/Retaliate/RetaliateShape:disabled")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
@@ -364,6 +364,18 @@ tracks/29/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Body/QuiverHurtBox/HurtBoxShape:disabled")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 metadata/mirrored_name = "idle_right.tres"
 metadata/should_overwrite = true

@@ -32,6 +32,10 @@ var use_vector2 := false:
 		use_vector2 = value
 		notify_property_list_changed()
 
+var use_spawner_position := true:
+	set(value):
+		use_spawner_position = value
+		notify_property_list_changed()
 var target_node_path := NODEPATH_INVALID
 var target_position := Vector2.ZERO
 
@@ -46,6 +50,19 @@ var target_position := Vector2.ZERO
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func get_spawn_position(spawner: Node2D) -> Vector2:
+	var value := Vector2.ZERO
+	
+	if spawn_mode == SpawnMode.IN_PLACE and use_spawner_position:
+		value = spawner.global_position
+	elif use_vector2:
+		value = target_position
+	else:
+		var marker2D = spawner.get_node(target_node_path) as Marker2D
+		value = marker2D.global_position
+	
+	return value
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -73,6 +90,11 @@ func _get_custom_properties() -> Dictionary:
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = ",".join(SpawnMode.keys()),
+		},
+		"_use_spawner_position": {
+			backing_field = "use_spawner_position",
+			type = TYPE_BOOL,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		},
 		"_use_vector2": {
 			backing_field = "use_vector2",
@@ -117,9 +139,17 @@ func _get_property_list() -> Array:
 		
 		if spawn_mode == SpawnMode.IN_PLACE:
 			if key in ["_use_vector2", "_target_node_path", "_target_position"]:
-				add_property = false
+				if use_spawner_position:
+					add_property = false
+				else:
+					if use_vector2 and key == "_target_node_path":
+						add_property = false
+					elif not use_vector2 and key == "_target_position":
+						add_property = false
 		elif spawn_mode == SpawnMode.WALK_TO_POSITION:
-			if use_vector2 and key == "_target_node_path":
+			if key == "_use_spawner_position":
+				add_property = false
+			elif use_vector2 and key == "_target_node_path":
 				add_property = false
 			elif not use_vector2 and key == "_target_position":
 				add_property = false

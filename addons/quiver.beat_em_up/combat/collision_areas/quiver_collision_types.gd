@@ -28,7 +28,7 @@ const PRESETS = {
 		"monitorable": true,
 		"collision_layer": 256,
 		"collision_mask": 0,
-		"character_type": QuiverCombatSystem.CharacterTypes.PLAYERS,
+		"character_type": CombatSystem.CharacterTypes.PLAYERS,
 	},
 	"player_hurt_box": { 
 		META_KEY: "player_hurt_box",
@@ -37,7 +37,7 @@ const PRESETS = {
 		"monitorable": false,
 		"collision_layer": 4096,
 		"collision_mask": 512+2048,
-		"character_type": QuiverCombatSystem.CharacterTypes.PLAYERS,
+		"character_type": CombatSystem.CharacterTypes.PLAYERS,
 	},
 	"player_grab_box": { 
 		META_KEY: "player_grab_box",
@@ -46,7 +46,7 @@ const PRESETS = {
 		"monitorable": true,
 		"collision_layer": 1024,
 		"collision_mask": 0,
-		"character_type": QuiverCombatSystem.CharacterTypes.PLAYERS,
+		"character_type": CombatSystem.CharacterTypes.PLAYERS,
 	},
 	"enemy_hit_box": { 
 		META_KEY: "enemy_hit_box",
@@ -55,7 +55,7 @@ const PRESETS = {
 		"monitorable": true,
 		"collision_layer": 512,
 		"collision_mask": 0,
-		"character_type": QuiverCombatSystem.CharacterTypes.ENEMIES,
+		"character_type": CombatSystem.CharacterTypes.ENEMIES,
 	},
 	"enemy_hurt_box": { 
 		META_KEY: "enemy_hurt_box",
@@ -64,7 +64,7 @@ const PRESETS = {
 		"monitorable": false,
 		"collision_layer": 8192,
 		"collision_mask": 256+1024,
-		"character_type": QuiverCombatSystem.CharacterTypes.ENEMIES,
+		"character_type": CombatSystem.CharacterTypes.ENEMIES,
 	},
 	"enemy_grab_box": { 
 		META_KEY: "enemy_grab_box",
@@ -73,7 +73,7 @@ const PRESETS = {
 		"monitorable": true,
 		"collision_layer": 2048,
 		"collision_mask": 0,
-		"character_type": QuiverCombatSystem.CharacterTypes.ENEMIES,
+		"character_type": CombatSystem.CharacterTypes.ENEMIES,
 	},
 	"world_hit_box": { 
 		META_KEY: "world_hit_box",
@@ -82,7 +82,7 @@ const PRESETS = {
 		"monitorable": true,
 		"collision_layer": 128,
 		"collision_mask": 0,
-		"character_type": QuiverCombatSystem.CharacterTypes.BOUNCE_OBSTACLE,
+		"character_type": CombatSystem.CharacterTypes.BOUNCE_OBSTACLE,
 	},
 	"player_detector": { 
 		META_KEY: "player_detector",

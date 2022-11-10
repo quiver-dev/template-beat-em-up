@@ -1,0 +1,48 @@
+[gd_scene load_steps=11 format=3 uid="uid://ddko0177naxfd"]
+
+[ext_resource type="PackedScene" path="res://gameplay_ui/hud/player_health_bar/heath_bar.tscn" id="1_8oipo"]
+[ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="2_p5a0a"]
+[ext_resource type="Texture2D" uid="uid://cpud2kjimkjgp" path="res://gameplay_ui/hud/enemy_health_bar/pngs/small_health_bar_base.png" id="3_52eci"]
+[ext_resource type="Script" path="res://gameplay_ui/hud/enemy_health_bar/enemy_health_bar.gd" id="4_e63uu"]
+[ext_resource type="Texture2D" uid="uid://crm6wluf5m7ar" path="res://gameplay_ui/hud/enemy_health_bar/pngs/small_heart_icon.png" id="4_lfpdt"]
+[ext_resource type="Texture2D" uid="uid://b56fm3o8xws17" path="res://gameplay_ui/hud/enemy_health_bar/pngs/small_health_bar_under.png" id="5_yfr6g"]
+[ext_resource type="Texture2D" uid="uid://cddip5ctgyrod" path="res://gameplay_ui/hud/enemy_health_bar/pngs/small_health_bar_progress.png" id="6_x63rl"]
+
+[sub_resource type="Gradient" id="Gradient_h6r38"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rw4s5"]
+gradient = SubResource("Gradient_h6r38")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sq4gg"]
+resource_local_to_scene = true
+shader = ExtResource("2_p5a0a")
+shader_parameter/gradient = SubResource("GradientTexture1D_rw4s5")
+shader_parameter/is_active = true
+shader_parameter/show_grayscale = false
+
+[node name="EnemyHealthBar" instance=ExtResource("1_8oipo")]
+material = SubResource("ShaderMaterial_sq4gg")
+texture = ExtResource("3_52eci")
+script = ExtResource("4_e63uu")
+
+[node name="Profile" parent="." index="0"]
+layout_mode = 3
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 135.0
+offset_bottom = 93.0
+
+[node name="HeartIcon" parent="." index="1"]
+layout_mode = 3
+offset_left = 147.0
+offset_top = 7.0
+offset_right = 196.0
+offset_bottom = 52.0
+texture = ExtResource("4_lfpdt")
+stretch_mode = 2
+
+[node name="TextureProgressBar" parent="." index="2"]
+offset_left = 186.0
+offset_right = 803.0
+texture_under = ExtResource("5_yfr6g")
+texture_progress = ExtResource("6_x63rl")

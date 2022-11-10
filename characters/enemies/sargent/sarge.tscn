@@ -234,6 +234,7 @@ script = ExtResource("26_al3lo")
 path_ready_state = "Ground/Move/IdleAi"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
+visible = false
 offset_left = -168.0
 offset_top = -442.0
 offset_right = 168.0

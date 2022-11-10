@@ -14,6 +14,8 @@ const AirState = preload(
 		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
 )
 
+const MAX_LAUNCH_SPEED = 2000
+
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -87,10 +89,13 @@ func _handle_bounce() -> void:
 
 
 func _launch_charater(launch_vector: Vector2) -> void:
-	var knockback_velocity = _attributes.knockback_amount * launch_vector
-	_character.velocity.x += knockback_velocity.x
-	_air_state._skin_velocity_y += knockback_velocity.y
-	_attributes.knockback_amount = 0
+	var current_velocity := Vector2(_character.velocity.x, _air_state._skin_velocity_y)
+	var new_velocity = current_velocity + _attributes.knockback_amount * launch_vector
+	new_velocity = new_velocity.limit_length(MAX_LAUNCH_SPEED)
+	
+	_character.velocity.x = new_velocity.x
+	_air_state._skin_velocity_y = new_velocity.y
+	_attributes.reset_knockback()
 
 
 func _connect_signals() -> void:

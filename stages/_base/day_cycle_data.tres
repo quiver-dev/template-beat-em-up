@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_ldtut")
-sunset_transition = 0.0
-sunrise_transition = 0.0
+twilight_transition = 0.0

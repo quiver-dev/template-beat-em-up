@@ -10,20 +10,28 @@ extends Control
 
 #--- constants ------------------------------------------------------------------------------------
 
-const TITLE_GAMEOVER = "Game Over"
-const TITLE_VICTORY = "Congratulations!"
+const TITLE_GAMEOVER = "GAME OVER!"
+const TITLE_VICTORY = "CONGRATULATIONS!"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _title := $Title as Label
+@onready var _button_restart := $PanelContainer/Buttons/MarginContainer/Replay as TextureButton
+@onready var _title := $PanelContainer/Control/Title as Label
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
+
+func _ready() -> void:
+	if QuiverEditorHelper.is_standalone_run(self):
+		var is_victory = randi() % 2 as bool
+		_title.text = TITLE_VICTORY if is_victory else TITLE_GAMEOVER
+		_animator.play("open")
+		_button_restart.grab_focus()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -34,6 +42,7 @@ func open_end_screen(is_victory: bool) -> void:
 	get_tree().paused = true
 	_title.text = TITLE_VICTORY if is_victory else TITLE_GAMEOVER
 	_animator.play("open")
+	_button_restart.grab_focus()
 
 ### -----------------------------------------------------------------------------------------------
 

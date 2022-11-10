@@ -175,6 +175,7 @@ script = ExtResource("22_twsvw")
 skin_state = &"die"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
+visible = false
 offset_left = -168.0
 offset_top = -442.0
 offset_right = 168.0
@@ -185,6 +186,7 @@ theme = ExtResource("30_iwktm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="Chad" type="Label" parent="DebugLabels" index="0"]
+layout_mode = 2
 offset_right = 336.0
 offset_bottom = 26.0
 script = ExtResource("12_sub7a")
@@ -192,6 +194,7 @@ path_reference = NodePath("../..")
 properties = PackedStringArray("velocity", "is_on_air", "attributes:ground_level")
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
+layout_mode = 2
 offset_top = 26.0
 offset_right = 336.0
 offset_bottom = 52.0

@@ -1,26 +1,35 @@
-[gd_scene load_steps=34 format=3 uid="uid://cyax8ahrme87s"]
+[gd_scene load_steps=45 format=3 uid="uid://dwpmxxw1us778"]
 
 [ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://ccthcaakgim08" path="res://characters/enemies/tax_man/resources/tax_man_animation_tree_root.tres" id="3_l0y1t"]
-[ext_resource type="AnimationLibrary" uid="uid://b2ay847n6ik86" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
-[ext_resource type="SpriteFrames" uid="uid://dp685c3c21u3x" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
+[ext_resource type="AnimationLibrary" path="res://characters/enemies/tax_man/resources/tax_man_anim_library.tres" id="3_o8ek5"]
+[ext_resource type="SpriteFrames" uid="uid://rrn5345j7lyc" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_sprite_frames.tres" id="4_2vvsa"]
 [ext_resource type="SpriteFrames" uid="uid://bbjvw0xd36hmq" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_lightining_sprite_frames.tres" id="4_6fblr"]
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/steated_preview.gd" id="10_sp0k2"]
+[ext_resource type="Texture2D" uid="uid://h7d3gctevfx2" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0065.png" id="11_8rinb"]
+[ext_resource type="Texture2D" uid="uid://dh2pp7d5q53st" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0066.png" id="12_caly6"]
 [ext_resource type="Texture2D" uid="uid://iwtqurgemgtv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/grenade_pins.png" id="12_kopjc"]
+[ext_resource type="Texture2D" uid="uid://baw8ykf8r632t" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0067.png" id="13_53e8q"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="13_nokxb"]
 [ext_resource type="Resource" uid="uid://bjtuh8xbdj64a" path="res://characters/enemies/tax_man/resources/attacks/lightining_attack.tres" id="14_kc7ha"]
+[ext_resource type="Texture2D" uid="uid://bq0y3fthxsfy4" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0068.png" id="14_kq4yh"]
 [ext_resource type="Resource" uid="uid://dkaaoscp08m6e" path="res://characters/enemies/tax_man/resources/attacks/area_attack.tres" id="15_4lyjr"]
 [ext_resource type="Resource" uid="uid://cc7cqj03vhk0p" path="res://characters/enemies/tax_man/resources/attacks/combo1_attack.tres" id="16_ey7s6"]
 [ext_resource type="Resource" uid="uid://d3ilcnh4ibqkp" path="res://characters/enemies/tax_man/resources/attacks/combo2_attack.tres" id="17_rbk5w"]
 [ext_resource type="Resource" uid="uid://b4tidt0k74tjt" path="res://characters/enemies/tax_man/resources/attacks/combo3_attack.tres" id="18_ynnty"]
 [ext_resource type="Resource" uid="uid://xqvyoty7t4hm" path="res://characters/enemies/tax_man/resources/attacks/dash_attack.tres" id="19_io51d"]
+[ext_resource type="Texture2D" uid="uid://c2k7o2f7glcpw" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0080.png" id="19_uh20d"]
 [ext_resource type="SpriteFrames" uid="uid://dtrb5fqmkkyla" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_smoke_sprite_frames.tres" id="19_xm1w5"]
 [ext_resource type="Resource" uid="uid://dfj4ujbiw3i45" path="res://characters/enemies/tax_man/resources/attacks/grab_reject_attack.tres" id="20_4qg1q"]
+[ext_resource type="Texture2D" uid="uid://dj310p15yegge" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0081.png" id="20_usexs"]
+[ext_resource type="Texture2D" uid="uid://c2eajaku8begs" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0082.png" id="21_j3vsw"]
+[ext_resource type="Texture2D" uid="uid://da78hj46w51k6" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0083.png" id="22_vbi8g"]
 [ext_resource type="SpriteFrames" uid="uid://yhmp6uwgolv4" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_explosion_sprite_frames.tres" id="29_l5cjv"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vjek0"]
@@ -35,12 +44,28 @@ shader = ExtResource("6_5x5ps")
 shader_parameter/color = Color(0.12549, 0.0313726, 0.0196078, 1)
 shader_parameter/effect_strength = 0.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_cktw8"]
+animations = [{
+"frames": [ExtResource("11_8rinb"), ExtResource("12_caly6"), ExtResource("13_53e8q"), ExtResource("14_kq4yh")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vd2w"]
 resource_local_to_scene = true
 size = Vector2(211, 518)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmnd1"]
 size = Vector2(93, 416.75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3w2t"]
+animations = [{
+"frames": [ExtResource("19_uh20d"), ExtResource("20_usexs"), ExtResource("21_j3vsw"), ExtResource("22_vbi8g")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jf7kv"]
 size = Vector2(588, 1031)
@@ -69,12 +94,15 @@ _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("3_b4sly")
 has_grab = false
 has_grabbed = false
+metadata/_edit_vertical_guides_ = [-229.0, 217.0, 196.0]
+metadata/_edit_horizontal_guides_ = [21.0, -139.0]
 
-[node name="AnimationPlayer" parent="." index="0"]
+[node name="AnimationPlayer" parent="." index="0" groups=["tax_man_preview"]]
 libraries = {
 "": SubResource("AnimationLibrary_vjek0"),
 "tax_man": ExtResource("3_o8ek5")
 }
+script = ExtResource("10_sp0k2")
 
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource("3_l0y1t")
@@ -89,6 +117,7 @@ parameters/state_machine/hurt_light/blend_position = -1
 parameters/state_machine/hurt_medium/blend_position = -1
 parameters/state_machine/idle/blend_position = -1
 parameters/state_machine/knockout_kneeled/blend_position = 0
+parameters/state_machine/retaliate/blend_position = -0.440625
 parameters/state_machine/seated_drink/blend_position = -1
 parameters/state_machine/seated_engage/blend_position = -1
 parameters/state_machine/seated_laugh/blend_position = -1
@@ -102,7 +131,7 @@ parameters/time_scale/scale = 1.0
 visible = false
 position = Vector2(202, -512)
 frames = ExtResource("4_6fblr")
-animation = &"back_lightning"
+animation = &"back_lightning_explosion"
 
 [node name="Body" type="AnimatedSprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_lpimj")
@@ -116,6 +145,10 @@ show_behind_parent = true
 position = Vector2(38, 474)
 frames = ExtResource("6_nrudn")
 animation = &"area_attak"
+
+[node name="Smoke" type="AnimatedSprite2D" parent="Body/GroundLightining" index="0"]
+visible = false
+frames = SubResource("SpriteFrames_cktw8")
 
 [node name="QuiverHurtBox" type="Area2D" parent="Body" index="1"]
 collision_layer = 8192
@@ -163,30 +196,43 @@ visible = false
 modulate = Color(0.670588, 0.384314, 1, 0.435294)
 position = Vector2(48, -252)
 frames = ExtResource("4_2vvsa")
-animation = &"engage"
+animation = &"slap"
 
 [node name="FrontLightining" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
 position = Vector2(77, -551)
 frames = ExtResource("4_6fblr")
-animation = &"front_lightining"
+animation = &"front_lightining_explostion"
 
-[node name="Smoke" type="AnimatedSprite2D" parent="." index="8"]
+[node name="SmokeVertical" type="AnimatedSprite2D" parent="." index="8"]
 visible = false
 position = Vector2(758, -747)
 frames = ExtResource("19_xm1w5")
+animation = &"vertical_grenade"
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." index="9"]
 visible = false
 position = Vector2(135, -486)
 frames = ExtResource("29_l5cjv")
+animation = &"grenade"
 
-[node name="Positions" type="Node2D" parent="." index="10"]
+[node name="Coins" type="AnimatedSprite2D" parent="." index="10"]
+visible = false
+position = Vector2(62, -211)
+frames = SubResource("SpriteFrames_q3w2t")
+
+[node name="SmokeHorizontal" type="AnimatedSprite2D" parent="." index="11"]
+visible = false
+position = Vector2(62, -211)
+frames = ExtResource("19_xm1w5")
+animation = &"horizontal"
+
+[node name="Positions" type="Node2D" parent="." index="12"]
 
 [node name="ScorchSpawn" type="Marker2D" parent="Positions" index="0"]
 position = Vector2(24, 160)
 
-[node name="Attacks" type="Node2D" parent="." index="11"]
+[node name="Attacks" type="Node2D" parent="." index="13"]
 
 [node name="Lightining" type="Area2D" parent="Attacks" index="0"]
 collision_layer = 512
@@ -286,11 +332,12 @@ metadata/collision_type = "enemy_hit_box"
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(-287, -356)
+rotation = -0.550344
 shape = SubResource("RectangleShape2D_aca1f")
 disabled = true
 metadata/collision_type = "enemy_hit_box"
 
-[node name="GrabReject" type="Area2D" parent="Attacks" index="6"]
+[node name="Retaliate" type="Area2D" parent="Attacks" index="6"]
 collision_layer = 512
 collision_mask = 0
 monitoring = false
@@ -299,7 +346,7 @@ character_type = 1
 _attack_data = ExtResource("20_4qg1q")
 metadata/collision_type = "enemy_hit_box"
 
-[node name="GrabRejectShape" type="CollisionShape2D" parent="Attacks/GrabReject" index="0"]
+[node name="RetaliateShape" type="CollisionShape2D" parent="Attacks/Retaliate" index="0"]
 visible = false
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(-287, -356)

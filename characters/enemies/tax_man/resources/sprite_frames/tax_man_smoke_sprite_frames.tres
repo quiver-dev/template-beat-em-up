@@ -1,20 +1,45 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dtrb5fqmkkyla"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://dtrb5fqmkkyla"]
 
-[ext_resource type="Texture2D" uid="uid://dst83l73txqr8" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_24.png" id="1_mlhxu"]
-[ext_resource type="Texture2D" uid="uid://2ny2qdo7tglv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_25.png" id="2_8i68u"]
-[ext_resource type="Texture2D" uid="uid://cvwfw245qjg0a" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_26.png" id="3_c8rxi"]
-[ext_resource type="Texture2D" uid="uid://djftnnelwxvat" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_27.png" id="4_aocot"]
-[ext_resource type="Texture2D" uid="uid://b5jwwmw57am84" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_28.png" id="5_pg8it"]
-[ext_resource type="Texture2D" uid="uid://bd0digxwlq8lv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_29.png" id="6_tukgu"]
-[ext_resource type="Texture2D" uid="uid://bj8lddg51rnyg" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_30.png" id="7_q04yj"]
-[ext_resource type="Texture2D" uid="uid://ciy6qmost4b1l" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_31.png" id="8_yscmn"]
-[ext_resource type="Texture2D" uid="uid://ga34cif0l04l" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_32.png" id="9_euaqp"]
-[ext_resource type="Texture2D" uid="uid://cm2hyes7gbgd6" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/smoke_33.png" id="10_x78dx"]
+[ext_resource type="Texture2D" uid="uid://censwvdf57h5y" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0085.png" id="1_nf2lu"]
+[ext_resource type="Texture2D" uid="uid://cuu50jo0kpdtb" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0086.png" id="2_ojjsk"]
+[ext_resource type="Texture2D" uid="uid://bwvklndu3rm78" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0087.png" id="3_mgdaf"]
+[ext_resource type="Texture2D" uid="uid://bgect22ed2gi8" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0088.png" id="4_vc6eo"]
+[ext_resource type="Texture2D" uid="uid://x4ew5knaaamw" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0090.png" id="5_mo0lc"]
+[ext_resource type="Texture2D" uid="uid://cqhvaw2smu7oo" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0092.png" id="6_xj38x"]
+[ext_resource type="Texture2D" uid="uid://es1jerx54h83" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0094.png" id="7_2qief"]
+[ext_resource type="Texture2D" uid="uid://bd4h1s1h6s3m0" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0096.png" id="8_e6lra"]
+[ext_resource type="Texture2D" uid="uid://ctnsnvokd7wpy" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0098.png" id="9_vj0x5"]
+[ext_resource type="Texture2D" uid="uid://dwyvaw602ne1" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke_horizontal/grenade_finisher0100.png" id="10_vbkw3"]
+[ext_resource type="Texture2D" uid="uid://c5cl6fjxc4cr0" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0081.png" id="11_cxehk"]
+[ext_resource type="Texture2D" uid="uid://b8xu6qhjqnuhg" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0089.png" id="11_de08v"]
+[ext_resource type="Texture2D" uid="uid://de6cuhutp1n8a" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0090.png" id="12_1cjlc"]
+[ext_resource type="Texture2D" uid="uid://bnnkjfss8jbdd" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0082.png" id="12_b6olc"]
+[ext_resource type="Texture2D" uid="uid://drj2hl3fjoggf" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0092.png" id="13_p6pmu"]
+[ext_resource type="Texture2D" uid="uid://c2g5jgld0pl7x" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0084.png" id="13_s24o4"]
+[ext_resource type="Texture2D" uid="uid://cld6cmqn5a6un" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0087.png" id="14_eirqh"]
+[ext_resource type="Texture2D" uid="uid://dbk67nnchw2fq" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0095.png" id="14_ws72b"]
+[ext_resource type="Texture2D" uid="uid://b1a8kgnifx4dc" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0097.png" id="15_ij6n1"]
+[ext_resource type="Texture2D" uid="uid://dlhx8heb717a6" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0089.png" id="15_ughkh"]
+[ext_resource type="Texture2D" uid="uid://db6yw2be18o1e" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0091.png" id="16_sriok"]
+[ext_resource type="Texture2D" uid="uid://c3fabw4iwpvv8" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0099.png" id="16_x27qv"]
+[ext_resource type="Texture2D" uid="uid://bqilxg7h03tvc" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0100.png" id="17_41l3j"]
+[ext_resource type="Texture2D" uid="uid://uliexei1w5ey" path="res://characters/enemies/tax_man/resources/sprites/attacks/area_attack/smoke/area_attack_0093.png" id="17_pgo6x"]
+[ext_resource type="Texture2D" uid="uid://bc8jdl20gn2i6" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/smoke/grenade_finisher0101.png" id="18_14ty8"]
 
 [resource]
 animations = [{
-"frames": [ExtResource("1_mlhxu"), ExtResource("2_8i68u"), ExtResource("2_8i68u"), ExtResource("3_c8rxi"), ExtResource("3_c8rxi"), ExtResource("3_c8rxi"), ExtResource("4_aocot"), ExtResource("4_aocot"), ExtResource("5_pg8it"), ExtResource("5_pg8it"), ExtResource("6_tukgu"), ExtResource("6_tukgu"), ExtResource("7_q04yj"), ExtResource("8_yscmn"), ExtResource("8_yscmn"), ExtResource("9_euaqp"), ExtResource("9_euaqp"), ExtResource("9_euaqp"), ExtResource("10_x78dx"), ExtResource("10_x78dx"), null],
+"frames": [ExtResource("1_nf2lu"), ExtResource("2_ojjsk"), ExtResource("3_mgdaf"), ExtResource("4_vc6eo"), ExtResource("4_vc6eo"), ExtResource("5_mo0lc"), ExtResource("5_mo0lc"), ExtResource("6_xj38x"), ExtResource("6_xj38x"), ExtResource("7_2qief"), ExtResource("7_2qief"), ExtResource("8_e6lra"), ExtResource("8_e6lra"), ExtResource("9_vj0x5"), ExtResource("9_vj0x5"), ExtResource("10_vbkw3"), ExtResource("10_vbkw3"), null],
+"loop": true,
+"name": &"horizontal",
+"speed": 5.0
+}, {
+"frames": [ExtResource("11_cxehk"), ExtResource("12_b6olc"), ExtResource("12_b6olc"), ExtResource("13_s24o4"), ExtResource("13_s24o4"), ExtResource("13_s24o4"), ExtResource("14_eirqh"), ExtResource("14_eirqh"), ExtResource("15_ughkh"), ExtResource("15_ughkh"), ExtResource("16_sriok"), ExtResource("16_sriok"), ExtResource("17_pgo6x")],
+"loop": true,
+"name": &"vertical_area_attack",
+"speed": 5.0
+}, {
+"frames": [ExtResource("11_de08v"), ExtResource("12_1cjlc"), ExtResource("12_1cjlc"), ExtResource("13_p6pmu"), ExtResource("13_p6pmu"), ExtResource("13_p6pmu"), ExtResource("14_ws72b"), ExtResource("14_ws72b"), ExtResource("15_ij6n1"), ExtResource("15_ij6n1"), ExtResource("16_x27qv"), ExtResource("17_41l3j"), ExtResource("18_14ty8"), null],
 "loop": false,
-"name": &"default",
+"name": &"vertical_grenade",
 "speed": 24.0
 }]

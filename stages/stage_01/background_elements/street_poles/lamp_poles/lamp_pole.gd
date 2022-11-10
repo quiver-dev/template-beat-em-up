@@ -25,8 +25,8 @@ var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
 ### Built in Engine Methods -----------------------------------------------------------------------
 
 func _ready() -> void:
-	_on_sunset_changed()
-	_day_cycle_data.sunset_changed.connect(_on_sunset_changed)
+	_on_twilight_changed()
+	_day_cycle_data.twilight_changed.connect(_on_twilight_changed)
 	pass
 
 ### -----------------------------------------------------------------------------------------------
@@ -39,11 +39,11 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _on_sunset_changed() -> void:
-	_light.enabled = _day_cycle_data.sunset_transition >= 0.5
+func _on_twilight_changed() -> void:
+	_light.enabled = _day_cycle_data.twilight_transition >= 0.5
 	_light_sprite.visible = _light.enabled
 	if _light.enabled:
-		var progress := smoothstep(0.5, 1.0, _day_cycle_data.sunset_transition)
+		var progress := smoothstep(0.5, 1.0, _day_cycle_data.twilight_transition)
 		_light.energy = progress
 		_light_sprite.modulate.a = progress
 	elif _light.energy != 0:
