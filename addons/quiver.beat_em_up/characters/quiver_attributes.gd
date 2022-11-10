@@ -33,7 +33,7 @@ signal grab_denied
 
 #--- constants ------------------------------------------------------------------------------------
 
-const KNOCKBACK_BY_STRENGTH = {
+const KNOCKBACK_VALUES = {
 	QuiverCyclicHelper.KnockbackStrength.NONE: 0,
 	QuiverCyclicHelper.KnockbackStrength.WEAK: 60, # Doesn't launch the target, but builds up
 	QuiverCyclicHelper.KnockbackStrength.MEDIUM: 600, # Should launch target
@@ -78,7 +78,7 @@ const KNOCKBACK_BY_STRENGTH = {
 		var has_changed = value != is_invulnerable
 		is_invulnerable = value
 		if has_changed and is_invulnerable:
-			knockback_amount = 0
+			reset_knockback()
 
 ## This can be toggled on or off in animations to create animations that can't be interrupted
 ## but still should allow damage to be received.
@@ -87,7 +87,7 @@ const KNOCKBACK_BY_STRENGTH = {
 		var has_changed = value != has_superarmor
 		has_superarmor = value
 		if has_changed and has_superarmor:
-			knockback_amount = 0
+			reset_knockback()
 
 @export var can_be_grabbed := true
 
@@ -143,13 +143,26 @@ func _to_string() -> String:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+func add_death_knockback() -> void:
+	if (
+			not is_alive 
+			and knockback_amount < KNOCKBACK_VALUES[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
+	):
+		add_knockback(QuiverCyclicHelper.KnockbackStrength.MEDIUM)
+
+
 func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
-	knockback_amount += KNOCKBACK_BY_STRENGTH[strength]
+	knockback_amount += KNOCKBACK_VALUES[strength]
+
+
+func reset_knockback() -> void:
+	if knockback_amount != 0:
+		knockback_amount = 0
 
 
 func should_knockout() -> bool:
 	var has_enough_knockback: bool = \
-			knockback_amount >= KNOCKBACK_BY_STRENGTH[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
+			knockback_amount >= KNOCKBACK_VALUES[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
 	return not is_alive or (not has_superarmor and has_enough_knockback)
 
 
