@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_gradient_transitioner.gd" id="9_65dxk"]
 
 [sub_resource type="Gradient" id="Gradient_qs8id"]
-offsets = PackedFloat32Array(0, 0.258675, 0.719243, 0.84858, 0.971609)
-colors = PackedColorArray(0, 0.0557628, 0.134146, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
+offsets = PackedFloat32Array(0, 0.259, 0.435, 0.656, 0.972)
+colors = PackedColorArray(0, 0.0456241, 0.109756, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fbtva"]
 gradient = SubResource("Gradient_qs8id")
@@ -138,6 +138,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 540)
 script = ExtResource("2_tgyol")
+is_playing = false
 gradient_transitions_array = [SubResource("Resource_h6m07"), SubResource("Resource_sjmqs"), SubResource("Resource_1vere"), SubResource("Resource_a1ksm"), SubResource("Resource_bkrwy"), SubResource("Resource_w6gr3")]
 extra_textures = [ExtResource("2_mvoff"), ExtResource("3_w15ne"), ExtResource("4_i5v0l"), ExtResource("5_wwtyb")]
 extra_textures_data = {
