@@ -17,7 +17,6 @@ const TITLE_VICTORY = "CONGRATULATIONS!"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _button_restart := $PanelContainer/Buttons/MarginContainer/Replay as TextureButton
 @onready var _title := $PanelContainer/Control/Title as Label
 @onready var _animator := $AnimationPlayer as AnimationPlayer
 
@@ -31,7 +30,6 @@ func _ready() -> void:
 		var is_victory = randi() % 2 as bool
 		_title.text = TITLE_VICTORY if is_victory else TITLE_GAMEOVER
 		_animator.play("open")
-		_button_restart.grab_focus()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -39,10 +37,10 @@ func _ready() -> void:
 ### Public Methods --------------------------------------------------------------------------------
 
 func open_end_screen(is_victory: bool) -> void:
-	get_tree().paused = true
-	_title.text = TITLE_VICTORY if is_victory else TITLE_GAMEOVER
-	_animator.play("open")
-	_button_restart.grab_focus()
+	if is_inside_tree():
+		get_tree().paused = true
+		_title.text = TITLE_VICTORY if is_victory else TITLE_GAMEOVER
+		_animator.play("open")
 
 ### -----------------------------------------------------------------------------------------------
 

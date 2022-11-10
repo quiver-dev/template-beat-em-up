@@ -98,6 +98,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/Buttons/MarginContainer/Replay")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_83bbo"]
 _data = {
@@ -108,6 +122,7 @@ _data = {
 
 [node name="EndScreen" type="Control"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +163,7 @@ grow_vertical = 2
 texture = ExtResource("3_ymwy3")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2i(0, 445)
+custom_minimum_size = Vector2(0, 445)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
