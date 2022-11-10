@@ -47,7 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func open_pause_menu() -> void:
 	get_tree().paused = true
-	_button_resume.grab_focus()
 	_animator.play("open")
 
 
