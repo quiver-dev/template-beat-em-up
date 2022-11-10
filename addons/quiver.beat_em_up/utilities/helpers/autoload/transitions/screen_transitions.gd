@@ -39,8 +39,8 @@ func transition_to_scene(path: String, should_start_loading := false) -> void:
 	
 	await fade_in_transition()
 	show_loading_bar_for(path)
-	while BackgroundLoader.is_loading_resource(path):
-		await get_tree().process_frame
+	if BackgroundLoader.is_loading_resource(path):
+		await BackgroundLoader.loading_finished
 	
 	var scene := BackgroundLoader.get_resource(path) as PackedScene
 	var error := get_tree().change_scene_to_packed(scene)

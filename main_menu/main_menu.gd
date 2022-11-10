@@ -43,6 +43,9 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_start_pressed() -> void:
+	if _animator.assigned_animation == "game_started":
+		return
+	
 	_animator.play("game_started")
 	await transition_started
 	ScreenTransitions.transition_to_scene(GAMEPLAY_SCENE)
