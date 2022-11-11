@@ -245,7 +245,6 @@ theme = ExtResource("31_yhl3m")
 metadata/_edit_use_custom_anchors = true
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
-layout_mode = 2
 offset_right = 336.0
 offset_bottom = 26.0
 script = ExtResource("31_tgvee")
@@ -253,7 +252,6 @@ path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
-layout_mode = 2
 offset_top = 26.0
 offset_right = 336.0
 offset_bottom = 52.0
