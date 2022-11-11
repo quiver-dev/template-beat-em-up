@@ -86,7 +86,8 @@ func enter(msg: = {}) -> void:
 
 func exit() -> void:
 	super()
-	_character.global_position = _engage_position
+	if not _engage_position == INVALID_POSITION:
+		_character.global_position = _engage_position
 	_character._enable_collisions()
 
 ### -----------------------------------------------------------------------------------------------
