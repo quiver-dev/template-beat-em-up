@@ -1,0 +1,583 @@
+[gd_scene load_steps=75 format=3 uid="uid://bh5kh85qd8l58"]
+
+[ext_resource type="Script" path="res://movie_scenes/chad/chad_assets_overview.gd" id="1_r072d"]
+[ext_resource type="Script" path="res://stages/stage_01/DayCycleModulate.gd" id="2_4iov2"]
+[ext_resource type="PackedScene" uid="uid://ca6iowcjexjvn" path="res://stages/stage_01/background_elements/skyboxes/skybox.tscn" id="3_w68qt"]
+[ext_resource type="Script" path="res://stages/stage_01/stage01_skybox.gd" id="4_5amai"]
+[ext_resource type="Texture2D" uid="uid://c7fphss6j8oey" path="res://stages/stage_01/background_elements/buildings/cityscape_00.png" id="5_ykxql"]
+[ext_resource type="Texture2D" uid="uid://e161r1inmr0t" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_back_brick_wall_dirty.png" id="6_rn2d0"]
+[ext_resource type="Texture2D" uid="uid://bvnsmsil71bnt" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_tree_leftside.png" id="7_e8qjd"]
+[ext_resource type="Texture2D" uid="uid://clhyfh86x3q45" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_tree_rightside.png" id="8_lev3s"]
+[ext_resource type="Shader" path="res://stages/stage_01/hard_light.gdshader" id="9_pd2w1"]
+[ext_resource type="Texture2D" uid="uid://bg164vx5yfm4o" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_windows.png" id="10_uosdy"]
+[ext_resource type="Texture2D" uid="uid://dx5n25lg03m3j" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_black_marble.png" id="11_grbnn"]
+[ext_resource type="Texture2D" uid="uid://dt36h10hb1mpc" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_floor_chess.png" id="12_uovhj"]
+[ext_resource type="Texture2D" uid="uid://ct0e5tvx2qiq6" path="res://stages/stage_01/background_elements/decorations/area_2_bamboo1_2.png" id="13_pkped"]
+[ext_resource type="Texture2D" uid="uid://dtww3alsrhm43" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_pilar_leftside.png" id="14_saret"]
+[ext_resource type="Script" path="res://stages/stage_01/tax_man_room_light.gd" id="15_gl3ip"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="16_ftsna"]
+[ext_resource type="Texture2D" uid="uid://evnwrnbyt1jd" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_0.png" id="17_id7iu"]
+[ext_resource type="Texture2D" uid="uid://iq7d0847x83h" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_1.png" id="18_yxq5h"]
+[ext_resource type="Texture2D" uid="uid://ctvhqu3sfy08v" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_revised_2.png" id="19_oqrev"]
+[ext_resource type="Texture2D" uid="uid://pry20irssppl" path="res://stages/stage_01/background_elements/buildings/area_2_fire_tiger_steakhouse_all.png" id="20_5lspx"]
+[ext_resource type="Texture2D" uid="uid://blocy7e66ra0r" path="res://stages/stage_01/background_elements/buildings/area_2_java_bean_dream_all.png" id="21_gn55c"]
+[ext_resource type="Texture2D" uid="uid://y3mkbcs03dy" path="res://stages/stage_01/background_elements/buildings/foster_mart/area_2_foster_mart_store_all.png" id="22_omntf"]
+[ext_resource type="Texture2D" uid="uid://k1o6b34fd3cm" path="res://stages/stage_01/background_elements/buildings/foster_mart/area_2_rocks_revised.png" id="23_mwlcu"]
+[ext_resource type="Texture2D" uid="uid://1kf8i7y5yoon" path="res://stages/stage_01/background_elements/buildings/foster_mart/area_2_foster_mart_sign.png" id="24_8jda0"]
+[ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://stages/stage_01/background_elements/pavement/street_revised_straight.png" id="25_aa01g"]
+[ext_resource type="Texture2D" uid="uid://bdv436i82wdj4" path="res://stages/stage_01/background_elements/pavement/street_revised_curved.png" id="26_bwmyk"]
+[ext_resource type="Texture2D" uid="uid://b5niuxuhp4w3p" path="res://stages/stage_01/background_elements/pavement/area_2_crosswalk.png" id="27_umc8v"]
+[ext_resource type="Texture2D" uid="uid://drgfnuqqfrg4b" path="res://stages/stage_01/background_elements/pavement/tax_man_streetlines.png" id="28_d7u3f"]
+[ext_resource type="PackedScene" uid="uid://cwosgi05uou8o" path="res://stages/stage_01/background_elements/buildings/walls/brick_wall/brick_wall.tscn" id="29_lwomu"]
+[ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="30_v0n6l"]
+[ext_resource type="Texture2D" uid="uid://d34upd6axohpi" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_body.png" id="31_wul4p"]
+[ext_resource type="Texture2D" uid="uid://dqgwlg6ha1ime" path="res://stages/stage_01/background_elements/buildings/pipes/drainpipe_exit.png" id="32_c38g2"]
+[ext_resource type="Texture2D" uid="uid://d326gpsqdber" path="res://stages/stage_01/background_elements/buildings/windows/standard/windows_1_1_50.png" id="33_31hem"]
+[ext_resource type="Texture2D" uid="uid://ccfpi6frhepgd" path="res://stages/stage_01/background_elements/buildings/doors/door_2_revised_50.png" id="34_0qkq5"]
+[ext_resource type="Texture2D" uid="uid://mq2ks7r5sjkk" path="res://stages/stage_01/background_elements/buildings/doors/door_3_50.png" id="35_sl0f2"]
+[ext_resource type="Texture2D" uid="uid://exocfq7eqej2" path="res://stages/stage_01/background_elements/buildings/signs/anime_girl/anime_girl_poster_red.png" id="36_xbthd"]
+[ext_resource type="Texture2D" uid="uid://dtgtx0h0eh5y1" path="res://stages/stage_01/background_elements/buildings/signs/anime_girl/anime_girl_poster_purlple.png" id="37_souc7"]
+[ext_resource type="PackedScene" uid="uid://hojm4k143cap" path="res://stages/stage_01/background_elements/buildings/signs/love_yourself/love_yourself_sign.tscn" id="38_4lm6g"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fence.gd" id="39_fnxyi"]
+[ext_resource type="Texture2D" uid="uid://1cocp0o1ua5f" path="res://stages/stage_01/background_elements/fence/chainlink_fence_middle_pole.png" id="40_d5wix"]
+[ext_resource type="Texture2D" uid="uid://dtc4d05g37g73" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__00.png" id="41_oe5y0"]
+[ext_resource type="Texture2D" uid="uid://bfsf12el1igux" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__01.png" id="42_fbie1"]
+[ext_resource type="Texture2D" uid="uid://dji2wpv6hk84w" path="res://stages/stage_01/background_elements/fence/chainlink_fence_revised__02.png" id="43_jfsrc"]
+[ext_resource type="PackedScene" uid="uid://bmsrokuaoo4d" path="res://stages/stage_01/background_elements/buildings/chicken_king/chicken_king.tscn" id="44_humyu"]
+[ext_resource type="PackedScene" uid="uid://bgjhhowmcl3j" path="res://stages/stage_01/background_elements/decorations/christmas_lights/christmas_lights.tscn" id="45_ps0fq"]
+[ext_resource type="PackedScene" uid="uid://cl26je7j1tm2g" path="res://stages/stage_01/background_elements/decorations/lantern/lanterns.tscn" id="46_rg72j"]
+[ext_resource type="Texture2D" uid="uid://10s4duduxokp" path="res://stages/stage_01/background_elements/vending_machines/vending_machines_clean_separated_yellow_50.png" id="47_evxdt"]
+[ext_resource type="Texture2D" uid="uid://d2ayfbynawa4b" path="res://stages/stage_01/background_elements/vending_machines/vending_machine_tags_separated_3_50.png" id="48_fdwtw"]
+[ext_resource type="Texture2D" uid="uid://c1nig7r42sdk6" path="res://stages/stage_01/background_elements/vending_machines/vending_machines_clean_separated_red_50.png" id="49_w1ys3"]
+[ext_resource type="Texture2D" uid="uid://gndch3lv12s5" path="res://stages/stage_01/background_elements/buildings/windows/standard/windows_1_3_50.png" id="50_wradk"]
+[ext_resource type="Texture2D" uid="uid://sblsgjraucxi" path="res://stages/stage_01/background_elements/buildings/doors/door_1_revised_new_50.png" id="51_de4k2"]
+[ext_resource type="Texture2D" uid="uid://b1t7e4lf2fjru" path="res://stages/stage_01/background_elements/buildings/windows/narrow/window_2.png" id="52_x17t0"]
+[ext_resource type="Texture2D" uid="uid://d2tan12hotr8u" path="res://stages/stage_01/background_elements/sidewalk/sidewalk_curve_50.png" id="53_pn4g2"]
+[ext_resource type="Texture2D" uid="uid://ckx7onkorw05s" path="res://stages/stage_01/background_elements/street_poles/telephone_pole_revised_1_50.png" id="54_lev7t"]
+[ext_resource type="PackedScene" uid="uid://u3gukw56uaso" path="res://stages/stage_01/background_elements/street_poles/lamp_poles/lamp_pole.tscn" id="55_qj04r"]
+[ext_resource type="Texture2D" uid="uid://64cy35dxtdah" path="res://stages/stage_01/background_elements/street_poles/post_box/postbox_tagged.png" id="56_k6pg2"]
+[ext_resource type="Texture2D" uid="uid://wgg3w6gnvakg" path="res://stages/stage_01/background_elements/street_poles/post_box/postbox_clean.png" id="57_8jppw"]
+[ext_resource type="Texture2D" uid="uid://dh7tejawvukva" path="res://stages/stage_01/background_elements/street_poles/metal_post.png" id="58_vthgw"]
+[ext_resource type="PackedScene" uid="uid://cwhqw068qykav" path="res://stages/stage_01/background_elements/gates/tori_gate/tori_gate.tscn" id="59_620hk"]
+[ext_resource type="PackedScene" uid="uid://bq5fuuqbl8loh" path="res://stages/stage_01/background_elements/tax_man_area/tax_man_throne.tscn" id="60_4c3jb"]
+[ext_resource type="PackedScene" uid="uid://beq6o4qcjiuys" path="res://stages/stage_01/background_elements/tax_man_area/brick_gate/dirty_brick_wall_gate.tscn" id="61_i5301"]
+[ext_resource type="PackedScene" path="res://movie_scenes/chad/auto_chad_animation.tscn" id="62_mlkd6"]
+[ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="62_q6rup"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe6v1"]
+shader = ExtResource("9_pd2w1")
+
+[sub_resource type="Gradient" id="Gradient_q1rff"]
+offsets = PackedFloat32Array(0, 0.379538, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.884488, 0.884488, 0.884488, 1, 0.0976562, 0.0976562, 0.0976562, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rxt3w"]
+gradient = SubResource("Gradient_q1rff")
+width = 1400
+height = 500
+fill = 1
+fill_from = Vector2(0.603352, 0.349693)
+fill_to = Vector2(0, 0.475798)
+
+[sub_resource type="Gradient" id="Gradient_h48br"]
+resource_local_to_scene = true
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
+colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1ld7"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_h48br")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
+shader = ExtResource("30_v0n6l")
+shader_parameter/gradient = SubResource("GradientTexture1D_c1ld7")
+shader_parameter/is_active = true
+shader_parameter/show_grayscale = false
+
+[sub_resource type="Gradient" id="Gradient_s66ao"]
+resource_local_to_scene = true
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
+colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r8lhx"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_s66ao")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
+shader = ExtResource("30_v0n6l")
+shader_parameter/gradient = SubResource("GradientTexture1D_r8lhx")
+shader_parameter/is_active = true
+shader_parameter/show_grayscale = false
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
+polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_juikt"]
+shader = ExtResource("62_q6rup")
+shader_parameter/color = Color(0.0313726, 0, 0.0666667, 1)
+shader_parameter/effect_strength = 0.9
+
+[node name="Stage_01" type="Node2D"]
+script = ExtResource("1_r072d")
+metadata/_edit_horizontal_guides_ = [791.0]
+metadata/_edit_vertical_guides_ = [10969.0]
+metadata/movie_file = "../assets_chad.avi"
+
+[node name="DayCycleModulate" type="CanvasModulate" parent="."]
+color = Color(1, 0.972549, 0.917647, 1)
+script = ExtResource("2_4iov2")
+_color_day = Color(1, 0.972549, 0.917647, 1)
+_color_sunset = Color(0.776471, 0.458824, 0.407843, 1)
+_color_night = Color(0.278431, 0.211765, 0.478431, 1)
+_preview_time = 2
+
+[node name="Background" type="Node2D" parent="."]
+z_index = 5
+
+[node name="SkyboxLayer" type="ParallaxBackground" parent="Background"]
+layer = -1
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="Background/SkyboxLayer"]
+motion_scale = Vector2(0, 1)
+
+[node name="Skybox" parent="Background/SkyboxLayer/ParallaxLayer1" instance=ExtResource("3_w68qt")]
+position = Vector2(-8, -444)
+scale = Vector2(1.86482, 1.86482)
+script = ExtResource("4_5amai")
+is_playing = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/SkyboxLayer"]
+motion_scale = Vector2(0.65, 1)
+
+[node name="Sprite2d" type="Sprite2D" parent="Background/SkyboxLayer/ParallaxLayer2"]
+position = Vector2(3730, 35.25)
+scale = Vector2(0.678503, 0.678503)
+texture = ExtResource("5_ykxql")
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_left = 989.0
+offset_top = -477.0
+offset_right = 1142.0
+offset_bottom = 561.0
+color = Color(0, 0, 0, 1)
+
+[node name="DirtyBrickWall" type="Sprite2D" parent="Background"]
+position = Vector2(9937, -37)
+texture = ExtResource("6_rn2d0")
+
+[node name="SakuraTree1" type="Sprite2D" parent="Background"]
+position = Vector2(11770, 321)
+scale = Vector2(1.0194, 1.0194)
+texture = ExtResource("7_e8qjd")
+
+[node name="SakuraTree2" type="Sprite2D" parent="Background"]
+position = Vector2(16077, 366)
+scale = Vector2(1.0194, 1.0194)
+texture = ExtResource("8_lev3s")
+
+[node name="TaxManWindows" type="Sprite2D" parent="Background"]
+modulate = Color(1, 1, 1, 0.5)
+material = SubResource("ShaderMaterial_fe6v1")
+position = Vector2(13754.8, 259.75)
+scale = Vector2(1.0194, 1.0194)
+texture = ExtResource("10_uosdy")
+
+[node name="MarbleGround" type="Sprite2D" parent="Background"]
+position = Vector2(13251, 820)
+z_index = 1
+texture = ExtResource("11_grbnn")
+
+[node name="ChessFloor" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(960, 19)
+texture = ExtResource("12_uovhj")
+
+[node name="BambooVase5" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(-2176, -538)
+texture = ExtResource("13_pkped")
+
+[node name="BambooVase6" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(-1229, -538)
+texture = ExtResource("13_pkped")
+
+[node name="MarblePillar1" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(-2369, -746)
+texture = ExtResource("14_saret")
+
+[node name="MarblePillar2" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(-1417, -746)
+texture = ExtResource("14_saret")
+
+[node name="BambooVase4" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(-1556, -538)
+texture = ExtResource("13_pkped")
+
+[node name="MarblePillar3" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(2695, -746)
+texture = ExtResource("14_saret")
+
+[node name="BambooVase7" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(2533, -538)
+texture = ExtResource("13_pkped")
+
+[node name="BambooVase3" type="Sprite2D" parent="Background/MarbleGround"]
+position = Vector2(2779, -457)
+texture = ExtResource("13_pkped")
+
+[node name="TaxManRoomLight" type="PointLight2D" parent="Background"]
+position = Vector2(13827, 396)
+enabled = false
+energy = 0.0
+texture = SubResource("GradientTexture2D_rxt3w")
+texture_scale = 4.0
+script = ExtResource("15_gl3ip")
+
+[node name="SideWalk3" type="Node2D" parent="Background"]
+position = Vector2(9308.36, 424.217)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("17_id7iu")
+length = 6
+separation = -99
+cap_begin_offset = Vector2(-451, 9)
+variation_textures = [ExtResource("18_yxq5h"), ExtResource("19_oqrev")]
+variations_weights = [1.0, 1.0, 1.0]
+texture_sequence = [2, 2, 2, 1, 0, 2]
+
+[node name="FireTiger" type="Sprite2D" parent="Background"]
+position = Vector2(9104, 110)
+texture = ExtResource("20_5lspx")
+
+[node name="JavaBean" type="Sprite2D" parent="Background"]
+position = Vector2(8470, 110)
+texture = ExtResource("21_gn55c")
+
+[node name="FosterMart" type="Sprite2D" parent="Background"]
+position = Vector2(7467, 110)
+texture = ExtResource("22_omntf")
+
+[node name="Rocks" type="Sprite2D" parent="Background"]
+position = Vector2(6583, 364)
+texture = ExtResource("23_mwlcu")
+
+[node name="FosterMartSign" type="Sprite2D" parent="Background"]
+position = Vector2(6583, 206)
+texture = ExtResource("24_8jda0")
+
+[node name="SakuraTree1" type="Sprite2D" parent="Background/FosterMartSign"]
+position = Vector2(-140, -107)
+z_index = -1
+texture = ExtResource("8_lev3s")
+
+[node name="Pavement" type="Node2D" parent="Background"]
+position = Vector2(568, 650)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("25_aa01g")
+length = 6
+separation = -480
+cap_begin = ExtResource("26_bwmyk")
+cap_begin_offset = Vector2(-583, 0)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0, 0]
+
+[node name="CrossWalk1" type="Sprite2D" parent="Background/Pavement"]
+position = Vector2(2425, 0)
+texture = ExtResource("27_umc8v")
+centered = false
+
+[node name="CrossWalk2" type="Sprite2D" parent="Background/Pavement"]
+position = Vector2(6268, 0)
+texture = ExtResource("27_umc8v")
+centered = false
+
+[node name="WhiteLines" type="Sprite2D" parent="Background/Pavement"]
+position = Vector2(9216, -12)
+texture = ExtResource("28_d7u3f")
+centered = false
+
+[node name="BrickBuilding1" type="Node2D" parent="Background"]
+position = Vector2(514, 565)
+
+[node name="BrickWall" parent="Background/BrickBuilding1" instance=ExtResource("29_lwomu")]
+material = SubResource("ShaderMaterial_jq4kj")
+position = Vector2(-4.5, -550)
+scale = Vector2(0.5, 0.5)
+region_rect = Rect2(0, 0, 2146, 2200)
+color_darkest = Color(0.0823529, 0.027451, 0.027451, 1)
+color_shadow = Color(0.505882, 0.137255, 0.121569, 1)
+color_base = Color(0.596078, 0.313726, 0.188235, 1)
+color_highlights = Color(0.745098, 0.572549, 0.411765, 1)
+
+[node name="Pipe" type="Node2D" parent="Background/BrickBuilding1"]
+position = Vector2(489, -1122)
+scale = Vector2(0.5, 0.5)
+z_index = 1
+script = ExtResource("16_ftsna")
+is_vertical = true
+main_texture = ExtResource("31_wul4p")
+length = 3
+separation = -38
+cap_end = ExtResource("32_c38g2")
+cap_end_offset = Vector2(7, -21)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0]
+
+[node name="Windows" type="Node2D" parent="Background/BrickBuilding1"]
+position = Vector2(-798, -1032)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("33_31hem")
+length = 2
+separation = 180
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0]
+
+[node name="Door1" type="Sprite2D" parent="Background/BrickBuilding1"]
+position = Vector2(-297, -207)
+texture = ExtResource("34_0qkq5")
+
+[node name="Door2" type="Sprite2D" parent="Background/BrickBuilding1"]
+position = Vector2(166, -207)
+texture = ExtResource("35_sl0f2")
+
+[node name="AnimePoster" type="Sprite2D" parent="Background/BrickBuilding1/Door2"]
+position = Vector2(-211.5, -29.425)
+scale = Vector2(0.81875, 0.81875)
+texture = ExtResource("36_xbthd")
+
+[node name="AnimePoster2" type="Sprite2D" parent="Background/BrickBuilding1/Door2"]
+position = Vector2(211.5, -29.425)
+scale = Vector2(0.81875, 0.81875)
+texture = ExtResource("37_souc7")
+
+[node name="LoveYourselSign" parent="Background/BrickBuilding1/Door2" instance=ExtResource("38_4lm6g")]
+position = Vector2(-9, -385)
+
+[node name="Fence1" type="Node2D" parent="Background"]
+position = Vector2(3222, 22.383)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("39_fnxyi")
+pole_texture = ExtResource("40_d5wix")
+pole_distance = 15
+main_texture = ExtResource("41_oe5y0")
+length = 75
+cap_begin = ExtResource("42_fbie1")
+cap_begin_offset = Vector2(-124, 0)
+cap_end = ExtResource("43_jfsrc")
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+[node name="ChickenKing" parent="Background" instance=ExtResource("44_humyu")]
+position = Vector2(2572, 505)
+
+[node name="ChristmasLights" parent="Background/ChickenKing" instance=ExtResource("45_ps0fq")]
+position = Vector2(-543, -623)
+scale = Vector2(1.49074, 1.49074)
+
+[node name="Lanterns" parent="Background/ChickenKing" instance=ExtResource("46_rg72j")]
+position = Vector2(-574, -862)
+scale = Vector2(1.40444, 1.40444)
+
+[node name="SakuraTree1" type="Sprite2D" parent="Background/ChickenKing"]
+position = Vector2(635, -509)
+z_index = -1
+texture = ExtResource("7_e8qjd")
+
+[node name="SideWalk2" type="Node2D" parent="Background"]
+position = Vector2(1842.36, 482.217)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("17_id7iu")
+length = 42
+separation = -99
+cap_begin_offset = Vector2(-451, 9)
+variation_textures = [ExtResource("18_yxq5h"), ExtResource("19_oqrev")]
+variations_weights = [1.0, 1.0, 1.0]
+texture_sequence = [2, 1, 2, 2, 1, 0, 0, 2, 0, 1, 2, 2, 0, 2, 2, 1, 0, 2, 0, 2, 2, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 2, 1, 2, 0, 0, 1, 1]
+
+[node name="BambooVase1" type="Sprite2D" parent="Background/SideWalk2"]
+position = Vector2(6882.64, -215.217)
+texture = ExtResource("13_pkped")
+
+[node name="BambooVase2" type="Sprite2D" parent="Background/SideWalk2"]
+position = Vector2(7620.64, -215.217)
+texture = ExtResource("13_pkped")
+
+[node name="VendingMachine3" type="Sprite2D" parent="Background"]
+position = Vector2(3880.25, 375.856)
+scale = Vector2(1.21205, 1.21205)
+texture = ExtResource("47_evxdt")
+
+[node name="VendingMachine2" type="Sprite2D" parent="Background"]
+position = Vector2(3737.25, 374.856)
+scale = Vector2(1.21205, 1.21205)
+texture = ExtResource("48_fdwtw")
+
+[node name="VendingMachine" type="Sprite2D" parent="Background"]
+position = Vector2(3553.25, 374.856)
+scale = Vector2(1.21205, 1.21205)
+texture = ExtResource("49_w1ys3")
+
+[node name="BrickBuilding2" type="Node2D" parent="Background"]
+position = Vector2(96, 0)
+
+[node name="BrickWall2" parent="Background/BrickBuilding2" instance=ExtResource("29_lwomu")]
+material = SubResource("ShaderMaterial_o8ik0")
+position = Vector2(1454.2, 13.5)
+scale = Vector2(0.5, 0.5)
+region_rect = Rect2(0, 0, 1842.37, 2206)
+color_darkest = Color(0.0392157, 0.027451, 0.14902, 1)
+color_shadow = Color(0.243137, 0.227451, 0.34902, 1)
+color_base = Color(0.380392, 0.368627, 0.486275, 1)
+color_highlights = Color(0.631373, 0.619608, 0.737255, 1)
+
+[node name="Pipe" type="Node2D" parent="Background/BrickBuilding2"]
+position = Vector2(1864, -564.905)
+scale = Vector2(0.5, 0.5)
+z_index = 1
+script = ExtResource("16_ftsna")
+is_vertical = true
+main_texture = ExtResource("31_wul4p")
+length = 3
+separation = -38
+cap_end = ExtResource("32_c38g2")
+cap_end_offset = Vector2(7, -21)
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0]
+
+[node name="Windows" type="Node2D" parent="Background/BrickBuilding2"]
+position = Vector2(1043, -360)
+script = ExtResource("16_ftsna")
+is_vertical = true
+main_texture = ExtResource("50_wradk")
+length = 2
+separation = 100
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0]
+
+[node name="Door" type="Sprite2D" parent="Background/BrickBuilding2"]
+position = Vector2(1746, 335)
+texture = ExtResource("51_de4k2")
+
+[node name="NarrowWindow" type="Sprite2D" parent="Background/BrickBuilding2"]
+position = Vector2(1746, -213)
+texture = ExtResource("52_x17t0")
+
+[node name="SideWalk" type="Node2D" parent="Background"]
+position = Vector2(439.363, 541.217)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("17_id7iu")
+length = 49
+separation = -99
+cap_begin = ExtResource("53_pn4g2")
+cap_begin_offset = Vector2(-451, 9)
+variation_textures = [ExtResource("18_yxq5h"), ExtResource("19_oqrev")]
+variations_weights = [1.0, 1.0, 1.0]
+texture_sequence = [1, 0, 1, 2, 1, 0, 0, 2, 0, 1, 2, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 2, 0, 1, 0, 0, 0, 2, 1, 0, 1, 2, 1, 0, 1, 0, 1, 1, 2, 0, 0, 0]
+
+[node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk"]
+position = Vector2(911.637, -522.217)
+texture = ExtResource("54_lev7t")
+
+[node name="TelefonePole2" type="Sprite2D" parent="Background/SideWalk"]
+position = Vector2(5091.64, -522.217)
+texture = ExtResource("54_lev7t")
+
+[node name="LampPole1" parent="Background/SideWalk" instance=ExtResource("55_qj04r")]
+position = Vector2(840.637, -458.217)
+
+[node name="LampPole2" parent="Background/SideWalk" instance=ExtResource("55_qj04r")]
+position = Vector2(2934, -458.217)
+
+[node name="LampPole3" parent="Background/SideWalk" instance=ExtResource("55_qj04r")]
+position = Vector2(5025.64, -458.217)
+
+[node name="LampPole4" parent="Background/SideWalk" instance=ExtResource("55_qj04r")]
+position = Vector2(7117.64, -458.217)
+
+[node name="LampPole5" parent="Background/SideWalk" instance=ExtResource("55_qj04r")]
+position = Vector2(9201.64, -458.217)
+
+[node name="Postbox1" type="Sprite2D" parent="Background/SideWalk"]
+position = Vector2(961.637, -57.217)
+texture = ExtResource("56_k6pg2")
+
+[node name="Postbox2" type="Sprite2D" parent="Background/SideWalk"]
+position = Vector2(3978.64, -57.217)
+texture = ExtResource("57_8jppw")
+
+[node name="MetalPost1" type="Node2D" parent="Background/SideWalk"]
+position = Vector2(6558.64, -137.217)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("58_vthgw")
+length = 3
+separation = 165
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0]
+
+[node name="MetalPost2" type="Node2D" parent="Background/SideWalk"]
+position = Vector2(7262.64, -137.217)
+script = ExtResource("16_ftsna")
+main_texture = ExtResource("58_vthgw")
+length = 9
+separation = 165
+variation_textures = []
+variations_weights = [1.0]
+texture_sequence = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+[node name="Level" type="Node2D" parent="."]
+z_index = 15
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="Level"]
+position = Vector2(1191, 644)
+offset = Vector2(0, -250)
+current = true
+zoom = Vector2(1.202, 1.202)
+
+[node name="Objects" type="Node2D" parent="Level"]
+y_sort_enabled = true
+
+[node name="ToriGate" parent="Level/Objects" instance=ExtResource("59_620hk")]
+position = Vector2(10233, 790.5)
+
+[node name="TaxManThrone" parent="Level/Objects" instance=ExtResource("60_4c3jb")]
+position = Vector2(15615, 763)
+scale = Vector2(0.75, 0.75)
+
+[node name="DirtyBrickWallGate" parent="Level/Objects" instance=ExtResource("61_i5301")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Level/Objects/DirtyBrickWallGate"]
+occluder = SubResource("OccluderPolygon2D_nuxeb")
+
+[node name="Chad" parent="Level" instance=ExtResource("62_mlkd6")]
+position = Vector2(161, 711)
+
+[node name="GoToPosition" parent="Level/Chad/QuiverAiStateMachine/QuiverSequenceState" index="0"]
+fallback_node_path = NodePath("../../../../Right")
+
+[node name="Right" type="Marker2D" parent="Level"]
+position = Vector2(1194, 711)
+
+[node name="Foreground" type="Node2D" parent="."]
+z_index = 25
+
+[node name="TelefonePole3" type="Sprite2D" parent="Foreground"]
+material = SubResource("ShaderMaterial_juikt")
+position = Vector2(611, 281)
+scale = Vector2(2, 2)
+texture = ExtResource("54_lev7t")
+
+[node name="TelefonePole4" type="Sprite2D" parent="Foreground"]
+material = SubResource("ShaderMaterial_juikt")
+position = Vector2(6633, 281)
+scale = Vector2(2, 2)
+texture = ExtResource("54_lev7t")
+
+[editable path="Background/SideWalk/LampPole5"]
+[editable path="Level/Chad"]

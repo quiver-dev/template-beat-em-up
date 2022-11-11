@@ -92,6 +92,7 @@ func _disconnect_signals() -> void:
 
 func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_idle_state)
+	state_finished.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
