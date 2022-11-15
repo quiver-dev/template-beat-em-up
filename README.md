@@ -31,6 +31,7 @@ Coming soon!
 * Godot 4 Beta or higher
 
 ## Installation instructions
+* This project uses [Git Large File Storage](https://git-lfs.github.com/) (LFS) to store asset binaries. To initialize it make sure you have LFS installed, then simply run ```git lfs install```
 * Clone this repository from Github
 * Open the Godot project file in Godot 4 (Beta or higher) and run it to play the demo!
 
