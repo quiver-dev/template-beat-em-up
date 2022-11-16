@@ -83,7 +83,7 @@ func physics_process(delta: float) -> void:
 	
 	_move_state.physics_process(delta)
 	
-	if _character.velocity.is_equal_approx(Vector2.ZERO):
+	if _move_state._direction.is_equal_approx(Vector2.ZERO):
 		_state_machine.transition_to(_path_idle_state)
 
 
