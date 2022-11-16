@@ -98,9 +98,6 @@ func exit() -> void:
 func _connect_signals() -> void:
 	super()
 	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
-	QuiverEditorHelper.connect_between(_character.tax_man_laughed, _on_tax_man_laughed)
-	QuiverEditorHelper.connect_between(_character.tax_man_engaged, _on_tax_man_engaged)
-	QuiverEditorHelper.connect_between(_swirl_timer.timeout, _on_swirl_timer_timeout)
 
 
 func _disconnect_signals() -> void:
@@ -135,6 +132,9 @@ func _on_tax_man_engaged() -> void:
 
 func _on_skin_animation_finished() -> void:
 	if _current_animation == _skin_reveal:
+		QuiverEditorHelper.connect_between(_character.tax_man_laughed, _on_tax_man_laughed)
+		QuiverEditorHelper.connect_between(_character.tax_man_engaged, _on_tax_man_engaged)
+		QuiverEditorHelper.connect_between(_swirl_timer.timeout, _on_swirl_timer_timeout)
 		_current_animation = _skin_swirl
 		_reset_swirl_duration()
 	elif _current_animation in [_skin_drink, _skin_laugh]:
