@@ -11,7 +11,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.833333),
+"times": PackedFloat32Array(0.831532),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["hurt_light_left"],
