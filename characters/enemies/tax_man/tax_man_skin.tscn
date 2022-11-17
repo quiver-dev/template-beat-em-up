@@ -130,6 +130,7 @@ parameters/time_scale/scale = 1.0
 [node name="Lightining" type="AnimatedSprite2D" parent="." index="2"]
 visible = false
 position = Vector2(202, -512)
+scale = Vector2(2, 2)
 frames = ExtResource("4_6fblr")
 animation = &"back_lightning_explosion"
 
@@ -143,11 +144,13 @@ animation = &"idle"
 visible = false
 show_behind_parent = true
 position = Vector2(38, 474)
+scale = Vector2(2, 2)
 frames = ExtResource("6_nrudn")
 animation = &"area_attak"
 
 [node name="Smoke" type="AnimatedSprite2D" parent="Body/GroundLightining" index="0"]
 visible = false
+scale = Vector2(2, 2)
 frames = SubResource("SpriteFrames_cktw8")
 
 [node name="QuiverHurtBox" type="Area2D" parent="Body" index="1"]
@@ -191,48 +194,45 @@ rotation = -0.400736
 texture = ExtResource("12_kopjc")
 flip_h = true
 
-[node name="OnionGhost" type="AnimatedSprite2D" parent="." index="6"]
-visible = false
-modulate = Color(0.670588, 0.384314, 1, 0.435294)
-position = Vector2(48, -252)
-frames = ExtResource("4_2vvsa")
-animation = &"slap"
-
-[node name="FrontLightining" type="AnimatedSprite2D" parent="." index="7"]
+[node name="FrontLightining" type="AnimatedSprite2D" parent="." index="6"]
 visible = false
 position = Vector2(77, -551)
+scale = Vector2(2, 2)
 frames = ExtResource("4_6fblr")
 animation = &"front_lightining_explostion"
 
-[node name="SmokeVertical" type="AnimatedSprite2D" parent="." index="8"]
+[node name="SmokeVertical" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
 position = Vector2(758, -747)
+scale = Vector2(2, 2)
 frames = ExtResource("19_xm1w5")
 animation = &"vertical_grenade"
 
-[node name="Explosion" type="AnimatedSprite2D" parent="." index="9"]
+[node name="Explosion" type="AnimatedSprite2D" parent="." index="8"]
 visible = false
 position = Vector2(135, -486)
+scale = Vector2(2, 2)
 frames = ExtResource("29_l5cjv")
 animation = &"grenade"
 
-[node name="Coins" type="AnimatedSprite2D" parent="." index="10"]
+[node name="Coins" type="AnimatedSprite2D" parent="." index="9"]
 visible = false
 position = Vector2(62, -211)
 frames = SubResource("SpriteFrames_q3w2t")
 
-[node name="SmokeHorizontal" type="AnimatedSprite2D" parent="." index="11"]
+[node name="SmokeHorizontal" type="AnimatedSprite2D" parent="." index="10"]
 visible = false
 position = Vector2(62, -211)
+scale = Vector2(2, 2)
 frames = ExtResource("19_xm1w5")
 animation = &"horizontal"
 
-[node name="Positions" type="Node2D" parent="." index="12"]
+[node name="Positions" type="Node2D" parent="." index="11"]
 
 [node name="ScorchSpawn" type="Marker2D" parent="Positions" index="0"]
 position = Vector2(24, 160)
 
-[node name="Attacks" type="Node2D" parent="." index="13"]
+[node name="Attacks" type="Node2D" parent="." index="12"]
 
 [node name="Lightining" type="Area2D" parent="Attacks" index="0"]
 collision_layer = 512
