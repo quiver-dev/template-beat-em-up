@@ -371,7 +371,6 @@ theme = ExtResource("26_sum7q")
 alignment = 1
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
-layout_mode = 2
 offset_right = 248.0
 offset_bottom = 26.0
 script = ExtResource("25_7uuvm")
@@ -379,7 +378,6 @@ path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
-layout_mode = 2
 offset_top = 26.0
 offset_right = 248.0
 offset_bottom = 52.0
@@ -388,7 +386,6 @@ path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="Wait" type="Label" parent="DebugLabels" index="2"]
-layout_mode = 2
 offset_top = 52.0
 offset_right = 248.0
 offset_bottom = 78.0
