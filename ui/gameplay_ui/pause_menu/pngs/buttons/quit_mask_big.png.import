@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://c3n1563und8fe"
+path="res://.godot/imported/quit_mask_big.png-4731ab9ffa1586c62e397fef49ea41c2.res"
+
+[deps]
+
+source_file="res://ui/gameplay_ui/pause_menu/pngs/buttons/quit_mask_big.png"
+dest_files=["res://.godot/imported/quit_mask_big.png-4731ab9ffa1586c62e397fef49ea41c2.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

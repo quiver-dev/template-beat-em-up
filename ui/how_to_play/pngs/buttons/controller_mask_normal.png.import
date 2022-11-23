@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://b8q4kjld2bi2g"
+path="res://.godot/imported/controller_mask_normal.png-2526398b38883733108ee9de0ea103cf.res"
+
+[deps]
+
+source_file="res://ui/how_to_play/pngs/buttons/controller_mask_normal.png"
+dest_files=["res://.godot/imported/controller_mask_normal.png-2526398b38883733108ee9de0ea103cf.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

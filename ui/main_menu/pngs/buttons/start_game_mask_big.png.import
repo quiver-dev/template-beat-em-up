@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://2oxd52vtg7sq"
+path="res://.godot/imported/start_game_mask_big.png-34c9fec8edc5ff3dda4107d66a72515d.res"
+
+[deps]
+
+source_file="res://ui/main_menu/pngs/buttons/start_game_mask_big.png"
+dest_files=["res://.godot/imported/start_game_mask_big.png-34c9fec8edc5ff3dda4107d66a72515d.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

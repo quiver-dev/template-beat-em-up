@@ -22,12 +22,12 @@ _global_script_classes=[{
 "base": "TextureButton",
 "class": &"DoubleMaskTextureButton",
 "language": &"GDScript",
-"path": "res://theme_resources/DoubleMaskTextureButton.gd"
+"path": "res://ui/theme_resources/DoubleMaskTextureButton.gd"
 }, {
 "base": "Control",
 "class": &"EndScreen",
 "language": &"GDScript",
-"path": "res://gameplay_ui/end_screen/end_screen.gd"
+"path": "res://ui/gameplay_ui/end_screen/end_screen.gd"
 }, {
 "base": "Resource",
 "class": &"GradientTransitioner",
@@ -37,7 +37,7 @@ _global_script_classes=[{
 "base": "Control",
 "class": &"HowToPlay",
 "language": &"GDScript",
-"path": "res://how_to_play/how_to_play.gd"
+"path": "res://ui/how_to_play/how_to_play.gd"
 }, {
 "base": "QuiverState",
 "class": &"QuiverAiState",
@@ -162,7 +162,7 @@ _global_script_classes=[{
 "base": "TextureRect",
 "class": &"QuiverLifeBar",
 "language": &"GDScript",
-"path": "res://gameplay_ui/hud/player_health_bar/heath_bar.gd"
+"path": "res://ui/gameplay_ui/hud/player_health_bar/heath_bar.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverMathHelper",
@@ -267,7 +267,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Template Beat Project"
-run/main_scene="res://main_menu/main_menu.tscn"
+run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 config/version="1.0.3"

@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cuwewhr3ypipj"
+path="res://.godot/imported/how_to_play_mask_normal.png-9427363d30a88ff08f8b5d57a40caa5c.res"
+
+[deps]
+
+source_file="res://ui/gameplay_ui/pause_menu/pngs/buttons/how_to_play_mask_normal.png"
+dest_files=["res://.godot/imported/how_to_play_mask_normal.png-9427363d30a88ff08f8b5d57a40caa5c.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
