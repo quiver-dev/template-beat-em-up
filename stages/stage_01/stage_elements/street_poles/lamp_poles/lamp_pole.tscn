@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dfg2wncjqlw0e" path="res://stages/stage_01/stage_elements/street_poles/lamp_poles/streetlamp_revised_2_01_50.png" id="1_1r5d0"]
+[ext_resource type="Texture2D" uid="uid://c74xhnfu12in" path="res://stages/stage_01/stage_elements/street_poles/lamp_poles/streetlamp_light_map.png" id="2_j0dbv"]
+[ext_resource type="Script" path="res://stages/stage_01/stage_elements/street_poles/lamp_poles/lamp_pole.gd" id="2_jj0pe"]
+[ext_resource type="Texture2D" uid="uid://dag8exyib4dtw" path="res://stages/stage_01/stage_elements/street_poles/lamp_poles/streetlamp_revised_2_00_50.png" id="3_tqvhl"]
+
+[node name="LampPole" type="Sprite2D"]
+position = Vector2(736.637, -458.217)
+texture = ExtResource("1_1r5d0")
+script = ExtResource("2_jj0pe")
+
+[node name="LampLight" type="PointLight2D" parent="."]
+position = Vector2(-1, -254)
+enabled = false
+energy = 0.0
+texture = ExtResource("2_j0dbv")
+texture_scale = 2.0
+
+[node name="LightSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_tqvhl")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bwrpook0qwymw" path="res://stages/stage_01/stage_elements/tax_man_area/tax_man_throne_revised.png" id="1_ad6kc"]
+
+[node name="TaxManThrone" type="Sprite2D"]
+texture = ExtResource("1_ad6kc")
+offset = Vector2(-21.332, -303)
+
+[node name="StaticBody2d" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 17
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
+polygon = PackedVector2Array(-410, -50, -247, 119, -229, 126, 361, 127, 370, 121, 150, -53, 134, -59.0161, -404, -59)

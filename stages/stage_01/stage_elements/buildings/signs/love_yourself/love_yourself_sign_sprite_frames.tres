@@ -1,0 +1,28 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bcdg4f1ly848o" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_lights_00.png" id="1_ywnl1"]
+[ext_resource type="Texture2D" uid="uid://cwqv48xmiaw5g" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_lights_01.png" id="2_qlqw5"]
+[ext_resource type="Texture2D" uid="uid://w43dlshv4vkd" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_lights_02.png" id="3_duwid"]
+[ext_resource type="Texture2D" uid="uid://ckt8lautx01cd" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_lights_03.png" id="4_1bg48"]
+[ext_resource type="Texture2D" uid="uid://nxe2s2uiu73i" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_shimmer_00.png" id="5_6jgen"]
+[ext_resource type="Texture2D" uid="uid://bh23etivkt1f5" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_shimmer_01.png" id="6_umgmk"]
+[ext_resource type="Texture2D" uid="uid://po82o1xitqe0" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_shimmer_02.png" id="7_csheg"]
+[ext_resource type="Texture2D" uid="uid://dn1c14i2kh3kw" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_wink.png" id="8_4jtg7"]
+
+[resource]
+animations = [{
+"frames": [ExtResource("1_ywnl1"), ExtResource("2_qlqw5"), ExtResource("3_duwid"), ExtResource("4_1bg48")],
+"loop": true,
+"name": &"lights",
+"speed": 5.0
+}, {
+"frames": [ExtResource("5_6jgen"), ExtResource("6_umgmk"), ExtResource("7_csheg")],
+"loop": true,
+"name": &"shimmer",
+"speed": 3.0
+}, {
+"frames": [ExtResource("8_4jtg7"), null, null, null, null, null, null, null, null, null],
+"loop": true,
+"name": &"wink",
+"speed": 6.0
+}]
