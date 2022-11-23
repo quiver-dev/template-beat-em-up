@@ -72,7 +72,7 @@ _global_script_classes=[{
 "base": "CharacterBody2D",
 "class": &"QuiverCharacter",
 "language": &"GDScript",
-"path": "res://characters/_base/character/quiver_base_character.gd"
+"path": "res://addons/quiver.beat_em_up/characters/quiver_character.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverCharacterHelper",
@@ -82,7 +82,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"QuiverCharacterSkin",
 "language": &"GDScript",
-"path": "res://characters/_base/character_skin/character_skin_base.gd"
+"path": "res://addons/quiver.beat_em_up/characters/quiver_character_skin.gd"
 }, {
 "base": "QuiverState",
 "class": &"QuiverCharacterState",

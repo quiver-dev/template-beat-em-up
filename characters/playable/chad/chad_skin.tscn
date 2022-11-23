@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfgyw305iprys"]
+[gd_scene load_steps=22 format=3]
 
-[ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_neyaj"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dlfxsc1icfbdd" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://cxc0fddn51ogf" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]

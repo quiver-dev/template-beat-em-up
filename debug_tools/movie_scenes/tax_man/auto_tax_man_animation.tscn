@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3]
 
-[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_4wicm"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_4wicm"]
 [ext_resource type="Script" path="res://debug_tools/movie_scenes/tax_man/auto_tax_man_animation.gd" id="2_f8fjj"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_wgmam"]
-[ext_resource type="PackedScene" uid="uid://dwpmxxw1us778" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="4_tef8h"]
+[ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="4_tef8h"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_state_machine.gd" id="5_nv3em"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="6_06opd"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="7_rh626"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/taxman_hurt.gd" id="12_01ap4"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/knockout_kneeled_action.gd" id="13_cmkgv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="14_8jk6u"]
-[ext_resource type="Script" path="res://characters/enemies/tax_man/Seated.gd" id="15_yi0cf"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/seated.gd" id="15_yi0cf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_ai_state_machine.gd" id="16_jnw47"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="18_bib0w"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="22_lox1j"]
@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_align_to_closest_player.gd" id="26_tbapv"]
 [ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/theme_resources/theme_debug.tres" id="27_2v5c2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="28_ak3dr"]
-[ext_resource type="Script" path="res://characters/enemies/tax_man/wait_debug_label.gd" id="29_rgrj3"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/wait_debug_label.gd" id="29_rgrj3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
 radius = 18.0

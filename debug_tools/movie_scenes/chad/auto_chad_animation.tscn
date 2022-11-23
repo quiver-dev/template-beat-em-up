@@ -1,9 +1,9 @@
 [gd_scene load_steps=32 format=3]
 
-[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_um4ts"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_um4ts"]
 [ext_resource type="Script" path="res://debug_tools/movie_scenes/chad/auto_chad_animation.gd" id="2_gpw5g"]
 [ext_resource type="Resource" uid="uid://c6fl3lwjri6qi" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_a2a7f"]
-[ext_resource type="PackedScene" uid="uid://dfgyw305iprys" path="res://characters/playable/chad/chad_skin.tscn" id="4_eexf7"]
+[ext_resource type="PackedScene" path="res://characters/playable/chad/chad_skin.tscn" id="4_eexf7"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="5_hft5c"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="6_04sxv"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_walk.gd" id="7_630jf"]

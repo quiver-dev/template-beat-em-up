@@ -94,7 +94,7 @@ func _ready() -> void:
 		"You should not use this scene directly, inherit from it to create your characters"
 	)
 	var is_not_base_scene = \
-			scene_file_path != "res://characters/_base/character/quiver_base_character.tscn"
+			scene_file_path != "res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn"
 	assert(is_not_base_scene, ERROR_BASE_SCENE_USED_DIRECTLY)
 	
 	if attributes != null:

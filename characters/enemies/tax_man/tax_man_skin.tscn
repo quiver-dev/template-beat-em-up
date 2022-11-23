@@ -1,6 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://dwpmxxw1us778"]
+[gd_scene load_steps=45 format=3]
 
-[ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_vkbuf"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
@@ -11,7 +11,7 @@
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="6_5x5ps"]
 [ext_resource type="SpriteFrames" uid="uid://m1i3hrqtb05u" path="res://characters/enemies/tax_man/resources/sprite_frames/tax_man_ground_lightining_sprite_frames.tres" id="6_nrudn"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="10_r6q6q"]
-[ext_resource type="Script" path="res://characters/enemies/tax_man/steated_preview.gd" id="10_sp0k2"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/steated_preview.gd" id="10_sp0k2"]
 [ext_resource type="Texture2D" uid="uid://h7d3gctevfx2" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0065.png" id="11_8rinb"]
 [ext_resource type="Texture2D" uid="uid://dh2pp7d5q53st" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0066.png" id="12_caly6"]
 [ext_resource type="Texture2D" uid="uid://iwtqurgemgtv" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/grenade_pins.png" id="12_kopjc"]

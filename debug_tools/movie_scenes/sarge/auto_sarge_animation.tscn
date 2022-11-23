@@ -1,10 +1,10 @@
 [gd_scene load_steps=32 format=3]
 
-[ext_resource type="PackedScene" uid="uid://djd0edge80xai" path="res://characters/_base/character/quiver_base_character.tscn" id="1_ojjnd"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_ojjnd"]
 [ext_resource type="Script" path="res://debug_tools/movie_scenes/sarge/auto_sarge_animation.gd" id="2_yppr4"]
 [ext_resource type="Resource" uid="uid://llubu8lgbc5o" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="3_782g1"]
 [ext_resource type="Script" path="res://characters/enemies/sargent/sarge_collision.gd" id="4_tx46i"]
-[ext_resource type="PackedScene" uid="uid://dn1vp8lg8eb48" path="res://characters/enemies/sargent/sarge_skin.tscn" id="5_kilmw"]
+[ext_resource type="PackedScene" path="res://characters/enemies/sargent/sarge_skin.tscn" id="5_kilmw"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="6_o1ygo"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="7_ce4in"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="8_mv2s7"]
