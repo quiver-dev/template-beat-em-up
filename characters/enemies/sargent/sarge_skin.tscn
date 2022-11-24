@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3]
+[gd_scene load_steps=21 format=3 uid="uid://dex3rudks2dn6"]
 
 [ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_kelmx"]
 [ext_resource type="AnimationLibrary" uid="uid://dbbhof0f3tyc5" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
