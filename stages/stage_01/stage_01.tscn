@@ -69,7 +69,7 @@
 [ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man.tscn" id="59_jn7co"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/tax_man_area/tax_man_throne.tscn" id="60_60ghw"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/gates/tori_gate/tori_gate.tscn" id="60_mx5oi"]
-[ext_resource type="Script" path="res://stages/_base/obstacles/wall_hit_box.gd" id="62_je6pb"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_wall_hit_box.gd" id="62_je6pb"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/quiver_attack_data.gd" id="63_6am3i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe6v1"]

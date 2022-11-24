@@ -217,7 +217,7 @@ _global_script_classes=[{
 "base": "QuiverHitBox",
 "class": &"WallHitBox",
 "language": &"GDScript",
-"path": "res://stages/_base/obstacles/WallHitBox.gd"
+"path": "res://addons/quiver.beat_em_up/combat/collision_areas/quiver_wall_hit_box.gd"
 }]
 _global_script_class_icons={
 "BaseStage": "",
