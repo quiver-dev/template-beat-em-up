@@ -135,8 +135,7 @@ func _to_string() -> String:
 		grabbed_offset = grabbed_offset.get_path() if grabbed_offset != null else "none",
 		ground_level = ground_level,
 	}
-	var json := JSON.new()
-	return "QuiverAttributes: %s"%[json.stringify(dict, "\t")]
+	return "QuiverAttributes: %s"%[JSON.stringify(dict, "\t")]
 
 ### -----------------------------------------------------------------------------------------------
 

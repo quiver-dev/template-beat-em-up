@@ -55,12 +55,6 @@ static func add_debug_camera2D_to(
 	node2D.add_child(camera, true)
 
 
-## Helps to print lonf dictionaries in a more readable format.
-static func _json_print(value) -> void:
-	var json := JSON.new()
-	print(json.stringify(value, "\t"))
-
-
 ## Helper to connect signals with proper checking if it's not already connected.
 static func connect_between(signal_object: Signal, callable: Callable, type := 0) -> void:
 	if not signal_object.is_connected(callable):
