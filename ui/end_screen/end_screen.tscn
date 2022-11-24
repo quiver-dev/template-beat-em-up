@@ -1,0 +1,284 @@
+[gd_scene load_steps=20 format=3]
+
+[ext_resource type="Theme" uid="uid://brlect5oi7d4w" path="res://ui/_base/theme_template.tres" id="1_2dr55"]
+[ext_resource type="Script" path="res://ui/end_screen/end_screen.gd" id="1_ll1aa"]
+[ext_resource type="Texture2D" uid="uid://d1km5hwxdeda5" path="res://ui/_base/pngs/menu_color_stripes.png" id="3_ymwy3"]
+[ext_resource type="Texture2D" uid="uid://ldayfdi122qs" path="res://ui/pause_menu/pngs/buttons/restart_normal.png" id="4_q67g1"]
+[ext_resource type="Script" path="res://ui/_base/DoubleMaskMarginContainer.gd" id="4_rdvaw"]
+[ext_resource type="Script" path="res://ui/_base/DoubleMaskTextureButton.gd" id="5_2bwsg"]
+[ext_resource type="Texture2D" uid="uid://4cevig5i8foe" path="res://ui/pause_menu/pngs/buttons/restart_pressed.png" id="6_7s0xi"]
+[ext_resource type="Texture2D" uid="uid://dcogkaqvot5yr" path="res://ui/pause_menu/pngs/buttons/quit_normal.png" id="6_gep11"]
+[ext_resource type="Texture2D" uid="uid://dlanys6bpionb" path="res://ui/pause_menu/pngs/buttons/restart_hover.png" id="7_tye0q"]
+[ext_resource type="BitMap" uid="uid://dhfh1tj2dqpdg" path="res://ui/pause_menu/pngs/buttons/restart_mask_normal.png" id="8_aiyet"]
+[ext_resource type="BitMap" uid="uid://cq87tas28kiue" path="res://ui/pause_menu/pngs/buttons/restart_mask_big.png" id="10_8esgg"]
+[ext_resource type="Texture2D" uid="uid://cl16a47x4b4aj" path="res://ui/pause_menu/pngs/buttons/quit_pressed.png" id="12_jmqnw"]
+[ext_resource type="Texture2D" uid="uid://b844gyrlhn4nj" path="res://ui/pause_menu/pngs/buttons/quit_hover.png" id="13_mkvkm"]
+[ext_resource type="BitMap" uid="uid://c54ps7mf67b0b" path="res://ui/pause_menu/pngs/buttons/quit_mask_normal.png" id="14_xd73w"]
+[ext_resource type="BitMap" uid="uid://c3n1563und8fe" path="res://ui/pause_menu/pngs/buttons/quit_mask_big.png" id="15_o8nli"]
+
+[sub_resource type="Animation" id="Animation_8g40m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p2hkm"]
+resource_name = "closed"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3bprg"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/Buttons/MarginContainer/Replay")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grab_focus"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83bbo"]
+_data = {
+"RESET": SubResource("Animation_8g40m"),
+"closed": SubResource("Animation_p2hkm"),
+"open": SubResource("Animation_3bprg")
+}
+
+[node name="EndScreen" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2dr55")
+script = ExtResource("1_ll1aa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "closed"
+libraries = {
+"": SubResource("AnimationLibrary_83bbo")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.08, 0.26, 0.6)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1201.0
+offset_top = -168.5
+offset_right = 1201.0
+offset_bottom = 168.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ymwy3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 445)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -191.0
+offset_right = 431.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="PanelContainer"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 170.0
+offset_right = 849.0
+offset_bottom = 433.0
+
+[node name="Title" type="Label" parent="PanelContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -383.5
+offset_top = -280.0
+offset_right = 383.5
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderLarge"
+text = "CONGRATULATIONS!"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 170.0
+offset_right = 849.0
+offset_bottom = 433.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"EndScreen"
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Buttons"]
+layout_mode = 2
+offset_top = 41.0
+offset_right = 837.0
+offset_bottom = 120.0
+size_flags_vertical = 4
+theme_override_constants/margin_top = -70
+theme_override_constants/margin_bottom = -50
+script = ExtResource("4_rdvaw")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("Replay")
+
+[node name="Replay" type="TextureButton" parent="PanelContainer/Buttons/MarginContainer"]
+layout_mode = 2
+offset_top = -70.0
+offset_right = 837.0
+offset_bottom = 129.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../MarginContainer2/Quit")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../MarginContainer2/Quit")
+focus_next = NodePath("../../MarginContainer2/Quit")
+focus_previous = NodePath("../../MarginContainer2/Quit")
+texture_normal = ExtResource("4_q67g1")
+texture_pressed = ExtResource("6_7s0xi")
+texture_hover = ExtResource("7_tye0q")
+texture_focused = ExtResource("7_tye0q")
+texture_click_mask = ExtResource("8_aiyet")
+script = ExtResource("5_2bwsg")
+mask_normal = ExtResource("8_aiyet")
+mask_hover = ExtResource("10_8esgg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/Buttons"]
+layout_mode = 2
+offset_top = 140.0
+offset_right = 837.0
+offset_bottom = 222.0
+size_flags_vertical = 4
+theme_override_constants/margin_top = -220
+theme_override_constants/margin_bottom = -80
+script = ExtResource("4_rdvaw")
+extra_margin_top = 30
+extra_margin_bottom = 30
+path_button = NodePath("Quit")
+
+[node name="Quit" type="TextureButton" parent="PanelContainer/Buttons/MarginContainer2"]
+layout_mode = 2
+offset_top = -220.0
+offset_right = 837.0
+offset_bottom = 162.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../MarginContainer/Replay")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../MarginContainer/Replay")
+focus_next = NodePath("../../MarginContainer/Replay")
+focus_previous = NodePath("../../MarginContainer/Replay")
+texture_normal = ExtResource("6_gep11")
+texture_pressed = ExtResource("12_jmqnw")
+texture_hover = ExtResource("13_mkvkm")
+texture_focused = ExtResource("13_mkvkm")
+texture_click_mask = ExtResource("14_xd73w")
+script = ExtResource("5_2bwsg")
+mask_normal = ExtResource("14_xd73w")
+mask_hover = ExtResource("15_o8nli")
+
+[connection signal="pressed" from="PanelContainer/Buttons/MarginContainer/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="PanelContainer/Buttons/MarginContainer2/Quit" to="." method="_on_quit_pressed"]

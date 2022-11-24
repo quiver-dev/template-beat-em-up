@@ -62,6 +62,9 @@ func _decide_next_action(last_state: StringName) -> void:
 
 
 func _on_tax_man_phase_changed_to(phase: int) -> void:
+	if disabled:
+		return
+	
 	var next_state := ""
 	var msg := {}
 	match phase:
@@ -82,7 +85,7 @@ func _on_tax_man_phase_changed_to(phase: int) -> void:
 	
 	_consecutive_hits = -1
 	
-	if state.has_method("interrupt_state"):
+	if state.has_method("xinterrupt_state"):
 		state.interrupt_state()
 	
 	transition_to(next_state, msg)

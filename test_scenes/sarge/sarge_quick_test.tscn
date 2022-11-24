@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6isxmbw3i1mg"]
-
-[ext_resource type="PackedScene" uid="uid://bt2sbfr7ucv21" path="res://test_scenes/base_test.tscn" id="1_1gew8"]
-[ext_resource type="PackedScene" uid="uid://bm3yq2bbfquni" path="res://characters/enemies/sargent/sarge.tscn" id="2_xfcky"]
-
-[node name="SargeQuickTest" instance=ExtResource("1_1gew8")]
-
-[node name="Sarge" parent="Characters" index="1" instance=ExtResource("2_xfcky")]
-position = Vector2(1672, 842)

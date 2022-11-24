@@ -12,7 +12,7 @@ extends Sprite2D
 #--- constants ------------------------------------------------------------------------------------
 
 const SCENE_EXTRA := preload("res://stages/_base/skyboxes/extra_texture.tscn")
-const DEFAULT_TEXTURE1D = preload("res://stages/stage_01/background_elements/skyboxes/skybox_default_texture1d.tres")
+const DEFAULT_TEXTURE1D = preload("res://stages/stage_01/stage_elements/skyboxes/skybox_default_texture1d.tres")
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 

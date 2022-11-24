@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_character.gd" id="1_b0yrs"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_machine.gd" id="1_u2nuf"]
+
+[node name="QuiverBaseCharacter" type="CharacterBody2D"]
+collision_mask = 12
+script = ExtResource( "1_b0yrs" )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "1_u2nuf" )

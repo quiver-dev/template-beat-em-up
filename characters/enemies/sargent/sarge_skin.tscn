@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://dn1vp8lg8eb48"]
+[gd_scene load_steps=21 format=3]
 
-[ext_resource type="PackedScene" uid="uid://cxidwwfiee2gp" path="res://characters/_base/character_skin/character_skin_base.tscn" id="1_kelmx"]
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_kelmx"]
 [ext_resource type="AnimationLibrary" uid="uid://dbbhof0f3tyc5" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
 [ext_resource type="Resource" uid="uid://llubu8lgbc5o" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_ajvg2"]
 [ext_resource type="SpriteFrames" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]

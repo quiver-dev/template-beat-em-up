@@ -1,0 +1,248 @@
+[gd_scene load_steps=27 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_4wicm"]
+[ext_resource type="Script" path="res://debug_tools/movie_scenes/tax_man/auto_tax_man_animation.gd" id="2_f8fjj"]
+[ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_wgmam"]
+[ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="4_tef8h"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_state_machine.gd" id="5_nv3em"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="6_06opd"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="7_rh626"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="8_k3chf"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="9_hdt7t"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="10_332sx"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/dash_attack_action.gd" id="11_fv02y"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/taxman_hurt.gd" id="12_01ap4"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/knockout_kneeled_action.gd" id="13_cmkgv"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="14_8jk6u"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/custom_states/seated.gd" id="15_yi0cf"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_ai_state_machine.gd" id="16_jnw47"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="18_bib0w"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="22_lox1j"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_attack.gd" id="24_kwvvh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="25_qripl"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_action.gd" id="26_0k7cj"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_align_to_closest_player.gd" id="26_tbapv"]
+[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/_base/theme_debug.tres" id="27_2v5c2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="28_ak3dr"]
+[ext_resource type="Script" path="res://characters/enemies/tax_man/resources/wait_debug_label.gd" id="29_rgrj3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]
+radius = 18.0
+height = 278.0
+
+[node name="TaxMan" instance=ExtResource("1_4wicm")]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("2_f8fjj")
+should_start_seated = true
+max_damage_in_one_combo = 0.1
+health_threshold_phase_one = 1.0
+health_threshold_phase_two = 0.5
+health_threshold_phase_three = 0.15
+health_threshold_phase_die = 0.0
+_path_ai_state_machine = NodePath("AiStateMachine")
+_debug_draw_lane_limits = false
+_attributes = ExtResource("3_wgmam")
+
+[node name="Skin" parent="." index="0" instance=ExtResource("4_tef8h")]
+
+[node name="Collision" type="CollisionShape2D" parent="." index="1"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(0, -8)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_ntaek")
+metadata/collision_type = "default"
+
+[node name="StateMachine" parent="." index="2"]
+script = ExtResource("5_nv3em")
+seated_initial_state = NodePath("Seated")
+initial_state = NodePath("Ground/Move/IdleAi")
+should_process_input = false
+
+[node name="Ground" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("6_06opd")
+path_hurt = "Ground/Hurt"
+path_knockout = "Ground/Hurt"
+path_grabbed = "Ground/GrabReject"
+
+[node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
+script = ExtResource("7_rh626")
+path_jump_state = "Air/Jump/Impulse"
+path_attack_state = "Ground/Combo1"
+
+[node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
+script = ExtResource("8_k3chf")
+OFFSET_FROM_TARGET = 280
+walk_skin_state = &"walk"
+path_next_state = "Ground/Move/IdleAi"
+turning_speed_modifier = 0.6
+
+[node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
+script = ExtResource("9_hdt7t")
+skin_state = &"idle"
+
+[node name="AttackArea" type="Node" parent="StateMachine/Ground" index="1"]
+script = ExtResource("10_332sx")
+skin_state = &"attack_area"
+can_combo = false
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = true
+
+[node name="AttackRetaliate" type="Node" parent="StateMachine/Ground" index="2"]
+script = ExtResource("10_332sx")
+skin_state = &"retaliate"
+can_combo = false
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = true
+
+[node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="3"]
+script = ExtResource("10_332sx")
+skin_state = &"attack_combo"
+can_combo = false
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = true
+
+[node name="AttackDash" type="Node" parent="StateMachine/Ground" index="4"]
+script = ExtResource("11_fv02y")
+dash_skin_state = &"attack_dash_begin"
+attack_skin_state = &"attack_dash_end"
+path_next_state = "Ground/Move/IdleAi"
+
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
+script = ExtResource("12_01ap4")
+skin_state_hurt_light = &"hurt_light"
+skin_state_hurt_medium = &"hurt_medium"
+skin_state_hurt_knockout = &"hurt_knockout"
+path_knockout = "Ground/KnockoutKneeled"
+path_retaliate = "Ground/AttackRetaliate"
+path_idle = "Ground/Move/IdleAi"
+
+[node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
+script = ExtResource("13_cmkgv")
+skin_state = &"knockout_kneeled"
+path_attack_area = "Ground/AttackArea"
+path_die = "DieAi"
+
+[node name="DieAi" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("14_8jk6u")
+skin_state = &"death_explosion"
+
+[node name="Seated" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("15_yi0cf")
+path_idle_state = "Ground/Move/IdleAi"
+swirl_max = 8
+swirl_min = 3
+skin_reveal = &"seated_reveal"
+skin_swirl = &"seated_swirl"
+skin_drink = &"seated_drink"
+skin_laugh = &"seated_laugh"
+skin_engage = &"seated_engage"
+
+[node name="AiStateMachine" type="Node" parent="." index="3"]
+script = ExtResource("16_jnw47")
+_max_consecutive_hits = 7
+ai_state_hurt = "WaitForIdle"
+initial_state = NodePath("QuiverSequenceState")
+should_process_input = false
+
+[node name="WaitForIdle" type="Node" parent="AiStateMachine" index="0"]
+script = ExtResource("18_bib0w")
+path_ready_state = "Ground/Move/IdleAi"
+
+[node name="QuiverSequenceState" type="Node" parent="AiStateMachine" index="1"]
+script = ExtResource("22_lox1j")
+
+[node name="WaitForIdle" type="Node" parent="AiStateMachine/QuiverSequenceState" index="0"]
+script = ExtResource("18_bib0w")
+path_ready_state = "Ground/Move/IdleAi"
+
+[node name="DashAttack" type="Node" parent="AiStateMachine/QuiverSequenceState" index="1"]
+script = ExtResource("22_lox1j")
+
+[node name="GoToClosestPosition" type="Node" parent="AiStateMachine/QuiverSequenceState/DashAttack" index="0" groups=["tm_dash_position_states"]]
+script = ExtResource("25_qripl")
+pool_positions = []
+pool_nodes = []
+path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
+
+[node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/QuiverSequenceState/DashAttack" index="1"]
+script = ExtResource("26_tbapv")
+_max_chase_time = 5.0
+path_follow_state = "Ground/Move/Follow"
+
+[node name="CallAttack" type="Node" parent="AiStateMachine/QuiverSequenceState/DashAttack" index="2"]
+script = ExtResource("24_kwvvh")
+attack_state_path = "Ground/AttackDash"
+combo_hits_amount = 1
+fallback_state_path = "Ground/Move/IdleAi"
+
+[node name="ComboAttack" type="Node" parent="AiStateMachine/QuiverSequenceState" index="2"]
+script = ExtResource("24_kwvvh")
+attack_state_path = "Ground/AttackCombo"
+combo_hits_amount = 1
+fallback_state_path = "Ground/Move/IdleAi"
+
+[node name="Retaliate" type="Node" parent="AiStateMachine/QuiverSequenceState" index="3"]
+script = ExtResource("24_kwvvh")
+attack_state_path = "Ground/AttackRetaliate"
+combo_hits_amount = 1
+fallback_state_path = "Ground/Move/IdleAi"
+
+[node name="CallAction" type="Node" parent="AiStateMachine/QuiverSequenceState" index="4"]
+script = ExtResource("26_0k7cj")
+state_path = "DieAi"
+message = {}
+
+[node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 161.0
+offset_top = -311.0
+offset_right = 409.0
+offset_bottom = -234.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("27_2v5c2")
+alignment = 1
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+offset_right = 248.0
+offset_bottom = 26.0
+script = ExtResource("28_ak3dr")
+path_reference = NodePath("../../StateMachine")
+properties = PackedStringArray("state_name")
+
+[node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+offset_top = 26.0
+offset_right = 248.0
+offset_bottom = 52.0
+script = ExtResource("28_ak3dr")
+path_reference = NodePath("../../AiStateMachine")
+properties = PackedStringArray("state_name", "_consecutive_hits")
+
+[node name="Wait" type="Label" parent="DebugLabels" index="2"]
+offset_top = 52.0
+offset_right = 248.0
+offset_bottom = 78.0
+script = ExtResource("29_rgrj3")
+path_reference = NodePath("")
+properties = PackedStringArray("time_left")
+
+[connection signal="phase_changed_to" from="." to="AiStateMachine" method="_on_tax_man_phase_changed_to"]
+[connection signal="phase_changed_to" from="." to="DebugLabels/Wait" method="_on_tax_man_phase_changed_to"]
+[connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
+[connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
+[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/Hurt" method="_on_skin_skin_animation_finished"]
+[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/KnockoutKneeled" method="_on_skin_skin_animation_finished"]

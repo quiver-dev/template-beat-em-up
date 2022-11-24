@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://stages/stage_01/stage_elements/tax_man_area/brick_gate/dirty_brick_wall_gate.gd" id="1_xbrta"]
+[ext_resource type="Texture2D" uid="uid://b4jcajha80arw" path="res://stages/stage_01/stage_elements/tax_man_area/brick_gate/brick_gate_back.png" id="2_m7y1y"]
+[ext_resource type="AnimationLibrary" uid="uid://d2vw4ctmhthi7" path="res://stages/stage_01/stage_elements/tax_man_area/brick_gate/tax_man_gate_anim_library.tres" id="2_qacur"]
+[ext_resource type="Texture2D" uid="uid://mlxuohwa50qd" path="res://stages/stage_01/stage_elements/tax_man_area/brick_gate/brick_gate_front.png" id="3_bplye"]
+[ext_resource type="Texture2D" uid="uid://p30wnynmmcb7" path="res://stages/stage_01/stage_elements/tax_man_area/brick_gate/tax_man_doors_1.png" id="3_ivunq"]
+[ext_resource type="Texture2D" uid="uid://n6gavgela6ti" path="res://stages/stage_01/stage_elements/tax_man_area/brick_gate/tax_man_doors_2.png" id="4_amltg"]
+
+[node name="DirtyBrickWallGate" type="Node2D"]
+position = Vector2(11039, 1051)
+y_sort_enabled = true
+script = ExtResource("1_xbrta")
+metadata/_edit_vertical_guides_ = [11214.0]
+metadata/_edit_horizontal_guides_ = [1243.0]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "closed"
+libraries = {
+"": ExtResource("2_qacur")
+}
+next/opening = &"open_player_on_left"
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(-616, -611)
+texture = ExtResource("2_m7y1y")
+offset = Vector2(307.5, -172.8)
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(496, -1384)
+scale = Vector2(1, 1.00033)
+texture = ExtResource("3_bplye")
+offset = Vector2(11.0996, 737.51)
+
+[node name="Doors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Door1" type="Sprite2D" parent="Doors"]
+position = Vector2(-425, -389)
+texture = ExtResource("3_ivunq")
+offset = Vector2(135, -320)
+
+[node name="Door2" type="Sprite2D" parent="Doors"]
+position = Vector2(-180, -144)
+scale = Vector2(1, 0.999997)
+texture = ExtResource("4_amltg")
+offset = Vector2(135, -321.999)
+
+[node name="StaticBody2d" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 17
+
+[node name="CollisionBackWall" type="CollisionPolygon2D" parent="StaticBody2d"]
+polygon = PackedVector2Array(-574, -549, -340, -309, -318, -303, -243.748, -307.125, -238.828, -318.328, -553, -618, -616, -614)
+
+[node name="CollisionEntrance" type="CollisionPolygon2D" parent="StaticBody2d"]
+polygon = PackedVector2Array(-332, -304, -228, -308, 96, 5, -11, 14)
+
+[node name="CollisionFrontWall" type="CollisionPolygon2D" parent="StaticBody2d"]
+position = Vector2(617, 600)
+polygon = PackedVector2Array(-515, -497, -429, -499, -544.939, -607.145, -553, -610, -611, -607, -613, -603, -612, -598, -608, -594)
+
+[node name="LeftArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+metadata/collision_type = "player_detector"
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="LeftArea"]
+polygon = PackedVector2Array(-617, -632, 148, 125, -393, 123, -1155, -634)
+
+[node name="RightArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+metadata/collision_type = "player_detector"
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="RightArea"]
+position = Vector2(1220, 0)
+polygon = PackedVector2Array(-512, -658, 314, 121, -1038, 113, -1799, -640)
+
+[connection signal="body_entered" from="LeftArea" to="." method="_on_left_area_body_entered"]
+[connection signal="body_entered" from="RightArea" to="." method="_on_right_area_body_entered"]

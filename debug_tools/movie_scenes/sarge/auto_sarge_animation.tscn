@@ -1,0 +1,233 @@
+[gd_scene load_steps=32 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_ojjnd"]
+[ext_resource type="Script" path="res://debug_tools/movie_scenes/sarge/auto_sarge_animation.gd" id="2_yppr4"]
+[ext_resource type="Resource" uid="uid://llubu8lgbc5o" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="3_782g1"]
+[ext_resource type="Script" path="res://characters/enemies/sargent/sarge_collision.gd" id="4_tx46i"]
+[ext_resource type="PackedScene" path="res://characters/enemies/sargent/sarge_skin.tscn" id="5_kilmw"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="6_o1ygo"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_move.gd" id="7_ce4in"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_follow.gd" id="8_mv2s7"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/move_actions/quiver_action_idle_ai.gd" id="9_gxn2a"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_hurt.gd" id="10_0av5j"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/ground_actions/quiver_action_recovery.gd" id="11_urten"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_attack.gd" id="12_2aihs"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd" id="13_bsgco"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd" id="14_sc1qo"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_impulse.gd" id="15_ddq07"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_mid_air.gd" id="16_hk8n4"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/jump_actions/quiver_action_landing.gd" id="17_rm87k"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_knockout.gd" id="18_slnxa"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_launch.gd" id="19_oi0bv"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_mid_air.gd" id="20_nfe3b"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/air_actions/knockout_actions/quiver_action_bounce.gd" id="21_rtdqm"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die_ai.gd" id="22_dhk4x"]
+[ext_resource type="Script" path="res://characters/enemies/sargent/sarge_ai.gd" id="23_l5cc4"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/quiver_state_sequence.gd" id="24_5dccy"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait.gd" id="26_2lp3s"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_position.gd" id="27_ca14c"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_attack.gd" id="28_tdpbh"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="29_1l7ww"]
+[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/_base/theme_debug.tres" id="30_h4j2j"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="31_p3rv1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8yk3v"]
+radius = 18.0
+height = 220.0
+
+[node name="Sarge" groups=["enemies"] instance=ExtResource("1_ojjnd")]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("2_yppr4")
+_path_ai_state_machine = NodePath("AiStateMachine")
+_debug_draw_lane_limits = false
+_attributes = ExtResource("3_782g1")
+_path_skin = NodePath("SargeSkin")
+
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+modulate = Color(0, 0.6, 0.701961, 1)
+position = Vector2(-38, -17)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8yk3v")
+script = ExtResource("4_tx46i")
+metadata/collision_type = "default"
+
+[node name="SargeSkin" parent="." index="1" instance=ExtResource("5_kilmw")]
+
+[node name="StateMachine" parent="." index="2"]
+initial_state = NodePath("Ground/Move/IdleAi")
+
+[node name="Ground" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("6_o1ygo")
+path_hurt = "Ground/Hurt"
+path_knockout = "Air/Knockout/Launch"
+path_grabbed = "Ground/Grabbed"
+
+[node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
+script = ExtResource("7_ce4in")
+path_jump_state = "Air/Jump/Impulse"
+path_attack_state = "Ground/Attack1"
+
+[node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
+script = ExtResource("8_mv2s7")
+walk_skin_state = &"walk"
+path_next_state = "Ground/Move/IdleAi"
+turning_speed_modifier = 0.6
+
+[node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
+script = ExtResource("9_gxn2a")
+skin_state = &"idle"
+
+[node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
+script = ExtResource("10_0av5j")
+skin_state_mid = &"hurt_high"
+skin_state_high = &"hurt_mid"
+path_idle_state = "Ground/Move/IdleAi"
+
+[node name="Recovery" type="Node" parent="StateMachine/Ground" index="2"]
+script = ExtResource("11_urten")
+skin_state = &"knockout_ground"
+path_idle_state = "Ground/Move/IdleAi"
+
+[node name="Attack1" type="Node" parent="StateMachine/Ground" index="3"]
+script = ExtResource("12_2aihs")
+skin_state = &"attack_1"
+can_combo = true
+path_combo_state = "Ground/Attack2"
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = false
+
+[node name="Attack2" type="Node" parent="StateMachine/Ground" index="4"]
+script = ExtResource("12_2aihs")
+skin_state = &"attack_2"
+can_combo = true
+path_combo_state = "Ground/Attack3"
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = false
+
+[node name="Attack3" type="Node" parent="StateMachine/Ground" index="5"]
+script = ExtResource("12_2aihs")
+skin_state = &"attack_3"
+can_combo = false
+path_next_state = "Ground/Move/IdleAi"
+parent_should_enter = true
+parent_should_exit = true
+parent_should_process = true
+
+[node name="Air" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("13_bsgco")
+_debug_fall_modifier = 2.5
+
+[node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
+script = ExtResource("14_sc1qo")
+path_landing = "Air/Jump/Landing"
+path_knockout = "Air/Knockout/Launch"
+
+[node name="Impulse" type="Node" parent="StateMachine/Air/Jump" index="0"]
+script = ExtResource("15_ddq07")
+skin_state = &"jump_impulse"
+path_next_state = "Air/Jump/MidAir"
+
+[node name="MidAir" type="Node" parent="StateMachine/Air/Jump" index="1"]
+script = ExtResource("16_hk8n4")
+skin_state_rising = &"jump_rising"
+skin_state_falling = &"jump_falling"
+can_attack = false
+
+[node name="Landing" type="Node" parent="StateMachine/Air/Jump" index="2"]
+script = ExtResource("17_rm87k")
+skin_state = &"jump_landing"
+path_idle = "Ground/Move/IdleAi"
+path_walk = "Ground/Move/Follow"
+
+[node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
+script = ExtResource("18_slnxa")
+path_bounce = "Air/Knockout/Bounce"
+_path_launch = "Air/Knockout/Launch"
+
+[node name="Launch" type="Node" parent="StateMachine/Air/Knockout" index="0"]
+script = ExtResource("19_oi0bv")
+skin_state_launch = &"knockout_bounce"
+skin_state_rising = &"knockout_rising"
+path_next_state = "Air/Knockout/MidAir"
+
+[node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
+script = ExtResource("20_nfe3b")
+skin_state_rising = &"knockout_rising"
+skin_state_falling = &"knockout_falling"
+
+[node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
+script = ExtResource("21_rtdqm")
+skin_state = &"knockout_bounce"
+path_air_mid_air = "Air/Knockout/MidAir"
+path_ground_recovery = "Ground/Recovery"
+path_die = "DieAi"
+
+[node name="DieAi" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("22_dhk4x")
+skin_state = &"die"
+
+[node name="AiStateMachine" type="Node" parent="." index="3"]
+script = ExtResource("23_l5cc4")
+ai_state_hurt = "WaitTillIdle"
+ai_state_after_reset = "WaitTillIdle"
+initial_state = NodePath("QuiverSequenceState")
+should_process_input = false
+
+[node name="WaitTillIdle" type="Node" parent="AiStateMachine" index="0"]
+script = ExtResource("29_1l7ww")
+path_ready_state = "Ground/Move/IdleAi"
+
+[node name="QuiverSequenceState" type="Node" parent="AiStateMachine" index="1"]
+script = ExtResource("24_5dccy")
+
+[node name="GoToPosition" type="Node" parent="AiStateMachine/QuiverSequenceState" index="0"]
+script = ExtResource("27_ca14c")
+path_follow_state = "Ground/Move/Follow"
+use_node = false
+fallback_position = Vector2(inf, inf)
+
+[node name="Wait" type="Node" parent="AiStateMachine/QuiverSequenceState" index="1"]
+script = ExtResource("26_2lp3s")
+use_range = false
+wait_time = 1.0
+min_wait = 1.0
+max_wait = 3.0
+
+[node name="CallCombo" type="Node" parent="AiStateMachine/QuiverSequenceState" index="2"]
+script = ExtResource("28_tdpbh")
+attack_state_path = "Ground/Attack1"
+combo_hits_amount = 3
+fallback_state_path = "Ground/Move/IdleAi"
+
+[node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
+visible = false
+offset_left = -168.0
+offset_top = -442.0
+offset_right = 168.0
+offset_bottom = -392.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("30_h4j2j")
+metadata/_edit_use_custom_anchors = true
+
+[node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
+offset_right = 336.0
+offset_bottom = 26.0
+script = ExtResource("31_p3rv1")
+path_reference = NodePath("../../StateMachine")
+properties = PackedStringArray("state_name")
+
+[node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
+offset_top = 26.0
+offset_right = 336.0
+offset_bottom = 52.0
+script = ExtResource("31_p3rv1")
+path_reference = NodePath("../../AiStateMachine")
+properties = PackedStringArray("state_name")
+
+[connection signal="state_finished" from="AiStateMachine/QuiverSequenceState" to="." method="_on_quiver_sequence_state_state_finished"]

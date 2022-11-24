@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://duj2lkrv7ttvm"
+path="res://.godot/imported/keyboard_mask_big.png-62a14e96b971457564ece83b0ce920e5.res"
+
+[deps]
+
+source_file="res://ui/how_to_play/pngs/buttons/keyboard_mask_big.png"
+dest_files=["res://.godot/imported/keyboard_mask_big.png-62a14e96b971457564ece83b0ce920e5.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

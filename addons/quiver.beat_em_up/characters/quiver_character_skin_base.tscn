@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin.gd" id="1_jxqd2"]
+
+[node name="CharacterSkinBase" type="Node2D"]
+script = ExtResource( "1_jxqd2" )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+anim_player = NodePath("../AnimationPlayer")

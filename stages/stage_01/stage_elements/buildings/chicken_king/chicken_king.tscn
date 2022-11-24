@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Texture2D" uid="uid://cjfpv8ltxsxi" path="res://stages/stage_01/stage_elements/buildings/chicken_king/pngs/chicken_king_base.png" id="1_k81dk"]
+[ext_resource type="Script" path="res://stages/stage_01/stage_elements/buildings/chicken_king/chicken_king.gd" id="1_k84xw"]
+[ext_resource type="Texture2D" uid="uid://dmu7ya6xpolj4" path="res://stages/stage_01/stage_elements/buildings/chicken_king/pngs/chicken_king_window_covers.png" id="2_cpt7q"]
+[ext_resource type="Texture2D" uid="uid://caaj8xsspr102" path="res://stages/stage_01/stage_elements/buildings/chicken_king/pngs/chicken_king_front_banner.png" id="3_qf5r1"]
+[ext_resource type="Texture2D" uid="uid://b3eketsxoly0e" path="res://stages/stage_01/stage_elements/buildings/chicken_king/pngs/chicken_king_top.png" id="4_vlj2i"]
+[ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/buildings/chicken_king/chicken_king_billboard.tscn" id="5_g4s3y"]
+
+[node name="ChickenKing" type="Node2D"]
+position = Vector2(-49, 1)
+script = ExtResource("1_k84xw")
+
+[node name="ChickenKing" type="Sprite2D" parent="."]
+position = Vector2(0, -233.5)
+texture = ExtResource("1_k81dk")
+
+[node name="WindowCovers" type="Sprite2D" parent="."]
+position = Vector2(9, -194)
+texture = ExtResource("2_cpt7q")
+
+[node name="Banner" type="Sprite2D" parent="."]
+position = Vector2(0, -398)
+texture = ExtResource("3_qf5r1")
+
+[node name="Top" type="Sprite2D" parent="."]
+position = Vector2(0, -730.5)
+texture = ExtResource("4_vlj2i")
+
+[node name="ChickenKingBillboard" parent="." instance=ExtResource("5_g4s3y")]
+position = Vector2(0, -1144)
