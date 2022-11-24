@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://debug_tools/test_scenes/base_test.gd" id="1_jv86j"]
 [ext_resource type="PackedScene" path="res://characters/playable/chad/chad.tscn" id="2_6ewoc"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_ke1uh"]
-[ext_resource type="PackedScene" path="res://ui/gameplay_ui/pause_menu/PauseMenu.tscn" id="4_sokup"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/PauseMenu.tscn" id="4_sokup"]
 [ext_resource type="PackedScene" path="res://ui/gameplay_hud/player_hud.tscn" id="5_rv8r8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebte6"]

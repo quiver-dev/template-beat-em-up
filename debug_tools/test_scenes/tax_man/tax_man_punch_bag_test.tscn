@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://tvgemnpgm0rh"]
 
 [ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man.tscn" id="1_fg64k"]
 [ext_resource type="Script" path="res://debug_tools/test_scenes/base_test.gd" id="1_s62f3"]
 [ext_resource type="PackedScene" path="res://characters/playable/chad/chad.tscn" id="2_8d3gw"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="3_avtoo"]
-[ext_resource type="PackedScene" path="res://ui/gameplay_ui/pause_menu/PauseMenu.tscn" id="5_638rv"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/PauseMenu.tscn" id="5_638rv"]
 [ext_resource type="PackedScene" path="res://ui/gameplay_hud/player_hud.tscn" id="6_w1xaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebte6"]
@@ -53,16 +53,22 @@ position = Vector2(1578, 823)
 
 [node name="Skin" parent="Characters/TaxMan" index="0"]
 skin_direction = 1
-debug_prints = true
 
 [node name="AiStateMachine" parent="Characters/TaxMan" index="3"]
 disabled = true
 
-[node name="StateMachine" parent="Characters/TaxMan/DebugLabels" index="0"]
-layout_mode = 2
+[node name="ChooseRandomAttack" parent="Characters/TaxMan/AiStateMachine/Phase1" index="1"]
+_weights_by_child = {
+"ComboAttack": 1.40816,
+"DashAttack": 0.591839
+}
 
-[node name="AiStateMachine" parent="Characters/TaxMan/DebugLabels" index="1"]
-layout_mode = 2
+[node name="ChooseRandomAttack" parent="Characters/TaxMan/AiStateMachine/Phase3" index="1"]
+_weights_by_child = {
+"AreaAttack": 0.892046,
+"ComboAttack": 0.608845,
+"DashAttack": 1.49911
+}
 
 [node name="Chad" parent="Characters" instance=ExtResource("2_8d3gw")]
 position = Vector2(1041, 688)
@@ -82,11 +88,13 @@ horizontal_alignment = 2
 script = ExtResource("3_avtoo")
 
 [node name="PauseMenu" parent="HudLayer" instance=ExtResource("5_638rv")]
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="PlayerHud" parent="HudLayer" instance=ExtResource("6_w1xaj")]
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["tax_man_dash_positions"]]
+position = Vector2(1650, 698)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["tax_man_dash_positions"]]
+position = Vector2(344, 698)
 
 [editable path="Characters/TaxMan"]
