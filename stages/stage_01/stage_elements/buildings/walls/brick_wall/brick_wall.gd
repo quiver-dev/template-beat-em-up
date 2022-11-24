@@ -10,8 +10,8 @@ extends Sprite2D
 
 #--- constants ------------------------------------------------------------------------------------
 
-const DEFAULT_TEXTURE1D = preload("res://stages/stage_01/background_elements/buildings/walls/brick_wall/brick_wall_default_grayscale1D.tres")
-const DEFAULT_GRADIENT = preload("res://stages/stage_01/background_elements/buildings/walls/brick_wall/brick_wall_default_gradient.tres")
+const DEFAULT_TEXTURE1D = preload("res://stages/stage_01/stage_elements/buildings/walls/brick_wall/brick_wall_default_grayscale1D.tres")
+const DEFAULT_GRADIENT = preload("res://stages/stage_01/stage_elements/buildings/walls/brick_wall/brick_wall_default_gradient.tres")
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
