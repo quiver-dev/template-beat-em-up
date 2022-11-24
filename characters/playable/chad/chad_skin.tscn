@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hit_box.gd" id="5_f1o2m"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="5_k0gpy"]
 [ext_resource type="Resource" uid="uid://c6fl3lwjri6qi" path="res://characters/playable/chad/resources/chad_attributes.tres" id="6_iqdvs"]
-[ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/attack_punch1.tres" id="8_uylrb"]
-[ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/attack_punch2.tres" id="9_cutyj"]
-[ext_resource type="Resource" uid="uid://hc8n1g3pof68" path="res://characters/playable/chad/resources/attacks/attack_air_kick.tres" id="10_556uq"]
-[ext_resource type="Resource" uid="uid://bgbpy28lgkuc3" path="res://characters/playable/chad/resources/attacks/attack_punch3.tres" id="11_7yi7m"]
+[ext_resource type="Resource" uid="uid://pv46phrhdsqu" path="res://characters/playable/chad/resources/attacks/punch1_attack_data.tres" id="8_uylrb"]
+[ext_resource type="Resource" uid="uid://beqy5d7ejvcnd" path="res://characters/playable/chad/resources/attacks/punch2_attack_data.tres" id="9_cutyj"]
+[ext_resource type="Resource" uid="uid://hc8n1g3pof68" path="res://characters/playable/chad/resources/attacks/air_kick_attack_data.tres" id="10_556uq"]
+[ext_resource type="Resource" uid="uid://bgbpy28lgkuc3" path="res://characters/playable/chad/resources/attacks/punch3_attack_data.tres" id="11_7yi7m"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6o40w"]
 _data = {
