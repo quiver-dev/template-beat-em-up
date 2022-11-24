@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dg0fv77f23abu"
+path="res://.godot/imported/quit_to_main_mask_normal.png-e77b66e312cc1259e2f0d5cfd5db1308.res"
+
+[deps]
+
+source_file="res://ui/pause_menu/pngs/buttons/quit_to_main_mask_normal.png"
+dest_files=["res://.godot/imported/quit_to_main_mask_normal.png-e77b66e312cc1259e2f0d5cfd5db1308.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

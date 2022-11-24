@@ -27,7 +27,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="22_wmall"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd" id="24_jvcip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="25_7uuvm"]
-[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/theme_resources/theme_debug.tres" id="26_sum7q"]
+[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/_base/theme_debug.tres" id="26_sum7q"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/resources/wait_debug_label.gd" id="27_dlvh8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntaek"]

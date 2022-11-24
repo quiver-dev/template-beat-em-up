@@ -28,7 +28,7 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_position.gd" id="27_ca14c"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_call_attack.gd" id="28_tdpbh"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_wait_for_state.gd" id="29_1l7ww"]
-[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/theme_resources/theme_debug.tres" id="30_h4j2j"]
+[ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/_base/theme_debug.tres" id="30_h4j2j"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd" id="31_p3rv1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8yk3v"]

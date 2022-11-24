@@ -1,6 +1,5 @@
-[gd_scene load_steps=31 format=3 uid="uid://bww100fjmj2v3"]
+[gd_scene load_steps=30 format=3 uid="uid://cl5t3fr12656g"]
 
-[ext_resource type="Theme" uid="uid://daerdv3y6ywyu" path="res://ui/theme_resources/theme_template.tres" id="1_0xtes"]
 [ext_resource type="Texture2D" uid="uid://dgru1cbuc5jyy" path="res://ui/main_menu/pngs/bg.png" id="1_3ligk"]
 [ext_resource type="Script" path="res://ui/main_menu/main_menu.gd" id="1_xf06u"]
 [ext_resource type="Texture2D" uid="uid://bw7uu55i3kn3g" path="res://ui/main_menu/pngs/paint_spray.png" id="2_uw08o"]
@@ -13,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c57jdcqsvpc47" path="res://ui/main_menu/pngs/buttons/start_game_pressed.png" id="10_jjw2h"]
 [ext_resource type="Texture2D" uid="uid://nkop1d7eltev" path="res://ui/main_menu/pngs/buttons/start_game_hover.png" id="11_eb3x3"]
 [ext_resource type="BitMap" uid="uid://7fio68fkg246" path="res://ui/main_menu/pngs/buttons/start_game_mask_normal.png" id="12_s7lr0"]
-[ext_resource type="Script" path="res://ui/theme_resources/DoubleMaskTextureButton.gd" id="13_wno6g"]
+[ext_resource type="Script" path="res://ui/_base/DoubleMaskTextureButton.gd" id="13_wno6g"]
 [ext_resource type="BitMap" uid="uid://2oxd52vtg7sq" path="res://ui/main_menu/pngs/buttons/start_game_mask_big.png" id="14_cp57u"]
 [ext_resource type="Texture2D" uid="uid://u3ckktg36gaa" path="res://ui/main_menu/pngs/buttons/how_to_play_normal.png" id="15_hc1rq"]
 [ext_resource type="Texture2D" uid="uid://drao4rrtiros7" path="res://ui/main_menu/pngs/buttons/how_to_play_pressed.png" id="16_ku40w"]
@@ -307,7 +306,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_0xtes")
 script = ExtResource("1_xf06u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dhfh1tj2dqpdg"
+path="res://.godot/imported/restart_mask_normal.png-ce5008126eaac9a77a4210c4f7046b24.res"
+
+[deps]
+
+source_file="res://ui/pause_menu/pngs/buttons/restart_mask_normal.png"
+dest_files=["res://.godot/imported/restart_mask_normal.png-ce5008126eaac9a77a4210c4f7046b24.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -22,12 +22,12 @@ _global_script_classes=[{
 "base": "TextureButton",
 "class": &"DoubleMaskTextureButton",
 "language": &"GDScript",
-"path": "res://ui/theme_resources/DoubleMaskTextureButton.gd"
+"path": "res://ui/_base/DoubleMaskTextureButton.gd"
 }, {
 "base": "Control",
 "class": &"EndScreen",
 "language": &"GDScript",
-"path": "res://ui/gameplay_ui/end_screen/end_screen.gd"
+"path": "res://ui/end_screen/end_screen.gd"
 }, {
 "base": "Resource",
 "class": &"GradientTransitioner",
@@ -162,7 +162,7 @@ _global_script_classes=[{
 "base": "TextureRect",
 "class": &"QuiverLifeBar",
 "language": &"GDScript",
-"path": "res://ui/gameplay_ui/hud/player_health_bar/heath_bar.gd"
+"path": "res://ui/gameplay_hud/player_health_bar/heath_bar.gd"
 }, {
 "base": "RefCounted",
 "class": &"QuiverMathHelper",

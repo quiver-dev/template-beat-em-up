@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://characters/playable/chad/chad.tscn" id="3_hxscm"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="4_yu1bl"]
 [ext_resource type="PackedScene" path="res://ui/gameplay_ui/pause_menu/PauseMenu.tscn" id="5_6me1s"]
-[ext_resource type="PackedScene" path="res://ui/gameplay_ui/hud/player_hud.tscn" id="6_rrjee"]
+[ext_resource type="PackedScene" path="res://ui/gameplay_hud/player_hud.tscn" id="6_rrjee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebte6"]
 size = Vector2(2212, 87)

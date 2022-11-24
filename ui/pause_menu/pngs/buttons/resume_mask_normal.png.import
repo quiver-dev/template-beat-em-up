@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://g3vtioweju5h"
+path="res://.godot/imported/resume_mask_normal.png-f02f2e7e2c1830e1de0d6eb476f9049f.res"
+
+[deps]
+
+source_file="res://ui/pause_menu/pngs/buttons/resume_mask_normal.png"
+dest_files=["res://.godot/imported/resume_mask_normal.png-f02f2e7e2c1830e1de0d6eb476f9049f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3]
 
-[ext_resource type="Theme" path="res://ui/theme_resources/theme_template.tres" id="1_0p5ps"]
+[ext_resource type="Theme" path="res://ui/_base/theme_template.tres" id="1_0p5ps"]
 [ext_resource type="Script" path="res://ui/how_to_play/how_to_play.gd" id="1_tpvd0"]
 [ext_resource type="Script" path="res://ui/how_to_play/tab_button.gd" id="2_41wgy"]
-[ext_resource type="Texture2D" uid="uid://d1km5hwxdeda5" path="res://ui/theme_resources/pngs/menu_color_stripes.png" id="2_gkwt5"]
+[ext_resource type="Texture2D" uid="uid://d1km5hwxdeda5" path="res://ui/_base/pngs/menu_color_stripes.png" id="2_gkwt5"]
 [ext_resource type="Script" path="res://ui/how_to_play/input_type_tabs.gd" id="3_e8lqy"]
 [ext_resource type="ButtonGroup" uid="uid://m7noppbbpd3h" path="res://ui/how_to_play/how_to_play_button_group.tres" id="3_pgl7h"]
 [ext_resource type="Texture2D" uid="uid://bp64o1r6jckos" path="res://ui/how_to_play/pngs/title.png" id="4_2qv2r"]
