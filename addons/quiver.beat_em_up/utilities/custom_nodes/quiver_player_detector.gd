@@ -66,6 +66,7 @@ func _ready() -> void:
 func _on_body_entered(body: QuiverCharacter) -> void:
 	if body != null and body.is_in_group("players"):
 		call_deferred("emit_signal", "player_detected")
-		queue_free()
+		if is_one_shot:
+			queue_free()
 
 ### -----------------------------------------------------------------------------------------------
