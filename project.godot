@@ -416,7 +416,7 @@ pause={
 
 [quiver]
 
-beat_em_up/default_hit_lane_size=60
-beat_em_up/logging_enabled=true
-beat_em_up/fall_gravity_modifier=2.5
-beat_em_up/disable_player_detector_on_editor=false
+beat_em_up/gameplay/default_hit_lane_size=60
+beat_em_up/debug/logging_enabled=true
+beat_em_up/gameplay/fall_gravity_modifier=2.5
+beat_em_up/debug/disable_player_detector_on_editor=false
