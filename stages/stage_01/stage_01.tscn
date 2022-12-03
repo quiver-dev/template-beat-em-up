@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3]
+[gd_scene load_steps=104 format=3 uid="uid://bnoa0s3qnckt1"]
 
 [ext_resource type="PackedScene" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
@@ -50,7 +50,7 @@
 [ext_resource type="Script" path="res://stages/stage_01/tax_man_room_light.gd" id="16_rlks8"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_fight_room.gd" id="17_cjfi2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/quiver_enemy_spawner.gd" id="18_5ae2i"]
-[ext_resource type="PackedScene" path="res://characters/enemies/sargent/sarge.tscn" id="19_etsee"]
+[ext_resource type="PackedScene" uid="uid://2jhcwfmlrylb" path="res://characters/enemies/sargent/sarge.tscn" id="19_etsee"]
 [ext_resource type="Texture2D" uid="uid://drgfnuqqfrg4b" path="res://stages/stage_01/stage_elements/pavement/tax_man_streetlines.png" id="19_tfj0g"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/enemy_spawner/enemy_spawn_data.gd" id="20_smh3p"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_player_detector.gd" id="21_ge31n"]
@@ -87,35 +87,35 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_j7t8h"]
+[sub_resource type="Gradient" id="Gradient_y20ei"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6r07b"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ekpp6"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_j7t8h")
+gradient = SubResource("Gradient_y20ei")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
-shader_parameter/gradient = SubResource("GradientTexture1D_6r07b")
+shader_parameter/gradient = SubResource("GradientTexture1D_ekpp6")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
 
-[sub_resource type="Gradient" id="Gradient_bm0cd"]
+[sub_resource type="Gradient" id="Gradient_1qw1k"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_py3ns"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_21y2g"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_bm0cd")
+gradient = SubResource("Gradient_1qw1k")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
-shader_parameter/gradient = SubResource("GradientTexture1D_py3ns")
+shader_parameter/gradient = SubResource("GradientTexture1D_21y2g")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
 
