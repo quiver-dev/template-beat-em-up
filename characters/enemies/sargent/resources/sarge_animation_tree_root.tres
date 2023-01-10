@@ -349,7 +349,7 @@ graph_offset = Vector2(-48, -207)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_cluav"]
 
 [resource]
-graph_offset = Vector2(-223.683, -38.6219)
+graph_offset = Vector2(-510.349, -66.1657)
 nodes/output/position = Vector2(720, 140)
 nodes/state_machine/node = SubResource("AnimationNodeStateMachine_8vuq0")
 nodes/state_machine/position = Vector2(260, 80)

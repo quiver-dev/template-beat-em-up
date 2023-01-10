@@ -43,6 +43,7 @@ resource_local_to_scene = true
 size = Vector2(285, 86.436)
 
 [node name="SargeSkin" instance=ExtResource("1_kelmx")]
+skin_direction = -1
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("2_ajvg2")
 has_grab = false
@@ -58,27 +59,28 @@ libraries = {
 
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource("4_i00o2")
+active = true
 parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_ffbdk")
-parameters/state_machine/attack_1/blend_position = 1
-parameters/state_machine/attack_2/blend_position = 1
-parameters/state_machine/attack_3/blend_position = 1
-parameters/state_machine/die/blend_position = 1
-parameters/state_machine/hurt_high/blend_position = 1
-parameters/state_machine/hurt_mid/blend_position = 1
-parameters/state_machine/idle/blend_position = 1
-parameters/state_machine/jump_falling/blend_position = 1
-parameters/state_machine/jump_impulse/blend_position = 1
-parameters/state_machine/jump_landing/blend_position = 1
-parameters/state_machine/jump_rising/blend_position = 1
-parameters/state_machine/knockout_bounce/blend_position = 1
-parameters/state_machine/knockout_falling/blend_position = 1
+parameters/state_machine/attack_1/blend_position = -1
+parameters/state_machine/attack_2/blend_position = -1
+parameters/state_machine/attack_3/blend_position = -1
+parameters/state_machine/die/blend_position = -0.428346
+parameters/state_machine/hurt_high/blend_position = -1
+parameters/state_machine/hurt_mid/blend_position = -1
+parameters/state_machine/idle/blend_position = -1
+parameters/state_machine/jump_falling/blend_position = -1
+parameters/state_machine/jump_impulse/blend_position = -1
+parameters/state_machine/jump_landing/blend_position = -1
+parameters/state_machine/jump_rising/blend_position = -1
+parameters/state_machine/knockout_bounce/blend_position = -0.440945
+parameters/state_machine/knockout_falling/blend_position = -0.480315
 parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeStateMachinePlayback_s3dlm")
-parameters/state_machine/knockout_ground/getting_up/blend_position = 1
-parameters/state_machine/knockout_ground/landed/blend_position = 1
-parameters/state_machine/knockout_launch/blend_position = 1
-parameters/state_machine/knockout_rising/blend_position = 1
-parameters/state_machine/turn/blend_position = 1
-parameters/state_machine/walk/blend_position = 1
+parameters/state_machine/knockout_ground/getting_up/blend_position = 0.343307
+parameters/state_machine/knockout_ground/landed/blend_position = 0.422047
+parameters/state_machine/knockout_launch/blend_position = -0.820472
+parameters/state_machine/knockout_rising/blend_position = -0.76378
+parameters/state_machine/turn/blend_position = -1
+parameters/state_machine/walk/blend_position = -0.535433
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
