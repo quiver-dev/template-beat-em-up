@@ -146,77 +146,79 @@ func _on_release_timer_timeout() -> void:
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-const CUSTOM_PROPERTIES = {
-	"Grab Idle":{
-		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_CATEGORY,
-	},
-	"release_delay": {
-		backing_field = "_release_delay",
-		type = TYPE_FLOAT,
-		usage = PROPERTY_USAGE_DEFAULT,
-		hint = PROPERTY_HINT_RANGE,
-		hint_string = "0.0,3.0,0.05,or_greater",
-	},
-	"skin_state": {
-		backing_field = "_skin_state",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
-	},
-	"Follow Up Actions":{
-		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_GROUP,
-		hint_string = "path_"
-	},
-	"path_grab_denied": {
-		backing_field = "_path_grab_denied",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"path_release": {
-		backing_field = "_path_release",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"path_throw_forward": {
-		backing_field = "_path_throw_forward",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"path_throw_backwards": {
-		backing_field = "_path_throw_backwards",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-#	"": {
-#		backing_field = "",
-#		name = "",
-#		type = TYPE_NIL,
-#		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-#		hint = PROPERTY_HINT_NONE,
-#		hint_string = "",
-#	},
-}
+func _get_custom_properties() -> Dictionary:
+	return {
+		"Grab Idle":{
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_CATEGORY,
+		},
+		"release_delay": {
+			backing_field = "_release_delay",
+			type = TYPE_FLOAT,
+			usage = PROPERTY_USAGE_DEFAULT,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0.0,3.0,0.05,or_greater",
+		},
+		"skin_state": {
+			backing_field = "_skin_state",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = \
+					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+		},
+		"Follow Up Actions":{
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_GROUP,
+			hint_string = "path_"
+		},
+		"path_grab_denied": {
+			backing_field = "_path_grab_denied",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_STATE_LIST,
+		},
+		"path_release": {
+			backing_field = "_path_release",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_STATE_LIST,
+		},
+		"path_throw_forward": {
+			backing_field = "_path_throw_forward",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_STATE_LIST,
+		},
+		"path_throw_backwards": {
+			backing_field = "_path_throw_backwards",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_STATE_LIST,
+		},
+#		"": {
+#			backing_field = "",
+#			name = "",
+#			type = TYPE_NIL,
+#			usage = PROPERTY_USAGE_DEFAULT,
+#			hint = PROPERTY_HINT_NONE,
+#			hint_string = "",
+#		},
+	}
 
 ### Custom Inspector built in functions -----------------------------------------------------------
 
 func _get_property_list() -> Array:
 	var properties: = []
 	
-	for key in CUSTOM_PROPERTIES:
+	var custom_properties := _get_custom_properties()
+	for key in custom_properties:
 		var add_property := true
-		var dict: Dictionary = CUSTOM_PROPERTIES[key]
+		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
 		
@@ -229,8 +231,9 @@ func _get_property_list() -> Array:
 func _get(property: StringName):
 	var value
 	
-	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-		value = get(CUSTOM_PROPERTIES[property]["backing_field"])
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("backing_field"):
+		value = get(custom_properties[property]["backing_field"])
 	
 	return value
 
@@ -238,8 +241,9 @@ func _get(property: StringName):
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
 	
-	if property in CUSTOM_PROPERTIES and CUSTOM_PROPERTIES[property].has("backing_field"):
-		set(CUSTOM_PROPERTIES[property]["backing_field"], value)
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("backing_field"):
+		set(custom_properties[property]["backing_field"], value)
 		has_handled = true
 	
 	return has_handled
