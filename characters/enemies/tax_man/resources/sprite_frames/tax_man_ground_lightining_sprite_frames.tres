@@ -10,12 +10,48 @@
 
 [resource]
 animations = [{
-"frames": [ExtResource("1_vwm12"), ExtResource("1_vwm12"), ExtResource("1_vwm12"), ExtResource("2_f3cgi"), null],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vwm12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_vwm12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_vwm12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f3cgi")
+}],
 "loop": true,
 "name": &"area_attak",
 "speed": 5.0
 }, {
-"frames": [ExtResource("3_pnflu"), ExtResource("4_o3akd"), ExtResource("5_q502g"), ExtResource("5_q502g"), ExtResource("6_hxki8"), ExtResource("6_hxki8"), ExtResource("6_hxki8"), ExtResource("7_w5xsv")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pnflu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o3akd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q502g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q502g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hxki8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hxki8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hxki8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w5xsv")
+}],
 "loop": true,
 "name": &"explosion",
 "speed": 5.0

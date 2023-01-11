@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dt7p27emy0i28"]
+
+[ext_resource type="Texture2D" uid="uid://c2k7o2f7glcpw" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0080.png" id="1_3b3vg"]
+[ext_resource type="Texture2D" uid="uid://dj310p15yegge" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0081.png" id="2_ojbeh"]
+[ext_resource type="Texture2D" uid="uid://c2eajaku8begs" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0082.png" id="3_l6jsk"]
+[ext_resource type="Texture2D" uid="uid://da78hj46w51k6" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/coins/grenade_finisher0083.png" id="4_4kilk"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3b3vg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ojbeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l6jsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4kilk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cq00c1s261tnx"]
+
+[ext_resource type="Texture2D" uid="uid://h7d3gctevfx2" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0065.png" id="1_qjscv"]
+[ext_resource type="Texture2D" uid="uid://dh2pp7d5q53st" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0066.png" id="2_46q74"]
+[ext_resource type="Texture2D" uid="uid://baw8ykf8r632t" path="res://characters/enemies/tax_man/resources/sprites/attacks/grenade_death/ground_lightning_smoke/grenade_finisher0067.png" id="3_7hah8"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qjscv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_46q74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7hah8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
