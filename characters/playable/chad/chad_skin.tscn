@@ -38,8 +38,8 @@ size = Vector2(161, 329.5)
 size = Vector2(261.336, 79.2264)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
-attributes = ExtResource("6_iqdvs")
 _path_playback = "parameters/state_machine/playback"
+attributes = ExtResource("6_iqdvs")
 metadata/_edit_vertical_guides_ = [-141.0, 140.0]
 metadata/_edit_horizontal_guides_ = [14.0, -445.0, -390.0]
 

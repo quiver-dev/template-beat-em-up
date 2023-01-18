@@ -1,5 +1,5 @@
 @tool
-extends QuiverCharacterSkin
+extends QuiverCharacterSkinAnimTree
 
 ## Write your doc string for this file here
 
@@ -25,13 +25,6 @@ const LAYER_WALLS = 3
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
-
-func _ready() -> void:
-	super()
-	
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		return
 
 ### -----------------------------------------------------------------------------------------------
 

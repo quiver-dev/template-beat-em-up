@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://bkfvltx0n6b8y"]
 
-[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin.gd" id="1_jxqd2"]
+[ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_anim_tree.gd" id="1_nsabc"]
 
 [node name="CharacterSkinBase" type="Node2D"]
-script = ExtResource( "1_jxqd2" )
+script = ExtResource("1_nsabc")
+has_grab = false
+has_grabbed = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
