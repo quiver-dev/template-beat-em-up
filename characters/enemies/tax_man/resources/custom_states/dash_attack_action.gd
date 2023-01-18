@@ -79,30 +79,11 @@ func _disable_movement() -> void:
 func _connect_signals() -> void:
 	get_parent()._connect_signals()
 	super()
-	
-	QuiverEditorHelper.connect_between(
-			_skin.attack_movement_started, _on_skin_attack_movement_started
-	)
-	QuiverEditorHelper.connect_between(
-			_skin.attack_movement_ended, _on_skin_attack_movement_ended
-	)
-	QuiverEditorHelper.connect_between(_skin.skin_animation_finished, _on_skin_animation_finished)
 
 
 func _disconnect_signals() -> void:
 	get_parent()._disconnect_signals()
 	super()
-	if _skin != null:
-		QuiverEditorHelper.disconnect_between(
-				_skin.attack_movement_started, _on_skin_attack_movement_started
-		)
-		QuiverEditorHelper.disconnect_between(
-				_skin.attack_movement_ended, _on_skin_attack_movement_ended
-		)
-		
-		QuiverEditorHelper.disconnect_between(
-				_skin.skin_animation_finished, _on_skin_animation_finished
-		)
 
 
 func _on_skin_attack_movement_started(p_direction: Vector2, p_speed: float) -> void:
@@ -115,7 +96,6 @@ func _on_skin_attack_movement_ended() -> void:
 	_disable_movement()
 
 
-## Connect the signal that marks the end of the attack to this function.
 func _on_skin_animation_finished() -> void:
 	_state_machine.transition_to(_path_next_state)
 

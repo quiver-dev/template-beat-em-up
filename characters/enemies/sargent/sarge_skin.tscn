@@ -1,9 +1,9 @@
 [gd_scene load_steps=21 format=3 uid="uid://dex3rudks2dn6"]
 
-[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_kelmx"]
+[ext_resource type="PackedScene" uid="uid://bkfvltx0n6b8y" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_kelmx"]
 [ext_resource type="AnimationLibrary" uid="uid://dbbhof0f3tyc5" path="res://characters/enemies/sargent/resources/sarge_anim_library.tres" id="2_51vq1"]
 [ext_resource type="Resource" uid="uid://llubu8lgbc5o" path="res://characters/enemies/sargent/resources/sarge_attributes.tres" id="2_ajvg2"]
-[ext_resource type="SpriteFrames" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
+[ext_resource type="SpriteFrames" uid="uid://br6ei5w58m733" path="res://characters/enemies/sargent/resources/sarge_sprite_frames.tres" id="3_b0w6d"]
 [ext_resource type="Animation" uid="uid://4pyxng06ryx7" path="res://characters/enemies/sargent/resources/animations/RESET.tres" id="3_pkfas"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dgp3tbstqr8i5" path="res://characters/enemies/sargent/resources/sarge_animation_tree_root.tres" id="4_i00o2"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_hurt_box.gd" id="7_7ybvf"]
@@ -46,8 +46,6 @@ size = Vector2(285, 86.436)
 skin_direction = -1
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("2_ajvg2")
-has_grab = false
-has_grabbed = false
 metadata/_edit_vertical_guides_ = [177.0, -99.0, -177.0, 100.0]
 metadata/_edit_horizontal_guides_ = [9.0, -274.0]
 
@@ -59,12 +57,11 @@ libraries = {
 
 [node name="AnimationTree" parent="." index="1"]
 tree_root = ExtResource("4_i00o2")
-active = true
 parameters/state_machine/playback = SubResource("AnimationNodeStateMachinePlayback_ffbdk")
 parameters/state_machine/attack_1/blend_position = -1
 parameters/state_machine/attack_2/blend_position = -1
 parameters/state_machine/attack_3/blend_position = -1
-parameters/state_machine/die/blend_position = -0.428346
+parameters/state_machine/die/blend_position = -1
 parameters/state_machine/hurt_high/blend_position = -1
 parameters/state_machine/hurt_mid/blend_position = -1
 parameters/state_machine/idle/blend_position = -1
@@ -72,15 +69,15 @@ parameters/state_machine/jump_falling/blend_position = -1
 parameters/state_machine/jump_impulse/blend_position = -1
 parameters/state_machine/jump_landing/blend_position = -1
 parameters/state_machine/jump_rising/blend_position = -1
-parameters/state_machine/knockout_bounce/blend_position = -0.440945
-parameters/state_machine/knockout_falling/blend_position = -0.480315
+parameters/state_machine/knockout_bounce/blend_position = -1
+parameters/state_machine/knockout_falling/blend_position = -1
 parameters/state_machine/knockout_ground/playback = SubResource("AnimationNodeStateMachinePlayback_s3dlm")
-parameters/state_machine/knockout_ground/getting_up/blend_position = 0.343307
-parameters/state_machine/knockout_ground/landed/blend_position = 0.422047
-parameters/state_machine/knockout_launch/blend_position = -0.820472
-parameters/state_machine/knockout_rising/blend_position = -0.76378
+parameters/state_machine/knockout_ground/getting_up/blend_position = -1
+parameters/state_machine/knockout_ground/landed/blend_position = -1
+parameters/state_machine/knockout_launch/blend_position = -1
+parameters/state_machine/knockout_rising/blend_position = -1
 parameters/state_machine/turn/blend_position = -1
-parameters/state_machine/walk/blend_position = -0.535433
+parameters/state_machine/walk/blend_position = -1
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]

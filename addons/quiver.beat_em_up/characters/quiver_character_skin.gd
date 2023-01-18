@@ -4,8 +4,8 @@ extends Node2D
 ## Base class for any kind of character, either playable or npc.
 ##
 ## The skin is based on an [AnimationPlayer] and an [AnimationTree]. There is a base scene you 
-## can inherit on [code]res://characters/_base/[/code], but you can use this script on your own
-## scene as long as it has a AnimationTree with a state machine in it.
+## can inherit on [code]res://addons/quiver.beat_em_up/characters/[/code], but you can use 
+## this script on your own scene as long as it has a AnimationTree with a state machine in it.
 ## [br][br]
 ## If you do use it on another scene, just configure the exported variables accordingly.
 ## [br][br]
@@ -22,13 +22,14 @@ signal skin_animation_finished
 
 ## called by attack animations at the point where they stop accepting input for combos
 signal attack_input_frames_finished
+## called by attack animations that make the character move, like a dash attack for example.
+signal attack_movement_started(direction: Vector2, speed: float)
+## called by attack animations when it should stop moving a character.
+signal attack_movement_ended
 
 ## emited by calling [method grab_notify] in grab animations, at the point the grab should 
 ## connect and link the character who is grabbing to grabbed character
 signal grab_frame_reached(ref_position: Marker2D)
-
-signal attack_movement_started(direction: Vector2, speed: float)
-signal attack_movement_ended
 
 #--- enums ----------------------------------------------------------------------------------------
 
@@ -144,7 +145,7 @@ func end_of_input_frames() -> void:
 	attack_input_frames_finished.emit()
 
 
-## Ese this method in character's grab animations to emit the signal [signal grab_frame_reached].
+## Use this method in character's grab animations to emit the signal [signal grab_frame_reached].
 ## The variable [member _path_grab_pivot] must be correctly set for this to work.
 func grab_notify() -> void:
 	if _has_grab:
@@ -161,10 +162,8 @@ func grab_notify() -> void:
 ## Use this method at the end of your character's attack animations as a shortcut to emitting
 ## [signal skin_animation_finished)]
 func end_of_skin_animation(_animation_name := "") -> void:
-	# I'm leabing this here because sometimes chad will freez in the middle of a combo
-	# And I'm suspecting the bug in godot 4 with method tracks not being called at the end of 	
-	# animations when using the AnimationTree is still happening.
-	QuiverDebugLogger.log_message([get_path(), "end of skin animation", _animation_name])
+	# This usually helps a bit when debugging weird errors with AnimationTree, so leaving this here.
+	# QuiverDebugLogger.log_message([get_path(), "end of skin animation", _animation_name])
 	
 	if not _playback.get_travel_path().is_empty():
 		return

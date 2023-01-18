@@ -1,6 +1,6 @@
 [gd_scene load_steps=37 format=3 uid="uid://buwjcb4k4t0lp"]
 
-[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_vkbuf"]
+[ext_resource type="PackedScene" uid="uid://bkfvltx0n6b8y" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_vkbuf"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_skin.gd" id="2_bwf0i"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_b4sly"]
 [ext_resource type="Animation" uid="uid://boqdhkm1v020k" path="res://characters/enemies/tax_man/resources/animations/RESET.tres" id="3_jttlv"]
@@ -70,8 +70,6 @@ script = ExtResource("2_bwf0i")
 skin_direction = -1
 _path_playback = "parameters/state_machine/playback"
 _attributes = ExtResource("3_b4sly")
-has_grab = false
-has_grabbed = false
 metadata/_edit_vertical_guides_ = [-229.0, 217.0, 196.0]
 metadata/_edit_horizontal_guides_ = [21.0, -139.0]
 
@@ -94,8 +92,8 @@ parameters/state_machine/hurt_knockout/blend_position = -1
 parameters/state_machine/hurt_light/blend_position = -1
 parameters/state_machine/hurt_medium/blend_position = -1
 parameters/state_machine/idle/blend_position = -1
-parameters/state_machine/knockout_kneeled/blend_position = 0
-parameters/state_machine/retaliate/blend_position = -0.440625
+parameters/state_machine/knockout_kneeled/blend_position = -1
+parameters/state_machine/retaliate/blend_position = -1
 parameters/state_machine/seated_drink/blend_position = -1
 parameters/state_machine/seated_engage/blend_position = -1
 parameters/state_machine/seated_laugh/blend_position = -1

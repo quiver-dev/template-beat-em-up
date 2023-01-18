@@ -321,7 +321,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="BG" type="TextureRect" parent="MenuArt"]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 1880.0
@@ -331,12 +331,14 @@ grow_vertical = 2
 texture = ExtResource("1_3ligk")
 
 [node name="PaintSpray" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
 offset_left = 472.0
 offset_right = 2655.0
 offset_bottom = 1080.0
 texture = ExtResource("2_uw08o")
 
 [node name="TaxMan" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
 offset_left = 2424.0
 offset_top = 118.0
 offset_right = 2929.01
@@ -344,6 +346,7 @@ offset_bottom = 1079.0
 texture = ExtResource("3_mg0gr")
 
 [node name="Sarge" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
 offset_left = 1976.0
 offset_top = 222.0
 offset_right = 2824.0
@@ -351,17 +354,20 @@ offset_bottom = 1079.0
 texture = ExtResource("4_3eqwa")
 
 [node name="Chad" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
 offset_right = 1157.0
 offset_bottom = 1080.0
 texture = ExtResource("5_0rlna")
 
 [node name="Logo" type="TextureRect" parent="MenuArt"]
+layout_mode = 0
 offset_top = 474.0
 offset_right = 1920.0
 offset_bottom = 1070.0
 texture = ExtResource("6_xunx4")
 
 [node name="MenuButtons" type="ReferenceRect" parent="."]
+layout_mode = 0
 offset_left = 1081.0
 offset_top = 128.0
 offset_right = 1779.99
@@ -369,6 +375,7 @@ offset_bottom = 529.0
 border_color = Color(0.00784314, 0, 1, 1)
 
 [node name="Start" type="TextureButton" parent="MenuButtons"]
+layout_mode = 0
 offset_left = -158.0
 offset_top = -108.0
 offset_right = 634.0
@@ -389,6 +396,7 @@ mask_normal = ExtResource("12_s7lr0")
 mask_hover = ExtResource("14_cp57u")
 
 [node name="HowToPlay" type="TextureButton" parent="MenuButtons"]
+layout_mode = 0
 offset_left = -40.0
 offset_top = -17.0
 offset_right = 834.0
@@ -409,6 +417,7 @@ mask_normal = ExtResource("18_fugrx")
 mask_hover = ExtResource("19_jtx4h")
 
 [node name="Quit" type="TextureButton" parent="MenuButtons"]
+layout_mode = 0
 offset_left = 70.0
 offset_top = 79.0
 offset_right = 944.0
@@ -430,6 +439,7 @@ mask_hover = ExtResource("23_giihp")
 
 [node name="HowToPlay" parent="." instance=ExtResource("9_ohwlc")]
 visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="MenuButtons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MenuButtons/HowToPlay" to="." method="_on_how_to_play_pressed"]
