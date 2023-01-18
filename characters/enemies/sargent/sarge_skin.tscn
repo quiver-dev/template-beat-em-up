@@ -43,9 +43,9 @@ resource_local_to_scene = true
 size = Vector2(285, 86.436)
 
 [node name="SargeSkin" instance=ExtResource("1_kelmx")]
+attributes = ExtResource("2_ajvg2")
 skin_direction = -1
 _path_playback = "parameters/state_machine/playback"
-_attributes = ExtResource("2_ajvg2")
 metadata/_edit_vertical_guides_ = [177.0, -99.0, -177.0, 100.0]
 metadata/_edit_horizontal_guides_ = [9.0, -274.0]
 

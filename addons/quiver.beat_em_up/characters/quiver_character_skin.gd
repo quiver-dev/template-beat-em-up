@@ -39,7 +39,7 @@ enum SkinDirection { LEFT = -1, RIGHT = 1 }
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var attributes: QuiverAttributes = null:
+@export var attributes: QuiverAttributes = null:
 	set(value):
 		attributes = value
 		if not Engine.is_editor_hint():
@@ -71,17 +71,6 @@ var attributes: QuiverAttributes = null:
 ## [br][br]
 ## See [member _path_animation_tree] for "private" reasoning.
 @export var _path_playback := "parameters/StateMachine/playback"
-
-## This is also here as a "hack" for the lack of custom typed exports. It is private because I don't 
-## want to deal with this in code, it's just an editor field to populate the real property which
-## is the public [member attributes]. Once custom typed exports exist this will be converted
-## to it.
-@warning_ignore(unused_private_class_variable)
-@export var _attributes: Resource:
-	set(value):
-		attributes = value as QuiverAttributes
-	get:
-		return attributes
 
 # Grab Settings
 var _has_grab := true:
