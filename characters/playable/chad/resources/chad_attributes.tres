@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c6fl3lwjri6qi"]
+[gd_resource type="Resource" script_class="QuiverAttributes" load_steps=4 format=3 uid="uid://c6fl3lwjri6qi"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/quiver_attributes.gd" id="1_1ikth"]
 [ext_resource type="Texture2D" uid="uid://cqtsjmdjrqney" path="res://characters/playable/chad/resources/chad_gradient.tres" id="1_4dxsn"]
