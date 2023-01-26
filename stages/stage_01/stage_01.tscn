@@ -87,37 +87,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_fhh18"]
+[sub_resource type="Gradient" id="Gradient_dnq0s"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vkxj3"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5rvpf"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_fhh18")
+gradient = SubResource("Gradient_dnq0s")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_vkxj3")
+shader_parameter/gradient = SubResource("GradientTexture1D_5rvpf")
 
-[sub_resource type="Gradient" id="Gradient_o60ng"]
+[sub_resource type="Gradient" id="Gradient_hu11p"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g73q2"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gahfr"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_o60ng")
+gradient = SubResource("Gradient_hu11p")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_g73q2")
+shader_parameter/gradient = SubResource("GradientTexture1D_gahfr")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -788,6 +788,7 @@ spawn_waves = [[SubResource("Resource_o2tqf")]]
 [node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom1" index="1"]
 position = Vector2(786, 548)
 collision_layer = 0
+monitorable = false
 script = ExtResource("21_ge31n")
 path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../QuiverEnemySpawner")]
@@ -823,6 +824,7 @@ preview_after_color = Color(0, 0.501961, 0.501961, 1)
 [node name="PlayerDetector2" type="Area2D" parent="Utilities/FightRoom2" index="0"]
 position = Vector2(1493, 585)
 collision_layer = 0
+monitorable = false
 script = ExtResource("21_ge31n")
 path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../EnemySpawner1"), NodePath("../EnemySpawner2")]
@@ -883,6 +885,7 @@ preview_after_color = Color(0, 0.501961, 0.501961, 1)
 [node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom3" index="0"]
 position = Vector2(687, 562)
 collision_layer = 0
+monitorable = false
 script = ExtResource("21_ge31n")
 path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../QuiverEnemySpawner")]

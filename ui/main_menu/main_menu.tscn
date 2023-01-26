@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbb080fgbbibm" path="res://ui/main_menu/pngs/chad.png" id="5_0rlna"]
 [ext_resource type="Texture2D" uid="uid://go8x140wwobw" path="res://ui/main_menu/pngs/logo.png" id="6_xunx4"]
 [ext_resource type="Texture2D" uid="uid://dn4cgulexbpd8" path="res://ui/main_menu/pngs/buttons/start_game_normal.png" id="9_ds5cc"]
-[ext_resource type="PackedScene" path="res://ui/how_to_play/how_to_play.tscn" id="9_ohwlc"]
+[ext_resource type="PackedScene" uid="uid://55q23muar30r" path="res://ui/how_to_play/how_to_play.tscn" id="9_ohwlc"]
 [ext_resource type="Texture2D" uid="uid://c57jdcqsvpc47" path="res://ui/main_menu/pngs/buttons/start_game_pressed.png" id="10_jjw2h"]
 [ext_resource type="Texture2D" uid="uid://nkop1d7eltev" path="res://ui/main_menu/pngs/buttons/start_game_hover.png" id="11_eb3x3"]
 [ext_resource type="BitMap" uid="uid://7fio68fkg246" path="res://ui/main_menu/pngs/buttons/start_game_mask_normal.png" id="12_s7lr0"]

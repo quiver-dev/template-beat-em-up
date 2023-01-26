@@ -1,9 +1,9 @@
-[gd_scene load_steps=38 format=3]
+[gd_scene load_steps=38 format=3 uid="uid://bcbejf07ebmlm"]
 
 [ext_resource type="Theme" uid="uid://brlect5oi7d4w" path="res://ui/_base/theme_template.tres" id="1_ix3c8"]
 [ext_resource type="Script" path="res://ui/pause_menu/PauseMenu.gd" id="1_nnmou"]
 [ext_resource type="Texture2D" uid="uid://d1km5hwxdeda5" path="res://ui/_base/pngs/menu_color_stripes.png" id="3_34eht"]
-[ext_resource type="PackedScene" path="res://ui/how_to_play/how_to_play.tscn" id="3_rxfeb"]
+[ext_resource type="PackedScene" uid="uid://55q23muar30r" path="res://ui/how_to_play/how_to_play.tscn" id="3_rxfeb"]
 [ext_resource type="Texture2D" uid="uid://uwk0ebe8cds5" path="res://ui/pause_menu/pngs/title.png" id="4_2ql16"]
 [ext_resource type="Texture2D" uid="uid://d2sw0aoua81cx" path="res://ui/pause_menu/pngs/buttons/resume_normal.png" id="5_4v04h"]
 [ext_resource type="Script" path="res://ui/_base/DoubleMaskMarginContainer.gd" id="5_huo1k"]
@@ -284,21 +284,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -430.0
-offset_top = -286.0
-offset_right = 431.0
-offset_bottom = 286.0
+offset_left = -441.0
+offset_top = -276.0
+offset_right = 2027.0
+offset_bottom = 1015.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_layout_mode = 1
 
 [node name="TitleContainer" type="Control" parent="PanelContainer"]
 layout_mode = 2
-anchors_preset = 0
-offset_left = 12.0
-offset_top = 170.0
-offset_right = 849.0
-offset_bottom = 628.0
 
 [node name="Title" type="TextureRect" parent="PanelContainer/TitleContainer"]
 layout_mode = 0
@@ -310,17 +305,10 @@ stretch_mode = 3
 
 [node name="Content" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-offset_left = 12.0
-offset_top = 170.0
-offset_right = 849.0
-offset_bottom = 628.0
 alignment = 1
 
 [node name="ResumeContainer" type="MarginContainer" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 36.0
-offset_right = 837.0
-offset_bottom = 124.0
 theme_override_constants/margin_top = -70
 theme_override_constants/margin_bottom = -70
 script = ExtResource("5_huo1k")
@@ -330,9 +318,6 @@ path_button = NodePath("Resume")
 
 [node name="Resume" type="TextureButton" parent="PanelContainer/Content/ResumeContainer"]
 layout_mode = 2
-offset_top = -70.0
-offset_right = 837.0
-offset_bottom = 158.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../QuitContainer/Quit")
 focus_neighbor_right = NodePath(".")
@@ -351,9 +336,6 @@ mask_hover = ExtResource("10_jy0rq")
 
 [node name="RestartContainer" type="MarginContainer" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 128.0
-offset_right = 837.0
-offset_bottom = 212.0
 theme_override_constants/margin_top = -75
 theme_override_constants/margin_bottom = -40
 script = ExtResource("5_huo1k")
@@ -363,9 +345,6 @@ path_button = NodePath("Restart")
 
 [node name="Restart" type="TextureButton" parent="PanelContainer/Content/RestartContainer"]
 layout_mode = 2
-offset_top = -75.0
-offset_right = 837.0
-offset_bottom = 124.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../ResumeContainer/Resume")
 focus_neighbor_right = NodePath(".")
@@ -383,9 +362,6 @@ mask_hover = ExtResource("15_slsbs")
 
 [node name="HowContainter" type="MarginContainer" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 216.0
-offset_right = 837.0
-offset_bottom = 286.0
 theme_override_constants/margin_top = -145
 theme_override_constants/margin_bottom = -60
 script = ExtResource("5_huo1k")
@@ -395,9 +371,6 @@ path_button = NodePath("HowToPlay")
 
 [node name="HowToPlay" type="TextureButton" parent="PanelContainer/Content/HowContainter"]
 layout_mode = 2
-offset_top = -145.0
-offset_right = 837.0
-offset_bottom = 130.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../RestartContainer/Restart")
 focus_neighbor_right = NodePath(".")
@@ -416,9 +389,6 @@ mask_hover = ExtResource("20_sno52")
 
 [node name="QuitMainContainer" type="MarginContainer" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 290.0
-offset_right = 837.0
-offset_bottom = 336.0
 theme_override_constants/margin_top = -235
 theme_override_constants/margin_bottom = -160
 script = ExtResource("5_huo1k")
@@ -428,9 +398,6 @@ path_button = NodePath("QuitToMainMenu")
 
 [node name="QuitToMainMenu" type="TextureButton" parent="PanelContainer/Content/QuitMainContainer"]
 layout_mode = 2
-offset_top = -235.0
-offset_right = 837.0
-offset_bottom = 206.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../HowContainter/HowToPlay")
 focus_neighbor_right = NodePath(".")
@@ -449,9 +416,6 @@ mask_hover = ExtResource("25_x4yi2")
 
 [node name="QuitContainer" type="MarginContainer" parent="PanelContainer/Content"]
 layout_mode = 2
-offset_top = 340.0
-offset_right = 837.0
-offset_bottom = 422.0
 theme_override_constants/margin_top = -230
 theme_override_constants/margin_bottom = -70
 script = ExtResource("5_huo1k")
@@ -461,9 +425,6 @@ path_button = NodePath("Quit")
 
 [node name="Quit" type="TextureButton" parent="PanelContainer/Content/QuitContainer"]
 layout_mode = 2
-offset_top = -230.0
-offset_right = 837.0
-offset_bottom = 152.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../QuitMainContainer/QuitToMainMenu")
 focus_neighbor_right = NodePath(".")
@@ -483,22 +444,13 @@ mask_hover = ExtResource("30_uc2xg")
 [node name="TimeScaleLine" type="HBoxContainer" parent="PanelContainer/Content"]
 visible = false
 layout_mode = 2
-offset_top = 209.0
-offset_right = 350.0
-offset_bottom = 257.0
 
 [node name="Label" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
 layout_mode = 2
-offset_right = 157.0
-offset_bottom = 48.0
 text = "time scale"
 
 [node name="Slider" type="HSlider" parent="PanelContainer/Content/TimeScaleLine"]
 layout_mode = 2
-offset_left = 161.0
-offset_top = 16.0
-offset_right = 301.0
-offset_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 2.0
@@ -507,9 +459,6 @@ value = 1.0
 
 [node name="Value" type="Label" parent="PanelContainer/Content/TimeScaleLine"]
 layout_mode = 2
-offset_left = 305.0
-offset_right = 350.0
-offset_bottom = 48.0
 text = "1.0"
 
 [node name="HowToPlay" parent="." instance=ExtResource("3_rxfeb")]
