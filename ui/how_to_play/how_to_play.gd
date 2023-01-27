@@ -44,7 +44,7 @@ func open_how_to_play() -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
-	@warning_ignore(return_value_discarded)
+	@warning_ignore("return_value_discarded")
 	_tween.tween_property(self, "modulate:a", 1.0, FADE_DURATION)
 
 
@@ -52,9 +52,9 @@ func close_how_to_play() -> void:
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
-	@warning_ignore(return_value_discarded)
+	@warning_ignore("return_value_discarded")
 	_tween.tween_property(self, "modulate:a", 0.0, FADE_DURATION)
-	@warning_ignore(return_value_discarded)
+	@warning_ignore("return_value_discarded")
 	_tween.tween_callback(_on_close_finished)
 
 ### -----------------------------------------------------------------------------------------------

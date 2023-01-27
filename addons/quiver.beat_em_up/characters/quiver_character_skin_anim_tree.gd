@@ -19,7 +19,7 @@ extends QuiverCharacterSkin
 ## Path to animation tree. [br][br]
 ## Kept the underscore to make it "private" because it's not suposed to be changed
 ## from outside of the scene, to point to an external [AnimationTree] for example.
-@export_node_path(AnimationTree) var _path_animation_tree := ^"AnimationTree"
+@export_node_path("AnimationTree") var _path_animation_tree := ^"AnimationTree"
 
 ## Path to [AnimationNodeStateMachinePlayback]. Usually I create an [AnimationNodeBlendTree] as the
 ## root for the [AnimationTree] and the [AnimationNodeStateMachine] inside it, so I can do anything 

@@ -15,7 +15,7 @@ extends QuiverCharacter
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@export_node_path(Node) var _path_ai_state_machine := ^"AiStateMachine":
+@export_node_path("Node") var _path_ai_state_machine := ^"AiStateMachine":
 	set(value):
 		_path_ai_state_machine = value
 		if is_inside_tree():

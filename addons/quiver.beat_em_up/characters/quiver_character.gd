@@ -56,7 +56,7 @@ var is_on_air := false
 ## [br][br]This is a "private" exported property just as reminder that this property 
 ## shouldn't be changed outside of it's own scene neither point to a Node that
 ## is outside the Scene.
-@export_node_path(Node2D) var _path_skin := NodePath("Skin"):
+@export_node_path("Node2D") var _path_skin := NodePath("Skin"):
 	set(value):
 		_path_skin = value
 		if is_inside_tree():
@@ -67,7 +67,7 @@ var is_on_air := false
 ## [br][br]This is a "private" exported property just as reminder that this property 
 ## shouldn't be changed outside of it's own scene neither point to a Node that
 ## is outside the Scene.
-@export_node_path(CollisionPolygon2D, CollisionShape2D) 
+@export_node_path("CollisionPolygon2D", "CollisionShape2D") 
 var _path_collision := NodePath("Collision"):
 	set(value):
 		_path_collision = value
@@ -77,7 +77,7 @@ var _path_collision := NodePath("Collision"):
 
 @onready var _skin := get_node_or_null(_path_skin) as QuiverCharacterSkin
 @onready var _collision := get_node_or_null(_path_collision) as Node2D
-@warning_ignore(unused_private_class_variable)
+@warning_ignore("unused_private_class_variable")
 @onready var _state_machine := $StateMachine as QuiverStateMachine
 
 ### -----------------------------------------------------------------------------------------------
@@ -109,15 +109,15 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
 	if _attributes == null:
-		@warning_ignore(return_value_discarded)
+		@warning_ignore("return_value_discarded")
 		warnings.append(INVALID_ATTRIBUTES)
 	
 	if _path_skin.is_empty() or _skin == null:
-		@warning_ignore(return_value_discarded)
+		@warning_ignore("return_value_discarded")
 		warnings.append(INVALID_SKIN)
 	
 	if _path_collision.is_empty() or _collision == null:
-		@warning_ignore(return_value_discarded)
+		@warning_ignore("return_value_discarded")
 		warnings.append(INVALID_COLLISION)
 	
 	return warnings
