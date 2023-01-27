@@ -50,7 +50,7 @@ func physics_process(_delta: float) -> void:
 		if not _movement_direction.is_equal_approx(Vector2.ZERO):
 			_character.velocity = _movement_direction * _movement_speed
 		
-		@warning_ignore(return_value_discarded)
+		@warning_ignore("return_value_discarded")
 		_character.move_and_slide()
 
 

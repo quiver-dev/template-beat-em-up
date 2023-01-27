@@ -82,7 +82,6 @@ func _get_leaf_nodes_path_list(start_node: Node, node_list := []) -> Array:
 			if _should_skip_child_nodes(child):
 				continue
 			
-			# warning-ignore:return_value_discarded
 			_get_leaf_nodes_path_list(child, node_list)
 	
 	return node_list

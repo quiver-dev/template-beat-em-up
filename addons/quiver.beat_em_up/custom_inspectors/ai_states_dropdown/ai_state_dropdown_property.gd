@@ -84,7 +84,6 @@ func _get_leaf_nodes_path_list(start_node: Node, node_list := []) -> Array:
 		node_list.append(_ai_state_machine.get_path_to(start_node))
 	else:
 		for child in start_node.get_children():
-			# warning-ignore:return_value_discarded
 			_get_leaf_nodes_path_list(child, node_list)
 	
 	return node_list
