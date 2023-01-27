@@ -118,9 +118,9 @@ func _configure_animation_properties() -> void:
 		await ready
 	
 	if not animation.has_meta(META_MIRRORED_NAME):
-		var file_name = animation.resource_path.get_file()
-		var extension = ".%s"%[animation.resource_path.get_extension()]
-		var anim_name = file_name.replace(extension, "")
+		var file_name := animation.resource_path.get_file()
+		var extension := ".%s"%[animation.resource_path.get_extension()]
+		var anim_name := file_name.replace(extension, "")
 		var mirrored_name := _get_mirrored_name(anim_name) + extension
 		animation.set_meta(META_MIRRORED_NAME, mirrored_name)
 	
