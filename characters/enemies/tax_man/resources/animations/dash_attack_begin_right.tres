@@ -7,7 +7,7 @@ step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:_attributes:can_be_grabbed")
+tracks/0/path = NodePath(".:attributes:can_be_grabbed")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:_attributes:is_invulnerable")
+tracks/1/path = NodePath(".:attributes:is_invulnerable")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -103,7 +103,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath(".:_attributes:has_superarmor")
+tracks/8/path = NodePath(".:attributes:has_superarmor")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -181,7 +181,7 @@ tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [Vector2(663, 514.75)]
 }
 tracks/15/type = "value"
@@ -193,7 +193,7 @@ tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [Vector2(1265.5, 175)]
 }
 tracks/16/type = "method"

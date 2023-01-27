@@ -73,7 +73,7 @@ tracks/5/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:shape:size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(6.95387e-08, 0.0416667),
+"times": PackedFloat32Array(0, 0.0416667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(149, 307), Vector2(189, 236.5)]
@@ -85,7 +85,7 @@ tracks/6/path = NodePath("AnimatedSprite2D/HurtBox/HurtShape:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(6.95387e-08, 0.0416667),
+"times": PackedFloat32Array(0, 0.0416667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(-10, 81.5), Vector2(-15.5, 120.75)]
@@ -105,7 +105,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath(".:_attributes:can_be_grabbed")
+tracks/8/path = NodePath(".:attributes:can_be_grabbed")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {

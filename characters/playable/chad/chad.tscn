@@ -1,7 +1,7 @@
-[gd_scene load_steps=26 format=3]
+[gd_scene load_steps=26 format=3 uid="uid://dh6fu713n16kn"]
 
 [ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_aj842"]
-[ext_resource type="PackedScene" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
+[ext_resource type="PackedScene" uid="uid://dbuekuon5twyg" path="res://characters/playable/chad/chad_skin.tscn" id="2_1tk2w"]
 [ext_resource type="Script" path="res://characters/playable/chad/chad.gd" id="2_dwyxr"]
 [ext_resource type="Resource" uid="uid://c6fl3lwjri6qi" path="res://characters/playable/chad/resources/chad_attributes.tres" id="3_ylsip"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_vubfk"]
@@ -187,17 +187,12 @@ metadata/_edit_use_custom_anchors = true
 
 [node name="Chad" type="Label" parent="DebugLabels" index="0"]
 layout_mode = 2
-offset_right = 336.0
-offset_bottom = 26.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../..")
 properties = PackedStringArray("velocity", "is_on_air", "attributes:ground_level")
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="1"]
 layout_mode = 2
-offset_top = 26.0
-offset_right = 336.0
-offset_bottom = 52.0
 script = ExtResource("12_sub7a")
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")

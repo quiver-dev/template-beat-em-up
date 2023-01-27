@@ -1,5 +1,5 @@
 @tool
-extends QuiverCharacterSkin
+extends QuiverCharacterSkinAnimTree
 
 ## Write your doc string for this file here
 
@@ -23,13 +23,6 @@ signal sliding_stopped
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
-
-func _ready() -> void:
-	super()
-	if Engine.is_editor_hint():
-		QuiverEditorHelper.disable_all_processing(self)
-		_animation_tree.set_deferred("active", false)
-		return
 
 ### -----------------------------------------------------------------------------------------------
 

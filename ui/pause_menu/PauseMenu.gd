@@ -29,6 +29,7 @@ const TEXT_TIMESCALE_VALUE = "%0.2f"
 
 func _ready() -> void:
 	BackgroundLoader.load_resource(PATH_MAIN_MENU)
+	pass
 
 
 func _unhandled_input(event: InputEvent) -> void:

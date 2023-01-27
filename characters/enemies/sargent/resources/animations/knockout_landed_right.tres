@@ -18,7 +18,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:_attributes:can_be_grabbed")
+tracks/1/path = NodePath(".:attributes:can_be_grabbed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -48,7 +48,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [Vector2(0, -35)]
 }
 tracks/4/type = "value"
@@ -70,10 +70,10 @@ tracks/5/path = NodePath("AnimatedSprite2D:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = false
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0]
+"values": [0, 0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -90,7 +90,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath(".:_attributes:is_invulnerable")
+tracks/7/path = NodePath(".:attributes:is_invulnerable")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {

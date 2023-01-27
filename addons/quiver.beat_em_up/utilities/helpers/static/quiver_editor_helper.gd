@@ -2,6 +2,7 @@ class_name QuiverEditorHelper
 extends RefCounted
 ## Static Helper for calling functions in the editor, usually on [code]@tool[/code] scripts
 
+const WARNING_VIRTUAL_FUNC = "%s is a virtual function and was called directly, without overriding"
 
 ## Disables all processing for the node. Usefull when you need setter or getters to work on
 ## a [code]@tool[/code] script, but don't want game logic to run.
@@ -65,7 +66,6 @@ static func connect_between(signal_object: Signal, callable: Callable, type := 0
 static func disconnect_between(signal_object: Signal, callable: Callable) -> void:
 	if signal_object.is_connected(callable):
 		signal_object.disconnect(callable)
-
 
 # Advanced exports snippet below -------------------------------------------------------------------
 

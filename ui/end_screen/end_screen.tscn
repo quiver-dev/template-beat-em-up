@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=20 format=3 uid="uid://c4l1tfqymlsbi"]
 
 [ext_resource type="Theme" uid="uid://brlect5oi7d4w" path="res://ui/_base/theme_template.tres" id="1_2dr55"]
 [ext_resource type="Script" path="res://ui/end_screen/end_screen.gd" id="1_ll1aa"]
@@ -170,20 +170,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -430.0
-offset_top = -191.0
-offset_right = 431.0
-offset_bottom = 192.0
+offset_left = -478.0
+offset_top = -284.0
+offset_right = 1990.0
+offset_bottom = 802.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="Control" parent="PanelContainer"]
 layout_mode = 2
-anchors_preset = 0
-offset_left = 12.0
-offset_top = 170.0
-offset_right = 849.0
-offset_bottom = 433.0
 
 [node name="Title" type="Label" parent="PanelContainer/Control"]
 layout_mode = 1
@@ -204,21 +199,12 @@ horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-offset_left = 12.0
-offset_top = 170.0
-offset_right = 849.0
-offset_bottom = 433.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_type_variation = &"EndScreen"
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Buttons"]
 layout_mode = 2
-offset_top = 41.0
-offset_right = 837.0
-offset_bottom = 120.0
 size_flags_vertical = 4
 theme_override_constants/margin_top = -70
 theme_override_constants/margin_bottom = -50
@@ -229,9 +215,6 @@ path_button = NodePath("Replay")
 
 [node name="Replay" type="TextureButton" parent="PanelContainer/Buttons/MarginContainer"]
 layout_mode = 2
-offset_top = -70.0
-offset_right = 837.0
-offset_bottom = 129.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../MarginContainer2/Quit")
 focus_neighbor_right = NodePath(".")
@@ -249,9 +232,6 @@ mask_hover = ExtResource("10_8esgg")
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/Buttons"]
 layout_mode = 2
-offset_top = 140.0
-offset_right = 837.0
-offset_bottom = 222.0
 size_flags_vertical = 4
 theme_override_constants/margin_top = -220
 theme_override_constants/margin_bottom = -80
@@ -262,9 +242,6 @@ path_button = NodePath("Quit")
 
 [node name="Quit" type="TextureButton" parent="PanelContainer/Buttons/MarginContainer2"]
 layout_mode = 2
-offset_top = -220.0
-offset_right = 837.0
-offset_bottom = 162.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../MarginContainer/Replay")
 focus_neighbor_right = NodePath(".")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=31 format=3 uid="uid://dwgxqe6h48x4e"]
 
 [ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_pigv0"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
-[ext_resource type="PackedScene" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
+[ext_resource type="PackedScene" uid="uid://buwjcb4k4t0lp" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_3jl8s"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd" id="4_kio4a"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man_state_machine.gd" id="5_2or4r"]
@@ -371,31 +371,29 @@ theme = ExtResource("26_sum7q")
 alignment = 1
 
 [node name="StateMachine" type="Label" parent="DebugLabels" index="0"]
-offset_right = 248.0
-offset_bottom = 26.0
+layout_mode = 2
 script = ExtResource("25_7uuvm")
 path_reference = NodePath("../../StateMachine")
 properties = PackedStringArray("state_name")
 
 [node name="AiStateMachine" type="Label" parent="DebugLabels" index="1"]
-offset_top = 26.0
-offset_right = 248.0
-offset_bottom = 52.0
+layout_mode = 2
 script = ExtResource("25_7uuvm")
 path_reference = NodePath("../../AiStateMachine")
 properties = PackedStringArray("state_name", "_consecutive_hits")
 
 [node name="Wait" type="Label" parent="DebugLabels" index="2"]
-offset_top = 52.0
-offset_right = 248.0
-offset_bottom = 78.0
+layout_mode = 2
 script = ExtResource("27_dlvh8")
 path_reference = NodePath("")
 properties = PackedStringArray("time_left")
 
 [connection signal="phase_changed_to" from="." to="AiStateMachine" method="_on_tax_man_phase_changed_to"]
 [connection signal="phase_changed_to" from="." to="DebugLabels/Wait" method="_on_tax_man_phase_changed_to"]
+[connection signal="attack_movement_ended" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_attack_movement_ended"]
+[connection signal="attack_movement_started" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_attack_movement_started"]
 [connection signal="dash_attack_failed" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_failed"]
 [connection signal="dash_attack_succeeded" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_dash_attack_succeeded"]
+[connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/AttackDash" method="_on_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/Hurt" method="_on_skin_skin_animation_finished"]
 [connection signal="skin_animation_finished" from="Skin" to="StateMachine/Ground/KnockoutKneeled" method="_on_skin_skin_animation_finished"]

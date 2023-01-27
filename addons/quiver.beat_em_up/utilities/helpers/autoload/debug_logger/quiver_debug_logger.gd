@@ -66,6 +66,7 @@ func _start_new_log() -> void:
 	
 	if not FileAccess.file_exists(_current_log_file):
 		FileAccess.open(_current_log_file, FileAccess.WRITE)
+		_current_log.append("Date,Ticks,Message")
 
 
 func _clear_old_logs() -> void:
