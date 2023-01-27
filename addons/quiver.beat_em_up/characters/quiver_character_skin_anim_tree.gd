@@ -39,6 +39,21 @@ var _blend_positions := []
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _get_configuration_warnings() -> PackedStringArray:
+	var msgs := PackedStringArray()
+	
+	if not _animation_tree:
+		msgs.append("Invalid _path_animation_tree: %s"%[_path_animation_tree])
+	
+	if not _playback:
+		msgs.append(
+				"Invalid _path_playback: %s. Could not find playback in AnimationTree"%[
+					_path_playback
+				]
+		)
+	
+	return msgs
+
 ### -----------------------------------------------------------------------------------------------
 
 
