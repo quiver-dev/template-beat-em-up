@@ -107,13 +107,13 @@ parameters/time_scale/scale = 1.0
 visible = false
 position = Vector2(202, -512)
 scale = Vector2(2, 2)
-frames = ExtResource("4_6fblr")
+sprite_frames = ExtResource("4_6fblr")
 animation = &"back_lightning_explosion"
 
 [node name="Body" type="AnimatedSprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_lpimj")
 position = Vector2(0, -250)
-frames = ExtResource("4_2vvsa")
+sprite_frames = ExtResource("4_2vvsa")
 animation = &"idle"
 
 [node name="GroundLightining" type="AnimatedSprite2D" parent="Body" index="0"]
@@ -121,13 +121,13 @@ visible = false
 show_behind_parent = true
 position = Vector2(38, 474)
 scale = Vector2(2, 2)
-frames = ExtResource("6_nrudn")
+sprite_frames = ExtResource("6_nrudn")
 animation = &"area_attak"
 
 [node name="Smoke" type="AnimatedSprite2D" parent="Body/GroundLightining" index="0"]
 visible = false
 scale = Vector2(2, 2)
-frames = ExtResource("12_saac3")
+sprite_frames = ExtResource("12_saac3")
 
 [node name="QuiverHurtBox" type="Area2D" parent="Body" index="1"]
 collision_layer = 8192
@@ -174,33 +174,33 @@ flip_h = true
 visible = false
 position = Vector2(77, -551)
 scale = Vector2(2, 2)
-frames = ExtResource("4_6fblr")
+sprite_frames = ExtResource("4_6fblr")
 animation = &"front_lightining_explostion"
 
 [node name="SmokeVertical" type="AnimatedSprite2D" parent="." index="7"]
 visible = false
 position = Vector2(758, -747)
 scale = Vector2(2, 2)
-frames = ExtResource("19_xm1w5")
+sprite_frames = ExtResource("19_xm1w5")
 animation = &"vertical_grenade"
 
 [node name="Explosion" type="AnimatedSprite2D" parent="." index="8"]
 visible = false
 position = Vector2(135, -486)
 scale = Vector2(2, 2)
-frames = ExtResource("29_l5cjv")
+sprite_frames = ExtResource("29_l5cjv")
 animation = &"grenade"
 
 [node name="Coins" type="AnimatedSprite2D" parent="." index="9"]
 visible = false
 position = Vector2(62, -211)
-frames = ExtResource("17_t0jcd")
+sprite_frames = ExtResource("17_t0jcd")
 
 [node name="SmokeHorizontal" type="AnimatedSprite2D" parent="." index="10"]
 visible = false
 position = Vector2(62, -211)
 scale = Vector2(2, 2)
-frames = ExtResource("19_xm1w5")
+sprite_frames = ExtResource("19_xm1w5")
 animation = &"horizontal"
 
 [node name="Positions" type="Node2D" parent="." index="11"]

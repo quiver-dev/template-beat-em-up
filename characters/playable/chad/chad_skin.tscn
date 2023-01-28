@@ -79,7 +79,7 @@ parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -167)
-frames = ExtResource("4_l5bf7")
+sprite_frames = ExtResource("4_l5bf7")
 animation = &"idle"
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
@@ -161,7 +161,7 @@ metadata/collision_type = "player_hit_box"
 [node name="AttackAirShape" type="CollisionShape2D" parent="Attacks/AttackAir" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(187, -254)
-rotation = -0.294481
+rotation = 0.294481
 shape = SubResource("RectangleShape2D_e0e1l")
 disabled = true
 metadata/collision_type = "player_hit_box"

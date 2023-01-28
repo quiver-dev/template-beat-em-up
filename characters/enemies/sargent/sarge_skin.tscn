@@ -82,7 +82,7 @@ parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -216)
-frames = ExtResource("3_b0w6d")
+sprite_frames = ExtResource("3_b0w6d")
 animation = &"idle"
 
 [node name="QuiverHurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
