@@ -1,8 +1,10 @@
 @tool
-extends QuiverCharacterState
+class_name QuiverActionGround
 extends QuiverCharacterAction
 
-## Write your doc string for this file here
+## Base Action for all Ground Actions. Handles transition to Hurt, Grabbed and Knockout states as 
+## well as keeping [member QuiverAttributes.ground_level] and [member QuiverCharacter.is_on_air] 
+## updated
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -36,6 +38,8 @@ func _ready() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Handles signal connetion and the properties [member QuiverAttributes.ground_level] 
+## and [member QuiverCharacter.is_on_air] 
 func enter(msg: = {}) -> void:
 	super(msg)
 	
@@ -47,14 +51,12 @@ func enter(msg: = {}) -> void:
 	_character.is_on_air = false
 
 
-func unhandled_input(_event: InputEvent) -> void:
-	pass
-
-
+## Keeps [member QuiverAttributes.ground_level] updates.
 func physics_process(_delta: float) -> void:
 	_attributes.ground_level = _character.global_position.y
 
 
+## Handles disconnecting signals and [member QuiverCharacter.is_on_air] 
 func exit() -> void:
 	_character.is_on_air = true
 	super()

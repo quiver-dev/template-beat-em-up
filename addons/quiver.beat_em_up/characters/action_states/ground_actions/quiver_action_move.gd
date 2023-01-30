@@ -10,10 +10,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GroundState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -23,7 +19,7 @@ var _path_attack_state := "Ground/Combo1"
 
 var _direction := Vector2.ZERO
 
-@onready var _ground_state := get_parent() as GroundState
+@onready var _ground_state := get_parent() as QuiverActionGround
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,9 +37,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is GroundState:
+	if not get_parent() is QuiverActionGround:
 		warnings.append(
-				"This ActionState must be a child of Action GroundState or a state " 
+				"This ActionState must be a child of Action QuiverActionGround or a state " 
 				+ "inheriting from it."
 		)
 	

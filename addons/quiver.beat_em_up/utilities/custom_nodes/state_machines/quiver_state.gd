@@ -1,6 +1,6 @@
 @tool
-class_name QuiverState
 extends Node
+class_name QuiverState
 
 ## Based on GDQuest's State, but converted to GDScript 2.0 and modified with a few extra features.
 ## 
