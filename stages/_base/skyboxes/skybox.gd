@@ -101,7 +101,7 @@ func _play_gradients() -> void:
 	var delay := gradient_transitions_array.back().duration as float
 	for data in gradient_transitions_array:
 		var transition_data := data as GradientTransitioner
-		@warning_ignore(return_value_discarded)
+		@warning_ignore("return_value_discarded")
 		_tween.tween_callback(transition_data.animate_gradient).set_delay(delay)
 		delay = transition_data.duration
 

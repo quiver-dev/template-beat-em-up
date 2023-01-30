@@ -2,6 +2,8 @@
 // https://godotshaders.com/snippet/blending-modes/
 shader_type canvas_item;
 
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
 vec4 hard_light(vec4 base, vec4 blend){
 	vec4 limit = step(0.5, blend);
 	return mix(

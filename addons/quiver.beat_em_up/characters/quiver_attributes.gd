@@ -43,10 +43,12 @@ const KNOCKBACK_VALUES = {
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export_group("Display")
 @export var display_name := ""
 @export var profile_texture: Texture2D = null
 @export var life_bar_gradient := GradientTexture1D.new()
 
+@export_group("Base Stats")
 ## Max health for the character, when their life bar is full.
 @export_range(0, 1, 1, "or_greater") var health_max := 100
 
@@ -72,6 +74,7 @@ const KNOCKBACK_VALUES = {
 ## this character's y position.
 @export var hit_lane_offset := 0
 
+@export_group("Modifiers")
 ## This can be toggled on or off in animations to create invincibility frames.
 @export var is_invulnerable := false:
 	set(value):

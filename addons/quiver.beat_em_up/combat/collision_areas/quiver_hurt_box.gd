@@ -17,9 +17,10 @@ extends Area2D
 		CombatSystem.CharacterTypes.PLAYERS:
 	set(value):
 		character_type = value 
-		_handle_character_type_presets()
-		notify_property_list_changed()
-		update_configuration_warnings()
+		if Engine.is_editor_hint():
+			_handle_character_type_presets()
+			notify_property_list_changed()
+			update_configuration_warnings()
 
 var character_attributes: QuiverAttributes = null
 

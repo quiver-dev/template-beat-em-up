@@ -20,7 +20,7 @@ extends Node2D
 
 func _ready() -> void:
 	ScreenTransitions.fade_out_transition()
-	@warning_ignore(return_value_discarded)
+	@warning_ignore("return_value_discarded")
 	Events.player_died.connect(fade_out_movie)
 
 ### -----------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://8dr3b6bq3gla"]
 
 [ext_resource type="Texture2D" uid="uid://bcdg4f1ly848o" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_lights_00.png" id="1_ywnl1"]
 [ext_resource type="Texture2D" uid="uid://cwqv48xmiaw5g" path="res://stages/stage_01/stage_elements/buildings/signs/love_yourself/pngs/love_yourself_sign_lights_01.png" id="2_qlqw5"]
@@ -11,17 +11,41 @@
 
 [resource]
 animations = [{
-"frames": [ExtResource("1_ywnl1"), ExtResource("2_qlqw5"), ExtResource("3_duwid"), ExtResource("4_1bg48")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ywnl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qlqw5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_duwid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1bg48")
+}],
 "loop": true,
 "name": &"lights",
 "speed": 5.0
 }, {
-"frames": [ExtResource("5_6jgen"), ExtResource("6_umgmk"), ExtResource("7_csheg")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6jgen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_umgmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_csheg")
+}],
 "loop": true,
 "name": &"shimmer",
 "speed": 3.0
 }, {
-"frames": [ExtResource("8_4jtg7"), null, null, null, null, null, null, null, null, null],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_4jtg7")
+}],
 "loop": true,
 "name": &"wink",
 "speed": 6.0

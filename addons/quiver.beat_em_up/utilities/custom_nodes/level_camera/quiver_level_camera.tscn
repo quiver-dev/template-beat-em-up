@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://dqfbpjbn74cn2"]
 
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/level_camera/quiver_level_camera.gd" id="1_8o7d7"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/combat/collision_areas/quiver_wall_hit_box.gd" id="2_hftxj"]

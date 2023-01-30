@@ -17,7 +17,7 @@ signal all_waves_completed
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-@export_node_path(Node2D) var path_spawn_parent := ^"../../Characters"
+@export_node_path("Node2D") var path_spawn_parent := ^"../../Characters"
 
 var is_completed := false
 

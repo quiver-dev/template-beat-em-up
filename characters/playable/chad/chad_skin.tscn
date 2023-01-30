@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene load_steps=21 format=3 uid="uid://dbuekuon5twyg"]
 
-[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_neyaj"]
+[ext_resource type="PackedScene" uid="uid://bkfvltx0n6b8y" path="res://addons/quiver.beat_em_up/characters/quiver_character_skin_base.tscn" id="1_neyaj"]
 [ext_resource type="AnimationLibrary" uid="uid://bec4th23gqkxd" path="res://characters/playable/chad/resources/anim_library_chad.tres" id="3_uxodg"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dlfxsc1icfbdd" path="res://characters/playable/chad/resources/animations/animation_tree_root.tres" id="4_6ugt2"]
 [ext_resource type="SpriteFrames" uid="uid://cxc0fddn51ogf" path="res://characters/playable/chad/resources/spriteframes_chad.tres" id="4_l5bf7"]
@@ -22,8 +22,6 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_vwjju"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xreyf"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75u0j"]
 size = Vector2(149, 329)
 
@@ -41,9 +39,7 @@ size = Vector2(261.336, 79.2264)
 
 [node name="ChadSkin" instance=ExtResource("1_neyaj")]
 _path_playback = "parameters/state_machine/playback"
-_attributes = ExtResource("6_iqdvs")
-has_grab = false
-has_grabbed = false
+attributes = ExtResource("6_iqdvs")
 metadata/_edit_vertical_guides_ = [-141.0, 140.0]
 metadata/_edit_horizontal_guides_ = [14.0, -445.0, -390.0]
 
@@ -64,10 +60,6 @@ parameters/state_machine/attack2/blend_position = 1
 parameters/state_machine/attack3/blend_position = 1
 parameters/state_machine/die/blend_position = 1
 parameters/state_machine/falling/blend_position = 1
-parameters/state_machine/grab/blend_position = 1
-parameters/state_machine/grab_idle/blend_position = 1
-parameters/state_machine/grab_release/blend_position = 1
-parameters/state_machine/grabbed/blend_position = 1
 parameters/state_machine/hurt_high/blend_position = 1
 parameters/state_machine/hurt_mid/blend_position = 1
 parameters/state_machine/idle/blend_position = 1
@@ -81,19 +73,13 @@ parameters/state_machine/knockout_launch/blend_position = 1
 parameters/state_machine/knockout_rising/blend_position = 1
 parameters/state_machine/landing/blend_position = 1
 parameters/state_machine/rising/blend_position = 1
-parameters/state_machine/throw_backward/blend_position = 1
-parameters/state_machine/throw_backward_noah/blend_position = 1
-parameters/state_machine/throw_backward_recovery/playback = SubResource("AnimationNodeStateMachinePlayback_xreyf")
-parameters/state_machine/throw_backward_recovery/getting_up/blend_position = 1
-parameters/state_machine/throw_backward_recovery/slide/blend_position = 1
-parameters/state_machine/throw_forward/blend_position = 1
 parameters/state_machine/turn/blend_position = 1
 parameters/state_machine/walk/blend_position = 1
 parameters/time_scale/scale = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -167)
-frames = ExtResource("4_l5bf7")
+sprite_frames = ExtResource("4_l5bf7")
 animation = &"idle"
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D" index="0"]
@@ -175,7 +161,7 @@ metadata/collision_type = "player_hit_box"
 [node name="AttackAirShape" type="CollisionShape2D" parent="Attacks/AttackAir" index="0"]
 modulate = Color(1, 0.2, 0.101961, 1)
 position = Vector2(187, -254)
-rotation = -0.294481
+rotation = 0.294481
 shape = SubResource("RectangleShape2D_e0e1l")
 disabled = true
 metadata/collision_type = "player_hit_box"
