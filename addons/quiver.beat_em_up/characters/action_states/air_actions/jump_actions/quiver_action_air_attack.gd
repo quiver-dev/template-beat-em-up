@@ -58,7 +58,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	
 	if not get_parent() is JumpState:
 		warnings.append(
-				"This ActionState must be a child of Action AirState or a state " 
+				"This ActionState must be a child of Action QuiverActionAir or a state " 
 				+ "inheriting from it."
 		)
 	

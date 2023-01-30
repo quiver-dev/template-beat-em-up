@@ -1,7 +1,9 @@
 @tool
+class_name QuiverActionAir
 extends QuiverCharacterAction
 
-## Write your doc string for this file here
+## Base Action for all Air Actions. Handles "ceiling" collisions, adds useful properties and 
+## methods other Air Actions might need.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -14,11 +16,14 @@ extends QuiverCharacterAction
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+## Shortcut to gravity defined in Project Settings' physics 2d setion.
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+## Shortcut to gravity defined in Project Settings' beat'em up setion.
 var _fall_modifier: float = \
 		ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER)
 
-# This one is just to help tweak it by using F6
+## Exported property that is just to help tweak the fall modifier while the game is running, 
+## instead of having to change it in the project setting and run the game again.
 @export_range(0.0,5.0,0.05,"or_greater") var _debug_fall_modifier := 1.0:
 	set(value):
 		_debug_fall_modifier = value
@@ -31,6 +36,8 @@ var _fall_modifier: float = \
 			value = ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER)
 		return value
 
+## When the character jump, it's actually just the "skin" that is jumping, to five an illustion of 
+## three dimensions, as the character actually moves like a top down game. This is the velocity of ## the skin's vertical movement.
 var _skin_velocity_y := 0.0
 
 ### -----------------------------------------------------------------------------------------------
@@ -50,11 +57,13 @@ func _ready() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Connects signals and disables ceiling collisions.
 func enter(msg: = {}) -> void:
 	super(msg)
 	_character._disable_ceiling_collisions()
 
 
+## Disconnects signals and enable ceiling collisions.
 func exit() -> void:
 	_character._enable_ceiling_collisions()
 	super()
@@ -64,6 +73,7 @@ func exit() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+## Helper function to move character while in the air.
 func _move_and_apply_gravity(delta: float) -> void:
 	_character.move_and_slide()
 	_skin.position.y += _skin_velocity_y * delta
@@ -75,10 +85,12 @@ func _move_and_apply_gravity(delta: float) -> void:
 	_skin_velocity_y += actual_gravity * delta
 
 
+## Helper function to check if the character has reached the ground.
 func _has_reached_ground() -> bool:
 	return _skin.position.y >= 0
 
 
+## Helper function for landing.
 func _handle_landing(p_path: NodePath) -> void:
 	_skin.position.y = 0.0
 	_skin_velocity_y = 0.0

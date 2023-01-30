@@ -10,10 +10,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const AirState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
-)
-
 const MAX_LAUNCH_SPEED = 2000
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -25,7 +21,7 @@ var _path_launch := "Air/Knockout/Launch"
 
 var _launch_count := 0
 
-@onready var _air_state := get_parent() as AirState
+@onready var _air_state := get_parent() as QuiverActionAir
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -43,9 +39,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is AirState:
+	if not get_parent() is QuiverActionAir:
 		warnings.append(
-				"This ActionState must be a child of Action AirState or a state " 
+				"This ActionState must be a child of Action QuiverActionAir or a state " 
 				+ "inheriting from it."
 		)
 	
