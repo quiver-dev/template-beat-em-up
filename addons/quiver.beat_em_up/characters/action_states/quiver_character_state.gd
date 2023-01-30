@@ -1,7 +1,10 @@
 class_name QuiverCharacterState
 extends QuiverState
 
-## Write your doc string for this file here
+## Specialized [QuiverState] class designed to give easier access and autocomplete to commom
+## properties, like the character itself, the skin and character attributes.
+## [br][br]
+## It also provides an easy "late" initialization function with [member _on_owner_ready].
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -14,8 +17,11 @@ extends QuiverState
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+## Easy access to [QuiverCharacter] main node.
 var _character: QuiverCharacter
+## Easy access to character's [QuiverCharacterSkin] node.
 var _skin: QuiverCharacterSkin
+## Easy access to character's [QuiverAttributes] resource.
 var _attributes: QuiverAttributes
 
 ### -----------------------------------------------------------------------------------------------
@@ -39,6 +45,10 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+## Late initialization function, useful if you need to get other nodes from your character or 
+## do any setup that requires you to be sure all the character's nodes are ready. Can be overriden
+## but don't forget to call [code]super()[/code] to assign the basic properties, or re-assign them in
+## your override.
 func _on_owner_ready() -> void:
 	_character = owner as QuiverCharacter
 	_skin = _character._skin as QuiverCharacterSkin
