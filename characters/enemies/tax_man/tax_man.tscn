@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://dwgxqe6h48x4e"]
 
-[ext_resource type="PackedScene" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_pigv0"]
+[ext_resource type="PackedScene" uid="uid://dkels061mhrsg" path="res://addons/quiver.beat_em_up/characters/quiver_character_base.tscn" id="1_pigv0"]
 [ext_resource type="Script" path="res://characters/enemies/tax_man/tax_man.gd" id="2_wtxta"]
 [ext_resource type="PackedScene" uid="uid://buwjcb4k4t0lp" path="res://characters/enemies/tax_man/tax_man_skin.tscn" id="3_0tid4"]
 [ext_resource type="Resource" uid="uid://bjbxqlhg6r7fw" path="res://characters/enemies/tax_man/resources/tax_man_attributes.tres" id="3_3jl8s"]
