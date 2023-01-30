@@ -56,6 +56,7 @@ metadata/collision_type = "default"
 
 [node name="StateMachine" parent="." index="2"]
 initial_state = NodePath("Ground/Move/IdleAi")
+should_process_input = false
 
 [node name="Ground" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_302rx")

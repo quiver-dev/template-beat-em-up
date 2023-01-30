@@ -5,10 +5,11 @@ extends QuiverStateMachine
 ## State Machine for AIs
 ##
 ## It will automatically connect all direct child states [signal QuiverState.state_finished] 
-## signal to the [method _decide_next_action] virtual method. Then the user can extend this class 
+## signal to the [method _decide_next_behavior] virtual method. Then the user can extend this class 
 ## and override that method with the required logic.
 ## [br][br]
-## The Ai State Machine should only take [QuiverAiState] and [QuiverStateSequence] as children.
+## The Ai State Machine should only take [QuiverAiState], [QuiverAiStateGroup and 
+## [QuiverStateSequence] as children.
 
 
 ### Member Variables and Dependencies -------------------------------------------------------------
@@ -20,11 +21,12 @@ extends QuiverStateMachine
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+## Useful to disable AI decision making, be it for testing or cutscenes, or anything else.
 @export var disabled := false:
 	set(value):
 		disabled = value
 
-
+## Attributes for the current character. If this node is inside a QuiverCharacter, it will automatically get the correct attributes resource on [method _ready].
 var character_attributes: QuiverAttributes = null:
 	set(value):
 		character_attributes = value
@@ -32,7 +34,9 @@ var character_attributes: QuiverAttributes = null:
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
+## AI State to use while character is in "Hurt" Action.
 var _ai_state_hurt := "WaitTillIdle"
+## AI State to use after the character get's up from being knocked down.
 var _ai_state_after_reset := "Wait"
 
 var _state_to_resume := NodePath()
@@ -84,6 +88,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Takes a [NodePath] to the next state node, and transitions to it. Can optionally receive a 
+## dictionary to be passed to the [method QuiverState.enter] method of the new state. Will do 
+## nothing if [member QuiverAiStateMachine.disabled] is true.
 func transition_to(target_state_path: NodePath, msg: = {}) -> void:
 	if disabled:
 		return
@@ -101,7 +108,7 @@ func _connect_child_ai_states(starting_node: Node = self) -> void:
 			_connect_child_ai_states(child)
 		elif child is QuiverState:
 			QuiverEditorHelper.connect_between(
-					child.state_finished, _decide_next_action.bind(child.name)
+					child.state_finished, _decide_next_behavior.bind(child.name)
 			)
 		else:
 			push_warning(
@@ -113,7 +120,7 @@ func _connect_child_ai_states(starting_node: Node = self) -> void:
 
 ## Virtual method that is executed whenever a state emits the [signal QuiverState.state_finished] 
 ## signal
-func _decide_next_action(_last_state: StringName) -> void:
+func _decide_next_behavior(_last_state: StringName) -> void:
 	push_warning("This is a virtual function and should not be used directly, but overriden.")
 
 
@@ -154,11 +161,6 @@ func _interrupt_current_state(p_next_path: String) -> void:
 
 static func _get_custom_properties() -> Dictionary:
 	return {
-		"AI State Machine":{
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_CATEGORY,
-			hint = PROPERTY_HINT_NONE,
-		},
 		"ai_state_hurt": {
 			backing_field = "_ai_state_hurt",
 			type = TYPE_STRING,
