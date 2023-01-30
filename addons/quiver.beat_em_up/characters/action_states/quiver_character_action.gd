@@ -1,4 +1,4 @@
-class_name QuiverCharacterState
+class_name QuiverCharacterAction
 extends QuiverState
 
 ## Specialized [QuiverState] class designed to give easier access and autocomplete to commom

@@ -1,5 +1,6 @@
 @tool
 extends QuiverCharacterState
+extends QuiverCharacterAction
 
 ## Write your doc string for this file here
 
