@@ -2,8 +2,8 @@
 class_name QuiverActionAir
 extends QuiverCharacterAction
 
-## Base Action for all Air Actions. Handles "ceiling" collisions, adds useful properties and 
-## methods other Air Actions might need.
+## Base Action for all Air Actions. Adds useful properties and methods other Air Actions 
+## might need.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -56,17 +56,6 @@ func _ready() -> void:
 
 
 ### Public Methods --------------------------------------------------------------------------------
-
-## Connects signals and disables ceiling collisions.
-func enter(msg: = {}) -> void:
-	super(msg)
-	_character._disable_ceiling_collisions()
-
-
-## Disconnects signals and enable ceiling collisions.
-func exit() -> void:
-	_character._enable_ceiling_collisions()
-	super()
 
 ### -----------------------------------------------------------------------------------------------
 
