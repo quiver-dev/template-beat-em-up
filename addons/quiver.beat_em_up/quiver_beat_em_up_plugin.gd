@@ -52,7 +52,19 @@ var SETTINGS = {
 			type = TYPE_BOOL,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = "",
-	}
+	},
+	QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS: {
+			value = "res://_beat_em_up/action_states/",
+			type = TYPE_STRING,
+			hint = PROPERTY_HINT_DIR,
+			hint_string = "",
+	},
+	QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS: {
+			value = "res://_beat_em_up/ai_states/",
+			type = TYPE_STRING,
+			hint = PROPERTY_HINT_DIR,
+			hint_string = "",
+	},
 }
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -203,6 +215,10 @@ func _add_custom_overlays() -> void:
 
 
 func _add_plugin_settings() -> void:
+	const FOLDERS_TO_CREATE = [
+		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS,
+		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS,
+	]
 	for setting in SETTINGS:
 		if not ProjectSettings.has_setting(setting):
 			var dict: Dictionary = SETTINGS[setting]
@@ -213,6 +229,13 @@ func _add_plugin_settings() -> void:
 				"hint": dict.hint,
 				"hint_string": dict.hint_string,
 			})
+		
+		if setting in FOLDERS_TO_CREATE:
+			var path: String = SETTINGS[setting].value
+			if not DirAccess.dir_exists_absolute(path):
+				DirAccess.make_dir_recursive_absolute(path)
+	
+	get_editor_interface().get_resource_filesystem().scan()
 	
 	if Engine.is_editor_hint():
 		ProjectSettings.save()

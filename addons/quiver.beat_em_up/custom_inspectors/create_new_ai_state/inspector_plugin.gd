@@ -41,6 +41,7 @@ func _can_handle(object) -> bool:
 				object is QuiverStateSequence 
 				and object._state_machine is QuiverAiStateMachine
 			)
+			or object is QuiverAiStateGroup
 	)
 	
 	if (is_valid_state_machine or is_valid_state):

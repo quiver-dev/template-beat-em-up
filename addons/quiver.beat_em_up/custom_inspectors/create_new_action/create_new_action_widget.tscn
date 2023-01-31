@@ -8,8 +8,7 @@ offset_bottom = 20.0
 script = ExtResource("1_g6tmv")
 
 [node name="OptionButton" type="OptionButton" parent="."]
-offset_right = 252.0
-offset_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 clip_text = true
 item_count = 34
@@ -26,7 +25,7 @@ popup/item_4/text = "quiver_action_die_ai"
 popup/item_4/id = 4
 popup/item_5/text = "quiver_action_ground"
 popup/item_5/id = 5
-popup/item_6/text = "quiver_character_state"
+popup/item_6/text = "quiver_character_action"
 popup/item_6/id = 6
 popup/item_7/text = "air_actions"
 popup/item_7/id = -1
@@ -90,9 +89,7 @@ popup/item_33/text = "quiver_action_walk"
 popup/item_33/id = 33
 
 [node name="Confirm" type="Button" parent="."]
-offset_left = 256.0
-offset_right = 295.0
-offset_bottom = 31.0
+layout_mode = 2
 disabled = true
 text = "Add"
 

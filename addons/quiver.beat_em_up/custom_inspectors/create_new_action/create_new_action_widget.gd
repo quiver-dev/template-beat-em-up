@@ -37,6 +37,10 @@ func _ready() -> void:
 	_options.clear()
 	QuiverEditorHelper.disable_all_processing(self)
 	_scrap_action_names(_actions_by_folders)
+	_scrap_action_names(
+			_actions_by_folders, 
+			ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS)
+	)
 	_populate_options_from(_actions_by_folders)
 	_confirm.disabled = true
 
@@ -57,7 +61,8 @@ func _scrap_action_names(target_dictionary: Dictionary, path := BASE_FOLDER) -> 
 		var file_name := dir.get_next()
 		while not file_name.is_empty():
 			if dir.current_is_dir(): 
-				target_dictionary[file_name] = {}
+				if not target_dictionary.has(file_name):
+					target_dictionary[file_name] = {}
 				_scrap_action_names(target_dictionary[file_name], path.path_join(file_name))
 			elif file_name.ends_with(".gd"):
 				var key := file_name.trim_suffix(".gd")
@@ -77,14 +82,21 @@ func _populate_options_from(dict: Dictionary, starting_index := 0) -> int:
 	
 	var ordered_keys = dict.keys()
 	ordered_keys.sort_custom(_sort_categories)
+	var next_level_keys := []
 	for key in ordered_keys:
-		index += 1
-		if key.begins_with("quiver_"):
+		if dict[key] is String:
+			index += 1
 			_options.add_item(key)
 			_options.set_item_metadata(index, dict[key])
+		elif dict[key] is Dictionary:
+			next_level_keys.append(key)
 		else:
-			_options.add_separator(key)
-			index = _populate_options_from(dict[key], index)
+			push_error("Unknown value in actions dictionary. key: %s value: %s"%[key, dict[key]])
+	
+	for key in next_level_keys:
+		index += 1
+		_options.add_separator(key)
+		index = _populate_options_from(dict[key], index)
 	
 	return index
 
