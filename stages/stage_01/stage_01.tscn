@@ -1,6 +1,6 @@
 [gd_scene load_steps=104 format=3 uid="uid://bnoa0s3qnckt1"]
 
-[ext_resource type="PackedScene" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
+[ext_resource type="PackedScene" uid="uid://bb7mgqvg4nne7" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
 [ext_resource type="Script" path="res://stages/stage_01/stage_01.gd" id="2_08exp"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/skyboxes/skybox.tscn" id="3_pnjnx"]
@@ -87,37 +87,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_dnq0s"]
+[sub_resource type="Gradient" id="Gradient_d7iiu"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5rvpf"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lp0gp"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_dnq0s")
+gradient = SubResource("Gradient_d7iiu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_5rvpf")
+shader_parameter/gradient = SubResource("GradientTexture1D_lp0gp")
 
-[sub_resource type="Gradient" id="Gradient_hu11p"]
+[sub_resource type="Gradient" id="Gradient_1mbae"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gahfr"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4w3t6"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_hu11p")
+gradient = SubResource("Gradient_1mbae")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_gahfr")
+shader_parameter/gradient = SubResource("GradientTexture1D_4w3t6")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -379,7 +379,7 @@ length = 6
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
+variations_weights = [1.0]
 texture_sequence = [2, 2, 2, 1, 0, 2]
 
 [node name="FireTiger" type="Sprite2D" parent="Background" index="9"]
@@ -532,7 +532,7 @@ length = 42
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
+variations_weights = [1.0]
 texture_sequence = [2, 1, 2, 2, 1, 0, 0, 2, 0, 1, 2, 2, 0, 2, 2, 1, 0, 2, 0, 2, 2, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 2, 1, 2, 0, 0, 1, 1]
 
 [node name="BambooVase1" type="Sprite2D" parent="Background/SideWalk2" index="0"]
@@ -614,7 +614,7 @@ separation = -99
 cap_begin = ExtResource("7_412kv")
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = [ExtResource("8_fsw4y"), ExtResource("9_7km5a")]
-variations_weights = [1.0, 1.0, 1.0]
+variations_weights = [1.0]
 texture_sequence = [1, 0, 1, 2, 1, 0, 0, 2, 0, 1, 2, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 2, 0, 1, 0, 0, 0, 2, 1, 0, 1, 2, 1, 0, 1, 0, 1, 1, 2, 0, 0, 0]
 
 [node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk" index="0"]
@@ -697,7 +697,7 @@ visible = true
 [node name="CeilingLimits" type="StaticBody2D" parent="Level/Collisions" index="0"]
 modulate = Color(0, 0.6, 0.701961, 1)
 position = Vector2(733, 651)
-collision_layer = 8
+collision_layer = 4
 collision_mask = 17
 
 [node name="Top" type="CollisionShape2D" parent="Level/Collisions/CeilingLimits" index="0"]
@@ -755,7 +755,7 @@ position = Vector2(6633, 281)
 scale = Vector2(2, 2)
 texture = ExtResource("34_wrols")
 
-[node name="FightRoom1" type="ReferenceRect" parent="Utilities" index="0"]
+[node name="FightRoom1" type="ReferenceRect" parent="FightRooms" index="0"]
 offset_left = 267.0
 offset_top = -280.0
 offset_right = 2526.0
@@ -779,13 +779,13 @@ preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
-[node name="QuiverEnemySpawner" type="Marker2D" parent="Utilities/FightRoom1" index="0"]
+[node name="QuiverEnemySpawner" type="Marker2D" parent="FightRooms/FightRoom1" index="0"]
 position = Vector2(2045, 1074)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_o2tqf")]]
 
-[node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom1" index="1"]
+[node name="PlayerDetector" type="Area2D" parent="FightRooms/FightRoom1" index="1"]
 position = Vector2(786, 548)
 collision_layer = 0
 monitorable = false
@@ -794,12 +794,13 @@ path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../QuiverEnemySpawner")]
 metadata/collision_type = "player_detector"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom1/PlayerDetector" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="FightRooms/FightRoom1/PlayerDetector" index="0"]
 modulate = Color(1, 1, 0, 1)
 shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
-[node name="FightRoom2" type="ReferenceRect" parent="Utilities" index="1"]
+[node name="FightRoom2" type="ReferenceRect" parent="FightRooms" index="1"]
+unique_name_in_owner = true
 offset_left = 2924.0
 offset_top = -280.0
 offset_right = 6259.0
@@ -821,7 +822,7 @@ preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
-[node name="PlayerDetector2" type="Area2D" parent="Utilities/FightRoom2" index="0"]
+[node name="PlayerDetector2" type="Area2D" parent="FightRooms/FightRoom2" index="0"]
 position = Vector2(1493, 585)
 collision_layer = 0
 monitorable = false
@@ -830,36 +831,36 @@ path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../EnemySpawner1"), NodePath("../EnemySpawner2")]
 metadata/collision_type = "player_detector"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom2/PlayerDetector2" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="FightRooms/FightRoom2/PlayerDetector2" index="0"]
 modulate = Color(1, 1, 0, 1)
 shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
-[node name="EnemySpawner1" type="Marker2D" parent="Utilities/FightRoom2" index="1" groups=["fight_2_spawner"]]
+[node name="EnemySpawner1" type="Marker2D" parent="FightRooms/FightRoom2" index="1" groups=["fight_2_spawner"]]
 position = Vector2(3448, 1070)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_pqjax")], [SubResource("Resource_g811p"), SubResource("Resource_to3fe")]]
 
-[node name="Marker2d" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner1" index="0"]
+[node name="Marker2d" type="Marker2D" parent="FightRooms/FightRoom2/EnemySpawner1" index="0"]
 position = Vector2(-716, -93)
 
-[node name="Marker2d2" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner1" index="1"]
+[node name="Marker2d2" type="Marker2D" parent="FightRooms/FightRoom2/EnemySpawner1" index="1"]
 position = Vector2(-646, 221)
 
-[node name="EnemySpawner2" type="Marker2D" parent="Utilities/FightRoom2" index="2" groups=["fight_2_spawner"]]
+[node name="EnemySpawner2" type="Marker2D" parent="FightRooms/FightRoom2" index="2" groups=["fight_2_spawner"]]
 position = Vector2(-169, 1142)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_66t8k")], [SubResource("Resource_wo8vf"), SubResource("Resource_u8ptc")]]
 
-[node name="Marker2d" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner2" index="0"]
+[node name="Marker2d" type="Marker2D" parent="FightRooms/FightRoom2/EnemySpawner2" index="0"]
 position = Vector2(875, 157)
 
-[node name="Marker2d2" type="Marker2D" parent="Utilities/FightRoom2/EnemySpawner2" index="1"]
+[node name="Marker2d2" type="Marker2D" parent="FightRooms/FightRoom2/EnemySpawner2" index="1"]
 position = Vector2(716, -158)
 
-[node name="FightRoom3" type="ReferenceRect" parent="Utilities" index="2"]
+[node name="FightRoom3" type="ReferenceRect" parent="FightRooms" index="2"]
 offset_left = 6838.0
 offset_top = -320.0
 offset_right = 9734.0
@@ -882,7 +883,7 @@ preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
-[node name="PlayerDetector" type="Area2D" parent="Utilities/FightRoom3" index="0"]
+[node name="PlayerDetector" type="Area2D" parent="FightRooms/FightRoom3" index="0"]
 position = Vector2(687, 562)
 collision_layer = 0
 monitorable = false
@@ -891,36 +892,36 @@ path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../QuiverEnemySpawner")]
 metadata/collision_type = "player_detector"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom3/PlayerDetector" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="FightRooms/FightRoom3/PlayerDetector" index="0"]
 modulate = Color(1, 1, 0, 1)
 shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
-[node name="QuiverEnemySpawner" type="Marker2D" parent="Utilities/FightRoom3" index="1"]
+[node name="QuiverEnemySpawner" type="Marker2D" parent="FightRooms/FightRoom3" index="1"]
 position = Vector2(3068, 1160)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_3faxb"), SubResource("Resource_7i6o3"), SubResource("Resource_3nro4"), SubResource("Resource_f3qeo"), SubResource("Resource_q88f7"), SubResource("Resource_l11h5")]]
 
-[node name="BarrierPos1" type="Marker2D" parent="Utilities/FightRoom3" index="2"]
+[node name="BarrierPos1" type="Marker2D" parent="FightRooms/FightRoom3" index="2"]
 position = Vector2(2208, 1016)
 
-[node name="BarrierPos2" type="Marker2D" parent="Utilities/FightRoom3" index="3"]
+[node name="BarrierPos2" type="Marker2D" parent="FightRooms/FightRoom3" index="3"]
 position = Vector2(2344, 1184)
 
-[node name="BarrierPos3" type="Marker2D" parent="Utilities/FightRoom3" index="4"]
+[node name="BarrierPos3" type="Marker2D" parent="FightRooms/FightRoom3" index="4"]
 position = Vector2(2468, 1324)
 
-[node name="BarrierPos4" type="Marker2D" parent="Utilities/FightRoom3" index="5"]
+[node name="BarrierPos4" type="Marker2D" parent="FightRooms/FightRoom3" index="5"]
 position = Vector2(2488, 1016)
 
-[node name="BarrierPos5" type="Marker2D" parent="Utilities/FightRoom3" index="6"]
+[node name="BarrierPos5" type="Marker2D" parent="FightRooms/FightRoom3" index="6"]
 position = Vector2(2624, 1184)
 
-[node name="BarrierPos6" type="Marker2D" parent="Utilities/FightRoom3" index="7"]
+[node name="BarrierPos6" type="Marker2D" parent="FightRooms/FightRoom3" index="7"]
 position = Vector2(2748, 1324)
 
-[node name="FightRoom4" type="ReferenceRect" parent="Utilities" index="3"]
+[node name="FightRoom4" type="ReferenceRect" parent="FightRooms" index="3"]
 offset_left = 13499.0
 offset_top = -320.0
 offset_right = 15815.0
@@ -938,7 +939,7 @@ preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
-[node name="Fight4PlayerDetector" type="Area2D" parent="Utilities/FightRoom4" index="0"]
+[node name="Fight4PlayerDetector" type="Area2D" parent="FightRooms/FightRoom4" index="0"]
 position = Vector2(-1, 562)
 collision_layer = 0
 monitorable = false
@@ -947,24 +948,24 @@ path_fight_room = NodePath("..")
 paths_enemy_spawners = [NodePath("../Fight4Spawner")]
 metadata/collision_type = "player_detector"
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Utilities/FightRoom4/Fight4PlayerDetector" index="0"]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="FightRooms/FightRoom4/Fight4PlayerDetector" index="0"]
 modulate = Color(1, 1, 0, 1)
 shape = SubResource("SegmentShape2D_e5ecd")
 metadata/collision_type = "player_detector"
 
-[node name="Fight4Spawner" type="Marker2D" parent="Utilities/FightRoom4" index="1"]
+[node name="Fight4Spawner" type="Marker2D" parent="FightRooms/FightRoom4" index="1"]
 position = Vector2(2520, 1048)
 script = ExtResource("18_5ae2i")
 path_spawn_parent = NodePath("../../../Level/Characters")
 spawn_waves = [[SubResource("Resource_v1v1v"), SubResource("Resource_pghai")]]
 
-[node name="GuardPos1" type="Marker2D" parent="Utilities/FightRoom4" index="2"]
+[node name="GuardPos1" type="Marker2D" parent="FightRooms/FightRoom4" index="2"]
 position = Vector2(1488, 940)
 
-[node name="GuardPos2" type="Marker2D" parent="Utilities/FightRoom4" index="3"]
+[node name="GuardPos2" type="Marker2D" parent="FightRooms/FightRoom4" index="3"]
 position = Vector2(1748, 1248)
 
-[node name="FightRoom5" type="ReferenceRect" parent="Utilities" index="4"]
+[node name="FightRoom5" type="ReferenceRect" parent="FightRooms" index="4"]
 unique_name_in_owner = true
 offset_left = 12587.0
 offset_top = -320.0
@@ -983,20 +984,20 @@ preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
 preview_after_color = Color(0, 0.501961, 0.501961, 1)
 
-[node name="TaxManAfterEngage" type="Marker2D" parent="Utilities/FightRoom5" index="0" groups=["tax_man_engage_position"]]
+[node name="TaxManAfterEngage" type="Marker2D" parent="FightRooms/FightRoom5" index="0" groups=["tax_man_engage_position"]]
 position = Vector2(2485, 1181)
 
-[node name="DashPositionLeft" type="Marker2D" parent="Utilities/FightRoom5" index="1" groups=["tax_man_dash_positions"]]
+[node name="DashPositionLeft" type="Marker2D" parent="FightRooms/FightRoom5" index="1" groups=["tax_man_dash_positions"]]
 position = Vector2(279, 1083)
 
-[node name="DashPositionRight" type="Marker2D" parent="Utilities/FightRoom5" index="2" groups=["tax_man_dash_positions"]]
+[node name="DashPositionRight" type="Marker2D" parent="FightRooms/FightRoom5" index="2" groups=["tax_man_dash_positions"]]
 position = Vector2(2427, 1092)
 
-[connection signal="all_waves_completed" from="Utilities/FightRoom1/QuiverEnemySpawner" to="Utilities/FightRoom1" method="setup_after_fight_room"]
-[connection signal="all_waves_completed" from="Utilities/FightRoom2/EnemySpawner1" to="." method="_on_fight_2_spawner_all_waves_completed"]
-[connection signal="all_waves_completed" from="Utilities/FightRoom2/EnemySpawner2" to="." method="_on_fight_2_spawner_all_waves_completed"]
-[connection signal="all_waves_completed" from="Utilities/FightRoom3/QuiverEnemySpawner" to="Utilities/FightRoom3" method="setup_after_fight_room"]
-[connection signal="player_detected" from="Utilities/FightRoom4/Fight4PlayerDetector" to="." method="_on_fight_4_player_detector_player_detected"]
-[connection signal="all_waves_completed" from="Utilities/FightRoom4/Fight4Spawner" to="." method="_on_fight_4_spawner_all_waves_completed"]
+[connection signal="all_waves_completed" from="FightRooms/FightRoom1/QuiverEnemySpawner" to="FightRooms/FightRoom1" method="setup_after_fight_room"]
+[connection signal="all_waves_completed" from="FightRooms/FightRoom2/EnemySpawner1" to="." method="_on_fight_2_spawner_all_waves_completed"]
+[connection signal="all_waves_completed" from="FightRooms/FightRoom2/EnemySpawner2" to="." method="_on_fight_2_spawner_all_waves_completed"]
+[connection signal="all_waves_completed" from="FightRooms/FightRoom3/QuiverEnemySpawner" to="FightRooms/FightRoom3" method="setup_after_fight_room"]
+[connection signal="player_detected" from="FightRooms/FightRoom4/Fight4PlayerDetector" to="." method="_on_fight_4_player_detector_player_detected"]
+[connection signal="all_waves_completed" from="FightRooms/FightRoom4/Fight4Spawner" to="." method="_on_fight_4_spawner_all_waves_completed"]
 
 [editable path="Background/SideWalk/LampPole5"]
