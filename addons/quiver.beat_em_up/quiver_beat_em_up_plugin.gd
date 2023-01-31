@@ -82,6 +82,7 @@ var _current_overlay_handler: QuiverCustomOverlay = null
 func _enter_tree() -> void:
 	_add_custom_inspectors()
 	_add_custom_overlays()
+	_add_settings_property_info()
 
 
 func _exit_tree() -> void:
@@ -90,6 +91,7 @@ func _exit_tree() -> void:
 
 func _enable_plugin() -> void:
 	_add_plugin_settings()
+	_add_settings_property_info()
 	_add_autoloads()
 
 
@@ -215,20 +217,30 @@ func _add_custom_overlays() -> void:
 
 
 func _add_plugin_settings() -> void:
+	for setting in SETTINGS:
+		var dict: Dictionary = SETTINGS[setting]
+		if not ProjectSettings.has_setting(setting):
+			ProjectSettings.set_setting(setting, dict.value)
+	
+	get_editor_interface().get_resource_filesystem().scan()
+	
+	if Engine.is_editor_hint():
+		ProjectSettings.save()
+
+
+func _add_settings_property_info() -> void:
 	const FOLDERS_TO_CREATE = [
 		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS,
 		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS,
 	]
 	for setting in SETTINGS:
-		if not ProjectSettings.has_setting(setting):
-			var dict: Dictionary = SETTINGS[setting]
-			ProjectSettings.set_setting(setting, dict.value)
-			ProjectSettings.add_property_info({
-				"name": setting,
-				"type": dict.type,
-				"hint": dict.hint,
-				"hint_string": dict.hint_string,
-			})
+		var dict: Dictionary = SETTINGS[setting]
+		ProjectSettings.add_property_info({
+			"name": setting,
+			"type": dict.type,
+			"hint": dict.hint,
+			"hint_string": dict.hint_string,
+		})
 		
 		if setting in FOLDERS_TO_CREATE:
 			var path: String = SETTINGS[setting].value
