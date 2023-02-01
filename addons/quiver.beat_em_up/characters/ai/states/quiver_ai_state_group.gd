@@ -40,18 +40,13 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _get_state_machine(node: Node) -> Node:
+func _get_state_machine(node: Node) -> QuiverStateMachine:
 	if node == null or node.get_parent() == null:
 		push_error("Couldn't find a StateMachine in this scene tree. State name: %s"%[name])
-	else:
+	elif not node is QuiverStateMachine:
 #		print("node: %s"%[node.name])
-		var found_state_machine = QuiverCyclicHelper.is_quiver_state_machine(node)
-		if not found_state_machine:
-			node = _get_state_machine(node.get_parent())
-		else:
-#			print("STATE MACHINE FOUND")
-			pass
-		
+		node = _get_state_machine(node.get_parent())
+	
 	return node
 
 ### -----------------------------------------------------------------------------------------------

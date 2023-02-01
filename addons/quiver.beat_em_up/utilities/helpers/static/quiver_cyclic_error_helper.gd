@@ -53,36 +53,10 @@ const PATH_QUIVER_STATE_SEQUENCE = (
 
 ### Public Methods --------------------------------------------------------------------------------
 
-
-static func is_quiver_state_machine(node: Node) -> bool:
-	var value := _is_instance_of_script(node.get_script(), PATH_STATE_MACHINE)
-	return value 
-
-
-static func is_quiver_state(node: Node) -> bool:
-	var value := _is_instance_of_script(node.get_script(), PATH_QUIVER_STATE)
-	return value 
-
-
-static func is_quiver_state_sequence(node: Node) -> bool:
-	var value := _is_instance_of_script(node.get_script(), PATH_QUIVER_STATE_SEQUENCE)
-	return value
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-static func _is_instance_of_script(script: Script, path: String) -> bool:
-	var value = false
-	
-	if script != null:
-		if script.resource_path == path:
-			value = true
-		elif script.get_base_script() != null:
-			value = _is_instance_of_script(script.get_base_script(), path)
-	
-	return value 
 
 ### -----------------------------------------------------------------------------------------------
 

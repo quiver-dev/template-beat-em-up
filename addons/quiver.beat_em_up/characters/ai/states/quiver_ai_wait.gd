@@ -60,7 +60,6 @@ func _ready() -> void:
 
 func enter(msg: = {}) -> void:
 	super(msg)
-	_actions.transition_to("Ground/Move/Idle")
 	var current_wait = randf_range(_min_wait, _max_wait) if _use_range else _wait_time
 	_wait_timer.start(current_wait)
 	QuiverEditorHelper.connect_between(_wait_timer.timeout, _on_wait_timer_timeout)

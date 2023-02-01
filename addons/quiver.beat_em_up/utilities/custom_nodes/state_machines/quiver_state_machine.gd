@@ -27,7 +27,7 @@ const INVALID_NODEPATH = ^"invalid"
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 ## [NodePath] to initial state, should be defined in the inspector.
-@export var initial_state := NodePath(""):
+@export_node_path("QuiverState") var initial_state := NodePath(""):
 	set(value):
 		initial_state = value
 		update_configuration_warnings()
@@ -81,10 +81,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	
 	if initial_state.is_empty():
 		warnings.append("An initial state node must be defined.")
-	else:
-		var quiver_state := get_node(initial_state) as QuiverState
-		if quiver_state == null:
-			warnings.append("initial_state must point to a valid QuiverState node.")
 	
 	return warnings
 
@@ -94,21 +90,22 @@ func _get_configuration_warnings() -> PackedStringArray:
 ### Public Methods --------------------------------------------------------------------------------
 
 ## Takes a [NodePath] to the next state node, and transitions to it. Can optionally receive a 
-## dictionary to be passed to the [method QuiverState.enter] method of the new state.
+## dictionary to be passed to the [method QuiverState.enter] method of the new state.[br]
+## Note that the [NodePath] passed in must be relative to the StateMachine node.
 func transition_to(target_state_path: NodePath, msg: = {}) -> void:
 	if not has_node(target_state_path):
+		push_error("Could not find state in path: %s"%[target_state_path])
 		return
 	
 	var target_state := get_node(target_state_path) as QuiverState
-	if target_state == null:
-		push_error("%s is not a QuiverState type node"%[target_state_path])
-		return
 	
 	QuiverDebugLogger.log_message([get_path(), "Exiting State", get_path_to(state)])
 	state.exit()
+	
 	state = target_state
 	QuiverDebugLogger.log_message([get_path(), "Entering State", target_state_path])
 	state.enter(msg)
+	
 	emit_signal("transitioned", target_state_path)
 
 ### -----------------------------------------------------------------------------------------------
