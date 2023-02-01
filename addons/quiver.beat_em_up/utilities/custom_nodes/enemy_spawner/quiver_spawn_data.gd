@@ -1,5 +1,5 @@
 @tool
-class_name SpawnData
+class_name QuiverSpawnData
 extends Resource
 
 ## Write your doc string for this file here

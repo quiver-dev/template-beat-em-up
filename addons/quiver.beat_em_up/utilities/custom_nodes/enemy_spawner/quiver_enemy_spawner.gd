@@ -50,19 +50,19 @@ func spawn_current_wave() -> void:
 		return
 	
 	for item in _spawn_waves[_current_wave]:
-		var spawn_data := item as SpawnData
+		var spawn_data := item as QuiverSpawnData
 		var enemy := spawn_data.enemy_scene.instantiate() as QuiverEnemyCharacter
 		var enemy_position := spawn_data.get_spawn_position(self)
 		
 		match spawn_data.spawn_mode:
-			SpawnData.SpawnMode.IN_PLACE:
+			QuiverSpawnData.SpawnMode.IN_PLACE:
 				_spawn_enemy(enemy, enemy_position)
-			SpawnData.SpawnMode.WALK_TO_POSITION:
+			QuiverSpawnData.SpawnMode.WALK_TO_POSITION:
 				_spawn_enemy(enemy, global_position)
 				enemy.spawn_ground_to_position(enemy_position)
 			_:
 				push_error("Unknown spawn_mode: %s | Possible modes: %s"%[
-					spawn_data.spawn_mode, SpawnData.SpawnMode.keys()
+					spawn_data.spawn_mode, QuiverSpawnData.SpawnMode.keys()
 				])
 	
 	wave_started.emit(_current_wave)
@@ -187,9 +187,9 @@ func _set_spawn_waves(value: Array) -> void:
 		if _spawn_waves[wave] == null:
 			_spawn_waves[wave] = []
 		for index in _spawn_waves[wave].size():
-			var spawn_data := _spawn_waves[wave][index] as SpawnData
+			var spawn_data := _spawn_waves[wave][index] as QuiverSpawnData
 			if spawn_data == null:
-				_spawn_waves[wave][index] = SpawnData.new()
+				_spawn_waves[wave][index] = QuiverSpawnData.new()
 
 
 func _set_wave_property(p_name: String, value: Array) -> void:
@@ -199,9 +199,9 @@ func _set_wave_property(p_name: String, value: Array) -> void:
 	
 	_spawn_waves[index] = value
 	for enemy_index in _spawn_waves[index].size():
-		var spawn_data := _spawn_waves[index][enemy_index] as SpawnData
+		var spawn_data := _spawn_waves[index][enemy_index] as QuiverSpawnData
 		if spawn_data == null:
-			_spawn_waves[index][enemy_index] = SpawnData.new()
+			_spawn_waves[index][enemy_index] = QuiverSpawnData.new()
 
 
 func _get_wave_property(p_name: String) -> Array:
