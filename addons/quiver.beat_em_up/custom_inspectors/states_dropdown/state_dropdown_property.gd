@@ -51,7 +51,7 @@ func _add_property_scene() -> void:
 
 
 func _inititalize_property() -> void:
-	var current_value := _state.get(get_edited_property()) as String
+	var current_value := _state.get(get_edited_property()) as NodePath
 	var list := _get_list_of_action_states()
 	var item_id := 0
 	_options.clear()
