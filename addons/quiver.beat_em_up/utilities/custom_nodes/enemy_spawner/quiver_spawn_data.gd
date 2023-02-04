@@ -2,7 +2,7 @@
 class_name QuiverSpawnData
 extends Resource
 
-## Write your doc string for this file here
+## Resource that holds information on which enemy scene should be spawned, and how.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -10,33 +10,45 @@ extends Resource
 #--- enums ----------------------------------------------------------------------------------------
 
 enum SpawnMode {
-	WALK_TO_POSITION,
-	IN_PLACE,
+	WALK_TO_POSITION, 	## Should spawn enemy at spawner position and make it walk to the target position.
+	IN_PLACE, ## Spawns enemy directly at the target position.
 }
 
 #--- constants ------------------------------------------------------------------------------------
 
+## Value used to check for invalid or unset nodepaths.
 const NODEPATH_INVALID = ^"invalid"
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+## PackedScene that will be used to instantiate enemy.
 var enemy_scene: PackedScene = null
 
+## Defines what spawn mode will be used.
 var spawn_mode := SpawnMode.WALK_TO_POSITION:
 	set(value):
 		spawn_mode = value
 		notify_property_list_changed()
 
+## Flag to toggle between using a target node as reference for position, or an absolute position 
+## set manually in the inspector.
 var use_vector2 := false:
 	set(value):
 		use_vector2 = value
 		notify_property_list_changed()
 
+## Flag used only in [code]SpawnMode.IN_PLACE[/code] to spawn the enemy in the same position 
+## as the spawner
 var use_spawner_position := true:
 	set(value):
 		use_spawner_position = value
 		notify_property_list_changed()
+
+## Property to hold the target [NodePath]. Will only be used if [member use_vector2] is disabled.
 var target_node_path := NODEPATH_INVALID
+
+## Property to hold the target global position. Will only be used if [member use_vector2] is 
+## enabled.
 var target_position := Vector2.ZERO
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -51,6 +63,7 @@ var target_position := Vector2.ZERO
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Returns which spawn position should be used.
 func get_spawn_position(spawner: Node2D) -> Vector2:
 	var value := Vector2.ZERO
 	
