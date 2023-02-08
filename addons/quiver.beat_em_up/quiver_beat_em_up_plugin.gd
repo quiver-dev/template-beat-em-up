@@ -196,24 +196,24 @@ func _remove_custom_inspectors() -> void:
 func _add_custom_overlays() -> void:
 	var dir := DirAccess.open(PATH_CUSTOM_OVERLAYS)
 	
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name := dir.get_next()
-		while not file_name.is_empty():
-			if file_name.ends_with(".gd"): 
-				var script := load(PATH_CUSTOM_OVERLAYS.path_join(file_name)) as GDScript
-				var object := script.new() as QuiverCustomOverlay
-				if object != null:
-					object.main_plugin = self
-					_loaded_overlays.append(object)
-				
-			file_name = dir.get_next()
-	else:
+	if dir == null:
 		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
 			DirAccess.get_open_error(), PATH_CUSTOM_INSPECTORS
 		]
 		push_error(error_msg)
-
+		return
+	
+	dir.list_dir_begin()
+	var file_name := dir.get_next()
+	while not file_name.is_empty():
+		if file_name.ends_with(".gd"): 
+			var script := load(PATH_CUSTOM_OVERLAYS.path_join(file_name)) as GDScript
+			var object := script.new() as QuiverCustomOverlay
+			if object != null:
+				object.main_plugin = self
+				_loaded_overlays.append(object)
+		
+		file_name = dir.get_next()
 
 
 func _add_plugin_settings() -> void:
