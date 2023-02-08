@@ -32,10 +32,6 @@ func _ready() -> void:
 func set_player_attributes(p_attributes: QuiverAttributes) -> void:
 	_player_life_bar.attributes = p_attributes
 
-
-func set_enemy_attribute(p_attributes: QuiverAttributes) -> void:
-	_enemy_life_bar.attributes = p_attributes
-
 ### -----------------------------------------------------------------------------------------------
 
 

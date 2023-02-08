@@ -26,7 +26,6 @@ launch_angle = 0
 
 [node name="LevelCamera" type="Camera2D"]
 offset = Vector2(0, -100)
-current = true
 limit_left = 0
 limit_top = -200
 limit_bottom = 1180

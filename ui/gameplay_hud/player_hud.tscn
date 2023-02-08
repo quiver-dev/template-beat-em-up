@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://ui/gameplay_hud/player_hud.gd" id="1_i2ajm"]
 [ext_resource type="PackedScene" path="res://ui/gameplay_hud/player_health_bar/heath_bar.tscn" id="3_1cvt2"]
 [ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="4_nvlcn"]
-[ext_resource type="PackedScene" path="res://ui/gameplay_hud/enemy_health_bar/enemy_health_bar.tscn" id="5_23ki3"]
+[ext_resource type="PackedScene" uid="uid://bu5i02m11elee" path="res://ui/gameplay_hud/enemy_health_bar/enemy_health_bar.tscn" id="5_23ki3"]
 
 [sub_resource type="Gradient" id="Gradient_h6r38"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rw4s5"]
 gradient = SubResource("Gradient_h6r38")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lad2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wqycl"]
 resource_local_to_scene = true
 shader = ExtResource("4_nvlcn")
 shader_parameter/is_active = true
@@ -23,7 +23,7 @@ shader_parameter/gradient = SubResource("GradientTexture1D_rw4s5")
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fwij3"]
 gradient = SubResource("Gradient_bvxqj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_113rq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pklh6"]
 resource_local_to_scene = true
 shader = ExtResource("4_nvlcn")
 shader_parameter/is_active = true
@@ -43,9 +43,9 @@ script = ExtResource("1_i2ajm")
 metadata/_edit_use_custom_anchors = true
 
 [node name="PlayerLifeBar" parent="." instance=ExtResource("3_1cvt2")]
-material = SubResource("ShaderMaterial_1lad2")
+material = SubResource("ShaderMaterial_wqycl")
 layout_mode = 2
 
 [node name="EnemyHealthBar" parent="." instance=ExtResource("5_23ki3")]
-material = SubResource("ShaderMaterial_113rq")
+material = SubResource("ShaderMaterial_pklh6")
 layout_mode = 2

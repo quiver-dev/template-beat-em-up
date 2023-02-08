@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://bu5i02m11elee"]
 
 [ext_resource type="PackedScene" path="res://ui/gameplay_hud/player_health_bar/heath_bar.tscn" id="1_8oipo"]
 [ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="2_p5a0a"]
@@ -16,9 +16,9 @@ gradient = SubResource("Gradient_h6r38")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sq4gg"]
 resource_local_to_scene = true
 shader = ExtResource("2_p5a0a")
-shader_parameter/gradient = SubResource("GradientTexture1D_rw4s5")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
+shader_parameter/gradient = SubResource("GradientTexture1D_rw4s5")
 
 [node name="EnemyHealthBar" instance=ExtResource("1_8oipo")]
 material = SubResource("ShaderMaterial_sq4gg")
@@ -31,6 +31,7 @@ offset_left = 5.0
 offset_top = 3.0
 offset_right = 135.0
 offset_bottom = 93.0
+expand_mode = 1
 
 [node name="HeartIcon" parent="." index="1"]
 layout_mode = 3
