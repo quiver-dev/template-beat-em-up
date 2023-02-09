@@ -18,6 +18,8 @@ enum DayTimes {
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+@export var day_cycle_data: DayCycleData
+
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 @export var _color_day := Color.WHITE:
@@ -35,8 +37,6 @@ enum DayTimes {
 
 @export var _preview_time := DayTimes.DAY: set = _set_preview_time
 
-var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
-
 ### -----------------------------------------------------------------------------------------------
 
 
@@ -44,7 +44,7 @@ var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
 
 func _ready() -> void:
 	_on_twilight_changed()
-	QuiverEditorHelper.connect_between(_day_cycle_data.twilight_changed, _on_twilight_changed)
+	QuiverEditorHelper.connect_between(day_cycle_data.twilight_changed, _on_twilight_changed)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -57,11 +57,11 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_twilight_changed() -> void:
-	if _day_cycle_data.twilight_transition < 0.5:
-		var progress := smoothstep(0.0, 0.5, _day_cycle_data.twilight_transition)
+	if day_cycle_data.twilight_transition < 0.5:
+		var progress := smoothstep(0.0, 0.5, day_cycle_data.twilight_transition)
 		color = _color_day.lerp(_color_sunset, progress)
 	else:
-		var progress := smoothstep(0.5, 1.0, _day_cycle_data.twilight_transition)
+		var progress := smoothstep(0.5, 1.0, day_cycle_data.twilight_transition)
 		color = _color_sunset.lerp(_color_night, progress)
 
 

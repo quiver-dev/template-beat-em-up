@@ -1,13 +1,14 @@
-[gd_scene load_steps=104 format=3 uid="uid://bnoa0s3qnckt1"]
+[gd_scene load_steps=105 format=3 uid="uid://bnoa0s3qnckt1"]
 
 [ext_resource type="PackedScene" uid="uid://bb7mgqvg4nne7" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
 [ext_resource type="Script" path="res://stages/stage_01/stage_01.gd" id="2_08exp"]
-[ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/skyboxes/skybox.tscn" id="3_pnjnx"]
+[ext_resource type="PackedScene" uid="uid://chmbp4a1d41k0" path="res://stages/stage_01/stage_elements/skyboxes/skybox.tscn" id="3_pnjnx"]
 [ext_resource type="Script" path="res://stages/stage_01/day_cycle_modulate.gd" id="3_uswky"]
 [ext_resource type="Texture2D" uid="uid://dpx5oim35rvcq" path="res://stages/stage_01/stage_elements/pavement/street_revised_straight.png" id="4_0uw5r"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/buildings/chicken_king/chicken_king.tscn" id="4_8mlpl"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/buildings/walls/brick_wall/brick_wall.tscn" id="4_8ntk5"]
+[ext_resource type="Resource" uid="uid://cf424fk4f5263" path="res://stages/_base/day_cycle_data.tres" id="4_y5lul"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/decorations/lantern/lanterns.tscn" id="5_aembi"]
 [ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/decorations/christmas_lights/christmas_lights.tscn" id="5_cl8vk"]
 [ext_resource type="Script" path="res://stages/stage_01/stage01_skybox.gd" id="5_hj50d"]
@@ -57,7 +58,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ayfbynawa4b" path="res://stages/stage_01/stage_elements/vending_machines/vending_machine_tags_separated_3_50.png" id="29_70lla"]
 [ext_resource type="Texture2D" uid="uid://b1t7e4lf2fjru" path="res://stages/stage_01/stage_elements/buildings/windows/narrow/window_2.png" id="30_5joav"]
 [ext_resource type="Texture2D" uid="uid://c1nig7r42sdk6" path="res://stages/stage_01/stage_elements/vending_machines/vending_machines_clean_separated_red_50.png" id="30_8bcgp"]
-[ext_resource type="PackedScene" path="res://stages/stage_01/stage_elements/street_poles/lamp_poles/lamp_pole.tscn" id="31_n3xtr"]
+[ext_resource type="PackedScene" uid="uid://bxihsfc3uo5rv" path="res://stages/stage_01/stage_elements/street_poles/lamp_poles/lamp_pole.tscn" id="31_n3xtr"]
 [ext_resource type="Texture2D" uid="uid://ckx7onkorw05s" path="res://stages/stage_01/stage_elements/street_poles/telephone_pole_revised_1_50.png" id="34_wrols"]
 [ext_resource type="Shader" path="res://characters/enemies/tax_man/resources/silhouette.gdshader" id="36_84oqi"]
 [ext_resource type="Texture2D" uid="uid://ct0e5tvx2qiq6" path="res://stages/stage_01/stage_elements/decorations/area_2_bamboo1_2.png" id="37_lr1et"]
@@ -87,37 +88,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_g3mai"]
+[sub_resource type="Gradient" id="Gradient_dbxtj"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_mteuq"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7xiew"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_g3mai")
+gradient = SubResource("Gradient_dbxtj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_mteuq")
+shader_parameter/gradient = SubResource("GradientTexture1D_7xiew")
 
-[sub_resource type="Gradient" id="Gradient_q46sh"]
+[sub_resource type="Gradient" id="Gradient_5rn7k"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xaebp"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ue70d"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_q46sh")
+gradient = SubResource("Gradient_5rn7k")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_xaebp")
+shader_parameter/gradient = SubResource("GradientTexture1D_ue70d")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -269,10 +270,10 @@ metadata/_edit_vertical_guides_ = [10969.0]
 [node name="DayCycleModulate" type="CanvasModulate" parent="." index="0"]
 color = Color(1, 0.972549, 0.917647, 1)
 script = ExtResource("3_uswky")
+day_cycle_data = ExtResource("4_y5lul")
 _color_day = Color(1, 0.972549, 0.917647, 1)
 _color_sunset = Color(0.776471, 0.458824, 0.407843, 1)
 _color_night = Color(0.278431, 0.211765, 0.478431, 1)
-_preview_time = 2
 
 [node name="SkyboxLayer" parent="Background" index="0"]
 follow_viewport_enabled = false
@@ -284,6 +285,7 @@ motion_scale = Vector2(0, 1)
 position = Vector2(-8, -444)
 scale = Vector2(1.86482, 1.86482)
 script = ExtResource("5_hj50d")
+day_cycle_data = ExtResource("4_y5lul")
 is_playing = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/SkyboxLayer" index="1"]
@@ -370,6 +372,7 @@ energy = 0.0
 texture = SubResource("GradientTexture2D_rxt3w")
 texture_scale = 4.0
 script = ExtResource("16_rlks8")
+day_cycle_data = ExtResource("4_y5lul")
 
 [node name="SideWalk3" type="Node2D" parent="Background" index="8"]
 position = Vector2(9308.36, 424.217)

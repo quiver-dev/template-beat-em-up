@@ -12,9 +12,9 @@ extends SkyBox
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-#--- private variables - order: export > normal var > onready -------------------------------------
+@export var day_cycle_data: DayCycleData
 
-var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
+#--- private variables - order: export > normal var > onready -------------------------------------
 
 var _day_to_sunset: GradientTransitioner = null
 var _sunset_to_night: GradientTransitioner = null
@@ -30,7 +30,7 @@ var _tween_twilight: Tween = null
 
 func _ready() -> void:
 	super()
-	_day_cycle_data.twilight_transition = 0
+	day_cycle_data.twilight_transition = 0
 	_day_to_sunset = gradient_transitions_array[1] as GradientTransitioner
 	_sunset_to_night = gradient_transitions_array[2] as GradientTransitioner
 	_night_to_sunrise = gradient_transitions_array[4] as GradientTransitioner
@@ -64,11 +64,11 @@ func _on_day_to_sunset_started() -> void:
 	if _tween_twilight:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
-	_day_cycle_data.twilight_transition = 0
+	day_cycle_data.twilight_transition = 0
 	
 	@warning_ignore("return_value_discarded")
 	_tween_twilight.tween_property(
-			_day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration
+			day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration
 	)
 
 
@@ -76,11 +76,11 @@ func _on_sunset_to_night_started() -> void:
 	if _tween_twilight:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
-	_day_cycle_data.twilight_transition = 0.5
+	day_cycle_data.twilight_transition = 0.5
 	
 	@warning_ignore("return_value_discarded")
 	_tween_twilight.tween_property(
-			_day_cycle_data, "twilight_transition", 1.0, _sunset_to_night.duration
+			day_cycle_data, "twilight_transition", 1.0, _sunset_to_night.duration
 	)
 
 
@@ -88,11 +88,11 @@ func _on_night_to_sunrise_started() -> void:
 	if _tween_twilight:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
-	_day_cycle_data.twilight_transition = 1.0
+	day_cycle_data.twilight_transition = 1.0
 	
 	@warning_ignore("return_value_discarded")
 	_tween_twilight.tween_property(
-			_day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration
+			day_cycle_data, "twilight_transition", 0.5, _day_to_sunset.duration
 	)
 
 
@@ -100,10 +100,10 @@ func _on_sunrise_to_day_started() -> void:
 	if _tween_twilight:
 		_tween_twilight.kill()
 	_tween_twilight = create_tween()
-	_day_cycle_data.twilight_transition = 0.5
+	day_cycle_data.twilight_transition = 0.5
 	@warning_ignore("return_value_discarded")
 	_tween_twilight.tween_property(
-			_day_cycle_data, "twilight_transition", 0.0, _sunset_to_night.duration
+			day_cycle_data, "twilight_transition", 0.0, _sunset_to_night.duration
 	)
 
 ### -----------------------------------------------------------------------------------------------
