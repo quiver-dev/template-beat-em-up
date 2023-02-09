@@ -28,32 +28,19 @@ const DEFAULT_TEXTURE1D = preload("res://stages/stage_01/stage_elements/skyboxes
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-# TODO: REMOVE ME
-# This is a "hack" because adding setters to Array[Texture2D] is broken 
-# https://github.com/godotengine/godot/issues/58285
-# I can't make this typed due to the bug above, so I'm exporting it with advanced exports
-# and making the inspector accept only Textures2D but the Array itself accepts anything
-var _extra_textures: Array:
+@export var gradient_transitions_array : Array[GradientTransitioner]
+
+@export var _extra_textures: Array[Texture2D]:
 	set(value):
 		_extra_textures = value
 		if is_inside_tree():
 			_reset_extra_nodes()
 
-var _total_transitions := 1:
-	set(value):
-		_total_transitions = value
-#		_reset_transitions_data()
-		notify_property_list_changed()
-
-
-@export var gradient_transitions_array : Array[GradientTransitioner]
 ## Dictionary in the format of { texture_resource_uid: SkyBoxExtraTextureData }
 var _extra_textures_data: Dictionary = {}
 
 var _tween: Tween
-
 var _all_clouds: Array[Sprite2D] = []
-
 var _shader_gradient: Gradient = null
 
 ### -----------------------------------------------------------------------------------------------
@@ -118,6 +105,7 @@ func stop_animations() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
+# TODO: REMOVE ME Shader hack
 ## This is a hack that for some reason is needed in the exported version because of a bug where 
 ## all values from shader parameters loaded from tscns are lost, even though when running from 
 ## the editor everything is fine.
@@ -142,9 +130,6 @@ func _reset_extra_nodes() -> void:
 	var found_uids: Array[int] = []
 	_all_clouds = []
 	for e_texture in _extra_textures:
-		if not e_texture is Texture2D:
-			continue
-		
 		var uid := ResourceLoader.get_resource_uid(e_texture.resource_path)
 		found_uids.append(uid)
 		if not _extra_textures_data.has(uid):
@@ -263,13 +248,6 @@ func _set(property: StringName, value) -> bool:
 
 func _get_custom_properties() -> Dictionary:
 	var properties := {}
-	properties["extra_textures"] = {
-			backing_field = "_extra_textures",
-			type = TYPE_ARRAY,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_TYPE_STRING,
-			hint_string = "%s/%s:Texture2D"%[TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE],
-	}
 	properties["extra_textures_data"] = {
 			backing_field = "_extra_textures_data",
 			type = TYPE_ARRAY,
@@ -308,6 +286,7 @@ func _resgister_extra_textures_properties(properties: Dictionary) -> void:
 				prop_dict["set_callable"] = \
 						_set_dict_sub_property.bind(_extra_textures_data, uid, property_name)
 				properties[new_key] = prop_dict
+
 
 func _set_dict_sub_property(
 		value: Variant, dict: Dictionary, key: Variant, property: StringName

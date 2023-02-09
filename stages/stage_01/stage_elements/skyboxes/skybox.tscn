@@ -1,8 +1,7 @@
-[gd_scene load_steps=33 format=3]
+[gd_scene load_steps=34 format=3 uid="uid://chmbp4a1d41k0"]
 
 [ext_resource type="Texture2D" uid="uid://egjhs2885c00" path="res://stages/stage_01/stage_elements/skyboxes/area_1_skybox_1_0.png" id="1_f6u5w"]
 [ext_resource type="Shader" path="res://stages/_base/skyboxes/gradient_map.gdshader" id="1_vpob3"]
-[ext_resource type="Texture2D" uid="uid://b8qv562jj6iw5" path="res://stages/stage_01/stage_elements/skyboxes/skybox_default_texture1d.tres" id="2_mjq46"]
 [ext_resource type="Texture2D" uid="uid://d204xxt3ynf3w" path="res://stages/stage_01/stage_elements/skyboxes/area_1_skybox_1_1.png" id="2_mvoff"]
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox.gd" id="2_tgyol"]
 [ext_resource type="Texture2D" uid="uid://cagmug6l4do2d" path="res://stages/stage_01/stage_elements/skyboxes/area_1_skybox_1_2.png" id="3_w15ne"]
@@ -11,11 +10,19 @@
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_extra_texture_data.gd" id="8_eudom"]
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_gradient_transitioner.gd" id="9_65dxk"]
 
+[sub_resource type="Gradient" id="Gradient_uepa5"]
+offsets = PackedFloat32Array(0, 0.259, 0.435, 0.656, 0.972)
+colors = PackedColorArray(0, 0.0456241, 0.109756, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jddal"]
+gradient = SubResource("Gradient_uepa5")
+width = 1024
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3tgxg"]
 shader = ExtResource("1_vpob3")
-shader_parameter/gradient = ExtResource("2_mjq46")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
+shader_parameter/gradient = SubResource("GradientTexture1D_jddal")
 
 [sub_resource type="Gradient" id="Gradient_odxjl"]
 offsets = PackedFloat32Array(0, 0.259, 0.435, 0.656, 0.972)
@@ -103,22 +110,22 @@ to = SubResource("Gradient_odxjl")
 duration = 5.0
 debug_preview = 1.0
 
-[sub_resource type="Resource" id="Resource_2rp2a"]
+[sub_resource type="Resource" id="Resource_4v2o3"]
 script = ExtResource("8_eudom")
 speed = 100
 color_mode = 1
 
-[sub_resource type="Resource" id="Resource_xhaa2"]
+[sub_resource type="Resource" id="Resource_yrpxw"]
 script = ExtResource("8_eudom")
 speed = 20
 color_mode = 1
 
-[sub_resource type="Resource" id="Resource_3txg3"]
+[sub_resource type="Resource" id="Resource_der20"]
 script = ExtResource("8_eudom")
 speed = 40
 color_mode = 1
 
-[sub_resource type="Resource" id="Resource_yp3yx"]
+[sub_resource type="Resource" id="Resource_p6j0y"]
 script = ExtResource("8_eudom")
 speed = 10
 color_mode = 1
@@ -132,13 +139,11 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1920, 540)
 script = ExtResource("2_tgyol")
 is_playing = false
-gradient_transitions_array = [SubResource("Resource_h6m07"), SubResource("Resource_sjmqs"), SubResource("Resource_1vere"), SubResource("Resource_a1ksm"), SubResource("Resource_bkrwy"), SubResource("Resource_w6gr3")]
-extra_textures = [ExtResource("2_mvoff"), ExtResource("3_w15ne"), ExtResource("4_i5v0l"), ExtResource("5_wwtyb")]
+gradient_transitions_array = Array[ExtResource("9_65dxk")]([SubResource("Resource_h6m07"), SubResource("Resource_sjmqs"), SubResource("Resource_1vere"), SubResource("Resource_a1ksm"), SubResource("Resource_bkrwy"), SubResource("Resource_w6gr3")])
+_extra_textures = Array[Texture2D]([ExtResource("2_mvoff"), ExtResource("3_w15ne"), ExtResource("4_i5v0l"), ExtResource("5_wwtyb")])
 extra_textures_data = {
-4117513665940559565: SubResource("Resource_2rp2a"),
-4785992317269572441: SubResource("Resource_xhaa2"),
-5981265806675957122: SubResource("Resource_3txg3"),
-9107773377900830858: SubResource("Resource_yp3yx")
+4117513665940559565: SubResource("Resource_4v2o3"),
+4785992317269572441: SubResource("Resource_yrpxw"),
+5981265806675957122: SubResource("Resource_der20"),
+9107773377900830858: SubResource("Resource_p6j0y")
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
