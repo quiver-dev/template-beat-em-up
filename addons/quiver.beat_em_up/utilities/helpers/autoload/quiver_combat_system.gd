@@ -18,6 +18,14 @@ enum HurtTypes {
 	HIGH
 }
 
+enum KnockbackStrength { 
+	NONE, 
+	WEAK, 
+	MEDIUM, 
+	STRONG, 
+	MASSIVE 
+}
+
 #--- constants ------------------------------------------------------------------------------------
 
 #--- public variables - order: export > normal var > onready --------------------------------------

@@ -13,9 +13,8 @@ extends Resource
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 @export_range(0, 1, 1, "or_greater") var attack_damage = 1
-@export var hurt_type: QuiverCyclicHelper.HurtTypes = QuiverCyclicHelper.HurtTypes.HIGH
-@export var knockback: QuiverCyclicHelper.KnockbackStrength = \
-	QuiverCyclicHelper.KnockbackStrength.NONE
+@export var hurt_type: CombatSystem.HurtTypes = CombatSystem.HurtTypes.HIGH
+@export var knockback: CombatSystem.KnockbackStrength = CombatSystem.KnockbackStrength.NONE
 @export_range(0, 360, 1) var launch_angle := 0:
 	set(value):
 		launch_angle = value

@@ -13,9 +13,6 @@ extends RefCounted
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum KnockbackStrength { NONE, WEAK, MEDIUM, STRONG, MASSIVE }
-enum HurtTypes { MID, HIGH }
-
 #--- constants ------------------------------------------------------------------------------------
 
 # I have to leave this here because if I try to move it to the plugin script I get an error

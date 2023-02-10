@@ -34,11 +34,11 @@ signal grab_denied
 #--- constants ------------------------------------------------------------------------------------
 
 const KNOCKBACK_VALUES = {
-	QuiverCyclicHelper.KnockbackStrength.NONE: 0,
-	QuiverCyclicHelper.KnockbackStrength.WEAK: 60, # Doesn't launch the target, but builds up
-	QuiverCyclicHelper.KnockbackStrength.MEDIUM: 600, # Should launch target
-	QuiverCyclicHelper.KnockbackStrength.STRONG: 1200,
-	QuiverCyclicHelper.KnockbackStrength.MASSIVE: 2400,
+	CombatSystem.KnockbackStrength.NONE: 0,
+	CombatSystem.KnockbackStrength.WEAK: 60, # Doesn't launch the target, but builds up
+	CombatSystem.KnockbackStrength.MEDIUM: 600, # Should launch target
+	CombatSystem.KnockbackStrength.STRONG: 1200,
+	CombatSystem.KnockbackStrength.MASSIVE: 2400,
 }
 
 #--- public variables - order: export > normal var > onready --------------------------------------
@@ -148,12 +148,12 @@ func _to_string() -> String:
 func add_death_knockback() -> void:
 	if (
 			not is_alive 
-			and knockback_amount < KNOCKBACK_VALUES[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
+			and knockback_amount < KNOCKBACK_VALUES[CombatSystem.KnockbackStrength.MEDIUM]
 	):
-		add_knockback(QuiverCyclicHelper.KnockbackStrength.MEDIUM)
+		add_knockback(CombatSystem.KnockbackStrength.MEDIUM)
 
 
-func add_knockback(strength: QuiverCyclicHelper.KnockbackStrength) -> void:
+func add_knockback(strength: CombatSystem.KnockbackStrength) -> void:
 	knockback_amount += KNOCKBACK_VALUES[strength]
 
 
@@ -164,7 +164,7 @@ func reset_knockback() -> void:
 
 func should_knockout() -> bool:
 	var has_enough_knockback: bool = \
-			knockback_amount >= KNOCKBACK_VALUES[QuiverCyclicHelper.KnockbackStrength.MEDIUM]
+			knockback_amount >= KNOCKBACK_VALUES[CombatSystem.KnockbackStrength.MEDIUM]
 	return not is_alive or (not has_superarmor and has_enough_knockback)
 
 
