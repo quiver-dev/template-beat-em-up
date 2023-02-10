@@ -88,37 +88,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_dbxtj"]
+[sub_resource type="Gradient" id="Gradient_wt4b7"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7xiew"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rkvhm"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_dbxtj")
+gradient = SubResource("Gradient_wt4b7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_7xiew")
+shader_parameter/gradient = SubResource("GradientTexture1D_rkvhm")
 
-[sub_resource type="Gradient" id="Gradient_5rn7k"]
+[sub_resource type="Gradient" id="Gradient_h4e4l"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ue70d"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oedqf"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_5rn7k")
+gradient = SubResource("Gradient_h4e4l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_ue70d")
+shader_parameter/gradient = SubResource("GradientTexture1D_oedqf")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)

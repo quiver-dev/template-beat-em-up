@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb7mgqvg4nne7"]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://stages/_base/base_stage.gd" id="1_l8sat"]
 [ext_resource type="PackedScene" uid="uid://dh6fu713n16kn" path="res://characters/playable/chad/chad.tscn" id="15_n533k"]
@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://cdal82kcse624" path="res://ui/_base/theme_debug.tres" id="22_p6usr"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_version_label.gd" id="23_d32wv"]
 [ext_resource type="PackedScene" uid="uid://d3s26tp72j41g" path="res://ui/gameplay_hud/player_hud.tscn" id="24_l458o"]
-[ext_resource type="PackedScene" uid="uid://bcbejf07ebmlm" path="res://ui/pause_menu/PauseMenu.tscn" id="25_acd3u"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="25_acd3u"]
 [ext_resource type="PackedScene" uid="uid://c4l1tfqymlsbi" path="res://ui/end_screen/end_screen.tscn" id="26_nk1mq"]
 
 [node name="BaseLevel" type="Node2D"]
