@@ -1,6 +1,6 @@
 [gd_scene load_steps=105 format=3 uid="uid://bnoa0s3qnckt1"]
 
-[ext_resource type="PackedScene" uid="uid://bb7mgqvg4nne7" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
+[ext_resource type="PackedScene" path="res://stages/_base/base_stage.tscn" id="1_4lqd3"]
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_sprite_repeater.gd" id="2_0ledp"]
 [ext_resource type="Script" path="res://stages/stage_01/stage_01.gd" id="2_08exp"]
 [ext_resource type="PackedScene" uid="uid://chmbp4a1d41k0" path="res://stages/stage_01/stage_elements/skyboxes/skybox.tscn" id="3_pnjnx"]
@@ -88,37 +88,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_wt4b7"]
+[sub_resource type="Gradient" id="Gradient_ewrpw"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rkvhm"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_46xlc"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_wt4b7")
+gradient = SubResource("Gradient_ewrpw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_rkvhm")
+shader_parameter/gradient = SubResource("GradientTexture1D_46xlc")
 
-[sub_resource type="Gradient" id="Gradient_h4e4l"]
+[sub_resource type="Gradient" id="Gradient_u2m5b"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_oedqf"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5j333"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_h4e4l")
+gradient = SubResource("Gradient_u2m5b")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_oedqf")
+shader_parameter/gradient = SubResource("GradientTexture1D_5j333")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -729,7 +729,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("62_je6pb")
-_attack_data = SubResource("Resource_awefh")
+attack_data = SubResource("Resource_awefh")
 metadata/collision_type = "world_hit_box"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Collisions/ThroneBounce" index="0"]

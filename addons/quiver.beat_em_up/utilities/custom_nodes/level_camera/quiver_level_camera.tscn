@@ -65,7 +65,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_hftxj")
-_attack_data = SubResource("Resource_oq3rk")
+attack_data = SubResource("Resource_oq3rk")
 metadata/collision_type = "world_hit_box"
 
 [node name="RightBounceShape" type="CollisionShape2D" parent="RightBounce"]
@@ -82,7 +82,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_hftxj")
-_attack_data = SubResource("Resource_k1w4a")
+attack_data = SubResource("Resource_k1w4a")
 metadata/collision_type = "world_hit_box"
 
 [node name="LeftBounceShape" type="CollisionShape2D" parent="LeftBounce"]
