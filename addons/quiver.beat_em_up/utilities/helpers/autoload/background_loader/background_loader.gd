@@ -1,11 +1,14 @@
 extends Node
 
-## Write your doc string for this file here
+## Wrapper autoload for loading resources in the background using ResourceLoader thread methods.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
-signal loading_finished(path: String, resource: Resource)
+## Emitted once the resource finishes loading. It only sends the path as an argument, you have to 
+## call [method get_resource] with the same path to actually get the loaded resource.
+signal loading_finished(path: String)
+## Emitted every frame while loading.
 signal loading_progress(path: String, progress: float)
 
 #--- enums ----------------------------------------------------------------------------------------
@@ -33,7 +36,19 @@ func _ready() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Starts loading resource on the path given using threads. Will give errors if resource is 
+## already loading or already loaded.
 func load_resource(path: String) -> void:
+	if is_loading_resource(path):
+		var status := ResourceLoader.load_threaded_get_status(path)
+		if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			push_warning("Already loading %s"%[path])
+		elif status == ResourceLoader.THREAD_LOAD_LOADED:
+			push_warning("Already finished loading %s but resource hasn't been retrieved yet."%[
+					path
+			])
+		return
+	
 	ResourceLoader.load_threaded_request(path, "", false, ResourceLoader.CACHE_MODE_REUSE)
 	
 	_progress[path] = []
@@ -48,8 +63,10 @@ func load_resource(path: String) -> void:
 		loading_finished.emit(path)
 	else:
 		_push_loading_error(path)
+		_progress.erase(path)
 
 
+## Returns the progress from any given path, or an error if the path is not being loaded.
 func get_progress_for(path: String) -> float:
 	var value := 0.0
 	
@@ -61,12 +78,34 @@ func get_progress_for(path: String) -> float:
 	return value
 
 
+## Returns the loaded Resource from any given path, or an error if the path hasn't been loaded.
 func get_resource(path: String) -> Resource:
-	return ResourceLoader.load_threaded_get(path)
+	const ERROR_NO_PATH = "Resource at path %s is not on cache nor loading. Have you used the 
+			function start_loading() with it?"
+	var loaded_resource: Resource = null
+	var status := ResourceLoader.load_threaded_get_status(path)
+	
+	if status in [ResourceLoader.THREAD_LOAD_IN_PROGRESS, ResourceLoader.THREAD_LOAD_LOADED]:
+		loaded_resource = ResourceLoader.load_threaded_get(path)
+		_progress.erase(path)
+	elif status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+		if ResourceLoader.has_cached(path):
+			loaded_resource = ResourceLoader.load(path)
+		else:
+			push_error(ERROR_NO_PATH)
+	
+	return loaded_resource
 
 
+## Returns true if the resource is loading. Be careful that false means it either never started 
+## loading or already has finished loading.
 func is_loading_resource(path: String) -> bool:
 	return ResourceLoader.load_threaded_get_status(path) == ResourceLoader.THREAD_LOAD_IN_PROGRESS
+
+
+## Returns true if it has been loaded but not retrieved yet.
+func is_loading_finished(path: String) -> bool:
+	return ResourceLoader.load_threaded_get_status(path) == ResourceLoader.THREAD_LOAD_LOADED
 
 ### -----------------------------------------------------------------------------------------------
 

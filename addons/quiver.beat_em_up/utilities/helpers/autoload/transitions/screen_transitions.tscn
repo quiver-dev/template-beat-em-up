@@ -7,8 +7,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_row67"]
 shader = ExtResource("1_l4pkw")
 shader_parameter/cutoff = 0.0
-shader_parameter/mask = ExtResource("2_6ok31")
 shader_parameter/smooth_size = 0.212
+shader_parameter/mask = ExtResource("2_6ok31")
 
 [sub_resource type="Animation" id="Animation_xlay8"]
 length = 0.001
@@ -58,10 +58,10 @@ tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.25, 1.0]
+"values": [0.0, 1.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -97,10 +97,10 @@ tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 1.25, 2.0]
+"values": [1.0, 2.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

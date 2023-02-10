@@ -33,21 +33,32 @@ func _ready() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
-func transition_to_scene(path: String, should_start_loading := false) -> void:
-	if should_start_loading:
+func transition_to_scene(path: String) -> void:
+	const ERROR_TRANSITION_FAILED = "Could not transition to %s | error: %s"
+	const ERROR_PACKED_SCENE = \
+			"%s is not a path to a PackedScene, it's only possible to transition between scenes"
+	
+	if not (
+			BackgroundLoader.is_loading_resource(path) 
+			or BackgroundLoader.is_loading_finished(path)
+	):
 		BackgroundLoader.load_resource(path)
 	
 	await fade_in_transition()
-	show_loading_bar_for(path)
+	get_tree().unload_current_scene()
+	
 	if BackgroundLoader.is_loading_resource(path):
+		show_loading_bar_for(path)
 		await BackgroundLoader.loading_finished
 	
 	var scene := BackgroundLoader.get_resource(path) as PackedScene
+	if scene == null:
+		push_error(ERROR_PACKED_SCENE%[path])
+	
 	var error := get_tree().change_scene_to_packed(scene)
 	if error != OK:
-		push_error("Could not transition to %s | error: %s"%[
-			path, error
-		])
+		push_error(ERROR_TRANSITION_FAILED%[path, error])
+	
 	call_deferred("fade_out_transition")
 
 
