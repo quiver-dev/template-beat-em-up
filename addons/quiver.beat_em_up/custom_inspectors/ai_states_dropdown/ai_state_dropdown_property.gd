@@ -55,7 +55,7 @@ func _add_property_scene() -> void:
 
 
 func _inititalize_property() -> void:
-	var current_value := _node.get(get_edited_property()) as String
+	var current_value := _node.get(get_edited_property()) as NodePath
 	var list := _get_list_of_ai_states()
 	var item_id := 0
 	_options.clear()
@@ -63,7 +63,7 @@ func _inititalize_property() -> void:
 	for path in list:
 		item_id += 1
 		_options.add_item(path)
-		if (path as String) == current_value:
+		if path == current_value:
 			_options.set_item_disabled(0, true)
 			_options.selected = item_id
 

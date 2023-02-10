@@ -12,7 +12,7 @@ extends PointLight2D
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
+@export var day_cycle_data: DayCycleData
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -23,7 +23,7 @@ var _day_cycle_data := preload("res://stages/_base/day_cycle_data.tres")
 
 func _ready() -> void:
 	_on_twilight_changed()
-	QuiverEditorHelper.connect_between(_day_cycle_data.twilight_changed, _on_twilight_changed)
+	QuiverEditorHelper.connect_between(day_cycle_data.twilight_changed, _on_twilight_changed)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -36,9 +36,9 @@ func _ready() -> void:
 ### Private Methods -------------------------------------------------------------------------------
 
 func _on_twilight_changed() -> void:
-	enabled = _day_cycle_data.twilight_transition >= 0.5
+	enabled = day_cycle_data.twilight_transition >= 0.5
 	if enabled:
-		var progress := smoothstep(0.5, 1.0, _day_cycle_data.twilight_transition)
+		var progress := smoothstep(0.5, 1.0, day_cycle_data.twilight_transition)
 		energy = progress
 	elif energy != 0:
 		energy = 0

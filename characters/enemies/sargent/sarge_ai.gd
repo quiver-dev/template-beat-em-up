@@ -36,7 +36,7 @@ func _ready() -> void:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _decide_next_action(last_state: StringName) -> void:
+func _decide_next_behavior(last_state: StringName) -> void:
 	match last_state:
 		&"Chase":
 			transition_to(^"Attack")

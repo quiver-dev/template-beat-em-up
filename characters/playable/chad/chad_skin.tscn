@@ -104,7 +104,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
-_attack_data = ExtResource("8_uylrb")
+attack_data = ExtResource("8_uylrb")
 metadata/collision_type = "player_hit_box"
 
 [node name="Attack1Shape" type="CollisionShape2D" parent="Attacks/Attack1" index="0"]
@@ -121,7 +121,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
-_attack_data = ExtResource("9_cutyj")
+attack_data = ExtResource("9_cutyj")
 metadata/collision_type = "player_hit_box"
 
 [node name="Attack2Shape" type="CollisionShape2D" parent="Attacks/Attack2" index="0"]
@@ -138,7 +138,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
-_attack_data = ExtResource("11_7yi7m")
+attack_data = ExtResource("11_7yi7m")
 metadata/collision_type = "player_hit_box"
 
 [node name="Attack3Shape" type="CollisionShape2D" parent="Attacks/Attack3" index="0"]
@@ -155,7 +155,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("5_f1o2m")
-_attack_data = ExtResource("10_556uq")
+attack_data = ExtResource("10_556uq")
 metadata/collision_type = "player_hit_box"
 
 [node name="AttackAirShape" type="CollisionShape2D" parent="Attacks/AttackAir" index="0"]

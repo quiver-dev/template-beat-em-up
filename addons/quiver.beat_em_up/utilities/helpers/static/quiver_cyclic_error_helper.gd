@@ -13,9 +13,6 @@ extends RefCounted
 
 #--- enums ----------------------------------------------------------------------------------------
 
-enum KnockbackStrength { NONE, WEAK, MEDIUM, STRONG, MASSIVE }
-enum HurtTypes { MID, HIGH }
-
 #--- constants ------------------------------------------------------------------------------------
 
 # I have to leave this here because if I try to move it to the plugin script I get an error
@@ -24,6 +21,8 @@ const SETTINGS_DEFAULT_HIT_LANE_SIZE = "quiver/beat_em_up/gameplay/default_hit_l
 const SETTINGS_FALL_GRAVITY_MODIFIER = "quiver/beat_em_up/gameplay/fall_gravity_modifier"
 const SETTINGS_LOGGING = "quiver/beat_em_up/debug/logging_enabled"
 const SETTINGS_DISABLE_PLAYER_DETECTOR = "quiver/beat_em_up/debug/disable_player_detector_on_editor"
+const SETTINGS_PATH_CUSTOM_ACTIONS = "quiver/beat_em_up/paths/custom_actions_folder"
+const SETTINGS_PATH_CUSTOM_BEHAVIORS = "quiver/beat_em_up/paths/custom_ai_folder"
 
 const PATH_STATE_MACHINE = (
 		"res://addons/quiver.beat_em_up/utilities/custom_nodes/state_machines/"
@@ -51,36 +50,10 @@ const PATH_QUIVER_STATE_SEQUENCE = (
 
 ### Public Methods --------------------------------------------------------------------------------
 
-
-static func is_quiver_state_machine(node: Node) -> bool:
-	var value := _is_instance_of_script(node.get_script(), PATH_STATE_MACHINE)
-	return value 
-
-
-static func is_quiver_state(node: Node) -> bool:
-	var value := _is_instance_of_script(node.get_script(), PATH_QUIVER_STATE)
-	return value 
-
-
-static func is_quiver_state_sequence(node: Node) -> bool:
-	var value := _is_instance_of_script(node.get_script(), PATH_QUIVER_STATE_SEQUENCE)
-	return value
-
 ### -----------------------------------------------------------------------------------------------
 
 
 ### Private Methods -------------------------------------------------------------------------------
-
-static func _is_instance_of_script(script: Script, path: String) -> bool:
-	var value = false
-	
-	if script != null:
-		if script.resource_path == path:
-			value = true
-		elif script.get_base_script() != null:
-			value = _is_instance_of_script(script.get_base_script(), path)
-	
-	return value 
 
 ### -----------------------------------------------------------------------------------------------
 

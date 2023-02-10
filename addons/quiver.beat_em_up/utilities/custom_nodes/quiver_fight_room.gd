@@ -56,12 +56,18 @@ var after_fight_transition_duration := 0.8
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-var _preview_camera_color := Color.INDIGO
+var _preview_camera_color := Color.INDIGO:
+	set(value):
+		_preview_camera_color = value
+		queue_redraw()
 var _preview_camera := true:
 	set(value):
 		_preview_camera = value
 		queue_redraw()
-var _preview_after_color := Color.TEAL
+var _preview_after_color := Color.TEAL:
+	set(value):
+		_preview_after_color = value
+		queue_redraw()
 var _preview_after_room := true:
 	set(value):
 		_preview_after_room = value

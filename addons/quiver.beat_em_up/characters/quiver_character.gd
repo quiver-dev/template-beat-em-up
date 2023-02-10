@@ -136,14 +136,6 @@ func can_deny_grabs() -> bool:
 
 ### Private Methods -------------------------------------------------------------------------------
 
-func _disable_ceiling_collisions() -> void:
-	set_collision_mask_value(QuiverCollisionTypes.COLLISION_LAYER_CEILING, false)
-
-
-func _enable_ceiling_collisions() -> void:
-	set_collision_mask_value(QuiverCollisionTypes.COLLISION_LAYER_CEILING, true)
-
-
 func _disable_collisions() -> void:
 	_collision.set_deferred("disabled", true)
 

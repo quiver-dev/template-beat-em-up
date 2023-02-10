@@ -1,5 +1,5 @@
 @tool
-extends QuiverCharacterState
+extends QuiverCharacterAction
 
 ## Write your doc string for this file here
 
@@ -10,10 +10,6 @@ extends QuiverCharacterState
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GroundState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_ground.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 var _skin_state_high := StringName()
@@ -22,7 +18,7 @@ var _path_idle_state := "Ground/Move/Idle"
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _ground_state := get_parent() as GroundState
+@onready var _ground_state := get_parent() as QuiverActionGround
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -40,9 +36,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is GroundState:
+	if not get_parent() is QuiverActionGround:
 		warnings.append(
-				"This ActionState must be a child of Action GroundState or a state " 
+				"This ActionState must be a child of Action QuiverActionGround or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -57,14 +53,14 @@ func enter(msg: = {}) -> void:
 	super(msg)
 	_ground_state.enter(msg)
 	
-	var hurt_type := QuiverCyclicHelper.HurtTypes.HIGH
+	var hurt_type := CombatSystem.HurtTypes.HIGH
 	if msg.has("hurt_type"):
 		hurt_type = msg.hurt_type
 	
 	match hurt_type:
-		QuiverCyclicHelper.HurtTypes.HIGH:
+		CombatSystem.HurtTypes.HIGH:
 			_skin.transition_to(_skin_state_high)
-		QuiverCyclicHelper.HurtTypes.MID:
+		CombatSystem.HurtTypes.MID:
 			_skin.transition_to(_skin_state_mid)
 
 

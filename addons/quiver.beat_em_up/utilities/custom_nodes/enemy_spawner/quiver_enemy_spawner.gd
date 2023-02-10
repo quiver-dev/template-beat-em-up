@@ -2,13 +2,23 @@
 class_name QuiverEnemySpawner
 extends Marker2D
 
-## Write your doc string for this file here
+## Node for spawning waves of enemies. Works in conjuction with [QuiverSpawnData].
+## [br][br]
+## The Enemy Spawner node has a public [method spawn_current_wave] method, that will start spawning 
+## the waves of [QuiverSpawnData]. It will spawn every enemy from a wave in sequence and keep 
+## track of them. 
+## [br][br]
+## Once all of them are defeated it will start spawning the next wave or, if 
+## there is no more waves, it will emit its [signal all_waves_completed] signal.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
 
+## Emitted after all enemies from a wave have been spawned.
 signal wave_started(wave_index: int)
+## Emitted when all enemies from a wave have been defeated.
 signal wave_ended(wave_index: int)
+## Emitted when all waves have been completed and there are no more enemies in this spawner.
 signal all_waves_completed
 
 #--- enums ----------------------------------------------------------------------------------------
@@ -17,8 +27,11 @@ signal all_waves_completed
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
+## Path to parent node where enemies will be added to.
 @export_node_path("Node2D") var path_spawn_parent := ^"../../Characters"
 
+## Keeps track of Enemy Spanwer state. Once all enemies in all waves are defeated, will be marked 
+## as true.
 var is_completed := false
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -45,24 +58,26 @@ func _ready() -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Public method to start spawning. Only needs to be called once per spawner, as after it starts
+## it will auto-spawn the next wave once the previous one is finished.
 func spawn_current_wave() -> void:
 	if _spawn_waves.is_empty() or _current_wave >= _spawn_waves.size():
 		return
 	
 	for item in _spawn_waves[_current_wave]:
-		var spawn_data := item as SpawnData
+		var spawn_data := item as QuiverSpawnData
 		var enemy := spawn_data.enemy_scene.instantiate() as QuiverEnemyCharacter
 		var enemy_position := spawn_data.get_spawn_position(self)
 		
 		match spawn_data.spawn_mode:
-			SpawnData.SpawnMode.IN_PLACE:
+			QuiverSpawnData.SpawnMode.IN_PLACE:
 				_spawn_enemy(enemy, enemy_position)
-			SpawnData.SpawnMode.WALK_TO_POSITION:
+			QuiverSpawnData.SpawnMode.WALK_TO_POSITION:
 				_spawn_enemy(enemy, global_position)
 				enemy.spawn_ground_to_position(enemy_position)
 			_:
 				push_error("Unknown spawn_mode: %s | Possible modes: %s"%[
-					spawn_data.spawn_mode, SpawnData.SpawnMode.keys()
+					spawn_data.spawn_mode, QuiverSpawnData.SpawnMode.keys()
 				])
 	
 	wave_started.emit(_current_wave)
@@ -142,6 +157,8 @@ func _get_property_list() -> Array:
 				name = "wave_%s"%[wave_index],
 				type = TYPE_ARRAY,
 				usage = PROPERTY_USAGE_EDITOR,
+				hint = PROPERTY_HINT_TYPE_STRING,
+				hint_string = "%s/%s:QuiverSpawnData"%[TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE],
 		})
 	
 	return properties
@@ -186,10 +203,6 @@ func _set_spawn_waves(value: Array) -> void:
 	for wave in _spawn_waves.size():
 		if _spawn_waves[wave] == null:
 			_spawn_waves[wave] = []
-		for index in _spawn_waves[wave].size():
-			var spawn_data := _spawn_waves[wave][index] as SpawnData
-			if spawn_data == null:
-				_spawn_waves[wave][index] = SpawnData.new()
 
 
 func _set_wave_property(p_name: String, value: Array) -> void:
@@ -198,10 +211,6 @@ func _set_wave_property(p_name: String, value: Array) -> void:
 		return
 	
 	_spawn_waves[index] = value
-	for enemy_index in _spawn_waves[index].size():
-		var spawn_data := _spawn_waves[index][enemy_index] as SpawnData
-		if spawn_data == null:
-			_spawn_waves[index][enemy_index] = SpawnData.new()
 
 
 func _get_wave_property(p_name: String) -> Array:

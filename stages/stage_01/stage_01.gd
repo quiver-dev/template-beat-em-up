@@ -13,7 +13,7 @@ extends BaseStage
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _fight_room_2 := $Utilities/FightRoom2 as QuiverFightRoom
+@onready var _fight_room_2 := %FightRoom2 as QuiverFightRoom
 @onready var _tax_man := %TaxMan as TaxManBoss
 @onready var _fight_5 := %FightRoom5 as QuiverFightRoom
 

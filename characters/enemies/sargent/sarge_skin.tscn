@@ -107,7 +107,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("8_kuwvm")
 character_type = 1
-_attack_data = ExtResource("9_ccdvn")
+attack_data = ExtResource("9_ccdvn")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Punch1Area" type="CollisionShape2D" parent="Attack/Punch1" index="0"]
@@ -124,7 +124,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("8_kuwvm")
 character_type = 1
-_attack_data = ExtResource("10_dsxar")
+attack_data = ExtResource("10_dsxar")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Punch2Area" type="CollisionShape2D" parent="Attack/Punch2" index="0"]
@@ -142,7 +142,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("8_kuwvm")
 character_type = 1
-_attack_data = ExtResource("11_vgfqt")
+attack_data = ExtResource("11_vgfqt")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="DashArea" type="CollisionShape2D" parent="Attack/DashAttack" index="0"]
@@ -160,7 +160,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("8_kuwvm")
 character_type = 1
-_attack_data = ExtResource("12_m2xtq")
+attack_data = ExtResource("12_m2xtq")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="Punch3Area" type="CollisionShape2D" parent="Attack/Punch3" index="0"]

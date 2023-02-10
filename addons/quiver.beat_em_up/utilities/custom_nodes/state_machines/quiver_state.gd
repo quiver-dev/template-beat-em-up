@@ -1,6 +1,6 @@
 @tool
-class_name QuiverState
 extends Node
+class_name QuiverState
 
 ## Based on GDQuest's State, but converted to GDScript 2.0 and modified with a few extra features.
 ## 
@@ -127,18 +127,13 @@ func _is_active_state() -> bool:
 	return is_active
 
 
-func _get_state_machine(node: Node) -> Node:
+func _get_state_machine(node: Node) -> QuiverStateMachine:
 	if node == null or node.get_parent() == null:
 		push_error("Couldn't find a StateMachine in this scene tree. State name: %s"%[name])
-	else:
+	elif not node is QuiverStateMachine:
 #		print("node: %s"%[node.name])
-		var found_state_machine = QuiverCyclicHelper.is_quiver_state_machine(node)
-		if not found_state_machine:
-			node = _get_state_machine(node.get_parent())
-		else:
-#			print("STATE MACHINE FOUND")
-			pass
-		
+		node = _get_state_machine(node.get_parent())
+	
 	return node
 
 

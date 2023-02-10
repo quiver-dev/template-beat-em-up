@@ -1,5 +1,5 @@
 @tool
-extends QuiverCharacterState
+extends QuiverCharacterAction
 
 ## Write your doc string for this file here
 
@@ -9,10 +9,6 @@ extends QuiverCharacterState
 #--- enums ----------------------------------------------------------------------------------------
 
 #--- constants ------------------------------------------------------------------------------------
-
-const AirState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/quiver_action_air.gd"
-)
 
 const MAX_LAUNCH_SPEED = 2000
 
@@ -25,7 +21,7 @@ var _path_launch := "Air/Knockout/Launch"
 
 var _launch_count := 0
 
-@onready var _air_state := get_parent() as AirState
+@onready var _air_state := get_parent() as QuiverActionAir
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -43,9 +39,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is AirState:
+	if not get_parent() is QuiverActionAir:
 		warnings.append(
-				"This ActionState must be a child of Action AirState or a state " 
+				"This ActionState must be a child of Action QuiverActionAir or a state " 
 				+ "inheriting from it."
 		)
 	
@@ -116,12 +112,12 @@ func _disconnect_signals() -> void:
 		QuiverEditorHelper.disconnect_between(_attributes.wall_bounced, _on_wall_bounced)
 
 
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+func _on_hurt_requested(knockback: QuiverKnockbackData) -> void:
 	# This is here because ANY hit you receive on air generates a knockout.
 	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
 
 
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+func _on_knockout_requested(knockback: QuiverKnockbackData) -> void:
 	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
 
 

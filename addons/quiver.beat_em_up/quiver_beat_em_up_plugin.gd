@@ -52,7 +52,19 @@ var SETTINGS = {
 			type = TYPE_BOOL,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = "",
-	}
+	},
+	QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS: {
+			value = "res://_beat_em_up/action_states/",
+			type = TYPE_STRING,
+			hint = PROPERTY_HINT_DIR,
+			hint_string = "",
+	},
+	QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS: {
+			value = "res://_beat_em_up/ai_states/",
+			type = TYPE_STRING,
+			hint = PROPERTY_HINT_DIR,
+			hint_string = "",
+	},
 }
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -70,6 +82,7 @@ var _current_overlay_handler: QuiverCustomOverlay = null
 func _enter_tree() -> void:
 	_add_custom_inspectors()
 	_add_custom_overlays()
+	_add_settings_property_info()
 
 
 func _exit_tree() -> void:
@@ -78,6 +91,7 @@ func _exit_tree() -> void:
 
 func _enable_plugin() -> void:
 	_add_plugin_settings()
+	_add_settings_property_info()
 	_add_autoloads()
 
 
@@ -182,37 +196,58 @@ func _remove_custom_inspectors() -> void:
 func _add_custom_overlays() -> void:
 	var dir := DirAccess.open(PATH_CUSTOM_OVERLAYS)
 	
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name := dir.get_next()
-		while not file_name.is_empty():
-			if file_name.ends_with(".gd"): 
-				var script := load(PATH_CUSTOM_OVERLAYS.path_join(file_name)) as GDScript
-				var object := script.new() as QuiverCustomOverlay
-				if object != null:
-					object.main_plugin = self
-					_loaded_overlays.append(object)
-				
-			file_name = dir.get_next()
-	else:
+	if dir == null:
 		var error_msg = "Error code: %s | Something went wrong trying to open %s"%[
 			DirAccess.get_open_error(), PATH_CUSTOM_INSPECTORS
 		]
 		push_error(error_msg)
-
+		return
+	
+	dir.list_dir_begin()
+	var file_name := dir.get_next()
+	while not file_name.is_empty():
+		if file_name.ends_with(".gd"): 
+			var script := load(PATH_CUSTOM_OVERLAYS.path_join(file_name)) as GDScript
+			var object := script.new() as QuiverCustomOverlay
+			if object != null:
+				object.main_plugin = self
+				_loaded_overlays.append(object)
+		
+		file_name = dir.get_next()
 
 
 func _add_plugin_settings() -> void:
 	for setting in SETTINGS:
+		var dict: Dictionary = SETTINGS[setting]
 		if not ProjectSettings.has_setting(setting):
-			var dict: Dictionary = SETTINGS[setting]
 			ProjectSettings.set_setting(setting, dict.value)
-			ProjectSettings.add_property_info({
-				"name": setting,
-				"type": dict.type,
-				"hint": dict.hint,
-				"hint_string": dict.hint_string,
-			})
+	
+	get_editor_interface().get_resource_filesystem().scan()
+	
+	if Engine.is_editor_hint():
+		ProjectSettings.save()
+
+
+func _add_settings_property_info() -> void:
+	const FOLDERS_TO_CREATE = [
+		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS,
+		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS,
+	]
+	for setting in SETTINGS:
+		var dict: Dictionary = SETTINGS[setting]
+		ProjectSettings.add_property_info({
+			"name": setting,
+			"type": dict.type,
+			"hint": dict.hint,
+			"hint_string": dict.hint_string,
+		})
+		
+		if setting in FOLDERS_TO_CREATE:
+			var path: String = SETTINGS[setting].value
+			if not DirAccess.dir_exists_absolute(path):
+				DirAccess.make_dir_recursive_absolute(path)
+	
+	get_editor_interface().get_resource_filesystem().scan()
 	
 	if Engine.is_editor_hint():
 		ProjectSettings.save()

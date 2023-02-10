@@ -39,6 +39,10 @@ func _ready() -> void:
 	_options.clear()
 	QuiverEditorHelper.disable_all_processing(self)
 	_scrap_ai_states_names(_ai_states_by_folders)
+	_scrap_ai_states_names(
+			_ai_states_by_folders, 
+			ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS)
+	)
 	_ai_states_by_folders["quiver_sequence_state"] = SEQUENCE_STATE
 	_populate_options_from(_ai_states_by_folders)
 	_confirm.disabled = true
@@ -80,14 +84,21 @@ func _populate_options_from(dict: Dictionary, starting_index := 0) -> int:
 	
 	var ordered_keys = dict.keys()
 	ordered_keys.sort_custom(_sort_categories)
+	var next_level_keys := []
 	for key in ordered_keys:
-		index += 1
-		if key.begins_with("quiver_"):
+		if dict[key] is String:
+			index += 1
 			_options.add_item(key)
 			_options.set_item_metadata(index, dict[key])
+		elif dict[key] is Dictionary:
+			next_level_keys.append(key)
 		else:
-			_options.add_separator(key)
-			index = _populate_options_from(dict[key], index)
+			push_error("Unknown value in behavior dictionary. key: %s value: %s"%[key, dict[key]])
+	
+	for key in next_level_keys:
+		index += 1
+		_options.add_separator(key)
+		index = _populate_options_from(dict[key], index)
 	
 	return index
 

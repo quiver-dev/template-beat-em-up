@@ -216,7 +216,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("14_kc7ha")
+attack_data = ExtResource("14_kc7ha")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="LigthtiningShape" type="CollisionShape2D" parent="Attacks/Lightining" index="0"]
@@ -233,7 +233,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("15_4lyjr")
+attack_data = ExtResource("15_4lyjr")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="AreaAttackShape" type="CollisionShape2D" parent="Attacks/AreaAttack" index="0"]
@@ -250,7 +250,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("16_ey7s6")
+attack_data = ExtResource("16_ey7s6")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="ComboHit1Shape" type="CollisionShape2D" parent="Attacks/ComboHit1" index="0"]
@@ -267,7 +267,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("17_rbk5w")
+attack_data = ExtResource("17_rbk5w")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="ComboHit2Shape" type="CollisionShape2D" parent="Attacks/ComboHit2" index="0"]
@@ -284,7 +284,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("18_ynnty")
+attack_data = ExtResource("18_ynnty")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="ComboHit3Shape" type="CollisionShape2D" parent="Attacks/ComboHit3" index="0"]
@@ -301,7 +301,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("19_io51d")
+attack_data = ExtResource("19_io51d")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="DashAttackShape" type="CollisionShape2D" parent="Attacks/DashAttack" index="0"]
@@ -319,7 +319,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("13_nokxb")
 character_type = 1
-_attack_data = ExtResource("20_4qg1q")
+attack_data = ExtResource("20_4qg1q")
 metadata/collision_type = "enemy_hit_box"
 
 [node name="RetaliateShape" type="CollisionShape2D" parent="Attacks/Retaliate" index="0"]

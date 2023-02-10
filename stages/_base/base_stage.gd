@@ -1,7 +1,8 @@
 class_name BaseStage
 extends Node2D
 
-## Write your doc string for this file here
+## Class that is the base script for all stages. Connects the player attributes to the hud and 
+## handles game over.
 
 ### Member Variables and Dependencies -------------------------------------------------------------
 #--- signals --------------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ### Public Methods --------------------------------------------------------------------------------
 
+## Properly resets all characters and reloads game scene.
 func reload_prototype() -> void:
 	Events.characters_reseted.emit()
 	var error := get_tree().reload_current_scene()
