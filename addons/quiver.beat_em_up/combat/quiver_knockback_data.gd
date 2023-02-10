@@ -1,4 +1,4 @@
-class_name QuiverKnockback
+class_name QuiverKnockbackData
 extends RefCounted
 
 ## Write your doc string for this file here
@@ -12,7 +12,8 @@ extends RefCounted
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var strength: QuiverCyclicHelper.KnockbackStrength = QuiverCyclicHelper.KnockbackStrength.NONE
+@export var strength: QuiverCyclicHelper.KnockbackStrength = \
+		QuiverCyclicHelper.KnockbackStrength.NONE
 var hurt_type: QuiverCyclicHelper.HurtTypes = QuiverCyclicHelper.HurtTypes.HIGH
 var launch_vector := Vector2.ZERO
 

@@ -86,11 +86,11 @@ func _disconnect_signals() -> void:
 		QuiverEditorHelper.disconnect_between(_attributes.grabbed, _on_grabbed)
 
 
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+func _on_hurt_requested(knockback: QuiverKnockbackData) -> void:
 	_state_machine.transition_to.call_deferred(_path_hurt, {hurt_type = knockback.hurt_type})
 
 
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+func _on_knockout_requested(knockback: QuiverKnockbackData) -> void:
 	_state_machine.transition_to.call_deferred(
 			_path_knockout, 
 			{launch_vector = knockback.launch_vector}

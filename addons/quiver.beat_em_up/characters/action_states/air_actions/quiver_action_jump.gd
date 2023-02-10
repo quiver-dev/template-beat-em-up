@@ -88,7 +88,7 @@ func _disconnect_signals() -> void:
 		)
 
 
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+func _on_hurt_requested(knockback: QuiverKnockbackData) -> void:
 	# We force exit here when jump is interrupted because normally only the Jump/Landing state
 	# triggers the Jump exit
 	exit()
@@ -96,7 +96,7 @@ func _on_hurt_requested(knockback: QuiverKnockback) -> void:
 	_state_machine.transition_to(_path_knockout, {launch_vector = knockback.launch_vector})
 
 
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+func _on_knockout_requested(knockback: QuiverKnockbackData) -> void:
 	# We force exit here when jump is interrupted because normally only the Jump/Landing state
 	# triggers the Jump exit
 	exit()

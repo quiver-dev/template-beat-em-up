@@ -48,7 +48,7 @@ func apply_damage(attack: QuiverAttackData, target: QuiverAttributes) -> void:
 
 
 func apply_knockback(
-		knockback: QuiverKnockback, 
+		knockback: QuiverKnockbackData, 
 		target: QuiverAttributes
 ) -> void:
 	if target.is_invulnerable:

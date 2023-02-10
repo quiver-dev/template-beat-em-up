@@ -91,7 +91,7 @@ func _on_tax_man_phase_changed_to(phase: int) -> void:
 	transition_to(next_state, msg)
 
 
-func _ai_reset(_knockback: QuiverKnockback) -> void:
+func _ai_reset(_knockback: QuiverKnockbackData) -> void:
 	_interrupt_current_state(get_path_to(state))
 
 

@@ -112,12 +112,12 @@ func _disconnect_signals() -> void:
 		QuiverEditorHelper.disconnect_between(_attributes.wall_bounced, _on_wall_bounced)
 
 
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+func _on_hurt_requested(knockback: QuiverKnockbackData) -> void:
 	# This is here because ANY hit you receive on air generates a knockout.
 	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
 
 
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+func _on_knockout_requested(knockback: QuiverKnockbackData) -> void:
 	_state_machine.transition_to(_path_launch, {launch_vector = knockback.launch_vector})
 
 

@@ -38,7 +38,7 @@ func _on_quiver_sequence_state_state_finished() -> void:
 	attack.knockback = QuiverCyclicHelper.KnockbackStrength.WEAK
 	
 	CombatSystem.apply_damage(attack, attributes)
-	var knockback: QuiverKnockback = QuiverKnockback.new(
+	var knockback: QuiverKnockbackData = QuiverKnockbackData.new(
 			attack.knockback,
 			attack.hurt_type,
 			attack.launch_vector
@@ -52,7 +52,7 @@ func _on_quiver_sequence_state_state_finished() -> void:
 	attack2.hurt_type = QuiverCyclicHelper.HurtTypes.MID
 	
 	CombatSystem.apply_damage(attack2, attributes)
-	var knockback2: QuiverKnockback = QuiverKnockback.new(
+	var knockback2: QuiverKnockbackData = QuiverKnockbackData.new(
 			attack2.knockback,
 			attack2.hurt_type,
 			attack2.launch_vector
@@ -67,7 +67,7 @@ func _on_quiver_sequence_state_state_finished() -> void:
 	attack3.launch_angle = 45
 	
 	CombatSystem.apply_damage(attack3, attributes)
-	var knockback3: QuiverKnockback = QuiverKnockback.new(
+	var knockback3: QuiverKnockbackData = QuiverKnockbackData.new(
 			attack3.knockback,
 			attack3.hurt_type,
 			attack3.launch_vector

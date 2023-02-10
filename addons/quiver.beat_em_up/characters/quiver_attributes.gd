@@ -21,8 +21,8 @@ extends Resource
 
 signal health_changed
 signal health_depleted
-signal hurt_requested(knockback: QuiverKnockback)
-signal knockout_requested(knockback: QuiverKnockback)
+signal hurt_requested(knockback: QuiverKnockbackData)
+signal knockout_requested(knockback: QuiverKnockbackData)
 signal wall_bounced
 signal grab_requested(grabbed_character: QuiverAttributes)
 signal grab_released

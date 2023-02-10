@@ -117,11 +117,11 @@ func _disconnect_signals() -> void:
 		)
 
 
-func _on_hurt_requested(knockback: QuiverKnockback) -> void:
+func _on_hurt_requested(knockback: QuiverKnockbackData) -> void:
 	_force_exit_state()
 
 
-func _on_knockout_requested(knockback: QuiverKnockback) -> void:
+func _on_knockout_requested(knockback: QuiverKnockbackData) -> void:
 	_force_exit_state()
 
 ### -----------------------------------------------------------------------------------------------

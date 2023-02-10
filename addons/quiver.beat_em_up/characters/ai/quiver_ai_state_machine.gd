@@ -134,11 +134,11 @@ func _ai_grabbed(_ground_level: float) -> void:
 	_interrupt_current_state(get_path_to(state))
 
 
-func _ai_interrupted(_knockback: QuiverKnockback = null) -> void:
+func _ai_interrupted(_knockback: QuiverKnockbackData = null) -> void:
 	_interrupt_current_state(get_path_to(state))
 
 
-func _ai_reset(_knockback: QuiverKnockback) -> void:
+func _ai_reset(_knockback: QuiverKnockbackData) -> void:
 	_interrupt_current_state(_ai_state_after_reset)
 
 
