@@ -39,14 +39,14 @@ func _ready() -> void:
 ## Starts loading resource on the path given using threads. Will give errors if resource is 
 ## already loading or already loaded.
 func load_resource(path: String) -> void:
-	if is_loading_resource(path):
-		var status := ResourceLoader.load_threaded_get_status(path)
-		if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-			push_warning("Already loading %s"%[path])
-		elif status == ResourceLoader.THREAD_LOAD_LOADED:
-			push_warning("Already finished loading %s but resource hasn't been retrieved yet."%[
-					path
-			])
+	var status := ResourceLoader.load_threaded_get_status(path)
+	if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		push_warning("Already loading %s"%[path])
+		return
+	elif status == ResourceLoader.THREAD_LOAD_LOADED:
+		push_warning("Already finished loading %s but resource hasn't been retrieved yet."%[
+				path
+		])
 		return
 	
 	ResourceLoader.load_threaded_request(path, "", false, ResourceLoader.CACHE_MODE_REUSE)
@@ -55,8 +55,10 @@ func load_resource(path: String) -> void:
 	var load_status := ResourceLoader.load_threaded_get_status(path, _progress[path])
 	while load_status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		loading_progress.emit(path, _progress[path][0])
+		print("path: %s progress?: %s"%[path, _progress[path][0]])
 		await  get_tree().process_frame
 		load_status = ResourceLoader.load_threaded_get_status(path, _progress[path])
+	print("path: %s progress?: %s"%[path, _progress[path][0]])
 	
 	if load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		loading_progress.emit(path, 1.0)
