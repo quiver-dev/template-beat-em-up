@@ -28,11 +28,11 @@ func _can_handle(object) -> bool:
 
 func _parse_property(
 		object: Object, 
-		_type: int, 
+		_type: Variant.Type, 
 		name: String, 
-		hint_type: int, 
+		hint_type: PropertyHint, 
 		hint_string: String, 
-		usage_flags: int, 
+		usage_flags: PropertyUsageFlags, 
 		_wide: bool
 ) -> bool:
 	var replace_built_in := false
