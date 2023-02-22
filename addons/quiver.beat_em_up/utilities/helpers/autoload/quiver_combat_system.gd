@@ -64,7 +64,7 @@ func apply_knockback(
 	
 	target.add_knockback(knockback.strength)
 	if target.should_knockout():
-		if not target.is_alive:
+		if not target.is_alive():
 			target.add_death_knockback()
 		target.knockout_requested.emit(knockback)
 	elif not target.has_superarmor:

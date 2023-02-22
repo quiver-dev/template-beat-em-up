@@ -69,7 +69,7 @@ func enter(msg: = {}) -> void:
 
 func exit() -> void:
 	super()
-	if _has_landed or not _attributes.is_alive:
+	if _has_landed or not _attributes.is_alive():
 		_knockout_state.exit()
 
 ### -----------------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ func _disconnect_signals() -> void:
 
 
 func _on_skin_animation_finished() -> void:
-	if not _attributes.is_alive:
+	if not _attributes.is_alive():
 		_state_machine.transition_to(_path_die)
 	elif _attributes.knockback_amount > 0:
 		_knockout_state._launch_charater(_bounce_direction)

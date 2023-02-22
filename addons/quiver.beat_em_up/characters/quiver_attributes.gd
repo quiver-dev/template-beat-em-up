@@ -98,10 +98,6 @@ const KNOCKBACK_VALUES = {
 var health_current := health_max:
 	set=_set_health_current
 
-var is_alive: bool:
-	get:
-		return get_health_as_percentage() > 0
-
 ## Amount of knockback character has received, will be used to calculate bounce the next time
 ## it hits a wall or the ground.
 var knockback_amount := 0:
@@ -140,7 +136,7 @@ func _to_string() -> String:
 
 func add_death_knockback() -> void:
 	if (
-			not is_alive 
+			not is_alive()
 			and knockback_amount < KNOCKBACK_VALUES[CombatSystem.KnockbackStrength.MEDIUM]
 	):
 		add_knockback(CombatSystem.KnockbackStrength.MEDIUM)
@@ -158,7 +154,7 @@ func reset_knockback() -> void:
 func should_knockout() -> bool:
 	var has_enough_knockback: bool = \
 			knockback_amount >= KNOCKBACK_VALUES[CombatSystem.KnockbackStrength.MEDIUM]
-	return not is_alive or (not has_superarmor and has_enough_knockback)
+	return not is_alive() or (not has_superarmor and has_enough_knockback)
 
 
 ## Returns the character's current health as percentage.
@@ -170,6 +166,10 @@ func get_health_as_percentage() -> float:
 func get_hit_lane_limits() -> HitLaneLimits:
 	var limits = HitLaneLimits.new(hit_lane_offset, ground_level)
 	return limits
+
+
+func is_alive() -> bool:
+	return get_health_as_percentage() > 0
 
 
 func reset() -> void:
