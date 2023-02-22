@@ -96,14 +96,7 @@ const KNOCKBACK_VALUES = {
 
 ## Character's current health. What the health bar will be showing.
 var health_current := health_max:
-	set(value):
-		var has_changed = value != health_current
-		health_current = clamp(value, 0, health_max)
-		if has_changed:
-			if health_current > 0:
-				health_changed.emit()
-			else:
-				health_depleted.emit()
+	set=_set_health_current
 
 var is_alive: bool:
 	get:
@@ -189,6 +182,15 @@ func reset() -> void:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _set_health_current(value: int) -> void:
+	var has_changed = value != health_current
+	health_current = clamp(value, 0, health_max)
+	if has_changed:
+		if health_current > 0:
+			health_changed.emit()
+		else:
+			health_depleted.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
