@@ -70,6 +70,8 @@ script = ExtResource("2_bwf0i")
 _path_playback = "parameters/state_machine/playback"
 attributes = ExtResource("3_b4sly")
 skin_direction = -1
+_has_grab = false
+_has_grabbed = false
 metadata/_edit_vertical_guides_ = [-229.0, 217.0, 196.0]
 metadata/_edit_horizontal_guides_ = [21.0, -139.0]
 
