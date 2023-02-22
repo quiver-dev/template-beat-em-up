@@ -1,4 +1,5 @@
 @tool
+class_name QuiverActionKnockoutMidAir
 extends QuiverCharacterAction
 
 ## Write your doc string for this file here
@@ -86,21 +87,16 @@ func _handle_mid_air_animation() -> void:
 
 func _get_custom_properties() -> Dictionary:
 	return {
-		"Mid Air State":{
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_CATEGORY,
-			hint = PROPERTY_HINT_NONE,
-		},
-		"skin_state_rising": {
-			backing_field = "_skin_state_rising",
+		"_skin_state_rising": {
+			default_value = &"knockout_rising",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"skin_state_falling": {
-			backing_field = "_skin_state_falling",
+		"_skin_state_falling": {
+			default_value = &"knockout_falling",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
@@ -108,8 +104,8 @@ func _get_custom_properties() -> Dictionary:
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
 #			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
@@ -124,15 +120,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

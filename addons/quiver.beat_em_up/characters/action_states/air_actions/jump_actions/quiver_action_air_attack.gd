@@ -1,4 +1,5 @@
 @tool
+class_name QuiverActionJumpAttack
 extends QuiverCharacterAction
 
 ## Write your doc string for this file here
@@ -25,7 +26,7 @@ const JumpState = preload(
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _skin_state: StringName
-var _path_falling_state := "Air/Jump"
+var _path_falling_state := "Air/Jump/MidAir"
 
 ## What Condition should trigger the end of the air attack. See enum [b]EndContitions.[/b]
 var _end_condition: EndConditions = EndConditions.DISTANCE_FROM_GROUND:
@@ -130,79 +131,91 @@ func _on_skin_animation_finished() -> void:
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-
-var _CUSTOM_PROPERTIES = {
-	"Air Attack State":{
-		type = TYPE_NIL,
-		usage = PROPERTY_USAGE_CATEGORY,
-		hint = PROPERTY_HINT_NONE,
-	},
-	"skin_state": {
-		backing_field = "_skin_state",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = \
-				'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
-	},
-	"path_falling_state": {
-		backing_field = "_path_falling_state",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_NONE,
-		hint_string = QuiverState.HINT_STATE_LIST,
-	},
-	"end_condition": {
-		backing_field = "_end_condition",
-		type = TYPE_STRING,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_ENUM,
-		hint_string = ",".join(EndConditions.keys()),
-	},
-	"min_distance_from_ground": {
-		backing_field = "_min_distance_from_ground",
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		hint = PROPERTY_HINT_RANGE,
-		hint_string = "0,1000,10,or_greater",
-	},
-#	"": {
-#		backing_field = "",
-#		name = "",
-#		type = TYPE_NIL,
-#		usage = PROPERTY_USAGE_DEFAULT,
-#		hint = PROPERTY_HINT_NONE,
-#		hint_string = "",
-#	},
-}
-
+func _get_custom_properties() -> Dictionary:
+	var custom_properties := {
+		"_skin_state": {
+			default_value = &"air_attack",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = \
+					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
+		},
+		"_path_falling_state": {
+			default_value = "Air/Jump/MidAir",
+			type = TYPE_STRING,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NONE,
+			hint_string = QuiverState.HINT_STATE_LIST,
+		},
+		"_end_condition": {
+			default_value = EndConditions.DISTANCE_FROM_GROUND,
+			type = TYPE_INT,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_ENUM,
+			hint_string = ",".join(EndConditions.keys()),
+		},
+		"_min_distance_from_ground": {
+			default_value = 100,
+			type = TYPE_INT,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0,1000,10,or_greater",
+		},
+#		"": {
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
+#			type = TYPE_NIL,
+#			usage = PROPERTY_USAGE_DEFAULT,
+#			hint = PROPERTY_HINT_NONE,
+#			hint_string = "",
+#		},
+	}
+	
+	if not _has_distance_condition():
+		custom_properties["_min_distance_from_ground"].usage = PROPERTY_USAGE_STORAGE
+	
+	return custom_properties
+	
 ### Custom Inspector built in functions -----------------------------------------------------------
 
 func _get_property_list() -> Array:
 	var properties: = []
 	
-	for key in _CUSTOM_PROPERTIES:
-		var add_property := true
-		var dict: Dictionary = _CUSTOM_PROPERTIES[key]
+	var custom_properties := _get_custom_properties()
+	for key in custom_properties:
+		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if _has_distance_condition() and key == "min_distance_from_ground":
-			dict.usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
-		elif key == "min_distance_from_ground":
-			dict.usage = PROPERTY_USAGE_STORAGE
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):
 	var value
 	
-	if property in _CUSTOM_PROPERTIES and _CUSTOM_PROPERTIES[property].has("backing_field"):
-		value = get(_CUSTOM_PROPERTIES[property]["backing_field"])
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("backing_field"):
+		value = get(custom_properties[property]["backing_field"])
 	
 	return value
 
@@ -210,8 +223,9 @@ func _get(property: StringName):
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
 	
-	if property in _CUSTOM_PROPERTIES and _CUSTOM_PROPERTIES[property].has("backing_field"):
-		set(_CUSTOM_PROPERTIES[property]["backing_field"], value)
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("backing_field"):
+		set(custom_properties[property]["backing_field"], value)
 		has_handled = true
 	
 	return has_handled

@@ -115,76 +115,63 @@ func _on_player_hurt() -> void:
 # Custom Inspector ################################################################################
 ###################################################################################################
 
-func _get_custom_properties() -> Dictionary:
-	return {
-		"max_damage_in_one_combo": {
-			backing_field = "_max_damage_in_one_combo",
-			type = TYPE_FLOAT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0.0,1.0,0.01",
-		},
-		"Boss Phases Health Thresholds": {
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "health_threshold_",
-		},
-		"health_threshold_model": {
-			backing_field = "_phases_health_thresholds:%s",
-			type = TYPE_FLOAT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0.0,1.0,0.01",
-		},
-#		"": {
-#			backing_field = "",
-#			name = "",
-#			type = TYPE_NIL,
-#			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-#			hint = PROPERTY_HINT_NONE,
-#			hint_string = "",
-#		},
-}
-
 ### Custom Inspector built in functions -----------------------------------------------------------
 
 func _get_property_list() -> Array:
 	var properties: = []
 	
-	var custom_properties := _get_custom_properties()
-	for key in custom_properties:
-		var add_property := true
-		var dict: Dictionary = custom_properties[key]
-		if not dict.has("name"):
-			dict.name = key
-		
-		if key == "health_threshold_model":
-			add_property = false
-			for type in TaxManPhases.values():
-				var new_dict = dict.duplicate()
-				new_dict.name = new_dict.name.replace(
-						"model", 
-						TaxManPhases.keys()[type].to_lower()
-				)
-				properties.append(new_dict)
-		
-		if add_property:
-			properties.append(dict)
+	properties.append({
+		name = "_max_damage_in_one_combo",
+		type = TYPE_FLOAT,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_RANGE,
+		hint_string = "0.0,1.0,0.01",
+	})
+	
+	properties.append({
+		name = "Boss Phases Health Thresholds",
+		type = TYPE_NIL,
+		usage = PROPERTY_USAGE_GROUP,
+		hint_string = "health_threshold_",
+	})
+	
+	for type in TaxManPhases.values():
+		var new_dict = {
+			name = "health_threshold_%s"%[TaxManPhases.keys()[type].to_lower()],
+			type = TYPE_FLOAT,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0.0,1.0,0.01",
+		}
+		properties.append(new_dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	if property == &"_max_damage_in_one_combo":
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	if property == &"_max_damage_in_one_combo":
+		value = 0.1
+	
+	return value
 
 
 func _get(property: StringName):
 	var value
 	
-	var custom_properties := _get_custom_properties()
 	if (property as String).begins_with("health_threshold_"):
 		var phase_type = (property as String).replace("health_threshold_", "").to_upper()
 		if not _phases_health_thresholds.has(TaxManPhases[phase_type]):
 			_phases_health_thresholds[TaxManPhases[phase_type]] = 0.0
 		value = _phases_health_thresholds[TaxManPhases[phase_type]]
-	elif property in custom_properties and custom_properties[property].has("backing_field"):
-		value = get(custom_properties[property]["backing_field"])
 	
 	return value
 
@@ -192,13 +179,9 @@ func _get(property: StringName):
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
 	
-	var custom_properties := _get_custom_properties()
 	if (property as String).begins_with("health_threshold_"):
 		var phase_type = (property as String).replace("health_threshold_", "").to_upper()
 		_phases_health_thresholds[TaxManPhases[phase_type]] = value
-		has_handled = true
-	elif property in custom_properties and custom_properties[property].has("backing_field"):
-		set(custom_properties[property]["backing_field"], value)
 		has_handled = true
 	
 	return has_handled

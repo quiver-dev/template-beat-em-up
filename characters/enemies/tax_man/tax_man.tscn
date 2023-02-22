@@ -39,7 +39,7 @@ collision_layer = 16
 collision_mask = 14
 script = ExtResource("2_wtxta")
 should_start_seated = false
-max_damage_in_one_combo = 0.1
+_max_damage_in_one_combo = 0.1
 health_threshold_phase_one = 1.0
 health_threshold_phase_two = 0.5
 health_threshold_phase_three = 0.15
@@ -49,6 +49,8 @@ _debug_draw_lane_limits = false
 _attributes = ExtResource("3_3jl8s")
 
 [node name="Skin" parent="." index="0" instance=ExtResource("3_0tid4")]
+_has_grab = false
+_has_grabbed = false
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1"]
 modulate = Color(0, 0.6, 0.701961, 1)
@@ -65,115 +67,116 @@ should_process_input = false
 
 [node name="Ground" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_kio4a")
-path_hurt = "Ground/Hurt"
-path_knockout = "Ground/Hurt"
-path_grabbed = "Ground/GrabReject"
+_path_hurt = "Ground/Hurt"
+_path_knockout = "Ground/Hurt"
+_path_grabbed = "Ground/AttackRetaliate"
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource("5_5ic7l")
-path_jump_state = "Air/Jump/Impulse"
-path_attack_state = "Ground/Combo1"
+_path_jump_state = "Air/Jump/Impulse"
+_path_attack_state = "Ground/Combo1"
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_45ydq")
 OFFSET_FROM_TARGET = 280
-walk_skin_state = &"walk"
-path_next_state = "Ground/Move/IdleAi"
-turning_speed_modifier = 0.6
+_walk_skin_state = &"walk"
+_turn_skin_state = &"turn"
+_path_next_state = "Ground/Move/IdleAi"
+_turning_speed_modifier = 0.6
 
 [node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("7_ohh3m")
-skin_state = &"idle"
+_skin_state = &""
 
 [node name="AttackArea" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("10_ptkg4")
-skin_state = &"attack_area"
-can_combo = false
-path_next_state = "Ground/Move/IdleAi"
+_skin_state = &"attack_area"
+_can_combo = false
+_path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
 [node name="AttackRetaliate" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("10_ptkg4")
-skin_state = &"retaliate"
-can_combo = false
-path_next_state = "Ground/Move/IdleAi"
+_skin_state = &"retaliate"
+_can_combo = false
+_path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
 [node name="AttackCombo" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("10_ptkg4")
-skin_state = &"attack_combo"
-can_combo = false
-path_next_state = "Ground/Move/IdleAi"
+_skin_state = &"attack_combo"
+_can_combo = false
+_path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
 
 [node name="AttackDash" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_f2uve")
-dash_skin_state = &"attack_dash_begin"
-attack_skin_state = &"attack_dash_end"
-path_next_state = "Ground/Move/IdleAi"
+_dash_skin_state = &"attack_dash_begin"
+_attack_skin_state = &"attack_dash_end"
+_path_next_state = "Ground/Move/IdleAi"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_6u64b")
-skin_state_hurt_light = &"hurt_light"
-skin_state_hurt_medium = &"hurt_medium"
-skin_state_hurt_knockout = &"hurt_knockout"
-path_knockout = "Ground/KnockoutKneeled"
-path_retaliate = "Ground/AttackRetaliate"
-path_idle = "Ground/Move/IdleAi"
+_skin_state_hurt_light = &"hurt_light"
+_skin_state_hurt_medium = &"hurt_medium"
+_skin_state_hurt_knockout = &"hurt_knockout"
+_path_knockout = "Ground/KnockoutKneeled"
+_path_retaliate = "Ground/AttackRetaliate"
+_path_idle = "Ground/Move/IdleAi"
 
 [node name="KnockoutKneeled" type="Node" parent="StateMachine/Ground" index="6"]
 script = ExtResource("12_4lwgy")
-skin_state = &"knockout_kneeled"
-path_attack_area = "Ground/AttackArea"
-path_die = "DieAi"
+_skin_state = &"knockout_kneeled"
+_path_attack_area = "Ground/AttackArea"
+_path_die = "DieAi"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("11_7kn5i")
-skin_state = &"death_explosion"
+_skin_state = &"death_explosion"
 
 [node name="Seated" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("14_feq3t")
-path_idle_state = "Ground/Move/IdleAi"
-swirl_max = 8
-swirl_min = 3
-skin_reveal = &"seated_reveal"
-skin_swirl = &"seated_swirl"
-skin_drink = &"seated_drink"
-skin_laugh = &"seated_laugh"
-skin_engage = &"seated_engage"
+_path_idle = "Ground/Move/IdleAi"
+_swirl_max = 8
+_swirl_min = 3
+_skin_reveal = &"seated_reveal"
+_skin_swirl = &"seated_swirl"
+_skin_drink = &"seated_drink"
+_skin_laugh = &"seated_laugh"
+_skin_engage = &"seated_engage"
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource("15_ylsp3")
 _max_consecutive_hits = 7
-ai_state_hurt = "WaitForIdle"
+_ai_state_hurt = "WaitForIdle"
 initial_state = NodePath("WaitForIdle")
 should_process_input = false
 
 [node name="GoToPosition" type="Node" parent="AiStateMachine" index="0"]
 script = ExtResource("17_7i618")
-path_follow_state = "Ground/Move/Follow"
-use_node = false
-fallback_position = Vector2(inf, inf)
+_path_follow_state = "Ground/Move/Follow"
+_use_node = false
+_fallback_position = Vector2(inf, inf)
 
 [node name="WaitForIdle" type="Node" parent="AiStateMachine" index="1"]
 script = ExtResource("22_wmall")
-path_ready_state = "Ground/Move/IdleAi"
+_path_ready_state = "Ground/Move/IdleAi"
 
 [node name="Phase1" type="Node" parent="AiStateMachine" index="2"]
 script = ExtResource("18_jvunq")
 
 [node name="Wait" type="Node" parent="AiStateMachine/Phase1" index="0"]
 script = ExtResource("13_oq38d")
-use_range = false
-wait_time = 1.0
-min_wait = 1.0
-max_wait = 2.0
+_use_range = false
+_wait_time = 1.0
+_min_wait = 3.0
+_max_wait = 6.0
 
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase1" index="1"]
 script = ExtResource("17_5k63d")
@@ -187,46 +190,40 @@ script = ExtResource("18_thg3o")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/ComboAttack" index="0"]
 script = ExtResource("19_3m5ed")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/ComboAttack" index="1"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackCombo"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackCombo"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="DashAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
-pool_positions = []
-pool_nodes = []
-path_follow_state = "Ground/Move/Follow"
-use_node = false
-fallback_position = Vector2(inf, inf)
+_path_follow_state = "Ground/Move/Follow"
+_use_node = false
+_fallback_position = Vector2(inf, inf)
 
 [node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="1"]
 script = ExtResource("21_ghwwy")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase1/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackDash"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackDash"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="Phase2" type="Node" parent="AiStateMachine" index="3"]
 script = ExtResource("18_jvunq")
 
 [node name="Wait" type="Node" parent="AiStateMachine/Phase2" index="0"]
 script = ExtResource("13_oq38d")
-use_range = true
-wait_time = 1.0
-min_wait = 0.5
-max_wait = 1.0
+_use_range = true
+_wait_time = 1.0
+_min_wait = 0.5
+_max_wait = 1.0
 
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase2" index="1"]
 script = ExtResource("17_5k63d")
@@ -241,60 +238,52 @@ script = ExtResource("18_thg3o")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/ComboAttack" index="0"]
 script = ExtResource("19_3m5ed")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/ComboAttack" index="1"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackCombo"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackCombo"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="DashAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
-pool_positions = []
-pool_nodes = []
-path_follow_state = "Ground/Move/Follow"
-use_node = false
-fallback_position = Vector2(inf, inf)
+_path_follow_state = "Ground/Move/Follow"
+_use_node = false
+_fallback_position = Vector2(inf, inf)
 
 [node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="1"]
 script = ExtResource("21_ghwwy")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackDash"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackDash"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="AreaAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack" index="2"]
 script = ExtResource("18_thg3o")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="0"]
 script = ExtResource("19_3m5ed")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase2/ChooseRandomAttack/AreaAttack" index="1"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackArea"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackArea"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="Phase3" type="Node" parent="AiStateMachine" index="4"]
 script = ExtResource("18_jvunq")
 
 [node name="Wait" type="Node" parent="AiStateMachine/Phase3" index="0"]
 script = ExtResource("13_oq38d")
-use_range = true
-wait_time = 0.0
-min_wait = 0.2
-max_wait = 0.7
+_use_range = true
+_wait_time = 0.0
+_min_wait = 0.2
+_max_wait = 0.7
 
 [node name="ChooseRandomAttack" type="Node" parent="AiStateMachine/Phase3" index="1"]
 script = ExtResource("17_5k63d")
@@ -309,50 +298,42 @@ script = ExtResource("18_thg3o")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/ComboAttack" index="0"]
 script = ExtResource("19_3m5ed")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/ComboAttack" index="1"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackCombo"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackCombo"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="DashAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="1"]
 script = ExtResource("18_thg3o")
 
 [node name="GoToClosestPosition" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="0" groups=["tm_dash_position_states"]]
 script = ExtResource("24_jvcip")
-pool_positions = []
-pool_nodes = []
-path_follow_state = "Ground/Move/Follow"
-use_node = false
-fallback_position = Vector2(inf, inf)
+_path_follow_state = "Ground/Move/Follow"
+_use_node = false
+_fallback_position = Vector2(inf, inf)
 
 [node name="AlignToClosestPlayer" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="1"]
 script = ExtResource("21_ghwwy")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/DashAttack" index="2"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackDash"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackDash"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="AreaAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack" index="2"]
 script = ExtResource("18_thg3o")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/AreaAttack" index="0"]
 script = ExtResource("19_3m5ed")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="CallAttack" type="Node" parent="AiStateMachine/Phase3/ChooseRandomAttack/AreaAttack" index="1"]
 script = ExtResource("20_38efy")
-attack_state_path = "Ground/AttackArea"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/AttackArea"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
 visible = false
@@ -385,7 +366,6 @@ properties = PackedStringArray("state_name", "_consecutive_hits")
 [node name="Wait" type="Label" parent="DebugLabels" index="2"]
 layout_mode = 2
 script = ExtResource("27_dlvh8")
-path_reference = NodePath("")
 properties = PackedStringArray("time_left")
 
 [connection signal="phase_changed_to" from="." to="AiStateMachine" method="_on_tax_man_phase_changed_to"]

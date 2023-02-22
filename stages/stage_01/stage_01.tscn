@@ -88,37 +88,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_ewrpw"]
+[sub_resource type="Gradient" id="Gradient_r4rvp"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_46xlc"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rrfuw"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_ewrpw")
+gradient = SubResource("Gradient_r4rvp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_46xlc")
+shader_parameter/gradient = SubResource("GradientTexture1D_rrfuw")
 
-[sub_resource type="Gradient" id="Gradient_u2m5b"]
+[sub_resource type="Gradient" id="Gradient_71xxd"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5j333"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_naspu"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_u2m5b")
+gradient = SubResource("Gradient_71xxd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_5j333")
+shader_parameter/gradient = SubResource("GradientTexture1D_naspu")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -149,118 +149,118 @@ shader_parameter/effect_strength = 0.9
 
 [sub_resource type="Resource" id="Resource_r2otu"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = true
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = true
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e5ecd"]
 b = Vector2(0, 1080)
 
 [sub_resource type="Resource" id="Resource_2safw"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 0
-_use_vector2 = false
-_target_node_path = NodePath("Marker2d")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 0
+use_vector2 = false
+target_node_path = NodePath("Marker2d")
 
 [sub_resource type="Resource" id="Resource_i4otq"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 0
-_use_vector2 = false
-_target_node_path = NodePath("Marker2d")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 0
+use_vector2 = false
+target_node_path = NodePath("Marker2d")
 
 [sub_resource type="Resource" id="Resource_s7d1s"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 0
-_use_vector2 = false
-_target_node_path = NodePath("Marker2d2")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 0
+use_vector2 = false
+target_node_path = NodePath("Marker2d2")
 
 [sub_resource type="Resource" id="Resource_cfufp"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 0
-_use_vector2 = false
-_target_node_path = NodePath("Marker2d")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 0
+use_vector2 = false
+target_node_path = NodePath("Marker2d")
 
 [sub_resource type="Resource" id="Resource_vj3cx"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 0
-_use_vector2 = false
-_target_node_path = NodePath("Marker2d")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 0
+use_vector2 = false
+target_node_path = NodePath("Marker2d")
 
 [sub_resource type="Resource" id="Resource_sd8b6"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 0
-_use_vector2 = false
-_target_node_path = NodePath("Marker2d2")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 0
+use_vector2 = false
+target_node_path = NodePath("Marker2d2")
 
 [sub_resource type="Resource" id="Resource_tusxl"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../BarrierPos1")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../BarrierPos1")
 
 [sub_resource type="Resource" id="Resource_prux1"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../BarrierPos2")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../BarrierPos2")
 
 [sub_resource type="Resource" id="Resource_obtvs"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../BarrierPos3")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../BarrierPos3")
 
 [sub_resource type="Resource" id="Resource_61upo"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../BarrierPos4")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../BarrierPos4")
 
 [sub_resource type="Resource" id="Resource_qjn7p"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../BarrierPos5")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../BarrierPos5")
 
 [sub_resource type="Resource" id="Resource_itamy"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../BarrierPos6")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../BarrierPos6")
 
 [sub_resource type="Resource" id="Resource_gxna6"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../GuardPos1")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../GuardPos1")
 
 [sub_resource type="Resource" id="Resource_j2wk8"]
 script = ExtResource("70_we574")
-_enemy_scene = ExtResource("19_etsee")
-_spawn_mode = 1
-_use_spawner_position = false
-_use_vector2 = false
-_target_node_path = NodePath("../GuardPos2")
+enemy_scene = ExtResource("19_etsee")
+spawn_mode = 1
+use_spawner_position = false
+use_vector2 = false
+target_node_path = NodePath("../GuardPos2")
 
 [node name="Stage_01" instance=ExtResource("1_4lqd3")]
 script = ExtResource("2_08exp")
@@ -762,13 +762,13 @@ limit_top = -280
 limit_right = 2526
 limit_bottom = 1191
 zoom = 0.849934
-_after_fight_use_new_room = true
-_after_fight_limit_left = 268
-_after_fight_limit_top = -280
-_after_fight_limit_right = 5775
-_after_fight_limit_bottom = 1190
-_after_fight_zoom = 1.0
-_after_fight_transition_duration = 0.8
+after_fight_use_new_room = true
+after_fight_limit_left = 267
+after_fight_limit_top = -280
+after_fight_limit_right = 5775
+after_fight_limit_bottom = 1190
+after_fight_zoom = 1.0
+after_fight_transition_duration = 0.8
 preview_camera = true
 preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
@@ -805,13 +805,13 @@ limit_left = 2924
 limit_top = -280
 limit_right = 6259
 limit_bottom = 1195
-_after_fight_use_new_room = true
-_after_fight_limit_left = 2924
-_after_fight_limit_top = -280
-_after_fight_limit_right = 8635
-_after_fight_limit_bottom = 1195
-_after_fight_zoom = 1.0
-_after_fight_transition_duration = 0.8
+after_fight_use_new_room = true
+after_fight_limit_left = 2924
+after_fight_limit_top = -280
+after_fight_limit_right = 8635
+after_fight_limit_bottom = 1195
+after_fight_zoom = 1.0
+after_fight_transition_duration = 0.8
 preview_camera = true
 preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
@@ -866,13 +866,13 @@ limit_top = -320
 limit_right = 9734
 limit_bottom = 1195
 zoom = 0.9
-_after_fight_use_new_room = true
-_after_fight_limit_left = 6838
-_after_fight_limit_top = -320
-_after_fight_limit_right = 15832
-_after_fight_limit_bottom = 1195
-_after_fight_zoom = 1.0
-_after_fight_transition_duration = 0.8
+after_fight_use_new_room = true
+after_fight_limit_left = 6838
+after_fight_limit_top = -320
+after_fight_limit_right = 15832
+after_fight_limit_bottom = 1195
+after_fight_zoom = 1.0
+after_fight_transition_duration = 0.8
 preview_camera = true
 preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
@@ -927,8 +927,7 @@ limit_top = -320
 limit_right = 15815
 limit_bottom = 1195
 zoom = 0.829016
-_after_fight_use_new_room = false
-_after_fight_transition_duration = 0.8
+after_fight_use_new_room = false
 preview_camera = true
 preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true
@@ -972,8 +971,7 @@ limit_top = -320
 limit_right = 15827
 limit_bottom = 1195
 zoom = 0.712871
-_after_fight_use_new_room = false
-_after_fight_transition_duration = 0.8
+after_fight_use_new_room = false
 preview_camera = true
 preview_camera_color = Color(0.294118, 0, 0.509804, 1)
 preview_after_room = true

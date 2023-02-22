@@ -89,54 +89,67 @@ func get_spawn_position(spawner: Node2D) -> Vector2:
 ###################################################################################################
 
 func _get_custom_properties() -> Dictionary:
-	var dict := {
-		"_enemy_scene": {
-			backing_field = "enemy_scene",
+	const DICT_USE_VECTOR2 = {
+		default_value = false,
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	const DICT_TARGET_NODE_PATH = {
+		type = TYPE_NODE_PATH,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
+		hint_string = "Marker2D",
+	}
+	const DICT_TARGET_POSITION = {
+		default_value = Vector2.ZERO,
+		type = TYPE_VECTOR2,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	const DICT_USE_SPAWNER_POSITION = {
+		default_value = true,
+		type = TYPE_BOOL,
+		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	
+	var custom_properties := {
+		"enemy_scene": {
 			type = TYPE_OBJECT,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_RESOURCE_TYPE,
 			hint_string = "PackedScene",
 		},
-		"_spawn_mode": {
-			backing_field = "spawn_mode",
+		"spawn_mode": {
+			default_value = SpawnMode.WALK_TO_POSITION,
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = ",".join(SpawnMode.keys()),
 		},
-		"_use_spawner_position": {
-			backing_field = "use_spawner_position",
-			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_use_vector2": {
-			backing_field = "use_vector2",
-			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_target_node_path": {
-			backing_field = "target_node_path",
-			type = TYPE_NODE_PATH,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
-			hint_string = "Marker2D",
-		},
-		"_target_position": {
-			backing_field = "target_position",
-			type = TYPE_VECTOR2,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
-#			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+#			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
 #			hint_string = "",
 #		},
 	}
 	
-	return dict
+	
+	if spawn_mode == SpawnMode.IN_PLACE:
+		custom_properties["use_spawner_position"] = DICT_USE_SPAWNER_POSITION.duplicate()
+		if not use_spawner_position:
+			custom_properties["use_vector2"] = DICT_USE_VECTOR2.duplicate()
+	elif spawn_mode == SpawnMode.WALK_TO_POSITION:
+		custom_properties["use_vector2"] = DICT_USE_VECTOR2.duplicate()
+	
+	if custom_properties.has("use_vector2"):
+		if use_vector2:
+			custom_properties["target_position"] = DICT_TARGET_POSITION.duplicate()
+		else:
+			custom_properties["target_node_path"] = DICT_TARGET_NODE_PATH.duplicate()
+	
+	return custom_properties
 
 ### Custom Inspector built in functions -----------------------------------------------------------
 
@@ -145,32 +158,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if spawn_mode == SpawnMode.IN_PLACE:
-			if key in ["_use_vector2", "_target_node_path", "_target_position"]:
-				if use_spawner_position:
-					add_property = false
-				else:
-					if use_vector2 and key == "_target_node_path":
-						add_property = false
-					elif not use_vector2 and key == "_target_position":
-						add_property = false
-		elif spawn_mode == SpawnMode.WALK_TO_POSITION:
-			if key == "_use_spawner_position":
-				add_property = false
-			elif use_vector2 and key == "_target_node_path":
-				add_property = false
-			elif not use_vector2 and key == "_target_position":
-				add_property = false
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

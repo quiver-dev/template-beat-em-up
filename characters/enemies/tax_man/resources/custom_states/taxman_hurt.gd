@@ -140,10 +140,10 @@ func _get_custom_properties() -> Dictionary:
 		"Skin States": {
 			type = TYPE_NIL,
 			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "skin_state_",
+			hint_string = "_skin_state_",
 		},
-		"skin_state_hurt_light": {
-			backing_field = "_skin_state_hurt_light",
+		"_skin_state_hurt_light": {
+			default_value = &"hurt_light",
 			type = TYPE_STRING_NAME,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
@@ -151,8 +151,8 @@ func _get_custom_properties() -> Dictionary:
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 			,
 		},
-		"skin_state_hurt_medium": {
-			backing_field = "_skin_state_hurt_medium",
+		"_skin_state_hurt_medium": {
+			default_value = &"hurt_medium",
 			type = TYPE_STRING_NAME,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
@@ -160,8 +160,8 @@ func _get_custom_properties() -> Dictionary:
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 			,
 		},
-		"skin_state_hurt_knockout": {
-			backing_field = "_skin_state_hurt_knockout",
+		"_skin_state_hurt_knockout": {
+			default_value = &"hurt_knockout",
 			type = TYPE_STRING_NAME,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
@@ -172,32 +172,32 @@ func _get_custom_properties() -> Dictionary:
 		"Next State Paths": {
 			type = TYPE_NIL,
 			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "path_",
+			hint_string = "_path_",
 		},
-		"path_knockout": {
-			backing_field = "_path_knockout",
+		"_path_knockout": {
+			default_value = "Ground/KnockoutKneeled",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
-		"path_retaliate": {
-			backing_field = "_path_retaliate",
+		"_path_retaliate": {
+			default_value = "Ground/GrabReject",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
-		"path_idle": {
-			backing_field = "_path_idle",
+		"_path_idle": {
+			default_value = "Ground/Move/IdleAi",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
 #			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
@@ -212,15 +212,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

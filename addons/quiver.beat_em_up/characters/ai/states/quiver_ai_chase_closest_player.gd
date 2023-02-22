@@ -1,4 +1,5 @@
 @tool
+class_name QuiverAiChaseClosestPlayer
 extends QuiverAiState
 
 ## Write your doc string for this file here
@@ -16,7 +17,7 @@ extends QuiverAiState
 
 #--- public variables - order: export > normal var > onready --------------------------------------
 
-var max_chase_time := 5.0
+@export_range(1.0,10.0,0.1,"or_greater") var max_chase_time := 5.0
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -83,28 +84,16 @@ func _on_chase_timer_timeout() -> void:
 
 func _get_custom_properties() -> Dictionary:
 	return {
-		"Chase Closest Player":{
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_CATEGORY,
-			hint = PROPERTY_HINT_NONE,
-		},
-		"_max_chase_time": {
-			backing_field = "max_chase_time",
-			type = TYPE_FLOAT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "1.0,10.0,0.1,or_greater",
-		},
-		"path_follow_state": {
-			backing_field = "_path_follow_state",
+		"_path_follow_state": {
+			default_value = "Ground/Move/Follow",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
 #			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
@@ -119,15 +108,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

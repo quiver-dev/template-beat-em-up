@@ -164,62 +164,62 @@ func _get_custom_properties() -> Dictionary:
 			usage = PROPERTY_USAGE_CATEGORY,
 			hint = PROPERTY_HINT_NONE,
 		},
-		"path_idle_state": {
-			backing_field = "_path_idle",
+		"_path_idle": {
+			default_value = "Ground/Move/IdleAi",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
-		"swirl_max": {
-			backing_field = "_swirl_max",
+		"_swirl_max": {
+			default_value = 8,
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		},
-		"swirl_min": {
-			backing_field = "_swirl_min",
+		"_swirl_min": {
+			default_value = 3,
 			type = TYPE_INT,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		},
 		"Animations":{
 			type = TYPE_NIL,
 			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "skin_",
+			hint_string = "_skin_",
 		},
-		"skin_reveal": {
-			backing_field = "_skin_reveal",
+		"_skin_reveal": {
+			default_value = &"seated_reveal",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"skin_swirl": {
-			backing_field = "_skin_swirl",
+		"_skin_swirl": {
+			default_value = &"seated_swirl",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"skin_drink": {
-			backing_field = "_skin_drink",
+		"_skin_drink": {
+			default_value = &"seated_drink",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"skin_laugh": {
-			backing_field = "_skin_laugh",
+		"_skin_laugh": {
+			default_value = &"seated_laugh",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"skin_engage": {
-			backing_field = "_skin_engage",
+		"_skin_engage": {
+			default_value = &"seated_engage",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
@@ -227,8 +227,8 @@ func _get_custom_properties() -> Dictionary:
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
 #			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
@@ -243,15 +243,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

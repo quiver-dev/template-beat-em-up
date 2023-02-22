@@ -35,7 +35,7 @@ var character_attributes: QuiverAttributes = null:
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 ## AI State to use while character is in "Hurt" Action.
-var _ai_state_hurt := "WaitTillIdle"
+var _ai_state_hurt := "WaitForIdle"
 ## AI State to use after the character get's up from being knocked down.
 var _ai_state_after_reset := "Wait"
 
@@ -161,28 +161,28 @@ func _interrupt_current_state(p_next_path: String) -> void:
 
 static func _get_custom_properties() -> Dictionary:
 	return {
-		"ai_state_hurt": {
-			backing_field = "_ai_state_hurt",
+		"_ai_state_hurt": {
+			default_value = "WaitForIdle",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_AI_STATE_LIST,
 		},
-		"ai_state_after_reset": {
-			backing_field = "_ai_state_after_reset",
+		"_ai_state_after_reset": {
+			default_value = "Wait",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_AI_STATE_LIST,
 		},
-	#	"": {
-	#		backing_field = "",
-	#		name = "",
-	#		type = TYPE_NIL,
-	#		usage = PROPERTY_USAGE_DEFAULT,
-	#		hint = PROPERTY_HINT_NONE,
-	#		hint_string = "",
-	#	},
+#		"": {
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
+#			type = TYPE_NIL,
+#			usage = PROPERTY_USAGE_DEFAULT,
+#			hint = PROPERTY_HINT_NONE,
+#			hint_string = "",
+#		},
 }
 
 ### Custom Inspector built in functions -----------------------------------------------------------
@@ -192,15 +192,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

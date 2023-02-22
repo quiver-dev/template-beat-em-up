@@ -1,4 +1,5 @@
 @tool
+class_name QuiverAiGoToPosition
 extends QuiverAiState
 
 ## Write your doc string for this file here
@@ -92,45 +93,43 @@ func _on_actions_transitioned(_path_state: String) -> void:
 ###################################################################################################
 
 func _get_custom_properties() -> Dictionary:
-	return {
-		"Go To Position":{
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_CATEGORY,
-			hint = PROPERTY_HINT_NONE,
-		},
-		"path_follow_state": {
-			backing_field = "_path_follow_state",
+	var custom_properties := {
+		"_path_follow_state": {
+			default_value = "Ground/Move/Follow",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
-		"use_node": {
-			backing_field = "_use_node",
+		"_use_node": {
+			default_value = false,
 			type = TYPE_BOOL,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		},
-		"fallback_position": {
-			backing_field = "_fallback_position",
-			type = TYPE_VECTOR2,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"fallback_node_path": {
-			backing_field = "_fallback_node_path",
-			type = TYPE_NODE_PATH,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
-			hint_string = "Node2D,Control",
-		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
 #			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
 #			hint_string = "",
 #		},
 	}
+	
+	if _use_node:
+		custom_properties["_fallback_node_path"] = {
+			type = TYPE_NODE_PATH,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_NODE_PATH_VALID_TYPES,
+			hint_string = "Node2D,Control",
+		}
+	else:
+		custom_properties["_fallback_position"] = {
+			type = TYPE_VECTOR2,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+		}
+	
+	return custom_properties
 
 ### Custom Inspector built in functions -----------------------------------------------------------
 
@@ -139,21 +138,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		match key:
-			"fallback_position":
-				add_property = not _use_node
-			"fallback_node_path":
-				add_property = _use_node
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

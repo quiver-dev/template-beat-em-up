@@ -43,6 +43,8 @@ shape = SubResource("CapsuleShape2D_4uueb")
 metadata/collision_type = "default"
 
 [node name="ChadSkin" parent="." index="1" instance=ExtResource("2_1tk2w")]
+_has_grab = false
+_has_grabbed = false
 metadata/_edit_horizontal_guides_ = [-516.0, -281.0]
 
 [node name="StateMachine" parent="." index="2"]
@@ -50,67 +52,67 @@ initial_state = NodePath("Ground/Move/Idle")
 
 [node name="Ground" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_vubfk")
-path_hurt = "Ground/Hurt"
-path_knockout = "Air/Knockout/Launch"
-path_grabbed = "Ground/Grabbed"
+_path_hurt = "Ground/Hurt"
+_path_knockout = "Air/Knockout/Launch"
+_path_grabbed = "Ground/Grabbed"
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource("5_5sh7r")
-path_jump_state = "Air/Jump/Impulse"
-path_attack_state = "Ground/Combo1"
+_path_jump_state = "Air/Jump/Impulse"
+_path_attack_state = "Ground/Combo1"
 
 [node name="Walk" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_jtgbp")
-walk_skin_state = &"walk"
-turn_skin_state = &"turn"
-turning_speed_modifier = 0.6
-path_idle_state = "Ground/Move/Idle"
-path_grabbing_state = "Ground/Grab/Grabbing"
+_walk_skin_state = &"walk"
+_turn_skin_state = &"turn"
+_turning_speed_modifier = 0.6
+_path_idle_state = "Ground/Move/Idle"
+_path_grabbing_state = "Ground/Grab/Grabbing"
 
 [node name="Idle" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("7_kqgdb")
-skin_state = &"idle"
-path_walk_state = "Ground/Move/Walk"
+_skin_state = &"idle"
+_path_walk_state = "Ground/Move/Walk"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("9_pb6nh")
-skin_state_mid = &"hurt_mid"
-skin_state_high = &"hurt_high"
-path_idle_state = "Ground/Move/Idle"
+_skin_state_mid = &"hurt_mid"
+_skin_state_high = &"hurt_high"
+_path_idle_state = "Ground/Move/Idle"
 
 [node name="Combo1" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("9_cce84")
-skin_state = &"attack1"
-can_combo = true
-path_combo_state = "Ground/Combo2"
-path_next_state = "Ground/Move/Idle"
+_skin_state = &"attack1"
+_can_combo = true
+_path_combo_state = "Ground/Combo2"
+_path_next_state = "Ground/Move/Idle"
 parent_should_enter = true
 parent_should_exit = true
-parent_should_process = false
+parent_should_process = true
 
 [node name="Combo2" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("9_cce84")
-skin_state = &"attack2"
-can_combo = true
-path_combo_state = "Ground/Combo3"
-path_next_state = "Ground/Move/Idle"
+_skin_state = &"attack2"
+_can_combo = true
+_path_combo_state = "Ground/Combo3"
+_path_next_state = "Ground/Move/Idle"
 parent_should_enter = true
 parent_should_exit = true
-parent_should_process = false
+parent_should_process = true
 
 [node name="Combo3" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("9_cce84")
-skin_state = &"attack3"
-can_combo = false
-path_next_state = "Ground/Move/Idle"
+_skin_state = &"attack3"
+_can_combo = false
+_path_next_state = "Ground/Move/Idle"
 parent_should_enter = true
 parent_should_exit = true
-parent_should_process = false
+parent_should_process = true
 
 [node name="Recovery" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_a7lbg")
-skin_state = &"knockout_ground"
-path_idle_state = "Ground/Move/Idle"
+_skin_state = &"knockout_ground"
+_path_idle_state = "Ground/Move/Idle"
 
 [node name="Air" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("9_o5gfu")
@@ -118,61 +120,61 @@ _debug_fall_modifier = 2.5
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource("12_vsxf2")
-path_landing = "Air/Jump/Landing"
-path_knockout = "Air/Knockout/Launch"
+_path_landing = "Air/Jump/Landing"
+_path_knockout = "Air/Knockout/Launch"
 
 [node name="Impulse" type="Node" parent="StateMachine/Air/Jump" index="0"]
 script = ExtResource("11_wf2ss")
-skin_state = &"jump"
-path_next_state = "Air/Jump/MidAir"
+_skin_state = &"jump"
+_path_next_state = "Air/Jump/MidAir"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air/Jump" index="1"]
 script = ExtResource("12_4dbtu")
-skin_state_rising = &"rising"
-skin_state_falling = &"falling"
-can_attack = true
-path_air_attack = "Air/Jump/Attack"
+_skin_state_rising = &"rising"
+_skin_state_falling = &"falling"
+_can_attack = true
+_path_air_attack = "Air/Jump/Attack"
 
 [node name="Landing" type="Node" parent="StateMachine/Air/Jump" index="2"]
 script = ExtResource("13_d8net")
-skin_state = &"landing"
-path_idle = "Ground/Move/Idle"
-path_walk = "Ground/Move/Walk"
+_skin_state = &"landing"
+_path_idle = "Ground/Move/Idle"
+_path_walk = "Ground/Move/Walk"
 
 [node name="Attack" type="Node" parent="StateMachine/Air/Jump" index="3"]
 script = ExtResource("13_cw2hu")
-skin_state = &"air_attack"
-path_falling_state = "Air/Jump/MidAir"
-end_condition = 1
-min_distance_from_ground = 250
+_skin_state = &"air_attack"
+_path_falling_state = "Air/Jump/MidAir"
+_end_condition = 1
+_min_distance_from_ground = 250
 
 [node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource("18_f4w2y")
-path_bounce = "Air/Knockout/Bounce"
 _path_launch = "Air/Knockout/Launch"
+_path_bounce = "Air/Knockout/Bounce"
 
 [node name="Launch" type="Node" parent="StateMachine/Air/Knockout" index="0"]
 script = ExtResource("19_jff31")
-skin_state_launch = &"knockout_launch"
-skin_state_rising = &"knockout_rising"
-path_next_state = "Air/Knockout/MidAir"
-death_slowdown_speed = 0.2
+_skin_state_launch = &"knockout_launch"
+_skin_state_rising = &"knockout_rising"
+_path_next_state = "Air/Knockout/MidAir"
+_death_slowdown_speed = 0.2
 
 [node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
 script = ExtResource("20_n08m6")
-skin_state_rising = &"knockout_rising"
-skin_state_falling = &"knockout_falling"
+_skin_state_rising = &"knockout_rising"
+_skin_state_falling = &"knockout_falling"
 
 [node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
 script = ExtResource("21_knrf0")
-skin_state = &"knockout_bounce"
-path_air_mid_air = "Air/Knockout/MidAir"
-path_ground_recovery = "Ground/Recovery"
-path_die = "Die"
+_skin_state = &"knockout_bounce"
+_path_air_mid_air = "Air/Knockout/MidAir"
+_path_ground_recovery = "Ground/Recovery"
+_path_die = "Die"
 
 [node name="Die" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("22_twsvw")
-skin_state = &"die"
+_skin_state = &"die"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="3"]
 visible = false

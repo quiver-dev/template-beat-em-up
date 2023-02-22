@@ -1,4 +1,5 @@
 @tool
+class_name QuiverActionKnockoutLaunch
 extends QuiverCharacterAction
 
 ## Write your doc string for this file here
@@ -129,51 +130,50 @@ func _on_skin_animation_finished() -> void:
 ###################################################################################################
 
 func _get_custom_properties() -> Dictionary:
-	return {
-		"Launch State":{
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_CATEGORY,
-			hint = PROPERTY_HINT_NONE,
-		},
-		"skin_state_launch": {
-			backing_field = "_skin_state_launch",
+	var custom_properties := {
+		"_skin_state_launch": {
+			default_value = &"knockout_launch",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"skin_state_rising": {
-			backing_field = "_skin_state_rising",
+		"_skin_state_rising": {
+			default_value = &"knockout_rising",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_ENUM,
 			hint_string = \
 					'ExternalEnum{"property": "_skin", "property_name": "_animation_list"}'
 		},
-		"path_next_state": {
-			backing_field = "_path_next_state",
+		"_path_next_state": {
+			default_value = "Air/Knockout/MidAir",
 			type = TYPE_STRING,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = QuiverState.HINT_STATE_LIST,
 		},
-		"death_slowdown_speed": {
-			backing_field = "_death_slowdown_speed",
-			type = TYPE_FLOAT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0.0,1.0,0.1",
-		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
 #			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
 #			hint_string = "",
 #		},
 	}
+	
+	if is_instance_valid(_character) and _character.is_in_group("players"):
+		custom_properties["_death_slowdown_speed"] = {
+			default_value = 0.2,
+			type = TYPE_FLOAT,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			hint = PROPERTY_HINT_RANGE,
+			hint_string = "0.0,1.0,0.1",
+		}
+	
+	return custom_properties
 
 ### Custom Inspector built in functions -----------------------------------------------------------
 
@@ -182,21 +182,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if (
-				key == "death_slowdown_speed" 
-				and (is_instance_valid(_character) and not _character.is_in_group("players"))
-			):
-			add_property = false
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

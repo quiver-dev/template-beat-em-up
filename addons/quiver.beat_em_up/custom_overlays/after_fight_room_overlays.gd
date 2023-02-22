@@ -94,7 +94,7 @@ func _should_draw_handles() -> bool:
 	var value := false
 	var is_fight_room_valid := is_instance_valid(_fight_room) and _fight_room.is_inside_tree()
 	if is_fight_room_valid:
-		value = _fight_room.after_fight_use_new_room and _fight_room._preview_after_room
+		value = _fight_room.after_fight_use_new_room and _fight_room.preview_after_room
 	
 	return value
 

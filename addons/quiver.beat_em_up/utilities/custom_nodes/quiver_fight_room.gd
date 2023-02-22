@@ -54,24 +54,24 @@ var after_fight_limit_bottom := 0:
 var after_fight_zoom := 1.0
 var after_fight_transition_duration := 0.8
 
-#--- private variables - order: export > normal var > onready -------------------------------------
+var preview_camera_color := Color.INDIGO:
+	set(value):
+		preview_camera_color = value
+		queue_redraw()
+var preview_camera := true:
+	set(value):
+		preview_camera = value
+		queue_redraw()
+var preview_after_color := Color.TEAL:
+	set(value):
+		preview_after_color = value
+		queue_redraw()
+var preview_after_room := true:
+	set(value):
+		preview_after_room = value
+		queue_redraw()
 
-var _preview_camera_color := Color.INDIGO:
-	set(value):
-		_preview_camera_color = value
-		queue_redraw()
-var _preview_camera := true:
-	set(value):
-		_preview_camera = value
-		queue_redraw()
-var _preview_after_color := Color.TEAL:
-	set(value):
-		_preview_after_color = value
-		queue_redraw()
-var _preview_after_room := true:
-	set(value):
-		_preview_after_room = value
-		queue_redraw()
+#--- private variables - order: export > normal var > onready -------------------------------------
 
 var _ignore_setters := false
 var _backup_room := {
@@ -111,18 +111,18 @@ func _draw() -> void:
 	if not Engine.is_editor_hint() and editor_only:
 		return
 	
-	if _preview_camera:
+	if preview_camera:
 		var camera_size := _get_default_resolution()
 		var limits_center = size/2.0 - camera_size / zoom / 2.0
 		var camera_rect := Rect2(limits_center, camera_size / zoom)
-		draw_rect(camera_rect, _preview_camera_color, false, border_width)
+		draw_rect(camera_rect, preview_camera_color, false, border_width)
 	
-	if _preview_after_room and after_fight_use_new_room:
+	if preview_after_room and after_fight_use_new_room:
 		var transform := get_global_transform().affine_inverse()
 		var begin := transform * Vector2(after_fight_limit_left, after_fight_limit_top)
 		var end := transform * Vector2(after_fight_limit_right, after_fight_limit_bottom)
 		var after_room_rect := Rect2(begin, end - begin)
-		draw_rect(after_room_rect, _preview_after_color, false, border_width)
+		draw_rect(after_room_rect, preview_after_color, false, border_width)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -287,85 +287,81 @@ func _push_no_valid_camera_error() -> void:
 ###################################################################################################
 
 func _get_custom_properties() -> Dictionary:
-	return {
+	var custom_properties := {
 		"After Fight Room": {
 			type = TYPE_NIL,
 			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "_after_fight_",
+			hint_string = "after_fight_",
 		},
-		"_after_fight_use_new_room": {
-			backing_field = "after_fight_use_new_room",
+		"after_fight_use_new_room": {
+			default_value = false,
 			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_after_fight_limit_left": {
-			backing_field = "after_fight_limit_left",
-			type = TYPE_INT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_after_fight_limit_top": {
-			backing_field = "after_fight_limit_top",
-			type = TYPE_INT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_after_fight_limit_right": {
-			backing_field = "after_fight_limit_right",
-			type = TYPE_INT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_after_fight_limit_bottom": {
-			backing_field = "after_fight_limit_bottom",
-			type = TYPE_INT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"_after_fight_zoom": {
-			backing_field = "after_fight_zoom",
-			type = TYPE_FLOAT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0.0,3.0,0.01,or_greater",
-		},
-		"_after_fight_transition_duration": {
-			backing_field = "after_fight_transition_duration",
-			type = TYPE_FLOAT,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint = PROPERTY_HINT_RANGE,
-			hint_string = "0.0,3.0,0.01,or_greater",
-		},
-		"Editor Previews": {
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_GROUP,
-			hint_string = "preview_",
-		},
-		"preview_camera": {
-			backing_field = "_preview_camera",
-			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"preview_camera_color": {
-			backing_field = "_preview_camera_color",
-			type = TYPE_COLOR,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"preview_after_room": {
-			backing_field = "_preview_after_room",
-			type = TYPE_BOOL,
-			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-		},
-		"preview_after_color": {
-			backing_field = "_preview_after_color",
-			type = TYPE_COLOR,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
 		},
 #		"": {
-#			backing_field = "",
-#			name = "",
+#			backing_field = "", # use if dict key and variable name are different
+#			default_value = "", # use if you want property to have a default value
 #			type = TYPE_NIL,
-#			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+#			usage = PROPERTY_USAGE_DEFAULT,
 #			hint = PROPERTY_HINT_NONE,
 #			hint_string = "",
 #		},
-}
+	}
+	
+	if after_fight_use_new_room:
+		var after_limits := [
+				"after_fight_limit_left", "after_fight_limit_top",
+				"after_fight_limit_right","after_fight_limit_bottom"
+		]
+		for key in after_limits:
+			custom_properties[key] = {
+					type = TYPE_INT,
+					usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+			}
+		
+		custom_properties["after_fight_zoom"] = {
+				default_value = 1.0,
+				type = TYPE_FLOAT,
+				usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+				hint = PROPERTY_HINT_RANGE,
+				hint_string = "0.0,3.0,0.01,or_greater",
+		}
+		custom_properties["after_fight_transition_duration"] = {
+				default_value = 0.8,
+				type = TYPE_FLOAT,
+				usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+				hint = PROPERTY_HINT_RANGE,
+				hint_string = "0.0,3.0,0.01,or_greater",
+		}
+	
+	custom_properties["Editor Previews"] = {
+			type = TYPE_NIL,
+			usage = PROPERTY_USAGE_GROUP,
+			hint_string = "preview_",
+	}
+	custom_properties["preview_camera"] = {
+			default_value = true,
+			type = TYPE_BOOL,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	custom_properties["preview_camera_color"] = {
+			default_value = Color.INDIGO,
+			type = TYPE_COLOR,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	custom_properties["preview_after_room"] = {
+			default_value = true,
+			type = TYPE_BOOL,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	custom_properties["preview_after_color"] = {
+			default_value = Color.TEAL,
+			type = TYPE_COLOR,
+			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
+	}
+	
+	return custom_properties
+
 
 ### Custom Inspector built in functions -----------------------------------------------------------
 
@@ -374,18 +370,30 @@ func _get_property_list() -> Array:
 	
 	var custom_properties := _get_custom_properties()
 	for key in custom_properties:
-		var add_property := true
 		var dict: Dictionary = custom_properties[key]
 		if not dict.has("name"):
 			dict.name = key
-		
-		if key.begins_with("_after_fight_limit_") or key.begins_with("_after_fight_zoom"):
-			add_property = after_fight_use_new_room
-		
-		if add_property:
-			properties.append(dict)
+		properties.append(dict)
 	
 	return properties
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	var custom_properties := _get_custom_properties()
+	if property in custom_properties and custom_properties[property].has("default_value"):
+		value = custom_properties[property]["default_value"]
+	
+	return value
 
 
 func _get(property: StringName):

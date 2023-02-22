@@ -111,7 +111,7 @@ func _interrupt_current_state(p_next_path: String) -> void:
 
 static func _get_custom_properties() -> Dictionary:
 	var dict := super()
-	var success := dict.erase("ai_state_after_reset")
+	var success := dict.erase("_ai_state_after_reset")
 	if not success:
 		push_error("Could not delete ai_state_after_reset from %s"%[dict])
 	return dict

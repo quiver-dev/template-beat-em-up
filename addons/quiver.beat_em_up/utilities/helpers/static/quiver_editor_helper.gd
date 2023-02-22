@@ -68,22 +68,72 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 		signal_object.disconnect(callable)
 
 # Advanced exports snippet below -------------------------------------------------------------------
+### --- Simple Snippet -----------------------------------------------------------------------------
+
+####################################################################################################
+## Custom Inspector ################################################################################
+####################################################################################################
+#
+#### Custom Inspector built in functions -----------------------------------------------------------
+#
+#func _get_property_list() -> Array:
+#	var properties: = []
+#	
+#	return properties
+#
+#
+#func _property_can_revert(property: StringName) -> bool:
+#	var can_revert = true
+#	
+#	match propery:
+#		_:
+#			can_revert = false
+#	
+#	return false
+#
+#
+#func _property_get_revert(property: StringName):
+#	var value
+#	
+#	return value
+#
+#
+#func _get(property: StringName):
+#	var value
+#	
+#	return value
+#
+#
+#func _set(property: StringName, value) -> bool:
+#	var has_handled = true
+#	
+#	match propery:
+#		_:
+#			has_handled = false
+#	
+#	return has_handled
+#
+#### -----------------------------------------------------------------------------------------------
+
+### --- Automated Snippet --------------------------------------------------------------------------
 
 ####################################################################################################
 ## Custom Inspector ################################################################################
 ####################################################################################################
 #
 #func _get_custom_properties() -> Dictionary:
-#	return {
-##		"": {
-##			backing_field = "",
-##			name = "",
-##			type = TYPE_NIL,
-##			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-##			hint = PROPERTY_HINT_NONE,
-##			hint_string = "",
-##		},
-#}
+#	var custom_properties := {
+#			"": {
+#				backing_field = "", # use if dict key and variable name are different
+#				default_value = "", # use if you want property to have a default value
+#				type = TYPE_NIL,
+#				usage = PROPERTY_USAGE_DEFAULT,
+#				hint = PROPERTY_HINT_NONE,
+#				hint_string = "",
+#			},
+#	}
+#
+#	return custom_properties
 #
 #### Custom Inspector built in functions -----------------------------------------------------------
 #
@@ -92,15 +142,30 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 #	
 #	var custom_properties := _get_custom_properties()
 #	for key in custom_properties:
-#		var add_property := true
 #		var dict: Dictionary = custom_properties[key]
 #		if not dict.has("name"):
 #			dict.name = key
-#	
-#		if add_property:
-#			properties.append(dict)
+#		properties.append(dict)
 #	
 #	return properties
+#
+#
+#func _property_can_revert(property: StringName) -> bool:
+#	var custom_properties := _get_custom_properties()
+#	if property in custom_properties and custom_properties[property].has("default_value"):
+#		return true
+#	else:
+#		return false
+#
+#
+#func _property_get_revert(property: StringName):
+#	var value
+#	
+#	var custom_properties := _get_custom_properties()
+#	if property in custom_properties and custom_properties[property].has("default_value"):
+#		value = custom_properties[property]["default_value"]
+#	
+#	return value
 #
 #
 #func _get(property: StringName):
