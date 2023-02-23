@@ -1,4 +1,5 @@
 @tool
+class_name QuiverBeatEmUpPlugin
 extends EditorPlugin
 ## Write your doc string for this file here
 
@@ -79,6 +80,10 @@ var _current_overlay_handler: QuiverCustomOverlay = null
 
 ### Built in Engine Methods -----------------------------------------------------------------------
 
+func _init() -> void:
+	add_to_group("quiver_beat_em_up_plugin")
+
+
 func _enter_tree() -> void:
 	_add_custom_inspectors()
 	_add_custom_overlays()
@@ -153,6 +158,9 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func emit_filesystem_changed() -> void:
+	get_editor_interface().get_resource_filesystem().filesystem_changed.emit()
 
 ### -----------------------------------------------------------------------------------------------
 

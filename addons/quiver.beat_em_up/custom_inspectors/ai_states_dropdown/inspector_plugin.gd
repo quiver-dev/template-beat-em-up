@@ -32,21 +32,23 @@ func _can_handle(object) -> bool:
 
 
 func _parse_property(
-		object: Object, 
+		_object: Object, 
 		_type: Variant.Type, 
 		name: String, 
-		hint_type: PropertyHint, 
+		_hint_type: PropertyHint, 
 		hint_string: String, 
 		usage_flags: PropertyUsageFlags, 
 		_wide: bool
 ) -> bool:
 	var replace_built_in := false
 	
-	if QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_EDITOR, usage_flags):
-		if hint_string == QuiverState.HINT_AI_STATE_LIST:
-			var property := QuiverPropertyAiStateDropDown.new()
-			replace_built_in = true
-			add_property_editor(name, property)
+	if (
+			QuiverBitwiseHelper.has_flag_on(PROPERTY_USAGE_EDITOR, usage_flags)
+			and hint_string == QuiverState.HINT_AI_STATE_LIST
+	):
+		var property := QuiverPropertyAiStateDropDown.new()
+		replace_built_in = true
+		add_property_editor(name, property)
 	
 	return replace_built_in
 

@@ -3,51 +3,39 @@
 [ext_resource type="Script" path="res://addons/quiver.beat_em_up/custom_inspectors/create_mirrored_animation/create_mirrored_animation_button.gd" id="1_rc8ik"]
 
 [node name="CreateMirrorAnimation" type="VBoxContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_rc8ik")
 
 [node name="Button" type="Button" parent="."]
-offset_right = 1920.0
-offset_bottom = 31.0
+layout_mode = 2
 text = "Create Mirrored Animation"
 
 [node name="NameLine" type="HBoxContainer" parent="."]
-offset_top = 35.0
-offset_right = 1920.0
-offset_bottom = 66.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="NameLine"]
-offset_top = 2.0
-offset_right = 958.0
-offset_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "New Animation Name"
 clip_text = true
 
 [node name="LineEdit" type="LineEdit" parent="NameLine"]
-offset_left = 962.0
-offset_right = 1920.0
-offset_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="OverwriteLine" type="HBoxContainer" parent="."]
-offset_top = 70.0
-offset_right = 1920.0
-offset_bottom = 101.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="OverwriteLine"]
-offset_top = 2.0
-offset_right = 1810.0
-offset_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "If Mirror Animation Exists"
 clip_text = true
 
 [node name="CheckBox" type="CheckBox" parent="OverwriteLine"]
-offset_left = 1814.0
-offset_right = 1920.0
-offset_bottom = 31.0
+layout_mode = 2
 button_pressed = true
 text = "Overwrite"
 
@@ -61,6 +49,7 @@ dialog_text = "Conversion Results:"
 dialog_autowrap = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AcceptDialog"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
