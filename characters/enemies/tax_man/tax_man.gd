@@ -148,22 +148,6 @@ func _get_property_list() -> Array:
 	return properties
 
 
-func _property_can_revert(property: StringName) -> bool:
-	if property == &"_max_damage_in_one_combo":
-		return true
-	else:
-		return false
-
-
-func _property_get_revert(property: StringName):
-	var value
-	
-	if property == &"_max_damage_in_one_combo":
-		value = 0.1
-	
-	return value
-
-
 func _get(property: StringName):
 	var value
 	
@@ -185,5 +169,21 @@ func _set(property: StringName, value) -> bool:
 		has_handled = true
 	
 	return has_handled
+
+
+func _property_can_revert(property: StringName) -> bool:
+	if property == &"_max_damage_in_one_combo":
+		return true
+	else:
+		return false
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	if property == &"_max_damage_in_one_combo":
+		value = 0.1
+	
+	return value
 
 ### -----------------------------------------------------------------------------------------------

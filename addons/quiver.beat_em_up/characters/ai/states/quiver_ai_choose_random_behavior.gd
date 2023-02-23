@@ -240,7 +240,7 @@ func _get_property_list() -> Array:
 			})
 	else:
 		properties.append({
-			name = "allow_repeated",
+			name = "_allow_repeated",
 			type = TYPE_BOOL,
 			usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE
 		})
@@ -251,13 +251,10 @@ func _get_property_list() -> Array:
 func _get(property: StringName):
 	var value
 	
-	match property:
-		&"allow_repeated":
-			value = _allow_repeated
-		_:
-			var weight_property := _get_group_property(property, "weight_for_")
-			if _weights_by_child.has(weight_property):
-				value = _weights_by_child[weight_property] / _weights_by_child.size()
+	if (property as String).begins_with("weight_for_"):
+		var weight_property := _get_group_property(property, "weight_for_")
+		if _weights_by_child.has(weight_property):
+			value = _weights_by_child[weight_property] / _weights_by_child.size()
 	
 	return value
 
@@ -265,18 +262,34 @@ func _get(property: StringName):
 func _set(property: StringName, value) -> bool:
 	var has_handled: = false
 	
-	match property:
-		&"allow_repeated":
-			_allow_repeated = value
+	if (property as String).begins_with("weight_for_"):
+		var weight_property := _get_group_property(property, "weight_for_")
+		if _weights_by_child.has(weight_property):
+			_weights_by_child[weight_property] = value * _weights_by_child.size()
+			_normalize_weights()
 			has_handled = true
-		_:
-			var weight_property := _get_group_property(property, "weight_for_")
-			if _weights_by_child.has(weight_property):
-				_weights_by_child[weight_property] = value * _weights_by_child.size()
-				_normalize_weights()
-				has_handled = true
-			
+	
 	return has_handled
+
+
+func _property_can_revert(property: StringName) -> bool:
+	var can_revert = false
+	
+	match property:
+		&"_allow_repeated":
+			can_revert = true
+	
+	return can_revert
+
+
+func _property_get_revert(property: StringName):
+	var value
+	
+	match property:
+		&"_allow_repeated":
+			value = true
+	
+	return value
 
 
 func _get_group_property(property: String, group_prefix: String) -> String:
