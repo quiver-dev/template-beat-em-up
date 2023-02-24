@@ -52,7 +52,21 @@ extends Node2D
 		queue_redraw()
 
 @export_group("Texture Variations", "variation_")
-@export var variation_textures: Array[Texture2D] = []
+@export var variation_textures: Array[Texture2D]:
+	set(value):
+		variation_textures = value
+		if _textures.is_empty() or _textures.size() != variation_textures.size() + 1:
+			_update_textures()
+			var old_size := _variations_weights.size()
+			var new_size := _textures.size()
+			_variations_weights.resize(new_size)
+			if new_size > old_size:
+				for index in range(old_size, new_size):
+					_variations_weights[index] = 1.0
+		
+		_create_random_sequence()
+		notify_property_list_changed()
+		queue_redraw()
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -71,40 +85,10 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	_textures = [main_texture]
-	_textures.append_array(variation_textures)
-	
-	if _texture_sequence.is_empty() or _texture_sequence.size() != length:
-		_create_random_sequence()
-		notify_property_list_changed()
-	
+	_update_textures()
 	_draw_cap_begin()
 	_draw_main_body()
 	_draw_cap_end()
-
-
-func _process(_delta: float) -> void:
-	# TODO: REMOVE ME
-	# This is a "hack" because adding setters to Array[Texture2D] is broken 
-	# https://github.com/godotengine/godot/issues/58285
-	var should_redraw := false
-	
-	if _textures.is_empty() or _textures.size() != variation_textures.size() + 1:
-		_textures = [main_texture]
-		_textures.append_array(variation_textures)
-		should_redraw = true
-	
-	if _variations_weights.size() != _textures.size():
-		var old_size := _variations_weights.size()
-		var new_size := _textures.size()
-		_variations_weights.resize(new_size)
-		if new_size > old_size:
-			for index in range(old_size, new_size):
-				_variations_weights[index] = 1.0
-		notify_property_list_changed()
-	
-	if should_redraw:
-		queue_redraw()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -139,6 +123,11 @@ func get_global_rect() -> Rect2:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _update_textures() -> void:
+	_textures = [main_texture]
+	_textures.append_array(variation_textures)
+
 
 func _draw_cap_begin() -> void:
 	if cap_begin != null:
@@ -243,9 +232,6 @@ func _get(property: StringName):
 	
 	match property:
 		&"variations_weights":
-			if _variations_weights.size() != _textures.size():
-				_variations_weights.resize(_textures.size())
-				_variations_weights.fill(1.0)
 			value = _variations_weights
 		&"texture_sequence":
 			value = _texture_sequence

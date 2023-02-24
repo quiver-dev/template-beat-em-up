@@ -28,7 +28,6 @@ signal transition_finished
 		to = value
 		QuiverEditorHelper.connect_between(to.changed, _update_target_gradient.bind(to))
 		if is_setup_valid():
-			print("CHANGED FROM SETTER")
 			_update_target_gradient(to)
 @export_range(0.0,300.0,0.1,"or_greater") var duration := 1.0 
 @export_range(0.0,1.0,0.01) var debug_preview := 0.0:
@@ -103,7 +102,8 @@ func animate_gradient() -> void:
 
 
 func reset_transition() -> void:
-	_update_target_gradient(from)
+	if is_setup_valid():
+		_update_target_gradient(from)
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -168,10 +168,6 @@ func _preview_animation_at(progress: float) -> void:
 
 func _update_target_gradient(updated_gradient: Gradient) -> void:
 	if not is_setup_valid():
-		push_error(
-				"Trying to animate gradient transition without targets. "
-				+"Run setup_transitioner first"
-		)
 		return 
 	
 	var point_count := updated_gradient.get_point_count()

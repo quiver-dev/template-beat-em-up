@@ -88,37 +88,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_r4rvp"]
+[sub_resource type="Gradient" id="Gradient_ubs7u"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rrfuw"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v5u0y"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_r4rvp")
+gradient = SubResource("Gradient_ubs7u")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_rrfuw")
+shader_parameter/gradient = SubResource("GradientTexture1D_v5u0y")
 
-[sub_resource type="Gradient" id="Gradient_71xxd"]
+[sub_resource type="Gradient" id="Gradient_8yp4x"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_naspu"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d7cfe"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_71xxd")
+gradient = SubResource("Gradient_8yp4x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_naspu")
+shader_parameter/gradient = SubResource("GradientTexture1D_d7cfe")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -382,8 +382,8 @@ length = 6
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = Array[Texture2D]([ExtResource("8_fsw4y"), ExtResource("9_7km5a")])
-variations_weights = Array[float]([1.0, 1.0, 1.0])
-texture_sequence = Array[int]([2, 2, 2, 1, 0, 2])
+variations_weights = Array[float]([0.347292, 0.946498, 1.70621])
+texture_sequence = Array[int]([1, 2, 2, 0, 2, 1])
 
 [node name="FireTiger" type="Sprite2D" parent="Background" index="9"]
 position = Vector2(9104, 110)
@@ -418,7 +418,7 @@ length = 6
 separation = -480
 cap_begin = ExtResource("5_rhqxk")
 cap_begin_offset = Vector2(-583, 0)
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0, 0, 0, 0, 0])
 
 [node name="CrossWalk1" type="Sprite2D" parent="Background/Pavement" index="0"]
@@ -460,7 +460,7 @@ length = 3
 separation = -38
 cap_end = ExtResource("8_erudj")
 cap_end_offset = Vector2(7, -21)
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0, 0])
 
 [node name="Windows" type="Node2D" parent="Background/BrickBuilding1" index="2"]
@@ -469,7 +469,7 @@ script = ExtResource("2_0ledp")
 main_texture = ExtResource("9_37nkk")
 length = 2
 separation = 180
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0])
 
 [node name="Door1" type="Sprite2D" parent="Background/BrickBuilding1" index="3"]
@@ -504,7 +504,7 @@ length = 75
 cap_begin = ExtResource("13_725xq")
 cap_begin_offset = Vector2(-124, 0)
 cap_end = ExtResource("14_62tf3")
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [node name="ChickenKing" parent="Background" index="17" instance=ExtResource("4_8mlpl")]
@@ -531,8 +531,8 @@ length = 42
 separation = -99
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = Array[Texture2D]([ExtResource("8_fsw4y"), ExtResource("9_7km5a")])
-variations_weights = Array[float]([1.0, 1.0, 1.0])
-texture_sequence = Array[int]([2, 1, 2, 2, 1, 0, 0, 2, 0, 1, 2, 2, 0, 2, 2, 1, 0, 2, 0, 2, 2, 1, 2, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 2, 1, 2, 0, 0, 1, 1])
+variations_weights = Array[float]([0.831792, 1.60504, 0.563167])
+texture_sequence = Array[int]([1, 1, 0, 2, 2, 1, 1, 0, 0, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 0, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 2])
 
 [node name="BambooVase1" type="Sprite2D" parent="Background/SideWalk2" index="0"]
 position = Vector2(6882.64, -215.217)
@@ -581,7 +581,7 @@ length = 3
 separation = -38
 cap_end = ExtResource("8_erudj")
 cap_end_offset = Vector2(7, -21)
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0, 0])
 
 [node name="Windows" type="Node2D" parent="Background/BrickBuilding2" index="2"]
@@ -591,7 +591,7 @@ is_vertical = true
 main_texture = ExtResource("9_r3hf1")
 length = 2
 separation = 100
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0])
 
 [node name="Door" type="Sprite2D" parent="Background/BrickBuilding2" index="3"]
@@ -611,8 +611,8 @@ separation = -99
 cap_begin = ExtResource("7_412kv")
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = Array[Texture2D]([ExtResource("8_fsw4y"), ExtResource("9_7km5a")])
-variations_weights = Array[float]([1.0, 1.0, 1.0])
-texture_sequence = Array[int]([1, 0, 1, 2, 1, 0, 0, 2, 0, 1, 2, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 1, 0, 2, 2, 1, 1, 2, 0, 1, 0, 0, 0, 2, 1, 0, 1, 2, 1, 0, 1, 0, 1, 1, 2, 0, 0, 0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
+texture_sequence = Array[int]([0, 0, 0, 0, 0, 2, 2, 0, 2, 0, 1, 2, 2, 0, 2, 1, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 2, 0, 2, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0])
 
 [node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk" index="0"]
 position = Vector2(911.637, -522.217)
@@ -651,7 +651,7 @@ script = ExtResource("2_0ledp")
 main_texture = ExtResource("50_pgs7w")
 length = 3
 separation = 165
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0, 0])
 
 [node name="MetalPost2" type="Node2D" parent="Background/SideWalk" index="10"]
@@ -660,7 +660,7 @@ script = ExtResource("2_0ledp")
 main_texture = ExtResource("50_pgs7w")
 length = 9
 separation = 165
-variations_weights = Array[float]([1.0])
+variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
 texture_sequence = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [node name="Chad" parent="Level/Characters" index="0"]
