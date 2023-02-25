@@ -103,7 +103,7 @@ func _flush_log_to_file() -> void:
 
 
 func _is_logging_enabled() -> bool:
-	return ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_LOGGING)
+	return ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_LOGGING)
 
 
 func _has_created_log_file() -> bool:

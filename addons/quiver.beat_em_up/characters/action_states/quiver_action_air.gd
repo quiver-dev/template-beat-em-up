@@ -20,20 +20,20 @@ extends QuiverCharacterAction
 var _gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 ## Shortcut to gravity defined in Project Settings' beat'em up setion.
 var _fall_modifier: float = \
-		ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER)
+		ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_FALL_GRAVITY_MODIFIER)
 
 ## Exported property that is just to help tweak the fall modifier while the game is running, 
 ## instead of having to change it in the project setting and run the game again.
 @export_range(0.0,5.0,0.05,"or_greater") var _debug_fall_modifier := 1.0:
 	set(value):
 		_debug_fall_modifier = value
-		ProjectSettings.set_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER, value)
+		ProjectSettings.set_setting(QuiverBeatEmUpPlugin.SETTINGS_FALL_GRAVITY_MODIFIER, value)
 		if Engine.is_editor_hint():
 			ProjectSettings.save()
 	get:
 		var value := _debug_fall_modifier
-		if ProjectSettings.has_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER):
-			value = ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER)
+		if ProjectSettings.has_setting(QuiverBeatEmUpPlugin.SETTINGS_FALL_GRAVITY_MODIFIER):
+			value = ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_FALL_GRAVITY_MODIFIER)
 		return value
 
 ## When the character jump, it's actually just the "skin" that is jumping, to five an illustion of 

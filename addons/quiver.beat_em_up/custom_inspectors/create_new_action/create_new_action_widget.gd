@@ -39,7 +39,7 @@ func _ready() -> void:
 	_scrap_action_names(_actions_by_folders)
 	_scrap_action_names(
 			_actions_by_folders, 
-			ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS)
+			ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_PATH_CUSTOM_ACTIONS)
 	)
 	_populate_options_from(_actions_by_folders)
 	_confirm.disabled = true

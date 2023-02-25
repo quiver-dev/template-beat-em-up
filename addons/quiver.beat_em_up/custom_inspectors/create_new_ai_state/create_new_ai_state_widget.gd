@@ -41,7 +41,7 @@ func _ready() -> void:
 	_scrap_ai_states_names(_ai_states_by_folders)
 	_scrap_ai_states_names(
 			_ai_states_by_folders, 
-			ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS)
+			ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_PATH_CUSTOM_BEHAVIORS)
 	)
 	_ai_states_by_folders["quiver_sequence_state"] = SEQUENCE_STATE
 	_populate_options_from(_ai_states_by_folders)

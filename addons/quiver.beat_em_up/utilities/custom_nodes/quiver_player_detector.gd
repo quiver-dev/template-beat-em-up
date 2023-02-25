@@ -48,8 +48,8 @@ func _ready() -> void:
 		return
 	elif (
 			OS.has_feature("editor") 
-			and ProjectSettings.has_setting(QuiverCyclicHelper.SETTINGS_DISABLE_PLAYER_DETECTOR)
-			and ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_DISABLE_PLAYER_DETECTOR)
+			and ProjectSettings.has_setting(QuiverBeatEmUpPlugin.SETTINGS_DISABLE_PLAYER_DETECTOR)
+			and ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_DISABLE_PLAYER_DETECTOR)
 		):
 		monitoring = false
 		return
