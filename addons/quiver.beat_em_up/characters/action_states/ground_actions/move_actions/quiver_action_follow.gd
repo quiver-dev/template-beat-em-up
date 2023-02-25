@@ -11,11 +11,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/"
-		+"ground_actions/quiver_action_move.gd"
-)
-
 @export_category("Arrive Settings")
 @export var OFFSET_FROM_TARGET = 230
 @export var ARRIVE_RANGE = 10
@@ -36,7 +31,7 @@ var _should_use_only_y := false
 
 var _is_turning := false
 
-@onready var _move_state := get_parent() as MoveState
+@onready var _move_state := get_parent() as QuiverActionGroundMove
 @onready var _squared_arrive = pow(ARRIVE_RANGE, 2)
 
 ### -----------------------------------------------------------------------------------------------
@@ -55,9 +50,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is MoveState:
+	if not get_parent() is QuiverActionGroundMove:
 		warnings.append(
-				"This ActionState must be a child of Action MoveState or a state " 
+				"This ActionState must be a child of Action QuiverActionGroundMove or a state " 
 				+ "inheriting from it."
 		)
 	

@@ -11,18 +11,13 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/"
-		+"ground_actions/quiver_action_move.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
 var _skin_state: StringName
 
-@onready var _move_state := get_parent() as MoveState
+@onready var _move_state := get_parent() as QuiverActionGroundMove
 
 ### -----------------------------------------------------------------------------------------------
 

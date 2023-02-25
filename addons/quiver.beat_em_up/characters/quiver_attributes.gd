@@ -197,7 +197,7 @@ func _set_health_current(value: int) -> void:
 class HitLaneLimits:
 	extends RefCounted
 	
-	var lane_size: int = ProjectSettings.get_setting(QuiverCyclicHelper.SETTINGS_DEFAULT_HIT_LANE_SIZE)
+	var lane_size: int = ProjectSettings.get_setting(QuiverBeatEmUpPlugin.SETTINGS_DEFAULT_HIT_LANE_SIZE)
 	
 	var upper_limit := 0
 	var lower_limit := 0

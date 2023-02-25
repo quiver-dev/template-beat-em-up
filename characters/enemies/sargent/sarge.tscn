@@ -60,61 +60,62 @@ should_process_input = false
 
 [node name="Ground" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_302rx")
-path_hurt = "Ground/Hurt"
-path_knockout = "Air/Knockout/Launch"
-path_grabbed = "Ground/Grabbed"
+_path_hurt = "Ground/Hurt"
+_path_knockout = "Air/Knockout/Launch"
+_path_grabbed = "Ground/Grabbed"
 
 [node name="Move" type="Node" parent="StateMachine/Ground" index="0"]
 script = ExtResource("5_k2im7")
-path_jump_state = "Air/Jump/Impulse"
-path_attack_state = "Ground/Attack1"
+_path_jump_state = "Air/Jump/Impulse"
+_path_attack_state = "Ground/Attack1"
 
 [node name="Follow" type="Node" parent="StateMachine/Ground/Move" index="0"]
 script = ExtResource("6_d1bnb")
-walk_skin_state = &"walk"
-path_next_state = "Ground/Move/IdleAi"
-turning_speed_modifier = 0.6
+_walk_skin_state = &"walk"
+_turn_skin_state = &"turn"
+_path_next_state = "Ground/Move/IdleAi"
+_turning_speed_modifier = 0.6
 
 [node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("7_t2y4d")
-skin_state = &"idle"
+_skin_state = &"idle"
 
 [node name="Hurt" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("6_3jnde")
-skin_state_mid = &"hurt_high"
-skin_state_high = &"hurt_mid"
-path_idle_state = "Ground/Move/IdleAi"
+_skin_state_mid = &"hurt_mid"
+_skin_state_high = &"hurt_high"
+_path_idle_state = "Ground/Move/IdleAi"
 
 [node name="Recovery" type="Node" parent="StateMachine/Ground" index="2"]
 script = ExtResource("10_38i3y")
-skin_state = &"knockout_ground"
-path_idle_state = "Ground/Move/IdleAi"
+_skin_state = &"knockout_ground"
+_path_idle_state = "Ground/Move/IdleAi"
 
 [node name="Attack1" type="Node" parent="StateMachine/Ground" index="3"]
 script = ExtResource("11_ekbeb")
-skin_state = &"attack_1"
-can_combo = true
-path_combo_state = "Ground/Attack2"
-path_next_state = "Ground/Move/IdleAi"
+_skin_state = &"attack_1"
+_can_combo = true
+_path_combo_state = "Ground/Attack2"
+_path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = false
 
 [node name="Attack2" type="Node" parent="StateMachine/Ground" index="4"]
 script = ExtResource("11_ekbeb")
-skin_state = &"attack_2"
-can_combo = true
-path_combo_state = "Ground/Attack3"
-path_next_state = "Ground/Move/IdleAi"
+_skin_state = &"attack_2"
+_can_combo = true
+_path_combo_state = "Ground/Attack3"
+_path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = false
 
 [node name="Attack3" type="Node" parent="StateMachine/Ground" index="5"]
 script = ExtResource("11_ekbeb")
-skin_state = &"attack_3"
-can_combo = false
-path_next_state = "Ground/Move/IdleAi"
+_skin_state = &"attack_3"
+_can_combo = false
+_path_next_state = "Ground/Move/IdleAi"
 parent_should_enter = true
 parent_should_exit = true
 parent_should_process = true
@@ -125,57 +126,57 @@ _debug_fall_modifier = 2.5
 
 [node name="Jump" type="Node" parent="StateMachine/Air" index="0"]
 script = ExtResource("13_jkpxb")
-path_landing = "Air/Jump/Landing"
-path_knockout = "Air/Knockout/Launch"
+_path_landing = "Air/Jump/Landing"
+_path_knockout = "Air/Knockout/Launch"
 
 [node name="Impulse" type="Node" parent="StateMachine/Air/Jump" index="0"]
 script = ExtResource("14_qqh5g")
-skin_state = &"jump_impulse"
-path_next_state = "Air/Jump/MidAir"
+_skin_state = &"jump_impulse"
+_path_next_state = "Air/Jump/MidAir"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air/Jump" index="1"]
 script = ExtResource("15_ab5u7")
-skin_state_rising = &"jump_rising"
-skin_state_falling = &"jump_falling"
-can_attack = false
+_skin_state_rising = &"jump_rising"
+_skin_state_falling = &"jump_falling"
+_can_attack = false
 
 [node name="Landing" type="Node" parent="StateMachine/Air/Jump" index="2"]
 script = ExtResource("16_evedi")
-skin_state = &"jump_landing"
-path_idle = "Ground/Move/IdleAi"
-path_walk = "Ground/Move/Follow"
+_skin_state = &"jump_landing"
+_path_idle = "Ground/Move/IdleAi"
+_path_walk = "Ground/Move/Follow"
 
 [node name="Knockout" type="Node" parent="StateMachine/Air" index="1"]
 script = ExtResource("17_iogx1")
-path_bounce = "Air/Knockout/Bounce"
 _path_launch = "Air/Knockout/Launch"
+_path_bounce = "Air/Knockout/Bounce"
 
 [node name="Launch" type="Node" parent="StateMachine/Air/Knockout" index="0"]
 script = ExtResource("18_ejy8c")
-skin_state_launch = &"knockout_bounce"
-skin_state_rising = &"knockout_rising"
-path_next_state = "Air/Knockout/MidAir"
+_skin_state_launch = &"knockout_launch"
+_skin_state_rising = &"knockout_rising"
+_path_next_state = "Air/Knockout/MidAir"
 
 [node name="MidAir" type="Node" parent="StateMachine/Air/Knockout" index="1"]
 script = ExtResource("19_0se75")
-skin_state_rising = &"knockout_rising"
-skin_state_falling = &"knockout_falling"
+_skin_state_rising = &"knockout_rising"
+_skin_state_falling = &"knockout_falling"
 
 [node name="Bounce" type="Node" parent="StateMachine/Air/Knockout" index="2"]
 script = ExtResource("20_w7t6v")
-skin_state = &"knockout_bounce"
-path_air_mid_air = "Air/Knockout/MidAir"
-path_ground_recovery = "Ground/Recovery"
-path_die = "DieAi"
+_skin_state = &"knockout_bounce"
+_path_air_mid_air = "Air/Knockout/MidAir"
+_path_ground_recovery = "Ground/Recovery"
+_path_die = "DieAi"
 
 [node name="DieAi" type="Node" parent="StateMachine" index="2"]
 script = ExtResource("22_70ox2")
-skin_state = &"die"
+_skin_state = &"die"
 
 [node name="AiStateMachine" type="Node" parent="." index="3"]
 script = ExtResource("22_cxc7w")
-ai_state_hurt = "WaitTillIdle"
-ai_state_after_reset = "Wait"
+_ai_state_hurt = "WaitTillIdle"
+_ai_state_after_reset = "Wait"
 initial_state = NodePath("Wait")
 should_process_input = false
 
@@ -184,54 +185,52 @@ script = ExtResource("23_meye2")
 
 [node name="ChaseClosestPlayer" type="Node" parent="AiStateMachine/Chase" index="0"]
 script = ExtResource("24_poemf")
-_max_chase_time = 5.0
-path_follow_state = "Ground/Move/Follow"
+_path_follow_state = "Ground/Move/Follow"
 
 [node name="QuiverAiWait" type="Node" parent="AiStateMachine/Chase" index="1"]
 script = ExtResource("25_gobfr")
-use_range = false
-wait_time = 0.2
-min_wait = 3.0
-max_wait = 6.0
+_use_range = false
+_wait_time = 0.2
+_min_wait = 3.0
+_max_wait = 6.0
 
 [node name="GoToPosition" type="Node" parent="AiStateMachine" index="1"]
 script = ExtResource("23_ho3tt")
-path_follow_state = "Ground/Move/Follow"
-use_node = false
-fallback_position = Vector2(inf, inf)
+_path_follow_state = "Ground/Move/Follow"
+_use_node = false
+_fallback_position = Vector2(inf, inf)
 
 [node name="Attack" type="Node" parent="AiStateMachine" index="2"]
 script = ExtResource("23_meye2")
 
 [node name="CallCombo" type="Node" parent="AiStateMachine/Attack" index="0"]
 script = ExtResource("28_wckwx")
-attack_state_path = "Ground/Attack1"
-combo_hits_amount = 1
-fallback_state_path = "Ground/Move/IdleAi"
+_attack_state_path = "Ground/Attack1"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="Wait" type="Node" parent="AiStateMachine/Attack" index="1"]
 script = ExtResource("25_gobfr")
-use_range = false
-wait_time = 0.5
-min_wait = 3.0
-max_wait = 6.0
+_use_range = false
+_wait_time = 0.5
+_min_wait = 3.0
+_max_wait = 6.0
 
 [node name="CallCombo2" type="Node" parent="AiStateMachine/Attack" index="2"]
 script = ExtResource("28_wckwx")
-attack_state_path = "Ground/Attack1"
-combo_hits_amount = 3
-fallback_state_path = "Ground/Move/IdleAi"
+_combo_hits_amount = 3
+_attack_state_path = "Ground/Attack1"
+_fallback_state_path = "Ground/Move/IdleAi"
 
 [node name="Wait" type="Node" parent="AiStateMachine" index="3"]
 script = ExtResource("25_gobfr")
-use_range = true
-wait_time = 0.0
-min_wait = 1.0
-max_wait = 3.0
+_use_range = true
+_wait_time = 0.0
+_min_wait = 1.0
+_max_wait = 3.0
 
 [node name="WaitTillIdle" type="Node" parent="AiStateMachine" index="4"]
 script = ExtResource("26_al3lo")
-path_ready_state = "Ground/Move/IdleAi"
+_path_ready_state = "Ground/Move/IdleAi"
 
 [node name="DebugLabels" type="VBoxContainer" parent="." index="4"]
 visible = false

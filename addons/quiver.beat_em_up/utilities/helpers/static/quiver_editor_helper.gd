@@ -83,13 +83,9 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 #
 #
 #func _property_can_revert(property: StringName) -> bool:
-#	var can_revert = true
+#	var can_revert = false
 #	
-#	match propery:
-#		_:
-#			can_revert = false
-#	
-#	return false
+#	return can_revert
 #
 #
 #func _property_get_revert(property: StringName):
@@ -123,14 +119,14 @@ static func disconnect_between(signal_object: Signal, callable: Callable) -> voi
 #
 #func _get_custom_properties() -> Dictionary:
 #	var custom_properties := {
-#			"": {
-#				backing_field = "", # use if dict key and variable name are different
-#				default_value = "", # use if you want property to have a default value
-#				type = TYPE_NIL,
-#				usage = PROPERTY_USAGE_DEFAULT,
-#				hint = PROPERTY_HINT_NONE,
-#				hint_string = "",
-#			},
+##			"": {
+##				backing_field = "", # use if dict key and variable name are different
+##				default_value = "", # use if you want property to have a default value
+##				type = TYPE_NIL,
+##				usage = PROPERTY_USAGE_DEFAULT,
+##				hint = PROPERTY_HINT_NONE,
+##				hint_string = "",
+##			},
 #	}
 #
 #	return custom_properties

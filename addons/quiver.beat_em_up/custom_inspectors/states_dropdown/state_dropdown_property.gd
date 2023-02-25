@@ -60,7 +60,7 @@ func _inititalize_property() -> void:
 		item_id += 1
 		_options.add_item(path)
 		if path == current_value:
-			_options.set_item_disabled(0, true)
+			_options.set_item_disabled(0, true) # Disables "Choose State" option
 			_options.selected = item_id
 
 

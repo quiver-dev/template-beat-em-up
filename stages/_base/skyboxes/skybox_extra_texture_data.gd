@@ -49,12 +49,18 @@ var sprite: Sprite2D = null:
 ### Public Methods --------------------------------------------------------------------------------
 
 func move_sprite_region(delta: float) -> void:
+	if not is_instance_valid(sprite):
+		return
+	
 	var sprite_width := sprite.texture.get_size().x
 	var new_position := sprite.region_rect.position.x + speed * delta
 	sprite.region_rect.position.x = fposmod(new_position, sprite_width)
 
 
 func reset_sprite_region() -> void:
+	if not is_instance_valid(sprite):
+		return
+	
 	sprite.region_rect.position.x = 0
 
 

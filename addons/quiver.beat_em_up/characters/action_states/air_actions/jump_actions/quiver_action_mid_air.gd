@@ -11,10 +11,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const JumpState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/quiver_action_jump.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -44,7 +40,7 @@ var _path_air_attack := "Air/Jump/Attack":
 
 var _air_control_max_speed := 0.0
 
-@onready var _jump_state := get_parent() as JumpState
+@onready var _jump_state := get_parent() as QuiverActionAirJump
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -62,7 +58,7 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is JumpState:
+	if not get_parent() is QuiverActionAirJump:
 		warnings.append(
 				"This ActionState must be a child of Action Jump state or a state " 
 				+ "inheriting from it."

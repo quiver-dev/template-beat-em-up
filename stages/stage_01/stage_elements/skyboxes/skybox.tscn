@@ -10,19 +10,19 @@
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_extra_texture_data.gd" id="8_eudom"]
 [ext_resource type="Script" path="res://stages/_base/skyboxes/skybox_gradient_transitioner.gd" id="9_65dxk"]
 
-[sub_resource type="Gradient" id="Gradient_uepa5"]
+[sub_resource type="Gradient" id="Gradient_ndvfh"]
 offsets = PackedFloat32Array(0, 0.259, 0.435, 0.656, 0.972)
 colors = PackedColorArray(0, 0.0456241, 0.109756, 1, 0, 0.415686, 1, 1, 0.192556, 0.689018, 0.957944, 1, 0.42856, 0.80186, 0.972127, 1, 0.882353, 0.972549, 0.992157, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jddal"]
-gradient = SubResource("Gradient_uepa5")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y38n7"]
+gradient = SubResource("Gradient_ndvfh")
 width = 1024
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3tgxg"]
 shader = ExtResource("1_vpob3")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_jddal")
+shader_parameter/gradient = SubResource("GradientTexture1D_y38n7")
 
 [sub_resource type="Gradient" id="Gradient_odxjl"]
 offsets = PackedFloat32Array(0, 0.259, 0.435, 0.656, 0.972)

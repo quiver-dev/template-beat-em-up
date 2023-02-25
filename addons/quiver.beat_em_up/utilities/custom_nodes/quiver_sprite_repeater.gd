@@ -27,6 +27,7 @@ extends Node2D
 @export_range(1,1,1,"or_greater") var length := 1:
 	set(value):
 		length = value
+		_create_random_sequence()
 		queue_redraw()
 @export var separation := 0:
 	set(value):
@@ -52,7 +53,21 @@ extends Node2D
 		queue_redraw()
 
 @export_group("Texture Variations", "variation_")
-@export var variation_textures: Array[Texture2D] = []
+@export var variation_textures: Array[Texture2D]:
+	set(value):
+		variation_textures = value
+		if _textures.is_empty() or _textures.size() != variation_textures.size() + 1:
+			_update_textures()
+			var old_size := _variations_weights.size()
+			var new_size := _textures.size()
+			_variations_weights.resize(new_size)
+			if new_size > old_size:
+				for index in range(old_size, new_size):
+					_variations_weights[index] = 1.0
+		
+		_create_random_sequence()
+		notify_property_list_changed()
+		queue_redraw()
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
@@ -71,40 +86,10 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	_textures = [main_texture]
-	_textures.append_array(variation_textures)
-	
-	if _texture_sequence.is_empty() or _texture_sequence.size() != length:
-		_create_random_sequence()
-		notify_property_list_changed()
-	
+	_update_textures()
 	_draw_cap_begin()
 	_draw_main_body()
 	_draw_cap_end()
-
-
-func _process(_delta: float) -> void:
-	# TODO: REMOVE ME
-	# This is a "hack" because adding setters to Array[Texture2D] is broken 
-	# https://github.com/godotengine/godot/issues/58285
-	var should_redraw := false
-	
-	if _textures.is_empty() or _textures.size() != variation_textures.size() + 1:
-		_textures = [main_texture]
-		_textures.append_array(variation_textures)
-		should_redraw = true
-	
-	if _variations_weights.size() != _textures.size():
-		var old_size := _variations_weights.size()
-		var new_size := _textures.size()
-		_variations_weights.resize(new_size)
-		if new_size > old_size:
-			for index in range(old_size, new_size):
-				_variations_weights[index] = 1.0
-		notify_property_list_changed()
-	
-	if should_redraw:
-		queue_redraw()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -113,7 +98,7 @@ func _process(_delta: float) -> void:
 
 func get_global_rect_on_editor() -> Rect2:
 	var rect := get_global_rect()
-	var editor_transform := get_viewport_transform() * get_canvas_transform()
+	var editor_transform := get_viewport_transform()
 	rect.position = editor_transform * rect.position
 	rect.size = editor_transform.get_scale() * rect.size
 	return rect
@@ -139,6 +124,11 @@ func get_global_rect() -> Rect2:
 
 
 ### Private Methods -------------------------------------------------------------------------------
+
+func _update_textures() -> void:
+	_textures = [main_texture]
+	_textures.append_array(variation_textures)
+
 
 func _draw_cap_begin() -> void:
 	if cap_begin != null:
@@ -170,6 +160,9 @@ func _draw_cap_end() -> void:
 
 
 func _create_random_sequence() -> void:
+	if _variations_weights.is_empty():
+		return
+	
 	_texture_sequence.clear()
 	for index in length:
 		var random_index := QuiverMathHelper.draw_random_weighted_index(_variations_weights)
@@ -243,9 +236,6 @@ func _get(property: StringName):
 	
 	match property:
 		&"variations_weights":
-			if _variations_weights.size() != _textures.size():
-				_variations_weights.resize(_textures.size())
-				_variations_weights.fill(1.0)
 			value = _variations_weights
 		&"texture_sequence":
 			value = _texture_sequence

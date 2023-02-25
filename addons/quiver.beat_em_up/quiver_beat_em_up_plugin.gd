@@ -1,4 +1,5 @@
 @tool
+class_name QuiverBeatEmUpPlugin
 extends EditorPlugin
 ## Write your doc string for this file here
 
@@ -28,38 +29,45 @@ const PATH_AUTOLOADS = [
 	["ScreenTransitions", "res://addons/quiver.beat_em_up/utilities/helpers/autoload/transitions/screen_transitions.tscn"],
 ]
 
+const SETTINGS_DEFAULT_HIT_LANE_SIZE = "quiver/beat_em_up/gameplay/default_hit_lane_size"
+const SETTINGS_FALL_GRAVITY_MODIFIER = "quiver/beat_em_up/gameplay/fall_gravity_modifier"
+const SETTINGS_LOGGING = "quiver/beat_em_up/debug/logging_enabled"
+const SETTINGS_DISABLE_PLAYER_DETECTOR = "quiver/beat_em_up/debug/disable_player_detector_on_editor"
+const SETTINGS_PATH_CUSTOM_ACTIONS = "quiver/beat_em_up/paths/custom_actions_folder"
+const SETTINGS_PATH_CUSTOM_BEHAVIORS = "quiver/beat_em_up/paths/custom_ai_folder"
+
 var SETTINGS = {
-	QuiverCyclicHelper.SETTINGS_DEFAULT_HIT_LANE_SIZE:{
+	SETTINGS_DEFAULT_HIT_LANE_SIZE:{
 			value = 60,
 			type = TYPE_INT,
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0,1,1,or_greater"
 	},
-	QuiverCyclicHelper.SETTINGS_LOGGING: {
+	SETTINGS_LOGGING: {
 			value = true,
 			type = TYPE_BOOL,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = "",
 	},
-	QuiverCyclicHelper.SETTINGS_FALL_GRAVITY_MODIFIER: {
+	SETTINGS_FALL_GRAVITY_MODIFIER: {
 			value = 2.5,
 			type = TYPE_FLOAT,
 			hint = PROPERTY_HINT_RANGE,
 			hint_string = "0.0,2.0,0.01,or_greater"
 	},
-	QuiverCyclicHelper.SETTINGS_DISABLE_PLAYER_DETECTOR: {
+	SETTINGS_DISABLE_PLAYER_DETECTOR: {
 			value = false,
 			type = TYPE_BOOL,
 			hint = PROPERTY_HINT_NONE,
 			hint_string = "",
 	},
-	QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS: {
+	SETTINGS_PATH_CUSTOM_ACTIONS: {
 			value = "res://_beat_em_up/action_states/",
 			type = TYPE_STRING,
 			hint = PROPERTY_HINT_DIR,
 			hint_string = "",
 	},
-	QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS: {
+	SETTINGS_PATH_CUSTOM_BEHAVIORS: {
 			value = "res://_beat_em_up/ai_states/",
 			type = TYPE_STRING,
 			hint = PROPERTY_HINT_DIR,
@@ -78,6 +86,10 @@ var _current_overlay_handler: QuiverCustomOverlay = null
 
 
 ### Built in Engine Methods -----------------------------------------------------------------------
+
+func _init() -> void:
+	add_to_group("quiver_beat_em_up_plugin")
+
 
 func _enter_tree() -> void:
 	_add_custom_inspectors()
@@ -107,14 +119,10 @@ func _handles(object) -> bool:
 		
 		value = (overlay as QuiverCustomOverlay).handles(object)
 		if value:
-			if _current_overlay_handler != null and _current_overlay_handler != overlay:
-				_current_overlay_handler.make_visible(false)
-			
 			_current_overlay_handler = overlay
 			break
 	
 	if not value and _current_overlay_handler != null:
-		_current_overlay_handler.make_visible(false)
 		_current_overlay_handler = null
 	
 	return value
@@ -153,6 +161,9 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 
 
 ### Public Methods --------------------------------------------------------------------------------
+
+func emit_filesystem_changed() -> void:
+	get_editor_interface().get_resource_filesystem().filesystem_changed.emit()
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -230,8 +241,8 @@ func _add_plugin_settings() -> void:
 
 func _add_settings_property_info() -> void:
 	const FOLDERS_TO_CREATE = [
-		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_ACTIONS,
-		QuiverCyclicHelper.SETTINGS_PATH_CUSTOM_BEHAVIORS,
+		QuiverBeatEmUpPlugin.SETTINGS_PATH_CUSTOM_ACTIONS,
+		QuiverBeatEmUpPlugin.SETTINGS_PATH_CUSTOM_BEHAVIORS,
 	]
 	for setting in SETTINGS:
 		var dict: Dictionary = SETTINGS[setting]

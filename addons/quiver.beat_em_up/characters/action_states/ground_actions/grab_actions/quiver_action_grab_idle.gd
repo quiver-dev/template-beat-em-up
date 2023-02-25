@@ -11,11 +11,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GrabState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/ground_actions/"
-		+"quiver_action_grab.gd"
-)
-
 # this is broken for exports on alpha 16
 #const ONE_SHOT_TIMER = preload("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
 @onready var ONE_SHOT_TIMER = load("res://addons/quiver.beat_em_up/utilities/OneShotTimer.tscn")
@@ -35,7 +30,7 @@ var _is_holding_backwards := false
 var _release_action := ""
 var _release_timer: Timer = null
 
-@onready var _grab_state := get_parent() as GrabState
+@onready var _grab_state := get_parent() as QuiverActionGroundGrab
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -56,9 +51,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is GrabState:
+	if not get_parent() is QuiverActionGroundGrab:
 		warnings.append(
-				"This ActionState must be a child of Action GrabState or a state " 
+				"This ActionState must be a child of Action QuiverActionGroundGrab or a state " 
 				+ "inheriting from it."
 		)
 	

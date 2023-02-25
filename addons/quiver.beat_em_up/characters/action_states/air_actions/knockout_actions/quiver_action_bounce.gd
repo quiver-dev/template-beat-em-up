@@ -11,11 +11,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const KnockoutState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/air_actions/"
-		+ "quiver_action_knockout.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -28,7 +23,7 @@ var _path_die := "Die"
 var _bounce_direction := Vector2.ZERO
 var _has_landed := false
 
-@onready var _knockout_state := get_parent() as KnockoutState
+@onready var _knockout_state := get_parent() as QuiverActionAirKnockout
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -46,9 +41,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is KnockoutState:
+	if not get_parent() is QuiverActionAirKnockout:
 		warnings.append(
-				"This ActionState must be a child of Action KnockoutState or a state " 
+				"This ActionState must be a child of Action QuiverActionAirKnockout or a state " 
 				+ "inheriting from it."
 		)
 	

@@ -64,21 +64,6 @@ func forward_canvas_force_draw_over_viewport(viewport_control: Control) -> void:
 	_push_override_error("forward_canvas_force_draw_over_viewport", get_script().resource_path)
 	pass
 
-
-func forward_3d_draw_over_viewport(viewport_control: Control) -> void:
-	_push_override_error("_forward_3d_draw_over_viewport", get_script().resource_path)
-	pass
-
-
-func forward_3d_force_draw_over_viewport(viewport_control: Control) -> void:
-	_push_override_error("_forward_3d_force_draw_over_viewport", get_script().resource_path)
-	pass
-
-
-func forward_3d_gui_input(viewport_camera: Camera3D, event: InputEvent) -> int:
-	_push_override_error("_forward_3d_gui_input", get_script().resource_path)
-	return int(false)
-
 ### -----------------------------------------------------------------------------------------------
 
 

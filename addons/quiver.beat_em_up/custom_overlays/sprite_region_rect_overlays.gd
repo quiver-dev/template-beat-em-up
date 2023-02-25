@@ -52,7 +52,7 @@ func handles(object) -> bool:
 
 func edit(object) -> void:
 	_sprite = object as Sprite2D
-	pass
+	main_plugin.update_overlays()
 
 
 func make_visible(visible: bool) -> void:

@@ -49,8 +49,6 @@ _debug_draw_lane_limits = false
 _attributes = ExtResource("3_3jl8s")
 
 [node name="Skin" parent="." index="0" instance=ExtResource("3_0tid4")]
-_has_grab = false
-_has_grabbed = false
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1"]
 modulate = Color(0, 0.6, 0.701961, 1)
@@ -86,7 +84,7 @@ _turning_speed_modifier = 0.6
 
 [node name="IdleAi" type="Node" parent="StateMachine/Ground/Move" index="1"]
 script = ExtResource("7_ohh3m")
-_skin_state = &""
+_skin_state = &"idle"
 
 [node name="AttackArea" type="Node" parent="StateMachine/Ground" index="1"]
 script = ExtResource("10_ptkg4")

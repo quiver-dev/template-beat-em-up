@@ -77,6 +77,7 @@ func _on_button_pressed() -> void:
 		if _changed_report != ERROR_NO_TRACK_FOUND:
 			new_animation.resource_name = file_name.get_basename()
 			ResourceSaver.save(new_animation, new_path, ResourceSaver.FLAG_CHANGE_PATH)
+			get_tree().call_group("quiver_beat_em_up_plugin", "emit_filesystem_changed")
 		
 	_report_label.text = _changed_report
 	_finished_popup.popup_centered(_finished_popup.min_size)

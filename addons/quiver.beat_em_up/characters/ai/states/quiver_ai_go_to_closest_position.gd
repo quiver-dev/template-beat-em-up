@@ -1,5 +1,6 @@
 @tool
-extends "res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_position.gd"
+class_name QuiverAiGoToClosestPosition
+extends QuiverAiGoToPosition
 
 ## Write your doc string for this file here
 
