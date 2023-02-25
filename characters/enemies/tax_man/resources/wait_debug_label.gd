@@ -1,5 +1,5 @@
 @tool
-extends "res://addons/quiver.beat_em_up/utilities/custom_nodes/quiver_debug_property_label.gd"
+extends QuiverDebugPropertyLabel
 
 ## Write your doc string for this file here
 

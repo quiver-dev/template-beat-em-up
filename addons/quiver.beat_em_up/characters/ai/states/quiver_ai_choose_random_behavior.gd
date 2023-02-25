@@ -1,4 +1,5 @@
 @tool
+class_name QuiverAiChooseRandomBehavior
 extends QuiverAiState
 
 ## Write your doc string for this file here

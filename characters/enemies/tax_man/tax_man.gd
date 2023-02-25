@@ -18,8 +18,6 @@ enum TaxManPhases { PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_DIE }
 
 #--- constants ------------------------------------------------------------------------------------
 
-const QuiverAiGoToClosestPosition := preload("res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_go_to_closest_position.gd")
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 @export var should_start_seated := false:

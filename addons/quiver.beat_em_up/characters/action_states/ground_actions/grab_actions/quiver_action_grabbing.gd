@@ -11,11 +11,6 @@ extends QuiverCharacterAction
 
 #--- constants ------------------------------------------------------------------------------------
 
-const GrabState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/ground_actions/"
-		+"quiver_action_grab.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
@@ -23,7 +18,7 @@ const GrabState = preload(
 var _skin_state: StringName
 var _path_next_state := "Ground/Grab/Idle"
 
-@onready var _grab_state := get_parent() as GrabState
+@onready var _grab_state := get_parent() as QuiverActionGroundGrab
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -41,9 +36,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is GrabState:
+	if not get_parent() is QuiverActionGroundGrab:
 		warnings.append(
-				"This ActionState must be a child of Action GrabState or a state " 
+				"This ActionState must be a child of Action QuiverActionGroundGrab or a state " 
 				+ "inheriting from it."
 		)
 	

@@ -1,5 +1,6 @@
 @tool
-extends "res://addons/quiver.beat_em_up/characters/ai/states/quiver_ai_chase_closest_player.gd"
+class_name QuiverAiAlignToClosestPlayer
+extends QuiverAiChaseClosestPlayer
 
 ## Write your doc string for this file here
 

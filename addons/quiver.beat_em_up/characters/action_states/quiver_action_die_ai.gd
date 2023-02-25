@@ -1,5 +1,6 @@
 @tool
-extends "res://addons/quiver.beat_em_up/characters/action_states/quiver_action_die.gd"
+class_name QuiverActionDieAi
+extends QuiverActionDie
 
 ## Write your doc string for this file here
 

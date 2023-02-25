@@ -10,16 +10,11 @@ extends _BASE_
 
 #--- constants ------------------------------------------------------------------------------------
 
-const MoveState = preload(
-		"res://addons/quiver.beat_em_up/characters/action_states/"
-		+"ground_actions/quiver_action_move.gd"
-)
-
 #--- public variables - order: export > normal var > onready --------------------------------------
 
 #--- private variables - order: export > normal var > onready -------------------------------------
 
-@onready var _move_state := get_parent() as MoveState
+@onready var _move_state := get_parent() as QuiverActionGroundMove
 
 ### -----------------------------------------------------------------------------------------------
 
@@ -37,9 +32,9 @@ func _ready() -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
 	
-	if not get_parent() is MoveState:
+	if not get_parent() is QuiverActionGroundMove:
 		warnings.append(
-				"This ActionState must be a child of Action MoveState or a state " 
+				"This ActionState must be a child of Action QuiverActionGroundMove or a state " 
 				+ "inheriting from it."
 		)
 	
