@@ -27,6 +27,7 @@ extends Node2D
 @export_range(1,1,1,"or_greater") var length := 1:
 	set(value):
 		length = value
+		_create_random_sequence()
 		queue_redraw()
 @export var separation := 0:
 	set(value):
@@ -97,7 +98,7 @@ func _draw() -> void:
 
 func get_global_rect_on_editor() -> Rect2:
 	var rect := get_global_rect()
-	var editor_transform := get_viewport_transform() * get_canvas_transform()
+	var editor_transform := get_viewport_transform()
 	rect.position = editor_transform * rect.position
 	rect.size = editor_transform.get_scale() * rect.size
 	return rect
@@ -159,6 +160,9 @@ func _draw_cap_end() -> void:
 
 
 func _create_random_sequence() -> void:
+	if _variations_weights.is_empty():
+		return
+	
 	_texture_sequence.clear()
 	for index in length:
 		var random_index := QuiverMathHelper.draw_random_weighted_index(_variations_weights)

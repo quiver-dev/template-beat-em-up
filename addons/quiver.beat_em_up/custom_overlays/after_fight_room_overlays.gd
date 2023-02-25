@@ -50,11 +50,18 @@ func handles(object) -> bool:
 
 
 func edit(object) -> void:
+	if _fight_room != null:
+		QuiverEditorHelper.disconnect_between(_fight_room.draw, main_plugin.update_overlays)
 	_fight_room = object as QuiverFightRoom
+	
+	main_plugin.update_overlays()
+	if _fight_room != null:
+		QuiverEditorHelper.connect_between(_fight_room.draw, main_plugin.update_overlays)
 
 
 func make_visible(visible: bool) -> void:
 	if not visible:
+		QuiverEditorHelper.disconnect_between(_fight_room.draw, main_plugin.update_overlays)
 		_fight_room = null
 	main_plugin.update_overlays()
 

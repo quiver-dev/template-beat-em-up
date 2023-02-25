@@ -48,11 +48,18 @@ func handles(object) -> bool:
 
 
 func edit(object) -> void:
+	if _sprite_repeater != null:
+		QuiverEditorHelper.disconnect_between(_sprite_repeater.draw, main_plugin.update_overlays)
 	_sprite_repeater = object as QuiverSpriteRepeater
+	
+	main_plugin.update_overlays()
+	if _sprite_repeater != null:
+		QuiverEditorHelper.connect_between(_sprite_repeater.draw, main_plugin.update_overlays)
 
 
 func make_visible(visible: bool) -> void:
 	if not visible:
+		QuiverEditorHelper.disconnect_between(_sprite_repeater.draw, main_plugin.update_overlays)
 		_sprite_repeater = null
 	main_plugin.update_overlays()
 
@@ -66,7 +73,7 @@ func forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 	
 	_handles = _calculate_sprite_repeater_handles()
 	for handle in _handles.values():
-		viewport_control.draw_rect(handle, COLOR_GODOT_ORANGE, true, 1.0)
+		viewport_control.draw_rect(handle, COLOR_GODOT_ORANGE, true)
 		viewport_control.draw_rect(handle, Color.WHITE, false, 1.0)
 
 
@@ -74,7 +81,27 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 	var has_handled := false
 	
 	if is_instance_valid(_sprite_repeater) and _sprite_repeater.visible:
-		has_handled = _drag_handles(event)
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+			if _dragged_handle == INVALID_HANDLE and event.is_pressed():
+				has_handled = _start_dragging_clicked_handle(event)
+			elif _dragged_handle != INVALID_HANDLE and not event.is_pressed():
+				_stop_dragging_released_handle(event)
+				has_handled = true
+		elif _dragged_handle != INVALID_HANDLE and event is InputEventMouseMotion:
+			_drag_to(event)
+			main_plugin.update_overlays()
+			has_handled = true
+		
+		if event.is_action_pressed("ui_cancel") and _dragged_handle != INVALID_HANDLE:
+			print("undoing when I shouldnt")
+			_dragged_handle = INVALID_HANDLE
+			
+			_undo_redo.commit_action()
+			var undo_redo_id = _undo_redo.get_object_history_id(_sprite_repeater)
+			_undo_redo.get_history_undo_redo(undo_redo_id).undo()
+			
+			main_plugin.update_overlays()
+			has_handled = true
 	
 	return has_handled
 
@@ -86,33 +113,6 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 func _on_main_plugin_set() -> void:
 	_undo_redo = main_plugin.get_undo_redo()
 	pass
-
-
-func _drag_handles(event: InputEvent) -> bool:
-	var has_handled := false
-	
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if _dragged_handle == INVALID_HANDLE and event.is_pressed():
-			has_handled = _start_dragging_clicked_handle(event)
-		elif _dragged_handle != INVALID_HANDLE and not event.is_pressed():
-			_stop_dragging_released_handle(event)
-			has_handled = true
-	elif _dragged_handle != INVALID_HANDLE and event is InputEventMouseMotion:
-		_drag_to(event)
-		main_plugin.update_overlays()
-		has_handled = true
-	
-	if event.is_action_pressed("ui_cancel"):
-		_dragged_handle = INVALID_HANDLE
-		
-		_undo_redo.commit_action()
-		var undo_redo_id = _undo_redo.get_object_history_id(_sprite_repeater)
-		_undo_redo.get_history_undo_redo(undo_redo_id).undo()
-		
-		main_plugin.update_overlays()
-		has_handled = true
-	
-	return has_handled
 
 
 func _start_dragging_clicked_handle(event: InputEventMouseButton) -> bool:
@@ -150,9 +150,6 @@ func _stop_dragging_released_handle(event: InputEventMouseButton) -> void:
 
 
 func _calculate_sprite_repeater_handles() -> Dictionary:
-	var editor_transform := \
-			_sprite_repeater.get_viewport_transform() * _sprite_repeater.get_canvas_transform()
-	
 	var handles := {}
 	
 	if _sprite_repeater.is_vertical:

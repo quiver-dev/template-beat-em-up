@@ -88,37 +88,37 @@ fill = 1
 fill_from = Vector2(0.603352, 0.349693)
 fill_to = Vector2(0, 0.475798)
 
-[sub_resource type="Gradient" id="Gradient_ubs7u"]
+[sub_resource type="Gradient" id="Gradient_ebne2"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0823529, 0.027451, 0.027451, 1, 0.505882, 0.137255, 0.121569, 1, 0.596078, 0.313726, 0.188235, 1, 0.745098, 0.572549, 0.411765, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_v5u0y"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dm7o6"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_ubs7u")
+gradient = SubResource("Gradient_ebne2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jq4kj"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_v5u0y")
+shader_parameter/gradient = SubResource("GradientTexture1D_dm7o6")
 
-[sub_resource type="Gradient" id="Gradient_8yp4x"]
+[sub_resource type="Gradient" id="Gradient_6kqft"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.268817, 0.575269, 0.854839)
 colors = PackedColorArray(0.0392157, 0.027451, 0.14902, 1, 0.243137, 0.227451, 0.34902, 1, 0.380392, 0.368627, 0.486275, 1, 0.631373, 0.619608, 0.737255, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_d7cfe"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b5con"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_8yp4x")
+gradient = SubResource("Gradient_6kqft")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o8ik0"]
 shader = ExtResource("5_iqlbw")
 shader_parameter/is_active = true
 shader_parameter/show_grayscale = false
-shader_parameter/gradient = SubResource("GradientTexture1D_d7cfe")
+shader_parameter/gradient = SubResource("GradientTexture1D_b5con")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuxeb"]
 polygon = PackedVector2Array(-30, -1178, 1345, 185, 125, 193, -47, 202)
@@ -612,7 +612,7 @@ cap_begin = ExtResource("7_412kv")
 cap_begin_offset = Vector2(-451, 9)
 variation_textures = Array[Texture2D]([ExtResource("8_fsw4y"), ExtResource("9_7km5a")])
 variations_weights = Array[float]([1.49616, 0.968136, 0.535703])
-texture_sequence = Array[int]([0, 0, 0, 0, 0, 2, 2, 0, 2, 0, 1, 2, 2, 0, 2, 1, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 2, 0, 2, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0])
+texture_sequence = Array[int]([0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 2, 0, 1, 1, 0, 0, 0, 0, 2, 2, 0, 0, 1, 0, 2, 2, 1, 0, 0, 0, 1, 1, 0, 1, 0])
 
 [node name="TelefonePole" type="Sprite2D" parent="Background/SideWalk" index="0"]
 position = Vector2(911.637, -522.217)
