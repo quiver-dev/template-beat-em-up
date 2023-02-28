@@ -28,7 +28,7 @@ Created by [Quiver](https://quiver.dev).
 Coming soon!
 
 ## Requirements
-* Godot 4 Beta or higher
+* Godot 4.0 RC6 or higher
 
 ## Installation instructions
 * This project uses [Git Large File Storage](https://git-lfs.github.com/) (LFS) to store asset binaries. To initialize it make sure you have LFS installed, then simply run ```git lfs install```
