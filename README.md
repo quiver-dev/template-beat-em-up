@@ -1,4 +1,4 @@
-##Z&M Project 
+## M&Z Project 
 Based on [Quiver](https://quiver.dev).
 [![Downtown Beatdown Trailer]
 
