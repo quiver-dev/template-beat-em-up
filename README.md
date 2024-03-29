@@ -1,11 +1,7 @@
-# Downtown Beatdown: Beat-em-up game template
-An open source 2D beat-em-up game template for Godot 4, to make games like *Streets of Rage*.
-Created by [Quiver](https://quiver.dev).
+##Z&M Project 
+Based on [Quiver](https://quiver.dev).
+[![Downtown Beatdown Trailer]
 
-## Trailer
-[![Downtown Beatdown Trailer](https://image.mux.com/V79F1t5LueA43ChEhn5nbAV013mD2JmFnPATeb402389Q/animated.gif?start=8&end=14)](https://quiver.dev/assets/game-templates/downtown-beatdown-beat-em-up-godot-4-template/#lg=1&slide=0)
-
-(click to watch the full trailer!)
 
 ## Features
 - Customizable player and enemy characters
