@@ -41,5 +41,5 @@ For bugs and feature requests, feel free to file an issue here or comment on thi
 ## Share with the community!
 If you manage to incorporate this template into your next project, please share with the [Quiver community](https://quiver.dev/)!
 
-## More game tempaltes
+## More game templates
 Want more game templates? Check out our growing collection [here](https://quiver.dev/assets/game-templates/).
